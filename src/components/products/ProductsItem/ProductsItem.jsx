@@ -15,6 +15,7 @@ import {
   BtnText,
   Svg,
   Text,
+  TextCategory,
   Value,
 } from './ProductsItem.styled';
 
@@ -82,9 +83,9 @@ export default function ProductsItem({
           <Text>
             Calories:<Value>{calories}</Value>
           </Text>
-          <Text>
+          <TextCategory>
             Category:<Value>{category}</Value>
-          </Text>
+          </TextCategory>
           <Text>
             Weight:<Value>{weight}</Value>
           </Text>

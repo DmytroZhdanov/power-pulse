@@ -3,11 +3,9 @@ import styled from '@emotion/styled';
 export const ProductCard = styled.li`
   @media (min-width: 320px) {
     margin-bottom: 20px;
-
     &:last-child {
       margin-bottom: 0;
     }
-
     height: 141px;
     padding: 16px;
     border-radius: 12px;
@@ -42,11 +40,9 @@ export const Diet = styled.p`
     padding: 5px 7.5px;
     border-radius: 4px;
     background: rgba(239, 237, 232, 0.05);
-
-    color: var(--white-white, #fff);
+    color: '#fff';
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
-
     font-weight: 700;
   }
 `;
@@ -73,7 +69,7 @@ export const RecommendText = styled.p`
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
     font-weight: 400;
-    line-height: 18px;
+    line-height: calc(18 / 12);
   }
 `;
 
@@ -93,19 +89,16 @@ export const BtnText = styled.p`
   @media (min-width: 320px) {
     margin-right: 8px;
     color: #e6533c;
-
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
-    font-style: normal;
     font-weight: 400;
-    line-height: 18px;
+    line-height: calc(18 / 14);
   }
 `;
 
 export const Product = styled.div`
   @media (min-width: 320px) {
     display: flex;
-
     align-items: center;
     margin-bottom: 8px;
   }
@@ -122,18 +115,16 @@ export const ProductTitle = styled.h2`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
     color: #efede8;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
-
     font-weight: 400;
-    line-height: 24px;
+    line-height: calc(24 / 20);
   }
 
   @media (min-width: 768px) {
     font-size: 24px;
-    line-height: 32px;
+    line-height: calc(32 / 24);
   }
 `;
 
@@ -148,9 +139,22 @@ export const Text = styled.p`
     color: rgba(239, 237, 232, 0.4);
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
-
     font-weight: 400;
-    line-height: 18px;
+    line-height: calc(18 / 12);
+  }
+`;
+
+export const TextCategory = styled.p`
+  @media (min-width: 320px) {
+    margin-right: 16px;
+    color: rgba(239, 237, 232, 0.4);
+    font-family: 'Roboto', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: calc(18 / 12);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 
@@ -160,9 +164,8 @@ export const Value = styled.span`
     color: #efede8;
     font-family: 'Roboto', sans-serif;
     font-size: 12px;
-
     font-weight: 400;
-    line-height: 18px;
+    line-height: calc(18 / 12);
   }
 
   @media (min-width: 768px) {
