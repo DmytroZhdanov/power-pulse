@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const ProductCard = styled.li`
   @media (min-width: 320px) {
     margin-bottom: 20px;
-    max-width: 335px;
+
     &:last-child {
       margin-bottom: 0;
     }
@@ -14,15 +14,18 @@ export const ProductCard = styled.li`
     border: 1px solid rgba(239, 237, 232, 0.2);
   }
 
+  @media (max-width: 375px) {
+    max-width: 335px;
+  }
+
   @media (min-width: 375px) {
     width: 335px;
   }
   @media (min-width: 768px) {
     margin: 16px 8px;
-    width: calc((100% - 24px) / 2);
   }
   @media (min-width: 1440px) {
-    max-width: 405px;
+    width: 405px;
   }
 `;
 
