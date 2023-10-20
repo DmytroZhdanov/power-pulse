@@ -7,7 +7,7 @@ import SignUp from 'pages/SignUp/SignUp';
 import SignIn from 'pages/SignIn/SignIn';
 import Profile from 'pages/Profile/Profile';
 import Diary from 'pages/Diary/Diary';
-import Products from 'pages/Products/Products';
+import { Products } from 'pages/Products/Products';
 import Exercises from 'pages/Exercises/Exercises';
 import Data from 'pages/Data/Data';
 import ExercisesSubcategoriesList from 'components/exercises/ExercisesSubcategoriesList/ExercisesSubcategoriesList';
