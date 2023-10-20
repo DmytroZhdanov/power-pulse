@@ -33,13 +33,6 @@ export const ProductHeader = styled.div`
     align-items: flex-start;
     margin-bottom: 27px;
   }
-
-  @media (min-width: 375px) {
-  }
-  @media (min-width: 768px) {
-  }
-  @media (min-width: 1440px) {
-  }
 `;
 export const Diet = styled.p`
   @media (min-width: 320px) {
@@ -48,18 +41,10 @@ export const Diet = styled.p`
     background: rgba(239, 237, 232, 0.05);
 
     color: var(--white-white, #fff);
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-size: 12px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
 
-  @media (min-width: 375px) {
-  }
-  @media (min-width: 768px) {
-  }
-  @media (min-width: 1440px) {
+    font-weight: 700;
   }
 `;
 export const RecommendDiv = styled.div`
@@ -68,12 +53,6 @@ export const RecommendDiv = styled.div`
     justify-content: center;
     align-items: center;
   }
-  @media (min-width: 375px) {
-  }
-  @media (min-width: 768px) {
-  }
-  @media (min-width: 1440px) {
-  }
 `;
 export const Indicator = styled.div`
   @media (min-width: 320px) {
@@ -81,32 +60,17 @@ export const Indicator = styled.div`
     width: 14px;
     height: 14px;
     border-radius: 10px;
-    background-color: ${props => (props.recomended ? '#419B09' : '#E9101D')};
-  }
-  @media (min-width: 375px) {
-  }
-  @media (min-width: 768px) {
-  }
-  @media (min-width: 1440px) {
+    background-color: ${props => (props.recommended ? '#419B09' : '#E9101D')};
   }
 `;
 export const RecommendText = styled.p`
   @media (min-width: 320px) {
     margin-right: 16px;
-
     color: #efede8;
-
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-size: 12px;
-    font-style: normal;
     font-weight: 400;
     line-height: 18px;
-  }
-  @media (min-width: 375px) {
-  }
-  @media (min-width: 768px) {
-  }
-  @media (min-width: 1440px) {
   }
 `;
 
@@ -120,12 +84,6 @@ export const Button = styled.button`
       background: rgba(0, 0, 0, 0.1);
     }
   }
-  @media (min-width: 375px) {
-  }
-  @media (min-width: 768px) {
-  }
-  @media (min-width: 1440px) {
-  }
 `;
 
 export const BtnText = styled.p`
@@ -133,18 +91,11 @@ export const BtnText = styled.p`
     margin-right: 8px;
     color: #e6533c;
 
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 18px;
-  }
-  @media (min-width: 375px) {
-  }
-  @media (min-width: 768px) {
-    line-height: 24px;
-  }
-  @media (min-width: 1440px) {
   }
 `;
 
@@ -155,25 +106,11 @@ export const Product = styled.div`
     align-items: center;
     margin-bottom: 8px;
   }
-
-  @media (min-width: 375px) {
-  }
-  @media (min-width: 768px) {
-  }
-  @media (min-width: 1440px) {
-  }
 `;
 
 export const Svg = styled.svg`
   @media (min-width: 320px) {
     margin-right: 16px;
-  }
-
-  @media (min-width: 375px) {
-  }
-  @media (min-width: 768px) {
-  }
-  @media (min-width: 1440px) {
   }
 `;
 
@@ -184,51 +121,33 @@ export const ProductTitle = styled.h2`
     text-overflow: ellipsis;
 
     color: #efede8;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-size: 20px;
-    font-style: normal;
+
     font-weight: 400;
     line-height: 24px;
   }
 
-  @media (min-width: 375px) {
-  }
   @media (min-width: 768px) {
     font-size: 24px;
     line-height: 32px;
-  }
-  @media (min-width: 1440px) {
   }
 `;
 
 export const Description = styled.div`
   @media (min-width: 320px) {
-    display: inline-flex;
-  }
-
-  @media (min-width: 375px) {
-  }
-  @media (min-width: 768px) {
-  }
-  @media (min-width: 1440px) {
+    display: flex;
   }
 `;
 export const Text = styled.p`
   @media (min-width: 320px) {
     margin-right: 16px;
     color: rgba(239, 237, 232, 0.4);
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-size: 12px;
-    font-style: normal;
+
     font-weight: 400;
     line-height: 18px;
-  }
-
-  @media (min-width: 375px) {
-  }
-  @media (min-width: 768px) {
-  }
-  @media (min-width: 1440px) {
   }
 `;
 
@@ -236,18 +155,14 @@ export const Value = styled.span`
   @media (min-width: 320px) {
     margin-left: 8px;
     color: #efede8;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-size: 12px;
-    font-style: normal;
+
     font-weight: 400;
     line-height: 18px;
   }
 
-  @media (min-width: 375px) {
-  }
   @media (min-width: 768px) {
     margin-left: 4px;
-  }
-  @media (min-width: 1440px) {
   }
 `;

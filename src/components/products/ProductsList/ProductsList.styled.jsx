@@ -11,7 +11,7 @@ export const Container = styled.div`
     padding: 20px;
     width: 375px;
     display: flex;
-    justify-content: center; /* Выравнивание по горизонтали по центру */
+    justify-content: center;
   }
 
   @media (min-width: 375px) {
@@ -20,7 +20,6 @@ export const Container = styled.div`
     margin: 0 auto;
     width: 726px;
     height: 660px;
-
     overflow-y: scroll;
     justify-content: center;
   }
@@ -30,11 +29,6 @@ export const Container = styled.div`
 `;
 
 export const ProductList = styled.ul`
-  @media (min-width: 320px) {
-  }
-
-  @media (min-width: 375px) {
-  }
   @media (min-width: 768px) {
     display: flex;
     flex-wrap: wrap;

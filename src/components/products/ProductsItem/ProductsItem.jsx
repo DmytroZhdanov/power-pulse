@@ -25,7 +25,7 @@ export default function ProductsItem({
   title,
   //  groupBloodNotAllowed,
 }) {
-  const recomended = true;
+  const recommended = true;
 
   return (
     <>
@@ -33,11 +33,11 @@ export default function ProductsItem({
         <ProductHeader>
           <Diet>DIET</Diet>
           <RecommendDiv>
-            <Indicator></Indicator>
-            {recomended ? (
+            <Indicator recommended={recommended}></Indicator>
+            {recommended ? (
               <RecommendText>Recommended</RecommendText>
             ) : (
-              <RecommendText>No Recommended</RecommendText>
+              <RecommendText>Not Recommended</RecommendText>
             )}
             <Button>
               <BtnText>Add</BtnText>
