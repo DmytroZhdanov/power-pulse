@@ -3,11 +3,11 @@ import styled from '@emotion/styled';
 export const ProductCard = styled.li`
   @media (min-width: 320px) {
     margin-bottom: 20px;
-
+    max-width: 335px;
     &:last-child {
       margin-bottom: 0;
     }
-    max-width: 335px;
+
     height: 141px;
     padding: 16px;
     border-radius: 12px;
@@ -15,7 +15,7 @@ export const ProductCard = styled.li`
   }
 
   @media (min-width: 375px) {
-    max-width: 335px;
+    width: 335px;
   }
   @media (min-width: 768px) {
     margin: 16px 8px;
@@ -41,7 +41,7 @@ export const Diet = styled.p`
     background: rgba(239, 237, 232, 0.05);
 
     color: var(--white-white, #fff);
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 12px;
 
     font-weight: 700;
@@ -67,7 +67,7 @@ export const RecommendText = styled.p`
   @media (min-width: 320px) {
     margin-right: 16px;
     color: #efede8;
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
@@ -91,7 +91,7 @@ export const BtnText = styled.p`
     margin-right: 8px;
     color: #e6533c;
 
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -121,7 +121,7 @@ export const ProductTitle = styled.h2`
     text-overflow: ellipsis;
 
     color: #efede8;
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 20px;
 
     font-weight: 400;
@@ -143,7 +143,7 @@ export const Text = styled.p`
   @media (min-width: 320px) {
     margin-right: 16px;
     color: rgba(239, 237, 232, 0.4);
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 12px;
 
     font-weight: 400;
@@ -155,7 +155,7 @@ export const Value = styled.span`
   @media (min-width: 320px) {
     margin-left: 8px;
     color: #efede8;
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 12px;
 
     font-weight: 400;

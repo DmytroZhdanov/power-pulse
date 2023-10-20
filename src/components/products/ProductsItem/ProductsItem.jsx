@@ -1,6 +1,6 @@
-import BasicModalWindow from '../../common/BasicModalWindow/BasicModalWindow';
-import AddProductForm from '../AddProductForm/AddProductForm';
-import AddProductSuccess from '../AddProductSuccess/AddProductSuccess';
+import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
+import AddProductForm from 'components/products/AddProductForm/AddProductForm';
+import AddProductSuccess from 'components/products/AddProductSuccess/AddProductSuccess';
 import {
   ProductCard,
   ProductHeader,
@@ -34,11 +34,9 @@ export default function ProductsItem({
           <Diet>DIET</Diet>
           <RecommendDiv>
             <Indicator recommended={recommended}></Indicator>
-            {recommended ? (
-              <RecommendText>Recommended</RecommendText>
-            ) : (
-              <RecommendText>Not Recommended</RecommendText>
-            )}
+            <RecommendText>
+              {recommended ? 'Recommended' : 'Not Recommended'}
+            </RecommendText>
             <Button>
               <BtnText>Add</BtnText>
               <svg
