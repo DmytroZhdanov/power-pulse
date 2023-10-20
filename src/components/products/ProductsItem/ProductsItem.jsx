@@ -15,13 +15,13 @@ import {
   Value,
 } from './ProductsItem.styled';
 
-export const ProductsItem = ({
+export default function ProductsItem({
   weight,
   calories,
   category,
   title,
   //  groupBloodNotAllowed,
-}) => {
+}) {
   const recomended = true;
 
   return (
@@ -89,4 +89,4 @@ export const ProductsItem = ({
       </Description>
     </ProductCard>
   );
-};
+}

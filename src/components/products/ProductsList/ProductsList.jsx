@@ -1,7 +1,7 @@
-import { ProductsItem } from '../ProductsItem/ProductsItem';
+import ProductsItem from '../ProductsItem/ProductsItem';
 import { ProductList, Container } from './ProductsList.styled';
 
-export const ProductsList = ({ products }) => {
+export default function ProductsList({ products }) {
   return (
     <Container>
       <ProductList>
@@ -28,4 +28,4 @@ export const ProductsList = ({ products }) => {
       </ProductList>
     </Container>
   );
-};
+}
