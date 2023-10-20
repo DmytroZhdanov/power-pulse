@@ -1,126 +1,93 @@
 import styled from '@emotion/styled';
 
 export const ProductCard = styled.li`
-  @media (min-width: 320px) {
-    margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-    height: 141px;
-    padding: 16px;
-    border-radius: 12px;
-    border: 1px solid rgba(239, 237, 232, 0.2);
-  }
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(239, 237, 232, 0.2);
 
-  @media (max-width: 375px) {
+  @media screen and (max-width: 374px) {
     max-width: 335px;
   }
 
-  @media (min-width: 375px) {
+  @media screen and (min-width: 375px) {
     width: 335px;
   }
-  @media (min-width: 768px) {
-    margin: 16px 8px;
-  }
-  @media (min-width: 1440px) {
+
+  @media screen and (min-width: 1440px) {
     width: 405px;
   }
 `;
 
 export const ProductHeader = styled.div`
-  @media (min-width: 320px) {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 27px;
-  }
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 27px;
 `;
+
 export const Diet = styled.p`
-  @media (min-width: 320px) {
-    padding: 5px 7.5px;
-    border-radius: 4px;
-    background: rgba(239, 237, 232, 0.05);
-    color: '#fff';
-    font-family: 'Roboto', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-  }
+  padding: 5px 7.5px;
+  border-radius: 4px;
+  background: rgba(239, 237, 232, 0.05);
+  color: '#fff';
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
 `;
+
 export const RecommendDiv = styled.div`
-  @media (min-width: 320px) {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
 `;
+
 export const Indicator = styled.div`
-  @media (min-width: 320px) {
-    margin-right: 8px;
-    width: 14px;
-    height: 14px;
-    border-radius: 10px;
-    background-color: ${props => (props.recommended ? '#419B09' : '#E9101D')};
-  }
+  margin-right: 8px;
+  width: 14px;
+  height: 14px;
+  border-radius: 10px;
+  background-color: ${props => (props.recommended ? '#419B09' : '#E9101D')};
 `;
+
 export const RecommendText = styled.p`
-  @media (min-width: 320px) {
-    margin-right: 16px;
-    color: #efede8;
-    font-family: 'Roboto', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: calc(18 / 12);
-  }
+  margin-right: 16px;
+  color: #efede8;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: calc(18 / 12);
 `;
 
 export const Button = styled.button`
-  @media (min-width: 320px) {
-    display: inline-flex;
-    background: rgba(0, 0, 0, 0);
-    border: 1px solid #000;
-    cursor: pointer;
-    &:hover {
-      background: rgba(0, 0, 0, 0.1);
-    }
-  }
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
 `;
 
 export const BtnText = styled.p`
-  @media (min-width: 320px) {
-    margin-right: 8px;
-    color: #e6533c;
-    font-family: 'Roboto', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: calc(18 / 14);
-  }
+  margin-right: 8px;
+  color: #e6533c;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: calc(18 / 14);
 `;
 
 export const Product = styled.div`
-  @media (min-width: 320px) {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-`;
-
-export const Svg = styled.svg`
-  @media (min-width: 320px) {
-    margin-right: 16px;
-  }
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
 `;
 
 export const ProductTitle = styled.h2`
-  @media (min-width: 320px) {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #efede8;
-    font-family: 'Roboto', sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: calc(24 / 20);
-  }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #efede8;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: calc(24 / 20);
 
   @media (min-width: 768px) {
     font-size: 24px;
@@ -129,46 +96,31 @@ export const ProductTitle = styled.h2`
 `;
 
 export const Description = styled.div`
-  @media (min-width: 320px) {
-    display: flex;
-  }
-`;
-export const Text = styled.p`
-  @media (min-width: 320px) {
-    margin-right: 16px;
-    color: rgba(239, 237, 232, 0.4);
-    font-family: 'Roboto', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: calc(18 / 12);
-  }
+  display: flex;
+  gap: 16px;
 `;
 
-export const TextCategory = styled.p`
-  @media (min-width: 320px) {
-    margin-right: 16px;
-    color: rgba(239, 237, 232, 0.4);
-    font-family: 'Roboto', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: calc(18 / 12);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+export const Text = styled.p`
+  color: rgba(239, 237, 232, 0.4);
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: calc(18 / 12);
+  text-transform: capitalize;
+
+  ${props =>
+    props.category && {
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+    }}
 `;
 
 export const Value = styled.span`
-  @media (min-width: 320px) {
-    margin-left: 8px;
-    color: #efede8;
-    font-family: 'Roboto', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: calc(18 / 12);
-  }
+  color: #efede8;
+  padding-left: 8px;
 
   @media (min-width: 768px) {
-    margin-left: 4px;
+    padding-left: 4px;
   }
 `;

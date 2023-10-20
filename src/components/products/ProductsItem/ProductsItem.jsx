@@ -13,9 +13,7 @@ import {
   RecommendText,
   Button,
   BtnText,
-  Svg,
   Text,
-  TextCategory,
   Value,
 } from './ProductsItem.styled';
 
@@ -33,13 +31,17 @@ export default function ProductsItem({
       <ProductCard>
         <ProductHeader>
           <Diet>DIET</Diet>
+
           <RecommendDiv>
-            <Indicator recommended={recommended}></Indicator>
+            <Indicator recommended={recommended} />
+
             <RecommendText>
-              {recommended ? 'Recommended' : 'Not Recommended'}
+              {recommended ? 'Recommended' : 'Not recommended'}
             </RecommendText>
+
             <Button>
               <BtnText>Add</BtnText>
+
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -58,8 +60,9 @@ export default function ProductsItem({
             </Button>
           </RecommendDiv>
         </ProductHeader>
+
         <Product>
-          <Svg
+          <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
@@ -75,25 +78,30 @@ export default function ProductsItem({
               d="M15.8458 7.30102C16.7574 7.30102 17.4963 6.56206 17.4963 5.65051C17.4963 4.73896 16.7574 4 15.8458 4C14.9343 4 14.1953 4.73896 14.1953 5.65051C14.1953 6.56206 14.9343 7.30102 15.8458 7.30102Z"
               fill="#EFEDE8"
             />
-          </Svg>
+          </svg>
 
           <ProductTitle>{title}</ProductTitle>
         </Product>
+
         <Description>
           <Text>
             Calories:<Value>{calories}</Value>
           </Text>
-          <TextCategory>
+
+          <Text category={true}>
             Category:<Value>{category}</Value>
-          </TextCategory>
+          </Text>
+
           <Text>
             Weight:<Value>{weight}</Value>
           </Text>
         </Description>
       </ProductCard>
+
       <BasicModalWindow>
         <AddProductForm />
       </BasicModalWindow>
+
       <BasicModalWindow>
         <AddProductSuccess />
       </BasicModalWindow>
