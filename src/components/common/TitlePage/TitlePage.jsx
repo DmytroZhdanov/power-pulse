@@ -1,3 +1,13 @@
-export default function TitlePage() {
-  return <div>TitlePage component</div>;
-}
+import PropTypes from "prop-types";
+
+import { Title } from "./TitlePage.styled";
+
+export default function TitlePage ({ text }) {
+  return <Title>{text}</Title>;
+};
+
+TitlePage.propTypes = {
+  text: PropTypes.string,
+};
+
+
