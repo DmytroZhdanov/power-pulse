@@ -1,6 +1,5 @@
 export const ROUTER = {
   MAIN: '/',
-  WELCOME: 'welcome',
   SIGN_UP: 'signup',
   DATA: 'data/:step',
   SIGN_IN: 'signin',
