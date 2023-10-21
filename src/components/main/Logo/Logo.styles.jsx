@@ -21,17 +21,10 @@ export const SvgIcon = styled.svg`
 export const Title = styled.p`
   color: #efede8;
   font-size: 17px;
-  font-style: normal;
   font-weight: 500;
-
-  @media screen and (min-width: 375px) {
-  }
 
   @media screen and (min-width: 768px) {
     font-size: 22px;
     line-height: 1.17;
-  }
-
-  @media screen and (min-width: 1440px) {
   }
 `;
