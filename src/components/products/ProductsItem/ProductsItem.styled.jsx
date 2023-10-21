@@ -29,7 +29,6 @@ export const Diet = styled.p`
   border-radius: 4px;
   background: rgba(239, 237, 232, 0.05);
   color: '#fff';
-  font-family: 'Roboto', sans-serif;
   font-size: 12px;
   font-weight: 700;
 `;
@@ -49,10 +48,7 @@ export const Indicator = styled.div`
 
 export const RecommendText = styled.p`
   margin-right: 16px;
-  color: #efede8;
-  font-family: 'Roboto', sans-serif;
   font-size: 12px;
-  font-weight: 400;
   line-height: calc(18 / 12);
 `;
 
@@ -66,9 +62,7 @@ export const Button = styled.button`
 export const BtnText = styled.p`
   margin-right: 8px;
   color: #e6533c;
-  font-family: 'Roboto', sans-serif;
   font-size: 14px;
-  font-weight: 400;
   line-height: calc(18 / 14);
 `;
 
@@ -83,10 +77,7 @@ export const ProductTitle = styled.h2`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #efede8;
-  font-family: 'Roboto', sans-serif;
   font-size: 20px;
-  font-weight: 400;
   line-height: calc(24 / 20);
 
   @media (min-width: 768px) {
@@ -102,9 +93,7 @@ export const Description = styled.div`
 
 export const Text = styled.p`
   color: rgba(239, 237, 232, 0.4);
-  font-family: 'Roboto', sans-serif;
   font-size: 12px;
-  font-weight: 400;
   line-height: calc(18 / 12);
   text-transform: capitalize;
 

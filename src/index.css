@@ -1,23 +1,5 @@
 @import '../node_modules/modern-normalize/modern-normalize.css';
 
-@font-face {
-  font-family: 'Roboto';
-  font-weight: 400;
-  src: url('src/assets/fonts/Roboto-Regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-weight: 500;
-  src: url('src/assets/fonts/Roboto-Medium.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto';
-  font-weight: 700;
-  src: url('src/assets/fonts/Roboto-Bold.ttf') format('truetype');
-}
-
 /* ========================= Reset styles ========================= */
 html,
 body,
@@ -149,4 +131,62 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
 /* ========================= /Reset styles ========================= */
+
+/* ========================= Fonts ========================= */
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 400;
+  src: url('src/assets/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 500;
+  src: url('src/assets/fonts/Roboto-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 700;
+  src: url('src/assets/fonts/Roboto-Bold.ttf') format('truetype');
+}
+/* ========================= /Fonts ========================= */
+
+/* ========================= Common styles ========================= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #efede8;
+  background-color: #040404;
+}
+/* ========================= /Common styles ========================= */

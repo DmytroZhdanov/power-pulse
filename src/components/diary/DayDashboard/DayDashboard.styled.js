@@ -30,6 +30,11 @@ export const BlockList = styled.ul`
     gap: 16px;
   }
 
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    height: 248px;
+    flex-direction: column;
+  }
+
   @media screen and (min-width: 1440px) {
     margin-bottom: 48px;
   }
@@ -71,8 +76,6 @@ export const TitleWrapper = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
   font-size: 12px;
   line-height: ${16 / 12};
   color: ${props =>
@@ -86,11 +89,9 @@ export const Title = styled.h2`
 `;
 
 export const Value = styled.p`
-  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 18px;
   line-height: ${20 / 18};
-  color: #efede8;
 
   @media screen and (min-width: 768px) {
     font-size: 24px;
@@ -108,8 +109,6 @@ export const TextWrapper = styled.div`
 `;
 
 export const Text = styled.p`
-  font-family: 'Roboto' sans-serif;
-  font-weight: 400;
   font-size: 14px;
   line-height: ${18 / 14};
   color: rgba(239, 237, 232, 0.3);
