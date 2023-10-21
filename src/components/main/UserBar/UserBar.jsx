@@ -4,7 +4,7 @@ import {
   Avatar,
   SvgDefault,
 } from './UserBar.styled';
-import sprite from '../../../assets/images/sprite/sprite.svg';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export default function UserBar() {
   return (

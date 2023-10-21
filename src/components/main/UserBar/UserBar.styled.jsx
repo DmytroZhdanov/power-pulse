@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 export const SettingsLink = styled(Link)`
-  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -20,7 +19,7 @@ export const SettingsLink = styled(Link)`
 
 export const SvgSettings = styled.svg`
   stroke: rgba(239, 237, 232, 0.3);
-  text-decoration: none;
+
   width: 24px;
   height: 24px;
 
@@ -48,7 +47,6 @@ export const Avatar = styled.div`
 
 export const SvgDefault = styled.svg`
   stroke: rgba(239, 237, 232, 0.3);
-  text-decoration: none;
 
   width: 21px;
   height: 21px;
