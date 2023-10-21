@@ -12,13 +12,13 @@ export const Background = styled.div`
         return `url(${background}/Mobile/mo_main.jpg)`;
 
       case '1':
-        return `url(${background}/Mobile/mo_users.jpg)`;
+        return `url(../${background}/Mobile/mo_users.jpg)`;
 
       case '2':
-        return `url(${background}/Mobile/mo_hours.jpg)`;
+        return `url(../${background}/Mobile/mo_hours.jpg)`;
 
       case '3':
-        return `url(${background}/Mobile/mo_ex.jpg)`;
+        return `url(../${background}/Mobile/mo_ex.jpg)`;
 
       default:
         break;
@@ -36,13 +36,13 @@ export const Background = styled.div`
           return `url(${background}/Mobile/mo_main@2x.jpg)`;
 
         case '1':
-          return `url(${background}/Mobile/mo_users@2x.jpg)`;
+          return `url(../${background}/Mobile/mo_users@2x.jpg)`;
 
         case '2':
-          return `url(${background}/Mobile/mo_hours@2x.jpg)`;
+          return `url(../${background}/Mobile/mo_hours@2x.jpg)`;
 
         case '3':
-          return `url(${background}/Mobile/mo_ex@2x.jpg)`;
+          return `url(../${background}/Mobile/mo_ex@2x.jpg)`;
 
         default:
           break;
@@ -60,13 +60,13 @@ export const Background = styled.div`
           return `url(${background}/Mobile/mo_main@3x.jpg)`;
 
         case '1':
-          return `url(${background}/Mobile/mo_users@3x.jpg)`;
+          return `url(../${background}/Mobile/mo_users@3x.jpg)`;
 
         case '2':
-          return `url(${background}/Mobile/mo_hours@3x.jpg)`;
+          return `url(../${background}/Mobile/mo_hours@3x.jpg)`;
 
         case '3':
-          return `url(${background}/Mobile/mo_ex@3x.jpg)`;
+          return `url(../${background}/Mobile/mo_ex@3x.jpg)`;
 
         default:
           break;
@@ -85,13 +85,13 @@ export const Background = styled.div`
           return `url(${background}/Tablet/ta_main.jpg)`;
 
         case '1':
-          return `url(${background}/Tablet/ta_users.jpg)`;
+          return `url(../${background}/Tablet/ta_users.jpg)`;
 
         case '2':
-          return `url(${background}/Tablet/ta_hours.jpg)`;
+          return `url(../${background}/Tablet/ta_hours.jpg)`;
 
         case '3':
-          return `url(${background}/Tablet/ta_ex.jpg)`;
+          return `url(../${background}/Tablet/ta_ex.jpg)`;
 
         default:
           break;
@@ -109,13 +109,13 @@ export const Background = styled.div`
             return `url(${background}/Tablet/ta_main@2x.jpg)`;
 
           case '1':
-            return `url(${background}/Tablet/ta_users@2x.jpg)`;
+            return `url(../${background}/Tablet/ta_users@2x.jpg)`;
 
           case '2':
-            return `url(${background}/Tablet/ta_hours@2x.jpg)`;
+            return `url(../${background}/Tablet/ta_hours@2x.jpg)`;
 
           case '3':
-            return `url(${background}/Tablet/ta_ex@2x.jpg)`;
+            return `url(../${background}/Tablet/ta_ex@2x.jpg)`;
 
           default:
             break;
@@ -133,13 +133,13 @@ export const Background = styled.div`
             return `url(${background}/Tablet/ta_main@3x.jpg)`;
 
           case '1':
-            return `url(${background}/Tablet/ta_users@3x.jpg)`;
+            return `url(../${background}/Tablet/ta_users@3x.jpg)`;
 
           case '2':
-            return `url(${background}/Tablet/ta_hours@3x.jpg)`;
+            return `url(../${background}/Tablet/ta_hours@3x.jpg)`;
 
           case '3':
-            return `url(${background}/Tablet/ta_ex@3x.jpg)`;
+            return `url(../${background}/Tablet/ta_ex@3x.jpg)`;
 
           default:
             break;
@@ -167,13 +167,13 @@ export const Background = styled.div`
           return `url(${background}/Desktop/bg_main.jpg)`;
 
         case '1':
-          return `url(${background}/Desktop/bg_users.jpg)`;
+          return `url(../${background}/Desktop/bg_users.jpg)`;
 
         case '2':
-          return `url(${background}/Desktop/bg_hours.jpg)`;
+          return `url(../${background}/Desktop/bg_hours.jpg)`;
 
         case '3':
-          return `url(${background}/Desktop/bg_ex.jpg)`;
+          return `url(../${background}/Desktop/bg_ex.jpg)`;
 
         default:
           break;
@@ -191,13 +191,13 @@ export const Background = styled.div`
             return `url(${background}/Desktop/bg_main@2x.jpg)`;
 
           case '1':
-            return `url(${background}/Desktop/bg_users@2x.jpg)`;
+            return `url(../${background}/Desktop/bg_users@2x.jpg)`;
 
           case '2':
-            return `url(${background}/Desktop/bg_hours@2x.jpg)`;
+            return `url(../${background}/Desktop/bg_hours@2x.jpg)`;
 
           case '3':
-            return `url(${background}/Desktop/bg_ex@2x.jpg)`;
+            return `url(../${background}/Desktop/bg_ex@2x.jpg)`;
 
           default:
             break;
@@ -215,13 +215,13 @@ export const Background = styled.div`
             return `url(${background}/Desktop/bg_main@3x.jpg)`;
 
           case '1':
-            return `url(${background}/Desktop/bg_users@3x.jpg)`;
+            return `url(../${background}/Desktop/bg_users@3x.jpg)`;
 
           case '2':
-            return `url(${background}/Desktop/bg_hours@3x.jpg)`;
+            return `url(../${background}/Desktop/bg_hours@3x.jpg)`;
 
           case '3':
-            return `url(${background}/Desktop/bg_ex@3x.jpg)`;
+            return `url(../${background}/Desktop/bg_ex@3x.jpg)`;
 
           default:
             break;

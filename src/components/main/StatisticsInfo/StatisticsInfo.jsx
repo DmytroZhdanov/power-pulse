@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Background,
   ColoredBlock,
@@ -53,3 +54,8 @@ export default function StatisticsInfo({ pathname, page }) {
     </Background>
   );
 }
+
+StatisticsInfo.propTypes = {
+  pathname: PropTypes.string.isRequired,
+  page: PropTypes.string.isRequired,
+};
