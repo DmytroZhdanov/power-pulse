@@ -7,11 +7,19 @@ const Block = styled.div`
   font-weight: 700;
 `;
 
+const Icon = styled.svg`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+`;
+
 export const DarkBlock = styled(Block)`
   background-color: #303030;
 `;
 
-export const DarkBlockIcon = styled.svg`
+export const DarkBlockIcon = styled(Icon)`
+  /* fill: #000; */
   width: 30px;
   height: 30px;
 
@@ -37,7 +45,8 @@ export const ColoredBlock = styled(Block)`
   background-color: #ef8964;
 `;
 
-export const ColoredBlockIcon = styled.svg`
+export const ColoredBlockIcon = styled(Icon)`
+  fill: #ffffff;
   width: 20px;
   height: 20px;
 

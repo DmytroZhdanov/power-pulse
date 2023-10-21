@@ -1,28 +1,30 @@
 import {
   ColoredBlock,
+  ColoredBlockIcon,
   ColoredBlockSpan,
   ColoredBlockText,
   DarkBlock,
+  DarkBlockIcon,
   DarkBlockSpan,
   DarkBlockText,
 } from './StatisticsInfo.styled';
-import sprite from 'src/assets/images/sprite';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export default function StatisticsInfo() {
   return (
     <>
       <DarkBlock dark={true}>
-        <svg>
+        <DarkBlockIcon>
           <use href={`${sprite}#play`} />
-        </svg>
+        </DarkBlockIcon>
         <DarkBlockSpan>350+</DarkBlockSpan>
         <DarkBlockText>Video tutorial</DarkBlockText>
       </DarkBlock>
 
       <ColoredBlock>
-        <svg>
+        <ColoredBlockIcon>
           <use href={`${sprite}#running`} />
-        </svg>
+        </ColoredBlockIcon>
         <ColoredBlockSpan>500</ColoredBlockSpan>
         <ColoredBlockText>cal</ColoredBlockText>
       </ColoredBlock>
