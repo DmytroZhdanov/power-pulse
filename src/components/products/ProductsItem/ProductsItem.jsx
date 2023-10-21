@@ -16,6 +16,7 @@ import {
   Text,
   Value,
 } from './ProductsItem.styled';
+import { useState } from 'react';
 
 export default function ProductsItem({
   weight,
@@ -25,6 +26,16 @@ export default function ProductsItem({
   //  groupBloodNotAllowed,
 }) {
   const recommended = true;
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <>
@@ -39,7 +50,7 @@ export default function ProductsItem({
               {recommended ? 'Recommended' : 'Not recommended'}
             </RecommendText>
 
-            <Button>
+            <Button onClick={openModal}>
               <BtnText>Add</BtnText>
 
               <svg
@@ -98,8 +109,8 @@ export default function ProductsItem({
         </Description>
       </ProductCard>
 
-      <BasicModalWindow>
-        <AddProductForm />
+      <BasicModalWindow isOpen={isModalOpen} onClose={closeModal}>
+        <AddProductForm onClose={closeModal} />
       </BasicModalWindow>
 
       <BasicModalWindow>
