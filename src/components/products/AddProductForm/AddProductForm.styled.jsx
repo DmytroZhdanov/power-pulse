@@ -117,7 +117,6 @@ export const ButtonAdd = styled.button`
 export const ButtonCancel = styled.button`
   @media screen and (min-width: 320px) {
     width: 121px;
-    height: 42px;
     padding: 12px 36px;
     border-radius: 12px;
     border: 1px solid rgba(239, 237, 232, 0.3);
@@ -126,11 +125,13 @@ export const ButtonCancel = styled.button`
     font-size: 16px;
     font-weight: 500;
     line-height: calc(18 / 16);
+    /*height: 42px;
+    */
   }
   @media screen and (min-width: 768px) {
     width: 142px;
-    padding: 14px 40px;
-    font-size: 20px;
-    line-height: calc(24 / 20);
+    padding: 14px 32px;
+    font-size: 16px;
+    line-height: calc(24 / 16);
   }
 `;
