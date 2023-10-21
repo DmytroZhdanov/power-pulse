@@ -10,10 +10,10 @@ export default function BasicModalWindow(props) {
   const modalRoot = document.querySelector('#modal-root');
 
   return createPortal(
-    <div>
+    <>
+      <button onClick={onClose}>X</button>
       {children}
-      <button onClick={onClose}>Закрыть</button>
-    </div>,
+    </>,
     modalRoot,
   );
 }

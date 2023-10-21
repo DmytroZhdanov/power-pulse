@@ -37,7 +37,6 @@ export default function AddProductForm(props) {
       <DivGrams>
         <InputGrams
           type="number"
-          step="10"
           value={weight}
           onChange={e => setWeight(e.target.value)}
         />
