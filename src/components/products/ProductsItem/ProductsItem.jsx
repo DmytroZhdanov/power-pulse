@@ -109,13 +109,17 @@ export default function ProductsItem({
         </Description>
       </ProductCard>
 
-      <BasicModalWindow isOpen={isModalOpen} onClose={closeModal}>
-        {isModalOpen && <AddProductForm onClose={closeModal} />}
-      </BasicModalWindow>
+      {isModalOpen && (
+        <BasicModalWindow onClose={closeModal}>
+          <AddProductForm onClose={closeModal} />
+        </BasicModalWindow>
+      )}
 
-      <BasicModalWindow>
-        <AddProductSuccess />
-      </BasicModalWindow>
+      {false && (
+        <BasicModalWindow>
+          <AddProductSuccess />
+        </BasicModalWindow>
+      )}
     </>
   );
 }
