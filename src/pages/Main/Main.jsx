@@ -12,7 +12,7 @@ export default function Main() {
   const { pathname } = useResolvedPath();
   const page = pathname.split('/')[1];
   const showStatisticInfo =
-    page === ROUTER.MAIN ||
+    page === '' ||
     page === ROUTER.SIGN_UP ||
     page === ROUTER.SIGN_IN ||
     page === ROUTER.DATA.split('/')[0];
