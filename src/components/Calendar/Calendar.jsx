@@ -1,20 +1,19 @@
 import PropTypes from 'prop-types';
 import { DayPicker } from 'react-day-picker';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { enUS } from 'date-fns/locale';
 
-import sprite from 'src/assets/images/sprite/sprite.svg';
-
-import {
-  CalendarWrapper,
-  DateTextWrapper,
-  DayPickerWrapper,
-} from './Calendar.styled';
+import { DateTextWrapper, DayPickerWrapper } from './Calendar.styled';
 import { customDayPickerStyles } from './customDayPickerStyles';
+
+import sprite from 'src/assets/images/sprite/sprite.svg';
+import 'react-day-picker/dist/style.css';
 
 export default function Calendar({ inputText, ...dayPickerProps }) {
   const [showCalendar, setShowCalendar] = useState(false);
   const [positionCalendar, setPositionCalendar] = useState('bottom');
+  const dateTextWrapperRef = useRef(null);
+  const dateCalendarRef = useRef(null);
 
   const handleClick = e => {
     const windowHeight = window.innerHeight;
@@ -30,18 +29,38 @@ export default function Calendar({ inputText, ...dayPickerProps }) {
     setShowCalendar(prev => !prev);
   };
 
+  useEffect(() => {
+    const handleClickOutside = e => {
+      if (
+        dateTextWrapperRef.current &&
+        !dateTextWrapperRef.current.contains(e.target) &&
+        dateCalendarRef.current &&
+        !dateCalendarRef.current.contains(e.target)
+      ) {
+        setShowCalendar(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <CalendarWrapper>
-      <DateTextWrapper onClick={handleClick}>
+    <>
+      <DateTextWrapper ref={dateTextWrapperRef} onClick={handleClick}>
         <p className="calendar-input-text">{inputText}</p>
-        <div>
-          <svg className="calendar-svg">
-            <use href={sprite + '#calendar'}></use>
-          </svg>
-        </div>
+        <svg className="calendar-svg">
+          <use href={sprite + '#calendar'}></use>
+        </svg>
       </DateTextWrapper>
+
       {showCalendar && (
-        <DayPickerWrapper positionCalendar={positionCalendar}>
+        <DayPickerWrapper
+          ref={dateCalendarRef}
+          positionCalendar={positionCalendar}
+        >
           <DayPicker
             mode="single"
             locale={enUS}
@@ -52,7 +71,7 @@ export default function Calendar({ inputText, ...dayPickerProps }) {
           />
         </DayPickerWrapper>
       )}
-    </CalendarWrapper>
+    </>
   );
 }
 
