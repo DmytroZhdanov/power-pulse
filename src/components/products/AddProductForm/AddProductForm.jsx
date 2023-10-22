@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-  AddProductModal,
   InputName,
   DivGrams,
   InputGrams,
@@ -32,7 +31,7 @@ export default function AddProductForm(props) {
   };
 
   return (
-    <AddProductModal className="modal-content">
+    <>
       <InputName type="text" value={product} readOnly />
       <DivGrams>
         <InputGrams
@@ -51,6 +50,6 @@ export default function AddProductForm(props) {
         <ButtonAdd onClick={handleSubmit}>Add to diary</ButtonAdd>
         <ButtonCancel onClick={onClose}>Cancel</ButtonCancel>
       </DivBtn>
-    </AddProductModal>
+    </>
   );
 }
