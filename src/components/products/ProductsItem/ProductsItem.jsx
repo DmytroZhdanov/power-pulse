@@ -2,7 +2,6 @@ import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindo
 import AddProductForm from 'components/products/AddProductForm/AddProductForm';
 import AddProductSuccess from 'components/products/AddProductSuccess/AddProductSuccess';
 import {
-  Section,
   ProductCard,
   ProductHeader,
   Diet,
@@ -47,7 +46,7 @@ export default function ProductsItem({
   };
 
   return (
-    <Section>
+    <>
       <ProductCard>
         <ProductHeader>
           <Diet>DIET</Diet>
@@ -136,6 +135,6 @@ export default function ProductsItem({
           />
         </BasicModalWindow>
       )}
-    </Section>
+    </>
   );
 }

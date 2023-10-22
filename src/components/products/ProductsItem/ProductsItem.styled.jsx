@@ -1,9 +1,5 @@
 import styled from '@emotion/styled';
 
-export const Section = styled.div`
-  justify-content: center;
-`;
-
 export const ProductCard = styled.li`
   padding: 16px;
   border-radius: 12px;
