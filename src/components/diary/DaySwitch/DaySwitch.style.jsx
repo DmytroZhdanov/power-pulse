@@ -13,7 +13,6 @@ export const Wrapper = styled.div`
 export const CalendarWrapper = styled.div`
   width: 125px;
   position: relative;
-  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     width: 161px;
