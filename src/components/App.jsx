@@ -12,8 +12,12 @@ import Exercises from 'pages/Exercises/Exercises';
 import Data from 'pages/Data/Data';
 import ExercisesSubcategoriesList from 'components/exercises/ExercisesSubcategoriesList/ExercisesSubcategoriesList';
 import ExercisesList from 'components/exercises/ExercisesList/ExercisesList';
+import FirstStep from './data/FirstStep/FirstStep';
+import SecondStep from './data/SecondStep/SecondStep';
+import ThirdStep from './data/ThirdStep/ThirdStep';
 
 import { ROUTER } from 'src/utils';
+import { DATA_STEPS } from '../utils/constants';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +36,20 @@ const router = createBrowserRouter([
       {
         path: ROUTER.DATA,
         element: <Data />,
+        children: [
+          {
+            path: DATA_STEPS.FIRST,
+            element: <FirstStep />,
+          },
+          {
+            path: DATA_STEPS.SECOND,
+            element: <SecondStep />,
+          },
+          {
+            path: DATA_STEPS.THIRD,
+            element: <ThirdStep />,
+          },
+        ],
       },
       {
         path: ROUTER.SIGN_IN,
