@@ -178,20 +178,5 @@
       "3": false,
       "4": true
     }
-  },
-  {
-    "_id": {
-      "$oid": "5d51694902b2373622ff5911"
-    },
-    "weight": 100,
-    "calories": 209,
-    "category": "meat",
-    "title": "Mutton Karatin, pepermint, Ivan Petrovich s profsousa Igrokov kinoteatra",
-    "groupBloodNotAllowed": {
-      "1": false,
-      "2": true,
-      "3": false,
-      "4": true
-    }
   }
 ]
