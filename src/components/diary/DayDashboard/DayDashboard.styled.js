@@ -71,8 +71,15 @@ export const BlockItem = styled.li`
 
 export const TitleWrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 8px;
   margin-bottom: 28px;
+`;
+
+export const Icon = styled.svg`
+  width: 20px;
+  height: 20px;
+  fill: #ef8964;
 `;
 
 export const Title = styled.h2`
@@ -106,6 +113,18 @@ export const TextWrapper = styled.div`
   @media screen and (max-width: 374px) {
     margin: 0 auto;
   }
+`;
+
+export const IconWrapper = styled.div`
+  width: 24px;
+  height: 24px;
+  background-color: #efa082;
+  border-radius: 50%;
+`;
+
+export const ExclamationIcon = styled.svg`
+  width: 24px;
+  height: 24px;
 `;
 
 export const Text = styled.p`
