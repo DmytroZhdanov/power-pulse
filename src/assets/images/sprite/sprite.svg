@@ -31,7 +31,7 @@
 <symbol id="small_arrow" viewBox="0 0 32 32">
 <path fill="none" stroke="#efede8" style="stroke: var(--color2, #efede8)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.5556" d="M8 12l8 8 8-8"></path>
 </symbol>
-<symbol id="big_arrow" viewBox="0 0 32 32">
+<symbol id="big_arrow" viewBox="0 -1 32 32">
 <path fill="none" stroke="#e6533c" style="stroke: var(--color1, #e6533c)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6" d="M15 28l13-13M28 15l-13-13M28 15h-26"></path>
 </symbol>
 <symbol id="search" viewBox="0 0 32 32">
