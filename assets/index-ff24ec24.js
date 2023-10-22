@@ -706,7 +706,7 @@ Error generating stack: `+a.message+`
   font-size: 48px;
   line-height: calc(50 / 48);
   letter-spacing: -1px;
-`,tt={MAIN:"/",SIGN_UP:"signup",DATA:"data/:step",SIGN_IN:"signin",PROFILE:"profile",DIARY:"diary",PRODUCTS:"products",EXERCISES:"exercises/:category",SUBCATEGORY:":subcategory"};function qx({pathname:e,page:t}){const n=e.split(""),r=t===""||t===tt.SIGN_UP||t===tt.SIGN_IN?"main":n[n.length-1];return E.jsxs(c3,{keyword:r,children:[E.jsxs(d3,{dark:!0,children:[E.jsx(f3,{children:E.jsx(p3,{children:E.jsx("use",{href:`${ft}#play`})})}),E.jsxs("div",{children:[E.jsx(m3,{children:"350+"}),E.jsx(h3,{children:"Video tutorial"})]})]}),E.jsxs(v3,{children:[E.jsxs("div",{children:[E.jsx(g3,{children:E.jsx(y3,{children:E.jsx("use",{href:`${ft}#running`})})}),E.jsx(x3,{children:"500"})]}),E.jsx(w3,{children:"cal"})]})]})}qx.propTypes={pathname:Xt.string.isRequired,page:Xt.string.isRequired};const b3=B.div`
+`,tt={MAIN:"/",SIGN_UP:"signup",DATA:"data/:step",SIGN_IN:"signin",PROFILE:"profile",DIARY:"diary",PRODUCTS:"products",EXERCISES:"exercises",SUBCATEGORY:":subcategory"};function qx({pathname:e,page:t}){const n=e.split(""),r=t===""||t===tt.SIGN_UP||t===tt.SIGN_IN?"main":n[n.length-1];return E.jsxs(c3,{keyword:r,children:[E.jsxs(d3,{dark:!0,children:[E.jsx(f3,{children:E.jsx(p3,{children:E.jsx("use",{href:`${ft}#play`})})}),E.jsxs("div",{children:[E.jsx(m3,{children:"350+"}),E.jsx(h3,{children:"Video tutorial"})]})]}),E.jsxs(v3,{children:[E.jsxs("div",{children:[E.jsx(g3,{children:E.jsx(y3,{children:E.jsx("use",{href:`${ft}#running`})})}),E.jsx(x3,{children:"500"})]}),E.jsx(w3,{children:"cal"})]})]})}qx.propTypes={pathname:Xt.string.isRequired,page:Xt.string.isRequired};const b3=B.div`
   width: 100%;
   padding: 0 20px;
 
