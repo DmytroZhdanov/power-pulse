@@ -9,70 +9,38 @@ export const Background = styled.div`
   background-image: ${props => {
     switch (props.keyword) {
       case 'main':
-        return `url(${background}/Mobile/mo_main.jpg)`;
+        return `image-set(
+          url(${background}/Mobile/mo_main.jpg) 1x,
+          url(${background}/Mobile/mo_main@2x.jpg) 2x,
+          url(${background}/Mobile/mo_main@3x.jpg) 3x
+          )`;
 
       case '1':
-        return `url(../${background}/Mobile/mo_users.jpg)`;
+        return `image-set(
+          url(../${background}/Mobile/mo_users.jpg) 1x,
+          url(../${background}/Mobile/mo_users@2x.jpg) 2x,
+          url(../${background}/Mobile/mo_users@3x.jpg) 3x
+          )`;
 
       case '2':
-        return `url(../${background}/Mobile/mo_hours.jpg)`;
+        return `image-set(
+          url(../${background}/Mobile/mo_hours.jpg) 1x,
+          url(../${background}/Mobile/mo_hours@2x.jpg) 2x,
+          url(../${background}/Mobile/mo_hours@3x.jpg) 3x
+          )`;
 
       case '3':
-        return `url(../${background}/Mobile/mo_ex.jpg)`;
+        return `image-set(
+          url(../${background}/Mobile/mo_ex.jpg) 1x,
+          url(../${background}/Mobile/mo_ex@2x.jpg) 2x,
+          url(../${background}/Mobile/mo_ex@3x.jpg) 3x
+          )`;
 
       default:
         break;
     }
   }};
   background-size: 298px 571px;
-
-  @media (min-device-pixel-ratio: 2),
-    (-webkit-min-device-pixel-ratio: 2),
-    (min-resolution: 192dpi),
-    (min-resolution: 2dppx) {
-    background-image: ${props => {
-      switch (props.keyword) {
-        case 'main':
-          return `url(${background}/Mobile/mo_main@2x.jpg)`;
-
-        case '1':
-          return `url(../${background}/Mobile/mo_users@2x.jpg)`;
-
-        case '2':
-          return `url(../${background}/Mobile/mo_hours@2x.jpg)`;
-
-        case '3':
-          return `url(../${background}/Mobile/mo_ex@2x.jpg)`;
-
-        default:
-          break;
-      }
-    }};
-  }
-
-  @media (min-device-pixel-ratio: 3),
-    (-webkit-min-device-pixel-ratio: 3),
-    (min-resolution: 288dpi),
-    (min-resolution: 3dppx) {
-    background-image: ${props => {
-      switch (props.keyword) {
-        case 'main':
-          return `url(${background}/Mobile/mo_main@3x.jpg)`;
-
-        case '1':
-          return `url(../${background}/Mobile/mo_users@3x.jpg)`;
-
-        case '2':
-          return `url(../${background}/Mobile/mo_hours@3x.jpg)`;
-
-        case '3':
-          return `url(../${background}/Mobile/mo_ex@3x.jpg)`;
-
-        default:
-          break;
-      }
-    }};
-  }
 
   @media screen and (min-width: 768px) {
     right: -12px;
@@ -82,71 +50,38 @@ export const Background = styled.div`
     background-image: ${props => {
       switch (props.keyword) {
         case 'main':
-          return `url(${background}/Tablet/ta_main.jpg)`;
+          return `image-set(
+            url(${background}/Tablet/ta_main.jpg) 1x,
+            url(${background}/Tablet/ta_main@2x.jpg) 2x,
+            url(${background}/Tablet/ta_main@3x.jpg) 3x,
+            )`;
 
         case '1':
-          return `url(../${background}/Tablet/ta_users.jpg)`;
+          return `image-set(
+            url(../${background}/Tablet/ta_users.jpg) 1x,
+            url(../${background}/Tablet/ta_users@2x.jpg) 2x,
+            url(../${background}/Tablet/ta_users@3x.jpg) 3x,
+            )`;
 
         case '2':
-          return `url(../${background}/Tablet/ta_hours.jpg)`;
+          return `image-set(
+            url(../${background}/Tablet/ta_hours.jpg) 1x,
+            url(../${background}/Tablet/ta_hours@2x.jpg) 2x,
+            url(../${background}/Tablet/ta_hours@3x.jpg) 3x,
+            )`;
 
         case '3':
-          return `url(../${background}/Tablet/ta_ex.jpg)`;
+          return `image-set(
+            url(../${background}/Tablet/ta_ex.jpg) 1x,
+            url(../${background}/Tablet/ta_ex@2x.jpg) 2x,
+            url(../${background}/Tablet/ta_ex@3x.jpg) 3x,
+            )`;
 
         default:
           break;
       }
     }};
     background-size: 437px 893px;
-
-    @media (min-device-pixel-ratio: 2),
-      (-webkit-min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
-      background-image: ${props => {
-        switch (props.keyword) {
-          case 'main':
-            return `url(${background}/Tablet/ta_main@2x.jpg)`;
-
-          case '1':
-            return `url(../${background}/Tablet/ta_users@2x.jpg)`;
-
-          case '2':
-            return `url(../${background}/Tablet/ta_hours@2x.jpg)`;
-
-          case '3':
-            return `url(../${background}/Tablet/ta_ex@2x.jpg)`;
-
-          default:
-            break;
-        }
-      }};
-    }
-
-    @media (min-device-pixel-ratio: 3),
-      (-webkit-min-device-pixel-ratio: 3),
-      (min-resolution: 288dpi),
-      (min-resolution: 3dppx) {
-      background-image: ${props => {
-        switch (props.keyword) {
-          case 'main':
-            return `url(${background}/Tablet/ta_main@3x.jpg)`;
-
-          case '1':
-            return `url(../${background}/Tablet/ta_users@3x.jpg)`;
-
-          case '2':
-            return `url(../${background}/Tablet/ta_hours@3x.jpg)`;
-
-          case '3':
-            return `url(../${background}/Tablet/ta_ex@3x.jpg)`;
-
-          default:
-            break;
-        }
-      }};
-    }
-  }
 
   @media screen and (max-width: 1439px) {
     position: absolute;
@@ -164,70 +99,38 @@ export const Background = styled.div`
     background-image: ${props => {
       switch (props.keyword) {
         case 'main':
-          return `url(${background}/Desktop/bg_main.jpg)`;
+          return `image-set(
+            url(${background}/Desktop/bg_main.jpg) 1x,
+            url(${background}/Desktop/bg_main@2x.jpg) 2x,
+            url(${background}/Desktop/bg_main@3x.jpg) 3x,
+            )`;
 
         case '1':
-          return `url(../${background}/Desktop/bg_users.jpg)`;
+          return `image-set(
+            url(../${background}/Desktop/bg_users.jpg) 1x,
+            url(../${background}/Desktop/bg_users@2x.jpg) 2x,
+            url(../${background}/Desktop/bg_users@3x.jpg) 3x,
+            )`;
 
         case '2':
-          return `url(../${background}/Desktop/bg_hours.jpg)`;
+          return `image-set(
+            url(../${background}/Desktop/bg_hours.jpg) 1x,
+            url(../${background}/Desktop/bg_hours@2x.jpg) 2x,
+            url(../${background}/Desktop/bg_hours@3x.jpg) 3x,
+            )`;
 
         case '3':
-          return `url(../${background}/Desktop/bg_ex.jpg)`;
+          return `image-set(
+            url(../${background}/Desktop/bg_ex.jpg) 1x,
+            url(../${background}/Desktop/bg_ex@2x.jpg) 2x,
+            url(../${background}/Desktop/bg_ex@3x.jpg) 3x,
+            )`;
 
         default:
           break;
       }
     }};
     background-size: 670px 800px;
-
-    @media (min-device-pixel-ratio: 2),
-      (-webkit-min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
-      background-image: ${props => {
-        switch (props.keyword) {
-          case 'main':
-            return `url(${background}/Desktop/bg_main@2x.jpg)`;
-
-          case '1':
-            return `url(../${background}/Desktop/bg_users@2x.jpg)`;
-
-          case '2':
-            return `url(../${background}/Desktop/bg_hours@2x.jpg)`;
-
-          case '3':
-            return `url(../${background}/Desktop/bg_ex@2x.jpg)`;
-
-          default:
-            break;
-        }
-      }};
-    }
-
-    @media (min-device-pixel-ratio: 3),
-      (-webkit-min-device-pixel-ratio: 3),
-      (min-resolution: 288dpi),
-      (min-resolution: 3dppx) {
-      background-image: ${props => {
-        switch (props.keyword) {
-          case 'main':
-            return `url(${background}/Desktop/bg_main@3x.jpg)`;
-
-          case '1':
-            return `url(../${background}/Desktop/bg_users@3x.jpg)`;
-
-          case '2':
-            return `url(../${background}/Desktop/bg_hours@3x.jpg)`;
-
-          case '3':
-            return `url(../${background}/Desktop/bg_ex@3x.jpg)`;
-
-          default:
-            break;
-        }
-      }};
-    }
   }
 `;
 
