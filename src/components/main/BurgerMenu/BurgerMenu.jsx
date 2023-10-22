@@ -2,9 +2,11 @@ import { ButtonClose, SvgBtn, Window, Wrap } from './BurgerMenu.styled';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import LogOutBtn from '../../common/LogOutBtn/LogOutBtn';
 import UserNav from '../UserNav/UserNav';
+import { createPortal } from 'react-dom';
 
 export default function BurgerMenu({ openedModal, setOpenedModal }) {
-  return (
+  const burgerRoot = document.querySelector('#burger-root');
+  return createPortal(
     <Window openedModal={openedModal}>
       <ButtonClose
         onClick={() => {
@@ -19,6 +21,7 @@ export default function BurgerMenu({ openedModal, setOpenedModal }) {
       <Wrap>
         <LogOutBtn white={true} />
       </Wrap>
-    </Window>
+    </Window>,
+    burgerRoot,
   );
 }
