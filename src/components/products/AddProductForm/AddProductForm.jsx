@@ -13,21 +13,15 @@ import {
 } from './AddProductForm.styled';
 
 export default function AddProductForm(props) {
-  const { onClose } = props;
+  const { onClose, addProdSucces, calories } = props;
   const [weight, setWeight] = useState(100);
   const product = 'name of product';
-  const amount = 25;
-  const calories = weight * amount;
+
+  const totalCalories = weight * calories;
 
   const handleSubmit = () => {
-    console.log(
-      'send to backEnd product:',
-      product,
-      'Grams:',
-      weight,
-      'Calories:',
-      calories,
-    );
+    onClose();
+    addProdSucces(totalCalories);
   };
 
   return (
@@ -44,7 +38,7 @@ export default function AddProductForm(props) {
 
       <DivCalories>
         <Calories>Calories:</Calories>
-        <ValueCalories>{calories}</ValueCalories>
+        <ValueCalories>{totalCalories}</ValueCalories>
       </DivCalories>
       <DivBtn>
         <ButtonAdd onClick={handleSubmit}>Add to diary</ButtonAdd>

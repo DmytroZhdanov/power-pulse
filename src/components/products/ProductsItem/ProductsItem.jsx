@@ -2,6 +2,7 @@ import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindo
 import AddProductForm from 'components/products/AddProductForm/AddProductForm';
 import AddProductSuccess from 'components/products/AddProductSuccess/AddProductSuccess';
 import {
+  Section,
   ProductCard,
   ProductHeader,
   Diet,
@@ -28,6 +29,8 @@ export default function ProductsItem({
   const recommended = true;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddProdSucces, setIsAddProdSucces] = useState(false);
+  const [totalCallories, setTotalCalories] = useState(null);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -35,10 +38,16 @@ export default function ProductsItem({
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setIsAddProdSucces(false);
+  };
+
+  const addProdSucces = totalCalories => {
+    setIsAddProdSucces(true);
+    setTotalCalories(totalCalories);
   };
 
   return (
-    <>
+    <Section>
       <ProductCard>
         <ProductHeader>
           <Diet>DIET</Diet>
@@ -111,15 +120,22 @@ export default function ProductsItem({
 
       {isModalOpen && (
         <BasicModalWindow onClose={closeModal}>
-          <AddProductForm onClose={closeModal} />
+          <AddProductForm
+            onClose={closeModal}
+            addProdSucces={addProdSucces}
+            calories={calories}
+          />
         </BasicModalWindow>
       )}
 
-      {false && (
-        <BasicModalWindow>
-          <AddProductSuccess />
+      {isAddProdSucces && (
+        <BasicModalWindow onClose={closeModal}>
+          <AddProductSuccess
+            onClose={closeModal}
+            totalCalories={totalCallories}
+          />
         </BasicModalWindow>
       )}
-    </>
+    </Section>
   );
 }
