@@ -2,15 +2,14 @@ import styled from '@emotion/styled';
 
 export const DateTextWrapper = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   cursor: pointer;
 `;
 
 export const DayPickerWrapper = styled.div`
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
   ${({ positionCalendar }) => ({
     [positionCalendar]: 'calc(100% + 10px)',
   })}
@@ -30,6 +29,7 @@ export const DayPickerWrapper = styled.div`
   }
 
   .current-month-title {
+    user-select: none;
     font-size: 14px;
     line-height: 1.29;
     letter-spacing: -0.28px;
@@ -74,6 +74,7 @@ export const DayPickerWrapper = styled.div`
   }
 
   .name-days-of-week {
+    user-select: none;
     width: 16px;
     text-align: center;
     color: rgba(239, 237, 232, 0.5);
@@ -94,6 +95,7 @@ export const DayPickerWrapper = styled.div`
   }
 
   .day-of-month {
+    user-select: none;
     width: 16px;
     position: relative;
     z-index: 1;
@@ -107,22 +109,27 @@ export const DayPickerWrapper = styled.div`
     cursor: pointer;
 
     ::after {
-      transition: all 250ms ease-in-out;
+      transition:
+        background-color 300ms ease-in-out,
+        box-shadow 150ms ease-in-out;
       content: '';
       z-index: -1;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background-color: transparent;
       position: absolute;
     }
 
-    &:not(.calendar-nav-button):hover {
+    &:not(button[disabled]):not(.days-of-month-outside):hover {
       ::after {
         background-color: #040404;
+        box-shadow:
+          0 0 10px 1px #efede8,
+          inset 0 0 2px 1px #efede8;
       }
     }
   }
@@ -131,7 +138,7 @@ export const DayPickerWrapper = styled.div`
   .days-of-month-disabled,
   .days-of-month-outside {
     color: rgba(239, 237, 232, 0.2);
-    pointer-events: none;
+    cursor: not-allowed;
   }
 
   .day-selected {
@@ -144,11 +151,51 @@ export const DayPickerWrapper = styled.div`
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 24px;
-      height: 24px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
+      box-shadow:
+        0 0 10px 1px #efede8,
+        inset 0 0 2px 1px #efede8;
       background-color: #040404;
       position: absolute;
     }
+  }
+`;
+
+export const TransitionDayPicker = styled(DayPickerWrapper)`
+  &.day-picker-wrapper-enter {
+    opacity: 0;
+    transform: scale(0.8)
+      translateY(
+        ${({ positionCalendar }) =>
+          positionCalendar === 'top' ? '-50px' : ' 50px'}
+      );
+  }
+
+  &.day-picker-wrapper-enter-active {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+    transition:
+      opacity 300ms ease-in-out,
+      transform 300ms ease-in-out;
+  }
+
+  /* Для зникнення */
+  &.day-picker-wrapper-exit {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+  }
+
+  &.day-picker-wrapper-exit-active {
+    opacity: 0;
+    transform: scale(0.8)
+      translateY(
+        ${({ positionCalendar }) =>
+          positionCalendar === 'top' ? '-50px' : ' 50px'}
+      );
+    transition:
+      opacity 300ms ease-in-out,
+      transform 300ms ease-in-out;
   }
 `;
