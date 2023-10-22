@@ -22,12 +22,14 @@ export default function Main() {
       <Header />
 
       <main>
-        <Container>
+        <Container showStatisticInfo={showStatisticInfo}>
           <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
 
-          {showStatisticInfo && <StatisticsInfo />}
+          {showStatisticInfo && (
+            <StatisticsInfo pathname={pathname} page={page} />
+          )}
         </Container>
       </main>
     </>

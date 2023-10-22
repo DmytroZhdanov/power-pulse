@@ -31,7 +31,7 @@ export const BlockList = styled.ul`
   }
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
-    height: 248px;
+    height: 252px;
     flex-direction: column;
   }
 
@@ -71,8 +71,15 @@ export const BlockItem = styled.li`
 
 export const TitleWrapper = styled.div`
   display: flex;
+  align-items: center;
   gap: 8px;
   margin-bottom: 28px;
+`;
+
+export const Icon = styled.svg`
+  width: 20px;
+  height: 20px;
+  fill: #ef8964;
 `;
 
 export const Title = styled.h2`
@@ -84,6 +91,7 @@ export const Title = styled.h2`
       : 'rgba(239, 237, 232, 0.4)'};
 
   @media screen and (min-width: 768px) {
+    text-wrap: nowrap;
     line-height: ${18 / 12};
   }
 `;
@@ -106,6 +114,18 @@ export const TextWrapper = styled.div`
   @media screen and (max-width: 374px) {
     margin: 0 auto;
   }
+`;
+
+export const IconWrapper = styled.div`
+  width: 24px;
+  height: 24px;
+  background-color: #efa082;
+  border-radius: 50%;
+`;
+
+export const ExclamationIcon = styled.svg`
+  width: 24px;
+  height: 24px;
 `;
 
 export const Text = styled.p`

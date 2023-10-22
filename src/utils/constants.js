@@ -1,12 +1,12 @@
 export const ROUTER = {
   MAIN: '/',
   SIGN_UP: 'signup',
-  DATA: 'data/:step',
+  DATA: 'data',
   SIGN_IN: 'signin',
   PROFILE: 'profile',
   DIARY: 'diary',
   PRODUCTS: 'products',
-  EXERCISES: 'exercises/:category',
+  EXERCISES: 'exercises',
   SUBCATEGORY: ':subcategory',
 };
 
