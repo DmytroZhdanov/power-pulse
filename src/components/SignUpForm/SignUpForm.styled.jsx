@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Field } from 'formik';
 
 export const Text = styled.p`
   margin-top: 14px;
@@ -27,32 +26,6 @@ export const Inputs = styled.div`
   }
 `;
 
-export const Input = styled(Field)`
-  display: flex;
-  width: auto;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  padding-left: 14px;
-  align-items: center;
-
-  font-family: Roboto;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 18px; /* 128.571% */
-
-  border-radius: 12px;
-  border: 1px solid;
-  border-color: blue;
-
-  @media screen and (min-width: 375px) {
-    width: 283px;
-  }
-  @media screen and (min-width: 768px) {
-    width: 307px;
-  }
-`;
-
 export const Button = styled.button`
   margin-top: 28px;
   display: flex;
@@ -71,22 +44,73 @@ export const Button = styled.button`
   }
 `;
 
-export const ErrorText = styled.p`
-  color: #d80027;
+export const Check = styled.div`
+  color: ${props => {
+    switch (props.type) {
+      case 'invalid':
+        return '#D80027';
+      case 'valid':
+        return '#3CBF61';
+      default:
+        return 'rgba(239, 237, 232, 0.3)';
+    }
+  }};
+  input {
+    display: flex;
+    width: auto;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 14px;
+    align-items: center;
 
-  font-feature-settings:
-    'clig' off,
-    'liga' off;
-  font-family: Roboto;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.5;
-  letter-spacing: 0.12px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.28; /* 128.571% */
+    color: rgba(239, 237, 232, 0.6);
+    background-color: black;
+    border-radius: 12px;
 
-  [Input] {
-    border-color: red;
+    border: ${props => {
+      switch (props.type) {
+        case 'invalid':
+          return '1px solid #D80027';
+        case 'valid':
+          return '1px solid #3CBF61';
+        default:
+          return '1px solid rgba(239, 237, 232, 0.3)';
+      }
+    }};
+
+    &:hover {
+      border: 1px solid #e6533c;
+    }
+
+    @media screen and (min-width: 375px) {
+      width: 283px;
+    }
+    @media screen and (min-width: 768px) {
+      width: 307px;
+    }
   }
 `;
 
+export const Message = styled.div`
+  margin-top: 4px;
 
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.12px;
+`;
+
+export const Sign = styled.div`
+  margin-top: 12px;
+  display: inline-flex;
+  font-size: 12px;
+  gap: 4px;
+
+  a{
+    text-decoration-line: underline;
+  }
+`;
