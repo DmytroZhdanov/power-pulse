@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useFormik, FormikProvider, Form, useField } from 'formik';
 import {
   Text,
@@ -90,7 +91,7 @@ export default function SignUpForm() {
         <Button type="submit">Sign Up</Button>
         <Sign>
           <p>Already have account?</p>
-          <a href="">Sign In</a>
+          <Link to="/signin">Sign In</Link>
         </Sign>
       </Form>
     </FormikProvider>
