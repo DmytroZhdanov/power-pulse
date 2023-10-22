@@ -1,31 +1,22 @@
 import ProductsItem from '../ProductsItem/ProductsItem';
-import { ProductList, Container } from './ProductsList.styled';
+import { ProductList } from './ProductsList.styled';
 
 export default function ProductsList({ products }) {
   return (
-    <Container>
-      <ProductList>
-        {products.map(
-          ({
-            _id,
-            weight,
-            calories,
-            category,
-            title,
-            groupBloodNotAllowed,
-          }) => (
-            <ProductsItem
-              key={_id.$oid}
-              title={title}
-              weight={weight}
-              calories={calories}
-              category={category}
-              groupBloodNotAllowed={groupBloodNotAllowed}
-            ></ProductsItem>
-          ),
-        )}
-        <ProductsItem />
-      </ProductList>
-    </Container>
+    <ProductList>
+      {products.map(
+        ({ _id, weight, calories, category, title, groupBloodNotAllowed }) => (
+          <ProductsItem
+            key={_id.$oid}
+            title={title}
+            weight={weight}
+            calories={calories}
+            category={category}
+            groupBloodNotAllowed={groupBloodNotAllowed}
+          ></ProductsItem>
+        ),
+      )}
+      <ProductsItem />
+    </ProductList>
   );
 }

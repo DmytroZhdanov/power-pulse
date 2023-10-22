@@ -31,7 +31,7 @@ export const BlockList = styled.ul`
   }
 
   @media screen and (min-width: 768px) and (max-width: 1439px) {
-    height: 248px;
+    height: 252px;
     flex-direction: column;
   }
 
@@ -91,6 +91,7 @@ export const Title = styled.h2`
       : 'rgba(239, 237, 232, 0.4)'};
 
   @media screen and (min-width: 768px) {
+    text-wrap: nowrap;
     line-height: ${18 / 12};
   }
 `;

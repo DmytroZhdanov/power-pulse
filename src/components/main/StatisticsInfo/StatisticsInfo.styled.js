@@ -53,28 +53,28 @@ export const Background = styled.div`
           return `image-set(
             url(${background}/Tablet/ta_main.jpg) 1x,
             url(${background}/Tablet/ta_main@2x.jpg) 2x,
-            url(${background}/Tablet/ta_main@3x.jpg) 3x,
+            url(${background}/Tablet/ta_main@3x.jpg) 3x
             )`;
 
         case '1':
           return `image-set(
             url(../${background}/Tablet/ta_users.jpg) 1x,
             url(../${background}/Tablet/ta_users@2x.jpg) 2x,
-            url(../${background}/Tablet/ta_users@3x.jpg) 3x,
+            url(../${background}/Tablet/ta_users@3x.jpg) 3x
             )`;
 
         case '2':
           return `image-set(
             url(../${background}/Tablet/ta_hours.jpg) 1x,
             url(../${background}/Tablet/ta_hours@2x.jpg) 2x,
-            url(../${background}/Tablet/ta_hours@3x.jpg) 3x,
+            url(../${background}/Tablet/ta_hours@3x.jpg) 3x
             )`;
 
         case '3':
           return `image-set(
             url(../${background}/Tablet/ta_ex.jpg) 1x,
             url(../${background}/Tablet/ta_ex@2x.jpg) 2x,
-            url(../${background}/Tablet/ta_ex@3x.jpg) 3x,
+            url(../${background}/Tablet/ta_ex@3x.jpg) 3x
             )`;
 
         default:
@@ -102,28 +102,28 @@ export const Background = styled.div`
           return `image-set(
             url(${background}/Desktop/bg_main.jpg) 1x,
             url(${background}/Desktop/bg_main@2x.jpg) 2x,
-            url(${background}/Desktop/bg_main@3x.jpg) 3x,
+            url(${background}/Desktop/bg_main@3x.jpg) 3x
             )`;
 
         case '1':
           return `image-set(
             url(../${background}/Desktop/bg_users.jpg) 1x,
             url(../${background}/Desktop/bg_users@2x.jpg) 2x,
-            url(../${background}/Desktop/bg_users@3x.jpg) 3x,
+            url(../${background}/Desktop/bg_users@3x.jpg) 3x
             )`;
 
         case '2':
           return `image-set(
             url(../${background}/Desktop/bg_hours.jpg) 1x,
             url(../${background}/Desktop/bg_hours@2x.jpg) 2x,
-            url(../${background}/Desktop/bg_hours@3x.jpg) 3x,
+            url(../${background}/Desktop/bg_hours@3x.jpg) 3x
             )`;
 
         case '3':
           return `image-set(
             url(../${background}/Desktop/bg_ex.jpg) 1x,
             url(../${background}/Desktop/bg_ex@2x.jpg) 2x,
-            url(../${background}/Desktop/bg_ex@3x.jpg) 3x,
+            url(../${background}/Desktop/bg_ex@3x.jpg) 3x
             )`;
 
         default:
