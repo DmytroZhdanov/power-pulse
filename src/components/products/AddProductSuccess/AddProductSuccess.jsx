@@ -1,5 +1,5 @@
 import {
-  DivSucces,
+  DivSuccess,
   DivImg,
   Title,
   DivCalories,
@@ -14,7 +14,7 @@ export default function AddProductSuccess(props) {
   const { onClose, totalCalories } = props;
 
   return (
-    <DivSucces>
+    <DivSuccess>
       <DivImg></DivImg>
       <Title>Well Done</Title>
       <DivCalories>
@@ -30,6 +30,6 @@ export default function AddProductSuccess(props) {
           <use href="/src/assets/images/sprite/sprite.svg#arrow-add-prod"></use>
         </svg>
       </DivLink>
-    </DivSucces>
+    </DivSuccess>
   );
 }

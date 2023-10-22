@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const DivSucces = styled.div`
+export const DivSuccess = styled.div`
   margin: 12px 70px;
   text-align: center;
   width: 157px;
