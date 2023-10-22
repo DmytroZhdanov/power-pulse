@@ -18,10 +18,20 @@ export const CalendarWrapper = styled.div`
     width: 161px;
   }
 
+  div:hover > .calendar-svg,
+  div:hover > .calendar-input-text {
+    transform: scale(1.02);
+    stroke: #efede8;
+    color: #ef8964;
+  }
+
   .calendar-svg {
     width: 20px;
     height: 20px;
     stroke: #ef8964;
+    transition:
+      stroke 300ms ease-in-out,
+      transform 300ms ease-in-out;
 
     @media screen and (min-width: 768px) {
       width: 24px;
@@ -30,13 +40,15 @@ export const CalendarWrapper = styled.div`
   }
 
   .calendar-input-text {
+    user-select: none;
     font-size: 18px;
     font-weight: 700;
-    line-height: 1.11;
+    transition:
+      color 300ms ease-in-out,
+      transform 300ms ease-in-out;
 
     @media screen and (min-width: 768px) {
       font-size: 24px;
-      line-height: 1.33;
     }
   }
 `;
@@ -49,9 +61,17 @@ export const Button = styled.button`
     width: 16px;
     height: 16px;
     stroke: #efede8;
+    transition:
+      stroke 300ms ease-in-out,
+      transform 300ms ease-in-out;
+  }
+  :hover:not(&[disabled]) svg {
+    transform: scale(1.15);
+    stroke: #ef8964;
   }
 
   &[disabled] svg {
+    cursor: not-allowed;
     stroke: rgba(239, 237, 232, 0.2);
   }
 `;
