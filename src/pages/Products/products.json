@@ -89,36 +89,7 @@
       "4": true
     }
   },
-  {
-    "_id": {
-      "$oid": "5d51694902b2373622ff5f16"
-    },
-    "weight": 100,
-    "calories": 38,
-    "category": "soft drinks",
-    "title": "Pepsi",
-    "groupBloodNotAllowed": {
-      "1": false,
-      "2": false,
-      "3": false,
-      "4": false
-    }
-  },
-  {
-    "_id": {
-      "$oid": "5d51694802b2373622ff56c1"
-    },
-    "weight": 100,
-    "calories": 432,
-    "category": "flour",
-    "title": "Cedar flour",
-    "groupBloodNotAllowed": {
-      "1": true,
-      "2": false,
-      "3": false,
-      "4": false
-    }
-  },
+
   {
     "_id": {
       "$oid": "5d51694902b2373622ff5b65"
@@ -147,36 +118,6 @@
       "2": true,
       "3": false,
       "4": false
-    }
-  },
-  {
-    "_id": {
-      "$oid": "5d51694902b2373622ff5d34"
-    },
-    "weight": 100,
-    "calories": 298,
-    "category": "vegetables and herbs",
-    "title": "dried potatoes",
-    "groupBloodNotAllowed": {
-      "1": false,
-      "2": false,
-      "3": false,
-      "4": false
-    }
-  },
-  {
-    "_id": {
-      "$oid": "5d51694902b2373622ff5911"
-    },
-    "weight": 100,
-    "calories": 209,
-    "category": "meat",
-    "title": "Mutton",
-    "groupBloodNotAllowed": {
-      "1": false,
-      "2": true,
-      "3": false,
-      "4": true
     }
   }
 ]
