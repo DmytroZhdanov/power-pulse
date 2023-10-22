@@ -26,21 +26,8 @@ export default function AddProductSuccess(props) {
 
       <DivLink href="Diary">
         <LinkText>To the diary</LinkText>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 16 16"
-          fill="none"
-        >
-          <path
-            d="M7.5 14L14 7.5M14 7.5L7.5 1M14 7.5H1"
-            stroke="#EFEDE8"
-            stroke-opacity="0.3"
-            stroke-width="1.3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+        <svg width="16" height="16">
+          <use href="/src/assets/images/sprite/sprite.svg#arrow-add-prod"></use>
         </svg>
       </DivLink>
     </DivSucces>

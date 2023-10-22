@@ -13,7 +13,7 @@ import {
 } from './AddProductForm.styled';
 
 export default function AddProductForm(props) {
-  const { onClose, addProdSucces, calories } = props;
+  const { onClose, addProdSuccess, calories } = props;
   const [weight, setWeight] = useState(100);
   const product = 'name of product';
 
@@ -21,7 +21,7 @@ export default function AddProductForm(props) {
 
   const handleSubmit = () => {
     onClose();
-    addProdSucces(totalCalories);
+    addProdSuccess(totalCalories);
   };
 
   return (
