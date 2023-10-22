@@ -1,7 +1,14 @@
 import { createPortal } from 'react-dom';
 
-export default function BasicModalWindow() {
+export default function BasicModalWindow(props) {
+  const { onClose, children } = props;
   const modalRoot = document.querySelector('#modal-root');
 
-  return createPortal(<div>BasicModalWindow component</div>, modalRoot);
+  return createPortal(
+    <>
+      <button onClick={onClose}>X</button>
+      {children}
+    </>,
+    modalRoot,
+  );
 }

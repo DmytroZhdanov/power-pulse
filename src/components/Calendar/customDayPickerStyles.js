@@ -5,13 +5,17 @@ export const customDayPickerStyles = {
   day: 'day',
   button_reset: 'button_reset',
   day_today: 'day_today',
+  nav_button: 'nav_button',
+  cell: 'cell',
 
   //styles
   caption: 'calendar-header',
   caption_label: 'current-month-title',
   nav: 'calendar-nav-button-wrapper',
-  nav_button: 'calendar-nav-button',
   nav_icon: 'calendar-nav-icon',
+
+  dropdown_month: 'month-title-dropdown',
+  dropdown_year: 'year-title-dropdown',
 
   table: 'days-wrapper',
   head_row: 'name-days-of-week-wrapper',
@@ -19,7 +23,6 @@ export const customDayPickerStyles = {
 
   tbody: 'days-of-month-wrapper',
   row: 'days-of-month-row',
-  cell: 'days-of-month-cell',
   button: 'day-of-month',
 
   day_disabled: 'days-of-month-disabled',

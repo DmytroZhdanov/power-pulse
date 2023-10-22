@@ -2,24 +2,40 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { ROUTER } from '../../utils/constants';
 
+export const Container = styled.div`
+  padding-top: 127px;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 189px;
+  }
+
+  @media screen and (max-width: 1439px) {
+    position: absolute;
+    z-index: 2;
+  }
+
+  @media screen and (min-width: 1440px) {
+    /* width: 598px; */
+    padding-top: 200px;
+  }
+`;
+
 export const Title = styled.h1`
   font-size: 38px;
   font-weight: 500;
   line-height: calc(40 / 38);
-  margin-top: 127px;
   margin-bottom: 40px;
   letter-spacing: 0.38px;
 
   @media screen and (min-width: 768px) {
     font-size: 70px;
     line-height: calc(78 / 70);
-    margin-top: 189px;
     margin-bottom: 64px;
     letter-spacing: 0.7px;
   }
 
   @media screen and (min-width: 1440px) {
-    margin-top: 200px;
+    width: 598px;
   }
 `;
 
