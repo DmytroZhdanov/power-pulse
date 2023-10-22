@@ -89,5 +89,11 @@
 <symbol id="nav-arrow-right" viewBox="0 0 6 10">
 <path  fill="none"  stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m1 1 4 4-4 4"/>
 </symbol>
+<symbol id="bubble" viewBox="0 0 32 32">
+<path fill="#ef8964" style="fill: var(--color1, #ef8964)" d="M20.794 16.346c3.778 0 6.84-3.062 6.84-6.84s-3.062-6.84-6.84-6.84v0c-3.778 0-6.84 3.062-6.84 6.84s3.062 6.84 6.84 6.84v0zM8.475 25.92c2.268 0 4.107-1.839 4.107-4.107s-1.839-4.107-4.107-4.107v0c-2.233 0.045-4.026 1.867-4.026 4.106s1.793 4.061 4.022 4.106l0.004 0zM22.15 29.333c1.885 0 3.414-1.528 3.414-3.414s-1.528-3.414-3.414-3.414v0c-1.885 0-3.414 1.528-3.414 3.414s1.528 3.414 3.414 3.414v0z"></path>
+</symbol>
+<symbol id="exclamation-mark" viewBox="0 0 32 32">
+<path fill="none" stroke="#efede8" style="stroke: var(--color1, #efede8)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M16 25.333v0.013M16 20v-13.333"></path>
+</symbol>
 </defs>
 </svg>
