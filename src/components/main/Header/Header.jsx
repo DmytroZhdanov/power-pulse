@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import LogOutBtn from 'components/common/LogOutBtn/LogOutBtn';
 import Logo from '../Logo/Logo';
 import UserBar from '../UserBar/UserBar';
 import UserNav from '../UserNav/UserNav';
 import { Backdrop, Box, HeaderWrap } from './Header.styled';
-import { useRef } from 'react';
 import BurgerBtn from '../BurgerBtn/BurgerBtn';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
@@ -32,7 +31,7 @@ export default function Header() {
   };
 
   return (
-    <Box>
+    <Box logged={logged}>
       <HeaderWrap>
         <Logo />
 
@@ -40,14 +39,11 @@ export default function Header() {
           <>
             {isDesktop.current && <UserNav />}
             <UserBar />
-            <LogOutBtn />
+            {isDesktop.current && <LogOutBtn />}
             <BurgerBtn setOpenedModal={setOpenedModal} />
-
             {openedModal && (
               <Backdrop onClick={handleBackdropClick}>
-                <BurgerMenu setOpenedModal={setOpenedModal}>
-                  <UserNav />
-                </BurgerMenu>
+                <BurgerMenu setOpenedModal={setOpenedModal}></BurgerMenu>
               </Backdrop>
             )}
           </>

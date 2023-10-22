@@ -1,8 +1,9 @@
-import sprite from '../../../assets/images/sprite/sprite.svg';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 import { LogoutText, SvgLogout, LogoutButton } from './LogoutBtn.styled';
-export default function LogOutBtn() {
+export default function LogOutBtn(props) {
+  console.log(props);
   return (
-    <LogoutButton>
+    <LogoutButton {...props}>
       <LogoutText>Logout</LogoutText>
       <SvgLogout>
         <use href={`${sprite}#logout`}></use>

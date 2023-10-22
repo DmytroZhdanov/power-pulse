@@ -1,14 +1,9 @@
-import {
-  ButtonClose,
-  SvgBtn,
-  Window,
-  LogoutButtonBurg,
-  SvgLogoutBurg,
-  LogoutTextBurg,
-} from './BurgerMenu.styled';
+import { ButtonClose, SvgBtn, Window, Wrap } from './BurgerMenu.styled';
 import sprite from 'src/assets/images/sprite/sprite.svg';
+import LogOutBtn from '../../common/LogOutBtn/LogOutBtn';
+import UserNav from '../UserNav/UserNav';
 
-export default function BurgerMenu({ children, openedModal, setOpenedModal }) {
+export default function BurgerMenu({ openedModal, setOpenedModal }) {
   return (
     <Window openedModal={openedModal}>
       <ButtonClose
@@ -20,14 +15,10 @@ export default function BurgerMenu({ children, openedModal, setOpenedModal }) {
           <use href={`${sprite}#close`}></use>
         </SvgBtn>
       </ButtonClose>
-      {children}
-
-      <LogoutButtonBurg>
-        <LogoutTextBurg>Logout</LogoutTextBurg>
-        <SvgLogoutBurg>
-          <use href={`${sprite}#logout`}></use>
-        </SvgLogoutBurg>
-      </LogoutButtonBurg>
+      <UserNav border={true} />
+      <Wrap>
+        <LogOutBtn white={true} />
+      </Wrap>
     </Window>
   );
 }

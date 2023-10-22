@@ -10,7 +10,8 @@ export const SvgLogout = styled.svg`
   height: 20px;
 `;
 export const LogoutButton = styled.button`
-  stroke: #e6533c;
+  stroke: ${props => (props.white ? '#efede8' : '#e6533c')};
+
   display: flex;
   align-items: center;
   gap: 8px;
@@ -23,8 +24,4 @@ export const LogoutButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-
-  @media screen and (max-width: 1439px) {
-    display: none;
-  }
 `;

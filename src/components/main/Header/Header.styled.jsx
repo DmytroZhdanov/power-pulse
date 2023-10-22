@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 
 export const Box = styled.div`
   width: 100%;
-  border-bottom: 1px solid rgba(239, 237, 232, 0.2);
+  border-bottom: ${props =>
+    props.logged ? '1px solid rgba(239, 237, 232, 0.2)' : 'none'};
 `;
 
 export const HeaderWrap = styled.div`

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const Navigation = styled.nav`
   display: flex;
@@ -22,21 +22,29 @@ export const Navigation = styled.nav`
     margin-right: 0;
   }
 `;
-export const DiaryLink = styled(Link)`
-  text-decoration: none;
+export const DiaryLink = styled(NavLink)`
   padding: 10px 27px;
   border-radius: 12px;
   border: 1px solid rgba(239, 237, 232, 0.2);
   color: #efede8;
   font-size: 14px;
-  line-height: 1.29;
+  line-height: calc(18 / 14);
+
+  &.active {
+    background-color: #e6533c;
+    border: ${props =>
+      props.border
+        ? '1px solid #EFEDE8'
+        : '1px solid rgba(239, 237, 232, 0.20)'};
+  }
+
   &:hover,
   :focus {
     background-color: #e6533c;
   }
   @media screen and (min-width: 768px) {
     font-size: 16px;
-    line-height: 1.5;
+    line-height: calc(24 / 16);
   }
 `;
 
