@@ -1,10 +1,11 @@
-import ExercisesSubcategoriesItem from "../ExercisesSubcategoriesItem/ExercisesSubcategoriesItem";
-
-export default function ExercisesSubcategoriesList() {
+import ExercisesSubcategoriesItem from '../ExercisesSubcategoriesItem/ExercisesSubcategoriesItem';
+import { List } from './ExercisesSubcategoriesList.styled';
+export default function ExercisesSubcategoriesList({ body }) {
   return (
-    <>
-      <div>ExercisesSubcategoriesList component</div>
-      <ExercisesSubcategoriesItem />
-    </>
+    <List>
+      {body.map(bod => (
+        <ExercisesSubcategoriesItem key={bod._id} bod={bod} />
+      ))}
+    </List>
   );
 }
