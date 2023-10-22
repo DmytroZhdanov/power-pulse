@@ -4,6 +4,7 @@ export const Box = styled.div`
   width: 100%;
   border-bottom: ${props =>
     props.logged ? '1px solid rgba(239, 237, 232, 0.2)' : 'none'};
+  position: ${props => (props.logged ? 'static' : 'absolute')};
 `;
 
 export const HeaderWrap = styled.div`
