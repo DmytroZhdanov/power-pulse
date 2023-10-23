@@ -7,7 +7,7 @@ export const Box = styled.div`
   position: ${props => (props.logged ? 'static' : 'absolute')};
 `;
 
-export const HeaderWrap = styled.div`
+export const HeaderWrap = styled.header`
   width: 100%;
   display: flex;
   align-items: center;
