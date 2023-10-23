@@ -1,16 +1,4 @@
 import styled from '@emotion/styled';
-import { Form } from 'formik';
-
-export const Container = styled(Form)`
-  padding-top: 127px;
-
-  @media screen and (min-width: 768px) {
-    padding-top: 189px;
-  }
-  @media screen and (min-width: 1440px) {
-    padding-top: 200px;
-  }
-`;
 
 export const Text = styled.p`
   margin-top: 14px;
@@ -107,7 +95,7 @@ export const Message = styled.div`
   margin-top: 4px;
 
   font-size: 12px;
-  line-height: 1.5;
+  line-height: calc(18 / 12);
   letter-spacing: 0.12px;
 `;
 

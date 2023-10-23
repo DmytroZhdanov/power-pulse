@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik, FormikProvider, Form, useField } from 'formik';
 import {
-  Container,
   Text,
   Inputs,
   Check,
@@ -10,8 +9,7 @@ import {
   Message,
   Sign,
 } from './SignUpForm.styled';
-import * as Yup from 'yup';
-import TitlePage from '../common/TitlePage/TitlePage';
+import { signUpFormSchema } from './YupValidationForm';
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -51,32 +49,12 @@ export default function SignUpForm() {
       //передати на бек values
       resetForm();
     },
-    validationSchema: Yup.object({
-      name: Yup.string()
-        .min(3)
-        .matches('^^[а-яА-ЯёЁa-zA-Z0-9]+$', 'The name must start with a letter')
-        .required('This is a required field'),
-      email: Yup.string()
-        .email('Invalid email')
-        .matches(
-          '^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$',
-          'Enter valid values',
-        )
-        .required('This is a required field'),
-      password: Yup.string()
-        .min(6)
-        .matches(
-          '^(?=.*d)(?=.*[a-zA-Z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,32}$',
-          'Enter valid values',
-        )
-        .required('This is a required field'),
-    }),
+    validationSchema: signUpFormSchema,
   });
 
   return (
     <FormikProvider value={formik}>
-      <Container autoComplete="off">
-        <TitlePage text={'Sign Up'}></TitlePage>
+      <Form autoComplete="off">
         <Text>
           Thank you for your interest in our platform. To complete the
           registration process, please provide us with the following
@@ -93,7 +71,7 @@ export default function SignUpForm() {
           <p>Already have account?</p>
           <Link to="/signin">Sign In</Link>
         </Sign>
-      </Container>
+      </Form>
     </FormikProvider>
   );
 }
