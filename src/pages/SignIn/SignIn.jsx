@@ -1,9 +1,10 @@
 import SignInForm from 'components/SignInForm/SignInForm';
+import TitlePage from 'components/common/TitlePage/TitlePage';
 
 export default function SignIn() {
   return (
     <>
-      <div>Sign In page</div>
+      <TitlePage text={'Sign In'}></TitlePage>
       <SignInForm />
     </>
   );
