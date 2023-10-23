@@ -15,6 +15,9 @@ export default function Calendar({
   selectedDate,
   setSelectedDate,
   dateOfUserRegistration,
+  width,
+  height,
+  stroke,
 }) {
   const [showCalendar, setShowCalendar] = useState(false);
   const [positionCalendar, setPositionCalendar] = useState('bottom');
@@ -42,11 +45,11 @@ export default function Calendar({
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              width={24}
-              height={24}
+              width={width}
+              height={height}
             >
               <path
-                stroke="#EF8964"
+                stroke={stroke}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="1.8"

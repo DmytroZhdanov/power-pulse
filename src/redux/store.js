@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import {
   persistStore,
   persistReducer,
@@ -13,6 +14,7 @@ import storage from 'redux-persist/lib/storage';
 
 import { api } from './api';
 import { authReducer } from './auth/authSlice';
+import dataReducer from './dataPage/dataSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -20,10 +22,17 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const dataPersistConfig = {
+  key: 'data',
+  storage,
+  whitelist: ['currentHeight', 'currentWeight', 'desiredWeight', 'birthday'],
+};
+
 export const store = configureStore({
   reducer: {
     [api.reducerPath]: api.reducer,
     auth: persistReducer(authPersistConfig, authReducer),
+    data: persistReducer(dataPersistConfig, dataReducer),
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({

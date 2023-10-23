@@ -11,7 +11,7 @@ const DataBtns = ({ stepValue, handleBack, handleNext }) => {
       )}
 
       {stepValue !== 1 && (
-        <ArrowBtn onClick={handleBack}>
+        <ArrowBtn type="button" onClick={handleBack}>
           <svg style={{ transform: 'rotate(180deg)' }}>
             <use href={`${sprite}#big_arrow`} />
           </svg>
@@ -19,7 +19,7 @@ const DataBtns = ({ stepValue, handleBack, handleNext }) => {
         </ArrowBtn>
       )}
       {stepValue !== 3 && (
-        <ArrowBtn onClick={handleNext}>
+        <ArrowBtn type="button" onClick={handleNext}>
           Next
           <svg>
             <use href={`${sprite}#big_arrow`} />

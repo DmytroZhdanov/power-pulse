@@ -35,6 +35,8 @@ export const TextInput = styled.input`
   border-radius: 12px;
   padding: 14px 0 14px 14px;
   font-size: 16px;
+  line-height: 24px;
+
   color: rgba(239, 237, 232, 0.6);
   width: 153px;
   background-color: transparent;
@@ -48,8 +50,11 @@ export const TextInput = styled.input`
 export const BirthdayInput = styled.div`
   border: 1px solid rgba(239, 237, 232, 0.3);
   border-radius: 12px;
-  padding: 14px 17px 14px 14px;
+  padding: 14px 14px 14px 14px;
+
   font-size: 16px;
+  line-height: 24px;
+
   color: rgba(239, 237, 232, 0.6);
   width: 153px;
   background-color: transparent;
@@ -81,18 +86,61 @@ export const RadioContainer1 = styled.div`
   }
 `;
 
-export const RadioInput = styled.input`
-  display: block;
-  flex-direction: row;
-  cursor: pointer;
-  margin-right: 5px;
-  height: 24px;
-  width: 24px;
+// export const RadioInput = styled.input`
+//   display: grid;
+//   place-content: center;
+//   font: inherit;
+//   appearance: none;
+//   background-color: transparent;
+//   margin: 0;
+//   width: 1.5em;
+//   height: 1.5em;
+//   border: 0.2em solid #636366;
+//   border-radius: 50%;
 
-  border: 2px solid #636366;
-  :hover,
-  :focus {
-    border: 1px solid #e6533c;
-    outline: none;
+//   ::before {
+//     content: '';
+//     width: 0.65em;
+//     height: 0.65em;
+//     border-radius: 50%;
+//     transform: scale(0);
+//     transition: 120ms transform ease-in-out;
+//     box-shadow: inset 1em 1em orange;
+//   }
+//   :checked::before {
+//     transform: scale(1);
+//   }
+// `;
+
+export const RadioInput = styled.input`
+  appearance: none;
+  background-color: transparent;
+  margin: 0;
+
+  font: inherit;
+  /* color: currentColor; */
+  width: 1.5em;
+  height: 1.5em;
+  border: 0.2em solid #636366;
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+
+  display: grid;
+  place-content: center;
+  ::before {
+    content: '';
+    width: 0.8em;
+    height: 0.8em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    /* box-shadow: inset 1em 1em var(--form-control-color); */
+    background-color: #ef8964;
+  }
+  :checked::before {
+    transform: scale(1);
+  }
+  :checked {
+    border: 0.15em solid #ef8964;
   }
 `;

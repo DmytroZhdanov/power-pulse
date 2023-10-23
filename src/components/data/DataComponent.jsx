@@ -3,6 +3,7 @@ import { DataContainer } from './DataComponent.styled';
 import DataForm from './DataForm/DataForm';
 import DataProgressbar from './DataProgressbar/DataProgressbar';
 import { useState } from 'react';
+import TestForm from './TestForm';
 
 const DataComponent = () => {
   const [stepValue, setValueStep] = useState(1);
@@ -14,14 +15,12 @@ const DataComponent = () => {
           title="Get closer to your goals!"
           subtitle="To ensure a personalized user experience and the proper functioning of our platform, we ask you to provide the following information about your weight, height and other relevant data:"
         >
+          {/* <TestForm /> */}
           <DataForm stepValue={stepValue} setValueStep={setValueStep} />
         </Data>
       )}
       {stepValue === 2 && (
-        <Data
-          title="Get closer to your goals!"
-          // subtitle="To ensure a personalized user experience and the proper functioning of our platform, we ask you to provide the following information about your weight, height and other relevant data:"
-        >
+        <Data title="Get closer to your goals!">
           <DataForm stepValue={stepValue} setValueStep={setValueStep} />
         </Data>
       )}
