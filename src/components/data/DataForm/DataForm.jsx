@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Calendar from '../../Calendar/Calendar';
 import { Field, Form, Formik, useFormik } from 'formik';
 import DataBtns from '../DataBtns/DataBtns';
 import {
   BirthdayInput,
   FormContainer,
+  RadioContainer1,
+  RadioInput,
   TextInput,
   TextLabel,
 } from './DataForm.style';
@@ -22,9 +24,16 @@ const DataForm = ({ stepValue, setValueStep }) => {
     levelActivity: formDataSelector.levelActivity,
   });
   const dispatch = useDispatch();
-
+  console.log(formData);
   const formik = useFormik({
-    initialValues: formData,
+    initialValues: {
+      currentHeight: formDataSelector.currentHeight,
+      currentWeight: formDataSelector.currentWeight,
+      desiredWeight: formDataSelector.desiredWeight,
+      blood: formDataSelector.blood,
+      gender: formDataSelector.gender,
+      levelActivity: formDataSelector.levelActivity,
+    },
 
     onSubmit: values => {
       // dispatch(updateData(values));
@@ -34,7 +43,7 @@ const DataForm = ({ stepValue, setValueStep }) => {
     },
   });
   const handleNext = () => {
-    dispatch(updateData(formData));
+    dispatch(updateData(formik.values));
     setValueStep(stepValue + 1);
   };
 
@@ -106,10 +115,10 @@ const DataForm = ({ stepValue, setValueStep }) => {
           </BirthdayInput>
         </FormContainer>
       )}
-      {/* {stepValue === 2 && (
+      {stepValue === 2 && (
         <div>
           <RadioContainer1>
-            <fieldset>
+            {/* <fieldset>
               <legend>Blood:</legend>
               <label>
                 <RadioInput
@@ -141,7 +150,7 @@ const DataForm = ({ stepValue, setValueStep }) => {
                 />
                 3
               </label>
-            </fieldset>
+            </fieldset> */}
 
             <fieldset>
               <legend>Sex:</legend>
@@ -149,9 +158,15 @@ const DataForm = ({ stepValue, setValueStep }) => {
                 <RadioInput
                   id="gender"
                   type="radio"
-                  name="Gender"
-                  onChange={formik.handleChange}
-                  value={formik.values.gender}
+                  name="gender"
+                  value="male"
+                  // checked={formik.values.gender === 'male'}
+                  onChange={e => {
+                    formik.handleChange(e);
+                    setFormData({ ...formData, gender: e.target.value });
+                    console.log(e.target.value);
+                    console.log(formData);
+                  }}
                 />
                 Male
               </label>
@@ -160,15 +175,52 @@ const DataForm = ({ stepValue, setValueStep }) => {
                 <RadioInput
                   id="gender"
                   type="radio"
-                  name="Gender"
-                  onChange={formik.handleChange}
-                  value={formik.values.gender}
+                  name="gender"
+                  value="female"
+                  // checked={formik.values.gender === 'female'}
+                  onChange={e => {
+                    formik.handleChange(e);
+                    setFormData({ ...formData, gender: e.target.value });
+                    console.log(e.target.value);
+                    console.log(formData);
+                  }}
                 />
                 Female
               </label>
+
+              {/* <label>
+                <RadioInput
+                  id="gender"
+                  type="radio"
+                  name="gender"
+                  value="male"
+                  onChange={e => {
+                    formik.handleChange(e);
+                    setFormData({ ...formData, gender: e.target.value });
+                  }}
+                  // onChange={formik.handleChange}
+                  checked={formik.values.gender === 'male'}
+                />
+                Male
+              </label>
+              <label>
+                <RadioInput
+                  id="gender"
+                  type="radio"
+                  name="gender"
+                  onChange={e => {
+                    formik.handleChange(e);
+                    setFormData({ ...formData, gender: e.target.value });
+                  }}
+                  checked={formik.values.gender === 'female'}
+                  // onChange={formik.handleChange}
+                  value="female"
+                />
+                Female
+              </label> */}
             </fieldset>
           </RadioContainer1>
-          <RadioContainer1>
+          {/* <RadioContainer1>
             <fieldset>
               <legend>Level Activity:</legend>
               <label>
@@ -223,9 +275,9 @@ const DataForm = ({ stepValue, setValueStep }) => {
                 work)
               </label>
             </fieldset>
-          </RadioContainer1>
+          </RadioContainer1> */}
         </div>
-      )} */}
+      )}
 
       <DataBtns
         handleNext={handleNext}

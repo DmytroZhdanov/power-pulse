@@ -6,7 +6,10 @@ const initialState = {
   currentHeight: '',
   currentWeight: '',
   desiredWeight: '',
-  birthday: null, // Змінив на дату
+  birthday: null,
+  blood: '',
+  gender: '',
+  levelActivity: '',
 };
 
 const dataSlice = createSlice({

@@ -6,7 +6,7 @@ const getColor = (stepValue, step) => {
   return '#303030';
 };
 export const DataContainer = styled.div`
-  background-image: url('../../background/Desktop/bg_users.jpg');
+  background-image: url('/src/assets/images/background/Desktop/bg_users.jpg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
