@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const Text = styled.p`
   margin-top: 14px;
+  color: rgba(239, 237, 232, 0.30);
 
   @media screen and (min-width: 375px) {
     width: 335px;
@@ -79,8 +80,7 @@ export const Check = styled.div`
     }};
 
     &:hover,
-    &:focus,
-    &:active {
+    &:focus {
       border: 1px solid #e6533c;
     }
 
