@@ -15,7 +15,7 @@ export default function DayProducts() {
     <DayProdDiv>
       <DayProdUl>
         <DayProdTitle>Products</DayProdTitle>
-        <AddProdBtn to='/Products'><AddProdBtnText>Add product</AddProdBtnText><AddProdBtnIcon><use href={`${sprite}#nav-arrow-left`}></use></AddProdBtnIcon></AddProdBtn>
+        <AddProdBtn to='/Products'><AddProdBtnText>Add product</AddProdBtnText><AddProdBtnIcon><use href={`${sprite}#big_arrow`}></use></AddProdBtnIcon></AddProdBtn>
       </DayProdUl>
       <ProductsTable />
     </DayProdDiv>

@@ -33,6 +33,11 @@ justify-content: space-between;
 align-items: center;
 `
 export const AddProdBtn = styled(Link)`
+display:flex;
+align-items: center;
+gap: 8px
+`
+export const AddProdBtnText = styled.p`
 @media screen and (max-width: 767px) {
     font-size: 14px;
 line-height: ${18 / 14};
@@ -45,8 +50,6 @@ line-height: ${18 / 14};
 color:#E6533C;
 font-weight: 500;
 `
-export const AddProdBtnText = styled.p`
-`
 export const AddProdBtnIcon = styled.svg`
-width:20px;
-height: 20px;`
+width:16px;
+height: 16px;`
