@@ -1,29 +1,27 @@
 import { useState } from 'react';
-import { CountdownCircleTimer } from 'react-countdown-circle-timer';
-import sprite from 'src/assets/images/sprite/sprite.svg';
+
 import {
-  BurnedCalories,
-  BurnedCaloriesLabel,
-  BurnedCaloriesValue,
+  CaloriesDiv,
+  CaloriesLabel,
+  CaloriesValue,
   ButtonSubmit,
-  ControlButton,
   ExerciseContainer,
   ExerciseInfo,
   Gif,
   Item,
   Label,
   List,
-  TimeLabel,
-  TimerDisplay,
+  TimerLabel,
   Value,
   WorkoutSummary,
 } from './AddExerciseForm.styled';
+import Timer from '../../Timer/Timer';
 
 export default function AddExerciseForm({ exercise }) {
   const { gifUrl, bodyPart, equipment, name, target, burnedCalories, time } =
     exercise;
   const [timer, setTimer] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
+  const [roundsCount, setRoundsCount] = useState(0);
 
   const summaryData = [
     {
@@ -54,31 +52,19 @@ export default function AddExerciseForm({ exercise }) {
     buttonName: 'Add to diary',
   };
 
-  const toggleTimer = () => {
-    setIsRunning(!isRunning);
-  };
-
-  const burnedCaloriesValue = Math.floor(((timer / 60) * burnedCalories) / 3);
+  const caloriesPerMinute = burnedCalories / time;
+  const burnedCaloriesCount = Math.floor(
+    (timer / 60) * caloriesPerMinute + roundsCount * burnedCalories,
+  );
 
   const handleSubmit = () => {
     const collectedData = {
       exerciseId: exercise._id.$oid,
-      date: new Date(),
-      time: timer,
-      calories: burnedCaloriesValue,
+      time: timer + roundsCount * time * 60,
+      calories: burnedCaloriesCount,
     };
-    setIsRunning(false);
+
     console.log('collectedData:', collectedData);
-  };
-
-  const timerContent = ({ remainingTime }) => {
-    const minutes = Math.floor(remainingTime / 60);
-    const seconds = remainingTime % 60;
-
-    return `
-    ${minutes.toString().padStart(2, '0')} :
-    ${seconds.toString().padStart(2, '0')}
-    `;
   };
 
   return (
@@ -86,45 +72,20 @@ export default function AddExerciseForm({ exercise }) {
       <ExerciseInfo>
         <Gif src={gifUrl} alt="Exercise technique" />
 
-        <TimeLabel>{staticData.timerLabel}</TimeLabel>
+        <TimerLabel>{staticData.timerLabel}</TimerLabel>
+        <Timer
+          roundsCount={roundsCount}
+          setRoundsCount={setRoundsCount}
+          setTimer={setTimer}
+          duration={time * 60}
+        />
 
-        <TimerDisplay>
-          <CountdownCircleTimer
-            size={125}
-            isPlaying={isRunning}
-            duration={time * 1}
-            colors="#E6533C"
-            trailColor="#262625"
-            strokeWidth={4}
-            trailStrokeWidth={5}
-            strokeLinecap="round"
-            rotation="counterclockwise"
-            onComplete={() => ({
-              shouldRepeat: true,
-            })}
-            onUpdate={remainingTime => {
-              setTimer(time * 60 - remainingTime);
-            }}
-          >
-            {timerContent}
-          </CountdownCircleTimer>
-        </TimerDisplay>
-
-        <ControlButton onClick={toggleTimer}>
-          <svg width={15} height={15}>
-            {isRunning ? (
-              <use href={sprite + '#pause'}></use>
-            ) : (
-              <use href={sprite + '#play'}></use>
-            )}
-          </svg>
-        </ControlButton>
-
-        <BurnedCalories>
-          <BurnedCaloriesLabel>{staticData.caloriesLabel}</BurnedCaloriesLabel>
-          <BurnedCaloriesValue>{burnedCaloriesValue}</BurnedCaloriesValue>
-        </BurnedCalories>
+        <CaloriesDiv>
+          <CaloriesLabel>{staticData.caloriesLabel}</CaloriesLabel>
+          <CaloriesValue>{burnedCaloriesCount}</CaloriesValue>
+        </CaloriesDiv>
       </ExerciseInfo>
+
       <WorkoutSummary>
         <List>
           {summaryData.map(({ label, value }) => (

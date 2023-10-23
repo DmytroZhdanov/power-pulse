@@ -47,56 +47,25 @@ export const Gif = styled.img`
     lightgray 0px -17.5px / 100% 119.469% no-repeat;
 `;
 
-export const TimeLabel = styled.p`
+export const TimerLabel = styled.p`
   margin-bottom: 4px;
   color: rgba(239, 237, 232, 0.4);
   font-size: 10px;
   line-height: 1.4;
 `;
 
-export const TimerDisplay = styled.div`
-  margin-bottom: 14px;
-
-  svg {
-    transform: rotate(180deg);
-  }
-`;
-
-export const TimeValue = styled.p`
-  color: #efede8;
-  font-size: 16px;
-  line-height: 1.5;
-`;
-
-export const ControlButton = styled.button`
-  background-color: #e6533c;
-  display: flex;
-  border-radius: 5px;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  border: none;
-  margin-bottom: 8px;
-  transition: transform 300ms ease-in-out;
-
-  :hover {
-    transform: scale(1.1);
-  }
-`;
-
-export const BurnedCalories = styled.div`
+export const CaloriesDiv = styled.div`
   display: flex;
   gap: 8px;
 `;
 
-export const BurnedCaloriesLabel = styled.p`
+export const CaloriesLabel = styled.p`
   color: rgba(239, 237, 232, 0.3);
   font-size: 14px;
   line-height: 1.29;
 `;
 
-export const BurnedCaloriesValue = styled.p`
+export const CaloriesValue = styled.p`
   color: #e6533c;
   font-size: 14px;
   line-height: 1.29;
