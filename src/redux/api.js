@@ -27,7 +27,7 @@ const axiosBaseQuery =
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: axiosBaseQuery({
-    baseUrl: 'https://connections-api.herokuapp.com',
+    baseUrl: 'https://power-pulse-api.onrender.com/api',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
       if (token) {
@@ -39,7 +39,7 @@ export const api = createApi({
   endpoints: builder => ({
     register: builder.mutation({
       query: credentials => ({
-        url: '/users/signup',
+        url: '/users/register',
         method: 'POST',
         data: credentials,
       }),
@@ -51,22 +51,43 @@ export const api = createApi({
         data: credentials,
       }),
     }),
-    verify: builder.mutation({
+    // verify: builder.mutation({
+    //   query: credentials => ({
+    //     url: '/verify',
+    //     method: 'POST',
+    //     data: credentials,
+    //   }),
+    // }),
+    addUserParams: builder.mutation({
       query: credentials => ({
-        url: '/verify',
+        url: '/users/params',
         method: 'POST',
         data: credentials,
       }),
     }),
-    fetchDailyRate: builder.query({
-      query: () => '/users/daily-rate',
-    }),
-    updateProfile: builder.mutation({
+    updateUserParams: builder.mutation({
       query: credentials => ({
-        url: '/users/update',
+        url: '/users/params',
+        method: 'PUT',
+        data: credentials,
+      }),
+    }),
+    updateUserName: builder.mutation({
+      query: credentials => ({
+        url: '/users/username',
         method: 'PATCH',
         data: credentials,
       }),
+    }),
+    updateUserAvatar: builder.mutation({
+      query: credentials => ({
+        url: '/users/avatar',
+        method: 'PATCH',
+        data: credentials,
+      }),
+    }),
+    fetchUserParams: builder.query({
+      query: () => '/users/params',
     }),
     refresh: builder.query({
       query: () => '/users/current',
@@ -80,72 +101,86 @@ export const api = createApi({
     fetchProductsCategories: builder.query({
       query: () => '/products/categories',
     }),
-    fetchProducts: builder.mutation({
-      query: credentials => ({
-        url: '/products',
-        method: 'POST',
-        data: credentials,
-      }),
+    fetchAllProducts: builder.query({
+      query: filter =>
+        filter
+          ? `/products/filter?${filter.title && `title=${filter.title}&`}${
+              filter.recommended && `recommended=${filter.recommended}&`
+            }${filter.category && `category=${filter.category}&`}page=${
+              filter.page || 1
+            }`
+          : '/products',
     }),
-    fetchExercises: builder.query({
-      query: () => '/exercises',
+    fetchAllExercises: builder.query({
+      query: filter =>
+        filter
+          ? `/training/exercises/filter?${
+              filter.target && `target=${filter.target}&`
+            }${filter.bodyPart && `bodyPart=${filter.bodyPart}&`}${
+              filter.equipment && `equipment=${filter.equipment}&`
+            }page=${filter.page || 1}`
+          : '/training/exercises',
     }),
-    fetchSubcategories: builder.query({
-      query: () => '/subcategories',
+    fetchAllSubcategories: builder.query({
+      query: () => '/training/categories',
     }),
-    addProduct: builder.mutation({
-      query: credentials => ({
-        url: '/diary/products/add',
-        method: 'POST',
-        data: credentials,
-      }),
-    }),
-    addExercise: builder.mutation({
-      query: credentials => ({
-        url: '/diary/exercises/add',
-        method: 'POST',
-        data: credentials,
-      }),
-    }),
-    deleteProduct: builder.mutation({
-      query: () => ({
-        url: '/diary/products/delete',
-        method: 'DELETE',
-      }),
-    }),
-    deleteExercise: builder.mutation({
-      query: () => ({
-        url: '/diary/exercises/delete',
-        method: 'DELETE',
-      }),
-    }),
-    fetchDiary: builder.mutation({
-      query: credentials => ({
-        url: '/diary',
-        method: 'POST',
-        data: credentials,
-      }),
-    }),
-    fetchStatistic: builder.query({
-      query: () => '/statistic',
-    }),
+    // addProduct: builder.mutation({
+    //   query: credentials => ({
+    //     url: '/diary/products/add',
+    //     method: 'POST',
+    //     data: credentials,
+    //   }),
+    // }),
+    // addExercise: builder.mutation({
+    //   query: credentials => ({
+    //     url: '/diary/exercises/add',
+    //     method: 'POST',
+    //     data: credentials,
+    //   }),
+    // }),
+    // deleteProduct: builder.mutation({
+    //   query: () => ({
+    //     url: '/diary/products/delete',
+    //     method: 'DELETE',
+    //   }),
+    // }),
+    // deleteExercise: builder.mutation({
+    //   query: () => ({
+    //     url: '/diary/exercises/delete',
+    //     method: 'DELETE',
+    //   }),
+    // }),
+    // fetchDiary: builder.mutation({
+    //   query: credentials => ({
+    //     url: '/diary',
+    //     method: 'POST',
+    //     data: credentials,
+    //   }),
+    // }),
+    // fetchStatistic: builder.query({
+    //   query: () => '/statistic',
+    // }),
   }),
 });
 
 export const {
   useRegisterMutation,
   useLoginMutation,
-  useFetchDailyRateQuery,
-  useUpdateProfileMutation,
+  // useVerifyMutation,
+  useAddUserParamsMutation,
+  useUpdateUserParamsMutation,
+  useUpdateUserNameMutation,
+  useUpdateUserAvatarMutation,
+  useLazyFetchUserParamsQuery,
   useRefreshQuery,
   useLogoutMutation,
   useFetchProductsCategoriesQuery,
-  useFetchProductsMutation,
-  useFetchExercisesQuery,
-  useFetchSubcategoriesQuery,
-  useAddProductMutation,
-  useAddExerciseMutation,
-  useDeleteProductMutation,
-  useDeleteExerciseMutation,
-  useFetchDiaryMutation,
+  useLazyFetchAllProductsQuery,
+  useLazyFetchAllExercisesQuery,
+  useFetchAllSubcategoriesQuery,
+  // useAddProductMutation,
+  // useAddExerciseMutation,
+  // useDeleteProductMutation,
+  // useDeleteExerciseMutation,
+  // useFetchDiaryMutation,
 } = api;

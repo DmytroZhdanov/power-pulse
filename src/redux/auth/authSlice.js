@@ -5,7 +5,7 @@ export const initialState = {
     name: null,
     email: null,
     avatarUrls: {},
-    params: {},
+    createdAt: null,
   },
   token: null,
 };
