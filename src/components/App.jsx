@@ -86,7 +86,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: '/power-pulse',
+    basename: '/power-pulse/',
   },
 );
 

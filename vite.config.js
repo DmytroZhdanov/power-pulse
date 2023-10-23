@@ -11,5 +11,5 @@ export default defineConfig({
       pages: '/src/pages',
     },
   },
-  base: '/power-pulse',
+  base: '/power-pulse/',
 });
