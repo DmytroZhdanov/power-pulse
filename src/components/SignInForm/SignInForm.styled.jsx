@@ -62,7 +62,7 @@ export const Check = styled.div`
 
     font-size: 14px;
 
-    line-height: ${18 / 14};
+    line-height: calc(18 / 14);
     color: rgba(239, 237, 232, 0.6);
     background-color: transparent;
     border-radius: 12px;
@@ -97,7 +97,7 @@ export const Message = styled.div`
   margin-top: 4px;
 
   font-size: 12px;
-  line-height: ${18 / 12};
+  line-height: calc(18 / 12);
   letter-spacing: 0.12px;
 
   div {
