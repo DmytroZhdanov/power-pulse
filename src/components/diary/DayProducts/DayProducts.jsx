@@ -1,10 +1,13 @@
 import ProductsTable from '../ProductsTable/ProductsTable';
+import sprite from '../../../assets/images/sprite/sprite.svg';
 
 import {
   DayProdDiv,
   DayProdTitle,
   DayProdUl,
-  AddProdBtn
+  AddProdBtn,
+  AddProdBtnIcon,
+  AddProdBtnText
 } from './DayProducts.styled'
 
 export default function DayProducts() {
@@ -12,7 +15,7 @@ export default function DayProducts() {
     <DayProdDiv>
       <DayProdUl>
         <DayProdTitle>Products</DayProdTitle>
-        <AddProdBtn>Add product</AddProdBtn>
+        <AddProdBtn to='/Products'><AddProdBtnText>Add product</AddProdBtnText><AddProdBtnIcon><use href={`${sprite}#nav-arrow-left`}></use></AddProdBtnIcon></AddProdBtn>
       </DayProdUl>
       <ProductsTable />
     </DayProdDiv>

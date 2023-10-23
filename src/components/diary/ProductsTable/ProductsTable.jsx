@@ -8,9 +8,11 @@ import {
   TableProdInf,
   TableRecomSpan,
   TableMaintitles,
-  TableMaintitle
+  TableMaintitle,
+  DelBtnTable,
+  DelIcon
 } from './ProductsTable.styled'
-
+import sprite from '../../../assets/images/sprite/sprite.svg';
 export default function ProductsTable() {
   return (
     <TableDiv>
@@ -21,7 +23,6 @@ export default function ProductsTable() {
           <TableMaintitle>Calories</TableMaintitle>
           <TableMaintitle>Weight</TableMaintitle>
           <TableMaintitle>Recommend</TableMaintitle>
-          {/* <TableMaintitle></TableMaintitle> */}
         </TableMaintitles>
         <TableLi>
           <TableMobTitlesP>
@@ -30,7 +31,6 @@ export default function ProductsTable() {
             <TableMobTitleP>Calories</TableMobTitleP>
             <TableMobTitleP>Weight</TableMobTitleP>
             <TableMobTitleP>Recommend</TableMobTitleP>
-            {/* <TableMobTitleP>&nbsp;</TableMobTitleP> */}
           </TableMobTitlesP>
           <TableProd>
             <TableProdInf>Bread Hercules grain</TableProdInf>
@@ -38,7 +38,7 @@ export default function ProductsTable() {
             <TableProdInf>289</TableProdInf>
             <TableProdInf>100</TableProdInf>
             <TableProdInf><TableRecomSpan Recom={true}/>Yes</TableProdInf>
-            {/* <TableProdInf>&nbsp;</TableProdInf> */}
+            <DelBtnTable><DelIcon> <use href={`${sprite}#delete`}></use></DelIcon></DelBtnTable>
           </TableProd>
         </TableLi>
         <TableLi>
@@ -48,7 +48,6 @@ export default function ProductsTable() {
             <TableMobTitleP>Calories</TableMobTitleP>
             <TableMobTitleP>Weight</TableMobTitleP>
             <TableMobTitleP>Recommend</TableMobTitleP>
-            {/* <TableMobTitleP>&nbsp;</TableMobTitleP> */}
           </TableMobTitlesP>
           <TableProd>
             <TableProdInf>Bread Hercules grain</TableProdInf>
@@ -56,7 +55,24 @@ export default function ProductsTable() {
             <TableProdInf>289</TableProdInf>
             <TableProdInf>100</TableProdInf>
             <TableProdInf><TableRecomSpan Recom={true}/>Yes</TableProdInf>
-            {/* <TableProdInf>&nbsp;</TableProdInf> */}
+            <DelBtnTable><DelIcon> <use href={`${sprite}#delete`}></use></DelIcon></DelBtnTable>
+          </TableProd>
+        </TableLi>
+        <TableLi>
+          <TableMobTitlesP>
+            <TableMobTitleP>Title</TableMobTitleP>
+            <TableMobTitleP>Category</TableMobTitleP>
+            <TableMobTitleP>Calories</TableMobTitleP>
+            <TableMobTitleP>Weight</TableMobTitleP>
+            <TableMobTitleP>Recommend</TableMobTitleP>
+          </TableMobTitlesP>
+          <TableProd>
+            <TableProdInf>Bread Hercules grain</TableProdInf>
+            <TableProdInf>Flour</TableProdInf>
+            <TableProdInf>289</TableProdInf>
+            <TableProdInf>100</TableProdInf>
+            <TableProdInf><TableRecomSpan Recom={true}/>Yes</TableProdInf>
+            <DelBtnTable><DelIcon> <use href={`${sprite}#delete`}></use></DelIcon></DelBtnTable>
           </TableProd>
         </TableLi>
         {/* <TableLi>
@@ -66,7 +82,6 @@ export default function ProductsTable() {
             <TableMobTitleP>Calories</TableMobTitleP>
             <TableMobTitleP>Weight</TableMobTitleP>
             <TableMobTitleP>Recommend</TableMobTitleP>
-            <TableMobTitleP>&nbsp;</TableMobTitleP>
           </TableMobTitlesP>
           <TableProd>
             <TableProdInf>Bread Hercules grain</TableProdInf>
@@ -74,8 +89,7 @@ export default function ProductsTable() {
             <TableProdInf>289</TableProdInf>
             <TableProdInf>100</TableProdInf>
             <TableProdInf><TableRecomSpan Recom={true}/>Yes</TableProdInf>
-            <TableProdInf>&nbsp;</TableProdInf>
-
+            <DelBtnTable><DelIcon> <use href={`${sprite}#delete`}></use></DelIcon></DelBtnTable>
           </TableProd>
         </TableLi> */}
       </TableUl>

@@ -1,16 +1,14 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 export const DayProdDiv = styled.div`
 @media screen and (max-width: 767px) {
-    max-height:100%;
+    max-height:824px;
     padding: 16px ;
   }
   @media screen and (min-width: 768px) {
     padding: 16px ;
     max-height:234px
-  }
-  @media screen and (min-width: 1440px) {
-    padding: 16px 32px;
   }
 border: 1px solid rgba(239, 237, 232, 0.2);
   border-radius: 12px;
@@ -32,8 +30,9 @@ export const DayProdUl = styled.ul`
   }
 display:flex;
 justify-content: space-between;
+align-items: center;
 `
-export const AddProdBtn = styled.li`
+export const AddProdBtn = styled(Link)`
 @media screen and (max-width: 767px) {
     font-size: 14px;
 line-height: ${18 / 14};
@@ -46,3 +45,8 @@ line-height: ${18 / 14};
 color:#E6533C;
 font-weight: 500;
 `
+export const AddProdBtnText = styled.p`
+`
+export const AddProdBtnIcon = styled.svg`
+width:20px;
+height: 20px;`

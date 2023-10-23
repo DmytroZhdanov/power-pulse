@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const TableDiv = styled.div`
 @media screen and (max-width: 767px) {
-    max-height: 790px;
+    max-height: 752px;
     max-width: 335px;
   }
   @media screen and (min-width: 768px) {
@@ -12,28 +12,38 @@ export const TableDiv = styled.div`
   @media screen and (min-width: 1440px) {
     max-width: 826px;
   }
+  scroll-behavior:auto;
+overflow-y:auto;
+overflow-x: hidden;
 `
 export const TableUl = styled.ul`
-// padding: 0 22px 0 16px;
+@media screen and (min-width: 1440px) {
+    padding: 0 16px
+  }
+
 `
 export const TableLi = styled.li`
 @media screen and (max-width: 767px) {
     height: 224px;
     width:297px;
     margin-bottom: 40px;
+    &:last-child{
+        margin-bottom: 0;
+    }
 }
 @media screen and (min-width: 768px) {
     height: 40px;
     width:656px;
     margin-bottom: 8px;
+    &:last-child{
+        margin-bottom: 16px;
+    }
 }
 @media screen and (min-width: 1440px) {
     width: 762px;
   }
 position: relative;
-&:last-child{
-    margin-bottom: 0;
-}
+
 `
 export const TableMobTitlesP = styled.p`
   @media screen and (min-width: 768px) {
@@ -73,7 +83,8 @@ position: absolute;
 export const TableProd = styled.p`
 @media screen and (min-width: 768px) {
     display:flex;
-    gap:8px
+    gap:8px;
+    align-items: center;
   }
 `
 export const TableProdInf = styled.p`
@@ -226,3 +237,26 @@ export const TableMaintitle = styled.p`
   }
 
 `
+export const DelBtnTable = styled.button`
+width:20px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  @media screen and (max-width: 767px) {
+      position: absolute;
+      top:195px;
+      left:277px
+  }
+  
+  @media screen and (min-width: 768px) {
+      position: relative;
+  }
+`
+export const DelIcon = styled.svg`
+width:20px;
+height: 20px;
+
+`
+  
