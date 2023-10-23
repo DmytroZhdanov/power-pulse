@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 
 export const Text = styled.p`
   margin-top: 14px;
+
+  line-height: calc(24 / 16);
   color: rgba(239, 237, 232, 0.30);
 
   @media screen and (min-width: 375px) {
