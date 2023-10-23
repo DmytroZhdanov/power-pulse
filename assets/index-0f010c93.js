@@ -946,6 +946,7 @@ Error generating stack: `+a.message+`
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  align-items: center;
   cursor: pointer;
 `,CN=B.div`
   position: absolute;
