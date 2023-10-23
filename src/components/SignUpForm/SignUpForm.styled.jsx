@@ -1,13 +1,25 @@
 import styled from '@emotion/styled';
+import { Form } from 'formik';
+
+export const Container = styled(Form)`
+  padding-top: 127px;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 189px;
+  }
+  @media screen and (min-width: 1440px) {
+    padding-top: 200px;
+  }
+`;
 
 export const Text = styled.p`
   margin-top: 14px;
+
   @media screen and (min-width: 375px) {
     width: 335px;
   }
   @media screen and (min-width: 768px) {
     width: 496px;
-    gap: 16px;
   }
 `;
 
@@ -18,8 +30,6 @@ export const Inputs = styled.div`
   align-items: flex-start;
   gap: 18px;
 
-  @media screen and (min-width: 375px) {
-  }
   @media screen and (min-width: 768px) {
     margin-top: 32px;
     gap: 20px;
@@ -57,19 +67,16 @@ export const Check = styled.div`
   }};
   input {
     display: flex;
-    width: auto;
     padding-top: 14px;
     padding-bottom: 14px;
     padding-left: 14px;
     align-items: center;
 
-    font-family: Roboto;
     font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1.28; /* 128.571% */
+
+    line-height: calc(18 / 14);
     color: rgba(239, 237, 232, 0.6);
-    background-color: black;
+    background-color: transparent;
     border-radius: 12px;
 
     border: ${props => {
@@ -110,7 +117,7 @@ export const Sign = styled.div`
   font-size: 12px;
   gap: 4px;
 
-  a{
+  a {
     text-decoration-line: underline;
   }
 `;

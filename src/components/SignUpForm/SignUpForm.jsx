@@ -1,7 +1,8 @@
-import React from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik, FormikProvider, Form, useField } from 'formik';
 import {
+  Container,
   Text,
   Inputs,
   Check,
@@ -16,7 +17,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 const Feedback = ({ label, helpText, ...props }) => {
   const [field, meta] = useField(props);
-  const [didFocus, setDidFocus] = React.useState(false);
+  const [didFocus, setDidFocus] = useState(false);
   const handleFocus = () => setDidFocus(true);
   const showFeedback =
     (!!didFocus && field.value.trim().length > 2) || meta.touched;
@@ -74,15 +75,14 @@ export default function SignUpForm() {
 
   return (
     <FormikProvider value={formik}>
-      <Form autoComplete="off">
-        <>
-          <TitlePage text={'Sign Up'}></TitlePage>
-          <Text>
-            Thank you for your interest in our paragraphlatform. To complete the
-            registration process, please provide us with the following
-            information.
-          </Text>
-        </>
+      <Container autoComplete="off">
+        <TitlePage text={'Sign Up'}></TitlePage>
+        <Text>
+          Thank you for your interest in our platform. To complete the
+          registration process, please provide us with the following
+          information.
+        </Text>
+
         <Inputs>
           <Feedback name="name" type="text" placeholder="Name" />
           <Feedback name="email" type="email" placeholder="Email" />
@@ -93,7 +93,7 @@ export default function SignUpForm() {
           <p>Already have account?</p>
           <Link to="/signin">Sign In</Link>
         </Sign>
-      </Form>
+      </Container>
     </FormikProvider>
   );
 }
