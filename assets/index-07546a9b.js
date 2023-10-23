@@ -290,7 +290,7 @@ Error generating stack: `+a.message+`
     width: 90px;
     height: 90px;
   }
-`;function Lx(){return k.jsx(AR,{children:k.jsx(FT,{height:"90",width:"90",radius:"9",color:"#E6533C",ariaLabel:"three-dots-loading",visible:!0,timeout:2e3})})}const ft="/assets/sprite-846de65d.svg",$R=B.p`
+`;function Lx(){return k.jsx(AR,{children:k.jsx(FT,{height:"90",width:"90",radius:"9",color:"#E6533C",ariaLabel:"three-dots-loading",visible:!0,timeout:2e3})})}const ft="/assets/sprite-2194537a.svg",$R=B.p`
   font-size: 16px;
   line-height: 1.5;
 `,IR=B.svg`
