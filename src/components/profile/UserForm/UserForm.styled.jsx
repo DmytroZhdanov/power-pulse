@@ -1,9 +1,19 @@
 import styled from '@emotion/styled';
+import styles from 'react-day-picker/dist/style.css';
 
 export const Form = styled.form`
-  width: 339px;
-  padding: 0 2px;
+  width: 335px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #0a0909;
+  /* 
+  p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 10px;
+    line-height: calc(12 / 10);
+    color: #e6533c;
+  } */
 
   button {
     width: 115px;
@@ -17,9 +27,9 @@ export const Form = styled.form`
     cursor: pointer;
   }
 
-  @media screen and (min-width: 768px) {
-    width: 768px;
-    padding: 15px;
+  @media (min-width: 768px) {
+    width: 696px;
+
     button {
       width: 144px;
       padding: 16px 50px;
@@ -29,125 +39,170 @@ export const Form = styled.form`
   }
 `;
 
-export const BasInfo = styled.div`
-  margin-bottom: 20px;
+export const FirstInfo = styled.div`
+  width: 100%;
+  margin-bottom: 14px;
+
   label {
-    position: relative;
     font-size: 12px;
     line-height: calc(18 / 12);
     color: #efede880;
+    input {
+      margin: 4px 0 14px 0;
+    }
   }
 
   input {
-    padding: 13px;
-    width: 100%;
+    padding: 14px;
+
     font-size: 14px;
     line-height: calc(18 / 14);
     color: #efede8;
     border: 1px solid #efede84d;
     border-radius: 12px;
     background-color: transparent;
+    width: 335px;
   }
 
-  p {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-size: 10px;
-    line-height: calc(12 / 10);
-    color: #e6533c;
-  }
-
-  svg {
-    width: 18px;
-    height: 18px;
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    stroke: #e61010;
-    rotate: 50deg;
-  }
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 16px;
+  @media (min-width: 768px) {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 14px;
     label {
+      width: 341px;
+      display: block;
       font-size: 14px;
       line-height: calc(18 / 14);
+
+      input {
+        margin-bottom: 0;
+      }
     }
 
     input {
-      width: 340px;
       font-size: 16px;
       line-height: calc(24 / 16);
-    }
-
-    p {
-      font-size: 12px;
-    }
-  }
-`;
-
-export const FirstInfo = styled.div`
-  width: 100%;
-  margin-bottom: 14px;
-
-  div {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 4px;
-  }
-
-  @media screen and (min-width: 768px) {
-    div {
-      flex-direction: row;
-      margin-top: 8px;
+      width: 341px;
+      height: 52px;
     }
   }
 `;
 
 export const AddInfo = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  width: 335px;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 14px;
-
-  div {
-    display: inline-flex;
-    gap: 14px;
-  }
+  margin-bottom: 20px;
 
   label {
-    width: 160px;
+    font-size: 12px;
+    line-height: calc(18 / 12);
+    color: #efede880;
   }
   input {
-    width: 100%;
+    padding: 14px;
     margin-top: 4px;
+    font-size: 14px;
+    line-height: calc(18 / 14);
+    color: #efede8;
+    border: 1px solid #efede84d;
+    border-radius: 12px;
+    background-color: transparent;
+    width: 160px;
   }
 
-  p {
-    margin-top: 3px;
-  }
+  @media (min-width: 768px) {
+    width: 696px;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 16px;
 
-  @media screen and (min-width: 768px) {
-    div {
-      width: 340px;
-      justify-content: space-between;
+    label {
+      font-size: 14px;
+      line-height: calc(18 / 14);
     }
+
     input {
       margin-top: 8px;
+      font-size: 16px;
+      line-height: calc(24 / 16);
     }
   }
 `;
+
+export const Data = styled.div`
+  width: calc((335px - 14px) / 2);
+  display: inline-flex;
+  gap: 14px;
+
+  @media (min-width: 768px) {
+    width: calc((696px - 14px) / 2);
+  }
+`;
+
+export const Height = styled.label`
+  @media (min-width: 768px) {
+    input {
+      width: 168px;
+    }
+  }
+`;
+
+export const CurWeight = styled(Height)`
+  input {
+    width: 161px;
+  }
+  @media (min-width: 768px) {
+    input {
+      width: 159px;
+    }
+  }
+`;
+
 export const Text = styled.div`
   font-size: 12px;
   line-height: calc(18 / 12);
   color: #efede880;
   margin-bottom: 8px;
 
-  @media screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 14px;
     line-height: calc(18 / 14);
   }
 `;
+
+export const Calendar = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  align-items: flex-end;
+`;
+
+export const DesWeight = styled.label`
+  width: 160px;
+
+  @media (min-width: 768px) {
+    width: 140px;
+    input {
+      width: 140px;
+      width: 100%;
+      margin-top: 8px;
+    }
+  }
+`;
+
+export const Birthday = styled(DesWeight)`
+  width: 161px;
+  margin-top: 22px;
+  padding: 0;
+
+  @media (min-width: 768px) {
+    width: 187px;
+  }
+`;
+
 export const SecondInfo = styled.div`
   width: 100%;
 
@@ -161,66 +216,64 @@ export const SecondInfo = styled.div`
   }
 `;
 
-export const RadioBtn = styled.input`
+export const Blood = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+`;
+
+export const Gender = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+`;
+
+export const RadioBox = styled.input`
+  width: 20px;
+  height: 20px;
+  display: block;
   margin: 0;
-  width: 18px;
-  height: 18px;
 
   &::before {
     content: '';
     display: flex;
     align-items: center;
     margin: 0;
-    width: 15px;
-    height: 15px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     border: 2px solid #636366;
     background-color: black;
   }
 
   &:checked&::before {
-    max-width: 10px;
-    height: 10px;
     border: thick double #0e0e0d;
     background-color: #ef8964;
   }
 `;
+
 export const HealthInfo = styled.div`
-  label {
-    margin-right: 8px;
-
-    &:last-of-type {
-      margin-right: 0px;
-    }
-
-    &:nth-of-type(4) {
-      margin-right: 20px;
-    }
-  }
+  width: 335px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 
   @media screen and (min-width: 768px) {
-    label {
-      &:nth-of-type(4) {
-        margin-right: 32px;
-      }
-    }
+    gap: 32px;
   }
 `;
 
 export const Lifestyle = styled.div`
   margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
 
-  label {
-    margin-bottom: 8px;
-
-    &:last-of-type {
-      margin-bottom: 0px;
-    }
-  }
-  @media screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     margin: 32px 0 38px 0;
   }
-  @media screen and (min-width: 1200px) {
+  @media (min-width: 1200px) {
     margin-bottom: 48px;
   }
 `;

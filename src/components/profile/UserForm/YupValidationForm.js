@@ -15,7 +15,6 @@ export const userFormSchema = yup.object({
   birthday: yup
     .date()
     .nullable()
-    // .default(() => new Date())
     .max(`${curDate}`, 'your age must to be 18+')
     .required('the field is required'),
   blood: yup.string().required('required'),
