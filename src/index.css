@@ -180,10 +180,6 @@ select::-ms-expand {
 /* ========================= /Fonts ========================= */
 
 /* ========================= Common styles ========================= */
-* {
-  box-sizing: border-box;
-}
-
 html {
   scroll-behavior: smooth;
 }

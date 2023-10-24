@@ -1,16 +1,21 @@
 import styled from '@emotion/styled';
 
 export const Text = styled.p`
+  @media screen and (max-width: 374px) {
+    width: calc(100% - 20px);
+  }
+
   margin-top: 14px;
 
   line-height: calc(24 / 16);
-  color: rgba(239, 237, 232, 0.30);
+  color: rgba(239, 237, 232, 0.3);
 
   @media screen and (min-width: 375px) {
     width: 335px;
   }
   @media screen and (min-width: 768px) {
     width: 496px;
+    margin-top: 16px;
   }
 `;
 
@@ -28,6 +33,7 @@ export const Inputs = styled.div`
 `;
 
 export const Button = styled.button`
+  color: #efede8;
   margin-top: 28px;
   display: flex;
   padding: 12px 40px;
@@ -35,17 +41,21 @@ export const Button = styled.button`
   align-items: center;
   gap: 10px;
   border-radius: 12px;
-  background: var(--orange, #e6533c);
+  background-color: #e6533c;
 
   @media screen and (min-width: 768px) {
     margin-top: 64px;
   }
   :hover {
-    background: var(--orange-1, #ef8964);
+    background-color: #ef8964;
   }
 `;
 
 export const Check = styled.div`
+  @media screen and (max-width: 374px) {
+    width: calc(100% - 20px);
+  }
+
   color: ${props => {
     switch (props.type) {
       case 'invalid':
@@ -57,14 +67,9 @@ export const Check = styled.div`
     }
   }};
   input {
-    display: flex;
-    padding-top: 14px;
-    padding-bottom: 14px;
-    padding-left: 14px;
-    align-items: center;
-
+    width: 100%;
+    padding: 14px;
     font-size: 14px;
-
     line-height: calc(18 / 14);
     color: rgba(239, 237, 232, 0.6);
     background-color: transparent;
@@ -87,10 +92,10 @@ export const Check = styled.div`
     }
 
     @media screen and (min-width: 375px) {
-      width: 283px;
+      width: 335px;
     }
     @media screen and (min-width: 768px) {
-      width: 307px;
+      width: 364px;
     }
   }
 `;
