@@ -27,7 +27,9 @@ const Feedback = ({ label, helpText, ...props }) => {
       <Message>
         {showFeedback ? (
           <div id={`${props.id}-feedback`} aria-live="polite">
-            <>svg </>
+            <svg>
+              <use href="../../../src/assets/images/sprite/sprite.svg#checkmark"></use>
+            </svg>
             {meta.error ? meta.error : <>Success {props.name}</>}
           </div>
         ) : null}

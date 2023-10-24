@@ -56,6 +56,7 @@ export const Check = styled.div`
         return 'rgba(239, 237, 232, 0.3)';
     }
   }};
+
   input {
     display: flex;
     padding-top: 14px;
