@@ -1,6 +1,10 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
 
+import { EXERCISES_CATEGORY, PRODUCTS_FILTER } from '../utils/constants';
+const { MUSCLES, BODY_PART, EQUIPMENT } = EXERCISES_CATEGORY;
+const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
+
 const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
   async ({ url, method, data, params, headers }) => {
@@ -98,65 +102,65 @@ export const api = createApi({
         method: 'POST',
       }),
     }),
-    fetchProductsCategories: builder.query({
-      query: () => '/products/categories',
-    }),
     fetchAllProducts: builder.query({
       query: filter =>
-        filter
-          ? `/products/filter?${filter.title && `title=${filter.title}&`}${
-              filter.recommended && `recommended=${filter.recommended}&`
-            }${filter.category && `category=${filter.category}&`}page=${
-              filter.page || 1
-            }`
-          : '/products',
+        `/products${
+          filter
+            ? `?${filter[QUERY] ? `${QUERY}=${filter[QUERY]}&` : ''}${
+                filter[RECOMMENDED]
+                  ? `${RECOMMENDED}=${filter[RECOMMENDED]}&`
+                  : ''
+              }${
+                filter[CATEGORY] ? `${CATEGORY}=${filter[CATEGORY]}&` : ''
+              }page=${filter.page || 1}`
+            : ''
+        }`,
     }),
     fetchAllExercises: builder.query({
       query: filter =>
-        filter
-          ? `/training/exercises/filter?${
-              filter.target && `target=${filter.target}&`
-            }${filter.bodyPart && `bodyPart=${filter.bodyPart}&`}${
-              filter.equipment && `equipment=${filter.equipment}&`
-            }page=${filter.page || 1}`
-          : '/training/exercises',
+        `/training/exercises${
+          filter
+            ? `?${filter[MUSCLES] ? `${MUSCLES}=${filter[MUSCLES]}&` : ''}${
+                filter[BODY_PART] ? `${BODY_PART}=${filter[BODY_PART]}&` : ''
+              }${
+                filter[EQUIPMENT] ? `${EQUIPMENT}=${filter[EQUIPMENT]}&` : ''
+              }page=${filter.page || 1}`
+            : ''
+        }`,
     }),
-    fetchAllSubcategories: builder.query({
-      query: () => '/training/categories',
+    fetchExercisesSubcategories: builder.query({
+      query: category =>
+        `/training/subcategories${category ? `?filter=${category}` : ''}`,
     }),
-    // addProduct: builder.mutation({
-    //   query: credentials => ({
-    //     url: '/diary/products/add',
-    //     method: 'POST',
-    //     data: credentials,
-    //   }),
-    // }),
-    // addExercise: builder.mutation({
-    //   query: credentials => ({
-    //     url: '/diary/exercises/add',
-    //     method: 'POST',
-    //     data: credentials,
-    //   }),
-    // }),
-    // deleteProduct: builder.mutation({
-    //   query: () => ({
-    //     url: '/diary/products/delete',
-    //     method: 'DELETE',
-    //   }),
-    // }),
-    // deleteExercise: builder.mutation({
-    //   query: () => ({
-    //     url: '/diary/exercises/delete',
-    //     method: 'DELETE',
-    //   }),
-    // }),
-    // fetchDiary: builder.mutation({
-    //   query: credentials => ({
-    //     url: '/diary',
-    //     method: 'POST',
-    //     data: credentials,
-    //   }),
-    // }),
+    fetchDiary: builder.query({
+      query: date => `/diary/${date}`,
+    }),
+    addProduct: builder.mutation({
+      query: credentials => ({
+        url: '/day/diaryProducts',
+        method: 'POST',
+        data: credentials,
+      }),
+    }),
+    addExercise: builder.mutation({
+      query: credentials => ({
+        url: '/day/diaryExercises',
+        method: 'POST',
+        data: credentials,
+      }),
+    }),
+    deleteProduct: builder.mutation({
+      query: id => ({
+        url: `/day/diaryProducts/${id}`,
+        method: 'DELETE',
+      }),
+    }),
+    deleteExercise: builder.mutation({
+      query: id => ({
+        url: `/day/diaryExercises/${id}`,
+        method: 'DELETE',
+      }),
+    }),
     // fetchStatistic: builder.query({
     //   query: () => '/statistic',
     // }),
@@ -174,13 +178,13 @@ export const {
   useLazyFetchUserParamsQuery,
   useRefreshQuery,
   useLogoutMutation,
-  useFetchProductsCategoriesQuery,
   useLazyFetchAllProductsQuery,
   useLazyFetchAllExercisesQuery,
-  useFetchAllSubcategoriesQuery,
-  // useAddProductMutation,
-  // useAddExerciseMutation,
-  // useDeleteProductMutation,
-  // useDeleteExerciseMutation,
-  // useFetchDiaryMutation,
+  useFetchExercisesSubcategoriesQuery,
+  useLazyFetchDiaryQuery,
+  useAddProductMutation,
+  useAddExerciseMutation,
+  useDeleteProductMutation,
+  useDeleteExerciseMutation,
+  // useFetchStatisticQuery,
 } = api;
