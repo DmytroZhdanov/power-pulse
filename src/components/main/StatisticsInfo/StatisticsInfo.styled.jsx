@@ -1,39 +1,44 @@
 import styled from '@emotion/styled';
-
-const background = 'src/assets/images/background';
+import * as background from 'src/utils/background';
+import { DATA_STEPS } from '../../../utils/constants';
 
 export const Background = styled.div`
+  position: absolute;
+  right: 0;
+  z-index: 1;
+
   width: 298px;
   height: 571px;
+  margin-top: 241px;
 
   background-image: ${props => {
     switch (props.keyword) {
       case 'main':
         return `image-set(
-          url(${background}/Mobile/mo_main.jpg) 1x,
-          url(${background}/Mobile/mo_main@2x.jpg) 2x,
-          url(${background}/Mobile/mo_main@3x.jpg) 3x
+          url(${background.mo_main}) 1x,
+          url(${background.mo_main2x}) 2x,
+          url(${background.mo_main3x}) 3x
           )`;
 
-      case '1':
+      case DATA_STEPS.FIRST:
         return `image-set(
-          url(../${background}/Mobile/mo_users.jpg) 1x,
-          url(../${background}/Mobile/mo_users@2x.jpg) 2x,
-          url(../${background}/Mobile/mo_users@3x.jpg) 3x
+          url(${background.mo_users}) 1x,
+          url(${background.mo_users2x}) 2x,
+          url(${background.mo_users3x}) 3x
           )`;
 
-      case '2':
+      case DATA_STEPS.SECOND:
         return `image-set(
-          url(../${background}/Mobile/mo_hours.jpg) 1x,
-          url(../${background}/Mobile/mo_hours@2x.jpg) 2x,
-          url(../${background}/Mobile/mo_hours@3x.jpg) 3x
+          url(${background.mo_hours}) 1x,
+          url(${background.mo_hours2x}) 2x,
+          url(${background.mo_hours3x}) 3x
           )`;
 
-      case '3':
+      case DATA_STEPS.THIRD:
         return `image-set(
-          url(../${background}/Mobile/mo_ex.jpg) 1x,
-          url(../${background}/Mobile/mo_ex@2x.jpg) 2x,
-          url(../${background}/Mobile/mo_ex@3x.jpg) 3x
+          url(${background.mo_ex}) 1x,
+          url(${background.mo_ex2x}) 2x,
+          url(${background.mo_ex3x}) 3x
           )`;
 
       default:
@@ -46,85 +51,84 @@ export const Background = styled.div`
     right: -12px;
     width: 437px;
     height: 893px;
+    margin-top: 131px;
 
     background-image: ${props => {
       switch (props.keyword) {
         case 'main':
           return `image-set(
-            url(${background}/Tablet/ta_main.jpg) 1x,
-            url(${background}/Tablet/ta_main@2x.jpg) 2x,
-            url(${background}/Tablet/ta_main@3x.jpg) 3x
-            )`;
+          url(${background.ta_main}) 1x,
+          url(${background.ta_main2x}) 2x,
+          url(${background.ta_main3x}) 3x
+          )`;
 
         case '1':
           return `image-set(
-            url(../${background}/Tablet/ta_users.jpg) 1x,
-            url(../${background}/Tablet/ta_users@2x.jpg) 2x,
-            url(../${background}/Tablet/ta_users@3x.jpg) 3x
-            )`;
+          url(${background.ta_users}) 1x,
+          url(${background.ta_users2x}) 2x,
+          url(${background.ta_users3x}) 3x
+          )`;
 
         case '2':
           return `image-set(
-            url(../${background}/Tablet/ta_hours.jpg) 1x,
-            url(../${background}/Tablet/ta_hours@2x.jpg) 2x,
-            url(../${background}/Tablet/ta_hours@3x.jpg) 3x
-            )`;
+          url(${background.ta_hours}) 1x,
+          url(${background.ta_hours2x}) 2x,
+          url(${background.ta_hours3x}) 3x
+          )`;
 
         case '3':
           return `image-set(
-            url(../${background}/Tablet/ta_ex.jpg) 1x,
-            url(../${background}/Tablet/ta_ex@2x.jpg) 2x,
-            url(../${background}/Tablet/ta_ex@3x.jpg) 3x
-            )`;
+          url(${background.ta_ex}) 1x,
+          url(${background.ta_ex2x}) 2x,
+          url(${background.ta_ex3x}) 3x
+          )`;
 
         default:
           break;
       }
     }};
     background-size: 437px 893px;
+  }
 
   @media screen and (max-width: 1439px) {
-    position: absolute;
-    z-index: 1;
     bottom: 0;
-    right: 0;
   }
 
   @media screen and (min-width: 1440px) {
-    position: relative;
     right: -96px;
     width: 670px;
     height: 800px;
+    margin-top: 0;
 
     background-image: ${props => {
       switch (props.keyword) {
         case 'main':
           return `image-set(
-            url(${background}/Desktop/bg_main.jpg) 1x,
-            url(${background}/Desktop/bg_main@2x.jpg) 2x,
-            url(${background}/Desktop/bg_main@3x.jpg) 3x
-            )`;
+          url(${background.bg_main}) 1x,
+          url(${background.bg_main2x}) 2x,
+          url(${background.bg_main3x}) 3x
+          )`;
 
         case '1':
           return `image-set(
-            url(../${background}/Desktop/bg_users.jpg) 1x,
-            url(../${background}/Desktop/bg_users@2x.jpg) 2x,
-            url(../${background}/Desktop/bg_users@3x.jpg) 3x
-            )`;
+          url(${background.bg_users}) 1x,
+          url(${background.bg_users2x}) 2x,
+          url(${background.bg_users3x}) 3x
+          )`;
 
         case '2':
           return `image-set(
-            url(../${background}/Desktop/bg_hours.jpg) 1x,
-            url(../${background}/Desktop/bg_hours@2x.jpg) 2x,
-            url(../${background}/Desktop/bg_hours@3x.jpg) 3x
-            )`;
+          url(${background.bg_hours}) 1x,
+          url(${background.bg_hours2x}) 2x,
+          url(${background.bg_hours3x}) 3x
+          )`;
 
         case '3':
           return `image-set(
-            url(../${background}/Desktop/bg_ex.jpg) 1x,
-            url(../${background}/Desktop/bg_ex@2x.jpg) 2x,
-            url(../${background}/Desktop/bg_ex@3x.jpg) 3x
-            )`;
+          url(${background.bg_ex}) 1x,
+          url(${background.bg_ex2x}) 2x,
+          url(${background.bg_ex3x}) 3x
+          )`;
 
         default:
           break;

@@ -1,12 +1,12 @@
 import { format } from 'date-fns';
-// import { useState } from 'react';
+
 import PropTypes from 'prop-types';
 
 import Calendar from '../../Calendar/Calendar';
 import { WrapperCalendarInput } from './BirthdayInput.style';
 
 export default function BirthdayInput({ selectedDate, setSelectedDate }) {
-  const defaultInputValue = 'Birthday';
+  const defaultInputValue = 'Choose birthday';
 
   const today = new Date();
   const eighteenYearsAgo = new Date(today).setFullYear(
@@ -14,9 +14,10 @@ export default function BirthdayInput({ selectedDate, setSelectedDate }) {
   );
   const maximumAge = new Date(today).setFullYear(today.getFullYear() - 100);
 
-  const inputText = selectedDate
-    ? format(selectedDate, 'dd/MM/yyyy')
-    : defaultInputValue;
+  const inputText =
+    selectedDate.toString() === new Date().toString()
+      ? defaultInputValue
+      : format(selectedDate, 'dd.MM.yyyy');
 
   return (
     <WrapperCalendarInput>

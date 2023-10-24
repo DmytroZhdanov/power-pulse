@@ -4,6 +4,7 @@ export const DateTextWrapper = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  align-items: center;
   cursor: pointer;
 `;
 
