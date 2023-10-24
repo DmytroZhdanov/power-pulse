@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { ROUTER } from '../../utils/constants';
+import bg_line from 'src/assets/images/background/bg_line.png';
 
 export const Container = styled.div`
   width: calc(100% - 40px);
@@ -50,8 +51,7 @@ export const Span = styled.span`
     left: -9px;
     width: 98px;
     height: 35px;
-    background: url('src/assets/images/background/bg_line.png') no-repeat 50%
-      50%;
+    background: url(${bg_line}) no-repeat 50% 50%;
     background-size: 98px 35px;
 
     @media screen and (min-width: 768px) {

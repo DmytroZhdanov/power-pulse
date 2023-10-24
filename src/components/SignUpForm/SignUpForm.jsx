@@ -9,6 +9,7 @@ import {
   Message,
   Sign,
 } from './SignUpForm.styled';
+import Icon from '../common/IconsComp/Icon';
 import { signUpFormSchema } from './YupValidationForm';
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -27,9 +28,7 @@ const Feedback = ({ label, helpText, ...props }) => {
       <Message>
         {showFeedback ? (
           <div id={`${props.id}-feedback`} aria-live="polite">
-            <svg>
-              <use href="../../../src/assets/images/sprite/sprite.svg#checkmark"></use>
-            </svg>
+            <Icon name={'checkmark'} />
             {meta.error ? meta.error : <>Success {props.name}</>}
           </div>
         ) : null}
