@@ -1,8 +1,13 @@
+import PropTypes from 'prop-types';
+
 import { Icon, IconWrapper } from './AnimatedIcon.styled';
 
-const AnimatedIcon = ({ isRunning }) => {
+const AnimatedIcon = ({ isRunning, animationDuration }) => {
   return (
-    <IconWrapper style={{ animationPlayState: isRunning ? '' : 'paused' }}>
+    <IconWrapper
+      animationDuration={animationDuration}
+      style={{ animationPlayState: isRunning ? '' : 'paused' }}
+    >
       <Icon xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 7 7">
         <circle
           cx="3.5"
@@ -17,3 +22,8 @@ const AnimatedIcon = ({ isRunning }) => {
   );
 };
 export default AnimatedIcon;
+
+AnimatedIcon.propTypes = {
+  isRunning: PropTypes.bool.isRequired,
+  animationDuration: PropTypes.number.isRequired,
+};

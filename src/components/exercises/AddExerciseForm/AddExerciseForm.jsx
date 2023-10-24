@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   CaloriesDiv,
@@ -103,3 +104,15 @@ export default function AddExerciseForm({ exercise }) {
     </ExerciseContainer>
   );
 }
+
+AddExerciseForm.propTypes = {
+  exercise: PropTypes.shape({
+    gifUrl: PropTypes.string.isRequired,
+    bodyPart: PropTypes.string.isRequired,
+    equipment: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    target: PropTypes.string.isRequired,
+    burnedCalories: PropTypes.number.isRequired,
+    time: PropTypes.number.isRequired,
+  }).isRequired,
+};

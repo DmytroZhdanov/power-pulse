@@ -10,7 +10,7 @@ export const TimerDisplay = styled.div`
   margin-bottom: 14px;
   position: relative;
 
-  svg {
+  div:first-of-type svg {
     transform: rotate(180deg);
   }
 `;

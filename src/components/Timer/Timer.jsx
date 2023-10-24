@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
@@ -58,7 +59,7 @@ const Timer = ({ duration, setTimer, roundsCount, setRoundsCount }) => {
         >
           {timerContent}
         </CountdownCircleTimer>
-        <AnimatedIcon isRunning={isRunning} />
+        <AnimatedIcon isRunning={isRunning} animationDuration={duration} />
       </TimerDisplay>
       <ControlButton onClick={toggleTimer}>
         <svg width={15} height={15}>
@@ -73,3 +74,10 @@ const Timer = ({ duration, setTimer, roundsCount, setRoundsCount }) => {
   );
 };
 export default Timer;
+
+Timer.propTypes = {
+  duration: PropTypes.number.isRequired,
+  roundsCount: PropTypes.number.isRequired,
+  setTimer: PropTypes.func.isRequired,
+  setRoundsCount: PropTypes.func.isRequired,
+};
