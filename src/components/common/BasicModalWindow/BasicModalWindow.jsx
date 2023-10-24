@@ -19,10 +19,16 @@ export default function BasicModalWindow(props) {
       }
     };
 
+    const bodyScroll = (disable) => {
+      document.body.style.overflow = disable ? 'hidden' : 'auto';
+    };
+
     window.addEventListener('keydown', onEscKeyPress);
+    bodyScroll(true);
 
     return () => {
       window.removeEventListener('keydown', onEscKeyPress);
+      bodyScroll(false);
     };
   }, [onClose]);
 
