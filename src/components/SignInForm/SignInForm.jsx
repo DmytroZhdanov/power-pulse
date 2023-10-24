@@ -13,7 +13,7 @@ import { signInFormSchema } from './YupValidationForm';
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-const Feedback = ({ label, helpText, ...props }) => {
+const Feedback = ({ ...props }) => {
   const [field, meta] = useField(props);
   const [didFocus, setDidFocus] = useState(false);
   const handleFocus = () => setDidFocus(true);
@@ -55,7 +55,7 @@ export default function SignInForm() {
 
   return (
     <FormikProvider value={formik}>
-      <Form autoComplete="off">
+      <Form>
         <Text>
           Welcome! Please enter your credentials to login to the platform:
         </Text>
