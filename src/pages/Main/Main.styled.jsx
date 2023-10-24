@@ -37,11 +37,11 @@ export const Container = styled.div`
     ${props =>
       props.showStatisticInfo && {
         position: 'relative',
-        justifyContent: 'space-between',
       }}
   }
 
   @media screen and (min-width: 1440px) {
+    position: relative;
     width: 1288px;
   }
 `;

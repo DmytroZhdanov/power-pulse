@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ROUTER } from '../../utils/constants';
 
 export const Container = styled.div`
+  width: calc(100% - 40px);
   padding-top: 127px;
 
   @media screen and (min-width: 768px) {
@@ -15,7 +16,7 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    /* width: 598px; */
+    width: 598px;
     padding-top: 200px;
   }
 `;
@@ -66,6 +67,10 @@ export const Span = styled.span`
 export const ButtonWrapper = styled.div`
   display: flex;
   gap: 14px;
+
+  @media screen and (max-width: 320px) {
+    gap: 13px;
+  }
 
   @media screen and (min-width: 768px) {
     gap: 20px;

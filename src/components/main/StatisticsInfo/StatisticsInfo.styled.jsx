@@ -3,8 +3,13 @@ import styled from '@emotion/styled';
 const background = 'src/assets/images/background';
 
 export const Background = styled.div`
+  position: absolute;
+  right: 0;
+  z-index: 1;
+
   width: 298px;
   height: 571px;
+  margin-top: 241px;
 
   background-image: ${props => {
     switch (props.keyword) {
@@ -46,6 +51,7 @@ export const Background = styled.div`
     right: -12px;
     width: 437px;
     height: 893px;
+    margin-top: 131px;
 
     background-image: ${props => {
       switch (props.keyword) {
@@ -82,19 +88,17 @@ export const Background = styled.div`
       }
     }};
     background-size: 437px 893px;
+  }
 
   @media screen and (max-width: 1439px) {
-    position: absolute;
-    z-index: 1;
     bottom: 0;
-    right: 0;
   }
 
   @media screen and (min-width: 1440px) {
-    position: relative;
     right: -96px;
     width: 670px;
     height: 800px;
+    margin-top: 0;
 
     background-image: ${props => {
       switch (props.keyword) {
