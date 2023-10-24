@@ -5,10 +5,10 @@ import UserForm from 'components/profile/UserForm/UserForm';
 export default function Profile() {
   return (
     <>
-      <div>Profile page</div>
-      <TitlePage />
-      <UserForm />
+      {/* <div>Profile page</div> */}
+      <TitlePage text="Profile Settings" />
       <UserCard />
+      <UserForm />
     </>
   );
 }
