@@ -1,4 +1,3 @@
-// import { Link } from 'react-router-dom';
 import { ROUTER } from '../../utils/constants';
 import {
   Button,
@@ -8,7 +7,7 @@ import {
   Title,
 } from './Welcome.styled';
 
-export default function Welcome() {
+export function Welcome() {
   return (
     <Container>
       <Title>

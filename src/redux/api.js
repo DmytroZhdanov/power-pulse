@@ -8,6 +8,7 @@ const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
 const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
   async ({ url, method, data, params, headers }) => {
+    console.log(url, method, data, params, headers);
     try {
       const result = await axios({
         url: baseUrl + url,
@@ -18,6 +19,7 @@ const axiosBaseQuery =
       });
       return { data: result.data };
     } catch (axiosError) {
+      console.log(axiosError);
       const err = axiosError;
       return {
         error: {
@@ -94,7 +96,7 @@ export const api = createApi({
       query: () => '/users/params',
     }),
     refresh: builder.query({
-      query: () => '/users/current',
+      query: () => ({ url: '/users/current' }),
     }),
     logout: builder.mutation({
       query: () => ({
@@ -176,7 +178,7 @@ export const {
   useUpdateUserNameMutation,
   useUpdateUserAvatarMutation,
   useLazyFetchUserParamsQuery,
-  useRefreshQuery,
+  useLazyRefreshQuery,
   useLogoutMutation,
   useLazyFetchAllProductsQuery,
   useLazyFetchAllExercisesQuery,

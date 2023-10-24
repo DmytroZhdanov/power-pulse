@@ -1,3 +1,3 @@
-export default function SecondStep() {
+export function SecondStep() {
   return <div>SecondStep component</div>;
 }

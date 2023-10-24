@@ -14,9 +14,9 @@ export const signUpFormSchema = Yup.object({
     .required('This is a required field'),
   password: Yup.string()
     .min(6)
-    .matches(
-      '^(?=.*d)(?=.*[a-zA-Z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,32}$',
-      'Enter valid values',
-    )
+    // .matches(
+    //   '^(?=.*d)(?=.*[a-zA-Z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,32}$',
+    //   'Enter valid values',
+    // )
     .required('This is a required field'),
 });
