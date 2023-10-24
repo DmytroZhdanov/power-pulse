@@ -19,71 +19,76 @@ import ThirdStep from './data/ThirdStep/ThirdStep';
 import { ROUTER } from 'src/utils';
 import { DATA_STEPS } from '../utils/constants';
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: ROUTER.MAIN,
+      element: <Main />,
+      errorElement: <Error />,
+      children: [
+        {
+          index: true,
+          element: <Welcome />,
+        },
+        {
+          path: ROUTER.SIGN_UP,
+          element: <SignUp />,
+        },
+        {
+          path: ROUTER.DATA,
+          element: <Data />,
+          children: [
+            {
+              path: DATA_STEPS.FIRST,
+              element: <FirstStep />,
+            },
+            {
+              path: DATA_STEPS.SECOND,
+              element: <SecondStep />,
+            },
+            {
+              path: DATA_STEPS.THIRD,
+              element: <ThirdStep />,
+            },
+          ],
+        },
+        {
+          path: ROUTER.SIGN_IN,
+          element: <SignIn />,
+        },
+        {
+          path: ROUTER.PROFILE,
+          element: <Profile />,
+        },
+        {
+          path: ROUTER.DIARY,
+          element: <Diary />,
+        },
+        {
+          path: ROUTER.PRODUCTS,
+          element: <Products />,
+        },
+        {
+          path: ROUTER.EXERCISES,
+          element: <Exercises />,
+          children: [
+            {
+              index: true,
+              element: <ExercisesSubcategoriesList />,
+            },
+            {
+              path: ROUTER.SUBCATEGORY,
+              element: <ExercisesList />,
+            },
+          ],
+        },
+      ],
+    },
+  ],
   {
-    path: ROUTER.MAIN,
-    element: <Main />,
-    errorElement: <Error />,
-    children: [
-      {
-        index: true,
-        element: <Welcome />,
-      },
-      {
-        path: ROUTER.SIGN_UP,
-        element: <SignUp />,
-      },
-      {
-        path: ROUTER.DATA,
-        element: <Data />,
-        children: [
-          {
-            path: DATA_STEPS.FIRST,
-            element: <FirstStep />,
-          },
-          {
-            path: DATA_STEPS.SECOND,
-            element: <SecondStep />,
-          },
-          {
-            path: DATA_STEPS.THIRD,
-            element: <ThirdStep />,
-          },
-        ],
-      },
-      {
-        path: ROUTER.SIGN_IN,
-        element: <SignIn />,
-      },
-      {
-        path: ROUTER.PROFILE,
-        element: <Profile />,
-      },
-      {
-        path: ROUTER.DIARY,
-        element: <Diary />,
-      },
-      {
-        path: ROUTER.PRODUCTS,
-        element: <Products />,
-      },
-      {
-        path: ROUTER.EXERCISES,
-        element: <Exercises />,
-        children: [
-          {
-            index: true,
-            element: <ExercisesSubcategoriesList />,
-          },
-          {
-            path: ROUTER.SUBCATEGORY,
-            element: <ExercisesList />,
-          },
-        ],
-      },
-    ],
+    basename: '/power-pulse/',
   },
-]);
+);
 
 export default function App() {
   return <RouterProvider router={router} />;

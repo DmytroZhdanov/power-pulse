@@ -139,6 +139,7 @@ a {
 
 button {
   cursor: pointer;
+  border: none;
 }
 
 img {
