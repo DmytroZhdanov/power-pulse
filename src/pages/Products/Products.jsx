@@ -8,7 +8,7 @@ export default function Products() {
     <>
       <div>Products page</div>
       <TitlePage />
-      <ProductsFilters />
+      <ProductsFilters products={products} />
       <ProductsList products={products} />
     </>
   );
