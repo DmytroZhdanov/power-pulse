@@ -223,7 +223,7 @@ export default function App() {
 
   return (
     <>
-      <RouterProvider isLoading={isFetching} router={router} />
+      <RouterProvider router={router} />
       {isFetching && <Loader />}
     </>
   );

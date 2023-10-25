@@ -17,7 +17,7 @@ export default function BurgerMenu({ openedModal, setOpenedModal }) {
           <use href={`${sprite}#close`}></use>
         </SvgBtn>
       </ButtonClose>
-      <UserNav border={true} />
+      <UserNav withBorder={true} />
       <Wrap>
         <LogOutBtn white={true} />
       </Wrap>
