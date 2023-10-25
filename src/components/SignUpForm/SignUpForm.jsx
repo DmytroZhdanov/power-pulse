@@ -16,7 +16,7 @@ import { useDispatch } from 'react-redux';
 import { setCredentials } from 'src/redux/auth/authSlice';
 import Loader from 'components/Loader/Loader';
 
-const Feedback = ({ label, helpText, ...props }) => {
+const Feedback = ({ ...props }) => {
   const [field, meta] = useField(props);
   const [didFocus, setDidFocus] = useState(false);
   const handleFocus = () => setDidFocus(true);
@@ -60,7 +60,7 @@ export default function SignUpForm() {
   return (
     <>
       <FormikProvider value={formik}>
-        <Form autoComplete="off">
+        <Form>
           <Text>
             Thank you for your interest in our platform. To complete the
             registration process, please provide us with the following
