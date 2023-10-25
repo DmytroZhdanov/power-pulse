@@ -27,6 +27,14 @@ export const TextLabel = styled.label`
     opacity: 1;
     transform: scale(0.75) translateY(-22px) translateX(0);
   }
+
+  div {
+    position: absolute;
+    top: 102%;
+    left: 4px;
+    color: red;
+    font-size: 10px;
+  }
 `;
 export const TextInput = styled.input`
   /* position: relative; */
@@ -63,6 +71,7 @@ export const BirthdayInput = styled.div`
     border: 1px solid #e6533c;
     outline: none;
   }
+  margin-top: 4px;
 `;
 
 export const RadioContainer1 = styled.div`
@@ -86,61 +95,32 @@ export const RadioContainer1 = styled.div`
   }
 `;
 
-// export const RadioInput = styled.input`
-//   display: grid;
-//   place-content: center;
-//   font: inherit;
-//   appearance: none;
-//   background-color: transparent;
-//   margin: 0;
-//   width: 1.5em;
-//   height: 1.5em;
-//   border: 0.2em solid #636366;
-//   border-radius: 50%;
+export const RadioLabel = styled.label`
+  span {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 3px solid #ef8964;
 
-//   ::before {
-//     content: '';
-//     width: 0.65em;
-//     height: 0.65em;
-//     border-radius: 50%;
-//     transform: scale(0);
-//     transition: 120ms transform ease-in-out;
-//     box-shadow: inset 1em 1em orange;
-//   }
-//   :checked::before {
-//     transform: scale(1);
-//   }
-// `;
+    ::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      content: '';
+      border-radius: 50%;
+      width: 12px;
+      height: 12px;
+      display: none;
+      background-color: #ef8964;
+    }
+  }
+`;
 
 export const RadioInput = styled.input`
   appearance: none;
-  background-color: transparent;
-  margin: 0;
-
-  font: inherit;
-  /* color: currentColor; */
-  width: 1.5em;
-  height: 1.5em;
-  border: 0.2em solid #636366;
-  border-radius: 50%;
-  transform: translateY(-0.075em);
-
-  display: grid;
-  place-content: center;
-  ::before {
-    content: '';
-    width: 0.8em;
-    height: 0.8em;
-    border-radius: 50%;
-    transform: scale(0);
-    transition: 120ms transform ease-in-out;
-    /* box-shadow: inset 1em 1em var(--form-control-color); */
-    background-color: #ef8964;
-  }
-  :checked::before {
-    transform: scale(1);
-  }
-  :checked {
-    border: 0.15em solid #ef8964;
+  :checked ~ span::after {
+    display: block;
   }
 `;

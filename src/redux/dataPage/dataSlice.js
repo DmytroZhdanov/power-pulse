@@ -1,7 +1,5 @@
-// dataSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-// Створіть початковий стан для даних
 const initialState = {
   currentHeight: '',
   currentWeight: '',
@@ -17,7 +15,6 @@ const dataSlice = createSlice({
   initialState,
   reducers: {
     updateData: (state, action) => {
-      // Оновіть дані в Redux-сторі
       return {
         ...state,
         ...action.payload,

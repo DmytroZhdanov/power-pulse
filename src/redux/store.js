@@ -25,7 +25,15 @@ const authPersistConfig = {
 const dataPersistConfig = {
   key: 'data',
   storage,
-  whitelist: ['currentHeight', 'currentWeight', 'desiredWeight', 'birthday'],
+  whitelist: [
+    'currentHeight',
+    'currentWeight',
+    'desiredWeight',
+    'birthday',
+    'blood',
+    'gender',
+    'levelActivity',
+  ],
 };
 
 export const store = configureStore({

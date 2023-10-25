@@ -14,6 +14,8 @@ const getShadowColor = (stepValue, step) => {
 export const ProgressBarContainer = styled.div`
   display: flex;
   gap: 14px;
+  margin-left: 96px;
+  margin-bottom: 32px;
 `;
 
 export const Step = styled.span`
