@@ -1,4 +1,4 @@
-import{n as T,j as p,d as I,_ as Te,r as C,x as X,f as Ce,h as At,P as B}from"./index-7769abea.js";import{T as qt}from"./TitlePage-b19eaae1.js";function Dt(e,n){if(e==null)return{};var t={},r=Object.keys(e),a,o;for(o=0;o<r.length;o++)a=r[o],!(n.indexOf(a)>=0)&&(t[a]=e[a]);return t}const Gt=T.div`
+import{n as T,j as p,d as I,_ as Te,r as C,x as X,f as Ce,h as At,P as B}from"./index-1ab44b8e.js";import{T as qt}from"./TitlePage-e5dd22c4.js";function Dt(e,n){if(e==null)return{};var t={},r=Object.keys(e),a,o;for(o=0;o<r.length;o++)a=r[o],!(n.indexOf(a)>=0)&&(t[a]=e[a]);return t}const Gt=T.div`
   @media screen and (max-width: 767px) {
     margin-bottom: 40px;
   }

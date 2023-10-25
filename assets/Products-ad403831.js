@@ -1,4 +1,4 @@
-import{j as e,n as i,r as x}from"./index-7769abea.js";import{T as y}from"./TitlePage-b19eaae1.js";import{B as m}from"./BasicModalWindow-dc58289a.js";function C(){return e.jsx("div",{children:"ProductsFilters component"})}const z=i.input`
+import{j as e,n as i,r as x}from"./index-1ab44b8e.js";import{T as y}from"./TitlePage-e5dd22c4.js";import{B as m}from"./BasicModalWindow-4d612ec2.js";function C(){return e.jsx("div",{children:"ProductsFilters component"})}const z=i.input`
   width: 287px;
   text-align: left;
   padding: 8px 14px;
