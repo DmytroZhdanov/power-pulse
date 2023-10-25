@@ -33,7 +33,7 @@ export const DiaryLink = styled(NavLink)`
   &.active {
     background-color: #e6533c;
     border: ${props =>
-      props.withBorder
+      props.border
         ? '1px solid #EFEDE8'
         : '1px solid rgba(239, 237, 232, 0.20)'};
   }
