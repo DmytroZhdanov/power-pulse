@@ -2,6 +2,10 @@ import { css } from '@emotion/react';
 import emotionNormalize from 'emotion-normalize';
 import { theme } from './theme';
 
+import RobotoRegular from '../assets/fonts/Roboto-Regular.ttf';
+import RobotoMedium from '../assets/fonts/Roboto-Medium.ttf';
+import RobotoBold from '../assets/fonts/Roboto-Bold.ttf';
+
 export const GlobalStyles = css`
   ${emotionNormalize}
 
@@ -168,19 +172,19 @@ export const GlobalStyles = css`
   @font-face {
     font-family: 'Roboto';
     font-weight: 400;
-    src: url('src/assets/fonts/Roboto-Regular.ttf') format('truetype');
+    src: url(${RobotoRegular}) format('truetype');
   }
 
   @font-face {
     font-family: 'Roboto';
     font-weight: 500;
-    src: url('src/assets/fonts/Roboto-Medium.ttf') format('truetype');
+    src: url(${RobotoMedium}) format('truetype');
   }
 
   @font-face {
     font-family: 'Roboto';
     font-weight: 700;
-    src: url('src/assets/fonts/Roboto-Bold.ttf') format('truetype');
+    src: url(${RobotoBold}) format('truetype');
   }
   /* ========================= /Fonts ========================= */
 
