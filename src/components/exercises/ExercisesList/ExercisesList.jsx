@@ -1,4 +1,5 @@
 import ExercisesItem from '../ExercisesItem/ExercisesItem';
+import { useLazyFetchAllExercisesQuery } from '../../../redux/api';
 
 import { ExerciseList } from './ExercisesList.styled';
 import exercises from './exercises.json';
@@ -10,6 +11,10 @@ function bodyPartsFilter(value) {
 }
 
 export default function ExercisesList() {
+  const { data, value } = useLazyFetchAllExercisesQuery();
+  console.log(data);
+  console.log(value);
+
   return (
     <ExerciseList>
       {bodyPartsFilter('waist').map(
