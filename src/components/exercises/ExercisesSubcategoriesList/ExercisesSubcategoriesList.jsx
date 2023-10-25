@@ -1,37 +1,73 @@
-import React, { useEffect } from 'react';
+// import { useFetchExercisesSubcategoriesQuery } from '../../../redux/api';
+// import ExercisesSubcategoriesItem from '../ExercisesSubcategoriesItem/ExercisesSubcategoriesItem';
+// import { EXERCISES_CATEGORY } from '../../../utils/constants';
+// import { List } from './ExercisesSubcategoriesList.styled';
+// import { useEffect } from 'react';
 
-export function ExercisesSubcategoriesList() {
-  return <div></div>;
-}
-// export function ExercisesList() {
-//   const { subcategory } = useParams();
-//   const [result, setResult] = useState();
+// export function ExercisesSubcategoriesList({ category }) {
+//   const categoryType = determineCategoryType(category);
+//   function determineCategoryType(category) {
+//     switch (category) {
+//       case 'muscles':
+//         return EXERCISES_CATEGORY.MUSCLES;
+//       case 'equipment':
+//         return EXERCISES_CATEGORY.EQUIPMENT;
 
-//   const [fetchAllExercises, { data }] = useLazyFetchAllExercisesQuery();
-//   useEffect(() => {
-//     const fetch = async () => {
-//       const subcategories = await fetchAllExercises().unwrap();
-//     };
-//     try {
-//       fetch();
-//       setResult(data);
-//     } catch (error) {
-//       console.log();
+//       default:
+//         return EXERCISES_CATEGORY.BODY_PARTS;
 //     }
-//   }, [fetchAllExercises]);
+//   }
 
-//   console.log(result);
-//   return (
-//     <ExerciseList>
-//       {data.map(({ _id, name, bodyPart, burnedCalories, target }) => (
-//         <ExercisesItem
-//           key={_id.$oid}
-//           name={name}
-//           bodyPart={bodyPart}
-//           burnedCalories={burnedCalories}
-//           target={target}
-//         ></ExercisesItem>
-//       ))}
-//     </ExerciseList>
-//   );
+//   const data = useFetchExercisesSubcategoriesQuery(categoryType);
+//   console.log(data);
+
+//   <List>
+//     {data.data.map(item => (
+//       <ExercisesSubcategoriesItem key={item.id} it={item} />
+//     ))}
+//   </List>;
 // }
+
+import React from 'react'; // Добавьте импорт React
+import { useFetchExercisesSubcategoriesQuery } from '../../../redux/api';
+import ExercisesSubcategoriesItem from '../ExercisesSubcategoriesItem/ExercisesSubcategoriesItem';
+import { EXERCISES_CATEGORY } from '../../../utils/constants';
+import { List } from './ExercisesSubcategoriesList.styled';
+import { useEffect } from 'react';
+
+export function ExercisesSubcategoriesList({ category }) {
+  const categoryType = determineCategoryType(category);
+
+  function determineCategoryType(category) {
+    switch (category) {
+      case 'muscles':
+        return EXERCISES_CATEGORY.MUSCLES;
+      case 'equipment':
+        return EXERCISES_CATEGORY.EQUIPMENT;
+      default:
+        return EXERCISES_CATEGORY.BODY_PARTS;
+    }
+  }
+
+  const { data, error, isLoading } =
+    useFetchExercisesSubcategoriesQuery(categoryType);
+
+  console.log(data);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  return (
+    <List>
+      {data &&
+        data.map(item => (
+          <ExercisesSubcategoriesItem key={item._id} it={item} />
+        ))}
+    </List>
+  );
+}

@@ -1,41 +1,49 @@
-import { Link } from 'react-router-dom';
-import exercises from './exercises.json';
-import data from './data.json';
-import { useState } from 'react';
-import ExercisesSubcategoriesItem from '../ExercisesSubcategoriesItem/ExercisesSubcategoriesItem';
-import { List } from './ExercisesSubcategoriesList.styled';
-
-export default function ExercisesCategories() {
-  const [activeButton, setActiveButton] = useState('Body parts');
+import { EXERCISES_CATEGORY } from '../../../utils/constants';
+import {
+  ListCategories,
+  ItemCategory,
+  LabelCategory,
+  InputCategory,
+} from './ExercisesCategories.styled';
+export default function ExercisesCategories({ category, setCategory }) {
+  const handleOptionChange = event => {
+    setCategory(event.target.value);
+  };
   return (
-    <>
-      <ul>
-        {exercises.map(bod => (
-          <li key={bod._id}>
-            <button
-              type="radio"
-              onClick={e => {
-                setActiveButton(e.currentTarget.innerText);
-              }}
-            >
-              {bod.title}
-            </button>
-          </li>
-        ))}
-      </ul>
-
-      <List>
-        {data
-          .filter(value => value.filter === activeButton)
-          .map(({ name, imgURL, filter, _id }) => (
-            <ExercisesSubcategoriesItem
-              key={_id}
-              name={name}
-              imgURL={imgURL}
-              filter={filter}
-            />
-          ))}
-      </List>
-    </>
+    <ListCategories>
+      <ItemCategory>
+        <LabelCategory selected={category === EXERCISES_CATEGORY.BODY_PARTS}>
+          <InputCategory
+            type="radio"
+            value={EXERCISES_CATEGORY.BODY_PARTS}
+            checked={category === EXERCISES_CATEGORY.BODY_PARTS}
+            onChange={handleOptionChange}
+          />
+          Body parts
+        </LabelCategory>
+      </ItemCategory>
+      <ItemCategory>
+        <LabelCategory selected={category === EXERCISES_CATEGORY.MUSCLES}>
+          <InputCategory
+            type="radio"
+            value={EXERCISES_CATEGORY.MUSCLES}
+            checked={category === EXERCISES_CATEGORY.MUSCLES}
+            onChange={handleOptionChange}
+          />
+          Muscles
+        </LabelCategory>
+      </ItemCategory>
+      <ItemCategory>
+        <LabelCategory selected={category === EXERCISES_CATEGORY.EQUIPMENT}>
+          <InputCategory
+            type="radio"
+            value={EXERCISES_CATEGORY.EQUIPMENT}
+            checked={category === EXERCISES_CATEGORY.EQUIPMENT}
+            onChange={handleOptionChange}
+          />
+          Equipment
+        </LabelCategory>
+      </ItemCategory>
+    </ListCategories>
   );
 }

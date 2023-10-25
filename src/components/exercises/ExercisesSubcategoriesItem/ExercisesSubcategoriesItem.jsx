@@ -8,22 +8,22 @@ import {
   Maintext,
   Subtext,
 } from './ExercisesSubcategoriesItem.styled';
-export default function ExercisesSubcategoriesItem({ name, imgURL, filter }) {
+export default function ExercisesSubcategoriesItem({ it }) {
   function UpperCase(item) {
     return item.charAt(0).toUpperCase() + item.slice(1);
   }
   return (
-    <Item>
-      <Link to={name}>
+    <Link to={it.name}>
+      <Item>
         <Wrapp>
-          <Image src={imgURL} alt={name} />
+          <Image src={it.imgURL} alt={it.name} />
           <WrappOverlay></WrappOverlay>
           <Text>
-            <Maintext>{UpperCase(name)}</Maintext>
-            <Subtext>{filter}</Subtext>
+            <Maintext>{UpperCase(it.name)}</Maintext>
+            <Subtext>{it.filter}</Subtext>
           </Text>
         </Wrapp>
-      </Link>
-    </Item>
+      </Item>
+    </Link>
   );
 }
