@@ -44,6 +44,27 @@ export default function SignInForm() {
   const dispatch = useDispatch();
   const [login, { isLoading }] = useLoginMutation();
 
+  const [hidePass, setHidePass] = useState();
+  const [passBtn, setPassBtn] = useState(false);
+
+  const handleInput = e => {
+    setPassBtn(true);
+  };
+
+  const inputPassword = document.querySelector('#password');
+
+  const onClickPassBtn = () => {
+    if (inputPassword) {
+      if (inputPassword.getAttribute('type') === 'password') {
+        inputPassword.setAttribute('type', 'text');
+        setHidePass(true);
+      } else {
+        inputPassword.setAttribute('type', 'password');
+        setHidePass(false);
+      }
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -67,9 +88,20 @@ export default function SignInForm() {
 
           <Inputs>
             <Feedback name="email" type="email" placeholder="Email" />
-            <Feedback name="password" type="text" placeholder="Password" />
+            <Feedback
+              name="password"
+              type="password"
+              placeholder="Password"
+              id="password"
+              onInput={handleInput}
+            />
+            {passBtn && (
+              <button type="button" onClick={onClickPassBtn}>
+                {hidePass ? <Icon name={'eye'} /> : <Icon name={'eye-off'} />}
+              </button>
+            )}
           </Inputs>
-          <Button type="submit">Sign Up</Button>
+          <Button type="submit">Sign In</Button>
           <Sign>
             <p>Don’t have an account? </p>
             <Link to="/signup">Sign Up</Link>

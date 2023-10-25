@@ -25,6 +25,29 @@ export const Inputs = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 18px;
+  position: relative;
+
+  button {
+    position: absolute;
+    top: 84px;
+    right: 25px;
+    color: #efede8;
+    background-color: transparent;
+
+    @media screen and (min-width: 768px) {
+      right: 140px;
+    }
+    @media screen and (min-width: 1440px) {
+      right: 240px;
+    }
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+
+    fill: currentColor;
+  }
 
   @media screen and (min-width: 768px) {
     margin-top: 32px;
