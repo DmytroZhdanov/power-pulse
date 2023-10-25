@@ -9,10 +9,11 @@ export const signInFormSchema = Yup.object({
     )
     .required('This is a required field'),
   password: Yup.string()
-    .min(6)
+    .min(8)
+    .max(32)
     .matches(
-      '^(?=.*d)(?=.*[a-zA-Z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,32}$',
-      'Password must be 8-32 characters long and include at least one digit, one lowercase letter, and one uppercase letter',
+      '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,32}$',
+      'Password must be 8-32 characters long and include at least one digit, one lowercase letter, one uppercase letter and one special character',
     )
     .required('This is a required field'),
 });

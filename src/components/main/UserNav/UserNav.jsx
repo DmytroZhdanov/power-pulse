@@ -14,7 +14,8 @@ export default function UserNav(props) {
       <ProductsLink {...props} to="/products">
         Products
       </ProductsLink>
-      <ExercisesLink {...props} to="/exercises/">
+
+      <ExercisesLink {...props} to="/exercises">
         Exercises
       </ExercisesLink>
     </Navigation>

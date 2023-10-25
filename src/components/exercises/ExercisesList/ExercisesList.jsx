@@ -1,5 +1,4 @@
 import ExercisesItem from '../ExercisesItem/ExercisesItem';
-import { useLazyFetchAllExercisesQuery } from '../../../redux/api';
 
 import { ExerciseList } from './ExercisesList.styled';
 import exercises from './exercises.json';
