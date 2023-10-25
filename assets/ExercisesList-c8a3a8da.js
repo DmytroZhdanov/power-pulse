@@ -1,4 +1,4 @@
-import{n as o,x as E,r as g,P as u,j as e,f as $,L as V,R as O}from"./index-f32c8d64.js";import{B as L}from"./BasicModalWindow-241e13aa.js";const Y=o.div`
+import{n as o,x as E,r as g,P as u,j as e,f as $,L as V,R as O}from"./index-97faf5d0.js";import{B as L}from"./BasicModalWindow-344a6f55.js";const Y=o.div`
   display: grid;
   padding: 48px 16px;
   width: 335px;
