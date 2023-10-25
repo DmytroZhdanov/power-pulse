@@ -120,6 +120,9 @@ export const api = createApi({
         }`,
       }),
     }),
+    fetchProductsCategories: builder.query({
+      query: () => ({ url: '/products/categories' }),
+    }),
     fetchAllExercises: builder.query({
       query: filter => ({
         url: `/training/exercises${
@@ -166,9 +169,9 @@ export const api = createApi({
         method: 'DELETE',
       }),
     }),
-    // fetchStatistic: builder.query({
-    //   query: () => '/statistic',
-    // }),
+    fetchStatistic: builder.query({
+      query: () => ({ url: '/statistic' }),
+    }),
   }),
 });
 
@@ -184,6 +187,7 @@ export const {
   useLazyRefreshQuery,
   useLogoutMutation,
   useLazyFetchAllProductsQuery,
+  useFetchProductsCategoriesQuery,
   useLazyFetchAllExercisesQuery,
   useLazyFetchExercisesSubcategoriesQuery,
   useLazyFetchDiaryQuery,
@@ -191,5 +195,5 @@ export const {
   useAddExerciseMutation,
   useDeleteProductMutation,
   useDeleteExerciseMutation,
-  // useFetchStatisticQuery,
+  useFetchStatisticQuery,
 } = api;

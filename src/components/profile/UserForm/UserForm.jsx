@@ -20,6 +20,7 @@ import {
 } from './UserForm.styled';
 import { userFormSchema } from './YupValidationForm';
 import BirthdayInput from '../BirthdayInput/BirthdayInput';
+import { useState } from 'react';
 
 const onSubmit = (values, actions) => {
   console.log(values);
@@ -27,6 +28,7 @@ const onSubmit = (values, actions) => {
 };
 
 export default function UserForm() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const {
     values,
     errors,
@@ -121,7 +123,10 @@ export default function UserForm() {
           </DesWeight>
 
           <Birthday>
-            <BirthdayInput />
+            <BirthdayInput
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+            />
           </Birthday>
           {/* {errors.birthday && touched.birthday && <p>{errors.birthday}</p>} */}
         </Calendar>
