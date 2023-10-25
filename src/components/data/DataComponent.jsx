@@ -5,6 +5,8 @@ import DataProgressbar from './DataProgressbar/DataProgressbar';
 import { useState } from 'react';
 import TestForm from './TestForm';
 import Logo from '../main/Logo/Logo';
+import StatisticsInfo from '../main/StatisticsInfo/StatisticsInfo';
+import { DataInfoOrange } from './DataStatisticsInfo/DataStatisticsInfo';
 
 const DataComponent = () => {
   const [stepValue, setValueStep] = useState(1);
@@ -61,6 +63,11 @@ const DataComponent = () => {
         )}
 
         <DataProgressbar stepValue={stepValue} />
+      </div>
+
+      <div>
+        <DataInfoOrange stepValue={stepValue} />
+        {/* <StatisticsInfo /> */}
       </div>
     </DataContainer>
   );
