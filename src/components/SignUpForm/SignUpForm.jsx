@@ -9,12 +9,14 @@ import {
   Message,
   Sign,
 } from './SignUpForm.styled';
-import Icon from '../common/IconsComp/Icon';
+import Icon from 'components/common/IconsComp/Icon';
 import { signUpFormSchema } from './YupValidationForm';
+import { useRegisterMutation } from 'src/redux/api';
+import { useDispatch } from 'react-redux';
+import { setCredentials } from 'src/redux/auth/authSlice';
+import Loader from 'components/Loader/Loader';
 
-const sleep = ms => new Promise(r => setTimeout(r, ms));
-
-const Feedback = ({ label, helpText, ...props }) => {
+const Feedback = ({ ...props }) => {
   const [field, meta] = useField(props);
   const [didFocus, setDidFocus] = useState(false);
   const handleFocus = () => setDidFocus(true);
@@ -38,6 +40,9 @@ const Feedback = ({ label, helpText, ...props }) => {
 };
 
 export default function SignUpForm() {
+  const dispatch = useDispatch();
+  const [register, { isLoading }] = useRegisterMutation();
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -45,34 +50,36 @@ export default function SignUpForm() {
       password: '',
     },
     onSubmit: async (values, { resetForm }) => {
-      await sleep(500);
-      alert(JSON.stringify(values, null, 2));
-      //передати на бек values
+      const data = await register(values).unwrap();
+      dispatch(setCredentials(data));
       resetForm();
     },
     validationSchema: signUpFormSchema,
   });
 
   return (
-    <FormikProvider value={formik}>
-      <Form autoComplete="off">
-        <Text>
-          Thank you for your interest in our platform. To complete the
-          registration process, please provide us with the following
-          information.
-        </Text>
+    <>
+      <FormikProvider value={formik}>
+        <Form>
+          <Text>
+            Thank you for your interest in our platform. To complete the
+            registration process, please provide us with the following
+            information.
+          </Text>
 
-        <Inputs>
-          <Feedback name="name" type="text" placeholder="Name" />
-          <Feedback name="email" type="email" placeholder="Email" />
-          <Feedback name="password" type="text" placeholder="Password" />
-        </Inputs>
-        <Button type="submit">Sign Up</Button>
-        <Sign>
-          <p>Already have account?</p>
-          <Link to="/signin">Sign In</Link>
-        </Sign>
-      </Form>
-    </FormikProvider>
+          <Inputs>
+            <Feedback name="name" type="text" placeholder="Name" />
+            <Feedback name="email" type="email" placeholder="Email" />
+            <Feedback name="password" type="text" placeholder="Password" />
+          </Inputs>
+          <Button type="submit">Sign Up</Button>
+          <Sign>
+            <p>Already have account?</p>
+            <Link to="/signin">Sign In</Link>
+          </Sign>
+        </Form>
+      </FormikProvider>
+      {isLoading && <Loader />}
+    </>
   );
 }

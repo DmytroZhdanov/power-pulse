@@ -1,22 +1,16 @@
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { selectToken } from 'redux/auth/selectors';
+import { selectToken } from 'src/redux/auth/selectors';
 import PropTypes from 'prop-types';
-import { ROUTER } from '../utils/constants';
 
-export const PrivateRoute = ({
-  isLoading,
-  redirectTo = ROUTER.MAIN,
-  component: Component,
-}) => {
+export default function PrivateRoute({ redirectTo, component: Component }) {
   const token = useSelector(selectToken);
-  const shouldRedirect = !token && !isLoading;
+  const shouldRedirect = !token;
 
-  return shouldRedirect ? <Navigate to={redirectTo} /> : Component;
-};
+  return shouldRedirect ? <Navigate to={`../${redirectTo}`} /> : Component;
+}
 
 PrivateRoute.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
   redirectTo: PropTypes.string,
   component: PropTypes.object.isRequired,
 };

@@ -6,7 +6,7 @@ import Header from 'components/main/Header/Header';
 import StatisticsInfo from 'components/main/StatisticsInfo/StatisticsInfo';
 import { Container } from './Main.styled';
 
-import { ROUTER } from '../../utils/constants';
+import { ROUTER } from 'src/utils/constants';
 
 export default function Main() {
   const { pathname } = useResolvedPath();
