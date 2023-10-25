@@ -12,7 +12,7 @@ import {
   Section,
 } from './Diary.style';
 
-export default function Diary() {
+export function Diary() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   return (
     <Section>
