@@ -1,4 +1,4 @@
-import{n as u,x as C,r as g,P as f,j as e,d as q}from"./index-6d601247.js";import{B as S}from"./BasicModalWindow-71d70701.js";const M=u.div`
+import{n as u,x as C,r as g,P as f,j as e,d as q}from"./index-57298c34.js";import{B as S}from"./BasicModalWindow-a9e5e0de.js";const M=u.div`
   display: grid;
   border-radius: 12px;
   padding: 48px 16px;
