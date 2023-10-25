@@ -1,12 +1,5 @@
-import ExercisesSubcategoriesItem from 'components/exercises/ExercisesSubcategoriesItem/ExercisesSubcategoriesItem';
-import { Link } from 'react-router-dom';
+import { List } from '../ExercisesCategories/ExercisesSubcategoriesList.styled';
 
 export function ExercisesSubcategoriesList() {
-  return (
-    <>
-      <div>ExercisesSubcategoriesList component</div>
-
-      <ExercisesSubcategoriesItem />
-    </>
-  );
+  return <div>Вмсекраплрол</div>;
 }

@@ -2,17 +2,20 @@ import ExercisesItem from '../ExercisesItem/ExercisesItem';
 
 import { ExerciseList } from './ExercisesList.styled';
 import exercises from './exercises.json';
+import { useParams } from 'react-router';
 
 function bodyPartsFilter(value) {
   return exercises
     .filter(exercises => exercises.bodyPart === value)
-    .slice(0, 10);
+    .slice(0, 40);
 }
 
-export default function ExercisesList() {
+export function ExercisesList() {
+  const { subcategory } = useParams();
+
   return (
     <ExerciseList>
-      {bodyPartsFilter('waist').map(
+      {bodyPartsFilter(subcategory).map(
         ({ _id, name, bodyPart, burnedCalories, target }) => (
           <ExercisesItem
             key={_id.$oid}
