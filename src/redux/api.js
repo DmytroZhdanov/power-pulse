@@ -35,6 +35,13 @@ export const api = createApi({
   reducerPath: 'api',
   baseQuery: axiosBaseQuery({
     baseUrl: 'https://power-pulse-api.onrender.com/api',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token;
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   endpoints: builder => ({
     register: builder.mutation({
@@ -127,9 +134,8 @@ export const api = createApi({
       }),
     }),
     fetchExercisesSubcategories: builder.query({
-      query: category => ({
-        url: `/training/subcategories${category ? `?filter=${category}` : ''}`,
-      }),
+      query: category =>
+        `/training/subcategories${category ? `?filter=${category}` : ''}`,
     }),
     fetchDiary: builder.query({
       query: date => ({ url: `/diary/${date}` }),
@@ -179,7 +185,7 @@ export const {
   useLogoutMutation,
   useLazyFetchAllProductsQuery,
   useLazyFetchAllExercisesQuery,
-  useFetchExercisesSubcategoriesQuery,
+  useLazyFetchExercisesSubcategoriesQuery,
   useLazyFetchDiaryQuery,
   useAddProductMutation,
   useAddExerciseMutation,

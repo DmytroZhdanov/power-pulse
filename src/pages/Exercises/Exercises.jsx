@@ -1,29 +1,23 @@
 import TitlePage from 'components/common/TitlePage/TitlePage';
+import { EXERCISES_CATEGORY } from '../../utils/constants';
 import ExercisesCategories from 'components/exercises/ExercisesCategories/ExercisesCategories';
-// import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
-import categories from '../../../exercises_json/exercises.json'; //*
-import dataj from '../../../exercises_json/data.json';
 import ExercisesSubcategoriesList from '../../components/exercises/ExercisesSubcategoriesList/ExercisesSubcategoriesList';
-import { Wrapper, List } from './Exercises.styled';
+import { Wrapper } from './Exercises.styled';
 
-export function Exercises() {
+export default function Exercises() {
+  const [category, setCategory] = useState(EXERCISES_CATEGORY.BODY_PARTS);
+
   return (
     <>
       <Wrapper>
         <TitlePage text={'Exercises'} />
-        <List>
-          {categoriesJ.map(({ _id, title }) => (
-            <ExercisesCategories
-              key={_id}
-              title={title}
-              exercisesList={dataj}
-            />
-          ))}
-        </List>
+
+        <ExercisesCategories setCategory={setCategory} category={category} />
       </Wrapper>
-      <ExercisesSubcategoriesList body={body} />
-      {/* <Outlet />  */}
+      <ExercisesSubcategoriesList />
+      <Outlet category={category} />
     </>
   );
 }
