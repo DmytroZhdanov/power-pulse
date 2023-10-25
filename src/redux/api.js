@@ -1,20 +1,23 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
 
-import { EXERCISES_CATEGORY, PRODUCTS_FILTER } from '../utils/constants';
+import { EXERCISES_CATEGORY, PRODUCTS_FILTER } from 'src/utils/constants';
 const { MUSCLES, BODY_PART, EQUIPMENT } = EXERCISES_CATEGORY;
 const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
 
 const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
-  async ({ url, method, data, params, headers }) => {
+  async ({ url, method, data, params, headers }, { getState }) => {
+    const token = getState().auth.token;
     try {
       const result = await axios({
         url: baseUrl + url,
         method,
         data,
         params,
-        headers,
+        headers: token
+          ? { ...headers, Authorization: `Bearer ${token}` }
+          : { ...headers },
       });
       return { data: result.data };
     } catch (axiosError) {
@@ -32,13 +35,6 @@ export const api = createApi({
   reducerPath: 'api',
   baseQuery: axiosBaseQuery({
     baseUrl: 'https://power-pulse-api.onrender.com/api',
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
   }),
   endpoints: builder => ({
     register: builder.mutation({
@@ -91,10 +87,10 @@ export const api = createApi({
       }),
     }),
     fetchUserParams: builder.query({
-      query: () => '/users/params',
+      query: () => ({ url: '/users/params' }),
     }),
     refresh: builder.query({
-      query: () => '/users/current',
+      query: () => ({ url: '/users/current' }),
     }),
     logout: builder.mutation({
       query: () => ({
@@ -103,8 +99,8 @@ export const api = createApi({
       }),
     }),
     fetchAllProducts: builder.query({
-      query: filter =>
-        `/products${
+      query: filter => ({
+        url: `/products${
           filter
             ? `?${filter[QUERY] ? `${QUERY}=${filter[QUERY]}&` : ''}${
                 filter[RECOMMENDED]
@@ -115,10 +111,11 @@ export const api = createApi({
               }page=${filter.page || 1}`
             : ''
         }`,
+      }),
     }),
     fetchAllExercises: builder.query({
-      query: filter =>
-        `/training/exercises${
+      query: filter => ({
+        url: `/training/exercises${
           filter
             ? `?${filter[MUSCLES] ? `${MUSCLES}=${filter[MUSCLES]}&` : ''}${
                 filter[BODY_PART] ? `${BODY_PART}=${filter[BODY_PART]}&` : ''
@@ -127,13 +124,15 @@ export const api = createApi({
               }page=${filter.page || 1}`
             : ''
         }`,
+      }),
     }),
     fetchExercisesSubcategories: builder.query({
-      query: category =>
-        `/training/subcategories${category ? `?filter=${category}` : ''}`,
+      query: category => ({
+        url: `/training/subcategories${category ? `?filter=${category}` : ''}`,
+      }),
     }),
     fetchDiary: builder.query({
-      query: date => `/diary/${date}`,
+      query: date => ({ url: `/diary/${date}` }),
     }),
     addProduct: builder.mutation({
       query: credentials => ({
@@ -176,7 +175,7 @@ export const {
   useUpdateUserNameMutation,
   useUpdateUserAvatarMutation,
   useLazyFetchUserParamsQuery,
-  useRefreshQuery,
+  useLazyRefreshQuery,
   useLogoutMutation,
   useLazyFetchAllProductsQuery,
   useLazyFetchAllExercisesQuery,

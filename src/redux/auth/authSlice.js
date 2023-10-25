@@ -4,7 +4,7 @@ export const initialState = {
   user: {
     name: null,
     email: null,
-    avatarUrls: {},
+    avatarUrls: null,
     createdAt: null,
   },
   token: null,

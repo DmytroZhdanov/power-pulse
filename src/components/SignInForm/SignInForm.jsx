@@ -9,9 +9,12 @@ import {
   Message,
   Sign,
 } from './SignInForm.styled';
+import Icon from '../common/IconsComp/Icon';
 import { signInFormSchema } from './YupValidationForm';
-
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+import { useDispatch } from 'react-redux';
+import { setCredentials } from 'src/redux/auth/authSlice';
+import { useLoginMutation } from 'src/redux/api';
+import Loader from 'components/Loader/Loader';
 
 const Feedback = ({ ...props }) => {
   const [field, meta] = useField(props);
@@ -27,9 +30,8 @@ const Feedback = ({ ...props }) => {
       <Message>
         {showFeedback ? (
           <div id={`${props.id}-feedback`} aria-live="polite">
-            <svg>
-              <use href="../../../src/assets/images/sprite/sprite.svg#checkmark"></use>
-            </svg>
+            <Icon name={'checkmark'} />
+
             {meta.error ? meta.error : <>Success {props.name}</>}
           </div>
         ) : null}
@@ -39,37 +41,42 @@ const Feedback = ({ ...props }) => {
 };
 
 export default function SignInForm() {
+  const dispatch = useDispatch();
+  const [login, { isLoading }] = useLoginMutation();
+
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
     onSubmit: async (values, { resetForm }) => {
-      await sleep(500);
-      alert(JSON.stringify(values, null, 2));
-      //передати на бек values
+      const data = await login(values).unwrap();
+      dispatch(setCredentials(data));
       resetForm();
     },
     validationSchema: signInFormSchema,
   });
 
   return (
-    <FormikProvider value={formik}>
-      <Form>
-        <Text>
-          Welcome! Please enter your credentials to login to the platform:
-        </Text>
+    <>
+      <FormikProvider value={formik}>
+        <Form>
+          <Text>
+            Welcome! Please enter your credentials to login to the platform:
+          </Text>
 
-        <Inputs>
-          <Feedback name="email" type="email" placeholder="Email" />
-          <Feedback name="password" type="text" placeholder="Password" />
-        </Inputs>
-        <Button type="submit">Sign Up</Button>
-        <Sign>
-          <p>Don’t have an account? </p>
-          <Link to="/signup">Sign Up</Link>
-        </Sign>
-      </Form>
-    </FormikProvider>
+          <Inputs>
+            <Feedback name="email" type="email" placeholder="Email" />
+            <Feedback name="password" type="text" placeholder="Password" />
+          </Inputs>
+          <Button type="submit">Sign Up</Button>
+          <Sign>
+            <p>Don’t have an account? </p>
+            <Link to="/signup">Sign Up</Link>
+          </Sign>
+        </Form>
+      </FormikProvider>
+      {isLoading && <Loader />}
+    </>
   );
 }
