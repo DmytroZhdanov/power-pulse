@@ -9,7 +9,7 @@ export const User = styled.div`
   background-color: black;
 
   @media (min-width: 768px) {
-    width: 440px;
+    width: 439px;
     gap: 32px;
   }
 `;
@@ -38,10 +38,15 @@ export const Image = styled.div`
   }
 
   img {
-    display: block;
-    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
     max-width: 100%;
     max-height: 100%;
+    fill: inherit;
     border-radius: 50%;
     font-size: 14px;
     color: rgba(239, 237, 232, 30%);
@@ -73,6 +78,8 @@ export const Image = styled.div`
     height: 150px;
 
     img {
+      width: 104px;
+      height: 104px;
     }
     button {
       width: 32px;

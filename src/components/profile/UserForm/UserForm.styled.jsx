@@ -3,8 +3,6 @@ import styles from 'react-day-picker/dist/style.css';
 
 export const Form = styled.form`
   width: 335px;
-  margin-left: auto;
-  margin-right: auto;
   background-color: #0a0909;
   /* 
   p {
@@ -36,6 +34,12 @@ export const Form = styled.form`
       font-size: 20px;
       line-height: calc(24 / 20);
     }
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 760px;
+    padding-right: 64px;
+    border-right: 1px solid #efede833;
   }
 `;
 
@@ -75,6 +79,7 @@ export const FirstInfo = styled.div`
       line-height: calc(18 / 14);
 
       input {
+        margin-top: 8px;
         margin-bottom: 0;
       }
     }
@@ -273,7 +278,7 @@ export const Lifestyle = styled.div`
   @media (min-width: 768px) {
     margin: 32px 0 38px 0;
   }
-  @media (min-width: 1200px) {
+  @media (min-width: 1440px) {
     margin-bottom: 48px;
   }
 `;

@@ -20,11 +20,13 @@ import {
   BtnLogout,
 } from './UserCard.styled';
 
-const defaultImg =
-  'https://ronaldmottram.co.nz/wp-content/uploads/2019/01/default-user-icon-8.jpg';
+import defaultAvatar from '../../../assets/images/Avatar/user_avatar.png';
+
+// const defaultImg =
+//   'https://ronaldmottram.co.nz/wp-content/uploads/2019/01/default-user-icon-8.jpg';
 
 export default function UserCard() {
-  const [avatar, setavatar] = useState(defaultImg);
+  const [avatar, setavatar] = useState(defaultAvatar);
   const [name, setName] = useState('Anna Rybachok');
   const [calories, setСalories] = useState(0);
   const [sportTime, setSportTime] = useState(0);
