@@ -5,10 +5,15 @@ export const DayProdDiv = styled.div`
 @media screen and (max-width: 767px) {
     max-height:824px;
     padding: 16px ;
+    padding-left: 8px ;
   }
   @media screen and (min-width: 768px) {
     padding: 16px ;
+    padding-bottom:8px;
     max-height:234px
+  }
+  @media screen and (min-width: 1440px) {
+    padding: 16px ;
   }
 border: 1px solid rgba(239, 237, 232, 0.2);
   border-radius: 12px;
@@ -22,11 +27,15 @@ line-height: ${18 / 14};
 `
 export const DayProdUl = styled.ul`
 @media screen and (max-width: 767px) {
-    margin-bottom: 22px;
+    margin-bottom: 14px;
+    padding-left: 8px ;
 }
 
 @media screen and (min-width: 768px)  {
-      margin-bottom: 16px;
+      margin-bottom: 8px;
+  }
+  @media screen and (min-width: 1440px) {
+    padding: 0 ;
   }
 display:flex;
 justify-content: space-between;

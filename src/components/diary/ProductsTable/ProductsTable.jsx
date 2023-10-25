@@ -1,27 +1,24 @@
 import { useEffect, useState } from 'react';
 import {
   Table,
-  // TableTd,
+  TableMainTitles,
+  TableTitleTr,
+  TableMainTitle,
+  TableBody,
   TableTr,
-  // TableTh,
-  // TableDiv,
+  TableInfoTd,
   DelBtnTable,
   DelIcon,
   TableRecomSpan,
-  // MobTitlesTr,
-  TableMainTitle,
-  TableMainTitles,
-  TableBody,
-  TableInfoTd,
-  TableTitleTr,
+  TableDiv,
 } from './ProductsTable.styled';
 import sprite from '../../../assets/images/sprite/sprite.svg';
 
 export default function ProductsTable() {
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1440);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
   const handleResize = () => {
-    setIsDesktop(window.innerWidth >= 1440);
+    setIsDesktop(window.innerWidth >= 768);
   };
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -33,7 +30,7 @@ export default function ProductsTable() {
 
   return (
     <>
-      {/* <TableDiv> */}
+      <TableDiv>
       {isDesktop ? (
         <Table>
           <TableMainTitles>
@@ -53,12 +50,17 @@ export default function ProductsTable() {
               <TableInfoTd>Cereals</TableInfoTd>
               <TableInfoTd>289</TableInfoTd>
               <TableInfoTd>100</TableInfoTd>
-              <TableRecomSpan Recom={true}>Yes</TableRecomSpan>
+              <TableInfoTd>
+                <TableRecomSpan Recom={true} />
+                Yes
+              </TableInfoTd>
+              <td>
               <DelBtnTable>
                 <DelIcon>
                   <use href={`${sprite}#delete`}></use>
                 </DelIcon>
               </DelBtnTable>
+              </td>
             </TableTr>
             {/* Кінець повернення з мапу */}
 
@@ -67,12 +69,17 @@ export default function ProductsTable() {
               <TableInfoTd>Cereals</TableInfoTd>
               <TableInfoTd>289</TableInfoTd>
               <TableInfoTd>100</TableInfoTd>
-              <TableRecomSpan Recom={true}>Yes</TableRecomSpan>
+              <TableInfoTd>
+                <TableRecomSpan Recom={true} />
+                Yes
+              </TableInfoTd>
+              <td>
               <DelBtnTable>
                 <DelIcon>
                   <use href={`${sprite}#delete`}></use>
                 </DelIcon>
               </DelBtnTable>
+              </td>
             </TableTr>
 
             <TableTr>
@@ -84,16 +91,19 @@ export default function ProductsTable() {
                 <TableRecomSpan Recom={true} />
                 Yes
               </TableInfoTd>
+              <td>
               <DelBtnTable>
                 <DelIcon>
                   <use href={`${sprite}#delete`}></use>
                 </DelIcon>
               </DelBtnTable>
+              </td>
             </TableTr>
           </TableBody>
         </Table>
       ) : (
-        // мапаєш і повертаєщ те, що нижче
+        // мапаєш і повертаєщ те, що нижч
+        <>
         <Table>
           <TableMainTitles>
             <TableTitleTr>
@@ -111,18 +121,86 @@ export default function ProductsTable() {
               <TableInfoTd>Cereals</TableInfoTd>
               <TableInfoTd>289</TableInfoTd>
               <TableInfoTd>100</TableInfoTd>
-              <TableRecomSpan Recom={true}>Yes</TableRecomSpan>
+              <TableInfoTd>
+                <TableRecomSpan Recom={true} />
+                Yes
+              </TableInfoTd>
+              <td>
               <DelBtnTable>
                 <DelIcon>
                   <use href={`${sprite}#delete`}></use>
                 </DelIcon>
               </DelBtnTable>
+              </td>
             </TableTr>
           </TableBody>
         </Table>
+        <Table>
+          <TableMainTitles>
+            <TableTitleTr>
+              <TableMainTitle>Title</TableMainTitle>
+              <TableMainTitle>Category</TableMainTitle>
+              <TableMainTitle>Calories</TableMainTitle>
+              <TableMainTitle>Weight</TableMainTitle>
+              <TableMainTitle>Recommend</TableMainTitle>
+            </TableTitleTr>
+          </TableMainTitles>
+
+          <TableBody>
+            <TableTr>
+              <TableInfoTd>Bread Hercules grain</TableInfoTd>
+              <TableInfoTd>Cereals</TableInfoTd>
+              <TableInfoTd>289</TableInfoTd>
+              <TableInfoTd>100</TableInfoTd>
+              <TableInfoTd>
+                <TableRecomSpan Recom={true} />
+                Yes
+              </TableInfoTd>
+              <td>
+              <DelBtnTable>
+                <DelIcon>
+                  <use href={`${sprite}#delete`}></use>
+                </DelIcon>
+              </DelBtnTable>
+              </td>
+            </TableTr>
+          </TableBody>
+        </Table>
+        <Table>
+          <TableMainTitles>
+            <TableTitleTr>
+              <TableMainTitle>Title</TableMainTitle>
+              <TableMainTitle>Category</TableMainTitle>
+              <TableMainTitle>Calories</TableMainTitle>
+              <TableMainTitle>Weight</TableMainTitle>
+              <TableMainTitle>Recommend</TableMainTitle>
+            </TableTitleTr>
+          </TableMainTitles>
+
+          <TableBody>
+            <TableTr>
+              <TableInfoTd>Bread Hercules grain</TableInfoTd>
+              <TableInfoTd>Cereals</TableInfoTd>
+              <TableInfoTd>289</TableInfoTd>
+              <TableInfoTd>100</TableInfoTd>
+              <TableInfoTd>
+                <TableRecomSpan Recom={true} />
+                Yes
+              </TableInfoTd>
+              <td>
+              <DelBtnTable>
+                <DelIcon>
+                  <use href={`${sprite}#delete`}></use>
+                </DelIcon>
+              </DelBtnTable>
+              </td>
+            </TableTr>
+          </TableBody>
+        </Table>
+        </>
         // Кінець повернення з мапу
       )}
-      {/* </TableDiv> */}
+      </TableDiv>
     </>
   );
 }
