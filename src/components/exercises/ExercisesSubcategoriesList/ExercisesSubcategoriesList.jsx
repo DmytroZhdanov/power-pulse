@@ -2,9 +2,10 @@ import ExercisesSubcategoriesItem from 'components/exercises/ExercisesSubcategor
 
 export function ExercisesSubcategoriesList() {
   return (
-    <>
-      <div>ExercisesSubcategoriesList component</div>
-      <ExercisesSubcategoriesItem />
-    </>
+    <List>
+      {body.map(bod => (
+        <ExercisesSubcategoriesItem key={bod._id} bod={bod} />
+      ))}
+    </List>
   );
 }
