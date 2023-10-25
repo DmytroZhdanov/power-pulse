@@ -27,7 +27,7 @@ import ExercisesSubcategoriesItem from '../ExercisesSubcategoriesItem/ExercisesS
 import { EXERCISES_CATEGORY } from '../../../utils/constants';
 import { List } from './ExercisesSubcategoriesList.styled';
 
-export default function ExercisesSubcategoriesList({ category }) {
+export function ExercisesSubcategoriesList({ category }) {
   const [fetchSubcategories, { data }] =
     useLazyFetchExercisesSubcategoriesQuery();
   useEffect(() => {
