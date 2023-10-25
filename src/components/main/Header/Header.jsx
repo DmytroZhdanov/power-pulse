@@ -1,20 +1,27 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import LogOutBtn from 'components/common/LogOutBtn/LogOutBtn';
-import Logo from '../Logo/Logo';
-import UserBar from '../UserBar/UserBar';
-import UserNav from '../UserNav/UserNav';
+import Logo from 'components/main/Logo/Logo';
+import UserBar from 'components/main/UserBar/UserBar';
+import UserNav from 'components/main/UserNav/UserNav';
 import { Backdrop, Box, HeaderWrap } from './Header.styled';
-import BurgerBtn from '../BurgerBtn/BurgerBtn';
-import BurgerMenu from '../BurgerMenu/BurgerMenu';
+import BurgerBtn from 'components/main/BurgerBtn/BurgerBtn';
+import BurgerMenu from 'components/main/BurgerMenu/BurgerMenu';
+import { useSelector } from 'react-redux';
+import { selectToken } from 'src/redux/auth/selectors';
 
 export default function Header() {
-  const [logged, setLogged] = useState(true);
+  const token = useSelector(selectToken);
+  const [isLogged, setIsLogged] = useState(token ? true : false);
   const [openedModal, setOpenedModal] = useState(false);
-  const isDesktop = useRef(window.innerWidth > 1439);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1440);
 
   const handleResize = () => {
-    isDesktop.current = window.innerWidth > 1439;
+    setIsDesktop(window.innerWidth >= 1440);
   };
+
+  useEffect(() => {
+    setIsLogged(token);
+  }, [token]);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -31,16 +38,16 @@ export default function Header() {
   };
 
   return (
-    <Box logged={logged}>
+    <Box logged={isLogged}>
       <HeaderWrap>
         <Logo />
 
-        {logged && (
+        {isLogged && (
           <>
-            {isDesktop.current && <UserNav />}
+            {isDesktop && <UserNav />}
             <UserBar />
-            {isDesktop.current && <LogOutBtn />}
-            <BurgerBtn setOpenedModal={setOpenedModal} />
+            {isDesktop && <LogOutBtn />}
+            {!isDesktop && <BurgerBtn setOpenedModal={setOpenedModal} />}
             {openedModal && (
               <Backdrop onClick={handleBackdropClick}>
                 <BurgerMenu setOpenedModal={setOpenedModal}></BurgerMenu>

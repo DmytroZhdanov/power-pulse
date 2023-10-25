@@ -17,6 +17,7 @@
     "@vitejs/plugin-react-swc": "^3.3.2",
     "axios": "^1.5.1",
     "date-fns": "^2.30.0",
+    "emotion-normalize": "^11.0.1",
     "formik": "^2.4.5",
     "modern-normalize": "^2.0.0",
     "prop-types": "^15.8.1",

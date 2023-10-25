@@ -3,7 +3,7 @@ import ProductsFilters from 'components/products/ProductsFilters/ProductsFilters
 import ProductsList from 'components/products/ProductsList/ProductsList';
 import products from './products.json';
 
-export default function Products() {
+export function Products() {
   return (
     <>
       <div>Products page</div>

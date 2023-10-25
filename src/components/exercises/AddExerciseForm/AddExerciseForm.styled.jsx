@@ -2,11 +2,8 @@ import styled from '@emotion/styled';
 
 export const ExerciseContainer = styled.div`
   display: grid;
-  border-radius: 12px;
   padding: 48px 16px;
   width: 335px;
-  border: 1px solid rgba(239, 237, 232, 0.2);
-  background-color: #10100f;
   gap: 40px;
 
   @media screen and (min-width: 768px) {
