@@ -11,10 +11,6 @@ function bodyPartsFilter(value) {
 }
 
 export default function ExercisesList() {
-  const { data, value } = useLazyFetchAllExercisesQuery();
-  console.log(data);
-  console.log(value);
-
   return (
     <ExerciseList>
       {bodyPartsFilter('waist').map(
