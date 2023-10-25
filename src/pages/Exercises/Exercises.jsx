@@ -16,8 +16,8 @@ export function Exercises() {
 
         <ExercisesCategories setCategory={setCategory} category={category} />
       </Wrapper>
-      <ExercisesSubcategoriesList />
-      <Outlet category={category} />
+      <ExercisesSubcategoriesList category={category} />
+      <Outlet />
     </>
   );
 }
