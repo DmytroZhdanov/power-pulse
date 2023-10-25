@@ -4,10 +4,13 @@ import { format } from 'date-fns';
 import Calendar from 'components/Calendar/Calendar';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { Button, CalendarWrapper, Wrapper } from './DaySwitch.style';
+import { selectUserRegistrationDate } from 'src/redux/auth/selectors';
+import { useSelector } from 'react-redux';
 
 export default function DaySwitch({ selectedDate, setSelectedDate }) {
-  //сюди треба передати дату реєстрації користувача  з стора
-  const dateOfUserRegistration = new Date(2023, 9, 18, 10, 58);
+  const dateOfUserRegistration = new Date(
+    useSelector(selectUserRegistrationDate),
+  );
 
   const handlePreviousClick = () => {
     const previousDate = new Date(selectedDate);
