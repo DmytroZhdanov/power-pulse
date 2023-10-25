@@ -219,7 +219,7 @@ color: #EF8964;
 `
 export const TableMainTitles = styled.thead`
 @media screen and (max-width: 767px) {
-    display:none
+    // display:none
 }
 @media screen and (min-width: 768px) {
     display: inline-table;
