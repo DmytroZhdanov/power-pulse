@@ -12,16 +12,15 @@ export default function ExercisesSubcategoriesItem({ it }) {
     return item.charAt(0).toUpperCase() + item.slice(1);
   }
   return (
-    <></>
-    // <Item>
-    //   <Wrapp>
-    //     <Image src={it.imgURL} alt={it.name} />
-    //     <WrappOverlay></WrappOverlay>
-    //     <Text>
-    //       <Maintext>{UpperCase(it.name)}</Maintext>
-    //       <Subtext>{it.filter}</Subtext>
-    //     </Text>
-    //   </Wrapp>
-    // </Item>
+    <Item>
+      <Wrapp>
+        <Image src={it.imgURL} alt={it.name} />
+        <WrappOverlay></WrappOverlay>
+        <Text>
+          <Maintext>{UpperCase(it.name)}</Maintext>
+          <Subtext>{it.filter}</Subtext>
+        </Text>
+      </Wrapp>
+    </Item>
   );
 }

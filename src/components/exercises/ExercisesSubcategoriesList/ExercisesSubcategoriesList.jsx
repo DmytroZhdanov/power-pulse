@@ -66,7 +66,7 @@ export function ExercisesSubcategoriesList({ category }) {
     <List>
       {data &&
         data.map(item => (
-          <ExercisesSubcategoriesItem key={item.id} item={item} />
+          <ExercisesSubcategoriesItem key={item._id} it={item} />
         ))}
     </List>
   );
