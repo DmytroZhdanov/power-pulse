@@ -1,38 +1,12 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import axios from 'axios';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { EXERCISES_CATEGORY, PRODUCTS_FILTER } from '../utils/constants';
 const { MUSCLES, BODY_PART, EQUIPMENT } = EXERCISES_CATEGORY;
 const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
 
-const axiosBaseQuery =
-  ({ baseUrl } = { baseUrl: '' }) =>
-  async ({ url, method, data, params, headers }) => {
-    console.log(url, method, data, params, headers);
-    try {
-      const result = await axios({
-        url: baseUrl + url,
-        method,
-        data,
-        params,
-        headers,
-      });
-      return { data: result.data };
-    } catch (axiosError) {
-      console.log(axiosError);
-      const err = axiosError;
-      return {
-        error: {
-          status: err.response?.status,
-          data: err.response?.data || err.message,
-        },
-      };
-    }
-  };
-
 export const api = createApi({
   reducerPath: 'api',
-  baseQuery: axiosBaseQuery({
+  baseQuery: fetchBaseQuery({
     baseUrl: 'https://power-pulse-api.onrender.com/api',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
@@ -47,49 +21,49 @@ export const api = createApi({
       query: credentials => ({
         url: '/users/register',
         method: 'POST',
-        data: credentials,
+        body: credentials,
       }),
     }),
     login: builder.mutation({
       query: credentials => ({
         url: '/users/login',
         method: 'POST',
-        data: credentials,
+        body: credentials,
       }),
     }),
     // verify: builder.mutation({
     //   query: credentials => ({
     //     url: '/verify',
     //     method: 'POST',
-    //     data: credentials,
+    //     body: credentials,
     //   }),
     // }),
     addUserParams: builder.mutation({
       query: credentials => ({
         url: '/users/params',
         method: 'POST',
-        data: credentials,
+        body: credentials,
       }),
     }),
     updateUserParams: builder.mutation({
       query: credentials => ({
         url: '/users/params',
         method: 'PUT',
-        data: credentials,
+        body: credentials,
       }),
     }),
     updateUserName: builder.mutation({
       query: credentials => ({
         url: '/users/username',
         method: 'PATCH',
-        data: credentials,
+        body: credentials,
       }),
     }),
     updateUserAvatar: builder.mutation({
       query: credentials => ({
         url: '/users/avatar',
         method: 'PATCH',
-        data: credentials,
+        body: credentials,
       }),
     }),
     fetchUserParams: builder.query({
@@ -141,14 +115,14 @@ export const api = createApi({
       query: credentials => ({
         url: '/day/diaryProducts',
         method: 'POST',
-        data: credentials,
+        body: credentials,
       }),
     }),
     addExercise: builder.mutation({
       query: credentials => ({
         url: '/day/diaryExercises',
         method: 'POST',
-        data: credentials,
+        body: credentials,
       }),
     }),
     deleteProduct: builder.mutation({

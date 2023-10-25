@@ -1,4 +1,4 @@
-import { ROUTER } from '../../utils/constants';
+import { ROUTER } from 'src/utils/constants';
 import {
   Button,
   ButtonWrapper,

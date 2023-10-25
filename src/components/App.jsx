@@ -1,25 +1,21 @@
+import { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setCredentials } from 'src/redux/auth/authSlice';
+import { useLazyRefreshQuery } from 'src/redux/api';
+import { selectToken } from 'src/redux/auth/selectors';
+import { ROUTER } from 'src/utils';
+// import { DATA_STEPS } from '../utils/constants';
 
 import Main from 'pages/Main/Main';
 import Error from 'pages/Error/Error';
-// import { Welcome } from 'pages/Welcome/Welcome';
-// import { SignUp } from 'pages/SignUp/SignUp';
-// import { SignIn } from 'pages/SignIn/SignIn';
-// import { Profile } from 'pages/Profile/Profile';
-// import { Diary } from 'pages/Diary/Diary';
-// import { Products } from 'pages/Products/Products';
-// import { Exercises } from 'pages/Exercises/Exercises';
-// import { ExercisesSubcategoriesList } from 'components/exercises/ExercisesSubcategoriesList/ExercisesSubcategoriesList';
-// import { ExercisesList } from 'components/exercises/ExercisesList/ExercisesList';
-// import { Data } from 'pages/Data/Data';
 // import FirstStep from './data/FirstStep/FirstStep';
 // import SecondStep from './data/SecondStep/SecondStep';
 // import ThirdStep from './data/ThirdStep/ThirdStep';
-
-import { ROUTER } from 'src/utils';
-// import { DATA_STEPS } from '../utils/constants';
 import PrivateRoute from './PrivateRoute';
 import RestrictedRoute from './RestrictedRoute';
+import Loader from './Loader/Loader';
 
 const router = createBrowserRouter(
   [
@@ -41,7 +37,6 @@ const router = createBrowserRouter(
               ),
             };
           },
-          // element: <Welcome />,
         },
         {
           path: ROUTER.SIGN_UP,
@@ -56,7 +51,6 @@ const router = createBrowserRouter(
               ),
             };
           },
-          // element: <SignUp />,
         },
         // {
         //   path: ROUTER.DATA,
@@ -113,7 +107,6 @@ const router = createBrowserRouter(
               ),
             };
           },
-          // element: <SignIn />,
         },
         {
           path: ROUTER.PROFILE,
@@ -128,7 +121,6 @@ const router = createBrowserRouter(
               ),
             };
           },
-          // element: <Profile />,
         },
         {
           path: ROUTER.DIARY,
@@ -143,7 +135,6 @@ const router = createBrowserRouter(
               ),
             };
           },
-          // element: <Diary />,
         },
         {
           path: ROUTER.PRODUCTS,
@@ -158,7 +149,6 @@ const router = createBrowserRouter(
               ),
             };
           },
-          // element: <Products />,
         },
         {
           path: ROUTER.EXERCISES,
@@ -173,7 +163,6 @@ const router = createBrowserRouter(
               ),
             };
           },
-          // element: <Exercises />,
           children: [
             {
               index: true,
@@ -190,7 +179,6 @@ const router = createBrowserRouter(
                   ),
                 };
               },
-              // element: <ExercisesSubcategoriesList />,
             },
             {
               path: ROUTER.SUBCATEGORY,
@@ -207,7 +195,6 @@ const router = createBrowserRouter(
                   ),
                 };
               },
-              // element: <ExercisesList />,
             },
           ],
         },
@@ -220,5 +207,24 @@ const router = createBrowserRouter(
 );
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  const dispatch = useDispatch();
+  const [refresh, { isFetching }] = useLazyRefreshQuery();
+  const token = useSelector(selectToken);
+
+  useEffect(() => {
+    const refetch = async () => {
+      if (token) {
+        const user = await refresh().unwrap();
+        dispatch(setCredentials({ user, token }));
+      }
+    };
+    refetch();
+  }, [dispatch, token, refresh]);
+
+  return (
+    <>
+      <RouterProvider isLoading={isFetching} router={router} />
+      {isFetching && <Loader />}
+    </>
+  );
 }

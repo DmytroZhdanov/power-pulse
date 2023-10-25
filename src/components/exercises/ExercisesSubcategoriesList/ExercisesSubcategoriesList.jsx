@@ -1,4 +1,4 @@
-import ExercisesSubcategoriesItem from '../ExercisesSubcategoriesItem/ExercisesSubcategoriesItem';
+import ExercisesSubcategoriesItem from 'components/exercises/ExercisesSubcategoriesItem/ExercisesSubcategoriesItem';
 
 export function ExercisesSubcategoriesList() {
   return (

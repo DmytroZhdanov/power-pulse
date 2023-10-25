@@ -9,14 +9,12 @@ import {
   Message,
   Sign,
 } from './SignUpForm.styled';
-import Icon from '../common/IconsComp/Icon';
+import Icon from 'components/common/IconsComp/Icon';
 import { signUpFormSchema } from './YupValidationForm';
-import { useRegisterMutation } from '../../redux/api';
+import { useRegisterMutation } from 'src/redux/api';
 import { useDispatch } from 'react-redux';
-import { setCredentials } from '../../redux/auth/authSlice';
-import Loader from '../Loader/Loader';
-
-// const sleep = ms => new Promise(r => setTimeout(r, ms));
+import { setCredentials } from 'src/redux/auth/authSlice';
+import Loader from 'components/Loader/Loader';
 
 const Feedback = ({ label, helpText, ...props }) => {
   const [field, meta] = useField(props);
@@ -54,9 +52,6 @@ export default function SignUpForm() {
     onSubmit: async (values, { resetForm }) => {
       const data = await register(values).unwrap();
       dispatch(setCredentials(data));
-      // await sleep(500);
-      // alert(JSON.stringify(values, null, 2));
-      //передати на бек values
       resetForm();
     },
     validationSchema: signUpFormSchema,
