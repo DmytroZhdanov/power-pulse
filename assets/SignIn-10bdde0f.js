@@ -1,4 +1,4 @@
-import{n as a,u as p,c as x,j as e,L as m,b as h,r as u,s as g}from"./index-57298c34.js";import{c as w,a as c,u as f,F as v,b as j,d as b,I as F}from"./index.esm-5a2b8f2f.js";import{T as y}from"./TitlePage-8418f483.js";const k=a.p`
+import{n as a,u as p,c as x,j as e,L as m,b as h,r as u,s as g}from"./index-6da7884e.js";import{c as w,a as c,u as f,F as v,b as j,d as b,I as F}from"./index.esm-df9dd250.js";import{T as y}from"./TitlePage-af4cbd20.js";const k=a.p`
   @media screen and (max-width: 374px) {
     width: calc(100% - 20px);
   }
@@ -43,7 +43,7 @@ import{n as a,u as p,c as x,j as e,L as m,b as h,r as u,s as g}from"./index-5729
   :hover {
     background-color: #ef8964;
   }
-`,I=a.div`
+`,$=a.div`
   @media screen and (max-width: 374px) {
     width: calc(100% - 20px);
   }
@@ -73,7 +73,7 @@ import{n as a,u as p,c as x,j as e,L as m,b as h,r as u,s as g}from"./index-5729
   @media screen and (min-width: 768px) {
     width: 364px;
   }
-`,$=a.div`
+`,I=a.div`
   margin-top: 4px;
 
   font-size: 12px;
@@ -100,7 +100,7 @@ import{n as a,u as p,c as x,j as e,L as m,b as h,r as u,s as g}from"./index-5729
   a {
     text-decoration-line: underline;
   }
-`,D=w({email:c().email("Invalid email").matches("^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$","Enter valid values").required("This is a required field"),password:c().min(6).matches("^(?=.*d)(?=.*[a-zA-Z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,32}$","Password must be 8-32 characters long and include at least one digit, one lowercase letter, and one uppercase letter").required("This is a required field")}),l=({...i})=>{const[t,n]=b(i),[r,d]=u.useState(!1),o=()=>d(!0),s=!!r&&t.value.trim().length>2||n.touched;return e.jsxs(I,{type:`${s?n.error?"invalid":"valid":""}`,children:[e.jsx("input",{...i,...t,onFocus:o}),e.jsx($,{children:s?e.jsxs("div",{id:`${i.id}-feedback`,"aria-live":"polite",children:[e.jsx(F,{name:"checkmark"}),n.error?n.error:e.jsxs(e.Fragment,{children:["Success ",i.name]})]}):null})]})};function L(){const i=p(),[t,{isLoading:n}]=x(),r=f({initialValues:{email:"",password:""},onSubmit:async(d,{resetForm:o})=>{const s=await t(d).unwrap();i(g(s)),o()},validationSchema:D});return e.jsxs(e.Fragment,{children:[e.jsx(v,{value:r,children:e.jsxs(j,{children:[e.jsx(k,{children:"Welcome! Please enter your credentials to login to the platform:"}),e.jsxs(S,{children:[e.jsx(l,{name:"email",type:"email",placeholder:"Email"}),e.jsx(l,{name:"password",type:"text",placeholder:"Password"})]}),e.jsx(z,{type:"submit",children:"Sign Up"}),e.jsxs(C,{children:[e.jsx("p",{children:"Don’t have an account? "}),e.jsx(m,{to:"/signup",children:"Sign Up"})]})]})}),n&&e.jsx(h,{})]})}const P=a.div`
+`,D=w({email:c().email("Invalid email").matches("^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$","Enter valid values").required("This is a required field"),password:c().min(8).max(32).matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,32}$","Password must be 8-32 characters long and include at least one digit, one lowercase letter, one uppercase letter and one special character").required("This is a required field")}),l=({...i})=>{const[t,n]=b(i),[r,d]=u.useState(!1),o=()=>d(!0),s=!!r&&t.value.trim().length>2||n.touched;return e.jsxs($,{type:`${s?n.error?"invalid":"valid":""}`,children:[e.jsx("input",{...i,...t,onFocus:o}),e.jsx(I,{children:s?e.jsxs("div",{id:`${i.id}-feedback`,"aria-live":"polite",children:[e.jsx(F,{name:"checkmark"}),n.error?n.error:e.jsxs(e.Fragment,{children:["Success ",i.name]})]}):null})]})};function L(){const i=p(),[t,{isLoading:n}]=x(),r=f({initialValues:{email:"",password:""},onSubmit:async(d,{resetForm:o})=>{const s=await t(d).unwrap();i(g(s)),o()},validationSchema:D});return e.jsxs(e.Fragment,{children:[e.jsx(v,{value:r,children:e.jsxs(j,{children:[e.jsx(k,{children:"Welcome! Please enter your credentials to login to the platform:"}),e.jsxs(S,{children:[e.jsx(l,{name:"email",type:"email",placeholder:"Email"}),e.jsx(l,{name:"password",type:"text",placeholder:"Password"})]}),e.jsx(z,{type:"submit",children:"Sign Up"}),e.jsxs(C,{children:[e.jsx("p",{children:"Don’t have an account? "}),e.jsx(m,{to:"/signup",children:"Sign Up"})]})]})}),n&&e.jsx(h,{})]})}const P=a.div`
   padding-top: 127px;
 
   @media screen and (min-width: 768px) {
