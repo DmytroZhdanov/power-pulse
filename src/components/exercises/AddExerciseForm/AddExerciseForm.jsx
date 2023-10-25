@@ -18,7 +18,12 @@ import {
 } from './AddExerciseForm.styled';
 import Timer from '../../Timer/Timer';
 
-export default function AddExerciseForm({ exercise }) {
+export default function AddExerciseForm({
+  exercise,
+  openModalExerciseSuccess,
+  closeModalExerciseForm,
+  setModalExerciseSuccessData,
+}) {
   const { gifUrl, bodyPart, equipment, name, target, burnedCalories, time } =
     exercise;
   const [timer, setTimer] = useState(0);
@@ -64,6 +69,9 @@ export default function AddExerciseForm({ exercise }) {
       time: timer + roundsCount * time * 60,
       calories: burnedCaloriesCount,
     };
+    openModalExerciseSuccess();
+    closeModalExerciseForm();
+    setModalExerciseSuccessData(collectedData);
 
     console.log('collectedData:', collectedData);
   };
@@ -106,6 +114,9 @@ export default function AddExerciseForm({ exercise }) {
 }
 
 AddExerciseForm.propTypes = {
+  openModalExerciseSuccess: PropTypes.func.isRequired,
+  closeModalExerciseForm: PropTypes.func.isRequired,
+  setModalExerciseSuccessData: PropTypes.func.isRequired,
   exercise: PropTypes.shape({
     gifUrl: PropTypes.string.isRequired,
     bodyPart: PropTypes.string.isRequired,

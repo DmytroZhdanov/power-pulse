@@ -1,4 +1,4 @@
-import ExercisesItem from 'components/exercises/ExercisesItem/ExercisesItem';
+import ExercisesItem from '../ExercisesItem/tempExercisesItem';
 
 export function ExercisesList() {
   return (
