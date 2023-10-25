@@ -1,6 +1,6 @@
-import ExercisesItem from '../ExercisesItem/ExercisesItem';
+import ExercisesItem from 'components/exercises/ExercisesItem/ExercisesItem';
 
-export default function ExercisesList() {
+export function ExercisesList() {
   return (
     <>
       <div>ExercisesList component</div>
