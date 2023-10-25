@@ -1,5 +1,4 @@
-// import { Link } from 'react-router-dom';
-import { ROUTER } from '../../utils/constants';
+import { ROUTER } from 'src/utils/constants';
 import {
   Button,
   ButtonWrapper,
@@ -8,7 +7,7 @@ import {
   Title,
 } from './Welcome.styled';
 
-export default function Welcome() {
+export function Welcome() {
   return (
     <Container>
       <Title>

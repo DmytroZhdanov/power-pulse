@@ -1,6 +1,6 @@
-import ExercisesSubcategoriesItem from '../ExercisesSubcategoriesItem/ExercisesSubcategoriesItem';
-import { List } from './ExercisesSubcategoriesList.styled';
-export default function ExercisesSubcategoriesList({ body }) {
+import ExercisesSubcategoriesItem from 'components/exercises/ExercisesSubcategoriesItem/ExercisesSubcategoriesItem';
+
+export function ExercisesSubcategoriesList() {
   return (
     <List>
       {body.map(bod => (

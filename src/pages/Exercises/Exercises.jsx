@@ -7,17 +7,7 @@ import dataj from '../../../exercises_json/data.json';
 import ExercisesSubcategoriesList from '../../components/exercises/ExercisesSubcategoriesList/ExercisesSubcategoriesList';
 import { Wrapper, List } from './Exercises.styled';
 
-export default function Exercises() {
-  const [categoriesJ, setcategoriesJ] = useState(categories); //*
-  const [data, setData] = useState(dataj);
-  // console.log(data);
-  const [body, setBody] = useState(data.bodyPart);
-  // console.log(body);
-  const [muscles, setMuscles] = useState(data.muscles);
-  // console.log(muscles);
-  const [equipment, setEquipment] = useState(data.equipment);
-  // console.log(equipment);
-
+export function Exercises() {
   return (
     <>
       <Wrapper>
