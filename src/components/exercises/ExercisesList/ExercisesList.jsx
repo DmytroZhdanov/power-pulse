@@ -1,4 +1,4 @@
-import ExercisesItem from '../ExercisesItem/ExercisesItem';
+import ExercisesItem from '../ExercisesItem/tempExercisesItem';
 
 export default function ExercisesList() {
   return (
