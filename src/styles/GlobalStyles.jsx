@@ -198,7 +198,7 @@ export const GlobalStyles = css`
   }
 
   body {
-    font-family: 'Roboto, ';
+    font-family: 'Roboto', sans-serif;
     font-weight: 400;
     color: ${theme.color.white};
     background-color: ${theme.color.black};
