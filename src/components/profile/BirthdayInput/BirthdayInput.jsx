@@ -6,7 +6,7 @@ import Calendar from '../../Calendar/Calendar';
 import { WrapperCalendarInput } from './BirthdayInput.style';
 
 export default function BirthdayInput({ selectedDate, setSelectedDate }) {
-  const defaultInputValue = 'Choose birthday';
+  const defaultInputValue = 'Birthday';
 
   const today = new Date();
   const eighteenYearsAgo = new Date(today).setFullYear(

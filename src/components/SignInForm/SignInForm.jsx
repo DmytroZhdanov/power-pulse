@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik, FormikProvider, Form, useField } from 'formik';
 import {
@@ -15,6 +15,9 @@ import { useDispatch } from 'react-redux';
 import { setCredentials } from 'src/redux/auth/authSlice';
 import { useLoginMutation } from 'src/redux/api';
 import Loader from 'components/Loader/Loader';
+import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
+import TimerWarning from 'components/common/TimerWarning/TimerWarning';
+import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
 
 const Feedback = ({ ...props }) => {
   const [field, meta] = useField(props);
@@ -42,7 +45,22 @@ const Feedback = ({ ...props }) => {
 
 export default function SignInForm() {
   const dispatch = useDispatch();
-  const [login, { isLoading }] = useLoginMutation();
+  const [login, { isLoading, error }] = useLoginMutation();
+
+  const [showError, setShowError] = useState(false);
+  const [showTimerWarning, setShowTimerWarning] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setShowTimerWarning(true);
+      }, 5000);
+    } else {
+      setShowTimerWarning(false);
+    }
+
+    return () => setShowTimerWarning(false);
+  }, [isLoading]);
 
   const formik = useFormik({
     initialValues: {
@@ -50,9 +68,14 @@ export default function SignInForm() {
       password: '',
     },
     onSubmit: async (values, { resetForm }) => {
-      const data = await login(values).unwrap();
-      dispatch(setCredentials(data));
-      resetForm();
+      try {
+        const data = await login(values).unwrap();
+        dispatch(setCredentials(data));
+        resetForm();
+      } catch {
+        setShowError(true);
+        setTimeout(() => setShowError(false), 2000);
+      }
     },
     validationSchema: signInFormSchema,
   });
@@ -77,6 +100,16 @@ export default function SignInForm() {
         </Form>
       </FormikProvider>
       {isLoading && <Loader />}
+      {isLoading && showTimerWarning && (
+        <BasicModalWindow onClose={() => showTimerWarning(false)}>
+          <TimerWarning />
+        </BasicModalWindow>
+      )}
+      {showError && (
+        <BasicModalWindow onClose={() => setShowError(false)}>
+          <ErrorMessage message={error.data.message} />
+        </BasicModalWindow>
+      )}
     </>
   );
 }

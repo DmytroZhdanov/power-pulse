@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -16,6 +16,9 @@ import Error from 'pages/Error/Error';
 import PrivateRoute from './PrivateRoute';
 import RestrictedRoute from './RestrictedRoute';
 import Loader from './Loader/Loader';
+import BasicModalWindow from './common/BasicModalWindow/BasicModalWindow';
+import TimerWarning from './common/TimerWarning/TimerWarning';
+import ErrorMessage from './common/ErrorMessage/ErrorMessage';
 
 const router = createBrowserRouter(
   [
@@ -208,8 +211,11 @@ const router = createBrowserRouter(
 
 export default function App() {
   const dispatch = useDispatch();
-  const [refresh, { isFetching }] = useLazyRefreshQuery();
+  const [refresh, { isFetching, error }] = useLazyRefreshQuery();
   const token = useSelector(selectToken);
+
+  const [showError, setShowError] = useState(false);
+  const [showTimerWarning, setShowTimerWarning] = useState(false);
 
   useEffect(() => {
     const refetch = async () => {
@@ -218,13 +224,41 @@ export default function App() {
         dispatch(setCredentials({ user, token }));
       }
     };
-    refetch();
+
+    try {
+      refetch();
+    } catch {
+      setShowError(true);
+      setTimeout(() => setShowError(false), 2000);
+    }
   }, [dispatch, token, refresh]);
+
+  useEffect(() => {
+    if (isFetching) {
+      setTimeout(() => {
+        setShowTimerWarning(true);
+      }, 5000);
+    } else {
+      setShowTimerWarning(false);
+    }
+
+    return () => setShowTimerWarning(false);
+  }, [isFetching]);
 
   return (
     <>
       <RouterProvider router={router} />
       {isFetching && <Loader />}
+      {isFetching && showTimerWarning && (
+        <BasicModalWindow onClose={() => showTimerWarning(false)}>
+          <TimerWarning />
+        </BasicModalWindow>
+      )}
+      {showError && (
+        <BasicModalWindow onClose={() => setShowError(false)}>
+          <ErrorMessage message={error?.data?.message} />
+        </BasicModalWindow>
+      )}
     </>
   );
 }
