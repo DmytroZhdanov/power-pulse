@@ -1,73 +1,93 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import axios from 'axios';
 
-import { EXERCISES_CATEGORY, PRODUCTS_FILTER } from '../utils/constants';
+import { EXERCISES_CATEGORY, PRODUCTS_FILTER } from 'src/utils/constants';
 const { MUSCLES, BODY_PART, EQUIPMENT } = EXERCISES_CATEGORY;
 const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
 
+const axiosBaseQuery =
+  ({ baseUrl } = { baseUrl: '' }) =>
+  async ({ url, method, data, params, headers }, { getState }) => {
+    const token = getState().auth.token;
+    try {
+      const result = await axios({
+        url: baseUrl + url,
+        method,
+        data,
+        params,
+        headers: token
+          ? { ...headers, Authorization: `Bearer ${token}` }
+          : { ...headers },
+      });
+      return { data: result.data };
+    } catch (axiosError) {
+      const err = axiosError;
+      return {
+        error: {
+          status: err.response?.status,
+          data: err.response?.data || err.message,
+        },
+      };
+    }
+  };
+
 export const api = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({
+  baseQuery: axiosBaseQuery({
     baseUrl: 'https://power-pulse-api.onrender.com/api',
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
-      if (token) {
-        headers.set('authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
   }),
   endpoints: builder => ({
     register: builder.mutation({
       query: credentials => ({
         url: '/users/register',
         method: 'POST',
-        body: credentials,
+        data: credentials,
       }),
     }),
     login: builder.mutation({
       query: credentials => ({
         url: '/users/login',
         method: 'POST',
-        body: credentials,
+        data: credentials,
       }),
     }),
     // verify: builder.mutation({
     //   query: credentials => ({
     //     url: '/verify',
     //     method: 'POST',
-    //     body: credentials,
+    //     data: credentials,
     //   }),
     // }),
     addUserParams: builder.mutation({
       query: credentials => ({
         url: '/users/params',
         method: 'POST',
-        body: credentials,
+        data: credentials,
       }),
     }),
     updateUserParams: builder.mutation({
       query: credentials => ({
         url: '/users/params',
         method: 'PUT',
-        body: credentials,
+        data: credentials,
       }),
     }),
     updateUserName: builder.mutation({
       query: credentials => ({
         url: '/users/username',
         method: 'PATCH',
-        body: credentials,
+        data: credentials,
       }),
     }),
     updateUserAvatar: builder.mutation({
       query: credentials => ({
         url: '/users/avatar',
         method: 'PATCH',
-        body: credentials,
+        data: credentials,
       }),
     }),
     fetchUserParams: builder.query({
-      query: () => '/users/params',
+      query: () => ({ url: '/users/params' }),
     }),
     refresh: builder.query({
       query: () => ({ url: '/users/current' }),
@@ -79,8 +99,8 @@ export const api = createApi({
       }),
     }),
     fetchAllProducts: builder.query({
-      query: filter =>
-        `/products${
+      query: filter => ({
+        url: `/products${
           filter
             ? `?${filter[QUERY] ? `${QUERY}=${filter[QUERY]}&` : ''}${
                 filter[RECOMMENDED]
@@ -91,10 +111,11 @@ export const api = createApi({
               }page=${filter.page || 1}`
             : ''
         }`,
+      }),
     }),
     fetchAllExercises: builder.query({
-      query: filter =>
-        `/training/exercises${
+      query: filter => ({
+        url: `/training/exercises${
           filter
             ? `?${filter[MUSCLES] ? `${MUSCLES}=${filter[MUSCLES]}&` : ''}${
                 filter[BODY_PART] ? `${BODY_PART}=${filter[BODY_PART]}&` : ''
@@ -103,26 +124,28 @@ export const api = createApi({
               }page=${filter.page || 1}`
             : ''
         }`,
+      }),
     }),
     fetchExercisesSubcategories: builder.query({
-      query: category =>
-        `/training/subcategories${category ? `?filter=${category}` : ''}`,
+      query: category => ({
+        url: `/training/subcategories${category ? `?filter=${category}` : ''}`,
+      }),
     }),
     fetchDiary: builder.query({
-      query: date => `/diary/${date}`,
+      query: date => ({ url: `/diary/${date}` }),
     }),
     addProduct: builder.mutation({
       query: credentials => ({
         url: '/day/diaryProducts',
         method: 'POST',
-        body: credentials,
+        data: credentials,
       }),
     }),
     addExercise: builder.mutation({
       query: credentials => ({
         url: '/day/diaryExercises',
         method: 'POST',
-        body: credentials,
+        data: credentials,
       }),
     }),
     deleteProduct: builder.mutation({
