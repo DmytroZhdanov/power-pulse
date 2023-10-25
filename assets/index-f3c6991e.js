@@ -225,87 +225,87 @@ template {
   ${J_}
 
   /* ========================= Reset styles ========================= */
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+  html,
+  body,
+  div,
+  span,
+  applet,
+  object,
+  iframe,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  blockquote,
+  pre,
+  a,
+  abbr,
+  acronym,
+  address,
+  big,
+  cite,
+  code,
+  del,
+  dfn,
+  em,
+  img,
+  ins,
+  kbd,
+  q,
+  s,
+  samp,
+  small,
+  strike,
+  strong,
+  sub,
+  sup,
+  tt,
+  var,
+  b,
+  u,
+  i,
+  center,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  fieldset,
+  form,
+  label,
+  legend,
+  table,
+  caption,
+  tbody,
+  tfoot,
+  thead,
+  tr,
+  th,
+  td,
+  article,
+  aside,
+  canvas,
+  details,
+  embed,
+  figure,
+  figcaption,
+  footer,
+  header,
+  hgroup,
+  menu,
+  nav,
+  output,
+  ruby,
+  section,
+  summary,
+  time,
+  mark,
+  audio,
+  video {
     margin: 0;
     padding: 0;
     border: 0;
@@ -404,6 +404,10 @@ video {
   /* ========================= /Fonts ========================= */
 
   /* ========================= Common styles ========================= */
+  * {
+    box-sizing: border-box;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -793,26 +797,22 @@ video {
   width: 100%;
   display: flex;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
   height: 61px;
   padding-left: 20px;
   padding-right: 20px;
   @media screen and (min-width: 375px) {
     width: 375px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   @media screen and (min-width: 768px) {
-    padding-left: 32px;
-    padding-right: 32px;
-    width: 768px;
+    width: 744px;
     height: 84px;
   }
 
   @media screen and (min-width: 1440px) {
-    padding-left: 96px;
-    padding-right: 96px;
-    width: 1440px;
+    width: 1288px;
   }
 `,FR=ce.div`
   position: fixed;
@@ -1105,4 +1105,4 @@ video {
     position: relative;
     width: 1288px;
   }
-`;function GT(){const{pathname:e}=ka(),t=e.split("/")[1],n=t===""||t===Fe.SIGN_UP||t===Fe.SIGN_IN||t===Fe.DATA.split("/")[0];return F.jsxs(F.Fragment,{children:[F.jsx(GR,{}),F.jsx("main",{children:F.jsxs(KT,{showStatisticInfo:n,children:[F.jsx(O.Suspense,{fallback:F.jsx(pl,{}),children:F.jsx(aC,{})}),n&&F.jsx(Uw,{pathname:e,page:t})]})})]})}function YT(){const e=yw();return console.log(e),F.jsx("div",{children:"Error Page if no any required route found"})}function Cr({redirectTo:e,component:t}){return!ha(dl)?F.jsx(ww,{to:`../${e}`}):t}Cr.propTypes={redirectTo:$i.string,component:$i.object.isRequired};function Ou({component:e,redirectTo:t}){return ha(dl)?F.jsx(ww,{to:`../${t}`}):e}Ou.propTypes={component:$i.object.isRequired,redirectTo:$i.string};const XT=pC([{path:Fe.MAIN,element:F.jsx(GT,{}),errorElement:F.jsx(YT,{}),children:[{index:!0,async lazy(){let{Welcome:e}=await kn(()=>import("./Welcome-44152fcc.js"),[]);return{Component:()=>F.jsx(Ou,{redirectTo:Fe.DIARY,component:F.jsx(e,{})})}}},{path:Fe.SIGN_UP,async lazy(){let{SignUp:e}=await kn(()=>import("./SignUp-ea964834.js"),["assets/SignUp-ea964834.js","assets/index.esm-2837553e.js","assets/TitlePage-dfb11be1.js"]);return{Component:()=>F.jsx(Ou,{redirectTo:Fe.DIARY,component:F.jsx(e,{})})}}},{path:Fe.SIGN_IN,async lazy(){let{SignIn:e}=await kn(()=>import("./SignIn-6d0fef59.js"),["assets/SignIn-6d0fef59.js","assets/index.esm-2837553e.js","assets/TitlePage-dfb11be1.js"]);return{Component:()=>F.jsx(Ou,{redirectTo:Fe.DIARY,component:F.jsx(e,{})})}}},{path:Fe.PROFILE,async lazy(){let{Profile:e}=await kn(()=>import("./Profile-df53b607.js"),["assets/Profile-df53b607.js","assets/TitlePage-dfb11be1.js"]);return{Component:()=>F.jsx(Cr,{redirectTo:Fe.SIGN_IN,component:F.jsx(e,{})})}}},{path:Fe.DIARY,async lazy(){let{Diary:e}=await kn(()=>import("./Diary-c9eeddb6.js"),["assets/Diary-c9eeddb6.js","assets/TitlePage-dfb11be1.js","assets/Diary-220d68d1.css"]);return{Component:()=>F.jsx(Cr,{redirectTo:Fe.SIGN_IN,component:F.jsx(e,{})})}}},{path:Fe.PRODUCTS,async lazy(){let{Products:e}=await kn(()=>import("./Products-a5f1b094.js"),["assets/Products-a5f1b094.js","assets/TitlePage-dfb11be1.js","assets/BasicModalWindow-6383acf7.js"]);return{Component:()=>F.jsx(Cr,{redirectTo:Fe.SIGN_IN,component:F.jsx(e,{})})}}},{path:Fe.EXERCISES,async lazy(){let{Exercises:e}=await kn(()=>import("./Exercises-d0878d21.js"),["assets/Exercises-d0878d21.js","assets/TitlePage-dfb11be1.js"]);return{Component:()=>F.jsx(Cr,{redirectTo:Fe.SIGN_IN,component:F.jsx(e,{})})}},children:[{index:!0,async lazy(){let{ExercisesSubcategoriesList:e}=await kn(()=>import("./ExercisesSubcategoriesList-5dbdcb83.js"),[]);return{Component:()=>F.jsx(Cr,{redirectTo:Fe.SIGN_IN,component:F.jsx(e,{})})}}},{path:Fe.SUBCATEGORY,async lazy(){let{ExercisesList:e}=await kn(()=>import("./ExercisesList-c470b3d0.js"),["assets/ExercisesList-c470b3d0.js","assets/BasicModalWindow-6383acf7.js"]);return{Component:()=>F.jsx(Cr,{redirectTo:Fe.SIGN_IN,component:F.jsx(e,{})})}}}]}]}],{basename:"/power-pulse/"});function JT(){const e=Zd(),[t,{isFetching:n}]=VO(),r=ha(dl);return O.useEffect(()=>{(async()=>{if(r){const o=await t().unwrap();e(q1({user:o,token:r}))}})()},[e,r,t]),F.jsxs(F.Fragment,{children:[F.jsx(wC,{router:XT}),n&&F.jsx(pl,{})]})}const ZT=Ec.createRoot(document.getElementById("root"));ZT.render(F.jsx(ut.StrictMode,{children:F.jsxs(tw,{theme:Mf,children:[F.jsx(nw,{styles:Z_}),F.jsx(cE,{store:Q1,children:F.jsx(J0,{loading:F.jsx(pl,{}),persistor:XO,children:F.jsx(JT,{})})})]})}));export{Dp as L,aC as O,$i as P,Fe as R,Xo as _,t3 as a,pl as b,n3 as c,yr as d,Iw as e,e3 as f,ua as g,Ko as h,pa as i,F as j,ce as n,O as r,q1 as s,Zd as u,ut as x};
+`;function GT(){const{pathname:e}=ka(),t=e.split("/")[1],n=t===""||t===Fe.SIGN_UP||t===Fe.SIGN_IN||t===Fe.DATA.split("/")[0];return F.jsxs(F.Fragment,{children:[F.jsx(GR,{}),F.jsx("main",{children:F.jsxs(KT,{showStatisticInfo:n,children:[F.jsx(O.Suspense,{fallback:F.jsx(pl,{}),children:F.jsx(aC,{})}),n&&F.jsx(Uw,{pathname:e,page:t})]})})]})}function YT(){const e=yw();return console.log(e),F.jsx("div",{children:"Error Page if no any required route found"})}function Cr({redirectTo:e,component:t}){return!ha(dl)?F.jsx(ww,{to:`../${e}`}):t}Cr.propTypes={redirectTo:$i.string,component:$i.object.isRequired};function Ou({component:e,redirectTo:t}){return ha(dl)?F.jsx(ww,{to:`../${t}`}):e}Ou.propTypes={component:$i.object.isRequired,redirectTo:$i.string};const XT=pC([{path:Fe.MAIN,element:F.jsx(GT,{}),errorElement:F.jsx(YT,{}),children:[{index:!0,async lazy(){let{Welcome:e}=await kn(()=>import("./Welcome-d7241a4f.js"),[]);return{Component:()=>F.jsx(Ou,{redirectTo:Fe.DIARY,component:F.jsx(e,{})})}}},{path:Fe.SIGN_UP,async lazy(){let{SignUp:e}=await kn(()=>import("./SignUp-f528d165.js"),["assets/SignUp-f528d165.js","assets/index.esm-75ecd4cc.js","assets/TitlePage-104f08a4.js"]);return{Component:()=>F.jsx(Ou,{redirectTo:Fe.DIARY,component:F.jsx(e,{})})}}},{path:Fe.SIGN_IN,async lazy(){let{SignIn:e}=await kn(()=>import("./SignIn-ade59b1d.js"),["assets/SignIn-ade59b1d.js","assets/index.esm-75ecd4cc.js","assets/TitlePage-104f08a4.js"]);return{Component:()=>F.jsx(Ou,{redirectTo:Fe.DIARY,component:F.jsx(e,{})})}}},{path:Fe.PROFILE,async lazy(){let{Profile:e}=await kn(()=>import("./Profile-4edaa064.js"),["assets/Profile-4edaa064.js","assets/TitlePage-104f08a4.js"]);return{Component:()=>F.jsx(Cr,{redirectTo:Fe.SIGN_IN,component:F.jsx(e,{})})}}},{path:Fe.DIARY,async lazy(){let{Diary:e}=await kn(()=>import("./Diary-5002689b.js"),["assets/Diary-5002689b.js","assets/TitlePage-104f08a4.js","assets/Diary-220d68d1.css"]);return{Component:()=>F.jsx(Cr,{redirectTo:Fe.SIGN_IN,component:F.jsx(e,{})})}}},{path:Fe.PRODUCTS,async lazy(){let{Products:e}=await kn(()=>import("./Products-78f314ca.js"),["assets/Products-78f314ca.js","assets/TitlePage-104f08a4.js","assets/BasicModalWindow-87416f99.js"]);return{Component:()=>F.jsx(Cr,{redirectTo:Fe.SIGN_IN,component:F.jsx(e,{})})}}},{path:Fe.EXERCISES,async lazy(){let{Exercises:e}=await kn(()=>import("./Exercises-a1d69b72.js"),["assets/Exercises-a1d69b72.js","assets/TitlePage-104f08a4.js"]);return{Component:()=>F.jsx(Cr,{redirectTo:Fe.SIGN_IN,component:F.jsx(e,{})})}},children:[{index:!0,async lazy(){let{ExercisesSubcategoriesList:e}=await kn(()=>import("./ExercisesSubcategoriesList-d04d9bcf.js"),[]);return{Component:()=>F.jsx(Cr,{redirectTo:Fe.SIGN_IN,component:F.jsx(e,{})})}}},{path:Fe.SUBCATEGORY,async lazy(){let{ExercisesList:e}=await kn(()=>import("./ExercisesList-672d1c14.js"),["assets/ExercisesList-672d1c14.js","assets/BasicModalWindow-87416f99.js"]);return{Component:()=>F.jsx(Cr,{redirectTo:Fe.SIGN_IN,component:F.jsx(e,{})})}}}]}]}],{basename:"/power-pulse/"});function JT(){const e=Zd(),[t,{isFetching:n}]=VO(),r=ha(dl);return O.useEffect(()=>{(async()=>{if(r){const o=await t().unwrap();e(q1({user:o,token:r}))}})()},[e,r,t]),F.jsxs(F.Fragment,{children:[F.jsx(wC,{router:XT}),n&&F.jsx(pl,{})]})}const ZT=Ec.createRoot(document.getElementById("root"));ZT.render(F.jsx(ut.StrictMode,{children:F.jsxs(tw,{theme:Mf,children:[F.jsx(nw,{styles:Z_}),F.jsx(cE,{store:Q1,children:F.jsx(J0,{loading:F.jsx(pl,{}),persistor:XO,children:F.jsx(JT,{})})})]})}));export{Dp as L,aC as O,$i as P,Fe as R,Xo as _,t3 as a,pl as b,n3 as c,yr as d,Iw as e,e3 as f,ua as g,Ko as h,pa as i,F as j,ce as n,O as r,q1 as s,Zd as u,ut as x};
