@@ -247,12 +247,12 @@ export const RadioBox = styled.input`
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 2px solid #636366;
+    outline: 2px solid #636366;
     background-color: black;
   }
 
   &:checked&::before {
-    border: thick double #0e0e0d;
+    /* outline: thick double #0e0e0d; */
     background-color: #ef8964;
   }
 `;
