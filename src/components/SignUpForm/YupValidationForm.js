@@ -1,7 +1,11 @@
 import * as Yup from 'yup';
 
 export const signUpFormSchema = Yup.object({
-  name: Yup.string().required('This is a required field'),
+  name: Yup.string()
+    .trim('Name must not have leading or trailing spaces')
+    .strict()
+    .min(1)
+    .required('This is a required field'),
   email: Yup.string()
     .email('Invalid email')
     .matches(

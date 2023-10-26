@@ -11,26 +11,22 @@ export const HeaderWrap = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
   height: 61px;
   padding-left: 20px;
   padding-right: 20px;
   @media screen and (min-width: 375px) {
     width: 375px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   @media screen and (min-width: 768px) {
-    padding-left: 32px;
-    padding-right: 32px;
-    width: 768px;
+    width: 744px;
     height: 84px;
   }
 
   @media screen and (min-width: 1440px) {
-    padding-left: 96px;
-    padding-right: 96px;
-    width: 1440px;
+    width: 1288px;
   }
 `;
 export const Backdrop = styled.div`
