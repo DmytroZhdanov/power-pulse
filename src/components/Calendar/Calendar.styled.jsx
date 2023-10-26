@@ -144,6 +144,7 @@ export const DatePickerWrapper = styled.div`
 
     .react-calendar__month-view__weekdays__weekday {
       padding: 0;
+      text-align: center;
 
       abbr[title] {
         user-select: none;
