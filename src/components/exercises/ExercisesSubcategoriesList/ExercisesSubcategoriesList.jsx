@@ -1,58 +1,14 @@
-// import { useFetchExercisesSubcategoriesQuery } from '../../../redux/api';
-// import ExercisesSubcategoriesItem from '../ExercisesSubcategoriesItem/ExercisesSubcategoriesItem';
-// import { EXERCISES_CATEGORY } from '../../../utils/constants';
-// import { List } from './ExercisesSubcategoriesList.styled';
-// import { useEffect } from 'react';
-
-// export function ExercisesSubcategoriesList({ category }) {
-//   const categoryType = determineCategoryType(category);
-//   function determineCategoryType(category) {
-//     switch (category) {
-//       case 'muscles':
-//         return EXERCISES_CATEGORY.MUSCLES;
-//       case 'equipment':
-//         return EXERCISES_CATEGORY.EQUIPMENT;
-
-//       default:
-//         return EXERCISES_CATEGORY.BODY_PARTS;
-//     }
-//   }
-
-//   const data = useFetchExercisesSubcategoriesQuery(categoryType);
-//   console.log(data);
-
-//   <List>
-//     {data.data.map(item => (
-//       <ExercisesSubcategoriesItem key={item.id} it={item} />
-//     ))}
-//   </List>;
-// }
-
-import React from 'react'; // Добавьте импорт React
+import React from 'react';
 import { useFetchExercisesSubcategoriesQuery } from '../../../redux/api';
 import ExercisesSubcategoriesItem from '../ExercisesSubcategoriesItem/ExercisesSubcategoriesItem';
-import { EXERCISES_CATEGORY } from '../../../utils/constants';
 import { List } from './ExercisesSubcategoriesList.styled';
-import { useEffect } from 'react';
+import { useOutletContext } from 'react-router-dom';
 
-export function ExercisesSubcategoriesList({ category }) {
-  const categoryType = determineCategoryType(category);
-
-  function determineCategoryType(category) {
-    switch (category) {
-      case 'muscles':
-        return EXERCISES_CATEGORY.MUSCLES;
-      case 'equipment':
-        return EXERCISES_CATEGORY.EQUIPMENT;
-      default:
-        return EXERCISES_CATEGORY.BODY_PARTS;
-    }
-  }
+export function ExercisesSubcategoriesList() {
+  const category = useOutletContext();
 
   const { data, error, isLoading } =
-    useFetchExercisesSubcategoriesQuery(categoryType);
-
-  console.log(data);
+    useFetchExercisesSubcategoriesQuery(category);
 
   if (isLoading) {
     return <div>Loading...</div>;

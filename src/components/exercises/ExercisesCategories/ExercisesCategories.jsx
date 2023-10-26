@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useNavigate, useResolvedPath } from 'react-router-dom';
 import { EXERCISES_CATEGORY } from '../../../utils/constants';
 import {
   ListCategories,
@@ -6,9 +8,19 @@ import {
   InputCategory,
 } from './ExercisesCategories.styled';
 export default function ExercisesCategories({ category, setCategory }) {
+  const path = useResolvedPath();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (path.pathname !== '/exercises') {
+      navigate('./'); //для того чтобы убрать динамический путь в строке запроса (путь)
+    }
+  }, [category]);
+
   const handleOptionChange = event => {
     setCategory(event.target.value);
   };
+
   return (
     <ListCategories>
       <ItemCategory>
