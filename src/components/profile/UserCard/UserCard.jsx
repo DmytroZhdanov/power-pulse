@@ -1,9 +1,9 @@
-import LogOutBtn from 'components/common/LogOutBtn/LogOutBtn';
-
-import Icon from '../../../components/common/IconsComp/Icon';
-
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
+import LogOutBtn from 'components/common/LogOutBtn/LogOutBtn';
+import Icon from 'src/components/common/IconsComp/Icon';
+import { selectUserAvatars } from 'src/redux/auth/selectors';
 import {
   User,
   Avatar,
@@ -20,31 +20,26 @@ import {
   BtnLogout,
 } from './UserCard.styled';
 
-import defaultAvatar from '../../../assets/images/Avatar/user_avatar.png';
-
-// const defaultImg =
-//   'https://ronaldmottram.co.nz/wp-content/uploads/2019/01/default-user-icon-8.jpg';
-
 export default function UserCard() {
-  const [avatar, setavatar] = useState(defaultAvatar);
+  const isAvatar = useSelector(selectUserAvatars);
+  // const { name } = useSelector();
+  const [avatar, setAvatar] = useState(isAvatar ? isAvatar : null);
   const [name, setName] = useState('Anna Rybachok');
   const [calories, setСalories] = useState(0);
   const [sportTime, setSportTime] = useState(0);
+
+  const handleChange = () => {};
 
   return (
     <User>
       <Avatar>
         <Image>
-          <img
-            src={
-              avatar
-              // ? `https://image.tmdb.org/t/p/w500${profile_path}`
-              // : defaultImg
-            }
-            alt="Your avatar"
-          />
-
-          <BtnAvat type="button">
+          {isAvatar ? (
+            <img src={avatar} alt="Your avatar" />
+          ) : (
+            <Icon name="user" />
+          )}
+          <BtnAvat type="button" onClick={handleChange}>
             <Icon name="add_avatar" />
           </BtnAvat>
         </Image>

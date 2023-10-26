@@ -34,7 +34,13 @@ export const Image = styled.div`
   border: 1px solid #e6533c;
   border-radius: 50%;
 
-  div {
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 61px;
+    height: 62px;
   }
 
   img {
@@ -77,9 +83,14 @@ export const Image = styled.div`
     width: 150px;
     height: 150px;
 
+    svg {
+      width: 102px;
+      height: 102px;
+    }
+
     img {
-      width: 104px;
-      height: 104px;
+      width: 100%;
+      height: 100%;
     }
     button {
       width: 32px;
