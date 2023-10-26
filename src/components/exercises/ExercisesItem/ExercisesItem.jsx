@@ -12,9 +12,6 @@ import {
   Values,
 } from './ExercisesItem.styled';
 
-import { useState } from 'react';
-import Icon from '../../common/IconsComp/Icon';
-
 export default function ExercisesItem({
   name,
   bodyPart,

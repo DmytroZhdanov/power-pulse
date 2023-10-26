@@ -1,34 +1,26 @@
 import ExercisesItem from '../ExercisesItem/ExercisesItem';
-import { ExerciseList } from './ExercisesList.styled';
-import exercises from './exercises.json';
-import { useParams } from 'react-router';
+import {
+  ExerciseList,
+  LinkText,
+  StyledLink,
+  Svg,
+} from './ExercisesList.styled';
+import { useLocation, useParams } from 'react-router';
 import { useLazyFetchAllExercisesQuery } from '../../../redux/api';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export function ExercisesList() {
-  const { subcategory } = useParams();
   const [page, setPage] = useState(1);
-  const [exerciseData, setExerciseData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const [fetchAllExercises, { data }] = useLazyFetchAllExercisesQuery();
 
-  console.log(subcategory);
   useEffect(() => {
     const fetch = async () => {
       try {
-        const response = await fetchAllExercises({ page }).unwrap();
-
-        const newData = response.map(item => ({
-          _id: item._id,
-          name: item.name,
-          bodyPart: item.bodyPart,
-          burnedCalories: item.burnedCalories,
-          target: item.target,
-        }));
-
-        setExerciseData(prevData => [...prevData, ...newData]);
+        await fetchAllExercises({ page }).unwrap();
       } catch (error) {
         setError(error);
       } finally {
@@ -40,10 +32,20 @@ export function ExercisesList() {
     fetch();
   }, [fetchAllExercises, page]);
 
+  const location = useLocation();
+  const pathLocation = useRef(location.state?.from ?? '/exercises');
+
   return (
-    <div>
+    <>
+      <StyledLink to={pathLocation.current}>
+        <Svg>
+          <use href={`${sprite}#icon-arrow`}></use>
+        </Svg>
+        <LinkText>Back</LinkText>
+      </StyledLink>
+
       <ExerciseList>
-        {exerciseData.map(({ _id, name, bodyPart, burnedCalories, target }) => (
+        {data?.map(({ _id, name, bodyPart, burnedCalories, target }) => (
           <ExercisesItem
             key={_id}
             name={name}
@@ -62,6 +64,6 @@ export function ExercisesList() {
       >
         Add more
       </button>
-    </div>
+    </>
   );
 }

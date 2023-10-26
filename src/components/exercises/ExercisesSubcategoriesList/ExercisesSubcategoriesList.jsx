@@ -52,8 +52,6 @@ export function ExercisesSubcategoriesList({ category }) {
   const { data, error, isLoading } =
     useFetchExercisesSubcategoriesQuery(categoryType);
 
-  console.log(data);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
