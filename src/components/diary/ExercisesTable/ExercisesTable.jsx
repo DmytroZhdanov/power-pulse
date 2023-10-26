@@ -35,8 +35,7 @@ export default function ExercisesTable() {
           <TableMainTitle>Equipment</TableMainTitle>
           <TableMainTitle>Name</TableMainTitle>
           <TableMainTitle>Target</TableMainTitle>
-          {/* <TableMainTitle>Burned Calories</TableMainTitle> */}
-          <TableMainTitle>Burned Calo</TableMainTitle>
+          <TableMainTitle>Burned Calories</TableMainTitle>
           <TableMainTitle>Time</TableMainTitle>
         </TableTitleTr>
       </TableMainTitles>
@@ -103,7 +102,7 @@ export default function ExercisesTable() {
           <TableMainTitle>Equipment</TableMainTitle>
           <TableMainTitle>Name</TableMainTitle>
           <TableMainTitle>Target</TableMainTitle>
-          <TableMainTitle>Burned Calor</TableMainTitle>
+          <TableMainTitle>Burned Calories</TableMainTitle>
           <TableMainTitle>Time</TableMainTitle>
         </TableTitleTr>
       </TableMainTitles>
@@ -133,7 +132,7 @@ export default function ExercisesTable() {
           <TableMainTitle>Equipment</TableMainTitle>
           <TableMainTitle>Name</TableMainTitle>
           <TableMainTitle>Target</TableMainTitle>
-          <TableMainTitle>Burned Calor</TableMainTitle>
+          <TableMainTitle>Burned Calories</TableMainTitle>
           <TableMainTitle>Time</TableMainTitle>
         </TableTitleTr>
       </TableMainTitles>
@@ -163,7 +162,7 @@ export default function ExercisesTable() {
           <TableMainTitle>Equipment</TableMainTitle>
           <TableMainTitle>Name</TableMainTitle>
           <TableMainTitle>Target</TableMainTitle>
-          <TableMainTitle>Burned Calor</TableMainTitle>
+          <TableMainTitle>Burned Calories</TableMainTitle>
           <TableMainTitle>Time</TableMainTitle>
         </TableTitleTr>
       </TableMainTitles>

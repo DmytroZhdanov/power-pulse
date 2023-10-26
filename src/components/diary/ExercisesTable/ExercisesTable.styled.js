@@ -14,8 +14,8 @@ export const TableDiv = styled.div`
     padding: 0 8px
   }
   scroll-behavior: auto;
-  // overflow-y: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
+  // overflow-y: hidden;
   overflow-x: hidden;
 `;
 export const Table = styled.table`
@@ -57,6 +57,10 @@ export const TableMainTitle = styled.th`
   &:nth-of-type(5) {
     top: 248px;
     left: 105px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 80px;
   }
   &:nth-of-type(6) {
     top: 248px;
@@ -79,6 +83,10 @@ export const TableMainTitle = styled.th`
   }
   &:nth-of-type(5) {
     width: 78px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
   }
   &:nth-of-type(6) {
     width: 72px;
