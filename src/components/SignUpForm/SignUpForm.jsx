@@ -51,15 +51,15 @@ export default function SignUpForm() {
   const [showTimerWarning, setShowTimerWarning] = useState(false);
 
   useEffect(() => {
+    let id;
+
     if (isLoading) {
-      setTimeout(() => {
-        setShowTimerWarning(true);
-      }, 5000);
+      id = setTimeout(setShowTimerWarning, 5000, true);
     } else {
       setShowTimerWarning(false);
     }
 
-    return () => setShowTimerWarning(false);
+    return clearTimeout(id);
   }, [isLoading]);
 
   const formik = useFormik({

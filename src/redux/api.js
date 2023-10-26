@@ -93,6 +93,10 @@ export const api = createApi({
       query: () => ({ url: '/users/params' }),
       transformResponse: response => response.bmr,
     }),
+    fetchUserBloodGroup: builder.query({
+      query: () => ({ url: '/users/params' }),
+      transformResponse: response => response.user.userParams.blood,
+    }),
     refresh: builder.query({
       query: () => ({ url: '/users/current' }),
     }),
@@ -183,6 +187,7 @@ export const {
   useUpdateUserAvatarMutation,
   useLazyFetchUserParamsQuery,
   useFetchDailyRateQuery,
+  useFetchUserBloodGroupQuery,
   useLazyRefreshQuery,
   useLogoutMutation,
   useLazyFetchAllProductsQuery,
