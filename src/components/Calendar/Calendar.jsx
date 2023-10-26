@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import { DatePickerWrapper, TransitionDatePicker } from './Calendar.styled';
+import Icon from 'components/common/IconsComp/Icon';
 
 const Calendar = ({ children, onChange, value, ...datePickerProps }) => {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -96,6 +97,10 @@ const Calendar = ({ children, onChange, value, ...datePickerProps }) => {
               formatMonth={(_, date) => format(date, 'MMM')}
               tileDisabled={setIsDisabledBtn}
               tileClassName={setCustomBtnClassName}
+              prevLabel={<Icon name="nav-arrow-left" />}
+              prev2Label={<Icon name="double-nav-arrow-left" />}
+              nextLabel={<Icon name="nav-arrow-right" />}
+              next2Label={<Icon name="double-nav-arrow-right" />}
               {...datePickerProps}
             />
           </TransitionDatePicker>

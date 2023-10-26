@@ -18,22 +18,23 @@ export const DatePickerWrapper = styled.div`
     border-radius: 8px;
     padding: 14px;
     border: none;
-    background: #ef8964;
+    background: ${({theme}) => theme.color.orangeSecond};
 
     .react-calendar__navigation {
       text-align: center;
       height: auto;
       align-items: center;
       padding-bottom: 14px;
-      border-bottom: 1px solid rgba(239, 237, 232, 0.2);
+      border-bottom: 1px solid ${({theme}) => theme.color.grayDisabled};
       margin-bottom: 14px;
 
       button {
         min-width: auto;
         width: auto;
       }
-
-      button:disabled {
+      button:disabled,
+      button:disabled svg {
+        stroke: #efede866;
         background-color: transparent;
         cursor: not-allowed;
         user-select: none;
@@ -43,7 +44,7 @@ export const DatePickerWrapper = styled.div`
 
     .react-calendar__navigation__arrow,
     .react-calendar__navigation__label {
-      color: #efede8;
+      color: ${({theme}) => theme.color.white};
       font-size: 16px;
       font-weight: 500;
       letter-spacing: -0.32px;
@@ -65,20 +66,26 @@ export const DatePickerWrapper = styled.div`
 
     .react-calendar__navigation__arrow {
       position: absolute;
-      top: 5px;
+      top: 6px;
       padding: 8px 8px;
 
+      svg {
+        width: 10px;
+        height: 10px;
+        stroke: ${({theme}) => theme.color.white};
+      }
+
       &.react-calendar__navigation__prev2-button {
-        left: 5px;
+        left: 1px;
       }
       &.react-calendar__navigation__prev-button {
-        left: 30px;
+        left: 24px;
       }
       &.react-calendar__navigation__next-button {
-        right: 30px;
+        right: 24px;
       }
       &.react-calendar__navigation__next2-button {
-        right: 5px;
+        right: 1px;
       }
 
       ::after {
@@ -87,7 +94,7 @@ export const DatePickerWrapper = styled.div`
           box-shadow 150ms ease-in-out;
         content: '';
         z-index: -1;
-        top: calc(50% + 1.5px);
+        top: calc(50%);
         left: 50%;
         transform: translate(-50%, -50%);
         width: 24px;
@@ -97,10 +104,10 @@ export const DatePickerWrapper = styled.div`
         position: absolute;
       }
       :not(button[disabled]):hover::after {
-        background-color: #040404;
+        background-color: ${({theme}) => theme.color.black};
         box-shadow:
-          0 0 5px 1px #efede8,
-          inset 0 0 2px 1px #efede8;
+          0 0 5px 1px ${({theme}) => theme.color.white},
+          inset 0 0 2px 1px ${({theme}) => theme.color.white};
       }
     }
 
@@ -116,18 +123,18 @@ export const DatePickerWrapper = styled.div`
         box-shadow 150ms ease-in-out;
 
       :not(button[disabled]):hover {
-        background-color: #040404;
+        background-color: ${({theme}) => theme.color.black};
         box-shadow:
-          0 0 10px 1px #efede8,
-          inset 0 0 2px 1px #efede8;
+          0 0 10px 1px ${({theme}) => theme.color.white},
+          inset 0 0 2px 1px ${({theme}) => theme.color.white};
       }
     }
 
     .react-calendar__tile.react-calendar__tile--hasActive {
-      background-color: #040404;
+      background-color: ${({theme}) => theme.color.black};
       box-shadow:
-        0 0 10px 1px #efede8,
-        inset 0 0 2px 1px #efede8;
+        0 0 10px 1px ${({theme}) => theme.color.white},
+        inset 0 0 2px 1px ${({theme}) => theme.color.white};
     }
 
     .react-calendar__month-view__weekdays {
@@ -141,7 +148,7 @@ export const DatePickerWrapper = styled.div`
       abbr[title] {
         user-select: none;
         text-decoration: none;
-        color: rgba(239, 237, 232, 0.5);
+        color: ${({theme}) => theme.color.label};
         font-size: 14px;
         font-weight: 500;
         letter-spacing: -0.28px;
@@ -163,7 +170,7 @@ export const DatePickerWrapper = styled.div`
       font-weight: 400;
       line-height: 1.29;
       letter-spacing: -0.28px;
-      color: #efede8;
+      color: ${({theme}) => theme.color.white};
       user-select: none;
 
       &.react-calendar__tile--active {
@@ -179,10 +186,10 @@ export const DatePickerWrapper = styled.div`
           width: 28px;
           height: 28px;
           border-radius: 50%;
-          background-color: #040404;
+          background-color: ${({theme}) => theme.color.black};
           box-shadow:
-            0 0 10px 1px #efede8,
-            inset 0 0 2px 1px #efede8;
+            0 0 10px 1px ${({theme}) => theme.color.white},
+            inset 0 0 2px 1px ${({theme}) => theme.color.white};
           position: absolute;
         }
       }
@@ -210,10 +217,10 @@ export const DatePickerWrapper = styled.div`
       }
 
       &:not(button[disabled]):hover::after {
-        background-color: #040404;
+        background-color: ${({theme}) => theme.color.black};
         box-shadow:
-          0 0 10px 1px #efede8,
-          inset 0 0 2px 1px #efede8;
+          0 0 10px 1px ${({theme}) => theme.color.white},
+          inset 0 0 2px 1px ${({theme}) => theme.color.white};
       }
     }
 
@@ -231,14 +238,14 @@ export const DatePickerWrapper = styled.div`
         height: 28px;
         border-radius: 50%;
         box-shadow:
-          0 0 5px 1px #efede8,
-          inset 0 0 5px 1px #efede8;
+          0 0 5px 1px ${({theme}) => theme.color.white},
+          inset 0 0 5px 1px ${({theme}) => theme.color.white};
         position: absolute;
       }
     }
 
     .react-calendar__tile:disabled {
-      color: rgba(239, 237, 232, 0.2);
+      color: ${({theme}) => theme.color.grayDisabled};
       cursor: not-allowed;
       user-select: none;
     }

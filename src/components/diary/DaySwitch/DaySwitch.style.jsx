@@ -19,7 +19,7 @@ export const CalendarWrapper = styled.div`
 `;
 
 export const InputWrapper = styled.div`
-position: relative;
+  position: relative;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -41,7 +41,7 @@ export const CalendarIcon = styled.div`
   svg {
     width: 20px;
     height: 20px;
-    stroke: ${({theme}) => theme.color.orangeSecond} ;
+    stroke: ${({ theme }) => theme.color.orangeSecond};
     transition:
       stroke 300ms ease-in-out,
       transform 300ms ease-in-out;
@@ -60,18 +60,19 @@ export const Button = styled.button`
   svg {
     width: 16px;
     height: 16px;
-    stroke: ${({theme}) => theme.color.orangeFirst};
+    stroke: ${({ theme }) => theme.color.white};
     transition:
       stroke 300ms ease-in-out,
       transform 300ms ease-in-out;
   }
+
   :hover:not(&[disabled]) svg {
     transform: scale(1.15);
-    stroke: ${({theme}) => theme.color.orangeSecond};
+    stroke: ${({ theme }) => theme.color.orangeSecond};
   }
 
   &[disabled] svg {
     cursor: not-allowed;
-    stroke: rgba(239, 237, 232, 0.2);
+    stroke: ${({theme}) => theme.color.grayDisabled};
   }
 `;
