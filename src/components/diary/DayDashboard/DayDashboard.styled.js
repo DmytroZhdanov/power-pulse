@@ -133,6 +133,10 @@ export const Text = styled.p`
   line-height: ${18 / 14};
   color: rgba(239, 237, 232, 0.3);
 
+  @media screen and (max-width: 374px) {
+    max-width: calc(100% - 72px);
+  }
+
   @media screen and (min-width: 768px) {
     font-size: 16px;
     line-height: ${24 / 16};

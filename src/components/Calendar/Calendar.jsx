@@ -10,11 +10,23 @@ import { customDayPickerStyles } from './customDayPickerStyles';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import 'react-day-picker/dist/style.css';
 
-export default function Calendar({ inputText, ...dayPickerProps }) {
+export default function Calendar({
+  selected,
+  onSelect,
+  inputText,
+  ...dayPickerProps
+}) {
   const [showCalendar, setShowCalendar] = useState(false);
   const [positionCalendar, setPositionCalendar] = useState('bottom');
   const dateTextWrapperRef = useRef(null);
   const dateCalendarRef = useRef(null);
+
+  const onSelectDate = date => {
+    if (!date) {
+      return;
+    }
+    onSelect(date);
+  };
 
   const handleClick = e => {
     const windowHeight = window.innerHeight;
@@ -74,6 +86,8 @@ export default function Calendar({ inputText, ...dayPickerProps }) {
             weekStartsOn={1}
             showOutsideDays
             classNames={customDayPickerStyles}
+            selected={selected}
+            onSelect={onSelectDate}
             {...dayPickerProps}
           />
         </TransitionDayPicker>

@@ -220,7 +220,7 @@ export default function App() {
   useEffect(() => {
     const refetch = async () => {
       if (token) {
-        const user = await refresh().unwrap();
+        const { user } = await refresh().unwrap();
         dispatch(setCredentials({ user, token }));
       }
     };
@@ -234,15 +234,15 @@ export default function App() {
   }, [dispatch, token, refresh]);
 
   useEffect(() => {
+    let id;
+
     if (isFetching) {
-      setTimeout(() => {
-        setShowTimerWarning(true);
-      }, 5000);
+      id = setTimeout(setShowTimerWarning, 5000, true);
     } else {
       setShowTimerWarning(false);
     }
 
-    return () => setShowTimerWarning(false);
+    return clearTimeout(id);
   }, [isFetching]);
 
   return (
@@ -250,7 +250,7 @@ export default function App() {
       <RouterProvider router={router} />
       {isFetching && <Loader />}
       {isFetching && showTimerWarning && (
-        <BasicModalWindow onClose={() => showTimerWarning(false)}>
+        <BasicModalWindow onClose={() => setShowTimerWarning(false)}>
           <TimerWarning />
         </BasicModalWindow>
       )}

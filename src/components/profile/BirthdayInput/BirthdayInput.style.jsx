@@ -3,13 +3,14 @@ import styled from '@emotion/styled';
 export const WrapperCalendarInput = styled.div`
   position: relative;
   width: 161px;
-  height: 52px;
+
   border-radius: 12px;
-  padding: 14px 14px;
+  padding: 11px;
   border: 1px solid rgba(239, 237, 232, 0.3);
 
   @media screen and (min-width: 768px) {
     width: 187px;
+    padding: 14px;
   }
 
   .calendar-svg {

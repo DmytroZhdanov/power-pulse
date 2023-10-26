@@ -46,21 +46,20 @@ export default function SignUpForm() {
   const dispatch = useDispatch();
   const [register, data] = useRegisterMutation();
   const { isLoading, error } = data;
-  console.log(data);
 
   const [showError, setShowError] = useState(false);
   const [showTimerWarning, setShowTimerWarning] = useState(false);
 
   useEffect(() => {
+    let id;
+
     if (isLoading) {
-      setTimeout(() => {
-        setShowTimerWarning(true);
-      }, 5000);
+      id = setTimeout(setShowTimerWarning, 5000, true);
     } else {
       setShowTimerWarning(false);
     }
 
-    return () => setShowTimerWarning(false);
+    return clearTimeout(id);
   }, [isLoading]);
 
   const formik = useFormik({
@@ -106,7 +105,7 @@ export default function SignUpForm() {
       </FormikProvider>
       {isLoading && <Loader />}
       {isLoading && showTimerWarning && (
-        <BasicModalWindow onClose={() => showTimerWarning(false)}>
+        <BasicModalWindow onClose={() => setShowTimerWarning(false)}>
           <TimerWarning />
         </BasicModalWindow>
       )}
