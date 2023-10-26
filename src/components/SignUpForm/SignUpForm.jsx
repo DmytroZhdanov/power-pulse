@@ -46,7 +46,6 @@ export default function SignUpForm() {
   const dispatch = useDispatch();
   const [register, data] = useRegisterMutation();
   const { isLoading, error } = data;
-  console.log(data);
 
   const [showError, setShowError] = useState(false);
   const [showTimerWarning, setShowTimerWarning] = useState(false);
