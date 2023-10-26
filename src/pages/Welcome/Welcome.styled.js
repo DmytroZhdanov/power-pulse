@@ -1,25 +1,43 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { ROUTER } from '../../utils/constants';
+import bg_line from 'src/assets/images/background/bg_line.png';
+
+export const Container = styled.div`
+  width: calc(100% - 40px);
+  padding-top: 127px;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 189px;
+  }
+
+  @media screen and (max-width: 1439px) {
+    position: absolute;
+    z-index: 2;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 598px;
+    padding-top: 200px;
+  }
+`;
 
 export const Title = styled.h1`
   font-size: 38px;
   font-weight: 500;
   line-height: calc(40 / 38);
-  margin-top: 127px;
   margin-bottom: 40px;
   letter-spacing: 0.38px;
 
   @media screen and (min-width: 768px) {
     font-size: 70px;
     line-height: calc(78 / 70);
-    margin-top: 189px;
     margin-bottom: 64px;
     letter-spacing: 0.7px;
   }
 
   @media screen and (min-width: 1440px) {
-    margin-top: 200px;
+    width: 598px;
   }
 `;
 
@@ -33,8 +51,7 @@ export const Span = styled.span`
     left: -9px;
     width: 98px;
     height: 35px;
-    background: url('src/assets/images/background/bg_line.png') no-repeat 50%
-      50%;
+    background: url(${bg_line}) no-repeat 50% 50%;
     background-size: 98px 35px;
 
     @media screen and (min-width: 768px) {
@@ -50,6 +67,10 @@ export const Span = styled.span`
 export const ButtonWrapper = styled.div`
   display: flex;
   gap: 14px;
+
+  @media screen and (max-width: 320px) {
+    gap: 13px;
+  }
 
   @media screen and (min-width: 768px) {
     gap: 20px;

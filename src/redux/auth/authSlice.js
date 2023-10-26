@@ -4,8 +4,8 @@ export const initialState = {
   user: {
     name: null,
     email: null,
-    avatarUrls: {},
-    params: {},
+    avatarUrls: null,
+    createdAt: null,
   },
   token: null,
 };

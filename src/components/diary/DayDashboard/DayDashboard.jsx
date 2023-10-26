@@ -2,30 +2,41 @@ import {
   BlockItem,
   BlockList,
   Container,
+  ExclamationIcon,
+  Icon,
+  IconWrapper,
   Text,
   TextWrapper,
   Title,
   TitleWrapper,
   Value,
 } from './DayDashboard.styled';
+import sprite from 'src/assets/images/sprite/sprite.svg';
+import { useFetchDailyRateQuery } from '../../../redux/api';
 
 export default function DayDashboard() {
+  const { data } = useFetchDailyRateQuery();
+
   return (
     <Container>
       <BlockList>
         <BlockItem highlighted={true}>
           <TitleWrapper>
-            {/* Icon */}
+            <Icon>
+              <use href={`${sprite}#food`}></use>
+            </Icon>
 
             <Title highlighted={true}>Daily calory intake</Title>
           </TitleWrapper>
 
-          <Value>2200</Value>
+          <Value>{data || 2200}</Value>
         </BlockItem>
 
         <BlockItem highlighted={true}>
           <TitleWrapper>
-            {/* Icon */}
+            <Icon>
+              <use href={`${sprite}#dumbbell`}></use>
+            </Icon>
 
             <Title highlighted={true}>Daily norm of sports</Title>
           </TitleWrapper>
@@ -35,7 +46,9 @@ export default function DayDashboard() {
 
         <BlockItem>
           <TitleWrapper>
-            {/* Icon */}
+            <Icon>
+              <use href={`${sprite}#apple`}></use>
+            </Icon>
 
             <Title>Calories consumed</Title>
           </TitleWrapper>
@@ -45,7 +58,9 @@ export default function DayDashboard() {
 
         <BlockItem>
           <TitleWrapper>
-            {/* Icon */}
+            <Icon>
+              <use href={`${sprite}#fire`}></use>
+            </Icon>
 
             <Title>Calories burned</Title>
           </TitleWrapper>
@@ -55,7 +70,9 @@ export default function DayDashboard() {
 
         <BlockItem caloriesOverConsumed={true}>
           <TitleWrapper>
-            {/* Icon */}
+            <Icon>
+              <use href={`${sprite}#bubble`}></use>
+            </Icon>
 
             <Title>The rest of the calories</Title>
           </TitleWrapper>
@@ -65,7 +82,9 @@ export default function DayDashboard() {
 
         <BlockItem caloriesOverBurned={true}>
           <TitleWrapper>
-            {/* Icon */}
+            <Icon>
+              <use href={`${sprite}#running`}></use>
+            </Icon>
 
             <Title>The rest of sports</Title>
           </TitleWrapper>
@@ -75,7 +94,11 @@ export default function DayDashboard() {
       </BlockList>
 
       <TextWrapper>
-        {/* Icon */}
+        <IconWrapper>
+          <ExclamationIcon>
+            <use href={`${sprite}#exclamation-mark`}></use>
+          </ExclamationIcon>
+        </IconWrapper>
 
         <Text>
           Record all your meals in a calorie diary every day. This will help me

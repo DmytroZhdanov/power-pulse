@@ -3,7 +3,7 @@
 // import ThirdStep from 'components/data/ThirdStep/ThirdStep';
 import DataComponent from '../../components/data/DataComponent';
 
-export default function Data() {
+export function Data() {
   return (
     <div>
       {/* <div>Data page</div> */}

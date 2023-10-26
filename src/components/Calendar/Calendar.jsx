@@ -1,26 +1,32 @@
 import PropTypes from 'prop-types';
 import { DayPicker } from 'react-day-picker';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { enUS } from 'date-fns/locale';
+import { CSSTransition } from 'react-transition-group';
 
-import {
-  CalendarWrapper,
-  DateTextWrapper,
-  DayPickerWrapper,
-} from './Calendar.styled';
+import { DateTextWrapper, TransitionDayPicker } from './Calendar.styled';
 import { customDayPickerStyles } from './customDayPickerStyles';
 
+import sprite from 'src/assets/images/sprite/sprite.svg';
+import 'react-day-picker/dist/style.css';
+
 export default function Calendar({
+  selected,
+  onSelect,
   inputText,
-  selectedDate,
-  setSelectedDate,
-  dateOfUserRegistration,
-  width,
-  height,
-  stroke,
+  ...dayPickerProps
 }) {
   const [showCalendar, setShowCalendar] = useState(false);
   const [positionCalendar, setPositionCalendar] = useState('bottom');
+  const dateTextWrapperRef = useRef(null);
+  const dateCalendarRef = useRef(null);
+
+  const onSelectDate = date => {
+    if (!date) {
+      return;
+    }
+    onSelect(date);
+  };
 
   const handleClick = e => {
     const windowHeight = window.innerHeight;
@@ -35,54 +41,68 @@ export default function Calendar({
 
     setShowCalendar(prev => !prev);
   };
+
+  useEffect(() => {
+    const handleClickOutside = e => {
+      if (
+        dateTextWrapperRef.current &&
+        !dateTextWrapperRef.current.contains(e.target) &&
+        dateCalendarRef.current &&
+        !dateCalendarRef.current.contains(e.target)
+      ) {
+        setShowCalendar(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
-      <CalendarWrapper>
-        <DateTextWrapper onClick={handleClick}>
-          <p>{inputText}</p>
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              width={width}
-              height={height}
-            >
-              <path
-                stroke={stroke}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.8"
-                d="M19 4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2ZM16 2v4M8 2v4M3 10h18"
-              />
-            </svg>
-          </div>
-        </DateTextWrapper>
-        {showCalendar && (
-          <DayPickerWrapper positionCalendar={positionCalendar}>
-            <DayPicker
-              // captionLayout="dropdown-buttons"
-              // fromYear={2015}
-              // toYear={2025}
-              mode="single"
-              selected={selectedDate}
-              onSelect={setSelectedDate}
-              showOutsideDays
-              locale={enUS}
-              classNames={customDayPickerStyles}
-              fromDate={dateOfUserRegistration}
-              weekStartsOn={1}
-            />
-          </DayPickerWrapper>
-        )}
-      </CalendarWrapper>
+      <DateTextWrapper ref={dateTextWrapperRef} onClick={handleClick}>
+        <p className="calendar-input-text">{inputText}</p>
+        <svg className="calendar-svg">
+          <use href={sprite + '#calendar'}></use>
+        </svg>
+      </DateTextWrapper>
+
+      <CSSTransition
+        in={showCalendar}
+        nodeRef={dateCalendarRef}
+        timeout={300}
+        classNames="day-picker-wrapper"
+        unmountOnExit
+      >
+        <TransitionDayPicker
+          ref={dateCalendarRef}
+          positionCalendar={positionCalendar}
+        >
+          <DayPicker
+            mode="single"
+            locale={enUS}
+            weekStartsOn={1}
+            showOutsideDays
+            classNames={customDayPickerStyles}
+            selected={selected}
+            onSelect={onSelectDate}
+            {...dayPickerProps}
+          />
+        </TransitionDayPicker>
+      </CSSTransition>
     </>
   );
 }
 
 Calendar.propTypes = {
   inputText: PropTypes.string.isRequired,
-  selectedDate: PropTypes.instanceOf(Date).isRequired,
-  setSelectedDate: PropTypes.func.isRequired,
-  dateOfUserRegistration: PropTypes.instanceOf(Date).isRequired,
+  dayPickerProps: PropTypes.shape({
+    selected: PropTypes.instanceOf(Date).isRequired,
+    onSelect: PropTypes.func.isRequired,
+    fromDate: PropTypes.instanceOf(Date),
+    toDate: PropTypes.instanceOf(Date),
+    captionLayout: PropTypes.string,
+  }),
 };
