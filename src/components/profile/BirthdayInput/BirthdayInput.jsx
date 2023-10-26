@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { useLazyFetchUserParamsQuery } from 'src/redux/api';
 
-import Calendar from 'src/components/diary/DaySwitch/Calendar';
+import Calendar from '../../Calendar/Calendar';
 import Icon from 'src/components/common/IconsComp/Icon';
 
 import {

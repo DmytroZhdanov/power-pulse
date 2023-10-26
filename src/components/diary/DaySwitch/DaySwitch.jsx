@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import { format } from 'date-fns';
 import { selectUserRegistrationDate } from 'src/redux/auth/selectors';
 
-import Calendar from 'src/components/diary/Calendar/Calendar';
-import Icon from 'src/components/common/IconsComp/Icon';
+import Calendar from '../../Calendar/Calendar';
+import Icon from 'components/common/IconsComp/Icon';
 
 import {
   Button,
