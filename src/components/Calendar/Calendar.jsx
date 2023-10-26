@@ -1,46 +1,45 @@
+import CalendarDatePicker from 'react-calendar';
 import PropTypes from 'prop-types';
-import { DayPicker } from 'react-day-picker';
+import { format } from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
-import { enUS } from 'date-fns/locale';
 import { CSSTransition } from 'react-transition-group';
 
-import { DateTextWrapper, TransitionDayPicker } from './Calendar.styled';
-import { customDayPickerStyles } from './customDayPickerStyles';
+import { DatePickerWrapper, TransitionDatePicker } from './Calendar.styled';
 
-import sprite from 'src/assets/images/sprite/sprite.svg';
-import 'react-day-picker/dist/style.css';
-
-export default function Calendar({
-  selected,
-  onSelect,
-  inputText,
-  ...dayPickerProps
-}) {
+const Calendar = ({ children, onChange, value, ...datePickerProps }) => {
   const [showCalendar, setShowCalendar] = useState(false);
   const [positionCalendar, setPositionCalendar] = useState('bottom');
   const dateTextWrapperRef = useRef(null);
   const dateCalendarRef = useRef(null);
+  const transitionCalendarRef = useRef(null);
 
-  const onSelectDate = date => {
-    if (!date) {
-      return;
-    }
-    onSelect(date);
+  const handleChangeDate = date => {
+    onChange(date);
+    setShowCalendar(false);
   };
 
-  const handleClick = e => {
+  const handleClickCalendarInput = e => {
     const windowHeight = window.innerHeight;
     const distanceToBottom =
       windowHeight - e.target.getBoundingClientRect().bottom;
-
     if (distanceToBottom < 250) {
       setPositionCalendar('bottom');
     } else {
       setPositionCalendar('top');
     }
-
     setShowCalendar(prev => !prev);
   };
+
+  const setCustomBtnClassName = ({ activeStartDate, date, view }) => {
+    if (view === 'month' && activeStartDate.getMonth() === date.getMonth()) {
+      return 'active-month';
+    } else {
+      return 'outside-month';
+    }
+  };
+
+  const setIsDisabledBtn = ({ activeStartDate, date, view }) =>
+    view === 'month' && activeStartDate.getMonth() !== date.getMonth();
 
   useEffect(() => {
     const handleClickOutside = e => {
@@ -50,7 +49,14 @@ export default function Calendar({
         dateCalendarRef.current &&
         !dateCalendarRef.current.contains(e.target)
       ) {
-        setShowCalendar(false);
+        if (
+          e.target.nodeName === 'ABBR' ||
+          e.target.classList.contains('react-calendar__tile')
+        ) {
+          setShowCalendar(true);
+        } else {
+          setShowCalendar(false);
+        }
       }
     };
 
@@ -62,47 +68,50 @@ export default function Calendar({
 
   return (
     <>
-      <DateTextWrapper ref={dateTextWrapperRef} onClick={handleClick}>
-        <p className="calendar-input-text">{inputText}</p>
-        <svg className="calendar-svg">
-          <use href={sprite + '#calendar'}></use>
-        </svg>
-      </DateTextWrapper>
-
-      <CSSTransition
-        in={showCalendar}
-        nodeRef={dateCalendarRef}
-        timeout={300}
-        classNames="day-picker-wrapper"
-        unmountOnExit
+      <div ref={dateTextWrapperRef} onClick={handleClickCalendarInput}>
+        {children}
+      </div>
+      <DatePickerWrapper
+        ref={dateCalendarRef}
+        positionCalendar={positionCalendar}
       >
-        <TransitionDayPicker
-          ref={dateCalendarRef}
-          positionCalendar={positionCalendar}
+        <CSSTransition
+          in={showCalendar}
+          nodeRef={transitionCalendarRef}
+          timeout={300}
+          classNames="date-picker-wrapper"
+          unmountOnExit
         >
-          <DayPicker
-            mode="single"
-            locale={enUS}
-            weekStartsOn={1}
-            showOutsideDays
-            classNames={customDayPickerStyles}
-            selected={selected}
-            onSelect={onSelectDate}
-            {...dayPickerProps}
-          />
-        </TransitionDayPicker>
-      </CSSTransition>
+          <TransitionDatePicker
+            positionCalendar={positionCalendar}
+            ref={transitionCalendarRef}
+          >
+            <CalendarDatePicker
+              className="date-picker-calendar"
+              locale={'en'}
+              minDetail="decade"
+              onChange={handleChangeDate}
+              value={value}
+              formatShortWeekday={(_, date) => format(date, 'EEEEEE')}
+              formatMonth={(_, date) => format(date, 'MMM')}
+              tileDisabled={setIsDisabledBtn}
+              tileClassName={setCustomBtnClassName}
+              {...datePickerProps}
+            />
+          </TransitionDatePicker>
+        </CSSTransition>
+      </DatePickerWrapper>
     </>
   );
-}
+};
+export default Calendar;
 
 Calendar.propTypes = {
-  inputText: PropTypes.string.isRequired,
-  dayPickerProps: PropTypes.shape({
-    selected: PropTypes.instanceOf(Date).isRequired,
-    onSelect: PropTypes.func.isRequired,
-    fromDate: PropTypes.instanceOf(Date),
-    toDate: PropTypes.instanceOf(Date),
-    captionLayout: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.instanceOf(Date).isRequired,
+
+  datePickerProps: PropTypes.shape({
+    minDate: PropTypes.instanceOf(Date),
+    maxDate: PropTypes.instanceOf(Date),
   }),
 };

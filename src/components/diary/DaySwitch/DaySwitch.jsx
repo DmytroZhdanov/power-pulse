@@ -1,11 +1,19 @@
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
-
-import Calendar from 'components/Calendar/Calendar';
-import sprite from 'src/assets/images/sprite/sprite.svg';
-import { Button, CalendarWrapper, Wrapper } from './DaySwitch.style';
-import { selectUserRegistrationDate } from 'src/redux/auth/selectors';
 import { useSelector } from 'react-redux';
+import { format } from 'date-fns';
+import { selectUserRegistrationDate } from 'src/redux/auth/selectors';
+
+import Calendar from 'src/components/diary/Calendar/Calendar';
+import Icon from 'src/components/common/IconsComp/Icon';
+
+import {
+  Button,
+  CalendarIcon,
+  CalendarWrapper,
+  InputText,
+  InputWrapper,
+  Wrapper,
+} from './DaySwitch.style';
 
 export default function DaySwitch({ selectedDate, setSelectedDate }) {
   const dateOfUserRegistration = new Date(
@@ -31,26 +39,27 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
     <Wrapper>
       <CalendarWrapper>
         <Calendar
-          inputText={format(selectedDate, 'dd/MM/yyyy')}
-          selected={selectedDate}
-          onSelect={setSelectedDate}
-          fromDate={dateOfUserRegistration}
-        />
+          onChange={setSelectedDate}
+          value={selectedDate}
+          minDate={dateOfUserRegistration}
+        >
+          <InputWrapper>
+            <InputText> {format(selectedDate, 'dd/MM/yyyy')}</InputText>
+            <CalendarIcon>
+              <Icon name="calendar" />
+            </CalendarIcon>
+          </InputWrapper>
+        </Calendar>
       </CalendarWrapper>
-
       <div>
         <Button
           disabled={isDateOfUserRegistration}
           onClick={handlePreviousClick}
         >
-          <svg>
-            <use href={sprite + '#nav-arrow-left'}></use>
-          </svg>
+          <Icon name="nav-arrow-left" />
         </Button>
         <Button onClick={handleNextClick}>
-          <svg>
-            <use href={sprite + '#nav-arrow-right'}></use>
-          </svg>
+          <Icon name="nav-arrow-right" />
         </Button>
       </div>
     </Wrapper>
