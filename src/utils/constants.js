@@ -19,7 +19,7 @@ export const DATA_STEPS = {
 
 export const EXERCISES_CATEGORY = {
   BODY_PARTS: 'bodyPart',
-  MUSCLES: 'muscles',
+  MUSCLES: 'target',
   EQUIPMENT: 'equipment',
 };
 
