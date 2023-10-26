@@ -1,1 +1,0 @@
-import{j as e,O as s}from"./index-7e7f4bc6.js";import{T as r}from"./TitlePage-359a8e0d.js";function i(){return e.jsx("div",{children:"ExercisesCategories component"})}function x(){return e.jsxs(e.Fragment,{children:[e.jsx("div",{children:"Exercises page"}),e.jsx(r,{}),e.jsx(i,{}),e.jsx(s,{})]})}export{x as Exercises};
