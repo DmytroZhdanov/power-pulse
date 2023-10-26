@@ -25,7 +25,7 @@ export function Exercises() {
         <ExercisesCategories setCategory={setCategory} category={category} />
       </Wrapper>
       {exercisesRoute && <ExercisesSubcategoriesList category={category} />}
-      <Outlet />
+      <Outlet context={category} />
     </>
   );
 }
