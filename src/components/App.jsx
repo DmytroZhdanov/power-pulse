@@ -220,7 +220,7 @@ export default function App() {
   useEffect(() => {
     const refetch = async () => {
       if (token) {
-        const user = await refresh().unwrap();
+        const { user } = await refresh().unwrap();
         dispatch(setCredentials({ user, token }));
       }
     };
