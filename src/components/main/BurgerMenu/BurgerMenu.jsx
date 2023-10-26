@@ -18,7 +18,7 @@ export default function BurgerMenu({ openedModal, setOpenedModal }) {
         </SvgBtn>
       </ButtonClose>
 
-      <UserNav border={'true'} />
+      <UserNav border={true} />
 
       <Wrap>
         <LogOutBtn white={true} />

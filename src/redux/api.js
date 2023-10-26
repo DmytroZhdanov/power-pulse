@@ -89,6 +89,10 @@ export const api = createApi({
     fetchUserParams: builder.query({
       query: () => ({ url: '/users/params' }),
     }),
+    fetchDailyRate: builder.query({
+      query: () => ({ url: '/users/params' }),
+      transformResponse: response => response.bmr,
+    }),
     refresh: builder.query({
       query: () => ({ url: '/users/current' }),
     }),
@@ -178,6 +182,7 @@ export const {
   useUpdateUserNameMutation,
   useUpdateUserAvatarMutation,
   useLazyFetchUserParamsQuery,
+  useFetchDailyRateQuery,
   useLazyRefreshQuery,
   useLogoutMutation,
   useLazyFetchAllProductsQuery,

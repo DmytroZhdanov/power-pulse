@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik, FormikProvider, Form, useField } from 'formik';
 import {
@@ -15,6 +15,9 @@ import { useRegisterMutation } from 'src/redux/api';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from 'src/redux/auth/authSlice';
 import Loader from 'components/Loader/Loader';
+import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
+import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
+import TimerWarning from 'components/common/TimerWarning/TimerWarning';
 
 const Feedback = ({ ...props }) => {
   const [field, meta] = useField(props);
@@ -41,7 +44,23 @@ const Feedback = ({ ...props }) => {
 
 export default function SignUpForm() {
   const dispatch = useDispatch();
-  const [register, { isLoading }] = useRegisterMutation();
+  const [register, data] = useRegisterMutation();
+  const { isLoading, error } = data;
+
+  const [showError, setShowError] = useState(false);
+  const [showTimerWarning, setShowTimerWarning] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setShowTimerWarning(true);
+      }, 5000);
+    } else {
+      setShowTimerWarning(false);
+    }
+
+    return () => setShowTimerWarning(false);
+  }, [isLoading]);
 
   const formik = useFormik({
     initialValues: {
@@ -50,9 +69,14 @@ export default function SignUpForm() {
       password: '',
     },
     onSubmit: async (values, { resetForm }) => {
-      const data = await register(values).unwrap();
-      dispatch(setCredentials(data));
-      resetForm();
+      try {
+        const data = await register(values).unwrap();
+        dispatch(setCredentials(data));
+        resetForm();
+      } catch {
+        setShowError(true);
+        setTimeout(() => setShowError(false), 2000);
+      }
     },
     validationSchema: signUpFormSchema,
   });
@@ -80,6 +104,16 @@ export default function SignUpForm() {
         </Form>
       </FormikProvider>
       {isLoading && <Loader />}
+      {isLoading && showTimerWarning && (
+        <BasicModalWindow onClose={() => setShowTimerWarning(false)}>
+          <TimerWarning />
+        </BasicModalWindow>
+      )}
+      {showError && (
+        <BasicModalWindow onClose={() => setShowError(false)}>
+          <ErrorMessage message={error.data.message} />
+        </BasicModalWindow>
+      )}
     </>
   );
 }

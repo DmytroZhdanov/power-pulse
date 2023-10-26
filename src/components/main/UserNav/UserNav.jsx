@@ -5,7 +5,7 @@ import {
   ExercisesLink,
 } from './UserNav.styled';
 
-export default function UserNav(props) {
+export default function UserNav() {
   return (
     <Navigation>
       <DiaryLink {...props} to="/diary">

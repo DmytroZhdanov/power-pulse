@@ -34,6 +34,7 @@ export const DayPickerWrapper = styled.div`
     font-size: 14px;
     line-height: 1.29;
     letter-spacing: -0.28px;
+    color: #efede8;
   }
 
   .month-title-dropdown {
@@ -140,6 +141,10 @@ export const DayPickerWrapper = styled.div`
   .days-of-month-outside {
     color: rgba(239, 237, 232, 0.2);
     cursor: not-allowed;
+  }
+
+  .days-of-month-outside {
+    pointer-events: none;
   }
 
   .day-selected {
