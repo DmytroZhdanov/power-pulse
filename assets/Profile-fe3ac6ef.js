@@ -1,4 +1,4 @@
-import{d as n,r as h,j as e,I as u,e as k,n as i,P as y}from"./index-caebc7c7.js";import{T as C}from"./TitlePage-aa889883.js";import{c as B,a as c,e as f,f as S,u as F}from"./index.esm-218ef8df.js";import{f as q,C as D}from"./Calendar-aa5b99ec.js";const W=n.div`
+import{d as n,r as h,j as e,I as u,e as k,n as i,P as y}from"./index-6a2b2a98.js";import{T as C}from"./TitlePage-b6a45e81.js";import{c as B,a as c,e as f,f as S,u as F}from"./index.esm-67ffaab7.js";import{f as q,C as D}from"./Calendar-416e18f4.js";const W=n.div`
   width: 335px;
   display: flex;
   flex-direction: column;
@@ -424,13 +424,14 @@ import{d as n,r as h,j as e,I as u,e as k,n as i,P as y}from"./index-caebc7c7.js
 `,te=new Date(2006,1,1),re=te.getFullYear(),ne=B({name:c().min(4).required("The field is required"),email:c().email("Please, enter a valid email (exemple@gmail.com) ").required("The field is required"),height:f().required("Please, enter your height").min(150).max(230),curWeight:f().required("Please, enter your weight").min(35),desWeight:f().required("The field is required").min(35),birthday:S().nullable().max(`${re}`,"your age must to be 18+").required("the field is required"),blood:c().required("required"),gender:c().required(),lifestyle:c().required()}),de=i.div`
   position: relative;
   width: 161px;
-  height: 52px;
+
   border-radius: 12px;
-  padding: 14px 14px;
+  padding: 11px;
   border: 1px solid rgba(239, 237, 232, 0.3);
 
   @media screen and (min-width: 768px) {
     width: 187px;
+    padding: 14px;
   }
 
   .calendar-svg {
