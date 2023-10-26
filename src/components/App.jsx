@@ -250,7 +250,7 @@ export default function App() {
       <RouterProvider router={router} />
       {isFetching && <Loader />}
       {isFetching && showTimerWarning && (
-        <BasicModalWindow onClose={() => showTimerWarning(false)}>
+        <BasicModalWindow onClose={() => setShowTimerWarning(false)}>
           <TimerWarning />
         </BasicModalWindow>
       )}

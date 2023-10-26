@@ -101,7 +101,7 @@ export default function SignInForm() {
       </FormikProvider>
       {isLoading && <Loader />}
       {isLoading && showTimerWarning && (
-        <BasicModalWindow onClose={() => showTimerWarning(false)}>
+        <BasicModalWindow onClose={() => setShowTimerWarning(false)}>
           <TimerWarning />
         </BasicModalWindow>
       )}
