@@ -9,7 +9,7 @@ export const Background = styled.div`
 
   width: 298px;
   height: 571px;
-  top: 421px;
+  top: ${props => (props.isError ? '241px' : '421px')};
 
   background-image: ${props => {
     switch (props.keyword) {
@@ -48,7 +48,7 @@ export const Background = styled.div`
   background-size: 298px 571px;
 
   @media screen and (min-width: 375px) {
-    top: 361px;
+    top: ${props => (props.isError ? '241px' : '361px')};
   }
 
   @media screen and (min-width: 768px) {
@@ -150,13 +150,13 @@ const Block = styled.div`
   font-weight: 700;
 
   :nth-of-type(1) {
-    bottom: 300px;
-    left: 0;
+    bottom: ${props => (props.isError ? '186px' : '300px')};
+    left: ${props => (props.isError ? '44px' : 0)};
   }
 
   :nth-of-type(2) {
-    bottom: 210px;
-    right: 20px;
+    bottom: ${props => (props.isError ? '40px' : '210px')};
+    right: ${props => (props.isError ? '20px' : '20px')};
   }
 
   :nth-of-type(3) {
@@ -176,13 +176,13 @@ const Block = styled.div`
 
   @media screen and (min-width: 768px) {
     :nth-of-type(1) {
-      bottom: 360px;
-      left: -40px;
+      bottom: ${props => (props.isError ? '214px' : '360px')};
+      left: ${props => (props.isError ? 0 : '-40px')};
     }
 
     :nth-of-type(2) {
-      bottom: 265px;
-      right: 32px;
+      bottom: ${props => (props.isError ? '48px' : '265px')};
+      right: ${props => (props.isError ? '32px' : '32px')};
     }
 
     :nth-of-type(3) {
@@ -203,13 +203,13 @@ const Block = styled.div`
 
   @media screen and (min-width: 1440px) {
     :nth-of-type(1) {
-      bottom: 460px;
-      left: -40px;
+      bottom: ${props => (props.isError ? '320px' : '460px')};
+      left: ${props => (props.isError ? 0 : '-40px')};
     }
 
     :nth-of-type(2) {
-      bottom: 335px;
-      right: 62px;
+      bottom: ${props => (props.isError ? '171px' : '335px')};
+      right: ${props => (props.isError ? '32px' : '62px')};
     }
 
     :nth-of-type(3) {

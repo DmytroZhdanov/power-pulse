@@ -16,15 +16,31 @@ import sprite from 'src/assets/images/sprite/sprite.svg';
 import { ROUTER } from 'src/utils/constants';
 import { useFetchStatisticQuery } from '../../../redux/api';
 import Loader from '../../Loader/Loader';
+import { useEffect, useState } from 'react';
+import BasicModalWindow from '../../common/BasicModalWindow/BasicModalWindow';
+import TimerWarning from '../../common/TimerWarning/TimerWarning';
 
 export default function StatisticsInfo({ pathname, page }) {
-  const { data, isFetching } = useFetchStatisticQuery();
+  const [showTimerWarning, setShowTimerWarning] = useState(false);
+  const { data, isFetching, isError } = useFetchStatisticQuery();
 
   const path = pathname.split('');
   const keyword =
     page === '' || page === ROUTER.SIGN_UP || page === ROUTER.SIGN_IN
       ? 'main'
       : path[path.length - 1];
+
+  useEffect(() => {
+    if (isFetching) {
+      setTimeout(() => {
+        setShowTimerWarning(true);
+      }, 5000);
+    } else {
+      setShowTimerWarning(false);
+    }
+
+    return () => setShowTimerWarning(false);
+  }, [isFetching]);
 
   const formatNumber = number => {
     if (number < 1000) {
@@ -35,88 +51,128 @@ export default function StatisticsInfo({ pathname, page }) {
   };
 
   return (
-    isFetching && <Loader />,
-    data && (
-      <Background keyword={keyword}>
-        <DarkBlock>
-          <DarkBlockIconWrapper>
-            <DarkBlockIcon>
-              <use href={`${sprite}#play`} />
-            </DarkBlockIcon>
-          </DarkBlockIconWrapper>
+    <>
+      {isFetching && <Loader />}
+      {isFetching && showTimerWarning && (
+        <BasicModalWindow onClose={() => setShowTimerWarning(false)}>
+          <TimerWarning />
+        </BasicModalWindow>
+      )}
+      <Background keyword={keyword} isError={isError}>
+        {data && (
+          <>
+            <DarkBlock>
+              <DarkBlockIconWrapper>
+                <DarkBlockIcon>
+                  <use href={`${sprite}#play`} />
+                </DarkBlockIcon>
+              </DarkBlockIconWrapper>
 
-          <div>
-            <DarkBlockSpan>{data.exerciseTotalQuantity}</DarkBlockSpan>
+              <div>
+                <DarkBlockSpan>{data.exerciseTotalQuantity}</DarkBlockSpan>
 
-            <DarkBlockText>Video tutorial</DarkBlockText>
-          </div>
-        </DarkBlock>
+                <DarkBlockText>Video tutorial</DarkBlockText>
+              </div>
+            </DarkBlock>
 
-        <ColoredBlock>
-          <div>
-            <ColoredBlockIconWrapper>
-              <ColoredBlockIcon>
-                <use href={`${sprite}#running`} />
-              </ColoredBlockIcon>
-            </ColoredBlockIconWrapper>
+            <ColoredBlock>
+              <div>
+                <ColoredBlockIconWrapper>
+                  <ColoredBlockIcon>
+                    <use href={`${sprite}#running`} />
+                  </ColoredBlockIcon>
+                </ColoredBlockIconWrapper>
 
-            <ColoredBlockSpan>
-              {formatNumber(data.caloriesTotalQuantity)}
-            </ColoredBlockSpan>
-          </div>
+                <ColoredBlockSpan>
+                  {formatNumber(data.caloriesTotalQuantity)}
+                </ColoredBlockSpan>
+              </div>
 
-          <ColoredBlockText>cal</ColoredBlockText>
-        </ColoredBlock>
+              <ColoredBlockText>cal</ColoredBlockText>
+            </ColoredBlock>
 
-        <DarkBlock>
-          <DarkBlockIconWrapper>
-            <DarkBlockIcon>
-              <use href={`${sprite}#play`} />
-            </DarkBlockIcon>
-          </DarkBlockIconWrapper>
+            <DarkBlock>
+              <DarkBlockIconWrapper>
+                <DarkBlockIcon>
+                  <use href={`${sprite}#play`} />
+                </DarkBlockIcon>
+              </DarkBlockIconWrapper>
 
-          <div>
-            <DarkBlockSpan>
-              {formatNumber(data.usersTotalQuantity)}
-            </DarkBlockSpan>
+              <div>
+                <DarkBlockSpan>
+                  {formatNumber(data.usersTotalQuantity)}
+                </DarkBlockSpan>
 
-            <DarkBlockText>Users</DarkBlockText>
-          </div>
-        </DarkBlock>
+                <DarkBlockText>Users</DarkBlockText>
+              </div>
+            </DarkBlock>
 
-        <ColoredBlock>
-          <div>
-            <ColoredBlockIconWrapper>
-              <ColoredBlockIcon>
-                <use href={`${sprite}#running`} />
-              </ColoredBlockIcon>
-            </ColoredBlockIconWrapper>
+            <ColoredBlock>
+              <div>
+                <ColoredBlockIconWrapper>
+                  <ColoredBlockIcon>
+                    <use href={`${sprite}#running`} />
+                  </ColoredBlockIcon>
+                </ColoredBlockIconWrapper>
 
-            <ColoredBlockSpan>
-              {formatNumber(data.timeTotalQuantity)}
-            </ColoredBlockSpan>
-          </div>
+                <ColoredBlockSpan>
+                  {formatNumber(data.timeTotalQuantity)}
+                </ColoredBlockSpan>
+              </div>
 
-          <ColoredBlockText>minutes</ColoredBlockText>
-        </ColoredBlock>
+              <ColoredBlockText>minutes</ColoredBlockText>
+            </ColoredBlock>
 
-        <DarkBlock>
-          <DarkBlockIconWrapper>
-            <DarkBlockIcon>
-              <use href={`${sprite}#play`} />
-            </DarkBlockIcon>
-          </DarkBlockIconWrapper>
+            <DarkBlock>
+              <DarkBlockIconWrapper>
+                <DarkBlockIcon>
+                  <use href={`${sprite}#play`} />
+                </DarkBlockIcon>
+              </DarkBlockIconWrapper>
 
-          <div>
-            <DarkBlockSpan>
-              {formatNumber(data.exerciseDoneTotalQuantity)}
-            </DarkBlockSpan>
+              <div>
+                <DarkBlockSpan>
+                  {formatNumber(data.exerciseDoneTotalQuantity)}
+                </DarkBlockSpan>
 
-            <DarkBlockText>Exercises performed</DarkBlockText>
-          </div>
-        </DarkBlock>
+                <DarkBlockText>Exercises performed</DarkBlockText>
+              </div>
+            </DarkBlock>
+          </>
+        )}
+        {isError && (
+          <>
+            <DarkBlock isError={isError}>
+              <DarkBlockIconWrapper>
+                <DarkBlockIcon>
+                  <use href={`${sprite}#play`} />
+                </DarkBlockIcon>
+              </DarkBlockIconWrapper>
+
+              <div>
+                <DarkBlockSpan>350+</DarkBlockSpan>
+
+                <DarkBlockText>Video tutorial</DarkBlockText>
+              </div>
+            </DarkBlock>
+
+            <ColoredBlock isError={isError}>
+              <div>
+                <ColoredBlockIconWrapper>
+                  <ColoredBlockIcon>
+                    <use href={`${sprite}#running`} />
+                  </ColoredBlockIcon>
+                </ColoredBlockIconWrapper>
+
+                <ColoredBlockSpan>500</ColoredBlockSpan>
+              </div>
+
+              <ColoredBlockText>cal</ColoredBlockText>
+            </ColoredBlock>
+          </>
+        )}
       </Background>
-    )
+    </>
   );
 }
 
