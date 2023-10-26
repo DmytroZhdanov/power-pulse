@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   DivFilter,
   DivSearch,
@@ -10,20 +10,44 @@ import {
   StyledSelect,
 } from './ProductsFilters.styled';
 
+import { PRODUCTS_FILTER } from '../../../utils/constants';
+const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
+import { useLazyFetchAllProductsQuery } from '../../../redux/api';
+
 const emptyFilter = {
-  QUERY: '',
-  CATEGORY: '',
-  RECOMMENDED: '',
+  [QUERY]: '',
+  [CATEGORY]: '',
+  [RECOMMENDED]: '',
 };
 
-export default function ProductsFilters({ products }) {
+export default function ProductsFilters({ onProductsChange }) {
   const [filter, setFilter] = useState(emptyFilter);
   const [search, setSearch] = useState('');
+  const [products, setProducts] = useState([]);
 
-  console.log('filter:', filter);
+  const [getProducts, data] = useLazyFetchAllProductsQuery(filter);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getProducts(filter).unwrap();
+        setProducts(response);
+        onProductsChange(products);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+
+    fetchData();
+  }, [filter]);
 
   const handleClean = () => {
     setSearch('');
+    setFilter(prevFilter => ({
+      ...prevFilter,
+      [QUERY]: '',
+    }));
+    console.log('clean');
   };
 
   const uniqueCategories = Array.from(
@@ -35,20 +59,36 @@ export default function ProductsFilters({ products }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedRecommended, setSelectedRecommended] = useState(null);
 
-  const handleSelectCategoty = selectedCategory => {
+  const handleSelectCategory = selectedCategory => {
     setSelectedCategory(selectedCategory);
     setFilter(prevFilter => ({
       ...prevFilter,
-      CATEGORY: selectedCategory.label,
+      [CATEGORY]: selectedCategory.label,
     }));
   };
 
   const handleSelectRecommended = selectedRecommended => {
     setSelectedRecommended(selectedRecommended);
-    setFilter(prevFilter => ({
-      ...prevFilter,
-      RECOMMENDED: selectedRecommended.label,
-    }));
+
+    switch (selectedRecommended.label) {
+      case 'Recommended':
+        setFilter(prevFilter => ({
+          ...prevFilter,
+          [RECOMMENDED]: true,
+        }));
+        break;
+      case 'Not recommended':
+        setFilter(prevFilter => ({
+          ...prevFilter,
+          [RECOMMENDED]: false,
+        }));
+        break;
+      default:
+        setFilter(prevFilter => ({
+          ...prevFilter,
+          [RECOMMENDED]: null,
+        }));
+    }
   };
 
   return (
@@ -56,12 +96,13 @@ export default function ProductsFilters({ products }) {
       <DivSearch>
         <InputSearch
           type="text"
-          value={filter.QUERY}
+          value={filter[QUERY]}
           onChange={e => {
             setFilter(prevFilter => ({
               ...prevFilter,
-              QUERY: e.target.value,
+              [QUERY]: e.target.value.trim(),
             }));
+            setSearch(e.target.value);
           }}
         />
 
@@ -157,7 +198,7 @@ export default function ProductsFilters({ products }) {
               }),
             }}
             value={selectedCategory}
-            onChange={handleSelectCategoty}
+            onChange={handleSelectCategory}
             options={uniqueCategories.map(category => ({
               label: category,
             }))}

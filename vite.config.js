@@ -12,4 +12,7 @@ export default defineConfig({
     },
   },
   base: '/power-pulse/',
+  server: {
+    port: 3000,
+  },
 });

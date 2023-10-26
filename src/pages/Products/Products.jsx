@@ -1,14 +1,20 @@
 import TitlePage from 'components/common/TitlePage/TitlePage';
 import ProductsFilters from 'components/products/ProductsFilters/ProductsFilters';
 import ProductsList from 'components/products/ProductsList/ProductsList';
-import products from './products.json';
+import { useState } from 'react';
 
 export function Products() {
+  const [products, setProducts] = useState([]);
+
+  const handleProductsChange = newProducts => {
+    setProducts(newProducts);
+  };
+
   return (
     <>
       <div>Products page</div>
       <TitlePage />
-      <ProductsFilters products={products} />
+      <ProductsFilters onProductsChange={handleProductsChange} />
       <ProductsList products={products} />
     </>
   );

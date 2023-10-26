@@ -6,15 +6,15 @@ export const ProductCard = styled.li`
   border: 1px solid rgba(239, 237, 232, 0.2);
 
   @media screen and (max-width: 374px) {
-    max-width: 335px;
+    max-width: 320px;
   }
 
   @media screen and (min-width: 375px) {
-    width: 335px;
+    width: 320px;
   }
 
   @media screen and (min-width: 1440px) {
-    width: 405px;
+    width: 370px;
   }
 `;
 

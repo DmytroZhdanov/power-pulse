@@ -49,7 +49,7 @@ export const InputSearch = styled.input`
 export const SvgSearch = styled.svg`
   position: absolute;
   right: 14px;
-  top: 18px;
+  top: 16px;
   color: rgba(239, 237, 232, 0.4);
   font-size: 12px;
   line-height: calc(18 / 12);
@@ -58,7 +58,7 @@ export const SvgSearch = styled.svg`
 export const BtnClean = styled.button`
   position: absolute;
   right: 36px;
-  top: 18px;
+  top: 16px;
   border: none;
   background: none;
   padding: 0;
