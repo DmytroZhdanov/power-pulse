@@ -9,7 +9,7 @@ export const Background = styled.div`
 
   width: 298px;
   height: 571px;
-  margin-top: 241px;
+  top: 421px;
 
   background-image: ${props => {
     switch (props.keyword) {
@@ -47,11 +47,15 @@ export const Background = styled.div`
   }};
   background-size: 298px 571px;
 
+  @media screen and (min-width: 375px) {
+    top: 361px;
+  }
+
   @media screen and (min-width: 768px) {
+    top: 131px;
     right: -12px;
     width: 437px;
     height: 893px;
-    margin-top: 131px;
 
     background-image: ${props => {
       switch (props.keyword) {
@@ -98,7 +102,7 @@ export const Background = styled.div`
     right: -96px;
     width: 670px;
     height: 800px;
-    margin-top: 0;
+    top: 0;
 
     background-image: ${props => {
       switch (props.keyword) {
@@ -144,6 +148,85 @@ const Block = styled.div`
   padding: 14px 18px;
   border-radius: 12px;
   font-weight: 700;
+
+  :nth-of-type(1) {
+    bottom: 300px;
+    left: 0;
+  }
+
+  :nth-of-type(2) {
+    bottom: 210px;
+    right: 20px;
+  }
+
+  :nth-of-type(3) {
+    bottom: 160px;
+    left: 0;
+  }
+
+  :nth-of-type(4) {
+    bottom: 70px;
+    right: 20px;
+  }
+
+  :nth-of-type(5) {
+    bottom: 20px;
+    left: 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    :nth-of-type(1) {
+      bottom: 360px;
+      left: -40px;
+    }
+
+    :nth-of-type(2) {
+      bottom: 265px;
+      right: 32px;
+    }
+
+    :nth-of-type(3) {
+      bottom: 190px;
+      left: -40px;
+    }
+
+    :nth-of-type(4) {
+      bottom: 95px;
+      right: 32px;
+    }
+
+    :nth-of-type(5) {
+      bottom: 20px;
+      left: -40px;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    :nth-of-type(1) {
+      bottom: 460px;
+      left: -40px;
+    }
+
+    :nth-of-type(2) {
+      bottom: 335px;
+      right: 62px;
+    }
+
+    :nth-of-type(3) {
+      bottom: 250px;
+      left: -190px;
+    }
+
+    :nth-of-type(4) {
+      bottom: 105px;
+      right: 152px;
+    }
+
+    :nth-of-type(5) {
+      bottom: 40px;
+      left: -100px;
+    }
+  }
 `;
 
 const IconWrapper = styled.div`
@@ -154,21 +237,13 @@ const IconWrapper = styled.div`
 `;
 
 export const DarkBlock = styled(Block)`
-  bottom: 186px;
-  left: 44px;
   align-items: center;
   gap: 8px;
   background-color: #303030;
 
   @media screen and (min-width: 768px) {
-    bottom: 214px;
-    left: 0;
     gap: 12px;
     padding: 20px 36px 20px 23px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    bottom: 320px;
   }
 `;
 
@@ -219,22 +294,14 @@ export const DarkBlockSpan = styled.p`
 `;
 
 export const ColoredBlock = styled(Block)`
-  bottom: 40px;
-  right: 20px;
   align-items: flex-end;
   gap: 8px;
   padding-right: 37px;
   background-color: #ef8964;
 
   @media screen and (min-width: 768px) {
-    bottom: 48px;
-    right: 32px;
     gap: 11px;
     padding: 14px 38px 14px 28px;
-  }
-
-  @media screen and (min-width: 1440px) {
-    bottom: 171px;
   }
 `;
 
