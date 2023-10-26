@@ -88,6 +88,7 @@ export default function SignInForm() {
 
           <Inputs>
             <Feedback name="email" type="email" placeholder="Email" />
+
             <Feedback
               name="password"
               type="password"

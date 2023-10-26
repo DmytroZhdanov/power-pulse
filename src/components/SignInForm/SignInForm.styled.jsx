@@ -25,7 +25,10 @@ export const Inputs = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 18px;
-  position: relative;
+  
+  div {
+    position: relative;
+  }
 
   button {
     position: absolute;
