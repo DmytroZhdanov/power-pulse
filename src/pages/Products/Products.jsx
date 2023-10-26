@@ -12,7 +12,6 @@ export function Products() {
 
   return (
     <>
-      <div>Products page</div>
       <TitlePage />
       <ProductsFilters onProductsChange={handleProductsChange} />
       <ProductsList products={products} />

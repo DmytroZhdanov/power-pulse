@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
+  Title,
   DivFilter,
   DivSearch,
   InputSearch,
@@ -12,7 +13,10 @@ import {
 
 import { PRODUCTS_FILTER } from '../../../utils/constants';
 const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
-import { useLazyFetchAllProductsQuery } from '../../../redux/api';
+import {
+  useLazyFetchAllProductsQuery,
+  useFetchProductsCategoriesQuery,
+} from '../../../redux/api';
 
 const emptyFilter = {
   [QUERY]: '',
@@ -23,16 +27,23 @@ const emptyFilter = {
 export default function ProductsFilters({ onProductsChange }) {
   const [filter, setFilter] = useState(emptyFilter);
   const [search, setSearch] = useState('');
-  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
-  const [getProducts, data] = useLazyFetchAllProductsQuery(filter);
+  const [getProducts] = useLazyFetchAllProductsQuery();
+  const currentData = useFetchProductsCategoriesQuery();
+
+  useEffect(() => {
+    if (currentData.isSuccess) {
+      const [productsCategories] = currentData.data;
+      setCategories(productsCategories.productsCategories);
+    }
+  }, [currentData]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getProducts(filter).unwrap();
-        setProducts(response);
-        onProductsChange(products);
+        onProductsChange(response);
       } catch (error) {
         console.error('Error fetching data:', error.message);
       }
@@ -47,12 +58,7 @@ export default function ProductsFilters({ onProductsChange }) {
       ...prevFilter,
       [QUERY]: '',
     }));
-    console.log('clean');
   };
-
-  const uniqueCategories = Array.from(
-    new Set(products.map(item => item.category)),
-  );
 
   const arrRecommende = ['All', 'Recommended', 'Not recommended'];
 
@@ -74,13 +80,13 @@ export default function ProductsFilters({ onProductsChange }) {
       case 'Recommended':
         setFilter(prevFilter => ({
           ...prevFilter,
-          [RECOMMENDED]: true,
+          [RECOMMENDED]: [true],
         }));
         break;
       case 'Not recommended':
         setFilter(prevFilter => ({
           ...prevFilter,
-          [RECOMMENDED]: false,
+          [RECOMMENDED]: [false],
         }));
         break;
       default:
@@ -92,206 +98,210 @@ export default function ProductsFilters({ onProductsChange }) {
   };
 
   return (
-    <DivFilter>
-      <DivSearch>
-        <InputSearch
-          type="text"
-          value={filter[QUERY]}
-          onChange={e => {
-            setFilter(prevFilter => ({
-              ...prevFilter,
-              [QUERY]: e.target.value.trim(),
-            }));
-            setSearch(e.target.value);
-          }}
-        />
-
-        <SvgSearch width="18" height="18">
-          <use href="/src/assets/images/sprite/sprite.svg#search"></use>
-        </SvgSearch>
-        {search.trim() && (
-          <BtnClean onClick={handleClean}>
-            <svg width="18" height="18">
-              <use href="/src/assets/images/sprite/sprite.svg#x-clean"></use>
-            </svg>
-          </BtnClean>
-        )}
-      </DivSearch>
-      <SelectRow>
-        <SelectContainer>
-          <StyledSelect
-            styles={{
-              option: baseStyles => ({
-                ...baseStyles,
-                background: '#1C1C1C',
-              }),
-              control: baseStyles => ({
-                ...baseStyles,
-                width: '100%',
-                background: '#040404',
-                borderRadius: '12px',
-                height: '44px',
-                border: '0px solid rgba(239, 237, 232, 0.3)',
-                boxShadow: 'none',
-                '&:focus': {
-                  boxShadow: 'none',
-                  borderColor: '#E6533C',
-                },
-              }),
-              dropdownIndicator: baseStyles => ({
-                ...baseStyles,
-                display: 'none',
-                '@media (min-width: 768px)': {
-                  display: 'flex',
-                  justifyContent: 'flex-end',
-                  color: '#efede8',
-                },
-              }),
-              menu: baseStyles => ({
-                ...baseStyles,
-                background: '#040404',
-                border: 'none',
-              }),
-              menuList: baseStyles => ({
-                ...baseStyles,
-                maxHeight: '228px',
-                borderRadius: '12px',
-                pading: '14px',
-              }),
-              indicatorSeparator: baseStyles => ({
-                ...baseStyles,
-                display: 'none',
-              }),
-              placeholder: baseStyles => ({
-                ...baseStyles,
-                color: '#efede8',
-              }),
-              singleValue: baseStyles => ({
-                ...baseStyles,
-                color: '#efede8',
-
-                justifyContent: 'center',
-              }),
-              container: baseStyles => ({
-                ...baseStyles,
-                display: 'flex',
-                alignItems: 'center',
-                '&:focus': {
-                  border: '1px solid #E6533C',
-                },
-                border: '1px',
-                height: '46px',
-                '@media (min-width: 768px)': {
-                  height: '52px',
-                  width: '192px',
-                },
-              }),
-              input: baseStyles => ({
-                ...baseStyles,
-                fontSize: '14px',
-              }),
-              valueContainer: baseStyles => ({
-                ...baseStyles,
-                '@media (min-width: 768px)': {
-                  width: '146px',
-                },
-              }),
+    <>
+      {' '}
+      <Title>Products</Title>
+      <DivFilter>
+        <DivSearch>
+          <InputSearch
+            type="text"
+            value={filter[QUERY]}
+            onChange={e => {
+              setFilter(prevFilter => ({
+                ...prevFilter,
+                [QUERY]: e.target.value.trim(),
+              }));
+              setSearch(e.target.value);
             }}
-            value={selectedCategory}
-            onChange={handleSelectCategory}
-            options={uniqueCategories.map(category => ({
-              label: category,
-            }))}
-            placeholder="Categories"
           />
-        </SelectContainer>
-        <SelectContainer>
-          <StyledSelect
-            styles={{
-              option: baseStyles => ({
-                ...baseStyles,
-                background: '#1C1C1C',
-              }),
-              control: baseStyles => ({
-                ...baseStyles,
-                width: '100%',
-                background: '#040404',
-                borderRadius: '12px',
-                height: '44px',
-                border: '0px solid rgba(239, 237, 232, 0.3)',
-                boxShadow: 'none',
-                '&:focus': {
+
+          <SvgSearch width="18" height="18">
+            <use href="/src/assets/images/sprite/sprite.svg#search"></use>
+          </SvgSearch>
+          {search.trim() && (
+            <BtnClean onClick={handleClean}>
+              <svg width="18" height="18">
+                <use href="/src/assets/images/sprite/sprite.svg#x-clean"></use>
+              </svg>
+            </BtnClean>
+          )}
+        </DivSearch>
+        <SelectRow>
+          <SelectContainer>
+            <StyledSelect
+              styles={{
+                option: baseStyles => ({
+                  ...baseStyles,
+                  background: '#1C1C1C',
+                }),
+                control: baseStyles => ({
+                  ...baseStyles,
+                  width: '100%',
+                  background: '#040404',
+                  borderRadius: '12px',
+                  height: '44px',
+                  border: '0px solid rgba(239, 237, 232, 0.3)',
                   boxShadow: 'none',
-                  borderColor: '#E6533C',
-                },
-              }),
-              dropdownIndicator: baseStyles => ({
-                ...baseStyles,
-                display: 'none',
-                '@media (min-width: 768px)': {
-                  display: 'flex',
-                  justifyContent: 'flex-end',
+                  '&:focus': {
+                    boxShadow: 'none',
+                    borderColor: '#E6533C',
+                  },
+                }),
+                dropdownIndicator: baseStyles => ({
+                  ...baseStyles,
+                  display: 'none',
+                  '@media (min-width: 768px)': {
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    color: '#efede8',
+                  },
+                }),
+                menu: baseStyles => ({
+                  ...baseStyles,
+                  background: '#040404',
+                  border: 'none',
+                }),
+                menuList: baseStyles => ({
+                  ...baseStyles,
+                  maxHeight: '228px',
+                  borderRadius: '12px',
+                  pading: '14px',
+                }),
+                indicatorSeparator: baseStyles => ({
+                  ...baseStyles,
+                  display: 'none',
+                }),
+                placeholder: baseStyles => ({
+                  ...baseStyles,
                   color: '#efede8',
-                },
-              }),
-              menu: baseStyles => ({
-                ...baseStyles,
-                background: '#040404',
-                border: 'none',
-              }),
-              menuList: baseStyles => ({
-                ...baseStyles,
-                maxHeight: '228px',
-                borderRadius: '12px',
-                pading: '14px',
-                //border: '1px solid rgba(239, 237, 232, 0.3)',
-              }),
-              indicatorSeparator: baseStyles => ({
-                ...baseStyles,
-                display: 'none',
-              }),
-              placeholder: baseStyles => ({
-                ...baseStyles,
-                color: '#efede8',
-              }),
-              singleValue: baseStyles => ({
-                ...baseStyles,
-                color: '#efede8',
-              }),
-              container: baseStyles => ({
-                ...baseStyles,
-                display: 'flex',
-                alignItems: 'center',
-                '&:focus': {
-                  border: '1px solid #E6533C',
-                },
-                border: '1px',
-                height: '46px',
-                '@media (min-width: 768px)': {
-                  height: '52px',
-                  width: '204px',
-                },
-              }),
-              input: baseStyles => ({
-                ...baseStyles,
-                fontSize: '14px',
-              }),
-              valueContainer: baseStyles => ({
-                ...baseStyles,
-                '@media (min-width: 768px)': {
-                  width: '195px',
-                },
-              }),
-            }}
-            value={selectedRecommended}
-            onChange={handleSelectRecommended}
-            options={arrRecommende.map(rec => ({
-              label: rec,
-            }))}
-            placeholder="All"
-          />
-        </SelectContainer>
-      </SelectRow>
-    </DivFilter>
+                }),
+                singleValue: baseStyles => ({
+                  ...baseStyles,
+                  color: '#efede8',
+
+                  justifyContent: 'center',
+                }),
+                container: baseStyles => ({
+                  ...baseStyles,
+                  display: 'flex',
+                  alignItems: 'center',
+                  '&:focus': {
+                    border: '1px solid #E6533C',
+                  },
+                  border: '1px',
+                  height: '46px',
+                  '@media (min-width: 768px)': {
+                    height: '52px',
+                    width: '192px',
+                  },
+                }),
+                input: baseStyles => ({
+                  ...baseStyles,
+                  fontSize: '14px',
+                }),
+                valueContainer: baseStyles => ({
+                  ...baseStyles,
+                  '@media (min-width: 768px)': {
+                    width: '146px',
+                  },
+                }),
+              }}
+              value={selectedCategory}
+              onChange={handleSelectCategory}
+              options={categories.map(category => ({
+                label: category,
+              }))}
+              placeholder="Categories"
+            />
+          </SelectContainer>
+          <SelectContainer>
+            <StyledSelect
+              styles={{
+                option: baseStyles => ({
+                  ...baseStyles,
+                  background: '#1C1C1C',
+                }),
+                control: baseStyles => ({
+                  ...baseStyles,
+                  width: '100%',
+                  background: '#040404',
+                  borderRadius: '12px',
+                  height: '44px',
+                  border: '0px solid rgba(239, 237, 232, 0.3)',
+                  boxShadow: 'none',
+                  '&:focus': {
+                    boxShadow: 'none',
+                    borderColor: '#E6533C',
+                  },
+                }),
+                dropdownIndicator: baseStyles => ({
+                  ...baseStyles,
+                  display: 'none',
+                  '@media (min-width: 768px)': {
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    color: '#efede8',
+                  },
+                }),
+                menu: baseStyles => ({
+                  ...baseStyles,
+                  background: '#040404',
+                  border: 'none',
+                }),
+                menuList: baseStyles => ({
+                  ...baseStyles,
+                  maxHeight: '228px',
+                  borderRadius: '12px',
+                  pading: '14px',
+                  //border: '1px solid rgba(239, 237, 232, 0.3)',
+                }),
+                indicatorSeparator: baseStyles => ({
+                  ...baseStyles,
+                  display: 'none',
+                }),
+                placeholder: baseStyles => ({
+                  ...baseStyles,
+                  color: '#efede8',
+                }),
+                singleValue: baseStyles => ({
+                  ...baseStyles,
+                  color: '#efede8',
+                }),
+                container: baseStyles => ({
+                  ...baseStyles,
+                  display: 'flex',
+                  alignItems: 'center',
+                  '&:focus': {
+                    border: '1px solid #E6533C',
+                  },
+                  border: '1px',
+                  height: '46px',
+                  '@media (min-width: 768px)': {
+                    height: '52px',
+                    width: '204px',
+                  },
+                }),
+                input: baseStyles => ({
+                  ...baseStyles,
+                  fontSize: '14px',
+                }),
+                valueContainer: baseStyles => ({
+                  ...baseStyles,
+                  '@media (min-width: 768px)': {
+                    width: '195px',
+                  },
+                }),
+              }}
+              value={selectedRecommended}
+              onChange={handleSelectRecommended}
+              options={arrRecommende.map(rec => ({
+                label: rec,
+              }))}
+              placeholder="All"
+            />
+          </SelectContainer>
+        </SelectRow>
+      </DivFilter>
+    </>
   );
 }

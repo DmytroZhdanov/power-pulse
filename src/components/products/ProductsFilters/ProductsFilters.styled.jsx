@@ -1,7 +1,23 @@
 import styled from '@emotion/styled';
 import Select from 'react-select';
 
+export const Title = styled.h2`
+  @media screen and (min-width: 320px) {
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: calc(28 / 24);
+  }
+
+  @media screen and (min-width: 768px) {
+  }
+`;
+
 export const DivFilter = styled.div`
+  @media screen and (min-width: 320px) {
+    margin-top: 40px;
+  }
+
   @media screen and (min-width: 768px) {
     display: flex;
     gap: 16px;

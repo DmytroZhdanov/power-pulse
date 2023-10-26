@@ -104,7 +104,7 @@ export const api = createApi({
           filter
             ? `?${filter[QUERY] ? `${QUERY}=${filter[QUERY]}&` : ''}${
                 filter[RECOMMENDED]
-                  ? `${RECOMMENDED}=${filter[RECOMMENDED]}&`
+                  ? `${RECOMMENDED}=${filter[RECOMMENDED][0]}&`
                   : ''
               }${
                 filter[CATEGORY] ? `${CATEGORY}=${filter[CATEGORY]}&` : ''

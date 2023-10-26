@@ -23,7 +23,7 @@ export default function ProductsItem({
   calories,
   category,
   title,
-  //  groupBloodNotAllowed,
+  //groupBloodNotAllowed,
 }) {
   const recommended = true;
 
