@@ -16,15 +16,11 @@ export function Exercises() {
   return (
     <>
       <Wrapper>
-        {exercisesRoute ? (
-          <TitlePage text={'Exercises'} />
-        ) : (
-          <TitlePage text={UpperCase(subcategory)} />
-        )}
+        <TitlePage text={'Exercises'} />
 
         <ExercisesCategories setCategory={setCategory} category={category} />
       </Wrapper>
-      {exercisesRoute && <ExercisesSubcategoriesList category={category} />}
+
       <Outlet context={category} />
     </>
   );
