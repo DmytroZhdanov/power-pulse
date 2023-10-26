@@ -19,7 +19,7 @@ export default function BasicModalWindow(props) {
       }
     };
 
-    const bodyScroll = (disable) => {
+    const bodyScroll = disable => {
       document.body.style.overflow = disable ? 'hidden' : 'auto';
     };
 

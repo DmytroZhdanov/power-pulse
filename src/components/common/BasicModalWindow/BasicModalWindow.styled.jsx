@@ -21,8 +21,8 @@ export const Modal = styled.div`
 `;
 
 export const CloseModalButton = styled.button`
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
   color: #efede8;
   background-color: transparent;
   border: none;
@@ -33,12 +33,13 @@ export const CloseModalButton = styled.button`
   position: absolute;
   top: 14px;
   right: 14px;
+  padding: 0;
 
   @media screen and (min-width: 768px) {
     top: 16px;
     right: 16px;
-    width: 32px;
-    height: 32px;
+    width: 26px;
+    height: 26px;
   }
 `;
 
