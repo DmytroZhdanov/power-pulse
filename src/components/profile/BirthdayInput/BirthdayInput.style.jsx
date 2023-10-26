@@ -6,6 +6,7 @@ export const WrapperCalendarInput = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 
   border-radius: 12px;
   padding: 10px;
@@ -20,10 +21,10 @@ export const WrapperCalendarInput = styled.div`
 export const InputHidden = styled.input`
   position: absolute;
   opacity: 0;
-  width: 1px;
-  height: 1px;
-  margin: 0;
-  padding: 0;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  padding: 0 !important;
   overflow: hidden;
   clip-path: inset(100%);
   white-space: nowrap;
@@ -43,7 +44,7 @@ export const CalendarIcon = styled.div`
   svg {
     width: 18px;
     height: 18px;
-    stroke:${({theme}) => theme.color.white};
+    stroke: ${({ theme }) => theme.color.white};
     transition:
       stroke 300ms ease-in-out,
       transform 300ms ease-in-out;
