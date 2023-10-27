@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import {
-   
   DivFilter,
   DivSearch,
   InputSearch,
@@ -9,6 +8,7 @@ import {
   SelectRow,
   SelectContainer,
   StyledSelect,
+  Title,
 } from './ProductsFilters.styled';
 
 import { PRODUCTS_FILTER } from '../../../utils/constants';
@@ -53,12 +53,12 @@ export default function ProductsFilters({ onProductsChange }) {
   const [selectedRecommended, setSelectedRecommended] = useState(null);
 
   const onQueryChange = e => {
-   setFilter(prevFilter => ({
-     ...prevFilter,
-     [QUERY]: e.target.value.trim(),
-   }));
-   setSearch(e.target.value);
-  }
+    setFilter(prevFilter => ({
+      ...prevFilter,
+      [QUERY]: e.target.value.trim(),
+    }));
+    setSearch(e.target.value);
+  };
 
   const handleSelectCategory = selectedCategory => {
     setSelectedCategory(selectedCategory);
@@ -165,13 +165,13 @@ export default function ProductsFilters({ onProductsChange }) {
                 singleValue: baseStyles => ({
                   ...baseStyles,
                   color: '#efede8',
-
                   justifyContent: 'center',
                 }),
                 container: baseStyles => ({
                   ...baseStyles,
                   display: 'flex',
                   alignItems: 'center',
+
                   '&:focus': {
                     border: '1px solid #E6533C',
                   },
@@ -196,7 +196,7 @@ export default function ProductsFilters({ onProductsChange }) {
               value={selectedCategory}
               onChange={handleSelectCategory}
               options={categories.map(category => ({
-                label: category,
+                label: category.charAt(0).toUpperCase() + category.slice(1),
               }))}
               placeholder="Categories"
             />
@@ -240,7 +240,6 @@ export default function ProductsFilters({ onProductsChange }) {
                   maxHeight: '228px',
                   borderRadius: '12px',
                   pading: '14px',
-                  //border: '1px solid rgba(239, 237, 232, 0.3)',
                 }),
                 indicatorSeparator: baseStyles => ({
                   ...baseStyles,
@@ -253,6 +252,7 @@ export default function ProductsFilters({ onProductsChange }) {
                 singleValue: baseStyles => ({
                   ...baseStyles,
                   color: '#efede8',
+                  justifyContent: 'center',
                 }),
                 container: baseStyles => ({
                   ...baseStyles,
@@ -288,6 +288,7 @@ export default function ProductsFilters({ onProductsChange }) {
             />
           </SelectContainer>
         </SelectRow>
+        <Title>Filters</Title>
       </DivFilter>
     </>
   );

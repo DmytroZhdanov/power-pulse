@@ -1,6 +1,20 @@
 import styled from '@emotion/styled';
 import Select from 'react-select';
 
+export const Title = styled.h1`
+  display: none;
+  @media screen and (min-width: 1440px) {
+    z-index: 1;
+    display: block;
+    position: relative;
+    top: -28px;
+    left: -65px;
+    color: rgba(239, 237, 232, 0.5);
+    font-size: 14px;
+    line-height: calc(18 / 14);
+  }
+`;
+
 export const DivFilter = styled.div`
   @media screen and (min-width: 768px) {
     display: flex;
@@ -29,7 +43,7 @@ export const InputSearch = styled.input`
     padding: 14px;
     border-radius: 12px;
     border: 1px solid rgba(239, 237, 232, 0.3);
-    background: rgba(0, 0, 0, 0.5);
+    background-color: transparent;
     color: #efede8;
     font-size: 14px;
     line-height: calc(18 / 14);
@@ -80,7 +94,7 @@ export const SelectRow = styled.div`
 
 export const SelectContainer = styled.div`
   flex: 1;
-  /*padding: 14px;*/
+  z-index: 2;
   background: rgba(0, 0, 0, 0.5);
 `;
 
