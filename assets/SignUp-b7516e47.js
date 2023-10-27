@@ -1,4 +1,4 @@
-import{n as a,u as j,a as v,r as o,j as e,L as b,b as y,B as h,T as F,E as S,I as T,s as k}from"./index-e03f4cd7.js";import{c as z,a as x,u as E,F as $,b as C,d as q}from"./index.esm-537f3d15.js";import{T as B}from"./TitlePage-625452d5.js";const I=a.p`
+import{n as a,u as j,a as v,r as o,j as e,L as b,b as y,B as h,T as F,E as S,I as T,s as k}from"./index-0fb79479.js";import{c as z,a as x,u as E,F as $,b as C,d as q}from"./index.esm-58661046.js";import{T as B}from"./TitlePage-1ce43b89.js";import"./tiny-warning.esm-c932d744.js";const I=a.p`
   @media screen and (max-width: 374px) {
     width: calc(100% - 20px);
   }
@@ -115,4 +115,4 @@ import{n as a,u as j,a as v,r as o,j as e,L as b,b as y,B as h,T as F,E as S,I a
     width: 598px;
     padding-top: 200px;
   }
-`;function Z(){return e.jsxs(A,{children:[e.jsx(B,{text:"Sign Up"}),e.jsx(_,{})]})}export{Z as SignUp};
+`;function G(){return e.jsxs(A,{children:[e.jsx(B,{text:"Sign Up"}),e.jsx(_,{})]})}export{G as SignUp};

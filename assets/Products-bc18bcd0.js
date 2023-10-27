@@ -1,4 +1,4 @@
-import{j as e,n as i,r as x,B as m}from"./index-e03f4cd7.js";import{T as y}from"./TitlePage-625452d5.js";function C(){return e.jsx("div",{children:"ProductsFilters component"})}const z=i.input`
+import{j as e,n as i,r as x,B as m}from"./index-0fb79479.js";import{T as y}from"./TitlePage-1ce43b89.js";function C(){return e.jsx("div",{children:"ProductsFilters component"})}const z=i.input`
   width: 287px;
   text-align: left;
   padding: 8px 14px;
