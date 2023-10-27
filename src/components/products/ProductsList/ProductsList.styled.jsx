@@ -15,11 +15,10 @@ export const ProductList = styled.ul`
     flex-wrap: wrap;
     column-gap: 16px;
     row-gap: 32px;
-    height: 100%;
+
     overflow-y: scroll;
   }
   @media (min-width: 1440px) {
     width: 850px;
-    height: 100%;
   }
 `;
