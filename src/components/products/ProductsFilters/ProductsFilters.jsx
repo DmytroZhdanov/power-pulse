@@ -52,6 +52,14 @@ export default function ProductsFilters({ onProductsChange }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedRecommended, setSelectedRecommended] = useState(null);
 
+  const onQueryChange = e => {
+   setFilter(prevFilter => ({
+     ...prevFilter,
+     [QUERY]: e.target.value.trim(),
+   }));
+   setSearch(e.target.value);
+  }
+
   const handleSelectCategory = selectedCategory => {
     setSelectedCategory(selectedCategory);
     setFilter(prevFilter => ({
@@ -91,13 +99,7 @@ export default function ProductsFilters({ onProductsChange }) {
           <InputSearch
             type="text"
             value={filter[QUERY]}
-            onChange={e => {
-              setFilter(prevFilter => ({
-                ...prevFilter,
-                [QUERY]: e.target.value.trim(),
-              }));
-              setSearch(e.target.value);
-            }}
+            onChange={onQueryChange}
           />
 
           <SvgSearch width="18" height="18">
