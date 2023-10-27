@@ -5,20 +5,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCredentials } from 'src/redux/auth/authSlice';
 import { useLazyRefreshQuery } from 'src/redux/api';
 import { selectToken } from 'src/redux/auth/selectors';
-import { ROUTER } from 'src/utils';
-// import { DATA_STEPS } from '../utils/constants';
+import { initialState } from 'src/redux/auth/authSlice';
+import { ROUTER, DATA_STEPS } from 'src/utils';
 
 import Main from 'pages/Main/Main';
 import Error from 'pages/Error/Error';
-// import FirstStep from './data/FirstStep/FirstStep';
-// import SecondStep from './data/SecondStep/SecondStep';
-// import ThirdStep from './data/ThirdStep/ThirdStep';
-import PrivateRoute from './PrivateRoute';
-import RestrictedRoute from './RestrictedRoute';
-import Loader from './Loader/Loader';
-import BasicModalWindow from './common/BasicModalWindow/BasicModalWindow';
-import TimerWarning from './common/TimerWarning/TimerWarning';
-import ErrorMessage from './common/ErrorMessage/ErrorMessage';
+import PrivateRoute from 'components/PrivateRoute';
+import RestrictedRoute from 'components/RestrictedRoute';
+import Loader from 'components/Loader/Loader';
+import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
+import TimerWarning from 'components/common/TimerWarning/TimerWarning';
+import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
 
 const router = createBrowserRouter(
   [
@@ -55,48 +52,46 @@ const router = createBrowserRouter(
             };
           },
         },
-        // {
-        //   path: ROUTER.DATA,
-        //   // async lazy() {
-        //   //   let { Data } = await import('pages/Data/Data');
-        //   //   return {
-        //   //     Component: () => <RestrictedRoute component={<Data />} />,
-        //   //   };
-        //   // },
-        //   element: <Data />,
-        //   children: [
-        //     {
-        //       path: DATA_STEPS.FIRST,
-        //       // async lazy() {
-        //       //   let { FirstStep } = await import('./data/FirstStep/FirstStep');
-        //       //   return {
-        //       //     Component: () => <RestrictedRoute component={<FirstStep />} />,
-        //       //   };
-        //       // },
-        //       element: <FirstStep />,
-        //     },
-        //     {
-        //       path: DATA_STEPS.SECOND,
-        //       // async lazy() {
-        //       //   let { SecondStep } = await import('./data/SecondStep/SecondStep');
-        //       //   return {
-        //       //     Component: () => <RestrictedRoute component={<SecondStep />} />,
-        //       //   };
-        //       // },
-        //       element: <SecondStep />,
-        //     },
-        //     {
-        //       path: DATA_STEPS.THIRD,
-        //       // async lazy() {
-        //       //   let { ThirdStep } = await import('./data/ThirdStep/ThirdStep');
-        //       //   return {
-        //       //     Component: () => <RestrictedRoute component={<ThirdStep />} />,
-        //       //   };
-        //       // },
-        //       element: <ThirdStep />,
-        //     },
-        //   ],
-        // },
+        {
+          path: ROUTER.DATA,
+          async lazy() {
+            let { Data } = await import('pages/Data/Data');
+            return {
+              Component: () => <PrivateRoute component={<Data />} />,
+            };
+          },
+          children: [
+            {
+              path: DATA_STEPS.FIRST,
+              async lazy() {
+                let { FirstStep } = await import('./data/FirstStep/FirstStep');
+                return {
+                  Component: () => <PrivateRoute component={<FirstStep />} />,
+                };
+              },
+            },
+            {
+              path: DATA_STEPS.SECOND,
+              async lazy() {
+                let { SecondStep } = await import(
+                  './data/SecondStep/SecondStep'
+                );
+                return {
+                  Component: () => <PrivateRoute component={<SecondStep />} />,
+                };
+              },
+            },
+            {
+              path: DATA_STEPS.THIRD,
+              async lazy() {
+                let { ThirdStep } = await import('./data/ThirdStep/ThirdStep');
+                return {
+                  Component: () => <PrivateRoute component={<ThirdStep />} />,
+                };
+              },
+            },
+          ],
+        },
         {
           path: ROUTER.SIGN_IN,
           async lazy() {
@@ -232,6 +227,12 @@ export default function App() {
       setTimeout(() => setShowError(false), 2000);
     }
   }, [dispatch, token, refresh]);
+
+  useEffect(() => {
+    if (error?.status === 401) {
+      dispatch(setCredentials(initialState));
+    }
+  }, [dispatch, error?.status]);
 
   useEffect(() => {
     let id;

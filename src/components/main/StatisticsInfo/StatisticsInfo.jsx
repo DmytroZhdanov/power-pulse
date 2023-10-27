@@ -24,7 +24,7 @@ export default function StatisticsInfo({ pathname, page }) {
   const [showTimerWarning, setShowTimerWarning] = useState(false);
   const { data, isFetching, isError } = useFetchStatisticQuery();
 
-  const path = pathname.split('');
+  const path = pathname.split('/');
   const keyword =
     page === '' || page === ROUTER.SIGN_UP || page === ROUTER.SIGN_IN
       ? 'main'

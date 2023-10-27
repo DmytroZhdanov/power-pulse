@@ -23,6 +23,7 @@ export const theme = {
     black: '#040404',
     white: '#EFEDE8',
 
+    grayDisabled: 'rgba(239, 237, 232, 0.2)',
     grayFirst: 'rgba(239, 237, 232, 0.30)',
     graySecond: 'rgba(239, 237, 232, 0.65)',
     grayBackground: 'rgba(239, 237, 232, 1)',
@@ -48,12 +49,22 @@ export const theme = {
     inputActive: '#E6533C',
     inputSuccess: '#3CBF61',
     inputError: '#D80027',
+
+    // Step indicator color
+    default: '#303030',
   },
 
   // Точки адаптивної верстки
   breakpoint: {
-    mobile: '320px',
+    firstMobile: '320px',
+    mobile: '375px',
     tablet: '768px',
     desktop: '1440px',
+  },
+
+  // box-shadow
+  boxShadow: {
+    calendarButton: '0 0 5px 0.5px #EFEDE8, inset 0 0 5px 0px #EFEDE8',
+    dataIndicator: '0px 1px 10px 0px rgba(230, 83, 60, 0.80)',
   },
 };

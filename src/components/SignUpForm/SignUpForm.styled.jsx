@@ -26,6 +26,34 @@ export const Inputs = styled.div`
   align-items: flex-start;
   gap: 18px;
 
+  div {
+    position: relative;
+    width: 280px;
+
+    @media screen and (max-width: 375px) {
+      width: 335px;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 364px;
+    }
+  }
+
+  button {
+    position: absolute;
+    top: 14px;
+    right: 12px;
+    color: #efede8;
+    background-color: transparent;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+
+    fill: currentColor;
+  }
+
   @media screen and (min-width: 768px) {
     margin-top: 32px;
     gap: 20px;
@@ -109,13 +137,12 @@ export const Message = styled.div`
 
   div {
     display: flex;
-    align-items: center;
     gap: 4px;
   }
 
   svg {
-    width: 16px;
-    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
     fill: currentColor;
   }
 `;
