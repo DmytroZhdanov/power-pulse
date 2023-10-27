@@ -35,6 +35,8 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
   const isDateOfUserRegistration =
     selectedDate.toDateString() === dateOfUserRegistration.toDateString();
 
+  const isToday = selectedDate.toDateString() === new Date().toDateString();
+
   return (
     <Wrapper>
       <CalendarWrapper>
@@ -42,6 +44,7 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
           onChange={setSelectedDate}
           value={selectedDate}
           minDate={dateOfUserRegistration}
+          maxDate={new Date()}
         >
           <InputWrapper>
             <InputText> {format(selectedDate, 'dd/MM/yyyy')}</InputText>
@@ -58,7 +61,7 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
         >
           <Icon name="nav-arrow-left" />
         </Button>
-        <Button onClick={handleNextClick}>
+        <Button disabled={isToday} onClick={handleNextClick}>
           <Icon name="nav-arrow-right" />
         </Button>
       </div>
