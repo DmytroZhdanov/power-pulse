@@ -86,7 +86,6 @@ export default function ProductsFilters({ onProductsChange }) {
 
   return (
     <>
-      {' '}
       <DivFilter>
         <DivSearch>
           <InputSearch
