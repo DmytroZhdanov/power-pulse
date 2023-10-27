@@ -9,7 +9,6 @@ import { useLocation, useOutletContext, useParams } from 'react-router';
 import { useLazyFetchAllExercisesQuery } from '../../../redux/api';
 import { useEffect, useRef, useState } from 'react';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { EXERCISES_CATEGORY } from '../../../utils/constants';
 
 export function ExercisesList() {
   const category = useOutletContext();
@@ -20,48 +19,66 @@ export function ExercisesList() {
   const [error, setError] = useState(null);
   const [result, setResult] = useState([]);
   const { subcategory } = useParams();
+  // const list = useRef();
+  // const node = list.current;
 
   const equipment = category === 'equipment' ? subcategory : '';
   const target = category === 'target' ? subcategory : '';
   const bodyPart = category === 'bodyPart' ? subcategory : '';
-
-  const [fetchAllExercises, { data }] = useLazyFetchAllExercisesQuery();
-
-  const onScroll = e => {
-    // console.log(scroll);
-  };
+  const location = useLocation();
+  const pathLocation = useRef(location.state?.from ?? '/exercises');
+  const [fetchAllExercises] = useLazyFetchAllExercisesQuery();
+  const listRef = useRef();
 
   useEffect(() => {
-    const fetch = async () => {
-      try {
-        const response = await fetchAllExercises({
-          bodyPart,
-          target,
-          equipment,
-        }).unwrap();
-        setResult([...response]);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
+    const listElement = listRef.current;
+
+    const handleScroll = () => {
+      if (
+        listElement.scrollHeight -
+          (listElement.scrollTop + listElement.clientHeight) <
+        100
+      ) {
+        setFetching(true);
       }
     };
 
-    setLoading(true);
-    fetch();
-  }, [page, fetchAllExercises, bodyPart, target, equipment, data]);
+    listElement.addEventListener('scroll', handleScroll);
 
-  useEffect(() => {
-    document.addEventListener('scroll', onScroll);
-    return function () {
-      removeEventListener('scroll', onScroll);
+    return () => {
+      listElement.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  console.log(data);
+  useEffect(() => {
+    if (fetching) {
+      const fetch = async () => {
+        try {
+          const response = await fetchAllExercises({
+            bodyPart,
+            target,
+            equipment,
+            page,
+          }).unwrap();
 
-  const location = useLocation();
-  const pathLocation = useRef(location.state?.from ?? '/exercises');
+          page === 1
+            ? setResult(response)
+            : setResult(prev => [...prev, ...response]);
+
+          setPage(prevPage => prevPage + 1);
+          setFetching(false);
+
+          setLoading(false);
+        } catch (error) {
+          setError(error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetch();
+    }
+  }, [page, fetchAllExercises, bodyPart, target, equipment, fetching]);
 
   return (
     <>
@@ -72,7 +89,7 @@ export function ExercisesList() {
         <LinkText>Back</LinkText>
       </StyledLink>
 
-      <ExerciseList>
+      <ExerciseList ref={listRef}>
         {result?.map(({ _id, name, bodyPart, burnedCalories, target }) => (
           <ExercisesItem
             key={_id}
@@ -83,15 +100,6 @@ export function ExercisesList() {
           />
         ))}
       </ExerciseList>
-
-      <button
-        type="button"
-        onClick={() => {
-          setPage(page + 1);
-        }}
-      >
-        Add more
-      </button>
     </>
   );
 }
