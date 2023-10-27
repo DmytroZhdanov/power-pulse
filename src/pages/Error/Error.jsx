@@ -1,4 +1,4 @@
-import { useLocation, useRouteError } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useRef } from 'react';
 import { ROUTER } from 'src/utils/constants';
 import Header from 'components/main/Header/Header';
