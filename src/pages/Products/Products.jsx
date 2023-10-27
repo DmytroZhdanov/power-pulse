@@ -6,14 +6,10 @@ import { useState } from 'react';
 export function Products() {
   const [filter, setFilter] = useState([]);
 
-  const handleProductsChange = newFilter => {
-    setFilter(newFilter);
-  };
-
   return (
     <>
-      <TitlePage />
-      <ProductsFilters onProductsChange={handleProductsChange} />
+      <TitlePage text={Products}/>
+      <ProductsFilters onProductsChange={setFilter} />
       <ProductsList filter={filter} />
     </>
   );
