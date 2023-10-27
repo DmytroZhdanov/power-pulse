@@ -105,13 +105,23 @@
 <path fill="none" stroke="#efede8" style="stroke: var(--color2, #efede8)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.88" d="M1.333 16c0 0 5.333-10.667 14.667-10.667s14.667 10.667 14.667 10.667-5.333 10.667-14.667 10.667c-9.333 0-14.667-10.667-14.667-10.667z"></path>
 <path fill="none" stroke="#efede8" style="stroke: var(--color2, #efede8)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.88" d="M16 20c2.209 0 4-1.791 4-4s-1.791-4-4-4c-2.209 0-4 1.791-4 4s1.791 4 4 4z"></path>
 </symbol>
-<!-- Іконка "Галочка вліво"-->
-<symbol id="nav-arrow-left" viewBox="0 0 6 10">
-<path fill="none"  stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 1 1 5l4 4"/>
+<!-- Іконка "Подвійна галочка вправо"-->
+<symbol id="double-nav-arrow-right" viewBox="0 0 9 10">
+  <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m4 1 4 4-4 4"></path>
+  <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m1 1 4 4-4 4"></path>
 </symbol>
 <!-- Іконка "Галочка вправо"-->
 <symbol id="nav-arrow-right" viewBox="0 0 6 10">
-<path  fill="none"  stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m1 1 4 4-4 4"/>
+  <path  fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m1 1 4 4-4 4"></path>
+</symbol>
+<!-- Іконка "Подвійна галочка вліво"-->
+<symbol id="double-nav-arrow-left" viewBox="0 0 9 10">
+  <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 9 4 5l4-4"></path>
+  <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 9 1 5l4-4"></path>
+</symbol>
+<!-- Іконка "Галочка вліво"-->
+<symbol id="nav-arrow-left" viewBox="0 0 6 10">
+<path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 9 1 5l4-4"></path>
 </symbol>
 <!-- Іконка "Бульбашки"-->
 <symbol id="bubble" viewBox="0 0 32 32">
@@ -137,6 +147,9 @@
 <!-- Іконка "Галочка підтверждення політики з фоном". Взагалі не знайшов де на сайті така використовується  -->
 <symbol id="checkmark" viewBox="0 0 32 32">
 <path d="M16 3c-7.18 0-13 5.82-13 13s5.82 13 13 13 13-5.82 13-13-5.82-13-13-13zM23.258 12.307l-9.486 9.485c-0.238 0.237-0.623 0.237-0.861 0l-0.191-0.191-0.001 0.001-5.219-5.256c-0.238-0.238-0.238-0.624 0-0.862l1.294-1.293c0.238-0.238 0.624-0.238 0.862 0l3.689 3.716 7.756-7.756c0.238-0.238 0.624-0.238 0.862 0l1.294 1.294c0.239 0.237 0.239 0.623 0.001 0.862z"></path>
+</symbol>
+<symbol id="x-clean" viewBox="0 0 32 32">
+<path fill="none" stroke="#e6533c" style="stroke: var(--color1, #e6533c)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.5556" d="M24 8l-16 16M8 8l16 16"></path>
 </symbol>
 </defs>
 </svg>

@@ -23,6 +23,7 @@ export const theme = {
     black: '#040404',
     white: '#EFEDE8',
 
+    grayDisabled: 'rgba(239, 237, 232, 0.2)',
     grayFirst: 'rgba(239, 237, 232, 0.30)',
     graySecond: 'rgba(239, 237, 232, 0.65)',
     grayBackground: 'rgba(239, 237, 232, 1)',
@@ -56,5 +57,10 @@ export const theme = {
     mobile: '375px',
     tablet: '768px',
     desktop: '1440px',
+  },
+
+  // box-shadow
+  boxShadow: {
+    calendarButton: '0 0 5px 0.5px #EFEDE8, inset 0 0 5px 0px #EFEDE8',
   },
 };

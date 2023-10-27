@@ -31,15 +31,15 @@ export default function StatisticsInfo({ pathname, page }) {
       : path[path.length - 1];
 
   useEffect(() => {
+    let id;
+
     if (isFetching) {
-      setTimeout(() => {
-        setShowTimerWarning(true);
-      }, 5000);
+      id = setTimeout(setShowTimerWarning, 5000, true);
     } else {
       setShowTimerWarning(false);
     }
 
-    return () => setShowTimerWarning(false);
+    return clearTimeout(id);
   }, [isFetching]);
 
   const formatNumber = number => {

@@ -54,8 +54,8 @@ export const Background = styled.div`
   @media screen and (min-width: 768px) {
     top: 131px;
     right: -12px;
-    width: 437px;
-    height: 893px;
+    width: ${props => (props.keyword === 'main' ? '437px' : '488px')};
+    height: ${props => (props.keyword === 'main' ? '893px' : '835px')};
 
     background-image: ${props => {
       switch (props.keyword) {
@@ -91,7 +91,8 @@ export const Background = styled.div`
           break;
       }
     }};
-    background-size: 437px 893px;
+    background-size: ${props =>
+      props.keyword === 'main' ? '437px 893px' : '488px 835px'};
   }
 
   @media screen and (max-width: 1439px) {
