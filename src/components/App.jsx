@@ -19,6 +19,7 @@ import Loader from './Loader/Loader';
 import BasicModalWindow from './common/BasicModalWindow/BasicModalWindow';
 import TimerWarning from './common/TimerWarning/TimerWarning';
 import ErrorMessage from './common/ErrorMessage/ErrorMessage';
+import { initialState } from '../redux/auth/authSlice';
 
 const router = createBrowserRouter(
   [
@@ -230,8 +231,12 @@ export default function App() {
     } catch {
       setShowError(true);
       setTimeout(() => setShowError(false), 2000);
+
+      if (error.status === 401) {
+        dispatch(setCredentials(initialState));
+      }
     }
-  }, [dispatch, token, refresh]);
+  }, [dispatch, token, refresh, error.status]);
 
   useEffect(() => {
     let id;
