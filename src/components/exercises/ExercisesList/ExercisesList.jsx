@@ -19,8 +19,6 @@ export function ExercisesList() {
   const [error, setError] = useState(null);
   const [result, setResult] = useState([]);
   const { subcategory } = useParams();
-  // const list = useRef();
-  // const node = list.current;
 
   const equipment = category === 'equipment' ? subcategory : '';
   const target = category === 'target' ? subcategory : '';
@@ -90,15 +88,20 @@ export function ExercisesList() {
       </StyledLink>
 
       <ExerciseList ref={listRef}>
-        {result?.map(({ _id, name, bodyPart, burnedCalories, target }) => (
-          <ExercisesItem
-            key={_id}
-            name={name}
-            bodyPart={bodyPart}
-            burnedCalories={burnedCalories}
-            target={target}
-          />
-        ))}
+        {result?.map(
+          ({ _id, name, bodyPart, burnedCalories, target, gifUrl, time }) => (
+            <ExercisesItem
+              key={_id}
+              bodyPart={bodyPart}
+              equipment={equipment}
+              gifUrl={gifUrl}
+              name={name}
+              target={target}
+              burnedCalories={burnedCalories}
+              time={time}
+            />
+          ),
+        )}
       </ExerciseList>
     </>
   );

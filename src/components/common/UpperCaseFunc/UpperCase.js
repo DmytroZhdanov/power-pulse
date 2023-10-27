@@ -1,3 +1,3 @@
-export default function UpperCase(item) {
-  return item.charAt(0).toUpperCase() + item.slice(1);
-}
+const UpperCase = s => (s && s[0].toUpperCase() + s.slice(1)) || '';
+
+export default UpperCase;

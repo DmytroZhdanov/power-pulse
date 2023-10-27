@@ -7,3 +7,6 @@ export const Wrapper = styled.div`
   align-items: baseline;
   justify-content: space-between;
 `;
+export const Content = styled.div`
+  position: relative;
+`;

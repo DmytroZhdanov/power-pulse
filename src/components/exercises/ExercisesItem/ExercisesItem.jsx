@@ -1,3 +1,8 @@
+import UpperCase from '../../common/UpperCaseFunc/UpperCase';
+import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
+import AddExerciseForm from '../AddExerciseForm/AddExerciseForm';
+import AddExerciseSuccess from '../AddExerciseSuccess/AddExerciseSuccess';
+import { useState } from 'react';
 import {
   ExercisesCard,
   ExercisesWrap,
@@ -13,19 +18,54 @@ import {
 } from './ExercisesItem.styled';
 
 export default function ExercisesItem({
-  name,
+  key,
   bodyPart,
-  burnedCalories,
+
+  equipment,
+  gifUrl,
+  name,
   target,
+  burnedCalories,
+  time,
 }) {
+  const [onShowModalExerciseForm, setOnShowModalExerciseForm] = useState(false);
+  const [onShowModalExerciseSuccess, setOnShowModalExerciseSuccess] =
+    useState(false);
+  const [modalExerciseSuccessData, setModalExerciseSuccessData] = useState({});
+
+  const openModalExerciseForm = () => {
+    setOnShowModalExerciseForm(true);
+  };
+  const openModalExerciseSuccess = () => {
+    setOnShowModalExerciseSuccess(true);
+  };
+
+  const closeModalExerciseForm = () => {
+    setOnShowModalExerciseForm(false);
+  };
+  const closeModalExerciseSuccess = () => {
+    setOnShowModalExerciseSuccess(false);
+  };
+
+  const exercise = {
+    _id: key,
+    bodyPart,
+    equipment,
+    gifUrl,
+    name,
+    target,
+    burnedCalories,
+    time,
+  };
+
   return (
     <>
       <ExercisesCard>
         <ExercisesWrap>
-          <Title>Workout</Title>
+          <Title>WORKOUT</Title>
 
           <Box>
-            <ButtonStart>
+            <ButtonStart onClick={openModalExerciseForm}>
               <ButtonTitle>Start</ButtonTitle>
               <svg width="16" height="16">
                 <use href="/src/assets/images/sprite/sprite.svg#arrow-add-prod-orange"></use>
@@ -39,7 +79,7 @@ export default function ExercisesItem({
             <use href="/src/assets/images/sprite/sprite.svg#run-man"></use>
           </svg>
 
-          <ExerciseName>{name}</ExerciseName>
+          <ExerciseName>{UpperCase(name)}</ExerciseName>
         </ExerciseDiv>
 
         <Info>
@@ -48,14 +88,33 @@ export default function ExercisesItem({
           </Category>
 
           <Category category={true}>
-            Body part:<Values>{bodyPart}</Values>
+            Body part:<Values>{UpperCase(bodyPart)}</Values>
           </Category>
 
           <Category>
-            Target:<Values>{target}</Values>
+            Target:<Values>{UpperCase(target)}</Values>
           </Category>
         </Info>
       </ExercisesCard>
+      {onShowModalExerciseForm && (
+        <BasicModalWindow onClose={closeModalExerciseForm}>
+          <AddExerciseForm
+            exercise={exercise}
+            openModalExerciseSuccess={openModalExerciseSuccess}
+            closeModalExerciseForm={closeModalExerciseForm}
+            setModalExerciseSuccessData={setModalExerciseSuccessData}
+          />
+        </BasicModalWindow>
+      )}
+
+      {onShowModalExerciseSuccess && (
+        <BasicModalWindow onClose={closeModalExerciseSuccess}>
+          <AddExerciseSuccess
+            modalExerciseSuccessData={modalExerciseSuccessData}
+            closeModalExerciseSuccess={closeModalExerciseSuccess}
+          />
+        </BasicModalWindow>
+      )}
     </>
   );
 }
