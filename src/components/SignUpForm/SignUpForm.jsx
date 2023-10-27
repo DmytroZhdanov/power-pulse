@@ -24,7 +24,7 @@ const Feedback = ({ ...props }) => {
   const [didFocus, setDidFocus] = useState(false);
   const handleFocus = () => setDidFocus(true);
   const showFeedback =
-    (!!didFocus && field.value.trim().length > 2) || meta.touched;
+    (!!didFocus && field.value.trim().length > 0) || meta.touched;
 
   return (
     <Check type={`${showFeedback ? (meta.error ? 'invalid' : 'valid') : ''}`}>
@@ -62,6 +62,27 @@ export default function SignUpForm() {
     return clearTimeout(id);
   }, [isLoading]);
 
+  const [hidePass, setHidePass] = useState();
+  const [passBtn, setPassBtn] = useState(false);
+
+  const handleInput = () => {
+    setPassBtn(true);
+  };
+
+  const inputPassword = document.querySelector('#password');
+
+  const onClickPassBtn = () => {
+    if (inputPassword) {
+      if (inputPassword.getAttribute('type') === 'password') {
+        inputPassword.setAttribute('type', 'text');
+        setHidePass(true);
+      } else {
+        inputPassword.setAttribute('type', 'password');
+        setHidePass(false);
+      }
+    }
+  };
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -94,7 +115,20 @@ export default function SignUpForm() {
           <Inputs>
             <Feedback name="name" type="text" placeholder="Name" />
             <Feedback name="email" type="email" placeholder="Email" />
-            <Feedback name="password" type="text" placeholder="Password" />
+            <div>
+              <Feedback
+                name="password"
+                type="password"
+                placeholder="Password"
+                id="password"
+                onInput={handleInput}
+              />
+              {passBtn && (
+                <button type="button" onClick={onClickPassBtn}>
+                  {hidePass ? <Icon name={'eye'} /> : <Icon name={'eye-off'} />}
+                </button>
+              )}
+            </div>
           </Inputs>
           <Button type="submit">Sign Up</Button>
           <Sign>
