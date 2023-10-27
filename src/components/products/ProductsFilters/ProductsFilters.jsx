@@ -165,13 +165,13 @@ export default function ProductsFilters({ onProductsChange }) {
                 singleValue: baseStyles => ({
                   ...baseStyles,
                   color: '#efede8',
-
                   justifyContent: 'center',
                 }),
                 container: baseStyles => ({
                   ...baseStyles,
                   display: 'flex',
                   alignItems: 'center',
+
                   '&:focus': {
                     border: '1px solid #E6533C',
                   },
@@ -240,7 +240,6 @@ export default function ProductsFilters({ onProductsChange }) {
                   maxHeight: '228px',
                   borderRadius: '12px',
                   pading: '14px',
-                  //border: '1px solid rgba(239, 237, 232, 0.3)',
                 }),
                 indicatorSeparator: baseStyles => ({
                   ...baseStyles,
@@ -253,6 +252,7 @@ export default function ProductsFilters({ onProductsChange }) {
                 singleValue: baseStyles => ({
                   ...baseStyles,
                   color: '#efede8',
+                  justifyContent: 'center',
                 }),
                 container: baseStyles => ({
                   ...baseStyles,
