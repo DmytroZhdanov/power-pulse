@@ -1,4 +1,4 @@
-import{n as a,u as j,a as v,r as o,j as e,L as b,b as y,B as h,T as F,E as S,I as T,s as k}from"./index-381b4a76.js";import{c as z,a as x,u as E,F as $,b as C,d as q}from"./index.esm-d47a3311.js";import{T as B}from"./TitlePage-15e572e0.js";import"./tiny-warning.esm-c932d744.js";const I=a.p`
+import{n as a,u as j,a as v,r as o,j as e,L as b,b as y,B as h,T as F,E as S,I as T,s as k}from"./index-23b2d65c.js";import{c as z,a as x,u as E,F as $,b as C,d as q}from"./index.esm-faa5d69b.js";import{T as B}from"./TitlePage-479f2518.js";import"./tiny-warning.esm-c932d744.js";const I=a.p`
   @media screen and (max-width: 374px) {
     width: calc(100% - 20px);
   }
