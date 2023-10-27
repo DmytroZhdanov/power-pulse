@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ProductList } from '../../products/ProductsList/ProductsList.styled';
 
 export const ExerciseList = styled.ul`
-  row-gap: 20px;
+  /* row-gap: 20px; */
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;

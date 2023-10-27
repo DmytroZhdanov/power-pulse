@@ -17,7 +17,6 @@ import {
 export const ExercisesCard = styled(ProductCard)`
   max-height: 163px;
   @media screen and (min-width: 1440px) {
-    max-height: 141px;
   }
 `;
 
@@ -35,7 +34,7 @@ export const Info = styled.div`
   column-gap: 16px;
   flex-wrap: wrap;
   @media screen and (min-width: 768px) {
-    height: 18px;
+    /* height: 18px; */
   }
 `;
 export const ExerciseName = styled(ProductTitle)``;
@@ -47,14 +46,23 @@ export const ExerciseDiv = styled(Product)`
 export const ButtonStart = styled(Button)``;
 export const ButtonTitle = styled(BtnText)``;
 export const Category = styled(Text)`
-  text-transform: none;
-  display: flex;
-  gap: 4px;
+  @media screen and (max-width: 768px) {
+    text-transform: none;
+    display: flex;
+    gap: 4px;
+  }
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    gap: 4px;
+  }
 `;
 export const Values = styled.span`
   padding-left: 0;
   color: #efede8;
   @media screen and (min-width: 768px) {
     margin-bottom: 25px;
+  }
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 0;
   }
 `;
