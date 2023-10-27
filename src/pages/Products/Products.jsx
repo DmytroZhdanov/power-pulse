@@ -8,7 +8,7 @@ export function Products() {
 
   return (
     <>
-      <TitlePage text={Products}/>
+      <TitlePage text={'Products'} />
       <ProductsFilters onProductsChange={setFilter} />
       <ProductsList filter={filter} />
     </>
