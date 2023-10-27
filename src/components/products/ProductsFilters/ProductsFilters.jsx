@@ -37,7 +37,7 @@ export default function ProductsFilters({ onProductsChange }) {
 
   useEffect(() => {
     onProductsChange(filter);
-  }, [filter, onProductsChange]);
+  }, [filter]);
 
   const handleClean = () => {
     setSearch('');
@@ -124,11 +124,12 @@ export default function ProductsFilters({ onProductsChange }) {
                 control: baseStyles => ({
                   ...baseStyles,
                   width: '100%',
-                  background: '#040404',
+                  backgroundColor: 'transparent',
                   borderRadius: '12px',
                   height: '44px',
                   border: '0px solid rgba(239, 237, 232, 0.3)',
                   boxShadow: 'none',
+
                   '&:focus': {
                     boxShadow: 'none',
                     borderColor: '#E6533C',
@@ -137,6 +138,7 @@ export default function ProductsFilters({ onProductsChange }) {
                 dropdownIndicator: baseStyles => ({
                   ...baseStyles,
                   display: 'none',
+
                   '@media (min-width: 768px)': {
                     display: 'flex',
                     justifyContent: 'flex-end',
@@ -145,13 +147,15 @@ export default function ProductsFilters({ onProductsChange }) {
                 }),
                 menu: baseStyles => ({
                   ...baseStyles,
+
                   background: '#040404',
-                  border: 'none',
+                  borderRadius: '12px',
                 }),
                 menuList: baseStyles => ({
                   ...baseStyles,
                   maxHeight: '228px',
                   borderRadius: '12px',
+
                   pading: '14px',
                 }),
                 indicatorSeparator: baseStyles => ({
@@ -211,11 +215,12 @@ export default function ProductsFilters({ onProductsChange }) {
                 control: baseStyles => ({
                   ...baseStyles,
                   width: '100%',
-                  background: '#040404',
+                  backgroundColor: 'transparent',
                   borderRadius: '12px',
                   height: '44px',
                   border: '0px solid rgba(239, 237, 232, 0.3)',
                   boxShadow: 'none',
+
                   '&:focus': {
                     boxShadow: 'none',
                     borderColor: '#E6533C',
@@ -232,7 +237,7 @@ export default function ProductsFilters({ onProductsChange }) {
                 }),
                 menu: baseStyles => ({
                   ...baseStyles,
-                  background: '#040404',
+                  background: 'none',
                   border: 'none',
                 }),
                 menuList: baseStyles => ({
