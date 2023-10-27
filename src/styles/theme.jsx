@@ -56,7 +56,8 @@ export const theme = {
 
   // Точки адаптивної верстки
   breakpoint: {
-    mobile: '320px',
+    firstMobile: '320px',
+    mobile: '375px',
     tablet: '768px',
     desktop: '1440px',
   },
