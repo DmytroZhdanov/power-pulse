@@ -18,9 +18,8 @@ import {
 } from './ExercisesItem.styled';
 
 export default function ExercisesItem({
-  key,
+  _id,
   bodyPart,
-
   equipment,
   gifUrl,
   name,
@@ -48,7 +47,7 @@ export default function ExercisesItem({
   };
 
   const exercise = {
-    _id: key,
+    _id,
     bodyPart,
     equipment,
     gifUrl,

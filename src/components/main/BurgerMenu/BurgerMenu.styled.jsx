@@ -27,6 +27,8 @@ export const ButtonClose = styled.div`
 `;
 
 export const SvgBtn = styled.svg`
+  cursor: pointer;
+  stroke: #efede8;
   width: 32px;
   height: 32px;
 `;

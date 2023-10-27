@@ -92,6 +92,7 @@ export function ExercisesList() {
           ({ _id, name, bodyPart, burnedCalories, target, gifUrl, time }) => (
             <ExercisesItem
               key={_id}
+              _id={_id}
               bodyPart={bodyPart}
               equipment={equipment}
               gifUrl={gifUrl}
