@@ -23,6 +23,8 @@ export const theme = {
     black: '#040404',
     white: '#EFEDE8',
 
+
+    grayDisabled: 'rgba(239, 237, 232, 0.2)',
     grayFirst: 'rgba(239, 237, 232, 0.30)',
     graySecond: 'rgba(239, 237, 232, 0.65)',
     grayBackground: 'rgba(239, 237, 232, 1)',
