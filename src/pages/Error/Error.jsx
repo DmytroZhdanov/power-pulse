@@ -13,8 +13,6 @@ import {
 } from './Error.styled';
 
 export default function Error() {
-  const error = useRouteError();
-  console.log(error);
   const location = useLocation();
 
   const goBackLink = useRef(location?.state?.from ?? ROUTER.MAIN);
