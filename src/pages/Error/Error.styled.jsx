@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
+import * as background from '/src/utils/background';
 
 export const Flex = styled.div`
   display: flex;
@@ -112,39 +113,27 @@ export const BackgroundImage = styled.div`
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: 100% center;
-  background-image: url(/power-pulse/src/assets/images/background/Mobile/mo_main.jpg);
-
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    background-image: url(/power-pulse/src/assets/images/background/Mobile/mo_main@2x.jpg);
-  }
-
-  @media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
-    background-image: url(/power-pulse/src/assets/images/background/Mobile/mo_main@3x.jpg);
-  }
+  background-image: image-set(
+    url(${background.mo_main}) 1x,
+    url(${background.mo_main2x}) 2x,
+    url(${background.mo_main3x}) 3x
+  );
 
   /* MIN WIDTH 768px */
   @media screen and (min-width: 768px) {
-    background-image: url(/power-pulse/src/assets/images/background/Tablet/ta_main.jpg);
-
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      background-image: url(/power-pulse/src/assets/images/background/Tablet/ta_main@2x.jpg);
-    }
-
-    @media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
-      background-image: url(/power-pulse/src/assets/images/background/Tablet/ta_main@3x.jpg);
-    }
+    background-image: image-set(
+      url(${background.ta_main}) 1x,
+      url(${background.ta_main2x}) 2x,
+      url(${background.ta_main3x}) 3x
+    );
   }
 
   /* MIN WIDTH 1440px */
   @media screen and (min-width: 1440px) {
-    background-image: url(/power-pulse/src/assets/images/background/Desktop/bg_main.jpg);
-
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      background-image: url(/power-pulse/src/assets/images/background/Desktop/bg_main@2x.jpg);
-    }
-
-    @media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
-      background-image: url(/power-pulse/src/assets/images/background/Desktop/bg_main@3x.jpg);
-    }
+    background-image: image-set(
+      url(${background.bg_main}) 1x,
+      url(${background.bg_main2x}) 2x,
+      url(${background.bg_main3x}) 3x
+    );
   }
 `;
