@@ -8,6 +8,7 @@ import {
   SelectRow,
   SelectContainer,
   StyledSelect,
+  Title,
 } from './ProductsFilters.styled';
 
 import { PRODUCTS_FILTER } from '../../../utils/constants';
@@ -287,6 +288,7 @@ export default function ProductsFilters({ onProductsChange }) {
             />
           </SelectContainer>
         </SelectRow>
+        <Title>Filters</Title>
       </DivFilter>
     </>
   );

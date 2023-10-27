@@ -1,6 +1,19 @@
 import styled from '@emotion/styled';
 import Select from 'react-select';
 
+export const Title = styled.h1`
+  display: none;
+  @media screen and (min-width: 1440px) {
+    display: block;
+    position: relative;
+    top: -28px;
+    left: -65px;
+    color: rgba(239, 237, 232, 0.5);
+    font-size: 14px;
+    line-height: calc(18 / 14);
+  }
+`;
+
 export const DivFilter = styled.div`
   @media screen and (min-width: 320px) {
     margin-top: 40px;
