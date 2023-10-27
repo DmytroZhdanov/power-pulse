@@ -9,7 +9,7 @@ import {
 import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 
-const DataBtns = ({ stepValue, setValueStep, formik }) => {
+const DataBtns = ({ stepValue, formik, setModalOpen }) => {
   const dispatch = useDispatch();
 
   return (
@@ -26,7 +26,7 @@ const DataBtns = ({ stepValue, setValueStep, formik }) => {
         <motion.div whileHover={{ translateX: -2 }}>
           <ArrowBtnLeft
             type="button"
-            onClick={() => handleBack(stepValue, setValueStep)}
+            onClick={() => handleBack(stepValue, dispatch)}
           >
             <svg style={{ transform: 'rotate(180deg)' }}>
               <use href={`${sprite}#big_arrow`} />
@@ -40,7 +40,7 @@ const DataBtns = ({ stepValue, setValueStep, formik }) => {
           <ArrowBtnRight
             type="button"
             onClick={() =>
-              handleNext(stepValue, setValueStep, dispatch, formik)
+              handleNext(stepValue, dispatch, formik, setModalOpen)
             }
           >
             Next

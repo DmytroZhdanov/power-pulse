@@ -15,6 +15,7 @@ import storage from 'redux-persist/lib/storage';
 import { api } from './api';
 import { authReducer } from './auth/authSlice';
 import dataReducer from './dataPage/dataSlice';
+import stepValuerReducer from './dataPage/stepValueSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -41,6 +42,7 @@ export const store = configureStore({
     [api.reducerPath]: api.reducer,
     auth: persistReducer(authPersistConfig, authReducer),
     data: persistReducer(dataPersistConfig, dataReducer),
+    stepValueForm: stepValuerReducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({

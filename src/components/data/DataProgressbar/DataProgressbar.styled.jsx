@@ -14,8 +14,8 @@ const getShadowColor = (stepValue, step) => {
 export const ProgressBarContainer = styled.div`
   display: flex;
   gap: 14px;
-  margin-left: 96px;
-  margin-bottom: 32px;
+  /* margin-left: 96px; */
+  /* margin-bottom: 32px; */
 `;
 
 export const Step = styled.span`
@@ -25,4 +25,5 @@ export const Step = styled.span`
 
   border-radius: 0.2rem;
   box-shadow: ${props => getShadowColor(props.stepValue, props.step)};
+  transition: all 250ms ease-in-out;
 `;

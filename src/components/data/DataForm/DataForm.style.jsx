@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 
 export const FormContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
 
   gap: 10px;
   margin-bottom: 32px;
@@ -112,8 +113,10 @@ export const RadioLabel = styled.label`
       border-radius: 50%;
       width: 12px;
       height: 12px;
-      display: none;
+      opacity: 0;
       background-color: #ef8964;
+
+      transition: all 300ms ease-in-out;
     }
   }
 `;
@@ -121,6 +124,6 @@ export const RadioLabel = styled.label`
 export const RadioInput = styled.input`
   appearance: none;
   :checked ~ span::after {
-    display: block;
+    opacity: 1;
   }
 `;

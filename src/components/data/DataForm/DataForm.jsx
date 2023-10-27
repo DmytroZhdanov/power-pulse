@@ -20,15 +20,18 @@ import {
   textInputData,
 } from '../../data/helper/inputData';
 import { validationSchema } from '../../data/helper/controlData';
+import BasicModalWindow from '../../common/BasicModalWindow/BasicModalWindow';
 
 export const slideInFromLeft = {
   hidden: { x: '-100%' },
   visible: { x: '0%' },
 };
 
-const DataForm = ({ stepValue, setValueStep }) => {
+const DataForm = ({ stepValue }) => {
   const formDataSelector = useSelector(state => state.data);
   const [selected, setSelected] = useState();
+  const [isModalOpen, setModalOpen] = useState(false);
+  const message = 'All fields required and contain valid data';
 
   const dispatch = useDispatch();
 
@@ -67,27 +70,29 @@ const DataForm = ({ stepValue, setValueStep }) => {
     <form onSubmit={formik.handleSubmit}>
       {stepValue === 1 && (
         <FormContainer>
-          {textInputData.map(input => (
-            <TextLabel htmlFor={input.htmlFor} key={input.id}>
-              <DataInput
-                {...input}
-                onBlur={formik.handleBlur}
-                onChange={formik.handleChange}
-                value={formik.values[input.name]}
-              />
-              <span>{input.span}</span>
-              {formik.touched[input.name] && formik.errors[input.name] && (
-                <motion.div
-                  variants={slideInFromLeft}
-                  initial="hidden"
-                  animate="visible"
-                  exit="hidden"
-                >
-                  {input.errorText}
-                </motion.div>
-              )}
-            </TextLabel>
-          ))}
+          <div style={{ display: 'flex', gap: '10px' }}>
+            {textInputData.map(input => (
+              <TextLabel htmlFor={input.htmlFor} key={input.id}>
+                <DataInput
+                  {...input}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                  value={formik.values[input.name]}
+                />
+                <span>{input.span}</span>
+                {formik.touched[input.name] && formik.errors[input.name] && (
+                  <motion.div
+                    variants={slideInFromLeft}
+                    initial="hidden"
+                    animate="visible"
+                    exit="hidden"
+                  >
+                    {input.errorText}
+                  </motion.div>
+                )}
+              </TextLabel>
+            ))}
+          </div>
 
           <BirthdayInput>
             {/* <Calendar
@@ -153,10 +158,14 @@ const DataForm = ({ stepValue, setValueStep }) => {
           </RadioContainer1>
         </div>
       )}
-
+      {/* <BasicModalWindow
+        isOpen={isModalOpen}
+        setModalOpen={setModalOpen}
+        message={message}
+      /> */}
       <DataBtns
+        setModalOpen={setModalOpen}
         stepValue={stepValue}
-        setValueStep={setValueStep}
         formik={formik}
       />
     </form>

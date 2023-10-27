@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 export const DataContainer = styled.div`
   width: 674px;
   /* height: 100vh; */
-  padding-left: 96px;
-  margin-bottom: 204px;
+  /* padding-left: 96px; */
+  /* margin-bottom: 204px; */
 
   h1 {
     color: #efede8;

@@ -113,21 +113,21 @@ export const Background = styled.div`
           url(${background.bg_main3x}) 3x
           )`;
 
-        case '1':
+        case 1:
           return `image-set(
           url(${background.bg_users}) 1x,
           url(${background.bg_users2x}) 2x,
           url(${background.bg_users3x}) 3x
           )`;
 
-        case '2':
+        case 2:
           return `image-set(
           url(${background.bg_hours}) 1x,
           url(${background.bg_hours2x}) 2x,
           url(${background.bg_hours3x}) 3x
           )`;
 
-        case '3':
+        case 3:
           return `image-set(
           url(${background.bg_ex}) 1x,
           url(${background.bg_ex2x}) 2x,

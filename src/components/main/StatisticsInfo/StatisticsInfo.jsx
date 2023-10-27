@@ -19,17 +19,21 @@ import Loader from '../../Loader/Loader';
 import { useEffect, useState } from 'react';
 import BasicModalWindow from '../../common/BasicModalWindow/BasicModalWindow';
 import TimerWarning from '../../common/TimerWarning/TimerWarning';
+import { stepValueForm } from '../../../redux/dataPage/selectors';
+import { useSelector } from 'react-redux';
 
 export default function StatisticsInfo({ pathname, page }) {
   const [showTimerWarning, setShowTimerWarning] = useState(false);
   const { data, isFetching, isError } = useFetchStatisticQuery();
+  const stepValue = useSelector(stepValueForm);
+  console.log(stepValue);
 
   const path = pathname.split('');
   const keyword =
     page === '' ||
     page === ROUTER.SIGN_UP ||
     page === ROUTER.SIGN_IN ||
-    page === ROUTER.DATA
+    page === stepValue
       ? 'main'
       : path[path.length - 1];
 

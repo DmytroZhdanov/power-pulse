@@ -3,8 +3,9 @@
 import * as Yup from 'yup';
 
 import { updateData } from '../../../redux/dataPage/dataSlice';
+import { setStepValue } from '../../../redux/dataPage/stepValueSlice';
 
-export const handleNext = (stepValue, setValueStep, dispatch, formik) => {
+export const handleNext = (stepValue, dispatch, formik, setModalOpen) => {
   if (stepValue === 1) {
     if (
       !formik.values.currentHeight ||
@@ -14,7 +15,8 @@ export const handleNext = (stepValue, setValueStep, dispatch, formik) => {
       formik.errors.currentWeight ||
       formik.errors.desiredWeight
     ) {
-      return alert('All fields must be required and contain valid data');
+      setModalOpen(true);
+      return;
     } else {
       dispatch(
         updateData({
@@ -32,7 +34,8 @@ export const handleNext = (stepValue, setValueStep, dispatch, formik) => {
       formik.errors.gender ||
       formik.errors.levelActivity
     ) {
-      return alert('All fields must be required and contain valid data');
+      setModalOpen(true);
+      return;
     } else {
       dispatch(
         updateData({
@@ -41,11 +44,11 @@ export const handleNext = (stepValue, setValueStep, dispatch, formik) => {
       );
     }
   }
-  setValueStep(stepValue + 1);
+  dispatch(setStepValue(stepValue + 1));
 };
 
-export const handleBack = (stepValue, setValueStep) => {
-  setValueStep(stepValue - 1);
+export const handleBack = (stepValue, dispatch) => {
+  dispatch(setStepValue(stepValue - 1));
 };
 
 export const validationSchema = Yup.object().shape({

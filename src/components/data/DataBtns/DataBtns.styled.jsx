@@ -8,17 +8,19 @@ export const GoBtn = styled.button`
   background-color: #e6533c;
   border-radius: 12px;
   border: none;
+  color: #EFEDE8;
 
   transition: color 300ms ease-in-out;
   :hover {
-    color: #efede8;
+    /* color: #efede8; */
     /* transform: translateY(-1px); */
   }
 `;
 export const DataBtnsContainer = styled.div`
   display: flex;
   gap: 16px;
-  margin-bottom: 84px;
+  /* margin-bottom: 84px; */
+  align-items: center;
 
   svg {
     width: 20px;

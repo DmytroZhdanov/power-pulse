@@ -43,7 +43,7 @@ export const DarkBlockSpan = styled.p`
 export const ColoredBlock = styled(Block)`
   padding-right: 37px;
   background-color: #ef8964;
-  padding: 18px 44px 14px 28px;
+  padding: 14px 44px 14px 28px;
   position: absolute;
   bottom: 171px;
   right: 32px;

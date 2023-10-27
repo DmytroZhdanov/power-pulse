@@ -7,15 +7,20 @@ import StatisticsInfo from 'components/main/StatisticsInfo/StatisticsInfo';
 import { Container } from './Main.styled';
 
 import { ROUTER } from 'src/utils/constants';
+import { useSelector } from 'react-redux';
+import { stepValueForm } from '../../redux/dataPage/selectors';
 
 export default function Main() {
+  const stepValue = useSelector(stepValueForm);
+
   const { pathname } = useResolvedPath();
   const page = pathname.split('/')[1];
   const showStatisticInfo =
     page === '' ||
     page === ROUTER.SIGN_UP ||
     page === ROUTER.SIGN_IN ||
-    page === ROUTER.DATA.split('/')[0];
+    page === stepValue;
+  // console.log(page === stepValue);
 
   return (
     <>
