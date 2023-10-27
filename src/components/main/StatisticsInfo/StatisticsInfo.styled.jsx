@@ -66,21 +66,21 @@ export const Background = styled.div`
           url(${background.ta_main3x}) 3x
           )`;
 
-        case '1':
+        case DATA_STEPS.FIRST:
           return `image-set(
           url(${background.ta_users}) 1x,
           url(${background.ta_users2x}) 2x,
           url(${background.ta_users3x}) 3x
           )`;
 
-        case '2':
+        case DATA_STEPS.SECOND:
           return `image-set(
           url(${background.ta_hours}) 1x,
           url(${background.ta_hours2x}) 2x,
           url(${background.ta_hours3x}) 3x
           )`;
 
-        case '3':
+        case DATA_STEPS.THIRD:
           return `image-set(
           url(${background.ta_ex}) 1x,
           url(${background.ta_ex2x}) 2x,
@@ -114,21 +114,21 @@ export const Background = styled.div`
           url(${background.bg_main3x}) 3x
           )`;
 
-        case '1':
+        case DATA_STEPS.FIRST:
           return `image-set(
           url(${background.bg_users}) 1x,
           url(${background.bg_users2x}) 2x,
           url(${background.bg_users3x}) 3x
           )`;
 
-        case '2':
+        case DATA_STEPS.SECOND:
           return `image-set(
           url(${background.bg_hours}) 1x,
           url(${background.bg_hours2x}) 2x,
           url(${background.bg_hours3x}) 3x
           )`;
 
-        case '3':
+        case DATA_STEPS.THIRD:
           return `image-set(
           url(${background.bg_ex}) 1x,
           url(${background.bg_ex2x}) 2x,

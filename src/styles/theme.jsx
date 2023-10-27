@@ -49,6 +49,9 @@ export const theme = {
     inputActive: '#E6533C',
     inputSuccess: '#3CBF61',
     inputError: '#D80027',
+
+    // Step indicator color
+    default: '#303030',
   },
 
   // Точки адаптивної верстки
@@ -61,5 +64,6 @@ export const theme = {
   // box-shadow
   boxShadow: {
     calendarButton: '0 0 5px 0.5px #EFEDE8, inset 0 0 5px 0px #EFEDE8',
+    dataIndicator: '0px 1px 10px 0px rgba(230, 83, 60, 0.80)',
   },
 };
