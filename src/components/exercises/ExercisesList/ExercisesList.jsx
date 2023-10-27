@@ -13,32 +13,33 @@ import { EXERCISES_CATEGORY } from '../../../utils/constants';
 
 export function ExercisesList() {
   const category = useOutletContext();
-  console.log(category);
 
   const [page, setPage] = useState(1);
   const [fetching, setFetching] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [result, setResult] = useState([]);
-  // const bodyPart ='back';
-  // const equipment = 'barbell';
-  const target = 'abs';
+  const { subcategory } = useParams();
 
-  // const muscles = 'abs';
-
-  // const bodyPart = 'back';
+  const equipment = category === 'equipment' ? subcategory : '';
+  const target = category === 'target' ? subcategory : '';
+  const bodyPart = category === 'bodyPart' ? subcategory : '';
 
   const [fetchAllExercises, { data }] = useLazyFetchAllExercisesQuery();
 
   const onScroll = e => {
-    console.log(scroll);
+    // console.log(scroll);
   };
 
   useEffect(() => {
     const fetch = async () => {
       try {
-        const response = await fetchAllExercises({ target, page }).unwrap();
-        // setResult(prevRes => [...prevRes, ...response]);
+        const response = await fetchAllExercises({
+          bodyPart,
+          target,
+          equipment,
+        }).unwrap();
+        setResult([...response]);
       } catch (error) {
         setError(error);
       } finally {
@@ -48,7 +49,7 @@ export function ExercisesList() {
 
     setLoading(true);
     fetch();
-  }, [fetchAllExercises, page, target]);
+  }, [page, fetchAllExercises, bodyPart, target, equipment, data]);
 
   useEffect(() => {
     document.addEventListener('scroll', onScroll);

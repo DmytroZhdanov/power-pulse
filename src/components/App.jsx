@@ -168,6 +168,22 @@ const router = createBrowserRouter(
           },
           children: [
             {
+              index: true,
+              async lazy() {
+                let { ExercisesSubcategoriesList } = await import(
+                  'components/exercises/ExercisesSubcategoriesList/ExercisesSubcategoriesList'
+                );
+                return {
+                  Component: () => (
+                    <PrivateRoute
+                      redirectTo={ROUTER.SIGN_IN}
+                      component={<ExercisesSubcategoriesList />}
+                    />
+                  ),
+                };
+              },
+            },
+            {
               path: ROUTER.SUBCATEGORY,
               async lazy() {
                 let { ExercisesList } = await import(
