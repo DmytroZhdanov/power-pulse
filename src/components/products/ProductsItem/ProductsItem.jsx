@@ -18,14 +18,9 @@ import {
 } from './ProductsItem.styled';
 import { useState } from 'react';
 
-export default function ProductsItem({
-  weight,
-  calories,
-  category,
-  title,
-  //  groupBloodNotAllowed,
-}) {
+export default function ProductsItem({ props }) {
   const recommended = true;
+  const { weight, calories, category, title } = props;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddProdSucces, setIsAddProdSuccess] = useState(false);

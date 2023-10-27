@@ -4,6 +4,7 @@ export const ProductCard = styled.li`
   padding: 16px;
   border-radius: 12px;
   border: 1px solid rgba(239, 237, 232, 0.2);
+  margin-bottom: 20px;
 
   @media screen and (max-width: 374px) {
     max-width: 335px;
@@ -11,6 +12,10 @@ export const ProductCard = styled.li`
 
   @media screen and (min-width: 375px) {
     width: 335px;
+  }
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
   }
 
   @media screen and (min-width: 1440px) {
