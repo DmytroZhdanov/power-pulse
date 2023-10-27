@@ -1,18 +1,6 @@
 import styled from '@emotion/styled';
 import Select from 'react-select';
 
-export const Title = styled.h2`
-  @media screen and (min-width: 320px) {
-    margin-top: 40px;
-    font-size: 24px;
-    font-weight: 700;
-    line-height: calc(28 / 24);
-  }
-
-  @media screen and (min-width: 768px) {
-  }
-`;
-
 export const DivFilter = styled.div`
   @media screen and (min-width: 320px) {
     margin-top: 40px;
@@ -108,49 +96,6 @@ export const StyledSelect = styled(Select)`
   color: #efede8;
   font-size: 14px;
   line-height: calc(18 / 14);
-  /*/*appearance: none;*/
-
-  .css-13cymwt-control {
-    /*background: #040404;*/
-    /*border-radius: 12px;
-    /*border: 0px solid rgba(239, 237, 232, 0.3*/
-  }
-
-  .css-1988lad-control:hover {
-    /*border-color: #f12;*/
-  }
-  .css-1988lad-control {
-    /*box-shadow: 0 0 0 1px #f12;*/
-  }
-  .css-165-fkjn-menu {
-    /*border-radius: 12px;*/
-  }
-
-  .css-t3ipsp-control,
-  /*.react-select-container,*/
-  /*.css-kc1wmj,*/
-  /*.css-1pahdxg-control,*/
-  .css-1nmdiq5-menu {
-    /*background-color: #040404;*/
-  }
-
-  /*.css-t3ipsp-control,
-  .react-select-container,
-  .css-kc1wmj,*/
-  .css-1pahdxg-control {
-    /*background-color: #040404;*/
-  }
-
-  /*.css-1xc3v61-indicatorContainer,*/
-  .css-4xgw5l-IndicatorsContainer2 {
-    /* Настройка стилей индикатора (стрелки) */
-    /*display: none;*/
-  }
-
-  /*.css-1jqq78o-placeholder,*/
-  .css-1dimb5e-singleValue {
-    /*color: #efede8;*/
-  }
 `;
 
 export const FormControl = styled.div``;

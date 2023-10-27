@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Title,
+   
   DivFilter,
   DivSearch,
   InputSearch,
@@ -13,10 +13,7 @@ import {
 
 import { PRODUCTS_FILTER } from '../../../utils/constants';
 const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
-import {
-  useLazyFetchAllProductsQuery,
-  useFetchProductsCategoriesQuery,
-} from '../../../redux/api';
+import { useFetchProductsCategoriesQuery } from '../../../redux/api';
 
 const emptyFilter = {
   [QUERY]: '',
@@ -29,7 +26,6 @@ export default function ProductsFilters({ onProductsChange }) {
   const [search, setSearch] = useState('');
   const [categories, setCategories] = useState([]);
 
-  const [getProducts] = useLazyFetchAllProductsQuery();
   const currentData = useFetchProductsCategoriesQuery();
 
   useEffect(() => {
@@ -40,16 +36,7 @@ export default function ProductsFilters({ onProductsChange }) {
   }, [currentData]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getProducts(filter).unwrap();
-        onProductsChange(response);
-      } catch (error) {
-        console.error('Error fetching data:', error.message);
-      }
-    };
-
-    fetchData();
+    onProductsChange(filter);
   }, [filter]);
 
   const handleClean = () => {
@@ -60,7 +47,7 @@ export default function ProductsFilters({ onProductsChange }) {
     }));
   };
 
-  const arrRecommende = ['All', 'Recommended', 'Not recommended'];
+  const arrRecommended = ['All', 'Recommended', 'Not recommended'];
 
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedRecommended, setSelectedRecommended] = useState(null);
@@ -100,7 +87,6 @@ export default function ProductsFilters({ onProductsChange }) {
   return (
     <>
       {' '}
-      <Title>Products</Title>
       <DivFilter>
         <DivSearch>
           <InputSearch
@@ -294,7 +280,7 @@ export default function ProductsFilters({ onProductsChange }) {
               }}
               value={selectedRecommended}
               onChange={handleSelectRecommended}
-              options={arrRecommende.map(rec => ({
+              options={arrRecommended.map(rec => ({
                 label: rec,
               }))}
               placeholder="All"

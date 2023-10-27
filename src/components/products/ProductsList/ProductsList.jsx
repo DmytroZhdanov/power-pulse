@@ -1,22 +1,33 @@
 import ProductsItem from '../ProductsItem/ProductsItem';
-import { ProductList,DivProducts } from './ProductsList.styled';
+import { ProductList, DivProducts } from './ProductsList.styled';
 
-export default function ProductsList({ products }) {
-  return (<DivProducts>
-    <ProductList>
-      {products.map(
-        ({ _id, weight, calories, category, title, groupBloodNotAllowed }) => (
-          <ProductsItem
-            key={_id}
-            title={title}
-            weight={weight}
-            calories={calories}
-            category={category}
-            groupBloodNotAllowed={groupBloodNotAllowed}
-          ></ProductsItem>
-        ),
-      )}
-    </ProductList>
+import { useLazyFetchAllProductsQuery } from '../../../redux/api';
+import { useEffect, useState } from 'react';
+
+export default function ProductsList({ filter }) {
+  const [products, setProducts] = useState([]);
+  const [getProducts] = useLazyFetchAllProductsQuery();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getProducts(filter).unwrap();
+        setProducts(response);
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+
+    fetchData();
+  }, [filter]);
+
+  return (
+    <DivProducts>
+      <ProductList>
+        {products.map(({ _id, ...props }) => (
+          <ProductsItem key={_id} props={props}></ProductsItem>
+        ))}
+      </ProductList>
     </DivProducts>
   );
 }
