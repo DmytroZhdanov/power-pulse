@@ -35,9 +35,9 @@ const DataComponent = () => {
       stepValue={stepValue}
       bg={getBg(stepValue, imgs)}
     >
-      <LogoContainer>
+      {/* <LogoContainer>
         <Logo />
-      </LogoContainer>
+      </LogoContainer> */}
       <div>
         {stepValue === 1 && (
           <Data

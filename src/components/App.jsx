@@ -55,48 +55,48 @@ const router = createBrowserRouter(
             };
           },
         },
-        // {
-        //   path: ROUTER.DATA,
-        //   // async lazy() {
-        //   //   let { Data } = await import('pages/Data/Data');
-        //   //   return {
-        //   //     Component: () => <RestrictedRoute component={<Data />} />,
-        //   //   };
-        //   // },
-        //   element: <Data />,
-        //   children: [
-        //     {
-        //       path: DATA_STEPS.FIRST,
-        //       // async lazy() {
-        //       //   let { FirstStep } = await import('./data/FirstStep/FirstStep');
-        //       //   return {
-        //       //     Component: () => <RestrictedRoute component={<FirstStep />} />,
-        //       //   };
-        //       // },
-        //       element: <FirstStep />,
-        //     },
-        //     {
-        //       path: DATA_STEPS.SECOND,
-        //       // async lazy() {
-        //       //   let { SecondStep } = await import('./data/SecondStep/SecondStep');
-        //       //   return {
-        //       //     Component: () => <RestrictedRoute component={<SecondStep />} />,
-        //       //   };
-        //       // },
-        //       element: <SecondStep />,
-        //     },
-        //     {
-        //       path: DATA_STEPS.THIRD,
-        //       // async lazy() {
-        //       //   let { ThirdStep } = await import('./data/ThirdStep/ThirdStep');
-        //       //   return {
-        //       //     Component: () => <RestrictedRoute component={<ThirdStep />} />,
-        //       //   };
-        //       // },
-        //       element: <ThirdStep />,
-        //     },
-        //   ],
-        // },
+        {
+          path: ROUTER.DATA,
+          async lazy() {
+            let { Data } = await import('pages/Data/Data');
+            return {
+              Component: () => <RestrictedRoute component={<Data />} />,
+            };
+          },
+          // element: <Data />,
+          // children: [
+          //   {
+          //     path: DATA_STEPS.FIRST,
+          //     async lazy() {
+          //       let { FirstStep } = await import('./data/FirstStep/FirstStep');
+          //       return {
+          //         Component: () => <RestrictedRoute component={<FirstStep />} />,
+          //       };
+          //     },
+          //     element: <FirstStep />,
+          //   },
+          //   {
+          //     path: DATA_STEPS.SECOND,
+          //     async lazy() {
+          //       let { SecondStep } = await import('./data/SecondStep/SecondStep');
+          //       return {
+          //         Component: () => <RestrictedRoute component={<SecondStep />} />,
+          //       };
+          //     },
+          //     element: <SecondStep />,
+          //   },
+          //   {
+          //     path: DATA_STEPS.THIRD,
+          //     async lazy() {
+          //       let { ThirdStep } = await import('./data/ThirdStep/ThirdStep');
+          //       return {
+          //         Component: () => <RestrictedRoute component={<ThirdStep />} />,
+          //       };
+          //     },
+          //     element: <ThirdStep />,
+          //   },
+          // ],
+        },
         {
           path: ROUTER.SIGN_IN,
           async lazy() {

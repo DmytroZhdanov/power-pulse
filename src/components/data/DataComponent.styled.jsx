@@ -6,11 +6,9 @@ export const LogoContainer = styled.div`
 
 export const DataContainer = styled.div`
   position: relative;
-  background-image: url(${({ bg }) => bg});
-  background-size: contain;
+  /* background-image: url(${({ bg }) => bg}); */
+  /* background-size: contain; */
   /* width: 670px; */
-  background-repeat: no-repeat;
-  background-position: right;
-
-  transition: background-image 0.6s ease-in-out;
+  /* background-repeat: no-repeat;
+  background-position: right; */
 `;
