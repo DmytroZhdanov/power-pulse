@@ -46,6 +46,10 @@ import bg_ex from 'src/assets/images/background/Desktop/bg_ex.jpg';
 import bg_ex2x from 'src/assets/images/background/Desktop/bg_ex@2x.jpg';
 import bg_ex3x from 'src/assets/images/background/Desktop/bg_ex@3x.jpg';
 
+import bg_eating from 'src/assets/images/background/Desktop/bg_eating.jpg';
+import bg_eating2x from 'src/assets/images/background/Desktop/bg_eating@2x.jpg';
+import bg_eating3x from 'src/assets/images/background/Desktop/bg_eating@3x.jpg';
+
 export {
   mo_main,
   mo_main2x,
@@ -83,4 +87,7 @@ export {
   bg_ex,
   bg_ex2x,
   bg_ex3x,
+  bg_eating,
+  bg_eating2x,
+  bg_eating3x,
 };

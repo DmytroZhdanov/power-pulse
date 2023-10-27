@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import * as background from 'src/utils/background';
-import { DATA_STEPS } from '../../../utils/constants';
+import { DATA_STEPS } from 'src/utils/constants';
 
 export const Background = styled.div`
   position: absolute;
