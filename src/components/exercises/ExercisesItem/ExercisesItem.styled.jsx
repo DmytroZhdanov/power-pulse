@@ -26,6 +26,11 @@ export const ExercisesWrap = styled(ProductHeader)`
     margin-bottom: 25px;
   }
 `;
+export const Svg = styled.svg`
+  width: 24px;
+  height: 24px;
+`;
+
 export const Title = styled(Diet)``;
 export const Box = styled(RecommendDiv)``;
 export const Info = styled.div`

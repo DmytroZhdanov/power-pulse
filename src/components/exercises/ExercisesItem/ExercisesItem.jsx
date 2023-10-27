@@ -3,6 +3,7 @@ import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindo
 import AddExerciseForm from '../AddExerciseForm/AddExerciseForm';
 import AddExerciseSuccess from '../AddExerciseSuccess/AddExerciseSuccess';
 import { useState } from 'react';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 import {
   ExercisesCard,
   ExercisesWrap,
@@ -15,6 +16,7 @@ import {
   ButtonTitle,
   Category,
   Values,
+  Svg,
 } from './ExercisesItem.styled';
 
 export default function ExercisesItem({
@@ -74,9 +76,9 @@ export default function ExercisesItem({
         </ExercisesWrap>
 
         <ExerciseDiv>
-          <svg width="24" height="24">
-            <use href="/src/assets/images/sprite/sprite.svg#run-man"></use>
-          </svg>
+          <Svg>
+            <use href={`${sprite}#run-man`}></use>
+          </Svg>
 
           <ExerciseName>{UpperCase(name)}</ExerciseName>
         </ExerciseDiv>
