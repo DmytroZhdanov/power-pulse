@@ -213,6 +213,7 @@ const router = createBrowserRouter(
 export default function App() {
   const dispatch = useDispatch();
   const [refresh, { isFetching, error }] = useLazyRefreshQuery();
+  console.log(error);
   const token = useSelector(selectToken);
 
   const [showError, setShowError] = useState(false);
@@ -231,12 +232,14 @@ export default function App() {
     } catch {
       setShowError(true);
       setTimeout(() => setShowError(false), 2000);
-
-      if (error.status === 401) {
-        dispatch(setCredentials(initialState));
-      }
     }
-  }, [dispatch, token, refresh, error.status]);
+  }, [dispatch, token, refresh]);
+
+  useEffect(() => {
+    if (error?.status === 401) {
+      dispatch(setCredentials(initialState));
+    }
+  }, [dispatch, error?.status]);
 
   useEffect(() => {
     let id;
