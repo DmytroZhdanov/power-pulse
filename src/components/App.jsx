@@ -213,7 +213,6 @@ const router = createBrowserRouter(
 export default function App() {
   const dispatch = useDispatch();
   const [refresh, { isFetching, error }] = useLazyRefreshQuery();
-  console.log(error);
   const token = useSelector(selectToken);
 
   const [showError, setShowError] = useState(false);

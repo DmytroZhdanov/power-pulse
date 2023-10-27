@@ -1,6 +1,7 @@
 import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
 import AddProductForm from 'components/products/AddProductForm/AddProductForm';
 import AddProductSuccess from 'components/products/AddProductSuccess/AddProductSuccess';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 import {
   ProductCard,
   ProductHeader,
@@ -10,9 +11,11 @@ import {
   Description,
   ProductTitle,
   Product,
+  SvgProd,
   RecommendText,
   Button,
   BtnText,
+  SvgAdd,
   Text,
   Value,
 } from './ProductsItem.styled';
@@ -56,17 +59,17 @@ export default function ProductsItem({ props }) {
             <Button onClick={openModal}>
               <BtnText>Add</BtnText>
 
-              <svg width="16" height="16">
-                <use href="/src/assets/images/sprite/sprite.svg#arrow-add-prod-orange"></use>
-              </svg>
+              <SvgAdd>
+                <use href={`${sprite}#arrow-add-prod-orange`}></use>
+              </SvgAdd>
             </Button>
           </RecommendDiv>
         </ProductHeader>
 
         <Product>
-          <svg width="24" height="24">
-            <use href="/src/assets/images/sprite/sprite.svg#run-man"></use>
-          </svg>
+          <SvgProd>
+            <use href={`${sprite}#run-man`}></use>
+          </SvgProd>
 
           <ProductTitle>{title}</ProductTitle>
         </Product>
@@ -91,7 +94,7 @@ export default function ProductsItem({ props }) {
           <AddProductForm
             onClose={closeModal}
             addProdSuccess={addProdSuccess}
-            calories={calories}
+            product={props}
           />
         </BasicModalWindow>
       )}
