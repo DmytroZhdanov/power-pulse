@@ -19,6 +19,7 @@ import Loader from './Loader/Loader';
 import BasicModalWindow from './common/BasicModalWindow/BasicModalWindow';
 import TimerWarning from './common/TimerWarning/TimerWarning';
 import ErrorMessage from './common/ErrorMessage/ErrorMessage';
+import { initialState } from '../redux/auth/authSlice';
 
 const router = createBrowserRouter(
   [
@@ -212,6 +213,7 @@ const router = createBrowserRouter(
 export default function App() {
   const dispatch = useDispatch();
   const [refresh, { isFetching, error }] = useLazyRefreshQuery();
+  console.log(error);
   const token = useSelector(selectToken);
 
   const [showError, setShowError] = useState(false);
@@ -232,6 +234,12 @@ export default function App() {
       setTimeout(() => setShowError(false), 2000);
     }
   }, [dispatch, token, refresh]);
+
+  useEffect(() => {
+    if (error?.status === 401) {
+      dispatch(setCredentials(initialState));
+    }
+  }, [dispatch, error?.status]);
 
   useEffect(() => {
     let id;

@@ -1,35 +1,82 @@
-import { format } from 'date-fns';
-
 import PropTypes from 'prop-types';
+import { format } from 'date-fns';
+import { useEffect, useState } from 'react';
+import { useLazyFetchUserParamsQuery } from 'src/redux/api';
 
 import Calendar from '../../Calendar/Calendar';
-import { WrapperCalendarInput } from './BirthdayInput.style';
+import Icon from 'src/components/common/IconsComp/Icon';
+
+import {
+  CalendarIcon,
+  DefaultInputText,
+  InputHidden,
+  WrapperCalendarInput,
+} from './BirthdayInput.style';
 
 export default function BirthdayInput({ selectedDate, setSelectedDate }) {
+  const [showDefaultInputValue, setShowDefaultInputValue] = useState(true);
   const defaultInputValue = 'Birthday';
 
-  const today = new Date();
-  const eighteenYearsAgo = new Date(today).setFullYear(
-    today.getFullYear() - 18,
-  );
-  const maximumAge = new Date(today).setFullYear(today.getFullYear() - 100);
+  const setDate = date => {
+    setShowDefaultInputValue(false);
+    setSelectedDate(date);
+  };
 
-  const inputText =
-    selectedDate.toString() === new Date().toString()
-      ? defaultInputValue
-      : format(selectedDate, 'dd.MM.yyyy');
+  const [fetchUserParams] = useLazyFetchUserParamsQuery();
+
+  useEffect(() => {
+    const getUserParams = async () => {
+      const { user } = await fetchUserParams().unwrap();
+      if (user?.userParams?.birthday) {
+        setShowDefaultInputValue(false);
+        setSelectedDate(new Date(user?.userParams?.birthday));
+      } else {
+        setShowDefaultInputValue(true);
+      }
+    };
+
+    getUserParams();
+  }, [fetchUserParams, setSelectedDate]);
+
+  const today = new Date();
+
+  const eighteenYearsAgo = new Date(
+    today.setFullYear(today.getFullYear() - 18),
+  );
+
+  const maximumAge = new Date(today.setFullYear(today.getFullYear() - 100));
+
+  const inputValue = showDefaultInputValue
+    ? defaultInputValue
+    : format(selectedDate, 'yyyy-MM-dd');
+  const inputText = showDefaultInputValue
+    ? defaultInputValue
+    : format(selectedDate, 'dd.MM.yyyy');
 
   return (
-    <WrapperCalendarInput>
-      <Calendar
-        inputText={inputText}
-        selected={selectedDate}
-        onSelect={setSelectedDate}
-        toDate={eighteenYearsAgo}
-        fromDate={maximumAge}
-        captionLayout="dropdown-buttons"
+    <>
+      <InputHidden
+        disabled
+        type="date"
+        name="birthday"
+        defaultValue={inputValue}
       />
-    </WrapperCalendarInput>
+      <Calendar
+        maxDate={eighteenYearsAgo}
+        minDate={maximumAge}
+        onChange={setDate}
+        value={selectedDate}
+      >
+        <WrapperCalendarInput>
+          <DefaultInputText setColor={showDefaultInputValue ? '' : 'full'}>
+            {inputText}
+          </DefaultInputText>
+          <CalendarIcon>
+            <Icon name="calendar" />
+          </CalendarIcon>
+        </WrapperCalendarInput>
+      </Calendar>
+    </>
   );
 }
 
