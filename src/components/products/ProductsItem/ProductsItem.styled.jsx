@@ -71,11 +71,21 @@ export const BtnText = styled.p`
   line-height: calc(18 / 14);
 `;
 
+export const SvgAdd = styled.svg`
+  width: 16px;
+  height: 16px;
+`;
+
 export const Product = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
   margin-bottom: 8px;
+`;
+
+export const SvgProd = styled.svg`
+  width: 24px;
+  height: 24px;
 `;
 
 export const ProductTitle = styled.h2`
