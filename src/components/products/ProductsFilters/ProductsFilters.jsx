@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import {
-   
   DivFilter,
   DivSearch,
   InputSearch,
@@ -53,12 +52,12 @@ export default function ProductsFilters({ onProductsChange }) {
   const [selectedRecommended, setSelectedRecommended] = useState(null);
 
   const onQueryChange = e => {
-   setFilter(prevFilter => ({
-     ...prevFilter,
-     [QUERY]: e.target.value.trim(),
-   }));
-   setSearch(e.target.value);
-  }
+    setFilter(prevFilter => ({
+      ...prevFilter,
+      [QUERY]: e.target.value.trim(),
+    }));
+    setSearch(e.target.value);
+  };
 
   const handleSelectCategory = selectedCategory => {
     setSelectedCategory(selectedCategory);
@@ -196,7 +195,7 @@ export default function ProductsFilters({ onProductsChange }) {
               value={selectedCategory}
               onChange={handleSelectCategory}
               options={categories.map(category => ({
-                label: category,
+                label: category.charAt(0).toUpperCase() + category.slice(1),
               }))}
               placeholder="Categories"
             />
