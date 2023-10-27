@@ -37,7 +37,7 @@ export default function ProductsFilters({ onProductsChange }) {
 
   useEffect(() => {
     onProductsChange(filter);
-  }, [filter]);
+  }, [filter, onProductsChange]);
 
   const handleClean = () => {
     setSearch('');
