@@ -1,4 +1,4 @@
-import{n as i,k as F,j as e,l as r,r as T,L as S,P,e as M,m as Y,I as R}from"./index-d4d582b8.js";import{T as N}from"./TitlePage-d4e8d25e.js";import{C as U,f as _}from"./Calendar-d99ca494.js";import"./tiny-warning.esm-c932d744.js";const Q=i.div`
+import{n as i,k as F,j as e,l as r,r as T,L as S,P,e as M,m as Y,I as R}from"./index-ef227d0b.js";import{T as N}from"./TitlePage-75fb3de0.js";import{C as U,f as _}from"./Calendar-63b6212b.js";import"./tiny-warning.esm-c932d744.js";import"./setPrototypeOf-51e8cf87.js";const Q=i.div`
   @media screen and (max-width: 767px) {
     margin-bottom: 40px;
   }
@@ -741,4 +741,4 @@ height: 16px;`;function ge(){return e.jsxs(le,{children:[e.jsxs(ce,{children:[e.
   @media screen and (min-width: 1440px) {
     margin-bottom: 0px;
   }
-`;function We(){const[n,h]=T.useState(new Date);return e.jsxs(Te,{children:[e.jsxs($e,{children:[e.jsx(N,{text:"Diary"}),e.jsx(A,{selectedDate:n,setSelectedDate:h})]}),e.jsxs(De,{children:[e.jsx(Z,{}),e.jsxs(Be,{children:[e.jsx(ge,{}),e.jsx(he,{})]})]})]})}export{We as Diary};
+`;function Re(){const[n,h]=T.useState(new Date);return e.jsxs(Te,{children:[e.jsxs($e,{children:[e.jsx(N,{text:"Diary"}),e.jsx(A,{selectedDate:n,setSelectedDate:h})]}),e.jsxs(De,{children:[e.jsx(Z,{}),e.jsxs(Be,{children:[e.jsx(ge,{}),e.jsx(he,{})]})]})]})}export{Re as Diary};
