@@ -43,7 +43,6 @@ export const Inputs = styled.div`
     position: absolute;
     top: 14px;
     right: 12px;
-
     color: #efede8;
     background-color: transparent;
   }
@@ -138,13 +137,12 @@ export const Message = styled.div`
 
   div {
     display: flex;
-    align-items: center;
     gap: 4px;
   }
 
   svg {
-    width: 16px;
-    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
     fill: currentColor;
   }
 `;

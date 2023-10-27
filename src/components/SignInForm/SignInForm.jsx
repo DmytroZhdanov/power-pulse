@@ -47,7 +47,7 @@ export default function SignInForm() {
   const [hidePass, setHidePass] = useState();
   const [passBtn, setPassBtn] = useState(false);
 
-  const handleInput = e => {
+  const handleInput = () => {
     setPassBtn(true);
   };
 
@@ -88,19 +88,20 @@ export default function SignInForm() {
 
           <Inputs>
             <Feedback name="email" type="email" placeholder="Email" />
-
-            <Feedback
-              name="password"
-              type="password"
-              placeholder="Password"
-              id="password"
-              onInput={handleInput}
-            />
-            {passBtn && (
-              <button type="button" onClick={onClickPassBtn}>
-                {hidePass ? <Icon name={'eye'} /> : <Icon name={'eye-off'} />}
-              </button>
-            )}
+            <div>
+              <Feedback
+                name="password"
+                type="password"
+                placeholder="Password"
+                id="password"
+                onInput={handleInput}
+              />
+              {passBtn && (
+                <button type="button" onClick={onClickPassBtn}>
+                  {hidePass ? <Icon name={'eye'} /> : <Icon name={'eye-off'} />}
+                </button>
+              )}
+            </div>
           </Inputs>
           <Button type="submit">Sign In</Button>
           <Sign>

@@ -46,7 +46,7 @@ export default function SignUpForm() {
   const [hidePass, setHidePass] = useState();
   const [passBtn, setPassBtn] = useState(false);
 
-  const handleInput = e => {
+  const handleInput = () => {
     setPassBtn(true);
   };
 

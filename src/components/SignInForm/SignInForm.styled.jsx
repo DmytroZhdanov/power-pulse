@@ -25,24 +25,26 @@ export const Inputs = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 18px;
-  
+
   div {
     position: relative;
+    width: 280px;
+
+    @media screen and (max-width: 375px) {
+      width: 335px;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 364px;
+    }
   }
 
   button {
     position: absolute;
-    top: 84px;
-    right: 25px;
+    top: 14px;
+    right: 12px;
     color: #efede8;
     background-color: transparent;
-
-    @media screen and (min-width: 768px) {
-      right: 140px;
-    }
-    @media screen and (min-width: 1440px) {
-      right: 240px;
-    }
   }
 
   svg {
@@ -141,8 +143,8 @@ export const Message = styled.div`
   }
 
   svg {
-    width: 16px;
-    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
     fill: currentColor;
   }
 `;
