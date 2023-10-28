@@ -1,24 +1,29 @@
 import ExercisesItem from '../ExercisesItem/ExercisesItem';
 import {
+  Background,
   ExerciseList,
   LinkText,
   StyledLink,
   Svg,
+  Wrap,
 } from './ExercisesList.styled';
 import { useLocation, useOutletContext, useParams } from 'react-router';
 import { useLazyFetchAllExercisesQuery } from '../../../redux/api';
 import { useEffect, useRef, useState } from 'react';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-
+import { useInView } from 'react-intersection-observer';
+import Loader from 'components/Loader/Loader';
 export function ExercisesList() {
   const category = useOutletContext();
-
   const [page, setPage] = useState(1);
   const [fetching, setFetching] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [result, setResult] = useState([]);
   const { subcategory } = useParams();
+  const { ref } = useInView({
+    onChange: inView => inView && setFetching(true),
+  });
 
   const equipment = category === 'equipment' ? subcategory : '';
   const target = category === 'target' ? subcategory : '';
@@ -29,27 +34,8 @@ export function ExercisesList() {
   const listRef = useRef();
 
   useEffect(() => {
-    const listElement = listRef.current;
-
-    const handleScroll = () => {
-      if (
-        listElement.scrollHeight -
-          (listElement.scrollTop + listElement.clientHeight) <
-        100
-      ) {
-        setFetching(true);
-      }
-    };
-
-    listElement.addEventListener('scroll', handleScroll);
-
-    return () => {
-      listElement.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
     if (fetching) {
+      setLoading(true);
       const fetch = async () => {
         try {
           const response = await fetchAllExercises({
@@ -59,11 +45,8 @@ export function ExercisesList() {
             page,
           }).unwrap();
 
-          page === 1
-            ? setResult(response)
-            : setResult(prev => [...prev, ...response]);
-
-          setPage(prevPage => prevPage + 1);
+          setResult(prev => [...prev, ...response]);
+          setPage(page + 1);
           setFetching(false);
 
           setLoading(false);
@@ -80,6 +63,7 @@ export function ExercisesList() {
 
   return (
     <>
+      {loading && <Loader />}
       <StyledLink to={pathLocation.current}>
         <Svg>
           <use href={`${sprite}#icon-arrow`}></use>
@@ -89,21 +73,27 @@ export function ExercisesList() {
 
       <ExerciseList ref={listRef}>
         {result?.map(
-          ({ _id, name, bodyPart, burnedCalories, target, gifUrl, time }) => (
-            <ExercisesItem
-              key={_id}
-              _id={_id}
-              bodyPart={bodyPart}
-              equipment={equipment}
-              gifUrl={gifUrl}
-              name={name}
-              target={target}
-              burnedCalories={burnedCalories}
-              time={time}
-            />
+          (
+            { _id, name, bodyPart, burnedCalories, target, gifUrl, time },
+            index,
+          ) => (
+            <Wrap key={index} ref={index === result.length - 1 ? ref : null}>
+              <ExercisesItem
+                key={_id}
+                _id={_id}
+                bodyPart={bodyPart}
+                equipment={equipment}
+                gifUrl={gifUrl}
+                name={name}
+                target={target}
+                burnedCalories={burnedCalories}
+                time={time}
+              />
+            </Wrap>
           ),
         )}
       </ExerciseList>
+      <Background />
     </>
   );
 }

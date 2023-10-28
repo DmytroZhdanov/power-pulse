@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { ProductList } from '../../products/ProductsList/ProductsList.styled';
 
 export const ExerciseList = styled.ul`
-  /* row-gap: 20px; */
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -43,4 +42,10 @@ export const Svg = styled.svg`
   width: 16px;
   height: 16px;
   stroke: rgba(239, 237, 232, 0.4);
+`;
+export const Wrap = styled.div``;
+export const Background = styled.div`
+  position: fixed;
+  height: 100vh;
+  width: 35%;
 `;
