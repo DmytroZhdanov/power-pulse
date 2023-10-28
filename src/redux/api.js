@@ -143,7 +143,7 @@ export const api = createApi({
       }),
     }),
     fetchDiary: builder.query({
-      query: date => ({ url: `/diary/${date}` }),
+      query: date => ({ url: `/diary/day${date}` }),
     }),
     addProduct: builder.mutation({
       query: credentials => ({

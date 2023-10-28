@@ -1,5 +1,5 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import { useLazyFetchDiaryQuery } from '../../redux/api';
 import TitlePage from 'components/common/TitlePage/TitlePage';
 import DayDashboard from 'components/diary/DayDashboard/DayDashboard';
 import DayExercises from 'components/diary/DayExercises/DayExercises';
@@ -15,6 +15,9 @@ import {
 
 export function Diary() {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [trigger, result, lastPromiseInfo] =
+    useLazyFetchDiaryQuery(selectedDate);
+  const { data, isLoading, error } = result;
   return (
     <Section>
       <HeaderWrapper>
@@ -27,8 +30,8 @@ export function Diary() {
       <ContentWrapper>
         <DayDashboard />
         <DayStatisticWrapper>
-          <DayProducts />
-          <DayExercises />
+          <DayProducts data={data.productResult} />
+          <DayExercises data={data.exerciseResult} />
         </DayStatisticWrapper>
       </ContentWrapper>
     </Section>
