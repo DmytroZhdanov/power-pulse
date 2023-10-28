@@ -43,8 +43,6 @@ export function ExercisesList() {
     item => item.name === subcategory,
   )[0].imgURL;
 
-  console.log(currentBackgroundImage);
-
   useEffect(() => {
     if (fetching) {
       setLoading(true);

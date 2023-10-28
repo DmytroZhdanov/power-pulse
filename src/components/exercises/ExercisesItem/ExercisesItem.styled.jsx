@@ -5,20 +5,12 @@ import {
   ProductHeader,
   Diet,
   RecommendDiv,
-  Description,
   ProductTitle,
   Product,
   Button,
   BtnText,
   Text,
-  Value,
 } from '../../products/ProductsItem/ProductsItem.styled';
-
-export const ExercisesCard = styled(ProductCard)`
-  max-height: 163px;
-  @media screen and (min-width: 1440px) {
-  }
-`;
 
 export const ExercisesWrap = styled(ProductHeader)`
   margin-bottom: 33px;
@@ -73,5 +65,17 @@ export const Values = styled.span`
   }
   @media screen and (min-width: 1440px) {
     margin-bottom: 0;
+  }
+`;
+export const ExercisesCard = styled(ProductCard)`
+  max-height: 163px;
+  @media screen and (min-width: 1440px) {
+    &:hover {
+      background-image: url(${props => props.gifUrl});
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: right;
+      background-color: #ffffff;
+    }
   }
 `;

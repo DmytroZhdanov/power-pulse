@@ -19,7 +19,6 @@ import {
   SvgArrow,
   SvgRunMan,
 } from './ExercisesItem.styled';
-import { Svg } from '../ExercisesList/ExercisesList.styled';
 
 export default function ExercisesItem({
   _id,
@@ -63,7 +62,7 @@ export default function ExercisesItem({
 
   return (
     <>
-      <ExercisesCard>
+      <ExercisesCard gifUrl={gifUrl}>
         <ExercisesWrap>
           <Title>WORKOUT</Title>
 
