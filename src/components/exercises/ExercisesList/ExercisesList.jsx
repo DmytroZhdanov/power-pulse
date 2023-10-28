@@ -1,6 +1,7 @@
 import ExercisesItem from '../ExercisesItem/ExercisesItem';
 import {
   Background,
+  Content,
   ExerciseList,
   LinkText,
   StyledLink,
@@ -62,7 +63,7 @@ export function ExercisesList() {
   }, [page, fetchAllExercises, bodyPart, target, equipment, fetching]);
 
   return (
-    <>
+    <Content>
       {loading && <Loader />}
       <StyledLink to={pathLocation.current}>
         <Svg>
@@ -94,6 +95,6 @@ export function ExercisesList() {
         )}
       </ExerciseList>
       <Background />
-    </>
+    </Content>
   );
 }
