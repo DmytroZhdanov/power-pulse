@@ -7,12 +7,26 @@ import {
   SpanTry,
 } from './ProductsList.styled';
 
-import { useLazyFetchAllProductsQuery } from '../../../redux/api';
+import {
+  useLazyFetchAllProductsQuery,
+  useFetchUserBloodGroupQuery,
+} from '../../../redux/api';
 import { useEffect, useState } from 'react';
 
 export default function ProductsList({ filter }) {
   const [products, setProducts] = useState([]);
+  const [userGroupBlood, setUserGroupBlood] = useState(null);
   const [getProducts] = useLazyFetchAllProductsQuery();
+  const pending = useFetchUserBloodGroupQuery();
+
+  useEffect(() => {
+    if (pending.isSuccess) {
+      const userBlood = pending.data;
+      setUserGroupBlood(userBlood);
+    }
+  }, [pending]);
+
+  console.log('userGroupBlood:', userGroupBlood);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +46,11 @@ export default function ProductsList({ filter }) {
       {products.length > 0 ? (
         <ProductList>
           {products.map(({ _id, ...props }) => (
-            <ProductsItem key={_id} props={props}></ProductsItem>
+            <ProductsItem
+              key={_id}
+              props={props}
+              userGroupBlood={userGroupBlood}
+            ></ProductsItem>
           ))}
         </ProductList>
       ) : (

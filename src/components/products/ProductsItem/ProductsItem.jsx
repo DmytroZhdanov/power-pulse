@@ -21,9 +21,10 @@ import {
 } from './ProductsItem.styled';
 import { useState } from 'react';
 
-export default function ProductsItem({ props }) {
-  const recommended = true;
-  const { weight, calories, category, title } = props;
+export default function ProductsItem({ props, userGroupBlood }) {
+  const { weight, calories, category, title, groupBloodNotAllowed } = props;
+
+  const recommended = groupBloodNotAllowed[userGroupBlood];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddProdSucces, setIsAddProdSuccess] = useState(false);
@@ -50,10 +51,10 @@ export default function ProductsItem({ props }) {
           <Diet>DIET</Diet>
 
           <RecommendDiv>
-            <Indicator recommended={recommended} />
+            <Indicator recommended={!recommended} />
 
             <RecommendText>
-              {recommended ? 'Recommended' : 'Not recommended'}
+              {recommended ? 'Not recommended' : 'Recommended'}
             </RecommendText>
 
             <Button onClick={openModal}>
