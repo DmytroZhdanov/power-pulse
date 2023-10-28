@@ -5,9 +5,9 @@ import {
   Text,
   Inputs,
   Check,
-  Button,
   Message,
   Sign,
+  Buttons,
 } from './SignInForm.styled';
 import Icon from '../common/IconsComp/Icon';
 import { signInFormSchema } from './YupValidationForm';
@@ -126,7 +126,12 @@ export default function SignInForm() {
               )}
             </div>
           </Inputs>
-          <Button type="submit">Sign In</Button>
+          <Buttons>
+            <button type="submit">Sign Up</button>
+            <button type="button" id="google">
+              <Icon name={'google'} />
+            </button>
+          </Buttons>
           <Sign>
             <p>Don’t have an account? </p>
             <Link to="/signup">Sign Up</Link>
