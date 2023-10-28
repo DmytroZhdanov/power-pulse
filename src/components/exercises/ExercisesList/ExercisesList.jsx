@@ -75,6 +75,7 @@ export function ExercisesList() {
 
   return (
     <Content>
+      {loading && <Loader />}
       <StyledLink to={pathLocation.current}>
         <Svg>
           <use href={`${sprite}#icon-arrow`}></use>

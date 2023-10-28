@@ -26,9 +26,13 @@ export const ExercisesWrap = styled(ProductHeader)`
     margin-bottom: 25px;
   }
 `;
-export const Svg = styled.svg`
-  width: 24px;
-  height: 24px;
+export const SvgRunMan = styled.svg`
+  max-width: 24px;
+  max-height: 24px;
+`;
+export const SvgArrow = styled.svg`
+  width: 16px;
+  height: 16px;
 `;
 
 export const Title = styled(Diet)``;

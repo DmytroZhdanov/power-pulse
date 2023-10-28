@@ -2,6 +2,7 @@ import UpperCase from '../../common/UpperCaseFunc/UpperCase';
 import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
 import AddExerciseForm from '../AddExerciseForm/AddExerciseForm';
 import AddExerciseSuccess from '../AddExerciseSuccess/AddExerciseSuccess';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 import { useState } from 'react';
 import {
   ExercisesCard,
@@ -15,6 +16,8 @@ import {
   ButtonTitle,
   Category,
   Values,
+  SvgArrow,
+  SvgRunMan,
 } from './ExercisesItem.styled';
 import { Svg } from '../ExercisesList/ExercisesList.styled';
 
@@ -67,17 +70,17 @@ export default function ExercisesItem({
           <Box>
             <ButtonStart onClick={openModalExerciseForm}>
               <ButtonTitle>Start</ButtonTitle>
-              <svg width="16" height="16">
-                <use href="/src/assets/images/sprite/sprite.svg#arrow-add-prod-orange"></use>
-              </svg>
+              <SvgArrow>
+                <use href={`${sprite}#arrow-add-prod-orange`}></use>
+              </SvgArrow>
             </ButtonStart>
           </Box>
         </ExercisesWrap>
 
         <ExerciseDiv>
-          <svg width="24" height="24">
-            <use href="/src/assets/images/sprite/sprite.svg#run-man"></use>
-          </svg>
+          <SvgRunMan>
+            <use href={`${sprite}#run-man`}></use>
+          </SvgRunMan>
 
           <ExerciseName>{UpperCase(name)}</ExerciseName>
         </ExerciseDiv>
