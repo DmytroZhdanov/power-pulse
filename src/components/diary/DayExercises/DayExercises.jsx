@@ -4,7 +4,7 @@ import sprite from '../../../assets/images/sprite/sprite.svg';
 import {
   DayExerDiv,
   DayExerTitle,
-  DayExerUl,
+  DayExerDivList,
   AddExerBtn,
   AddExerBtnIcon,
   AddExerBtnText
@@ -13,10 +13,10 @@ import {
 export default function DayExercises() {
   return (
     <DayExerDiv>
-      <DayExerUl>
+      <DayExerDivList>
         <DayExerTitle>Exercises</DayExerTitle>
         <AddExerBtn to='/exercises'><AddExerBtnText>Add exercise</AddExerBtnText><AddExerBtnIcon><use href={`${sprite}#big_arrow`}></use></AddExerBtnIcon></AddExerBtn>
-      </DayExerUl>
+      </DayExerDivList>
       <ExercisesTable />
     </DayExerDiv>
   );

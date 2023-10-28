@@ -8,8 +8,7 @@ export const DayProdDiv = styled.div`
     padding-left: 8px ;
   }
   @media screen and (min-width: 768px) {
-    padding: 16px ;
-    padding-bottom:8px;
+    padding: 16px 16px 8px 8px ;
     max-height:234px
   }
   @media screen and (min-width: 1440px) {
@@ -25,14 +24,15 @@ color: rgba(239, 237, 232, 0.5);
 font-size: 14px;
 line-height: ${18 / 14};
 `
-export const DayProdUl = styled.ul`
+export const DayProdDivList = styled.div`
 @media screen and (max-width: 767px) {
     margin-bottom: 14px;
     padding-left: 8px ;
-}
-
-@media screen and (min-width: 768px)  {
-      margin-bottom: 8px;
+  }
+  
+  @media screen and (min-width: 768px)  {
+    margin-bottom: 8px;
+    padding-left: 8px ;
   }
   @media screen and (min-width: 1440px) {
     padding: 0 ;
