@@ -3,7 +3,7 @@ import Calendar from '../../Calendar/Calendar';
 import { useFormik } from 'formik';
 import DataBtns from '../DataBtns/DataBtns';
 import {
-  BirthdayInput,
+  BirthdayContainer,
   FormContainer,
   RadioContainer1,
   RadioLabel,
@@ -21,6 +21,9 @@ import {
 } from '../../data/helper/inputData';
 import { validationSchema } from '../../data/helper/controlData';
 import BasicModalWindow from '../../common/BasicModalWindow/BasicModalWindow';
+import ErrorMessage from '../../common/ErrorMessage/ErrorMessage';
+import { userFormSchema } from '../../profile/UserForm/YupValidationForm';
+import BirthdayInput from '../../profile/BirthdayInput/BirthdayInput';
 
 export const slideInFromLeft = {
   hidden: { x: '-100%' },
@@ -29,8 +32,10 @@ export const slideInFromLeft = {
 
 const DataForm = ({ stepValue }) => {
   const formDataSelector = useSelector(state => state.data);
-  const [selected, setSelected] = useState();
-  const [isModalOpen, setModalOpen] = useState(false);
+
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const [showError, setShowError] = useState(false);
   const message = 'All fields required and contain valid data';
 
   const dispatch = useDispatch();
@@ -56,7 +61,7 @@ const DataForm = ({ stepValue }) => {
           currentHeight: '',
           currentWeight: '',
           desiredWeight: '',
-          birthday: null,
+          birthday: '',
           blood: '',
           gender: '',
           levelActivity: '',
@@ -94,16 +99,23 @@ const DataForm = ({ stepValue }) => {
             ))}
           </div>
 
-          <BirthdayInput>
-            {/* <Calendar
-              height="18px"
-              width="18px"
-              stroke="#EFEDE8"
-              inputText="Birthday"
-              selectedDate={selected}
-              setSelectedDate={setSelected}
-            /> */}
-          </BirthdayInput>
+          <label htmlFor="birthday">
+            <BirthdayInput
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+              value={formik.values.birthday}
+            />
+          </label>
+          {/* <BirthdayContainer>
+            <Calendar
+              inputText={inputText}
+              selected={selectedDate}
+              onSelect={setSelectedDate}
+              toDate={eighteenYearsAgo}
+              fromDate={maximumAge}
+              captionLayout="dropdown-buttons"
+            />
+          </BirthdayContainer> */}
         </FormContainer>
       )}
       {stepValue === 2 && (
@@ -158,13 +170,15 @@ const DataForm = ({ stepValue }) => {
           </RadioContainer1>
         </div>
       )}
-      {/* <BasicModalWindow
-        isOpen={isModalOpen}
-        setModalOpen={setModalOpen}
-        message={message}
-      /> */}
+
+      {showError && (
+        <BasicModalWindow onClose={() => setShowError(false)}>
+          <ErrorMessage message={message} />
+        </BasicModalWindow>
+      )}
       <DataBtns
-        setModalOpen={setModalOpen}
+        selectedDate={selectedDate}
+        setShowError={setShowError}
         stepValue={stepValue}
         formik={formik}
       />

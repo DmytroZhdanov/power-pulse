@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const FormContainer = styled.div`
   display: flex;
-  /* flex-wrap: wrap; */
   flex-direction: column;
 
   gap: 10px;
@@ -20,7 +19,8 @@ export const TextLabel = styled.label`
     transition-timing-function: ease;
     transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
     opacity: 0;
-    color: rgba(239, 237, 232, 0.6);
+    color: ${({ theme }) => theme.color.graySecond};
+
     font-size: 14px;
   }
   input:focus + span,
@@ -33,46 +33,62 @@ export const TextLabel = styled.label`
     position: absolute;
     top: 102%;
     left: 4px;
-    color: red;
+    color: ${({ theme }) => theme.color.inputError};
+
     font-size: 10px;
   }
 `;
 export const TextInput = styled.input`
-  /* position: relative; */
-
   border: 1px solid rgba(239, 237, 232, 0.3);
   border-radius: 12px;
   padding: 14px 0 14px 14px;
   font-size: 16px;
   line-height: 24px;
+  color: ${({ theme }) => theme.color.graySecond};
 
-  color: rgba(239, 237, 232, 0.6);
   width: 153px;
   background-color: transparent;
 
   :hover,
   :focus {
-    border: 1px solid #e6533c;
+    border: 1px solid ${({ theme }) => theme.color.orangeFirst};
     outline: none;
   }
 `;
-export const BirthdayInput = styled.div`
+export const BirthdayContainer = styled.div`
   border: 1px solid rgba(239, 237, 232, 0.3);
   border-radius: 12px;
-  padding: 14px 14px 14px 14px;
+  padding: 14px;
 
   font-size: 16px;
   line-height: 24px;
 
-  color: rgba(239, 237, 232, 0.6);
-  width: 153px;
+  color: ${({ theme }) => theme.color.graySecond};
+
+  width: 159px;
   background-color: transparent;
   :hover,
   :focus {
-    border: 1px solid #e6533c;
+    border: 1px solid ${({ theme }) => theme.color.orangeFirst};
     outline: none;
   }
   margin-top: 4px;
+  @media screen and (min-width: 768px) {
+    width: 153px;
+    padding: 14px;
+  }
+
+  .calendar-svg {
+    width: 18px;
+    height: 18px;
+    stroke: ${({ theme }) => theme.color.white};
+  }
+
+  .calendar-input-text {
+    color: ${({ theme }) => theme.color.graySecond};
+    font-size: 16px;
+    line-height: 1.5;
+  }
 `;
 
 export const RadioContainer1 = styled.div`
@@ -83,7 +99,7 @@ export const RadioContainer1 = styled.div`
   legend {
     margin-bottom: 16px;
     font-size: 16px;
-    color: rgb(239, 237, 232);
+    color: ${({ theme }) => theme.color.grayBackground};
   }
   label {
     display: flex;
@@ -91,7 +107,8 @@ export const RadioContainer1 = styled.div`
     gap: 8px;
     margin-bottom: 8px;
     font-size: 16px;
-    color: rgb(239, 237, 232);
+    color: ${({ theme }) => theme.color.grayBackground};
+
     cursor: pointer;
   }
 `;
@@ -102,7 +119,7 @@ export const RadioLabel = styled.label`
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    border: 3px solid #ef8964;
+    border: 3px solid ${({ theme }) => theme.color.input};
 
     ::after {
       position: absolute;
@@ -114,10 +131,14 @@ export const RadioLabel = styled.label`
       width: 12px;
       height: 12px;
       opacity: 0;
-      background-color: #ef8964;
+      background-color: ${({ theme }) => theme.color.orangeSecond};
 
       transition: all 300ms ease-in-out;
     }
+  }
+
+  input:checked + span {
+    border: 3px solid ${({ theme }) => theme.color.orangeSecond};
   }
 `;
 

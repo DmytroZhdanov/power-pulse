@@ -26,16 +26,14 @@ export default function StatisticsInfo({ pathname, page }) {
   const [showTimerWarning, setShowTimerWarning] = useState(false);
   const { data, isFetching, isError } = useFetchStatisticQuery();
   const stepValue = useSelector(stepValueForm);
-  console.log(stepValue);
 
   const path = pathname.split('');
   const keyword =
-    page === '' ||
-    page === ROUTER.SIGN_UP ||
-    page === ROUTER.SIGN_IN ||
-    page === stepValue
+    page === '' || page === ROUTER.SIGN_UP || page === ROUTER.SIGN_IN
       ? 'main'
-      : path[path.length - 1];
+      : stepValue;
+
+  // page === ROUTER.DATA && stepValue;
 
   useEffect(() => {
     let id;

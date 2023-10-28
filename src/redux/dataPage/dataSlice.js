@@ -4,7 +4,7 @@ const initialState = {
   currentHeight: '',
   currentWeight: '',
   desiredWeight: '',
-  birthday: null,
+  birthday: '',
   blood: '',
   gender: '',
   levelActivity: '',

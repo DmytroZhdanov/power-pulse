@@ -7,15 +7,12 @@ const getColor = (stepValue, step) => {
 };
 const getShadowColor = (stepValue, step) => {
   if (stepValue === step) return '0px -1px 10px 0px rgba(230, 83, 60, 0.8)';
-  // if (stepValue >= step) return '#EFA082';
-  // return '#303030';
 };
 
 export const ProgressBarContainer = styled.div`
   display: flex;
   gap: 14px;
-  /* margin-left: 96px; */
-  /* margin-bottom: 32px; */
+  margin-bottom: 32px;
 `;
 
 export const Step = styled.span`

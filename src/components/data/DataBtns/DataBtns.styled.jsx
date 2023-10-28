@@ -4,22 +4,22 @@ export const GoBtn = styled.button`
   padding: 16px 75px;
   text-align: center;
   font-size: 20px;
-  color: rgba(239, 237, 232, 0.6);
-  background-color: #e6533c;
+  color: ${({ theme }) => theme.color.graySecond};
+  background-color: ${({ theme }) => theme.color.orangeFirst};
+
+  /* color: rgba(239, 237, 232, 0.6); */
+  /* background-color: #e6533c; */
   border-radius: 12px;
   border: none;
-  color: #EFEDE8;
+  color: ${({ theme }) => theme.color.white};
+
+  /* color: #efede8; */
 
   transition: color 300ms ease-in-out;
-  :hover {
-    /* color: #efede8; */
-    /* transform: translateY(-1px); */
-  }
 `;
 export const DataBtnsContainer = styled.div`
   display: flex;
   gap: 16px;
-  /* margin-bottom: 84px; */
   align-items: center;
 
   svg {
@@ -34,7 +34,9 @@ export const ArrowBtnRight = styled.button`
   gap: 4px;
   padding: 2px 0;
   border: none;
-  color: rgba(239, 237, 232, 0.6);
+  color: ${({ theme }) => theme.color.graySecond};
+
+  /* color: rgba(239, 237, 232, 0.6); */
   background-color: transparent;
   font-size: 16px;
   transition: all 250ms ease-in-out;
@@ -44,7 +46,8 @@ export const ArrowBtnRight = styled.button`
     box-shadow: 0px 0px 10px 0px rgba(230, 83, 60, 0.8);
     color: #efede8;
     transform: translateX(3px);
-    background-color: black;
+    background-color: ${({ theme }) => theme.color.black};
+    /* background-color: black; */
   }
 `;
 
@@ -55,7 +58,8 @@ export const ArrowBtnLeft = styled.button`
   gap: 4px;
   padding: 2px 0;
   border: none;
-  color: rgba(239, 237, 232, 0.6);
+  color: ${({ theme }) => theme.color.graySecond};
+
   background-color: transparent;
   font-size: 16px;
   transition: all 250ms ease-in-out;
@@ -63,8 +67,9 @@ export const ArrowBtnLeft = styled.button`
   border-radius: 10px;
   :hover {
     box-shadow: 0px 0px 10px 0px rgba(230, 83, 60, 0.8);
-    color: #efede8;
+    color: ${({ theme }) => theme.color.white};
+
     transform: translateX(-3px);
-    background-color: black;
+    background-color: ${({ theme }) => theme.color.black};
   }
 `;

@@ -16,7 +16,7 @@ const Data = ({ title, subtitle, children }) => {
     >
       <DataContainer>
         <div style={{ width: '496px', marginBottom: '54px' }}>
-          <h1>{title}</h1>
+          <h2>{title}</h2>
           <h6>{subtitle}</h6>
         </div>
 

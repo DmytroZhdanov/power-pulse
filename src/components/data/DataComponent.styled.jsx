@@ -1,13 +1,11 @@
 import styled from '@emotion/styled';
 
-export const LogoContainer = styled.div`
-  /* padding: 32px 0 0 96px; */
-`;
-
 export const DataContainer = styled.div`
   position: relative;
-
-  padding: 32px 32px 32px 96px;
-  height: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 800px;
+  padding-top: 200px;
   transition: background-image 0.6s ease-in-out;
 `;

@@ -9,8 +9,10 @@ import {
 import { motion } from 'framer-motion';
 import { useDispatch } from 'react-redux';
 
-const DataBtns = ({ stepValue, formik, setModalOpen }) => {
+const DataBtns = ({ stepValue, formik, setShowError, selectedDate }) => {
   const dispatch = useDispatch();
+
+  
 
   return (
     <DataBtnsContainer>
@@ -40,7 +42,7 @@ const DataBtns = ({ stepValue, formik, setModalOpen }) => {
           <ArrowBtnRight
             type="button"
             onClick={() =>
-              handleNext(stepValue, dispatch, formik, setModalOpen)
+              handleNext(stepValue, dispatch, formik, setShowError, selectedDate)
             }
           >
             Next

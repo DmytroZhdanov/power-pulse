@@ -19,7 +19,7 @@ export default function Main() {
     page === '' ||
     page === ROUTER.SIGN_UP ||
     page === ROUTER.SIGN_IN ||
-    page === stepValue;
+    page === ROUTER.DATA;
   // console.log(page === stepValue);
 
   return (
