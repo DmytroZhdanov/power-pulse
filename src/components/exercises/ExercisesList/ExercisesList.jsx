@@ -9,7 +9,10 @@ import {
   Wrap,
 } from './ExercisesList.styled';
 import { useLocation, useOutletContext, useParams } from 'react-router';
-import { useLazyFetchAllExercisesQuery } from '../../../redux/api';
+import {
+  useLazyFetchAllExercisesQuery,
+  useFetchExercisesSubcategoriesQuery,
+} from '../../../redux/api';
 import { useEffect, useRef, useState } from 'react';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { useInView } from 'react-intersection-observer';
@@ -33,6 +36,14 @@ export function ExercisesList() {
   const pathLocation = useRef(location.state?.from ?? '/exercises');
   const [fetchAllExercises] = useLazyFetchAllExercisesQuery();
   const listRef = useRef();
+
+  const { data } = useFetchExercisesSubcategoriesQuery(category);
+
+  const currentBackgroundImage = data?.filter(
+    item => item.name === subcategory,
+  )[0].imgURL;
+
+  console.log(currentBackgroundImage);
 
   useEffect(() => {
     if (fetching) {
@@ -64,7 +75,6 @@ export function ExercisesList() {
 
   return (
     <Content>
-      {loading && <Loader />}
       <StyledLink to={pathLocation.current}>
         <Svg>
           <use href={`${sprite}#icon-arrow`}></use>
@@ -94,7 +104,7 @@ export function ExercisesList() {
           ),
         )}
       </ExerciseList>
-      <Background />
+      <Background category={category} img={currentBackgroundImage} />
     </Content>
   );
 }

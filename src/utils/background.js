@@ -54,7 +54,12 @@ import bg_exercises from '../assets/images/background/Desktop/bg_exercises.jpg';
 import bg_exercises2x from '../assets/images/background/Desktop/bg_exercises2x.jpg';
 import bg_exercises3x from '../assets/images/background/Desktop/bg_exercises3x.jpg';
 
+import man from '../assets/images/background/Desktop/man.jpg';
+import woman from '../assets/images/background/Desktop/woman.jpg';
+
 export {
+  man,
+  woman,
   mo_main,
   mo_main2x,
   mo_main3x,

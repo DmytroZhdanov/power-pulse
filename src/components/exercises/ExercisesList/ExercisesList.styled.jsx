@@ -4,6 +4,14 @@ import {
   bg_exercises,
   bg_exercises2x,
   bg_exercises3x,
+  bg_hours,
+  bg_hours2x,
+  bg_hours3x,
+  bg_eating,
+  bg_eating2x,
+  bg_eating3x,
+  man,
+  woman,
 } from 'src/utils/background';
 import { ProductList } from '../../products/ProductsList/ProductsList.styled';
 
@@ -53,17 +61,29 @@ export const Background = styled.div`
     position: absolute;
     top: -72px;
     right: -95px;
-    width: 478px;
+
+    width: 600px;
     height: 715px;
     background-repeat: no-repeat;
     z-index: -2;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background:
+      linear-gradient(
+        to right,
+        rgba(0, 0, 0, 1) 1%,
+        rgba(0, 0, 0, 0.8) 20%,
+        rgba(0, 0, 0, 0.8) 20%,
+        rgba(0, 0, 0, 0.7) 40%,
+        rgba(0, 0, 0, 0.6) 70%,
+        rgba(0, 0, 0, 0.5) 100%,
+        rgba(0, 0, 0, 0.3) 100%
+      ),
+      url(${props => props.img}),
+      lightgray 0px -48px / 94.516% 105.335% no-repeat;
 
-    background-image: image-set(
-      url(${bg_exercises}) 1x,
-      url(${bg_exercises2x}) 2x,
-      url(${bg_exercises3x}) 3x
-    );
-    background-size: 478px 715px;
+    background-size: cover;
+    background-position: right;
   }
 `;
 
