@@ -87,10 +87,10 @@ export const Button = styled(Link)`
 
   background-color: ${props => {
     switch (props.to) {
-      case ROUTER.SIGN_UP:
+      case `../${ROUTER.SIGN_UP}`:
         return '#E6533C';
 
-      case ROUTER.SIGN_IN:
+      case `../${ROUTER.SIGN_IN}`:
         return 'transparent';
 
       default:
@@ -100,10 +100,10 @@ export const Button = styled(Link)`
 
   border: ${props => {
     switch (props.to) {
-      case ROUTER.SIGN_UP:
+      case `../${ROUTER.SIGN_UP}`:
         return 'none';
 
-      case ROUTER.SIGN_IN:
+      case `../${ROUTER.SIGN_IN}`:
         return '1px solid rgba(239, 237, 232, 0.30)';
 
       default:

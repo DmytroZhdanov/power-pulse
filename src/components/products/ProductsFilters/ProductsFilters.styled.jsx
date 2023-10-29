@@ -95,17 +95,21 @@ export const SelectRow = styled.div`
 export const SelectContainer = styled.div`
   flex: 1;
   z-index: 2;
-  background: rgba(0, 0, 0, 0.5);
+  background-color: transparent;
 `;
 
 export const StyledSelect = styled(Select)`
   text-align: left;
   border-radius: 12px;
   border: 1px solid rgba(239, 237, 232, 0.3);
-  background: rgba(0, 0, 0, 0.5);
+  /*background: rgba(0, 0, 0, 0.5);*/
   color: #efede8;
   font-size: 14px;
   line-height: calc(18 / 14);
+
+  .css-18hi8su {
+    background: transparent;
+  }
 `;
 
 export const FormControl = styled.div``;

@@ -14,8 +14,8 @@ export function Welcome() {
         Transforming your <Span>body</Span> shape with Power Pulse
       </Title>
       <ButtonWrapper>
-        <Button to={ROUTER.SIGN_UP}>Sign Up</Button>
-        <Button to={ROUTER.SIGN_IN}>Sign In</Button>
+        <Button to={`../${ROUTER.SIGN_UP}`}>Sign Up</Button>
+        <Button to={`../${ROUTER.SIGN_IN}`}>Sign In</Button>
       </ButtonWrapper>
     </Container>
   );

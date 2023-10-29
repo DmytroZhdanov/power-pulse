@@ -5,9 +5,9 @@ import {
   Text,
   Inputs,
   Check,
-  Button,
   Message,
   Sign,
+  Buttons,
 } from './SignUpForm.styled';
 import Icon from 'components/common/IconsComp/Icon';
 import { signUpFormSchema } from './YupValidationForm';
@@ -111,7 +111,6 @@ export default function SignUpForm() {
             registration process, please provide us with the following
             information.
           </Text>
-
           <Inputs>
             <Feedback name="name" type="text" placeholder="Name" />
             <Feedback name="email" type="email" placeholder="Email" />
@@ -130,7 +129,12 @@ export default function SignUpForm() {
               )}
             </div>
           </Inputs>
-          <Button type="submit">Sign Up</Button>
+          <Buttons>
+            <button type="submit">Sign Up</button>
+            <button type="button" id="google">
+              <Icon name={'google'} />
+            </button>
+          </Buttons>
           <Sign>
             <p>Already have account?</p>
             <Link to="/signin">Sign In</Link>

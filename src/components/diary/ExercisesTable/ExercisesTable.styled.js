@@ -26,7 +26,7 @@ border-collapse: separate;
     height: 342px;
     width: 100%;
     &:last-child {
-      height: 312px;
+      height: 314px;
     }
   }
 `;

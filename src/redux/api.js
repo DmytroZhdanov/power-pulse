@@ -185,6 +185,7 @@ export const {
   useUpdateUserParamsMutation,
   useUpdateUserNameMutation,
   useUpdateUserAvatarMutation,
+  useFetchUserParamsQuery,
   useLazyFetchUserParamsQuery,
   useFetchDailyRateQuery,
   useFetchUserBloodGroupQuery,
