@@ -24,11 +24,17 @@ export const ExerciseList = styled.ul`
     overflow-y: scroll;
     row-gap: 32px;
     column-gap: 16px;
-    height: 610px;
   }
+  @media (min-width: 768px) and (max-width: 1440px) {
+    max-height: 610px;
+  }
+
   @media (min-width: 1440px) {
     max-width: 850px;
     max-height: 495px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
 `;
 export const LinkText = styled.p`

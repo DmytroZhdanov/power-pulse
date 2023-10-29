@@ -70,12 +70,12 @@ export const Values = styled.span`
 export const ExercisesCard = styled(ProductCard)`
   max-height: 163px;
   @media screen and (min-width: 1440px) {
-    &:hover {
+    /* &:hover {
       background-image: url(${props => props.gifUrl});
       background-size: contain;
       background-repeat: no-repeat;
       background-position: right;
       background-color: #ffffff;
-    }
+    } */
   }
 `;
