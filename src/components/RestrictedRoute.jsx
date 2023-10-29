@@ -6,10 +6,10 @@ import { useFetchUserParamsQuery } from 'src/redux/api';
 import { ROUTER } from 'src/utils';
 
 export default function RestrictedRoute({ component: Component, redirectTo }) {
-  const { data, isError } = useFetchUserParamsQuery();
+  const { data, isFetching, isError } = useFetchUserParamsQuery();
   const token = useSelector(selectToken);
 
-  if ((!data?.user.userParams || isError) && token) {
+  if (((!data?.user.userParams && isFetching) || isError) && token) {
     return <Navigate to={`../${ROUTER.DATA}`} />;
   }
 
