@@ -9,11 +9,13 @@ export const ExerciseListUl = styled.ul`
   @media (max-width: 768px) {
     gap: 20px;
   }
+
   @media (min-width: 768px) {
     overflow-y: scroll;
     row-gap: 32px;
     column-gap: 16px;
   }
+
   @media (min-width: 768px) and (max-width: 1440px) {
     max-height: 610px;
   }
@@ -26,6 +28,7 @@ export const ExerciseListUl = styled.ul`
     justify-content: flex-start;
   }
 `;
+
 export const LinkTextP = styled.p`
   color: ${({ theme }) => theme.color.grayThird};
   font-size: 14px;
@@ -43,6 +46,7 @@ export const StyledLink = styled(Link)`
   position: absolute;
   top: -25px;
   left: 0;
+
   @media (min-width: 768px) {
     position: absolute;
     top: -40px;
@@ -63,7 +67,6 @@ export const BackgroundDiv = styled.div`
     position: absolute;
     top: -72px;
     right: -95px;
-
     width: 600px;
     height: 715px;
     background-repeat: no-repeat;
@@ -74,7 +77,6 @@ export const BackgroundDiv = styled.div`
       linear-gradient(to right, ${({ theme }) => theme.gradient.exersises}),
       url(${props => props.img}),
       lightgray 0px -48px / 94.516% 105.335% no-repeat;
-
     background-size: cover;
     background-position: right;
   }

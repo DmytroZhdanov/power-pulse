@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 export const ExercisesCardDiv = styled.div`
   padding: 16px;
   border-radius: 12px;
-
   border: 1px solid ${({ theme }) => theme.color.grayDisabled};
   max-height: 163px;
 
@@ -54,6 +53,7 @@ export const ExercisesWrapDiv = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 33px;
+
   @media screen and (min-width: 768px) {
     margin-bottom: 25px;
   }
@@ -89,6 +89,7 @@ export const InfoDiv = styled.div`
   column-gap: 16px;
   flex-wrap: wrap;
 `;
+
 export const ExerciseNameh2 = styled.h2`
   white-space: nowrap;
   overflow: hidden;
@@ -101,27 +102,32 @@ export const ExerciseNameh2 = styled.h2`
     line-height: calc(32 / 24);
   }
 `;
+
 export const ExerciseDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
   margin-bottom: 8px;
+
   @media screen and (min-width: 768px) {
     margin-bottom: 12px;
   }
 `;
+
 export const ButtonStart = styled.button`
   display: flex;
   align-items: center;
   background-color: transparent;
   border: none;
 `;
+
 export const ButtonTitleP = styled.p`
   margin-right: 8px;
   color: ${({ theme }) => theme.color.orangeFirst};
   font-size: 14px;
   line-height: calc(18 / 14);
 `;
+
 export const CategoryP = styled.p`
   color: ${({ theme }) => theme.color.grayThird};
   font-size: 12px;
@@ -141,12 +147,15 @@ export const CategoryP = styled.p`
 export const ValuesSpan = styled.span`
   padding-left: 0;
   color: ${({ theme }) => theme.color.white};
+
   @media screen and (min-width: 768px) {
     margin-bottom: 25px;
   }
+
   @media screen and (min-width: 768px) and (max-width: 1440px) {
     margin-left: 4px;
   }
+
   @media screen and (min-width: 1440px) {
     margin-bottom: 0;
   }

@@ -20,6 +20,7 @@ export const Wrapper = styled.div`
     margin-bottom: ${props => props.margin && '32px'};
   }
 `;
+
 export const Content = styled.div`
   position: relative;
 `;
