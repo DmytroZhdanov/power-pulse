@@ -22,22 +22,19 @@ export const ExercisesCard = styled.li`
       background-position: right;
       background-color: #ffffff;
     }
-    &:hover p {
-      color: black;
-    }
+    &:hover p,
+    &:hover span,
     &:hover h2 {
       color: black;
     }
+
     &:hover h2 {
-      color: black;
       max-width: 225px;
     }
     &:hover button {
       margin-right: 152px;
     }
-    &:hover span {
-      color: black;
-    }
+
     &:hover .target {
       opacity: 0;
     }

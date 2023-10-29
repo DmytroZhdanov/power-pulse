@@ -20,16 +20,9 @@ import {
   SvgRunMan,
 } from './ExercisesItem.styled';
 
-export default function ExercisesItem({
-  _id,
-  bodyPart,
-  equipment,
-  gifUrl,
-  name,
-  target,
-  burnedCalories,
-  time,
-}) {
+export default function ExercisesItem(props) {
+  const { bodyPart, gifUrl, name, target, burnedCalories } = props;
+
   const [onShowModalExerciseForm, setOnShowModalExerciseForm] = useState(false);
   const [onShowModalExerciseSuccess, setOnShowModalExerciseSuccess] =
     useState(false);
@@ -47,17 +40,6 @@ export default function ExercisesItem({
   };
   const closeModalExerciseSuccess = () => {
     setOnShowModalExerciseSuccess(false);
-  };
-
-  const exercise = {
-    _id,
-    bodyPart,
-    equipment,
-    gifUrl,
-    name,
-    target,
-    burnedCalories,
-    time,
   };
 
   return (
@@ -101,7 +83,7 @@ export default function ExercisesItem({
       {onShowModalExerciseForm && (
         <BasicModalWindow onClose={closeModalExerciseForm}>
           <AddExerciseForm
-            exercise={exercise}
+            exercise={props}
             openModalExerciseSuccess={openModalExerciseSuccess}
             closeModalExerciseForm={closeModalExerciseForm}
             setModalExerciseSuccessData={setModalExerciseSuccessData}
