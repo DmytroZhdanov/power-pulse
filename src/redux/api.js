@@ -112,7 +112,11 @@ export const api = createApi({
           filter
             ? `?${filter[QUERY] ? `${QUERY}=${filter[QUERY]}&` : ''}${
                 filter[RECOMMENDED]
+<<<<<<< HEAD
                   ? `${RECOMMENDED}=${filter[RECOMMENDED]}&`
+=======
+                  ? `${RECOMMENDED}=${filter[RECOMMENDED][0]}&`
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
                   : ''
               }${
                 filter[CATEGORY] ? `${CATEGORY}=${filter[CATEGORY]}&` : ''
@@ -185,6 +189,10 @@ export const {
   useUpdateUserParamsMutation,
   useUpdateUserNameMutation,
   useUpdateUserAvatarMutation,
+<<<<<<< HEAD
+=======
+  useFetchUserParamsQuery,
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
   useLazyFetchUserParamsQuery,
   useFetchDailyRateQuery,
   useFetchUserBloodGroupQuery,

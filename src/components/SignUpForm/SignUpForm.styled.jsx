@@ -26,12 +26,44 @@ export const Inputs = styled.div`
   align-items: flex-start;
   gap: 18px;
 
+<<<<<<< HEAD
+=======
+  div {
+    position: relative;
+    width: 280px;
+
+    @media screen and (min-width: 375px) {
+      width: 335px;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 364px;
+    }
+  }
+
+  button {
+    position: absolute;
+    top: 14px;
+    right: 12px;
+    color: #efede8;
+    background-color: transparent;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+
+    fill: currentColor;
+  }
+
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
   @media screen and (min-width: 768px) {
     margin-top: 32px;
     gap: 20px;
   }
 `;
 
+<<<<<<< HEAD
 export const Button = styled.button`
   color: #efede8;
   margin-top: 28px;
@@ -51,6 +83,8 @@ export const Button = styled.button`
   }
 `;
 
+=======
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
 export const Check = styled.div`
   @media screen and (max-width: 374px) {
     width: calc(100% - 20px);
@@ -109,20 +143,32 @@ export const Message = styled.div`
 
   div {
     display: flex;
+<<<<<<< HEAD
     align-items: center;
+=======
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
     gap: 4px;
   }
 
   svg {
+<<<<<<< HEAD
     width: 16px;
     height: 16px;
+=======
+    min-width: 16px;
+    min-height: 16px;
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
     fill: currentColor;
   }
 `;
 
 export const Sign = styled.div`
   margin-top: 12px;
+<<<<<<< HEAD
   display: inline-flex;
+=======
+  display: flex;
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
   font-size: 12px;
   gap: 4px;
 
@@ -130,3 +176,47 @@ export const Sign = styled.div`
     text-decoration-line: underline;
   }
 `;
+<<<<<<< HEAD
+=======
+
+export const Buttons = styled.div`
+  display: inline-flex;
+  gap: 24px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 64px;
+  }
+
+  button {
+    height: 42px;
+    color: #efede8;
+    margin-top: 28px;
+    display: flex;
+    padding: 12px 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    background-color: #e6533c;
+
+    :hover,
+    :active {
+      background-color: #ef8964;
+    }
+  }
+
+  #google {
+    width: 32px;
+    background-color: #efede8;
+    :hover,
+    :active {
+      background-color: #ef8964;
+    }
+  }
+
+  svg {
+    min-width: 28px;
+    height: 28px;
+  }
+`;
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9

@@ -5,9 +5,15 @@ import {
   Text,
   Inputs,
   Check,
+<<<<<<< HEAD
   Button,
   Message,
   Sign,
+=======
+  Message,
+  Sign,
+  Buttons,
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
 } from './SignUpForm.styled';
 import Icon from 'components/common/IconsComp/Icon';
 import { signUpFormSchema } from './YupValidationForm';
@@ -24,7 +30,11 @@ const Feedback = ({ ...props }) => {
   const [didFocus, setDidFocus] = useState(false);
   const handleFocus = () => setDidFocus(true);
   const showFeedback =
+<<<<<<< HEAD
     (!!didFocus && field.value.trim().length > 2) || meta.touched;
+=======
+    (!!didFocus && field.value.trim().length > 0) || meta.touched;
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
 
   return (
     <Check type={`${showFeedback ? (meta.error ? 'invalid' : 'valid') : ''}`}>
@@ -62,6 +72,30 @@ export default function SignUpForm() {
     return clearTimeout(id);
   }, [isLoading]);
 
+<<<<<<< HEAD
+=======
+  const [hidePass, setHidePass] = useState();
+  const [passBtn, setPassBtn] = useState(false);
+
+  const handleInput = () => {
+    setPassBtn(true);
+  };
+
+  const inputPassword = document.querySelector('#password');
+
+  const onClickPassBtn = () => {
+    if (inputPassword) {
+      if (inputPassword.getAttribute('type') === 'password') {
+        inputPassword.setAttribute('type', 'text');
+        setHidePass(true);
+      } else {
+        inputPassword.setAttribute('type', 'password');
+        setHidePass(false);
+      }
+    }
+  };
+
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -90,6 +124,7 @@ export default function SignUpForm() {
             registration process, please provide us with the following
             information.
           </Text>
+<<<<<<< HEAD
 
           <Inputs>
             <Feedback name="name" type="text" placeholder="Name" />
@@ -97,6 +132,32 @@ export default function SignUpForm() {
             <Feedback name="password" type="text" placeholder="Password" />
           </Inputs>
           <Button type="submit">Sign Up</Button>
+=======
+          <Inputs>
+            <Feedback name="name" type="text" placeholder="Name" />
+            <Feedback name="email" type="email" placeholder="Email" />
+            <div>
+              <Feedback
+                name="password"
+                type="password"
+                placeholder="Password"
+                id="password"
+                onInput={handleInput}
+              />
+              {passBtn && (
+                <button type="button" onClick={onClickPassBtn}>
+                  {hidePass ? <Icon name={'eye'} /> : <Icon name={'eye-off'} />}
+                </button>
+              )}
+            </div>
+          </Inputs>
+          <Buttons>
+            <button type="submit">Sign Up</button>
+            <button type="button" id="google">
+              <Icon name={'google'} />
+            </button>
+          </Buttons>
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
           <Sign>
             <p>Already have account?</p>
             <Link to="/signin">Sign In</Link>

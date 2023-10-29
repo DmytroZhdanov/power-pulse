@@ -1,5 +1,23 @@
 import styled from '@emotion/styled';
 
+<<<<<<< HEAD
+=======
+export const DivAdddForm = styled.div`
+  margin: 48px 24px;
+
+  @media screen and (min-width: 768px) {
+    margin: 48px 32px;
+  }
+`;
+
+export const DivInputs = styled.div`
+  position: relative;
+  @media screen and (min-width: 768px) {
+    width: 415px;
+  }
+`;
+
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
 export const InputName = styled.input`
   width: 287px;
   text-align: left;
@@ -25,6 +43,10 @@ export const InputName = styled.input`
 
 export const DivGrams = styled.div`
   margin-bottom: 16px;
+<<<<<<< HEAD
+=======
+  display: flex;
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
 
   @media screen and (min-width: 768px) {
     display: inline-block;
@@ -54,11 +76,26 @@ export const InputGrams = styled.input`
 `;
 
 export const Placeholder = styled.span`
+<<<<<<< HEAD
   position: relative;
   right: 50px;
   color: rgba(239, 237, 232, 0.4);
   font-size: 12px;
   line-height: calc(18 / 12);
+=======
+  position: absolute;
+  right: 16px;
+  top: 59px;
+
+  color: rgba(239, 237, 232, 0.4);
+  font-size: 12px;
+  line-height: calc(18 / 12);
+
+  @media screen and (min-width: 768px) {
+    right: 16px;
+    top: 12px;
+  }
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
 `;
 
 export const DivCalories = styled.div`

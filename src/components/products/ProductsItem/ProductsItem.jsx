@@ -1,6 +1,7 @@
 import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
 import AddProductForm from 'components/products/AddProductForm/AddProductForm';
 import AddProductSuccess from 'components/products/AddProductSuccess/AddProductSuccess';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 import {
   ProductCard,
   ProductHeader,
@@ -10,22 +11,38 @@ import {
   Description,
   ProductTitle,
   Product,
+  SvgProd,
   RecommendText,
   Button,
   BtnText,
+  SvgAdd,
   Text,
   Value,
 } from './ProductsItem.styled';
 import { useState } from 'react';
 
-export default function ProductsItem({
-  weight,
-  calories,
-  category,
-  title,
-  //  groupBloodNotAllowed,
-}) {
-  const recommended = true;
+export default function ProductsItem({ props, userGroupBlood }) {
+  const { weight, calories, category, title, groupBloodNotAllowed } = props;
+
+  const recommended = groupBloodNotAllowed[userGroupBlood];
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddProdSucces, setIsAddProdSuccess] = useState(false);
+  const [totalCallories, setTotalCalories] = useState(null);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setIsAddProdSuccess(false);
+  };
+
+  const addProdSuccess = totalCalories => {
+    setIsAddProdSuccess(true);
+    setTotalCalories(totalCalories);
+  };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddProdSucces, setIsAddProdSuccess] = useState(false);
@@ -52,26 +69,38 @@ export default function ProductsItem({
           <Diet>DIET</Diet>
 
           <RecommendDiv>
-            <Indicator recommended={recommended} />
+            <Indicator recommended={!recommended} />
 
             <RecommendText>
-              {recommended ? 'Recommended' : 'Not recommended'}
+              {recommended ? 'Not recommended' : 'Recommended'}
             </RecommendText>
 
             <Button onClick={openModal}>
               <BtnText>Add</BtnText>
 
+<<<<<<< HEAD
               <svg width="16" height="16">
                 <use href="/src/assets/images/sprite/sprite.svg#arrow-add-prod-orange"></use>
               </svg>
+=======
+              <SvgAdd>
+                <use href={`${sprite}#arrow-add-prod-orange`}></use>
+              </SvgAdd>
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
             </Button>
           </RecommendDiv>
         </ProductHeader>
 
         <Product>
+<<<<<<< HEAD
           <svg width="24" height="24">
             <use href="/src/assets/images/sprite/sprite.svg#run-man"></use>
           </svg>
+=======
+          <SvgProd>
+            <use href={`${sprite}#run-man`}></use>
+          </SvgProd>
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
 
           <ProductTitle>{title}</ProductTitle>
         </Product>
@@ -96,7 +125,11 @@ export default function ProductsItem({
           <AddProductForm
             onClose={closeModal}
             addProdSuccess={addProdSuccess}
+<<<<<<< HEAD
             calories={calories}
+=======
+            product={props}
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
           />
         </BasicModalWindow>
       )}

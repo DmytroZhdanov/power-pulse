@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 import * as background from 'src/utils/background';
+<<<<<<< HEAD
 import { DATA_STEPS } from '../../../utils/constants';
+=======
+import { DATA_STEPS } from 'src/utils/constants';
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
 
 export const Background = styled.div`
   position: absolute;
@@ -54,8 +58,13 @@ export const Background = styled.div`
   @media screen and (min-width: 768px) {
     top: 131px;
     right: -12px;
+<<<<<<< HEAD
     width: 437px;
     height: 893px;
+=======
+    width: ${props => (props.keyword === 'main' ? '437px' : '488px')};
+    height: ${props => (props.keyword === 'main' ? '893px' : '835px')};
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
 
     background-image: ${props => {
       switch (props.keyword) {
@@ -66,21 +75,33 @@ export const Background = styled.div`
           url(${background.ta_main3x}) 3x
           )`;
 
+<<<<<<< HEAD
         case '1':
+=======
+        case DATA_STEPS.FIRST:
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
           return `image-set(
           url(${background.ta_users}) 1x,
           url(${background.ta_users2x}) 2x,
           url(${background.ta_users3x}) 3x
           )`;
 
+<<<<<<< HEAD
         case '2':
+=======
+        case DATA_STEPS.SECOND:
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
           return `image-set(
           url(${background.ta_hours}) 1x,
           url(${background.ta_hours2x}) 2x,
           url(${background.ta_hours3x}) 3x
           )`;
 
+<<<<<<< HEAD
         case '3':
+=======
+        case DATA_STEPS.THIRD:
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
           return `image-set(
           url(${background.ta_ex}) 1x,
           url(${background.ta_ex2x}) 2x,
@@ -91,7 +112,12 @@ export const Background = styled.div`
           break;
       }
     }};
+<<<<<<< HEAD
     background-size: 437px 893px;
+=======
+    background-size: ${props =>
+      props.keyword === 'main' ? '437px 893px' : '488px 835px'};
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
   }
 
   @media screen and (max-width: 1439px) {
@@ -113,21 +139,33 @@ export const Background = styled.div`
           url(${background.bg_main3x}) 3x
           )`;
 
+<<<<<<< HEAD
         case 1:
+=======
+        case DATA_STEPS.FIRST:
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
           return `image-set(
           url(${background.bg_users}) 1x,
           url(${background.bg_users2x}) 2x,
           url(${background.bg_users3x}) 3x
           )`;
 
+<<<<<<< HEAD
         case 2:
+=======
+        case DATA_STEPS.SECOND:
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
           return `image-set(
           url(${background.bg_hours}) 1x,
           url(${background.bg_hours2x}) 2x,
           url(${background.bg_hours3x}) 3x
           )`;
 
+<<<<<<< HEAD
         case 3:
+=======
+        case DATA_STEPS.THIRD:
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
           return `image-set(
           url(${background.bg_ex}) 1x,
           url(${background.bg_ex2x}) 2x,

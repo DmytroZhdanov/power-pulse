@@ -1,19 +1,14 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-export const DayProdDiv = styled.div`
+export const DayExerDiv = styled.div`
 @media screen and (max-width: 767px) {
-    max-height:824px;
+    max-height:1164px;
     padding: 16px ;
     padding-left: 8px ;
   }
   @media screen and (min-width: 768px) {
-<<<<<<< HEAD
-    padding: 16px ;
-    padding-bottom:8px;
-=======
     padding: 16px 16px 8px 8px ;
->>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
     max-height:234px
   }
   @media screen and (min-width: 1440px) {
@@ -24,13 +19,12 @@ border: 1px solid rgba(239, 237, 232, 0.2);
   background: rgba(239, 237, 232, 0.05);
 `
 
-export const DayProdTitle = styled.h2`
+export const DayExerTitle = styled.h2`
 color: rgba(239, 237, 232, 0.5);
 font-size: 14px;
 line-height: ${18 / 14};
 `
-<<<<<<< HEAD
-export const DayProdUl = styled.ul`
+export const DayExerDivList = styled.div`
 @media screen and (max-width: 767px) {
     margin-bottom: 14px;
     padding-left: 8px ;
@@ -38,17 +32,7 @@ export const DayProdUl = styled.ul`
 
 @media screen and (min-width: 768px)  {
       margin-bottom: 8px;
-=======
-export const DayProdDivList = styled.div`
-@media screen and (max-width: 767px) {
-    margin-bottom: 14px;
-    padding-left: 8px ;
-  }
-  
-  @media screen and (min-width: 768px)  {
-    margin-bottom: 8px;
-    padding-left: 8px ;
->>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
+      padding-left: 8px ;
   }
   @media screen and (min-width: 1440px) {
     padding: 0 ;
@@ -57,12 +41,12 @@ display:flex;
 justify-content: space-between;
 align-items: center;
 `
-export const AddProdBtn = styled(Link)`
+export const AddExerBtn = styled(Link)`
 display:flex;
 align-items: center;
 gap: 8px
 `
-export const AddProdBtnText = styled.p`
+export const AddExerBtnText = styled.p`
 @media screen and (max-width: 767px) {
     font-size: 14px;
 line-height: ${18 / 14};
@@ -75,6 +59,6 @@ line-height: ${18 / 14};
 color:#E6533C;
 font-weight: 500;
 `
-export const AddProdBtnIcon = styled.svg`
+export const AddExerBtnIcon = styled.svg`
 width:16px;
 height: 16px;`

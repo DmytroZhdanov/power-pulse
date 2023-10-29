@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCredentials } from 'src/redux/auth/authSlice';
 import { useLazyRefreshQuery } from 'src/redux/api';
 import { selectToken } from 'src/redux/auth/selectors';
+<<<<<<< HEAD
 import { ROUTER } from 'src/utils';
 // import { DATA_STEPS } from '../utils/constants';
 
@@ -19,6 +20,19 @@ import Loader from './Loader/Loader';
 import BasicModalWindow from './common/BasicModalWindow/BasicModalWindow';
 import TimerWarning from './common/TimerWarning/TimerWarning';
 import ErrorMessage from './common/ErrorMessage/ErrorMessage';
+=======
+import { initialState } from 'src/redux/auth/authSlice';
+import { ROUTER, DATA_STEPS } from 'src/utils';
+
+import Main from 'pages/Main/Main';
+import Error from 'pages/Error/Error';
+import PrivateRoute from 'components/PrivateRoute';
+import RestrictedRoute from 'components/RestrictedRoute';
+import Loader from 'components/Loader/Loader';
+import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
+import TimerWarning from 'components/common/TimerWarning/TimerWarning';
+import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
 
 const router = createBrowserRouter(
   [
@@ -28,7 +42,11 @@ const router = createBrowserRouter(
       errorElement: <Error />,
       children: [
         {
+<<<<<<< HEAD
           index: true,
+=======
+          path: ROUTER.WELCOME,
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
           async lazy() {
             let { Welcome } = await import('pages/Welcome/Welcome');
             return {
@@ -60,6 +78,7 @@ const router = createBrowserRouter(
           async lazy() {
             let { Data } = await import('pages/Data/Data');
             return {
+<<<<<<< HEAD
               Component: () => <RestrictedRoute component={<Data />} />,
             };
           },
@@ -96,6 +115,42 @@ const router = createBrowserRouter(
           //     element: <ThirdStep />,
           //   },
           // ],
+=======
+              Component: Data,
+            };
+          },
+          children: [
+            {
+              path: DATA_STEPS.FIRST,
+              async lazy() {
+                let { FirstStep } = await import('./data/FirstStep/FirstStep');
+                return {
+                  Component: FirstStep,
+                };
+              },
+            },
+            {
+              path: DATA_STEPS.SECOND,
+              async lazy() {
+                let { SecondStep } = await import(
+                  './data/SecondStep/SecondStep'
+                );
+                return {
+                  Component: SecondStep,
+                };
+              },
+            },
+            {
+              path: DATA_STEPS.THIRD,
+              async lazy() {
+                let { ThirdStep } = await import('./data/ThirdStep/ThirdStep');
+                return {
+                  Component: ThirdStep,
+                };
+              },
+            },
+          ],
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
         },
         {
           path: ROUTER.SIGN_IN,
@@ -234,6 +289,15 @@ export default function App() {
   }, [dispatch, token, refresh]);
 
   useEffect(() => {
+<<<<<<< HEAD
+=======
+    if (error?.status === 401) {
+      dispatch(setCredentials(initialState));
+    }
+  }, [dispatch, error?.status]);
+
+  useEffect(() => {
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
     let id;
 
     if (isFetching) {

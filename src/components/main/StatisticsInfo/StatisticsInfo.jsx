@@ -19,12 +19,16 @@ import Loader from '../../Loader/Loader';
 import { useEffect, useState } from 'react';
 import BasicModalWindow from '../../common/BasicModalWindow/BasicModalWindow';
 import TimerWarning from '../../common/TimerWarning/TimerWarning';
+<<<<<<< HEAD
 import { stepValueForm } from '../../../redux/dataPage/selectors';
 import { useSelector } from 'react-redux';
+=======
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
 
 export default function StatisticsInfo({ pathname, page }) {
   const [showTimerWarning, setShowTimerWarning] = useState(false);
   const { data, isFetching, isError } = useFetchStatisticQuery();
+<<<<<<< HEAD
   const stepValue = useSelector(stepValueForm);
 
   const path = pathname.split('');
@@ -34,6 +38,16 @@ export default function StatisticsInfo({ pathname, page }) {
       : stepValue;
 
   // page === ROUTER.DATA && stepValue;
+=======
+
+  const path = pathname.split('/');
+  const keyword =
+    page === ROUTER.WELCOME ||
+    page === ROUTER.SIGN_UP ||
+    page === ROUTER.SIGN_IN
+      ? 'main'
+      : path[path.length - 1];
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
 
   useEffect(() => {
     let id;

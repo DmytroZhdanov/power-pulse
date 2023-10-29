@@ -5,9 +5,15 @@ import {
   Text,
   Inputs,
   Check,
+<<<<<<< HEAD
   Button,
   Message,
   Sign,
+=======
+  Message,
+  Sign,
+  Buttons,
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
 } from './SignInForm.styled';
 import Icon from '../common/IconsComp/Icon';
 import { signInFormSchema } from './YupValidationForm';
@@ -62,6 +68,30 @@ export default function SignInForm() {
     return clearTimeout(id);
   }, [isLoading]);
 
+<<<<<<< HEAD
+=======
+  const [hidePass, setHidePass] = useState();
+  const [passBtn, setPassBtn] = useState(false);
+
+  const handleInput = () => {
+    setPassBtn(true);
+  };
+
+  const inputPassword = document.querySelector('#password');
+
+  const onClickPassBtn = () => {
+    if (inputPassword) {
+      if (inputPassword.getAttribute('type') === 'password') {
+        inputPassword.setAttribute('type', 'text');
+        setHidePass(true);
+      } else {
+        inputPassword.setAttribute('type', 'password');
+        setHidePass(false);
+      }
+    }
+  };
+
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -90,9 +120,33 @@ export default function SignInForm() {
 
           <Inputs>
             <Feedback name="email" type="email" placeholder="Email" />
+<<<<<<< HEAD
             <Feedback name="password" type="text" placeholder="Password" />
           </Inputs>
           <Button type="submit">Sign Up</Button>
+=======
+            <div>
+              <Feedback
+                name="password"
+                type="password"
+                placeholder="Password"
+                id="password"
+                onInput={handleInput}
+              />
+              {passBtn && (
+                <button type="button" onClick={onClickPassBtn}>
+                  {hidePass ? <Icon name={'eye'} /> : <Icon name={'eye-off'} />}
+                </button>
+              )}
+            </div>
+          </Inputs>
+          <Buttons>
+            <button type="submit">Sign Up</button>
+            <button type="button" id="google">
+              <Icon name={'google'} />
+            </button>
+          </Buttons>
+>>>>>>> 8c4cb9b6ebc3df10aa0c8ed3eca6d2f45a3543f9
           <Sign>
             <p>Don’t have an account? </p>
             <Link to="/signup">Sign Up</Link>
