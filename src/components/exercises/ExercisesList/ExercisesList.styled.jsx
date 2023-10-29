@@ -1,25 +1,14 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import {
-  bg_exercises,
-  bg_exercises2x,
-  bg_exercises3x,
-  bg_hours,
-  bg_hours2x,
-  bg_hours3x,
-  bg_eating,
-  bg_eating2x,
-  bg_eating3x,
-  man,
-  woman,
-} from 'src/utils/background';
-import { ProductList } from '../../products/ProductsList/ProductsList.styled';
 
 export const ExerciseList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
 
+  @media (max-width: 768px) {
+    gap: 20px;
+  }
   @media (min-width: 768px) {
     overflow-y: scroll;
     row-gap: 32px;
@@ -60,7 +49,7 @@ export const Svg = styled.svg`
   height: 16px;
   stroke: rgba(239, 237, 232, 0.4);
 `;
-export const Wrap = styled.div``;
+export const Wrap = styled.li``;
 
 export const Background = styled.div`
   @media screen and (min-width: 1440px) {

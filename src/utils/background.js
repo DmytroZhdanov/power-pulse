@@ -50,16 +50,7 @@ import bg_eating from 'src/assets/images/background/Desktop/bg_eating.jpg';
 import bg_eating2x from 'src/assets/images/background/Desktop/bg_eating@2x.jpg';
 import bg_eating3x from 'src/assets/images/background/Desktop/bg_eating@3x.jpg';
 
-import bg_exercises from '../assets/images/background/Desktop/bg_exercises.jpg';
-import bg_exercises2x from '../assets/images/background/Desktop/bg_exercises2x.jpg';
-import bg_exercises3x from '../assets/images/background/Desktop/bg_exercises3x.jpg';
-
-import man from '../assets/images/background/Desktop/man.jpg';
-import woman from '../assets/images/background/Desktop/woman.jpg';
-
 export {
-  man,
-  woman,
   mo_main,
   mo_main2x,
   mo_main3x,
@@ -99,7 +90,4 @@ export {
   bg_eating,
   bg_eating2x,
   bg_eating3x,
-  bg_exercises,
-  bg_exercises2x,
-  bg_exercises3x,
 };
