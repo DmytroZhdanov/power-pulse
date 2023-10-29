@@ -27,7 +27,7 @@ export const ExerciseList = styled.ul`
   }
 `;
 export const LinkText = styled.p`
-  color: rgba(239, 237, 232, 0.4);
+  color: ${({ theme }) => theme.color.grayThird};
   font-size: 14px;
   line-height: calc(18 / 14);
 
@@ -47,7 +47,7 @@ export const StyledLink = styled(Link)`
 export const Svg = styled.svg`
   width: 16px;
   height: 16px;
-  stroke: rgba(239, 237, 232, 0.4);
+  stroke: ${({ theme }) => theme.color.grayThird};
 `;
 export const Wrap = styled.li``;
 
@@ -64,16 +64,7 @@ export const Background = styled.div`
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     background:
-      linear-gradient(
-        to right,
-        rgba(0, 0, 0, 1) 1%,
-        rgba(0, 0, 0, 0.8) 20%,
-        rgba(0, 0, 0, 0.8) 20%,
-        rgba(0, 0, 0, 0.7) 40%,
-        rgba(0, 0, 0, 0.6) 70%,
-        rgba(0, 0, 0, 0.5) 100%,
-        rgba(0, 0, 0, 0.3) 100%
-      ),
+      linear-gradient(to right, ${({ theme }) => theme.gradient.exersises}),
       url(${props => props.img}),
       lightgray 0px -48px / 94.516% 105.335% no-repeat;
 

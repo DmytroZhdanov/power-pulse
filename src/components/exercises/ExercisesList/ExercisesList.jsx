@@ -20,28 +20,33 @@ import Loader from 'components/Loader/Loader';
 export function ExercisesList() {
   const category = useOutletContext();
   const [page, setPage] = useState(1);
-  const [pagination, setPagination] = useState(true);
-
+  const [fetching, setFetching] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [result, setResult] = useState([]);
   const { subcategory } = useParams();
   const { ref } = useInView({
-    onChange: inView => inView && setPagination(true),
+    onChange: inView => inView && setFetching(true),
   });
+
+  // const equipment = category === 'equipment' ? subcategory : '';
+  // const target = category === 'target' ? subcategory : '';
+  // const bodyPart = category === 'bodyPart' ? subcategory : '';
 
   const location = useLocation();
   const pathLocation = useRef(location.state?.from ?? '/exercises');
   const [fetchAllExercises] = useLazyFetchAllExercisesQuery();
   const listRef = useRef();
 
-  const { data, isFetching, isError, error } =
-    useFetchExercisesSubcategoriesQuery(category);
+  const { data } = useFetchExercisesSubcategoriesQuery(category);
 
   const currentBackgroundImage = data?.filter(
     item => item.name === subcategory,
   )[0].imgURL;
 
   useEffect(() => {
-    if (pagination) {
+    if (fetching) {
+      setLoading(true);
       const fetch = async () => {
         try {
           const response = await fetchAllExercises({
@@ -51,19 +56,23 @@ export function ExercisesList() {
 
           setResult(prev => [...prev, ...response]);
           setPage(page + 1);
+          setFetching(false);
+
+          setLoading(false);
         } catch (error) {
-          console.log(error);
+          setError(error);
         } finally {
-          setPagination(false);
+          setLoading(false);
         }
       };
 
       fetch();
     }
-  }, [page, fetchAllExercises, isFetching, category, subcategory, pagination]);
+  }, [page, fetchAllExercises, fetching, category, subcategory]);
 
   return (
     <Content>
+      {loading && <Loader />}
       <StyledLink to={pathLocation.current}>
         <Svg>
           <use href={`${sprite}#icon-arrow`}></use>

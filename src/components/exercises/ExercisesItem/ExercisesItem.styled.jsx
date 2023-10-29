@@ -3,7 +3,8 @@ import styled from '@emotion/styled';
 export const ExercisesCard = styled.div`
   padding: 16px;
   border-radius: 12px;
-  border: 1px solid rgba(239, 237, 232, 0.2);
+
+  border: 1px solid ${({ theme }) => theme.color.grayDisabled};
   max-height: 163px;
 
   @media screen and (max-width: 374px) {
@@ -21,12 +22,12 @@ export const ExercisesCard = styled.div`
       background-size: contain;
       background-repeat: no-repeat;
       background-position: right;
-      background-color: #ffffff;
+      background-color: ${({ theme }) => theme.color.fullWhite};
     }
     &:hover p,
     &:hover span,
     &:hover h2 {
-      color: black;
+      color: ${({ theme }) => theme.color.black};
     }
 
     &:hover h2 {
@@ -35,12 +36,15 @@ export const ExercisesCard = styled.div`
     &:hover button {
       margin-right: 152px;
     }
+    &:hover span {
+      font-weight: 500;
+    }
 
     &:hover .target {
       opacity: 0;
     }
     &:hover .start {
-      color: #e6533c;
+      color: ${({ theme }) => theme.color.orangeFirst};
       font-weight: 500;
     }
   }
@@ -68,8 +72,8 @@ export const SvgArrow = styled.svg`
 export const Title = styled.p`
   padding: 5px 7.5px;
   border-radius: 4px;
-  background: rgba(239, 237, 232, 0.05);
-  color: '#fff';
+  background: ${({ theme }) => theme.color.grayFourth};
+  color: ${({ theme }) => theme.color.fullWhite};
   font-size: 12px;
   font-weight: 700;
 `;
@@ -114,12 +118,12 @@ export const ButtonStart = styled.button`
 `;
 export const ButtonTitle = styled.p`
   margin-right: 8px;
-  color: #e6533c;
+  color: ${({ theme }) => theme.color.orangeFirst};
   font-size: 14px;
   line-height: calc(18 / 14);
 `;
 export const Category = styled.p`
-  color: rgba(239, 237, 232, 0.4);
+  color: ${({ theme }) => theme.color.grayThird};
   font-size: 12px;
   line-height: calc(18 / 12);
 
@@ -136,7 +140,7 @@ export const Category = styled.p`
 
 export const Values = styled.span`
   padding-left: 0;
-  color: #efede8;
+  color: ${({ theme }) => theme.color.white};
   @media screen and (min-width: 768px) {
     margin-bottom: 25px;
   }
