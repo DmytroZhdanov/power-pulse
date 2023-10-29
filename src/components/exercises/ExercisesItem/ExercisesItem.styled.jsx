@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const ExercisesCard = styled.li`
+export const ExercisesCard = styled.div`
   padding: 16px;
   border-radius: 12px;
   border: 1px solid rgba(239, 237, 232, 0.2);
@@ -13,6 +13,7 @@ export const ExercisesCard = styled.li`
   @media screen and (min-width: 375px) {
     width: 335px;
   }
+
   @media screen and (min-width: 1440px) {
     width: 405px;
     &:hover {
@@ -53,10 +54,12 @@ export const ExercisesWrap = styled.div`
     margin-bottom: 25px;
   }
 `;
+
 export const SvgRunMan = styled.svg`
   max-width: 24px;
   max-height: 24px;
 `;
+
 export const SvgArrow = styled.svg`
   width: 16px;
   height: 16px;

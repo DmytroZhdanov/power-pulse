@@ -29,9 +29,10 @@ export function ExercisesList() {
     onChange: inView => inView && setFetching(true),
   });
 
-  const equipment = category === 'equipment' ? subcategory : '';
-  const target = category === 'target' ? subcategory : '';
-  const bodyPart = category === 'bodyPart' ? subcategory : '';
+  // const equipment = category === 'equipment' ? subcategory : '';
+  // const target = category === 'target' ? subcategory : '';
+  // const bodyPart = category === 'bodyPart' ? subcategory : '';
+
   const location = useLocation();
   const pathLocation = useRef(location.state?.from ?? '/exercises');
   const [fetchAllExercises] = useLazyFetchAllExercisesQuery();
@@ -49,10 +50,11 @@ export function ExercisesList() {
       const fetch = async () => {
         try {
           const response = await fetchAllExercises({
-            bodyPart,
-            target,
-            equipment,
+            // bodyPart,
+            // target,
+            // equipment,
             page,
+            [category]: subcategory,
           }).unwrap();
 
           setResult(prev => [...prev, ...response]);
@@ -69,7 +71,7 @@ export function ExercisesList() {
 
       fetch();
     }
-  }, [page, fetchAllExercises, bodyPart, target, equipment, fetching]);
+  }, [page, fetchAllExercises, fetching, category, subcategory]);
 
   return (
     <Content>
@@ -84,7 +86,16 @@ export function ExercisesList() {
       <ExerciseList ref={listRef}>
         {result?.map(
           (
-            { _id, name, bodyPart, burnedCalories, target, gifUrl, time },
+            {
+              _id,
+              name,
+              bodyPart,
+              burnedCalories,
+              target,
+              gifUrl,
+              time,
+              equipment,
+            },
             index,
           ) => (
             <Wrap key={index} ref={index === result.length - 1 ? ref : null}>
