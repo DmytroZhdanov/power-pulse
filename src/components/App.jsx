@@ -25,7 +25,7 @@ const router = createBrowserRouter(
       errorElement: <Error />,
       children: [
         {
-          index: true,
+          path: ROUTER.WELCOME,
           async lazy() {
             let { Welcome } = await import('pages/Welcome/Welcome');
             return {
@@ -57,7 +57,7 @@ const router = createBrowserRouter(
           async lazy() {
             let { Data } = await import('pages/Data/Data');
             return {
-              Component: () => <PrivateRoute component={<Data />} />,
+              Component: Data,
             };
           },
           children: [
@@ -66,7 +66,7 @@ const router = createBrowserRouter(
               async lazy() {
                 let { FirstStep } = await import('./data/FirstStep/FirstStep');
                 return {
-                  Component: () => <PrivateRoute component={<FirstStep />} />,
+                  Component: FirstStep,
                 };
               },
             },
@@ -77,7 +77,7 @@ const router = createBrowserRouter(
                   './data/SecondStep/SecondStep'
                 );
                 return {
-                  Component: () => <PrivateRoute component={<SecondStep />} />,
+                  Component: SecondStep,
                 };
               },
             },
@@ -86,7 +86,7 @@ const router = createBrowserRouter(
               async lazy() {
                 let { ThirdStep } = await import('./data/ThirdStep/ThirdStep');
                 return {
-                  Component: () => <PrivateRoute component={<ThirdStep />} />,
+                  Component: ThirdStep,
                 };
               },
             },
