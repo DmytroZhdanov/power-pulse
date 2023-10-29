@@ -8,7 +8,7 @@ export const User = styled.div`
   gap: 40px;
   background-color: black;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     width: 439px;
     gap: 32px;
   }
@@ -21,7 +21,7 @@ export const Avatar = styled.div`
   gap: 32px;
   width: 125px;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     width: 166px;
   }
 `;
@@ -58,28 +58,7 @@ export const Image = styled.div`
     color: rgba(239, 237, 232, 30%);
   }
 
-  button {
-    position: absolute;
-    left: 50%;
-    bottom: -11px;
-    transform: translate(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 24px;
-    height: 24px;
-    padding: 0;
-    border-style: none;
-    border-radius: 50%;
-    background-color: transparent;
-    cursor: pointer;
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     width: 150px;
     height: 150px;
 
@@ -92,22 +71,47 @@ export const Image = styled.div`
       width: 100%;
       height: 100%;
     }
-    button {
-      width: 32px;
-      height: 32px;
-      bottom: -14px;
-    }
   }
 `;
 
-export const BtnAvat = styled.button``;
+export const BtnAvat = styled.label`
+  position: absolute;
+  left: 50%;
+  bottom: -11px;
+  transform: translate(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-style: none;
+  border-radius: 50%;
+  background-color: transparent;
+
+  input {
+    display: none;
+    visibility: hidden;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 32px;
+    height: 32px;
+    bottom: -14px;
+  }
+`;
 
 export const MainText = styled.p`
   font-size: 18px;
   line-height: calc(20 / 18);
   color: #efede8;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     font-size: 24px;
     line-height: calc(28 / 24);
   }
@@ -126,7 +130,7 @@ export const AddText = styled.p`
   font-size: 12px;
   line-height: calc(16 / 12);
   color: #efede8cc;
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     line-height: calc(18 / 12);
   }
 `;
@@ -146,7 +150,7 @@ export const Name = styled.div`
     color: #efede880;
   }
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     gap: 8px;
   }
 `;
@@ -157,7 +161,7 @@ export const Daily = styled.div`
   gap: 14px;
   justify-content: center;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     gap: 16px;
   }
 `;
@@ -178,7 +182,7 @@ export const Calories = styled.div`
     height: 20px;
   }
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     width: 214px;
     padding: 14px 18px;
 
@@ -190,7 +194,7 @@ export const Calories = styled.div`
 
 export const SportTime = styled(Calories)`
   width: 165px;
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     width: 209px;
   }
 `;
@@ -208,7 +212,7 @@ export const Warnings = styled.div`
     max-height: 24px;
   }
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     ${SecondText} {
       font-size: 16px;
       line-height: calc(24 / 16);
