@@ -7,13 +7,10 @@ export const GoBtn = styled.button`
   color: ${({ theme }) => theme.color.graySecond};
   background-color: ${({ theme }) => theme.color.orangeFirst};
 
-  /* color: rgba(239, 237, 232, 0.6); */
-  /* background-color: #e6533c; */
   border-radius: 12px;
   border: none;
   color: ${({ theme }) => theme.color.white};
 
-  /* color: #efede8; */
 
   transition: color 300ms ease-in-out;
 `;
@@ -36,7 +33,6 @@ export const ArrowBtnRight = styled.button`
   border: none;
   color: ${({ theme }) => theme.color.graySecond};
 
-  /* color: rgba(239, 237, 232, 0.6); */
   background-color: transparent;
   font-size: 16px;
   transition: all 250ms ease-in-out;
@@ -47,7 +43,6 @@ export const ArrowBtnRight = styled.button`
     color: #efede8;
     transform: translateX(3px);
     background-color: ${({ theme }) => theme.color.black};
-    /* background-color: black; */
   }
 `;
 
