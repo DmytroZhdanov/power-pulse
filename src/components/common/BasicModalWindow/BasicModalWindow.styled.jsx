@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ModalBackdrop = styled.div`
-  background: rgba(0, 0, 0, 0.6);
+  background: ${({ theme }) => theme.color.backdropBackground};
   position: fixed;
   top: 0;
   left: 0;
@@ -11,13 +11,13 @@ export const ModalBackdrop = styled.div`
 `;
 
 export const Modal = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 10000;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #10100f;
-  border: 1px solid rgba(239, 237, 232, 0.2);
+  background-color: ${({ theme }) => theme.color.modalBackground};
+  border: 1px solid ${({ theme }) => theme.color.borderModal};
   border-radius: 12px;
   overflow-y: auto;
 `;
@@ -25,7 +25,7 @@ export const Modal = styled.div`
 export const CloseModalButton = styled.button`
   width: 22px;
   height: 22px;
-  color: #efede8;
+  color: ${({ theme }) => theme.color.white};
   background-color: transparent;
   border: none;
   display: flex;
@@ -36,6 +36,12 @@ export const CloseModalButton = styled.button`
   top: 14px;
   right: 14px;
   padding: 0;
+  transition: color ${({ theme }) => theme.transition.main};
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.color.hover};
+  }
 
   @media screen and (min-width: 768px) {
     top: 16px;
