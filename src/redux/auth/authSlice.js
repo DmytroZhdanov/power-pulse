@@ -18,8 +18,11 @@ const authSlice = createSlice({
       state.user = user;
       state.token = token;
     },
+    setAvatars: (state, payload) => {
+      state.user.avatarUrls = payload;
+    },
   },
 });
 
-export const { setCredentials } = authSlice.actions;
+export const { setCredentials, setAvatars } = authSlice.actions;
 export const authReducer = authSlice.reducer;
