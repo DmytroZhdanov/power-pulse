@@ -12,10 +12,6 @@ export const List = styled.ul`
 
   row-gap: 20px;
   margin-bottom: 40px;
-  @media screen and (max-width: 1440px) {
-    min-height: 60vh;
-  }
-
   @media screen and (min-width: 768px) {
     row-gap: 32px;
     column-gap: 16px;

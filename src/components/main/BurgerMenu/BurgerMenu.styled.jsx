@@ -27,6 +27,7 @@ export const ButtonClose = styled.div`
 `;
 
 export const SvgBtn = styled.svg`
+  stroke: ${({ theme }) => theme.color.white};
   width: 32px;
   height: 32px;
 `;
