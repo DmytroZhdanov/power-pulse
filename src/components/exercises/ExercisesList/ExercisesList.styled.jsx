@@ -44,11 +44,13 @@ export const StyledLink = styled(Link)`
   top: -35px;
   left: 0;
 `;
+
 export const Svg = styled.svg`
   width: 16px;
   height: 16px;
   stroke: ${({ theme }) => theme.color.grayThird};
 `;
+
 export const Wrap = styled.li``;
 
 export const Background = styled.div`
