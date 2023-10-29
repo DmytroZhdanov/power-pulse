@@ -1,5 +1,5 @@
-import { Suspense } from 'react';
-import { Outlet, useResolvedPath } from 'react-router-dom';
+import { Suspense, useEffect } from 'react';
+import { Outlet, useNavigate, useResolvedPath } from 'react-router-dom';
 
 import Loader from 'components/Loader/Loader';
 import Header from 'components/main/Header/Header';
@@ -9,13 +9,21 @@ import { Container } from './Main.styled';
 import { ROUTER } from 'src/utils/constants';
 
 export default function Main() {
+  const navigate = useNavigate();
   const { pathname } = useResolvedPath();
+
   const page = pathname.split('/')[1];
   const showStatisticInfo =
-    page === '' ||
+    page === ROUTER.WELCOME ||
     page === ROUTER.SIGN_UP ||
     page === ROUTER.SIGN_IN ||
-    page === ROUTER.DATA.split('/')[0];
+    page === ROUTER.DATA;
+
+  useEffect(() => {
+    if (pathname === '/') {
+      navigate('welcome');
+    }
+  }, [navigate, pathname]);
 
   return (
     <>
