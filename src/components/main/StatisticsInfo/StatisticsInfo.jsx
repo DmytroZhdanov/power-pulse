@@ -26,7 +26,9 @@ export default function StatisticsInfo({ pathname, page }) {
 
   const path = pathname.split('/');
   const keyword =
-    page === '' || page === ROUTER.SIGN_UP || page === ROUTER.SIGN_IN
+    page === ROUTER.WELCOME ||
+    page === ROUTER.SIGN_UP ||
+    page === ROUTER.SIGN_IN
       ? 'main'
       : path[path.length - 1];
 
