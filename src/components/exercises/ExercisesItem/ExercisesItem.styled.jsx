@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const ExercisesCard = styled.div`
+export const ExercisesCardDiv = styled.div`
   padding: 16px;
   border-radius: 12px;
 
@@ -50,7 +50,7 @@ export const ExercisesCard = styled.div`
   }
 `;
 
-export const ExercisesWrap = styled.div`
+export const ExercisesWrapDiv = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 33px;
@@ -69,7 +69,7 @@ export const SvgArrow = styled.svg`
   height: 16px;
 `;
 
-export const Title = styled.p`
+export const TitleP = styled.p`
   padding: 5px 7.5px;
   border-radius: 4px;
   background: ${({ theme }) => theme.color.grayFourth};
@@ -78,18 +78,18 @@ export const Title = styled.p`
   font-weight: 700;
 `;
 
-export const Box = styled.div`
+export const BoxDiv = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const Info = styled.div`
+export const InfoDiv = styled.div`
   display: flex;
   justify-content: flex-start;
   column-gap: 16px;
   flex-wrap: wrap;
 `;
-export const ExerciseName = styled.h2`
+export const ExerciseNameh2 = styled.h2`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -116,13 +116,13 @@ export const ButtonStart = styled.button`
   background-color: transparent;
   border: none;
 `;
-export const ButtonTitle = styled.p`
+export const ButtonTitleP = styled.p`
   margin-right: 8px;
   color: ${({ theme }) => theme.color.orangeFirst};
   font-size: 14px;
   line-height: calc(18 / 14);
 `;
-export const Category = styled.p`
+export const CategoryP = styled.p`
   color: ${({ theme }) => theme.color.grayThird};
   font-size: 12px;
   line-height: calc(18 / 12);
@@ -138,7 +138,7 @@ export const Category = styled.p`
   }
 `;
 
-export const Values = styled.span`
+export const ValuesSpan = styled.span`
   padding-left: 0;
   color: ${({ theme }) => theme.color.white};
   @media screen and (min-width: 768px) {

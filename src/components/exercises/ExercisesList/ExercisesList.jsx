@@ -1,12 +1,12 @@
 import ExercisesItem from '../ExercisesItem/ExercisesItem';
 import {
-  Background,
-  Content,
-  ExerciseList,
-  LinkText,
+  BackgroundDiv,
+  ContentDiv,
+  ExerciseListUl,
+  LinkTextP,
   StyledLink,
   Svg,
-  Wrap,
+  WrapLi,
 } from './ExercisesList.styled';
 import { useLocation, useOutletContext, useParams } from 'react-router';
 import {
@@ -31,7 +31,8 @@ export function ExercisesList() {
 
   const location = useLocation();
   const pathLocation = useRef(location.state?.from ?? '/exercises');
-  const [fetchAllExercises] = useLazyFetchAllExercisesQuery();
+  const [fetchAllExercises, isFetching, isError] =
+    useLazyFetchAllExercisesQuery();
   const listRef = useRef();
 
   const { data } = useFetchExercisesSubcategoriesQuery(category);
@@ -69,16 +70,15 @@ export function ExercisesList() {
   }, [page, fetchAllExercises, fetching, category, subcategory]);
 
   return (
-    <Content>
-      {loading && <Loader />}
+    <ContentDiv>
       <StyledLink to={pathLocation.current}>
         <Svg>
           <use href={`${sprite}#icon-arrow`}></use>
         </Svg>
-        <LinkText>Back</LinkText>
+        <LinkTextP>Back</LinkTextP>
       </StyledLink>
 
-      <ExerciseList ref={listRef}>
+      <ExerciseListUl ref={listRef}>
         {result?.map(
           (
             {
@@ -93,7 +93,7 @@ export function ExercisesList() {
             },
             index,
           ) => (
-            <Wrap key={index} ref={index === result.length - 1 ? ref : null}>
+            <WrapLi key={index} ref={index === result.length - 1 ? ref : null}>
               <ExercisesItem
                 key={_id}
                 _id={_id}
@@ -105,11 +105,11 @@ export function ExercisesList() {
                 burnedCalories={burnedCalories}
                 time={time}
               />
-            </Wrap>
+            </WrapLi>
           ),
         )}
-      </ExerciseList>
-      <Background category={category} img={backgroundImage} />
-    </Content>
+      </ExerciseListUl>
+      <BackgroundDiv category={category} img={backgroundImage} />
+    </ContentDiv>
   );
 }

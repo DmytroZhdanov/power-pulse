@@ -5,17 +5,17 @@ import AddExerciseSuccess from '../AddExerciseSuccess/AddExerciseSuccess';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { useState } from 'react';
 import {
-  ExercisesCard,
-  ExercisesWrap,
-  Title,
-  Box,
-  Info,
-  ExerciseName,
+  ExercisesCardDiv,
+  ExercisesWrapDiv,
+  TitleP,
+  BoxDiv,
+  InfoDiv,
+  ExerciseNameh2,
   ExerciseDiv,
   ButtonStart,
-  ButtonTitle,
-  Category,
-  Values,
+  ButtonTitleP,
+  CategoryP,
+  ValuesSpan,
   SvgArrow,
   SvgRunMan,
 } from './ExercisesItem.styled';
@@ -44,42 +44,42 @@ export default function ExercisesItem(props) {
 
   return (
     <>
-      <ExercisesCard gifUrl={gifUrl}>
-        <ExercisesWrap>
-          <Title>WORKOUT</Title>
+      <ExercisesCardDiv gifUrl={gifUrl}>
+        <ExercisesWrapDiv>
+          <TitleP>WORKOUT</TitleP>
 
-          <Box className="start">
+          <BoxDiv className="start">
             <ButtonStart onClick={openModalExerciseForm}>
-              <ButtonTitle className="start">Start</ButtonTitle>
+              <ButtonTitleP className="start">Start</ButtonTitleP>
               <SvgArrow>
                 <use href={`${sprite}#arrow-add-prod-orange`}></use>
               </SvgArrow>
             </ButtonStart>
-          </Box>
-        </ExercisesWrap>
+          </BoxDiv>
+        </ExercisesWrapDiv>
 
         <ExerciseDiv>
           <SvgRunMan>
             <use href={`${sprite}#run-man`}></use>
           </SvgRunMan>
 
-          <ExerciseName>{UpperCase(name)}</ExerciseName>
+          <ExerciseNameh2>{UpperCase(name)}</ExerciseNameh2>
         </ExerciseDiv>
 
-        <Info>
-          <Category>
-            Burned calories:<Values>{burnedCalories}</Values>
-          </Category>
+        <InfoDiv>
+          <CategoryP>
+            Burned calories:<ValuesSpan>{burnedCalories}</ValuesSpan>
+          </CategoryP>
 
-          <Category category={true}>
-            Body part:<Values>{UpperCase(bodyPart)}</Values>
-          </Category>
+          <CategoryP category={true}>
+            Body part:<ValuesSpan>{UpperCase(bodyPart)}</ValuesSpan>
+          </CategoryP>
 
-          <Category className="target">
-            Target:<Values>{UpperCase(target)}</Values>
-          </Category>
-        </Info>
-      </ExercisesCard>
+          <CategoryP className="target">
+            Target:<ValuesSpan>{UpperCase(target)}</ValuesSpan>
+          </CategoryP>
+        </InfoDiv>
+      </ExercisesCardDiv>
       {onShowModalExerciseForm && (
         <BasicModalWindow onClose={closeModalExerciseForm}>
           <AddExerciseForm

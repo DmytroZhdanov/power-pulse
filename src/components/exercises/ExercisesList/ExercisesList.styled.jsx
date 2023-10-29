@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-export const ExerciseList = styled.ul`
+export const ExerciseListUl = styled.ul`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -26,7 +26,7 @@ export const ExerciseList = styled.ul`
     justify-content: flex-start;
   }
 `;
-export const LinkText = styled.p`
+export const LinkTextP = styled.p`
   color: ${({ theme }) => theme.color.grayThird};
   font-size: 14px;
   line-height: calc(18 / 14);
@@ -56,9 +56,9 @@ export const Svg = styled.svg`
   stroke: ${({ theme }) => theme.color.grayThird};
 `;
 
-export const Wrap = styled.li``;
+export const WrapLi = styled.li``;
 
-export const Background = styled.div`
+export const BackgroundDiv = styled.div`
   @media screen and (min-width: 1440px) {
     position: absolute;
     top: -72px;
@@ -80,4 +80,4 @@ export const Background = styled.div`
   }
 `;
 
-export const Content = styled.div``;
+export const ContentDiv = styled.div``;
