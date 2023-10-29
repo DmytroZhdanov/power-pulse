@@ -52,10 +52,12 @@ export function ExercisesList() {
             page,
             [category]: subcategory,
           }).unwrap();
+          page === 1
+            ? setResult([...response])
+            : setResult(prev => [...prev, ...response]);
 
-          setResult(prev => [...prev, ...response]);
-          setPage(page + 1);
           setFetching(false);
+          setPage(page + 1);
 
           setLoading(false);
         } catch (error) {
