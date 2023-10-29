@@ -14,15 +14,11 @@ import {
 } from './StatisticsInfo.styled';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { ROUTER } from 'src/utils/constants';
-import { useFetchStatisticQuery } from '../../../redux/api';
-import Loader from '../../Loader/Loader';
-import { useEffect, useState } from 'react';
-import BasicModalWindow from '../../common/BasicModalWindow/BasicModalWindow';
-import TimerWarning from '../../common/TimerWarning/TimerWarning';
+import { useFetchStatisticQuery } from 'src/redux/api';
+import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 
 export default function StatisticsInfo({ pathname, page }) {
-  const [showTimerWarning, setShowTimerWarning] = useState(false);
-  const { data, isFetching, isError } = useFetchStatisticQuery();
+  const { data, isFetching, isError, error } = useFetchStatisticQuery();
 
   const path = pathname.split('/');
   const keyword =
@@ -31,18 +27,6 @@ export default function StatisticsInfo({ pathname, page }) {
     page === ROUTER.SIGN_IN
       ? 'main'
       : path[path.length - 1];
-
-  useEffect(() => {
-    let id;
-
-    if (isFetching) {
-      id = setTimeout(setShowTimerWarning, 5000, true);
-    } else {
-      setShowTimerWarning(false);
-    }
-
-    return clearTimeout(id);
-  }, [isFetching]);
 
   const formatNumber = number => {
     if (number < 1000) {
@@ -53,128 +37,121 @@ export default function StatisticsInfo({ pathname, page }) {
   };
 
   return (
-    <>
-      {isFetching && <Loader />}
-      {isFetching && showTimerWarning && (
-        <BasicModalWindow onClose={() => setShowTimerWarning(false)}>
-          <TimerWarning />
-        </BasicModalWindow>
+    <Background keyword={keyword} isError={isError}>
+      {data && (
+        <>
+          <DarkBlock>
+            <DarkBlockIconWrapper>
+              <DarkBlockIcon>
+                <use href={`${sprite}#play`} />
+              </DarkBlockIcon>
+            </DarkBlockIconWrapper>
+
+            <div>
+              <DarkBlockSpan>{data.exerciseTotalQuantity}</DarkBlockSpan>
+
+              <DarkBlockText>Video tutorial</DarkBlockText>
+            </div>
+          </DarkBlock>
+
+          <ColoredBlock>
+            <div>
+              <ColoredBlockIconWrapper>
+                <ColoredBlockIcon>
+                  <use href={`${sprite}#running`} />
+                </ColoredBlockIcon>
+              </ColoredBlockIconWrapper>
+
+              <ColoredBlockSpan>
+                {formatNumber(data.caloriesTotalQuantity)}
+              </ColoredBlockSpan>
+            </div>
+
+            <ColoredBlockText>cal</ColoredBlockText>
+          </ColoredBlock>
+
+          <DarkBlock>
+            <DarkBlockIconWrapper>
+              <DarkBlockIcon>
+                <use href={`${sprite}#play`} />
+              </DarkBlockIcon>
+            </DarkBlockIconWrapper>
+
+            <div>
+              <DarkBlockSpan>
+                {formatNumber(data.usersTotalQuantity)}
+              </DarkBlockSpan>
+
+              <DarkBlockText>Users</DarkBlockText>
+            </div>
+          </DarkBlock>
+
+          <ColoredBlock>
+            <div>
+              <ColoredBlockIconWrapper>
+                <ColoredBlockIcon>
+                  <use href={`${sprite}#running`} />
+                </ColoredBlockIcon>
+              </ColoredBlockIconWrapper>
+
+              <ColoredBlockSpan>
+                {formatNumber(data.timeTotalQuantity)}
+              </ColoredBlockSpan>
+            </div>
+
+            <ColoredBlockText>minutes</ColoredBlockText>
+          </ColoredBlock>
+
+          <DarkBlock>
+            <DarkBlockIconWrapper>
+              <DarkBlockIcon>
+                <use href={`${sprite}#play`} />
+              </DarkBlockIcon>
+            </DarkBlockIconWrapper>
+
+            <div>
+              <DarkBlockSpan>
+                {formatNumber(data.exerciseDoneTotalQuantity)}
+              </DarkBlockSpan>
+
+              <DarkBlockText>Exercises performed</DarkBlockText>
+            </div>
+          </DarkBlock>
+        </>
       )}
-      <Background keyword={keyword} isError={isError}>
-        {data && (
-          <>
-            <DarkBlock>
-              <DarkBlockIconWrapper>
-                <DarkBlockIcon>
-                  <use href={`${sprite}#play`} />
-                </DarkBlockIcon>
-              </DarkBlockIconWrapper>
+      {isError && (
+        <>
+          <DarkBlock isError={isError}>
+            <DarkBlockIconWrapper>
+              <DarkBlockIcon>
+                <use href={`${sprite}#play`} />
+              </DarkBlockIcon>
+            </DarkBlockIconWrapper>
 
-              <div>
-                <DarkBlockSpan>{data.exerciseTotalQuantity}</DarkBlockSpan>
+            <div>
+              <DarkBlockSpan>350+</DarkBlockSpan>
 
-                <DarkBlockText>Video tutorial</DarkBlockText>
-              </div>
-            </DarkBlock>
+              <DarkBlockText>Video tutorial</DarkBlockText>
+            </div>
+          </DarkBlock>
 
-            <ColoredBlock>
-              <div>
-                <ColoredBlockIconWrapper>
-                  <ColoredBlockIcon>
-                    <use href={`${sprite}#running`} />
-                  </ColoredBlockIcon>
-                </ColoredBlockIconWrapper>
+          <ColoredBlock isError={isError}>
+            <div>
+              <ColoredBlockIconWrapper>
+                <ColoredBlockIcon>
+                  <use href={`${sprite}#running`} />
+                </ColoredBlockIcon>
+              </ColoredBlockIconWrapper>
 
-                <ColoredBlockSpan>
-                  {formatNumber(data.caloriesTotalQuantity)}
-                </ColoredBlockSpan>
-              </div>
+              <ColoredBlockSpan>500</ColoredBlockSpan>
+            </div>
 
-              <ColoredBlockText>cal</ColoredBlockText>
-            </ColoredBlock>
-
-            <DarkBlock>
-              <DarkBlockIconWrapper>
-                <DarkBlockIcon>
-                  <use href={`${sprite}#play`} />
-                </DarkBlockIcon>
-              </DarkBlockIconWrapper>
-
-              <div>
-                <DarkBlockSpan>
-                  {formatNumber(data.usersTotalQuantity)}
-                </DarkBlockSpan>
-
-                <DarkBlockText>Users</DarkBlockText>
-              </div>
-            </DarkBlock>
-
-            <ColoredBlock>
-              <div>
-                <ColoredBlockIconWrapper>
-                  <ColoredBlockIcon>
-                    <use href={`${sprite}#running`} />
-                  </ColoredBlockIcon>
-                </ColoredBlockIconWrapper>
-
-                <ColoredBlockSpan>
-                  {formatNumber(data.timeTotalQuantity)}
-                </ColoredBlockSpan>
-              </div>
-
-              <ColoredBlockText>minutes</ColoredBlockText>
-            </ColoredBlock>
-
-            <DarkBlock>
-              <DarkBlockIconWrapper>
-                <DarkBlockIcon>
-                  <use href={`${sprite}#play`} />
-                </DarkBlockIcon>
-              </DarkBlockIconWrapper>
-
-              <div>
-                <DarkBlockSpan>
-                  {formatNumber(data.exerciseDoneTotalQuantity)}
-                </DarkBlockSpan>
-
-                <DarkBlockText>Exercises performed</DarkBlockText>
-              </div>
-            </DarkBlock>
-          </>
-        )}
-        {isError && (
-          <>
-            <DarkBlock isError={isError}>
-              <DarkBlockIconWrapper>
-                <DarkBlockIcon>
-                  <use href={`${sprite}#play`} />
-                </DarkBlockIcon>
-              </DarkBlockIconWrapper>
-
-              <div>
-                <DarkBlockSpan>350+</DarkBlockSpan>
-
-                <DarkBlockText>Video tutorial</DarkBlockText>
-              </div>
-            </DarkBlock>
-
-            <ColoredBlock isError={isError}>
-              <div>
-                <ColoredBlockIconWrapper>
-                  <ColoredBlockIcon>
-                    <use href={`${sprite}#running`} />
-                  </ColoredBlockIcon>
-                </ColoredBlockIconWrapper>
-
-                <ColoredBlockSpan>500</ColoredBlockSpan>
-              </div>
-
-              <ColoredBlockText>cal</ColoredBlockText>
-            </ColoredBlock>
-          </>
-        )}
-      </Background>
-    </>
+            <ColoredBlockText>cal</ColoredBlockText>
+          </ColoredBlock>
+        </>
+      )}
+      <ErrorHandler isLoading={isFetching} isError={isError} error={error} />
+    </Background>
   );
 }
 

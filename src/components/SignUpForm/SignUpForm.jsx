@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik, FormikProvider, Form, useField } from 'formik';
 import {
@@ -14,10 +14,7 @@ import { signUpFormSchema } from './YupValidationForm';
 import { useRegisterMutation } from 'src/redux/api';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from 'src/redux/auth/authSlice';
-import Loader from 'components/Loader/Loader';
-import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
-import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
-import TimerWarning from 'components/common/TimerWarning/TimerWarning';
+import ErrorHandler from '../common/ErrorHandler/ErrorHandler';
 
 const Feedback = ({ ...props }) => {
   const [field, meta] = useField(props);
@@ -44,23 +41,7 @@ const Feedback = ({ ...props }) => {
 
 export default function SignUpForm() {
   const dispatch = useDispatch();
-  const [register, data] = useRegisterMutation();
-  const { isLoading, error } = data;
-
-  const [showError, setShowError] = useState(false);
-  const [showTimerWarning, setShowTimerWarning] = useState(false);
-
-  useEffect(() => {
-    let id;
-
-    if (isLoading) {
-      id = setTimeout(setShowTimerWarning, 5000, true);
-    } else {
-      setShowTimerWarning(false);
-    }
-
-    return clearTimeout(id);
-  }, [isLoading]);
+  const [register, { isLoading, isError, error }] = useRegisterMutation();
 
   const [hidePass, setHidePass] = useState();
   const [passBtn, setPassBtn] = useState(false);
@@ -94,9 +75,8 @@ export default function SignUpForm() {
         const data = await register(values).unwrap();
         dispatch(setCredentials(data));
         resetForm();
-      } catch {
-        setShowError(true);
-        setTimeout(() => setShowError(false), 2000);
+      } catch (error) {
+        console.error(error);
       }
     },
     validationSchema: signUpFormSchema,
@@ -141,17 +121,7 @@ export default function SignUpForm() {
           </Sign>
         </Form>
       </FormikProvider>
-      {isLoading && <Loader />}
-      {isLoading && showTimerWarning && (
-        <BasicModalWindow onClose={() => setShowTimerWarning(false)}>
-          <TimerWarning />
-        </BasicModalWindow>
-      )}
-      {showError && (
-        <BasicModalWindow onClose={() => setShowError(false)}>
-          <ErrorMessage message={error.data.message} />
-        </BasicModalWindow>
-      )}
+      <ErrorHandler isLoading={isLoading} isError={isError} error={error} />
     </>
   );
 }
