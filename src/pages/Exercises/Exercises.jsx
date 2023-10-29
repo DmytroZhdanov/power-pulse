@@ -13,7 +13,7 @@ export function Exercises() {
   const subcategoriesLocation = location.pathname === '/exercises';
   return (
     <Content>
-      <Wrapper>
+      <Wrapper margin={Boolean(subcategory)}>
         <TitlePage
           text={subcategoriesLocation ? 'Exercises' : UpperCase(subcategory)}
         />

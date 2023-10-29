@@ -41,8 +41,13 @@ export const StyledLink = styled(Link)`
   align-items: center;
   gap: 8px;
   position: absolute;
-  top: -35px;
+  top: -25px;
   left: 0;
+  @media (min-width: 768px) {
+    position: absolute;
+    top: -40px;
+    left: 0;
+  }
 `;
 
 export const Svg = styled.svg`
