@@ -29,10 +29,6 @@ export function ExercisesList() {
     onChange: inView => inView && setFetching(true),
   });
 
-  // const equipment = category === 'equipment' ? subcategory : '';
-  // const target = category === 'target' ? subcategory : '';
-  // const bodyPart = category === 'bodyPart' ? subcategory : '';
-
   const location = useLocation();
   const pathLocation = useRef(location.state?.from ?? '/exercises');
   const [fetchAllExercises] = useLazyFetchAllExercisesQuery();
