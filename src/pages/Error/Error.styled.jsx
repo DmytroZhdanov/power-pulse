@@ -28,8 +28,6 @@ export const ContentWrap = styled.div`
   background-color: ${({ theme }) => theme.color.orangeFirst};
   width: 64%;
   height: 100vh;
-  position: relative;
-  z-index: -1;
   margin-top: -62px;
   padding: 0 20px 0 20px;
 
@@ -84,6 +82,16 @@ export const LinkStyled = styled(Link)`
   border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.color.grayFirst};
   padding: 12px 40px;
+  cursor: pointer;
+  transition:
+    background-color ${({ theme }) => theme.transition.main},
+    border ${({ theme }) => theme.transition.main};
+
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.color.hover};
+    border: 1px solid ${({ theme }) => theme.color.hover};
+  }
 
   @media screen and (min-width: 768px) {
     font-size: 20px;
