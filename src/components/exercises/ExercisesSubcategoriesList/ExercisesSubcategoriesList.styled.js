@@ -1,12 +1,11 @@
 import styled from '@emotion/styled';
 
 export const ListWrapp = styled.div`
-  @media screen and (min-width: 768px) {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh; */
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  min-height: 100vh;
 `;
 
 export const List = styled.ul`

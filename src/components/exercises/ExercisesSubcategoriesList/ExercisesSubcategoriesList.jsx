@@ -37,7 +37,7 @@ export function ExercisesSubcategoriesList() {
         window.innerWidth <= 375
       ) {
         setItemsPerPage(10);
-      } else if (window.innerWidth <= 1440) {
+      } else if (window.innerWidth <= 1439) {
         setItemsPerPage(9);
       } else {
         setItemsPerPage(10);
