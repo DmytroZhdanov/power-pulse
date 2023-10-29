@@ -66,9 +66,9 @@ export default function ExercisesItem({
         <ExercisesWrap>
           <Title>WORKOUT</Title>
 
-          <Box>
+          <Box className="start">
             <ButtonStart onClick={openModalExerciseForm}>
-              <ButtonTitle>Start</ButtonTitle>
+              <ButtonTitle className="start">Start</ButtonTitle>
               <SvgArrow>
                 <use href={`${sprite}#arrow-add-prod-orange`}></use>
               </SvgArrow>
@@ -93,7 +93,7 @@ export default function ExercisesItem({
             Body part:<Values>{UpperCase(bodyPart)}</Values>
           </Category>
 
-          <Category>
+          <Category className="target">
             Target:<Values>{UpperCase(target)}</Values>
           </Category>
         </Info>

@@ -15,13 +15,36 @@ export const ExercisesCard = styled.li`
   }
   @media screen and (min-width: 1440px) {
     width: 405px;
-    /* &:hover {
+    &:hover {
       background-image: url(${props => props.gifUrl});
       background-size: contain;
       background-repeat: no-repeat;
       background-position: right;
       background-color: #ffffff;
-    } */
+    }
+    &:hover p {
+      color: black;
+    }
+    &:hover h2 {
+      color: black;
+    }
+    &:hover h2 {
+      color: black;
+      max-width: 225px;
+    }
+    &:hover button {
+      margin-right: 152px;
+    }
+    &:hover span {
+      color: black;
+    }
+    &:hover .target {
+      opacity: 0;
+    }
+    &:hover .start {
+      color: #e6533c;
+      font-weight: 500;
+    }
   }
 `;
 
