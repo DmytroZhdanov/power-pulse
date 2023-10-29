@@ -1,4 +1,4 @@
-import{n as p,D as r,r as s,b as $,c as j,d as I,R as m,j as a,O as R,e as v,B as w,T as W,f as k}from"./index-f15efa6c.js";const D=p.div`
+import{n as p,D as r,r as s,e as $,f as j,g as I,R as m,j as a,O as R,h as v,B as w,T as W,i as k}from"./index-47183517.js";const D=p.div`
   position: relative;
 `,y=p.div`
   position: absolute;
@@ -41,4 +41,4 @@ import{n as p,D as r,r as s,b as $,c as j,d as I,R as m,j as a,O as R,e as v,B a
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     width: 80px;
   }
-`,P={};function F(){var h;const[e,t]=s.useState(!1),[S,T]=s.useState(P),[l,g]=s.useState(),[E,u]=s.useState(!1),n=$(),{pathname:c}=j(),{data:i,isFetching:d,isError:x,error:o}=I();return s.useEffect(()=>{let b;return d?b=setTimeout(t,5e3,!0):t(!1),clearTimeout(b)},[d]),s.useEffect(()=>{u(x)},[x]),s.useEffect(()=>{if((o==null?void 0:o.status)===401&&n(`../${m.WELCOME}`),i!=null&&i.user.userParams)return n(`../${m.DIARY}`)},[i,o,n]),s.useEffect(()=>{g(c.split("/")[2]),c===`/${m.DATA}`&&n(`${r.FIRST}`)},[n,c]),a.jsxs(D,{children:[a.jsx(R,{context:[S,T]}),a.jsxs(y,{children:[a.jsx(f,{step:l}),a.jsx(f,{step:l}),a.jsx(f,{step:l})]}),d&&a.jsx(v,{}),d&&e&&a.jsx(w,{onClose:()=>t(!1),children:a.jsx(W,{})}),E&&a.jsx(w,{onClose:()=>u(!1),children:a.jsx(k,{message:(h=o==null?void 0:o.data)==null?void 0:h.message})})]})}export{F as Data};
+`,P={};function F(){var h;const[e,t]=s.useState(!1),[S,g]=s.useState(P),[l,T]=s.useState(),[E,u]=s.useState(!1),n=$(),{pathname:c}=j(),{data:i,isFetching:d,isError:x,error:o}=I();return s.useEffect(()=>{let b;return d?b=setTimeout(t,5e3,!0):t(!1),clearTimeout(b)},[d]),s.useEffect(()=>{u(x)},[x]),s.useEffect(()=>{if((o==null?void 0:o.status)===401&&n(`../${m.WELCOME}`),i!=null&&i.user.userParams)return n(`../${m.DIARY}`)},[i,o,n]),s.useEffect(()=>{T(c.split("/")[2]),c===`/${m.DATA}`&&n(`${r.FIRST}`)},[n,c]),a.jsxs(D,{children:[a.jsx(R,{context:[S,g]}),a.jsxs(y,{children:[a.jsx(f,{step:l}),a.jsx(f,{step:l}),a.jsx(f,{step:l})]}),d&&a.jsx(v,{}),d&&e&&a.jsx(w,{onClose:()=>t(!1),children:a.jsx(W,{})}),E&&a.jsx(w,{onClose:()=>u(!1),children:a.jsx(k,{message:(h=o==null?void 0:o.data)==null?void 0:h.message})})]})}export{F as Data};

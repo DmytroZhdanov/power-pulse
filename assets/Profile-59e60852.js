@@ -1,4 +1,4 @@
-import{h as d,i as T,k as I,r as p,j as e,I as h,l as P,n as i,P as k,m as $}from"./index-f15efa6c.js";import{T as U}from"./TitlePage-a3441145.js";import{c as A,a as m,e as w,f as Y,u as M}from"./index.esm-913d3e59.js";import{f as z,C as V}from"./Calendar-d988086a.js";import"./tiny-warning.esm-c932d744.js";import"./setPrototypeOf-51e8cf87.js";const L=d.div`
+import{l as o,m as T,o as I,r as p,j as e,I as h,p as P,n as i,P as k,q as $}from"./index-47183517.js";import{T as U}from"./TitlePage-461ce620.js";import{c as A,a as m,e as w,f as Y,u as M}from"./index.esm-15178a7b.js";import{f as z,C as V}from"./Calendar-6cc2195b.js";import"./tiny-warning.esm-c932d744.js";import"./setPrototypeOf-51e8cf87.js";const L=o.div`
   width: 335px;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@ import{h as d,i as T,k as I,r as p,j as e,I as h,l as P,n as i,P as k,m as $}fro
     width: 439px;
     gap: 32px;
   }
-`,R=d.div`
+`,R=o.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,7 +20,7 @@ import{h as d,i as T,k as I,r as p,j as e,I as h,l as P,n as i,P as k,m as $}fro
   @media (min-width: 768px) {
     width: 166px;
   }
-`,E=d.div`
+`,E=o.div`
   position: relative;
   margin: 0;
   width: 90px;
@@ -92,7 +92,7 @@ import{h as d,i as T,k as I,r as p,j as e,I as h,l as P,n as i,P as k,m as $}fro
       bottom: -14px;
     }
   }
-`,H=d.button``,g=d.p`
+`,H=o.button``,g=o.p`
   font-size: 18px;
   line-height: calc(20 / 18);
   color: #efede8;
@@ -101,11 +101,11 @@ import{h as d,i as T,k as I,r as p,j as e,I as h,l as P,n as i,P as k,m as $}fro
     font-size: 24px;
     line-height: calc(28 / 24);
   }
-`,u=d.p`
+`,u=o.p`
   font-size: 14px;
   line-height: calc(18 / 14);
   color: rgba(239, 237, 232, 30%);
-`,C=d.p`
+`,C=o.p`
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -115,7 +115,7 @@ import{h as d,i as T,k as I,r as p,j as e,I as h,l as P,n as i,P as k,m as $}fro
   @media (min-width: 768px) {
     line-height: calc(18 / 12);
   }
-`,N=d.div`
+`,N=o.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -133,7 +133,7 @@ import{h as d,i as T,k as I,r as p,j as e,I as h,l as P,n as i,P as k,m as $}fro
   @media (min-width: 768px) {
     gap: 8px;
   }
-`,O=d.div`
+`,O=o.div`
   width: 100%;
   display: flex;
   gap: 14px;
@@ -142,7 +142,7 @@ import{h as d,i as T,k as I,r as p,j as e,I as h,l as P,n as i,P as k,m as $}fro
   @media (min-width: 768px) {
     gap: 16px;
   }
-`,B=d.div`
+`,B=o.div`
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -166,12 +166,12 @@ import{h as d,i as T,k as I,r as p,j as e,I as h,l as P,n as i,P as k,m as $}fro
       line-height: calc(32 / 24);
     }
   }
-`,G=d(B)`
+`,G=o(B)`
   width: 165px;
   @media (min-width: 768px) {
     width: 209px;
   }
-`,Q=d.div`
+`,Q=o.div`
   width: 100%;
   ${u} {
     display: flex;
@@ -190,7 +190,7 @@ import{h as d,i as T,k as I,r as p,j as e,I as h,l as P,n as i,P as k,m as $}fro
       line-height: calc(24 / 16);
     }
   }
-`,J=d.div`
+`,J=o.div`
   width: 100%;
   display: flex;
   justify-content: end;
@@ -381,7 +381,7 @@ import{h as d,i as T,k as I,r as p,j as e,I as h,l as P,n as i,P as k,m as $}fro
   @media (min-width: 768px) {
     width: 187px;
   }
-`,de=i.div`
+`,oe=i.div`
   width: 100%;
 
   label {
@@ -392,7 +392,7 @@ import{h as d,i as T,k as I,r as p,j as e,I as h,l as P,n as i,P as k,m as $}fro
     line-height: calc(18 / 14);
     color: #efede8;
   }
-`,oe=i.div`
+`,de=i.div`
   display: flex;
   justify-content: center;
   gap: 7px;
@@ -400,7 +400,7 @@ import{h as d,i as T,k as I,r as p,j as e,I as h,l as P,n as i,P as k,m as $}fro
   display: flex;
   justify-content: center;
   gap: 7px;
-`,o=i.input`
+`,d=i.input`
   width: 20px;
   height: 20px;
   display: block;
@@ -489,7 +489,7 @@ import{h as d,i as T,k as I,r as p,j as e,I as h,l as P,n as i,P as k,m as $}fro
       height: 20px;
     }
   }
-`;function D({selectedDate:n,setSelectedDate:a}){const[l,s]=p.useState(!0),f="Birthday",b=v=>{s(!1),a(v)},[x]=$();p.useEffect(()=>{(async()=>{var j,_;const{user:c}=await x().unwrap();(j=c==null?void 0:c.userParams)!=null&&j.birthday?(s(!1),a(new Date((_=c==null?void 0:c.userParams)==null?void 0:_.birthday))):s(!0)})()},[x,a]);const t=new Date,r=new Date(t.setFullYear(t.getFullYear()-18)),y=new Date(t.setFullYear(t.getFullYear()-100)),q=l?f:z(n,"yyyy-MM-dd"),W=l?f:z(n,"dd.MM.yyyy");return e.jsxs(e.Fragment,{children:[e.jsx(ge,{disabled:!0,type:"date",name:"birthday",defaultValue:q}),e.jsx(V,{maxDate:r,minDate:y,onChange:b,value:n,children:e.jsxs(me,{children:[e.jsx(ue,{setColor:l?"":"full",children:W}),e.jsx(fe,{children:e.jsx(h,{name:"calendar"})})]})})]})}D.propTypes={selectedDate:k.instanceOf(Date).isRequired,setSelectedDate:k.func.isRequired};const be=(n,a)=>{console.log(n),console.log(a)};function ye(){const[n,a]=p.useState(new Date),{values:l,errors:s,touched:f,isSubmitting:b,handleSubmit:x,handleBlur:t,handleChange:r}=M({initialValues:{name:"Sophy",email:"dfe@ukr.net",height:"",curWeight:"",desWeight:""},validationSchema:xe,onSubmit:be});return e.jsxs(X,{autoComplete:"off",onSubmit:x,children:[e.jsxs(Z,{children:[e.jsxs("label",{children:["Basic info",e.jsx("input",{type:"text",name:"name",placeholder:"name",value:l.name,onChange:r,onBlur:t})]}),e.jsx("input",{type:"email",name:"email",placeholder:"email",value:l.email,onChange:r,onBlur:t})]}),e.jsxs(ee,{children:[e.jsxs(ie,{children:[e.jsxs(S,{htmlFor:"height",children:["Height",e.jsx("input",{type:"number",name:"height",placeholder:"0",min:"150",max:"230",value:l.height,onChange:r,onBlur:t})]}),e.jsxs(te,{htmlFor:"currentWeight",children:["Current Weight",e.jsx("input",{type:"number",name:"curWeight",placeholder:"0",min:"35",value:l.curWeight,onChange:r,onBlur:t})]})]}),e.jsxs(ne,{children:[e.jsxs(F,{htmlFor:"desiredWeight",children:["Desired Weight",e.jsx("input",{type:"number",name:"desWeight",placeholder:"0",min:"35",value:l.desWeight,onChange:r,onBlur:t})]}),e.jsx(ae,{children:e.jsx(D,{selectedDate:n,setSelectedDate:a})})]})]}),e.jsxs(de,{children:[e.jsx(re,{children:" Blood "}),e.jsxs(pe,{children:[e.jsxs(oe,{children:[e.jsx(o,{type:"radio",name:"blood",onChange:r,onBlur:t}),e.jsx("label",{htmlFor:"one",children:"1"}),e.jsx(o,{type:"radio",name:"blood",onChange:r,onBlur:t}),e.jsx("label",{htmlFor:"two",children:"2"}),e.jsx(o,{type:"radio",name:"blood",onChange:r,onBlur:t}),e.jsx("label",{htmlFor:"three",children:"3"}),e.jsx(o,{type:"radio",name:"blood",onChange:r,onBlur:t}),e.jsx("label",{htmlFor:"four",children:"4"})]}),e.jsxs(le,{children:[e.jsxs("label",{htmlFor:"gender",children:[e.jsx(o,{type:"radio",name:"gender",onChange:r}),"Male"]}),e.jsxs("label",{htmlFor:"gender",children:[e.jsx(o,{type:"radio",name:"gender",onChange:r}),"Female"]})]})]}),e.jsxs(se,{children:[e.jsxs("label",{children:[e.jsx("div",{children:e.jsx(o,{type:"radio",name:"lifestyle",onChange:r,onBlur:t})}),"Sedentary lifestyle (little or no physical activity)"]}),e.jsxs("label",{children:[e.jsx("div",{children:e.jsx(o,{type:"radio",name:"lifestyle",onChange:r,onBlur:t})}),"Light activity (light exercises/sports 1-3 days per week)"]}),e.jsxs("label",{children:[e.jsx("div",{children:e.jsx(o,{type:"radio",name:"lifestyle",onChange:r,onBlur:t})}),"Moderately active (moderate exercises/sports 3-5 days per week)"]}),e.jsxs("label",{children:[e.jsx("div",{children:e.jsx(o,{type:"radio",name:"lifestyle",onChange:r,onBlur:t})}),"Very active (intense exercises/sports 6-7 days per week)"]}),e.jsxs("label",{children:[e.jsx("div",{children:e.jsx(o,{type:"radio",name:"lifestyle",onChange:r,onBlur:t})}),"Extremely active (very strenuous exercises/sports and physical work)"]})]})]}),e.jsx("button",{type:"submit",children:"Save"})]})}const we=i.section`
+`;function D({selectedDate:n,setSelectedDate:a}){const[l,s]=p.useState(!0),f="Birthday",b=v=>{s(!1),a(v)},[x]=$();p.useEffect(()=>{(async()=>{var j,_;const{user:c}=await x().unwrap();(j=c==null?void 0:c.userParams)!=null&&j.birthday?(s(!1),a(new Date((_=c==null?void 0:c.userParams)==null?void 0:_.birthday))):s(!0)})()},[x,a]);const t=new Date,r=new Date(t.setFullYear(t.getFullYear()-18)),y=new Date(t.setFullYear(t.getFullYear()-100)),q=l?f:z(n,"yyyy-MM-dd"),W=l?f:z(n,"dd.MM.yyyy");return e.jsxs(e.Fragment,{children:[e.jsx(ge,{disabled:!0,type:"date",name:"birthday",defaultValue:q}),e.jsx(V,{maxDate:r,minDate:y,onChange:b,value:n,children:e.jsxs(me,{children:[e.jsx(ue,{setColor:l?"":"full",children:W}),e.jsx(fe,{children:e.jsx(h,{name:"calendar"})})]})})]})}D.propTypes={selectedDate:k.instanceOf(Date).isRequired,setSelectedDate:k.func.isRequired};const be=(n,a)=>{console.log(n),console.log(a)};function ye(){const[n,a]=p.useState(new Date),{values:l,errors:s,touched:f,isSubmitting:b,handleSubmit:x,handleBlur:t,handleChange:r}=M({initialValues:{name:"Sophy",email:"dfe@ukr.net",height:"",curWeight:"",desWeight:""},validationSchema:xe,onSubmit:be});return e.jsxs(X,{autoComplete:"off",onSubmit:x,children:[e.jsxs(Z,{children:[e.jsxs("label",{children:["Basic info",e.jsx("input",{type:"text",name:"name",placeholder:"name",value:l.name,onChange:r,onBlur:t})]}),e.jsx("input",{type:"email",name:"email",placeholder:"email",value:l.email,onChange:r,onBlur:t})]}),e.jsxs(ee,{children:[e.jsxs(ie,{children:[e.jsxs(S,{htmlFor:"height",children:["Height",e.jsx("input",{type:"number",name:"height",placeholder:"0",min:"150",max:"230",value:l.height,onChange:r,onBlur:t})]}),e.jsxs(te,{htmlFor:"currentWeight",children:["Current Weight",e.jsx("input",{type:"number",name:"curWeight",placeholder:"0",min:"35",value:l.curWeight,onChange:r,onBlur:t})]})]}),e.jsxs(ne,{children:[e.jsxs(F,{htmlFor:"desiredWeight",children:["Desired Weight",e.jsx("input",{type:"number",name:"desWeight",placeholder:"0",min:"35",value:l.desWeight,onChange:r,onBlur:t})]}),e.jsx(ae,{children:e.jsx(D,{selectedDate:n,setSelectedDate:a})})]})]}),e.jsxs(oe,{children:[e.jsx(re,{children:" Blood "}),e.jsxs(pe,{children:[e.jsxs(de,{children:[e.jsx(d,{type:"radio",name:"blood",onChange:r,onBlur:t}),e.jsx("label",{htmlFor:"one",children:"1"}),e.jsx(d,{type:"radio",name:"blood",onChange:r,onBlur:t}),e.jsx("label",{htmlFor:"two",children:"2"}),e.jsx(d,{type:"radio",name:"blood",onChange:r,onBlur:t}),e.jsx("label",{htmlFor:"three",children:"3"}),e.jsx(d,{type:"radio",name:"blood",onChange:r,onBlur:t}),e.jsx("label",{htmlFor:"four",children:"4"})]}),e.jsxs(le,{children:[e.jsxs("label",{htmlFor:"gender",children:[e.jsx(d,{type:"radio",name:"gender",onChange:r}),"Male"]}),e.jsxs("label",{htmlFor:"gender",children:[e.jsx(d,{type:"radio",name:"gender",onChange:r}),"Female"]})]})]}),e.jsxs(se,{children:[e.jsxs("label",{children:[e.jsx("div",{children:e.jsx(d,{type:"radio",name:"lifestyle",onChange:r,onBlur:t})}),"Sedentary lifestyle (little or no physical activity)"]}),e.jsxs("label",{children:[e.jsx("div",{children:e.jsx(d,{type:"radio",name:"lifestyle",onChange:r,onBlur:t})}),"Light activity (light exercises/sports 1-3 days per week)"]}),e.jsxs("label",{children:[e.jsx("div",{children:e.jsx(d,{type:"radio",name:"lifestyle",onChange:r,onBlur:t})}),"Moderately active (moderate exercises/sports 3-5 days per week)"]}),e.jsxs("label",{children:[e.jsx("div",{children:e.jsx(d,{type:"radio",name:"lifestyle",onChange:r,onBlur:t})}),"Very active (intense exercises/sports 6-7 days per week)"]}),e.jsxs("label",{children:[e.jsx("div",{children:e.jsx(d,{type:"radio",name:"lifestyle",onChange:r,onBlur:t})}),"Extremely active (very strenuous exercises/sports and physical work)"]})]})]}),e.jsx("button",{type:"submit",children:"Save"})]})}const we=i.section`
   padding-top: 40px;
   padding-bottom: 66px;
 
