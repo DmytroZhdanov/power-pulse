@@ -8,7 +8,7 @@ import TimerWarning from 'components/common/TimerWarning/TimerWarning';
 import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
 import { initialState, setCredentials } from 'src/redux/auth/authSlice';
 
-export default function ErrorHandler({ isFetching, isError, error }) {
+export default function ErrorHandler({ isLoading, isError, error }) {
   const [showTimerWarning, setShowTimerWarning] = useState(false);
   const [showError, setShowError] = useState(false);
   const dispatch = useDispatch();
@@ -16,14 +16,14 @@ export default function ErrorHandler({ isFetching, isError, error }) {
   useEffect(() => {
     let id;
 
-    if (isFetching) {
+    if (isLoading) {
       id = setTimeout(setShowTimerWarning, 5000, true);
     } else {
       setShowTimerWarning(false);
     }
 
     return clearTimeout(id);
-  }, [isFetching]);
+  }, [isLoading]);
 
   useEffect(() => {
     if (isError) {
@@ -40,9 +40,9 @@ export default function ErrorHandler({ isFetching, isError, error }) {
 
   return (
     <>
-      {isFetching && <Loader />}
+      {isLoading && <Loader />}
 
-      {isFetching && showTimerWarning && (
+      {isLoading && showTimerWarning && (
         <BasicModalWindow onClose={() => setShowTimerWarning(false)}>
           <TimerWarning />
         </BasicModalWindow>
@@ -58,14 +58,14 @@ export default function ErrorHandler({ isFetching, isError, error }) {
 }
 
 ErrorHandler.propTypes = {
-  isFetching: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
   error: PropTypes.shape({
     data: PropTypes.shape({
       message: PropTypes.string.isRequired,
     }).isRequired,
     status: PropTypes.number.isRequired,
-  }).isRequired,
+  }),
 };
 
 // ============================== USAGE EXAMPLE ==============================
@@ -85,7 +85,7 @@ ErrorHandler.propTypes = {
 //   return (
 //     <>
 //       YOUR COMPONENTS.....
-//       <ErrorHandler isFetching={isFetching || isLoading} isError={isError} error={error} />
+//       <ErrorHandler isLoading={isFetching || isLoading} isError={isError} error={error} />
 //     </>
 //   )
 // }
