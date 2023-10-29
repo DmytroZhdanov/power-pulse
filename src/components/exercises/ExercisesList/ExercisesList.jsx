@@ -20,62 +20,50 @@ import Loader from 'components/Loader/Loader';
 export function ExercisesList() {
   const category = useOutletContext();
   const [page, setPage] = useState(1);
-  const [fetching, setFetching] = useState(true);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [pagination, setPagination] = useState(true);
+
   const [result, setResult] = useState([]);
   const { subcategory } = useParams();
   const { ref } = useInView({
-    onChange: inView => inView && setFetching(true),
+    onChange: inView => inView && setPagination(true),
   });
-
-  // const equipment = category === 'equipment' ? subcategory : '';
-  // const target = category === 'target' ? subcategory : '';
-  // const bodyPart = category === 'bodyPart' ? subcategory : '';
 
   const location = useLocation();
   const pathLocation = useRef(location.state?.from ?? '/exercises');
   const [fetchAllExercises] = useLazyFetchAllExercisesQuery();
   const listRef = useRef();
 
-  const { data } = useFetchExercisesSubcategoriesQuery(category);
+  const { data, isFetching, isError, error } =
+    useFetchExercisesSubcategoriesQuery(category);
 
   const currentBackgroundImage = data?.filter(
     item => item.name === subcategory,
   )[0].imgURL;
 
   useEffect(() => {
-    if (fetching) {
-      setLoading(true);
+    if (pagination) {
       const fetch = async () => {
         try {
           const response = await fetchAllExercises({
-            // bodyPart,
-            // target,
-            // equipment,
             page,
             [category]: subcategory,
           }).unwrap();
 
           setResult(prev => [...prev, ...response]);
           setPage(page + 1);
-          setFetching(false);
-
-          setLoading(false);
         } catch (error) {
-          setError(error);
+          console.log(error);
         } finally {
-          setLoading(false);
+          setPagination(false);
         }
       };
 
       fetch();
     }
-  }, [page, fetchAllExercises, fetching, category, subcategory]);
+  }, [page, fetchAllExercises, isFetching, category, subcategory, pagination]);
 
   return (
     <Content>
-      {loading && <Loader />}
       <StyledLink to={pathLocation.current}>
         <Svg>
           <use href={`${sprite}#icon-arrow`}></use>
