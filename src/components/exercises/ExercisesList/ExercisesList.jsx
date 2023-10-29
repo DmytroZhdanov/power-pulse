@@ -16,13 +16,11 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { useInView } from 'react-intersection-observer';
-import Loader from 'components/Loader/Loader';
+import ErrorHandler from '../../common/ErrorHandler/ErrorHandler';
 export function ExercisesList() {
   const category = useOutletContext();
   const [page, setPage] = useState(1);
   const [fetching, setFetching] = useState(true);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [result, setResult] = useState([]);
   const { subcategory } = useParams();
   const { ref } = useInView({
@@ -31,11 +29,14 @@ export function ExercisesList() {
 
   const location = useLocation();
   const pathLocation = useRef(location.state?.from ?? '/exercises');
-  const [fetchAllExercises, isFetching, isError] =
-    useLazyFetchAllExercisesQuery();
   const listRef = useRef();
+  const [fetchAllExercises] = useLazyFetchAllExercisesQuery();
 
-  const { data } = useFetchExercisesSubcategoriesQuery(category);
+  // const [fetchAllExercises, isGettingLazy, gettingErrorLazy, myErrorLazy] =
+  //   useLazyFetchAllExercisesQuery();
+
+  const { data, isFetching, isError, error } =
+    useFetchExercisesSubcategoriesQuery(category);
 
   const currentBackgroundImage =
     data && data.filter(item => item.name === subcategory)[0];
@@ -45,7 +46,6 @@ export function ExercisesList() {
 
   useEffect(() => {
     if (fetching) {
-      setLoading(true);
       const fetch = async () => {
         try {
           const response = await fetchAllExercises({
@@ -58,12 +58,8 @@ export function ExercisesList() {
 
           setFetching(false);
           setPage(page + 1);
-
-          setLoading(false);
         } catch (error) {
-          setError(error);
-        } finally {
-          setLoading(false);
+          console.log(error);
         }
       };
 
@@ -112,6 +108,13 @@ export function ExercisesList() {
         )}
       </ExerciseListUl>
       <BackgroundDiv category={category} img={backgroundImage} />
+
+      <ErrorHandler isFetching={isFetching} isError={isError} error={error} />
+      {/* <ErrorHandler
+        isFetching={isGettingLazy}
+        isError={gettingErrorLazy}
+        error={myErrorLazy}
+      /> */}
     </ContentDiv>
   );
 }
