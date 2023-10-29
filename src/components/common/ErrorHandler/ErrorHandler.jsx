@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Loader from 'components/Loader/Loader';
 import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
@@ -55,3 +56,38 @@ export default function ErrorHandler({ isFetching, isError, error }) {
     </>
   );
 }
+
+ErrorHandler.propTypes = {
+  isFetching: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
+  error: PropTypes.shape({
+    data: PropTypes.shape({
+      message: PropTypes.string.isRequired,
+    }).isRequired,
+    status: PropTypes.number.isRequired,
+  }).isRequired,
+};
+
+// ============================== USAGE EXAMPLE ==============================
+
+// export default function Component() {
+//
+//   const { data, isFetching, isError, error } = use.......Query();
+//   OR
+//   const [function, { data, isLoading, isError, error }] = useLazy.......Query();
+//   OR
+//   const [function, { data, isLoading, isError, error }] = use.......Mutation();
+//
+//
+//   REST OF YOUR CODE...
+//
+//
+//   return (
+//     <>
+//       YOUR COMPONENTS.....
+//       <ErrorHandler isFetching={isFetching || isLoading} isError={isError} error={error} />
+//     </>
+//   )
+// }
+
+// ============================== /USAGE EXAMPLE ==============================
