@@ -208,8 +208,12 @@ export default function App() {
   useEffect(() => {
     const refetch = async () => {
       if (token) {
-        const { user } = await refresh().unwrap();
-        dispatch(setCredentials({ user, token }));
+        try {
+          const { user } = await refresh().unwrap();
+          dispatch(setCredentials({ user, token }));
+        } catch (error) {
+          console.error(error);
+        }
       }
     };
 
