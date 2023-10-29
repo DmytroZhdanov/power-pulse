@@ -69,7 +69,8 @@ export const theme = {
 
   // Анімація (transition) при ховері фокусі
   transition: {
-    main: '500ms cubic-bezier(0.165, 0.84, 0.44, 1.03)',
+    main: '250ms cubic-bezier(0.165, 0.84, 0.44, 1.03)',
+    modal: '300ms ease-in-out',
   },
 
   // box-shadow

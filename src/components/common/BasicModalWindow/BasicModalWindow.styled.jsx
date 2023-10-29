@@ -1,4 +1,14 @@
 import styled from '@emotion/styled';
+import { keyframes } from '@emotion/react';
+
+const openAnimation = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 export const ModalBackdrop = styled.div`
   background: ${({ theme }) => theme.color.backdropBackground};
@@ -8,6 +18,7 @@ export const ModalBackdrop = styled.div`
   z-index: 9999;
   width: 100%;
   height: 100%;
+  animation: ${openAnimation} ${({ theme }) => theme.transition.modal};
 `;
 
 export const Modal = styled.div`
@@ -20,6 +31,7 @@ export const Modal = styled.div`
   border: 1px solid ${({ theme }) => theme.color.borderModal};
   border-radius: 12px;
   overflow-y: auto;
+  animation: ${openAnimation} ${({ theme }) => theme.transition.modal};
 `;
 
 export const CloseModalButton = styled.button`
