@@ -30,7 +30,7 @@ export const Inputs = styled.div`
     position: relative;
     width: 280px;
 
-    @media screen and (max-width: 375px) {
+    @media screen and (min-width: 375px) {
       width: 335px;
     }
 
@@ -57,25 +57,6 @@ export const Inputs = styled.div`
   @media screen and (min-width: 768px) {
     margin-top: 32px;
     gap: 20px;
-  }
-`;
-
-export const Button = styled.button`
-  color: #efede8;
-  margin-top: 28px;
-  display: flex;
-  padding: 12px 40px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 12px;
-  background-color: #e6533c;
-
-  @media screen and (min-width: 768px) {
-    margin-top: 64px;
-  }
-  :hover {
-    background-color: #ef8964;
   }
 `;
 
@@ -151,11 +132,52 @@ export const Message = styled.div`
 
 export const Sign = styled.div`
   margin-top: 12px;
-  display: inline-flex;
+  display: flex;
   font-size: 12px;
   gap: 4px;
 
   a {
     text-decoration-line: underline;
+  }
+`;
+
+export const Buttons = styled.div`
+  display: inline-flex;
+  gap: 24px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 64px;
+  }
+
+  button {
+    height: 42px;
+    color: #efede8;
+    margin-top: 28px;
+    display: flex;
+    padding: 12px 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    background-color: #e6533c;
+
+    :hover,
+    :active {
+      background-color: #ef8964;
+    }
+  }
+
+  #google {
+    width: 32px;
+    background-color: #efede8;
+    :hover,
+    :active {
+      background-color: #ef8964;
+    }
+  }
+
+  svg {
+    min-width: 28px;
+    height: 28px;
   }
 `;
