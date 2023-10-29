@@ -17,16 +17,23 @@ import { ROUTER } from 'src/utils/constants';
 import { useFetchStatisticQuery } from 'src/redux/api';
 import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 
+import { stepValueForm } from '../../../redux/dataPage/selectors';
+import { useSelector } from 'react-redux';
+
 export default function StatisticsInfo({ pathname, page }) {
   const { data, isFetching, isError, error } = useFetchStatisticQuery();
 
-  const path = pathname.split('/');
+  const stepValue = useSelector(stepValueForm);
+
+  const path = pathname.split('');
   const keyword =
     page === ROUTER.WELCOME ||
     page === ROUTER.SIGN_UP ||
     page === ROUTER.SIGN_IN
       ? 'main'
-      : path[path.length - 1];
+      : stepValue;
+
+  // page === ROUTER.DATA && stepValue;
 
   const formatNumber = number => {
     if (number < 1000) {

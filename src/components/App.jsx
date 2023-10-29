@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCredentials } from 'src/redux/auth/authSlice';
 import { useLazyRefreshQuery } from 'src/redux/api';
 import { selectToken } from 'src/redux/auth/selectors';
-import { ROUTER, DATA_STEPS } from 'src/utils';
+import { ROUTER } from 'src/utils';
 
 import Main from 'pages/Main/Main';
 import Error from 'pages/Error/Error';
@@ -53,40 +53,40 @@ const router = createBrowserRouter(
           async lazy() {
             let { Data } = await import('pages/Data/Data');
             return {
-              Component: Data,
+              Component: () => <RestrictedRoute component={<Data />} />,
             };
           },
-          children: [
-            {
-              path: DATA_STEPS.FIRST,
-              async lazy() {
-                let { FirstStep } = await import('./data/FirstStep/FirstStep');
-                return {
-                  Component: FirstStep,
-                };
-              },
-            },
-            {
-              path: DATA_STEPS.SECOND,
-              async lazy() {
-                let { SecondStep } = await import(
-                  './data/SecondStep/SecondStep'
-                );
-                return {
-                  Component: SecondStep,
-                };
-              },
-            },
-            {
-              path: DATA_STEPS.THIRD,
-              async lazy() {
-                let { ThirdStep } = await import('./data/ThirdStep/ThirdStep');
-                return {
-                  Component: ThirdStep,
-                };
-              },
-            },
-          ],
+          // children: [
+          //   {
+          //     path: DATA_STEPS.FIRST,
+          //     async lazy() {
+          //       let { FirstStep } = await import('./data/FirstStep/FirstStep');
+          //       return {
+          //         Component: FirstStep,
+          //       };
+          //     },
+          //   },
+          //   {
+          //     path: DATA_STEPS.SECOND,
+          //     async lazy() {
+          //       let { SecondStep } = await import(
+          //         './data/SecondStep/SecondStep'
+          //       );
+          //       return {
+          //         Component: SecondStep,
+          //       };
+          //     },
+          //   },
+          //   {
+          //     path: DATA_STEPS.THIRD,
+          //     async lazy() {
+          //       let { ThirdStep } = await import('./data/ThirdStep/ThirdStep');
+          //       return {
+          //         Component: ThirdStep,
+          //       };
+          //     },
+          //   },
+          // ],
         },
         {
           path: ROUTER.SIGN_IN,
