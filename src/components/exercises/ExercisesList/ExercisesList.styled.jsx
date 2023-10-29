@@ -1,0 +1,78 @@
+import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
+
+export const ExerciseList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  @media (max-width: 768px) {
+    gap: 20px;
+  }
+  @media (min-width: 768px) {
+    overflow-y: scroll;
+    row-gap: 32px;
+    column-gap: 16px;
+  }
+  @media (min-width: 768px) and (max-width: 1440px) {
+    max-height: 610px;
+  }
+
+  @media (min-width: 1440px) {
+    max-width: 850px;
+    max-height: 495px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+`;
+export const LinkText = styled.p`
+  color: ${({ theme }) => theme.color.grayThird};
+  font-size: 14px;
+  line-height: calc(18 / 14);
+
+  @media (min-width: 768px) {
+    line-height: calc(24 / 16);
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: absolute;
+  top: -35px;
+  left: 0;
+`;
+
+export const Svg = styled.svg`
+  width: 16px;
+  height: 16px;
+  stroke: ${({ theme }) => theme.color.grayThird};
+`;
+
+export const Wrap = styled.li``;
+
+export const Background = styled.div`
+  @media screen and (min-width: 1440px) {
+    position: absolute;
+    top: -72px;
+    right: -95px;
+
+    width: 600px;
+    height: 715px;
+    background-repeat: no-repeat;
+    z-index: -2;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background:
+      linear-gradient(to right, ${({ theme }) => theme.gradient.exersises}),
+      url(${props => props.img}),
+      lightgray 0px -48px / 94.516% 105.335% no-repeat;
+
+    background-size: cover;
+    background-position: right;
+  }
+`;
+
+export const Content = styled.div``;

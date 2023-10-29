@@ -17,3 +17,6 @@ export const Wrapper = styled.div`
     margin-bottom: 64px;
   }
 `;
+export const Content = styled.div`
+  position: relative;
+`;
