@@ -29,7 +29,9 @@ export default function BasicModalWindow(props) {
     };
 
     window.addEventListener('keydown', onEscKeyPress);
-    bodyScroll(true);
+    if (onShow) {
+      bodyScroll(true);
+    }
 
     return () => {
       window.removeEventListener('keydown', onEscKeyPress);

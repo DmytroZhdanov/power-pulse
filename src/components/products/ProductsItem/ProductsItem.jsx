@@ -115,10 +115,10 @@ export default function ProductsItem({ props, userGroupBlood }) {
         </Description>
       </ProductCard>
 
-      {isModalOpen && (
+      {/* {isModalOpen && ( */}
         <BasicModalWindow
           onClose={closeModal}
-          //onShow={isModalOpen}
+          onShow={isModalOpen}
         >
           <AddProductForm
             onClose={closeModal}
@@ -126,19 +126,19 @@ export default function ProductsItem({ props, userGroupBlood }) {
             product={props}
           />
         </BasicModalWindow>
-      )}
+      {/* )} */}
 
-      {isAddProdSuccess && (
+      {/* {isAddProdSuccess && ( */}
         <BasicModalWindow
           onClose={closeModal}
-          //onShow={isAddProdSuccess}
+          onShow={isAddProdSuccess}
         >
           <AddProductSuccess
             onClose={closeModal}
             totalCalories={totalCalories}
           />
         </BasicModalWindow>
-      )}
+      {/* )} */}
     </>
   );
 }
