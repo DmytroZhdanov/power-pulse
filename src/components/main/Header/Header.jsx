@@ -33,6 +33,8 @@ export default function Header() {
         } catch (error) {
           console.error(error);
         }
+      } else {
+        setIsLogged(false);
       }
     };
 
