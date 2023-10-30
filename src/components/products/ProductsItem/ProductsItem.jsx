@@ -84,10 +84,10 @@ export default function ProductsItem({ props, userGroupBlood }) {
           <Diet>DIET</Diet>
 
           <RecommendDiv>
-            <Indicator recommended={!recommended} />
+            <Indicator recommended={recommended} />
 
             <RecommendText>
-              {recommended ? 'Not recommended' : 'Recommended'}
+              {recommended ? 'Recommended' : 'Not recommended'}
             </RecommendText>
 
             <Button onClick={openModal}>
