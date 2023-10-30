@@ -38,6 +38,11 @@ export const theme = {
     hover: '#EF8964',
     hoverBorder: '#E6533C',
 
+    // Кольори модального вікна
+    backdropBackground: 'rgba(0, 0, 0, 0.6)',
+    modalBackground: '#10100f',
+    borderModal: 'rgba(239, 237, 232, 0.2)',
+
     // Кольори таблиць
     tableLabel: '#EF8964',
     circleGreen: '#419B09',
@@ -65,6 +70,7 @@ export const theme = {
   // Анімація (transition) при ховері фокусі
   transition: {
     main: '250ms cubic-bezier(0.165, 0.84, 0.44, 1.03)',
+    modal: '300ms ease-in-out',
   },
 
   // box-shadow
