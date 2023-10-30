@@ -16,9 +16,9 @@ import {
   WrapperCalendarInput,
 } from './AddExercisesFromPastDaysForm.styled';
 
-const AddExercisesFromPastDaysForm = ({ onSubmit}) => {
+const AddExercisesFromPastDaysForm = ({ onSubmit }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [time, setTime] = useState();
+  const [time, setTime] = useState('');
 
   const handleChange = evt => {
     setTime(evt.target.value);
@@ -29,7 +29,7 @@ const AddExercisesFromPastDaysForm = ({ onSubmit}) => {
   };
 
   const handleSubmit = () => {
-    onSubmit({ time, date: selectedDate });
+    onSubmit({ time: Number(time), date: selectedDate });
   };
 
   const inputText = format(selectedDate, 'dd.MM.yyyy');

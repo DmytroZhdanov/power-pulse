@@ -8,6 +8,25 @@ export const ModalBackdrop = styled.div`
   z-index: 99;
   width: 100%;
   height: 100%;
+
+  &.backdrop-wrapper-enter {
+    opacity: 0;
+  }
+
+  &.backdrop-wrapper-enter-active {
+    opacity: 1;
+    transition: opacity 200ms ease-in-out;
+  }
+
+  /* Для зникнення */
+  &.backdrop-wrapper-exit {
+    opacity: 1;
+  }
+
+  &.backdrop-wrapper-exit-active {
+    opacity: 0;
+    transition: opacity 200ms ease-in-out 200ms;
+  }
 `;
 
 export const Modal = styled.div`
@@ -15,11 +34,39 @@ export const Modal = styled.div`
   z-index: 99;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  translate: -50% -50%;
   background-color: ${({ theme }) => theme.color.modalBackground};
   border: 1px solid ${({ theme }) => theme.color.borderModal};
   border-radius: 12px;
   overflow-y: auto;
+
+  &.modal-wrapper-enter {
+    opacity: 0;
+    scale: 0.5;
+  }
+
+  &.modal-wrapper-enter-active {
+    opacity: 1;
+    scale: 1;
+    transition:
+      opacity 200ms ease-in-out 200ms,
+      scale 200ms ease-in-out 200ms;
+  }
+
+  /* Для зникнення */
+  &.modal-wrapper-exit {
+    opacity: 1;
+    scale: 1;
+  }
+
+  &.modal-wrapper-exit-active {
+    opacity: 0;
+    scale: 0.5;
+
+    transition:
+      opacity 200ms ease-in-out,
+      scale 200ms ease-in-out;
+  }
 `;
 
 export const CloseModalButton = styled.button`

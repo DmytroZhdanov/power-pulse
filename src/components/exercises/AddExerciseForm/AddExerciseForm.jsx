@@ -127,33 +127,31 @@ export default function AddExerciseForm({
         </ButtonWrapper>
       </WorkoutSummary>
 
-      {showModalError && (
-        <BasicModalWindow
-          onClose={() => {
-            setShowModalError(false);
-          }}
-        >
-          <ErrorMessage
-            notificationType={notificationType}
-            message={errorMessage}
-          />
-        </BasicModalWindow>
-      )}
-
-      {showModalForAddExercise && (
-        <BasicModalWindow
+      <BasicModalWindow
+        onShow={showModalForAddExercise}
+        onClose={() => {
+          setShowModalForAddExercise(false);
+        }}
+      >
+        <AddExercisesFromPastDaysForm
           onClose={() => {
             setShowModalForAddExercise(false);
           }}
-        >
-          <AddExercisesFromPastDaysForm
-            onClose={() => {
-              setShowModalForAddExercise(false);
-            }}
-            onSubmit={handleSubmit}
-          />
-        </BasicModalWindow>
-      )}
+          onSubmit={handleSubmit}
+        />
+      </BasicModalWindow>
+
+      <BasicModalWindow
+        onShow={showModalError}
+        onClose={() => {
+          setShowModalError(false);
+        }}
+      >
+        <ErrorMessage
+          notificationType={notificationType}
+          message={errorMessage}
+        />
+      </BasicModalWindow>
     </ExerciseContainer>
   );
 }
