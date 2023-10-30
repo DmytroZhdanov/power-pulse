@@ -4,8 +4,6 @@ export const ListWrapp = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  min-height: 100vh;
 `;
 
 export const List = styled.ul`

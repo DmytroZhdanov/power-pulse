@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Box = styled.div`
+export const Box = styled.header`
   width: 100%;
   border-bottom: ${props =>
     props.logged ? '1px solid rgba(239, 237, 232, 0.2)' : 'none'};
