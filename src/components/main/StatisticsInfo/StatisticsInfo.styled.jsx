@@ -102,7 +102,7 @@ export const Background = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    right: -76px;
+    right: -86px;
     width: 670px;
     height: 800px;
     top: 0;
