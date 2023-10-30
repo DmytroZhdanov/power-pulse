@@ -894,7 +894,8 @@ template {
 
   width: 298px;
   height: 571px;
-  top: ${e=>e.isError?"241px":"421px"};
+  top: 421px;
+  /* top: ${e=>e.isError?"241px":"421px"}; */
 
   background-image: ${e=>{switch(e.keyword){case"main":return`image-set(
           url(${px}) 1x,
@@ -916,7 +917,8 @@ template {
   background-size: 298px 571px;
 
   @media screen and (min-width: 375px) {
-    top: ${e=>e.isError?"241px":"361px"};
+    top: 361px;
+    /* top: ${e=>e.isError?"241px":"361px"}; */
   }
 
   @media screen and (min-width: 768px) {
@@ -950,7 +952,7 @@ template {
   }
 
   @media screen and (min-width: 1440px) {
-    right: -96px;
+    right: -76px;
     width: 670px;
     height: 800px;
     top: 0;
@@ -982,16 +984,20 @@ template {
   font-weight: 700;
 
   :nth-of-type(1) {
-    bottom: ${e=>e.isError?"186px":"300px"};
-    left: ${e=>e.isError?"44px":0};
+    bottom: 186px;
+    left: 44px;
+    /* bottom: ${e=>e.isError?"186px":"300px"};
+    left: ${e=>e.isError?"44px":0}; */
   }
 
   :nth-of-type(2) {
-    bottom: ${e=>e.isError?"40px":"210px"};
-    right: ${e=>(e.isError,"20px")};
+    bottom: 40px;
+    right: 20px;
+    /* bottom: ${e=>e.isError?"40px":"210px"};
+    right: ${e=>(e.isError,"20px")}; */
   }
 
-  :nth-of-type(3) {
+  /* :nth-of-type(3) {
     bottom: 160px;
     left: 0;
   }
@@ -1004,32 +1010,44 @@ template {
   :nth-of-type(5) {
     bottom: 20px;
     left: 0;
-  }
+  } */
 
   @media screen and (min-width: 768px) {
     :nth-of-type(1) {
-      bottom: ${e=>e.isError?"214px":"360px"};
-      left: ${e=>e.isError?0:"-40px"};
+      bottom: 214px;
+      left: 0;
+      /* bottom: ${e=>e.isError?"214px":"360px"};
+      left: ${e=>e.isError?0:"-40px"}; */
     }
 
     :nth-of-type(2) {
-      bottom: ${e=>e.isError?"48px":"265px"};
-      right: ${e=>(e.isError,"32px")};
+      bottom: 48px;
+      right: 32px;
+      /* bottom: ${e=>e.isError?"48px":"265px"};
+      right: ${e=>(e.isError,"32px")}; */
     }
 
-    :nth-of-type(3) {
+    /* :nth-of-type(3) {
       bottom: 190px;
       left: -40px;
-    }
+    } */
 
-    :nth-of-type(4) {
+    /* :nth-of-type(4) {
       bottom: 95px;
       right: 32px;
-    }
+    } */
 
-    :nth-of-type(5) {
+    /* :nth-of-type(5) {
       bottom: 20px;
       left: -40px;
+    } */
+  }
+
+  @media screen and (max-width: 1439px) {
+    :nth-of-type(3),
+    :nth-of-type(4),
+    :nth-of-type(5) {
+      display: none;
     }
   }
 
@@ -1481,4 +1499,4 @@ template {
     );
     background-size: contain;
   }
-`;function X3(){var n;const e=Jr(),t=P.useRef(((n=e==null?void 0:e.state)==null?void 0:n.from)??Se.MAIN);return C.jsx(C.Fragment,{children:C.jsx("main",{children:C.jsxs(F3,{children:[C.jsxs(U3,{children:[C.jsx(B3,{children:C.jsxs(q3,{to:Se.MAIN,children:[C.jsx(Q3,{width:"44",height:"17",children:C.jsx("use",{href:`${vt}#logo-error`})}),C.jsx(W3,{children:"PowerPulse"})]})}),C.jsx(H3,{children:"404"}),C.jsx(V3,{children:"Sorry, you have reached a page that we could not find. It seems that you are lost among the numbers and letters of our virtual space. Perhaps this page went on vacation or decided to disappear into another dimension. We apologize for this inconvenience."}),C.jsx(K3,{to:t.current,children:"Go Home"})]}),C.jsx(G3,{children:C.jsx(Y3,{})})]})})})}function $r({redirectTo:e,component:t}){const[n,{isFetching:r}]=gw(),i=Aa(),o=Sa(_l),a=!o;return P.useEffect(()=>{o&&(async()=>{try{const u=await n().unwrap();u!=null&&u.user.userParams||i(`../${Se.DATA}`)}catch(u){console.error(u)}})()},[r,i,o,n]),a?C.jsx(Vw,{to:`../${e}`}):t}$r.propTypes={redirectTo:xt.string,component:xt.object.isRequired};function Us({component:e,redirectTo:t}){const[n,{isFetching:r}]=gw(),i=Aa(),o=Sa(_l);return P.useEffect(()=>{o&&(async()=>{try{const s=await n().unwrap();s!=null&&s.user.userParams||i(`../${Se.DATA}`)}catch(s){console.error(s)}})()},[r,i,o,n]),o?C.jsx(Vw,{to:`../${t}`}):e}Us.propTypes={component:xt.object.isRequired,redirectTo:xt.string};const J3=rR([{path:Se.MAIN,element:C.jsx(z3,{}),errorElement:C.jsx(X3,{}),children:[{path:Se.WELCOME,async lazy(){let{Welcome:e}=await At(()=>import("./Welcome-f098a646.js"),[]);return{Component:()=>C.jsx(Us,{redirectTo:Se.DIARY,component:C.jsx(e,{})})}}},{path:Se.SIGN_UP,async lazy(){let{SignUp:e}=await At(()=>import("./SignUp-fd975b39.js"),["assets/SignUp-fd975b39.js","assets/index.esm-a1e2cc00.js","assets/tiny-warning.esm-c932d744.js","assets/TitlePage-51ebc430.js"]);return{Component:()=>C.jsx(Us,{redirectTo:Se.DIARY,component:C.jsx(e,{})})}}},{path:Se.DATA,async lazy(){let{Data:e}=await At(()=>import("./Data-c4918c80.js"),[]);return{Component:e}},children:[{path:Ut.FIRST,async lazy(){let{FirstStep:e}=await At(()=>import("./FirstStep-12a91cc3.js"),[]);return{Component:e}}},{path:Ut.SECOND,async lazy(){let{SecondStep:e}=await At(()=>import("./SecondStep-e9968ac6.js"),[]);return{Component:e}}},{path:Ut.THIRD,async lazy(){let{ThirdStep:e}=await At(()=>import("./ThirdStep-8214208b.js"),[]);return{Component:e}}}]},{path:Se.SIGN_IN,async lazy(){let{SignIn:e}=await At(()=>import("./SignIn-4641a22a.js"),["assets/SignIn-4641a22a.js","assets/index.esm-a1e2cc00.js","assets/tiny-warning.esm-c932d744.js","assets/TitlePage-51ebc430.js"]);return{Component:()=>C.jsx(Us,{redirectTo:Se.DIARY,component:C.jsx(e,{})})}}},{path:Se.PROFILE,async lazy(){let{Profile:e}=await At(()=>import("./Profile-cb7043a6.js"),["assets/Profile-cb7043a6.js","assets/TitlePage-51ebc430.js","assets/index.esm-a1e2cc00.js","assets/tiny-warning.esm-c932d744.js","assets/Calendar-f77a0acb.js","assets/Profile-220d68d1.css"]);return{Component:()=>C.jsx($r,{redirectTo:Se.SIGN_IN,component:C.jsx(e,{})})}}},{path:Se.DIARY,async lazy(){let{Diary:e}=await At(()=>import("./Diary-90c57b27.js"),["assets/Diary-90c57b27.js","assets/TitlePage-51ebc430.js","assets/Calendar-f77a0acb.js","assets/tiny-warning.esm-c932d744.js"]);return{Component:()=>C.jsx($r,{redirectTo:Se.SIGN_IN,component:C.jsx(e,{})})}}},{path:Se.PRODUCTS,async lazy(){let{Products:e}=await At(()=>import("./Products-f8577a66.js"),["assets/Products-f8577a66.js","assets/TitlePage-51ebc430.js"]);return{Component:()=>C.jsx($r,{redirectTo:Se.SIGN_IN,component:C.jsx(e,{})})}}},{path:Se.EXERCISES,async lazy(){let{Exercises:e}=await At(()=>import("./Exercises-67f536a2.js"),["assets/Exercises-67f536a2.js","assets/TitlePage-51ebc430.js","assets/UpperCase-e7ea7578.js"]);return{Component:()=>C.jsx($r,{redirectTo:Se.SIGN_IN,component:C.jsx(e,{})})}},children:[{index:!0,async lazy(){let{ExercisesSubcategoriesList:e}=await At(()=>import("./ExercisesSubcategoriesList-61e423fa.js"),[]);return{Component:()=>C.jsx($r,{redirectTo:Se.SIGN_IN,component:C.jsx(e,{})})}}},{path:Se.SUBCATEGORY,async lazy(){let{ExercisesList:e}=await At(()=>import("./ExercisesList-2e867547.js"),["assets/ExercisesList-2e867547.js","assets/UpperCase-e7ea7578.js","assets/Calendar-f77a0acb.js","assets/tiny-warning.esm-c932d744.js"]);return{Component:()=>C.jsx($r,{redirectTo:Se.SIGN_IN,component:C.jsx(e,{})})}}}]}]}],{basename:"/power-pulse/"});function Z3(){const e=cl(),[t,{isFetching:n,isError:r,error:i}]=$2(),o=Sa(_l);return P.useEffect(()=>{(async()=>{if(o)try{const{user:s}=await t().unwrap();e(Gp({user:s,token:o}))}catch(s){console.error(s)}})()},[e,o,t]),C.jsxs(C.Fragment,{children:[C.jsx(lR,{router:J3}),C.jsx(hh,{isLoading:n,isError:r,error:i})]})}const eA=Qc.createRoot(document.getElementById("root"));eA.render(C.jsx($e.StrictMode,{children:C.jsxs(Tw,{theme:id,children:[C.jsx(Aw,{styles:qC}),C.jsx(YE,{store:ww,children:C.jsx(_1,{loading:C.jsx(Rl,{}),persistor:L2,children:C.jsx(Z3,{})})})]})}));export{tA as $,Mv as A,Di as B,Vi as C,Ut as D,hh as E,rh as F,dA as G,A2 as H,$3 as I,wd as J,fA as K,$a as L,cA as M,ja as N,Y_ as O,xt as P,Aa as Q,Se as R,T2 as S,EA as T,bA as U,hA as V,$e as W,gA as X,M3 as Y,pA as Z,gd as _,$2 as a,Jg as a0,Jr as b,Gp as c,nA as d,rA as e,Ia as f,sA as g,Sa as h,kA as i,C as j,ux as k,gw as l,ma as m,J as n,lA as o,vt as p,OA as q,P as r,xA as s,oa as t,cl as u,pk as v,w1 as w,Qm as x,jC as y,hk as z};
+`;function X3(){var n;const e=Jr(),t=P.useRef(((n=e==null?void 0:e.state)==null?void 0:n.from)??Se.MAIN);return C.jsx(C.Fragment,{children:C.jsx("main",{children:C.jsxs(F3,{children:[C.jsxs(U3,{children:[C.jsx(B3,{children:C.jsxs(q3,{to:Se.MAIN,children:[C.jsx(Q3,{width:"44",height:"17",children:C.jsx("use",{href:`${vt}#logo-error`})}),C.jsx(W3,{children:"PowerPulse"})]})}),C.jsx(H3,{children:"404"}),C.jsx(V3,{children:"Sorry, you have reached a page that we could not find. It seems that you are lost among the numbers and letters of our virtual space. Perhaps this page went on vacation or decided to disappear into another dimension. We apologize for this inconvenience."}),C.jsx(K3,{to:t.current,children:"Go Home"})]}),C.jsx(G3,{children:C.jsx(Y3,{})})]})})})}function $r({redirectTo:e,component:t}){const[n,{isFetching:r}]=gw(),i=Aa(),o=Sa(_l),a=!o;return P.useEffect(()=>{o&&(async()=>{try{const u=await n().unwrap();u!=null&&u.user.userParams||i(`../${Se.DATA}`)}catch(u){console.error(u)}})()},[r,i,o,n]),a?C.jsx(Vw,{to:`../${e}`}):t}$r.propTypes={redirectTo:xt.string,component:xt.object.isRequired};function Us({component:e,redirectTo:t}){const[n,{isFetching:r}]=gw(),i=Aa(),o=Sa(_l);return P.useEffect(()=>{o&&(async()=>{try{const s=await n().unwrap();s!=null&&s.user.userParams||i(`../${Se.DATA}`)}catch(s){console.error(s)}})()},[r,i,o,n]),o?C.jsx(Vw,{to:`../${t}`}):e}Us.propTypes={component:xt.object.isRequired,redirectTo:xt.string};const J3=rR([{path:Se.MAIN,element:C.jsx(z3,{}),errorElement:C.jsx(X3,{}),children:[{path:Se.WELCOME,async lazy(){let{Welcome:e}=await At(()=>import("./Welcome-e066b107.js"),[]);return{Component:()=>C.jsx(Us,{redirectTo:Se.DIARY,component:C.jsx(e,{})})}}},{path:Se.SIGN_UP,async lazy(){let{SignUp:e}=await At(()=>import("./SignUp-24b3a530.js"),["assets/SignUp-24b3a530.js","assets/index.esm-1ac1df18.js","assets/tiny-warning.esm-c932d744.js","assets/TitlePage-e0fc5804.js"]);return{Component:()=>C.jsx(Us,{redirectTo:Se.DIARY,component:C.jsx(e,{})})}}},{path:Se.DATA,async lazy(){let{Data:e}=await At(()=>import("./Data-1fa600c4.js"),[]);return{Component:e}},children:[{path:Ut.FIRST,async lazy(){let{FirstStep:e}=await At(()=>import("./FirstStep-96d8e93d.js"),[]);return{Component:e}}},{path:Ut.SECOND,async lazy(){let{SecondStep:e}=await At(()=>import("./SecondStep-a5c5c7d1.js"),[]);return{Component:e}}},{path:Ut.THIRD,async lazy(){let{ThirdStep:e}=await At(()=>import("./ThirdStep-f18a22c6.js"),[]);return{Component:e}}}]},{path:Se.SIGN_IN,async lazy(){let{SignIn:e}=await At(()=>import("./SignIn-21cd1fa3.js"),["assets/SignIn-21cd1fa3.js","assets/index.esm-1ac1df18.js","assets/tiny-warning.esm-c932d744.js","assets/TitlePage-e0fc5804.js"]);return{Component:()=>C.jsx(Us,{redirectTo:Se.DIARY,component:C.jsx(e,{})})}}},{path:Se.PROFILE,async lazy(){let{Profile:e}=await At(()=>import("./Profile-5cec8b34.js"),["assets/Profile-5cec8b34.js","assets/TitlePage-e0fc5804.js","assets/index.esm-1ac1df18.js","assets/tiny-warning.esm-c932d744.js","assets/Calendar-aa5aec8e.js","assets/Profile-220d68d1.css"]);return{Component:()=>C.jsx($r,{redirectTo:Se.SIGN_IN,component:C.jsx(e,{})})}}},{path:Se.DIARY,async lazy(){let{Diary:e}=await At(()=>import("./Diary-ed7e09dc.js"),["assets/Diary-ed7e09dc.js","assets/TitlePage-e0fc5804.js","assets/Calendar-aa5aec8e.js","assets/tiny-warning.esm-c932d744.js"]);return{Component:()=>C.jsx($r,{redirectTo:Se.SIGN_IN,component:C.jsx(e,{})})}}},{path:Se.PRODUCTS,async lazy(){let{Products:e}=await At(()=>import("./Products-d403986a.js"),["assets/Products-d403986a.js","assets/TitlePage-e0fc5804.js"]);return{Component:()=>C.jsx($r,{redirectTo:Se.SIGN_IN,component:C.jsx(e,{})})}}},{path:Se.EXERCISES,async lazy(){let{Exercises:e}=await At(()=>import("./Exercises-9345ee96.js"),["assets/Exercises-9345ee96.js","assets/TitlePage-e0fc5804.js","assets/UpperCase-e7ea7578.js"]);return{Component:()=>C.jsx($r,{redirectTo:Se.SIGN_IN,component:C.jsx(e,{})})}},children:[{index:!0,async lazy(){let{ExercisesSubcategoriesList:e}=await At(()=>import("./ExercisesSubcategoriesList-798ec3d4.js"),[]);return{Component:()=>C.jsx($r,{redirectTo:Se.SIGN_IN,component:C.jsx(e,{})})}}},{path:Se.SUBCATEGORY,async lazy(){let{ExercisesList:e}=await At(()=>import("./ExercisesList-19f3d271.js"),["assets/ExercisesList-19f3d271.js","assets/UpperCase-e7ea7578.js","assets/Calendar-aa5aec8e.js","assets/tiny-warning.esm-c932d744.js"]);return{Component:()=>C.jsx($r,{redirectTo:Se.SIGN_IN,component:C.jsx(e,{})})}}}]}]}],{basename:"/power-pulse/"});function Z3(){const e=cl(),[t,{isFetching:n,isError:r,error:i}]=$2(),o=Sa(_l);return P.useEffect(()=>{(async()=>{if(o)try{const{user:s}=await t().unwrap();e(Gp({user:s,token:o}))}catch(s){console.error(s)}})()},[e,o,t]),C.jsxs(C.Fragment,{children:[C.jsx(lR,{router:J3}),C.jsx(hh,{isLoading:n,isError:r,error:i})]})}const eA=Qc.createRoot(document.getElementById("root"));eA.render(C.jsx($e.StrictMode,{children:C.jsxs(Tw,{theme:id,children:[C.jsx(Aw,{styles:qC}),C.jsx(YE,{store:ww,children:C.jsx(_1,{loading:C.jsx(Rl,{}),persistor:L2,children:C.jsx(Z3,{})})})]})}));export{tA as $,Mv as A,Di as B,Vi as C,Ut as D,hh as E,rh as F,dA as G,A2 as H,$3 as I,wd as J,fA as K,$a as L,cA as M,ja as N,Y_ as O,xt as P,Aa as Q,Se as R,T2 as S,EA as T,bA as U,hA as V,$e as W,gA as X,M3 as Y,pA as Z,gd as _,$2 as a,Jg as a0,Jr as b,Gp as c,nA as d,rA as e,Ia as f,sA as g,Sa as h,kA as i,C as j,ux as k,gw as l,ma as m,J as n,lA as o,vt as p,OA as q,P as r,xA as s,oa as t,cl as u,pk as v,w1 as w,Qm as x,jC as y,hk as z};
