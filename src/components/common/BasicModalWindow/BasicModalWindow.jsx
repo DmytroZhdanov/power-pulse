@@ -1,6 +1,7 @@
-import { createPortal } from 'react-dom';
-import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { CSSTransition } from 'react-transition-group';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import {
   CloseModalButton,
@@ -10,8 +11,11 @@ import {
 } from './BasicModalWindow.styled';
 
 export default function BasicModalWindow(props) {
-  const { onClose, children } = props;
+  const { onShow = true, onClose, children } = props;
   const modalRoot = document.querySelector('#modal-root');
+
+  const nodeModalRef = useRef(null);
+  const backdropRef = useRef(null);
 
   useEffect(() => {
     const onEscKeyPress = e => {
@@ -35,17 +39,32 @@ export default function BasicModalWindow(props) {
 
   return createPortal(
     <>
-      <ModalBackdrop
-        onClick={onClose}
-      />
-      <Modal>
-        <CloseModalButton onClick={onClose}>
-          <CloseModalIcon width={26} height={26}>
-            <use href={`${sprite}#close`}></use>
-          </CloseModalIcon>
-        </CloseModalButton>
-        {children}
-      </Modal>
+      <CSSTransition
+        in={onShow}
+        nodeRef={backdropRef}
+        timeout={400}
+        classNames="backdrop-wrapper"
+        unmountOnExit
+      >
+        <ModalBackdrop onClick={onClose} ref={backdropRef} />
+      </CSSTransition>
+      <CSSTransition
+        in={onShow}
+        nodeRef={nodeModalRef}
+        timeout={400}
+        classNames="modal-wrapper"
+        unmountOnExit
+      >
+        <Modal ref={nodeModalRef}>
+          <CloseModalButton onClick={onClose}>
+            <CloseModalIcon width={26} height={26}>
+              <use href={`${sprite}#close`}></use>
+            </CloseModalIcon>
+          </CloseModalButton>
+          {children}
+        </Modal>
+      </CSSTransition>
+      ,
     </>,
     modalRoot,
   );
@@ -54,4 +73,5 @@ export default function BasicModalWindow(props) {
 BasicModalWindow.propTypes = {
   onClose: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
+  onShow: PropTypes.bool,
 };

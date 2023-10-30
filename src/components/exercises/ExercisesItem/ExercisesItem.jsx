@@ -80,25 +80,28 @@ export default function ExercisesItem(props) {
           </CategoryP>
         </InfoDiv>
       </ExercisesCardDiv>
-      {onShowModalExerciseForm && (
-        <BasicModalWindow onClose={closeModalExerciseForm}>
-          <AddExerciseForm
-            exercise={props}
-            openModalExerciseSuccess={openModalExerciseSuccess}
-            closeModalExerciseForm={closeModalExerciseForm}
-            setModalExerciseSuccessData={setModalExerciseSuccessData}
-          />
-        </BasicModalWindow>
-      )}
 
-      {onShowModalExerciseSuccess && (
-        <BasicModalWindow onClose={closeModalExerciseSuccess}>
-          <AddExerciseSuccess
-            modalExerciseSuccessData={modalExerciseSuccessData}
-            closeModalExerciseSuccess={closeModalExerciseSuccess}
-          />
-        </BasicModalWindow>
-      )}
+      <BasicModalWindow
+        onShow={onShowModalExerciseForm}
+        onClose={closeModalExerciseForm}
+      >
+        <AddExerciseForm
+          exercise={props}
+          openModalExerciseSuccess={openModalExerciseSuccess}
+          closeModalExerciseForm={closeModalExerciseForm}
+          setModalExerciseSuccessData={setModalExerciseSuccessData}
+        />
+      </BasicModalWindow>
+
+      <BasicModalWindow
+        onShow={onShowModalExerciseSuccess}
+        onClose={closeModalExerciseSuccess}
+      >
+        <AddExerciseSuccess
+          modalExerciseSuccessData={modalExerciseSuccessData}
+          closeModalExerciseSuccess={closeModalExerciseSuccess}
+        />
+      </BasicModalWindow>
     </>
   );
 }
