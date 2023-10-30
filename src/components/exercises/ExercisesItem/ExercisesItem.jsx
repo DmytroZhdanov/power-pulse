@@ -71,7 +71,7 @@ export default function ExercisesItem(props) {
             Burned calories:<ValuesSpan>{burnedCalories}</ValuesSpan>
           </CategoryP>
 
-          <CategoryP category={true}>
+          <CategoryP className="bodyPart" category={true}>
             Body part:<ValuesSpan>{UpperCase(bodyPart)}</ValuesSpan>
           </CategoryP>
 

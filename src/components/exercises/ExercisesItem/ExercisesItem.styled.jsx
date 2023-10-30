@@ -6,52 +6,65 @@ export const ExercisesCardDiv = styled.div`
   border: 1px solid ${({ theme }) => theme.color.grayDisabled};
   max-height: 163px;
 
+  &:hover,
+  &:focus,
+  &:active {
+    background-image: url(${props => props.gifUrl});
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-color: ${({ theme }) => theme.color.fullWhite};
+  }
+  &:hover p,
+  &:hover span,
+  &:hover h2 {
+    color: ${({ theme }) => theme.color.black};
+  }
+  &:hover .start {
+    color: ${({ theme }) => theme.color.orangeFirst};
+    font-weight: 500;
+  }
+  &:hover h2 {
+    max-width: 225px;
+  }
+  &:hover button {
+  }
+  &:hover span {
+    font-weight: 500;
+  }
+
+  &:hover .target,
+  &:hover .bodyPart {
+    opacity: 0;
+  }
+
   @media screen and (max-width: 374px) {
     max-width: 335px;
   }
 
   @media screen and (min-width: 375px) {
     width: 335px;
+    &:hover h2 {
+      max-width: 140px;
+    }
   }
 
   @media screen and (min-width: 1440px) {
     width: 405px;
-    &:hover {
-      background-image: url(${props => props.gifUrl});
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: right;
-      background-color: ${({ theme }) => theme.color.fullWhite};
-    }
-    &:hover p,
-    &:hover span,
-    &:hover h2 {
-      color: ${({ theme }) => theme.color.black};
-    }
 
+    &:hover .bodyPart {
+      opacity: 1;
+    }
     &:hover h2 {
       max-width: 225px;
-    }
-    &:hover button {
-      margin-right: 152px;
-    }
-    &:hover span {
-      font-weight: 500;
-    }
-
-    &:hover .target {
-      opacity: 0;
-    }
-    &:hover .start {
-      color: ${({ theme }) => theme.color.orangeFirst};
-      font-weight: 500;
     }
   }
 `;
 
 export const ExercisesWrapDiv = styled.div`
   display: flex;
-  justify-content: space-between;
+  gap: 8px;
+
   margin-bottom: 33px;
 
   @media screen and (min-width: 768px) {
@@ -119,6 +132,14 @@ export const ButtonStart = styled.button`
   align-items: center;
   background-color: transparent;
   border: none;
+  margin-right: 1px;
+  @media screen and (min-width: 768px) {
+    margin-right: 152px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-right: 152px;
+  }
 `;
 
 export const ButtonTitleP = styled.p`
