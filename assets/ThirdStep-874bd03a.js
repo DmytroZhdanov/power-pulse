@@ -1,0 +1,1 @@
+import{j as r}from"./index-a4df8ea5.js";function e(){return r.jsx("div",{children:"ThirdStep component"})}export{e as ThirdStep};
