@@ -1,4 +1,4 @@
-import{n as r,L as f,j as t,U as w,V as j,r as o}from"./index-27bf5947.js";const v=r.li`
+import{n,L as y,P as s,j as t,U as v,V as E,r as a,E as P}from"./index-044df431.js";const k=n.li`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,9 +9,12 @@ import{n as r,L as f,j as t,U as w,V as j,r as o}from"./index-27bf5947.js";const
   @media screen and (min-width: 768px) {
     max-width: 224px;
   }
-`,y=r(f)`
+  @media screen and (min-width: 1440px) {
+    max-width: 237px;
+  }
+`,L=n(y)`
   width: 100%;
-`,k=r.div`
+`,S=n.div`
   position: relative;
   height: 206px;
 
@@ -28,23 +31,34 @@ import{n as r,L as f,j as t,U as w,V as j,r as o}from"./index-27bf5947.js";const
   align-items: center;
   justify-content: center;
   text-align: center;
-`,L=r.div`
+`,z=n.ul`
   color: white;
   text-align: center;
   z-index: 2;
-`,E=r.p`
+`,C=n.p`
   font-size: 20px;
   line-height: 1.33;
   margin-bottom: 2px;
-`,P=r.p`
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+  }
+`,R=n.p`
   color: rgba(239, 237, 232, 0.4);
   font-size: 12px;
   line-height: 1.5;
-`;function S({it:e}){function s(i){return i.charAt(0).toUpperCase()+i.slice(1)}return t.jsx(v,{children:t.jsx(y,{to:e.name,children:t.jsx(k,{img:e.imgURL,children:t.jsxs(L,{children:[t.jsx(E,{children:s(e.name)}),t.jsx(P,{children:e.filter})]})})})})}const z=r.div`
+`;function m({item:e}){function r(o){return o.charAt(0).toUpperCase()+o.slice(1)}return t.jsx(k,{children:t.jsx(L,{to:e.name,children:t.jsx(S,{img:e.imgURL,children:t.jsxs(z,{children:[t.jsx("li",{children:t.jsx(C,{children:r(e.name)})}),t.jsx("li",{children:t.jsx(R,{children:e.filter})})]})})})})}m.propTypes={ExercisesSubcategoriesItem:s.arrayOf(s.shape({name:s.string.isRequired,imgURL:s.string.isRequired,filter:s.string.isRequired}))};const U=n.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`,C=r.ul`
+
+  min-height: calc(100vh - 215px);
+  @media screen and (min-width: 768px) {
+    min-height: calc(100vh - 264px);
+  }
+  @media screen and (min-width: 1440px) {
+    min-height: 0;
+  }
+`,I=n.ul`
   display: flex;
   flex-wrap: wrap;
 
@@ -54,16 +68,19 @@ import{n as r,L as f,j as t,U as w,V as j,r as o}from"./index-27bf5947.js";const
     row-gap: 32px;
     column-gap: 16px;
     flex-direction: row;
+    margin-bottom: 32px;
   }
-`,I=r.ul`
+  @media screen and (min-width: 1440px) {
+    column-gap: 15px;
+  }
+`,W=n.ul`
   display: flex;
   justify-content: center;
   margin-bottom: 80px;
   @media screen and (min-width: 768px) {
-    margin-top: 32px;
     margin-bottom: 32px;
   }
-`,W=r.button`
+`,$=n.button`
   width: 14px;
   height: 14px;
   border: 1px solid
@@ -90,4 +107,4 @@ import{n as r,L as f,j as t,U as w,V as j,r as o}from"./index-27bf5947.js";const
   font-weight: bold;
   text-align: center;
   transition: background-color 0.3s;
-`;function R(){const e=w(),{data:s,error:i,isLoading:h}=j(e),[d,x]=o.useState(0),[m,p]=o.useState(0),[a,l]=o.useState(10),b=n=>{x(n*a),p(n)};if(o.useEffect(()=>{x(0),p(0)},[e]),o.useEffect(()=>{const n=()=>{(e==="bodyPart"||e==="target")&&window.innerWidth<=375?l(10):window.innerWidth<=1439?l(9):l(10)};return window.addEventListener("resize",n),n(),()=>{window.removeEventListener("resize",n)}},[e]),h)return t.jsx("div",{children:"Loading..."});if(i)return t.jsxs("div",{children:["Error: ",i.message]});const g=Math.ceil(s.length/a),u=s.slice(d,d+a);return t.jsxs(z,{children:[t.jsx(C,{children:u&&u.map(n=>t.jsx(S,{it:n},n._id))}),g>1&&t.jsx(I,{children:Array.from({length:g},(n,c)=>t.jsx("li",{children:t.jsx(W,{onClick:()=>b(c),disabled:d/a===c,active:m===c})},c))})]})}export{R as ExercisesSubcategoriesList};
+`;function q(){const e=v(),{data:r,isLoading:o,isError:b,error:f}=E(e),[l,p]=a.useState(0),[w,g]=a.useState(0),[c,x]=a.useState(10),j=i=>{p(i*c),g(i)};a.useEffect(()=>{p(0),g(0)},[e]),a.useEffect(()=>{const i=()=>{(e==="bodyPart"||e==="target")&&window.innerWidth<=375?x(10):window.innerWidth<=1439?x(9):x(10)};return window.addEventListener("resize",i),i(),()=>{window.removeEventListener("resize",i)}},[e]);const h=r?Math.ceil(r.length/c):0,u=r?r.slice(l,l+c):[];return t.jsxs(U,{children:[t.jsx(I,{children:u&&u.map(i=>t.jsx(m,{item:i},i._id))}),h>1&&t.jsx(W,{children:Array.from({length:h},(i,d)=>t.jsx("li",{children:t.jsx($,{onClick:()=>j(d),disabled:l/c===d,active:w===d})},d))}),t.jsx(P,{isLoading:o,isError:b,error:f})]})}export{q as ExercisesSubcategoriesList};
