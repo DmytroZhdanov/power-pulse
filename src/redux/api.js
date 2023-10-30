@@ -143,7 +143,7 @@ export const api = createApi({
       }),
     }),
     fetchDiary: builder.query({
-      query: date => ({ url: `/diary/day${date}` }),
+      query: date => ({ url: `/diary/day?date=${date}` }),
     }),
     addProduct: builder.mutation({
       query: credentials => ({
@@ -161,13 +161,13 @@ export const api = createApi({
     }),
     deleteProduct: builder.mutation({
       query: id => ({
-        url: `/day/diaryProducts/${id}`,
+        url: `/diary/day/diaryProducts/${id}`,
         method: 'DELETE',
       }),
     }),
     deleteExercise: builder.mutation({
       query: id => ({
-        url: `/day/diaryExercises/${id}`,
+        url: `/diary/day/diaryExercises/${id}`,
         method: 'DELETE',
       }),
     }),
