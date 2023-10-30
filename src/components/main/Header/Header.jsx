@@ -8,10 +8,14 @@ import BurgerBtn from 'components/main/BurgerBtn/BurgerBtn';
 import BurgerMenu from 'components/main/BurgerMenu/BurgerMenu';
 import { useSelector } from 'react-redux';
 import { selectToken } from 'src/redux/auth/selectors';
+import { useLazyFetchUserParamsQuery } from '../../../redux/api';
 
 export default function Header() {
   const token = useSelector(selectToken);
-  const [isLogged, setIsLogged] = useState(token ? true : false);
+  const [fetchUserParams, { data }] = useLazyFetchUserParamsQuery();
+  const [isLogged, setIsLogged] = useState(
+    token && data?.user.userParams ? true : false,
+  );
   const [openedModal, setOpenedModal] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1440);
 
@@ -20,8 +24,20 @@ export default function Header() {
   };
 
   useEffect(() => {
-    setIsLogged(token);
-  }, [token]);
+    const fetch = async () => {
+      if (token) {
+        try {
+          const data = await fetchUserParams().unwrap();
+
+          setIsLogged(token && data?.user.userParams ? true : false);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+
+    fetch();
+  }, [fetchUserParams, token]);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
