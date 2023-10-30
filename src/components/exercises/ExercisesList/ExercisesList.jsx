@@ -58,9 +58,10 @@ export function ExercisesList() {
           if (response.length === 0) {
             return;
           }
+
           page === 1
-            ? setResult([...response])
-            : setResult(prev => [...prev, ...response]);
+            ? setResult([...response.data])
+            : setResult(prev => [...prev, ...response.data]);
 
           setFetching(false);
           setPage(page + 1);
