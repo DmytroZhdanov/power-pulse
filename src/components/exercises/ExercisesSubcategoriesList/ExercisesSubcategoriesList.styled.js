@@ -1,12 +1,20 @@
 import styled from '@emotion/styled';
 
-export const ListWrapp = styled.div`
+export const WrapperDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  min-height: calc(100vh - 215px);
+  @media screen and (min-width: 768px) {
+    min-height: calc(100vh - 264px);
+  }
+  @media screen and (min-width: 1440px) {
+    min-height: 0;
+  }
 `;
 
-export const List = styled.ul`
+export const GalleryUl = styled.ul`
   display: flex;
   flex-wrap: wrap;
 
@@ -16,15 +24,18 @@ export const List = styled.ul`
     row-gap: 32px;
     column-gap: 16px;
     flex-direction: row;
+    margin-bottom: 32px;
+  }
+  @media screen and (min-width: 1440px) {
+    column-gap: 15px;
   }
 `;
 
-export const ButtonsWrapper = styled.ul`
+export const ButtonsWrapperUl = styled.ul`
   display: flex;
   justify-content: center;
   margin-bottom: 80px;
   @media screen and (min-width: 768px) {
-    margin-top: 32px;
     margin-bottom: 32px;
   }
 `;

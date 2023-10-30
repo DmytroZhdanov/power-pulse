@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { Background, Wrapper } from './Products.styled';
 
 export function Products() {
-  const [filter, setFilter] = useState([]);
+  const [filter, setFilter] = useState(null);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1440);
 
   const handleResize = () => {

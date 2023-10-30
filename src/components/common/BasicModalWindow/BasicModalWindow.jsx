@@ -29,13 +29,15 @@ export default function BasicModalWindow(props) {
     };
 
     window.addEventListener('keydown', onEscKeyPress);
-    bodyScroll(true);
+    if (onShow) {
+      bodyScroll(true);
+    }
 
     return () => {
       window.removeEventListener('keydown', onEscKeyPress);
       bodyScroll(false);
     };
-  }, [onClose]);
+  }, [onClose, onShow]);
 
   return createPortal(
     <>
@@ -64,7 +66,6 @@ export default function BasicModalWindow(props) {
           {children}
         </Modal>
       </CSSTransition>
-      ,
     </>,
     modalRoot,
   );

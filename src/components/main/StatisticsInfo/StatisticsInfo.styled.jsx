@@ -9,7 +9,8 @@ export const Background = styled.div`
 
   width: 298px;
   height: 571px;
-  top: ${props => (props.isError ? '241px' : '421px')};
+  top: 421px;
+  /* top: ${props => (props.isError ? '241px' : '421px')}; */
 
   background-image: ${props => {
     switch (props.keyword) {
@@ -48,7 +49,8 @@ export const Background = styled.div`
   background-size: 298px 571px;
 
   @media screen and (min-width: 375px) {
-    top: ${props => (props.isError ? '241px' : '361px')};
+    top: 361px;
+    /* top: ${props => (props.isError ? '241px' : '361px')}; */
   }
 
   @media screen and (min-width: 768px) {
@@ -100,7 +102,7 @@ export const Background = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
-    right: -96px;
+    right: -86px;
     width: 670px;
     height: 800px;
     top: 0;
@@ -151,16 +153,20 @@ const Block = styled.div`
   font-weight: 700;
 
   :nth-of-type(1) {
-    bottom: ${props => (props.isError ? '186px' : '300px')};
-    left: ${props => (props.isError ? '44px' : 0)};
+    bottom: 186px;
+    left: 44px;
+    /* bottom: ${props => (props.isError ? '186px' : '300px')};
+    left: ${props => (props.isError ? '44px' : 0)}; */
   }
 
   :nth-of-type(2) {
-    bottom: ${props => (props.isError ? '40px' : '210px')};
-    right: ${props => (props.isError ? '20px' : '20px')};
+    bottom: 40px;
+    right: 20px;
+    /* bottom: ${props => (props.isError ? '40px' : '210px')};
+    right: ${props => (props.isError ? '20px' : '20px')}; */
   }
 
-  :nth-of-type(3) {
+  /* :nth-of-type(3) {
     bottom: 160px;
     left: 0;
   }
@@ -173,32 +179,44 @@ const Block = styled.div`
   :nth-of-type(5) {
     bottom: 20px;
     left: 0;
-  }
+  } */
 
   @media screen and (min-width: 768px) {
     :nth-of-type(1) {
-      bottom: ${props => (props.isError ? '214px' : '360px')};
-      left: ${props => (props.isError ? 0 : '-40px')};
+      bottom: 214px;
+      left: 0;
+      /* bottom: ${props => (props.isError ? '214px' : '360px')};
+      left: ${props => (props.isError ? 0 : '-40px')}; */
     }
 
     :nth-of-type(2) {
-      bottom: ${props => (props.isError ? '48px' : '265px')};
-      right: ${props => (props.isError ? '32px' : '32px')};
+      bottom: 48px;
+      right: 32px;
+      /* bottom: ${props => (props.isError ? '48px' : '265px')};
+      right: ${props => (props.isError ? '32px' : '32px')}; */
     }
 
-    :nth-of-type(3) {
+    /* :nth-of-type(3) {
       bottom: 190px;
       left: -40px;
-    }
+    } */
 
-    :nth-of-type(4) {
+    /* :nth-of-type(4) {
       bottom: 95px;
       right: 32px;
-    }
+    } */
 
-    :nth-of-type(5) {
+    /* :nth-of-type(5) {
       bottom: 20px;
       left: -40px;
+    } */
+  }
+
+  @media screen and (max-width: 1439px) {
+    :nth-of-type(3),
+    :nth-of-type(4),
+    :nth-of-type(5) {
+      display: none;
     }
   }
 
