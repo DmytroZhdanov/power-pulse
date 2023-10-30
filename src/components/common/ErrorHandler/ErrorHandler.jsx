@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Loader from 'components/Loader/Loader';
 import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
@@ -7,7 +8,7 @@ import TimerWarning from 'components/common/TimerWarning/TimerWarning';
 import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
 import { initialState, setCredentials } from 'src/redux/auth/authSlice';
 
-export default function ErrorHandler({ isFetching, isError, error }) {
+export default function ErrorHandler({ isLoading, isError, error }) {
   const [showTimerWarning, setShowTimerWarning] = useState(false);
   const [showError, setShowError] = useState(false);
   const dispatch = useDispatch();
@@ -15,14 +16,14 @@ export default function ErrorHandler({ isFetching, isError, error }) {
   useEffect(() => {
     let id;
 
-    if (isFetching) {
+    if (isLoading) {
       id = setTimeout(setShowTimerWarning, 5000, true);
     } else {
       setShowTimerWarning(false);
     }
 
     return clearTimeout(id);
-  }, [isFetching]);
+  }, [isLoading]);
 
   useEffect(() => {
     if (isError) {
@@ -39,9 +40,9 @@ export default function ErrorHandler({ isFetching, isError, error }) {
 
   return (
     <>
-      {isFetching && <Loader />}
+      {isLoading && <Loader />}
 
-      {isFetching && showTimerWarning && (
+      {isLoading && showTimerWarning && (
         <BasicModalWindow onClose={() => setShowTimerWarning(false)}>
           <TimerWarning />
         </BasicModalWindow>
@@ -55,3 +56,38 @@ export default function ErrorHandler({ isFetching, isError, error }) {
     </>
   );
 }
+
+ErrorHandler.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  isError: PropTypes.bool.isRequired,
+  error: PropTypes.shape({
+    data: PropTypes.shape({
+      message: PropTypes.string.isRequired,
+    }).isRequired,
+    status: PropTypes.number.isRequired,
+  }),
+};
+
+// ============================== USAGE EXAMPLE ==============================
+
+// export default function Component() {
+//
+//   const { data, isFetching, isError, error } = use.......Query();
+//   OR
+//   const [function, { data, isLoading, isError, error }] = useLazy.......Query();
+//   OR
+//   const [function, { data, isLoading, isError, error }] = use.......Mutation();
+//
+//
+//   REST OF YOUR CODE...
+//
+//
+//   return (
+//     <>
+//       YOUR COMPONENTS.....
+//       <ErrorHandler isLoading={isFetching || isLoading} isError={isError} error={error} />
+//     </>
+//   )
+// }
+
+// ============================== /USAGE EXAMPLE ==============================

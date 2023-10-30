@@ -1,5 +1,6 @@
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import {
   CloseModalButton,
@@ -34,7 +35,9 @@ export default function BasicModalWindow(props) {
 
   return createPortal(
     <>
-      <ModalBackdrop onClick={onClose} />
+      <ModalBackdrop
+        onClick={onClose}
+      />
       <Modal>
         <CloseModalButton onClick={onClose}>
           <CloseModalIcon width={26} height={26}>
@@ -47,3 +50,8 @@ export default function BasicModalWindow(props) {
     modalRoot,
   );
 }
+
+BasicModalWindow.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+};
