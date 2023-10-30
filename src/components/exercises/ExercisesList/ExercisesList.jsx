@@ -55,7 +55,7 @@ export function ExercisesList() {
             [category]: subcategory,
           }).unwrap();
 
-          if (response.length === 0) {
+          if (response.data.length === 0) {
             return;
           }
 
