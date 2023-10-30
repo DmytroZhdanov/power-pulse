@@ -15,6 +15,13 @@ export const TimerDisplay = styled.div`
   }
 `;
 
+export const TimerLabel = styled.p`
+  margin-bottom: 4px;
+  color: rgba(239, 237, 232, 0.4);
+  font-size: 10px;
+  line-height: 1.4;
+`;
+
 export const TimerValue = styled.p`
   color: #efede8;
   font-size: 16px;
@@ -32,6 +39,11 @@ export const ControlButton = styled.button`
   border: none;
   margin-bottom: 8px;
   transition: transform 300ms ease-in-out;
+
+  svg{
+    width: 15px;
+    height: 15px;
+  }
 
   :hover {
     transform: scale(1.1);
