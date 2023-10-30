@@ -19,6 +19,8 @@ export default function AddProductForm(props) {
   const [weight, setWeight] = useState(100);
   const totalCalories = weight * product.calories;
 
+  //  useAddProductMutation;
+
   const handleSubmit = () => {
     onClose();
     addProdSuccess(totalCalories);
