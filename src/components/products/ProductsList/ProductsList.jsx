@@ -15,10 +15,10 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * Компонент ProductsList представляет список продуктов и отображает их согласно переданному фильтру.
+ * The ProductsList component represents a list of products and displays them according to the passed filter.
  *
- * @param {object} filter Объект фильтр, содержит параметры по которым пользователь желает отфильтровать список продуктов.
- * @returns {JSX.Element} Список продуктов или сообщение о том, что нет результатов.
+ * @param {object} filter The filter object contains the parameters by which the user wants to filter the list of products.
+ * @returns {JSX.Element} A list of products or a message that there are no results.
  */
 export default function ProductsList({ filter }) {
   const [products, setProducts] = useState([]);
@@ -29,9 +29,9 @@ export default function ProductsList({ filter }) {
   const { isSuccess, data } = pending;
 
   /**
-   * Обновляет группу крови пользователя на основе успешного запроса к бэкенду.
+   * Updates the user's blood type based on a successful request to the backend.
    *
-   * @param {boolean} isSuccess Успешность выполнения запроса к бэкенду.
+   * @param {boolean} isSuccess The success of the request to the backend.
    */
 
   useEffect(() => {
