@@ -42,10 +42,11 @@ export default function ProductsList({ filter }) {
   }, [data, isSuccess]);
 
   /**
-   * fetchData Загружает список продуктов согласно указанному фильтру с бэкэенда.
+   * fetchData Loads the list of products from the backend according to the specified filter.
    *
-   * @param {object} filter Объект фильтр, содержит параметры по которым пользователь желает отфильтровать список продуктов.
-   * @returns {array} Список продуктов или сообщение о том, что нет результатов.
+   * @function fetchData
+   * @param {object} filter The filter object containing parameters by which the user wishes to filter the list of products.
+   * @returns {array} The list of products or a message indicating no results.
    */
 
   useEffect(() => {

@@ -23,11 +23,11 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * Компонент ProductsItem представляет отдельный элемент списка продуктов и отображает информацию о продукте.
- *
- * @param {object} props Объект, содержащий информацию о продукте.
- * @param {string} userGroupBlood Группа крови пользователя.
- * @returns {JSX.Element} Элемент списка продуктов с информацией о продукте и рекомендациями.
+     * The ProductsItem component represents an individual product list item and displays product information.
+     *
+     * @param {object} props An object containing information about the product.
+     * @param {string} userGroupBlood User's blood group.
+     * @returns {JSX.Element} A product list item with product information and recommendations.
  */
 export default function ProductsItem({ props, userGroupBlood }) {
   const { weight, calories, category, title, groupBloodNotAllowed } = props;
@@ -38,18 +38,18 @@ export default function ProductsItem({ props, userGroupBlood }) {
   const [totalCalories, setTotalCalories] = useState(null);
 
   /**
-   * Открывает модальное окно для добавления продукта.
-   *
-   * @function openModal
+     * Opens a modal window for adding a product.
+     *
+     * @function openModal
    */
   const openModal = () => {
     setIsModalOpen(true);
   };
 
   /**
-   * Закрывает модальное окно добавления продукта..
-   *
-   * @function closeModal
+     * Closes the modal window for adding a product.
+     *
+     * @function closeModal
    */
 
   const closeModal = () => {
@@ -58,10 +58,10 @@ export default function ProductsItem({ props, userGroupBlood }) {
   };
 
   /**
-   * Обрабатывает успешное добавление продукта и закрывает модальное окно и передает пропсами значение калорий этого продукта на бэкэнд.
-   *
-   * @function addProdSuccess
-   * @param {number} totalCalories Общее количество калорий добавленных продуктов.
+     * Handles the successful addition of a product, closes the modal window, and sends the total calorie value of this product to the backend through props.
+     *
+     * @function addProdSuccess
+     * @param {number} totalCalories The total calorie count of the added products.
    */
 
   const addProdSuccess = totalCalories => {

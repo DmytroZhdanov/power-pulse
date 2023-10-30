@@ -12,8 +12,9 @@ import {
 } from './ProductsFilters.styled';
 
 import { PRODUCTS_FILTER } from '../../../utils/constants';
-const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
 import { useFetchProductsCategoriesQuery } from '../../../redux/api';
+import sprite from 'src/assets/images/sprite/sprite.svg';
+const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
 
 const emptyFilter = {
   [QUERY]: '',
@@ -103,12 +104,12 @@ export default function ProductsFilters({ onProductsChange }) {
           />
 
           <SvgSearch width="18" height="18">
-            <use href="/src/assets/images/sprite/sprite.svg#search"></use>
+            <use href={`${sprite}#search`}></use>
           </SvgSearch>
           {search.trim() && (
             <BtnClean onClick={handleClean}>
               <svg width="18" height="18">
-                <use href="/src/assets/images/sprite/sprite.svg#x-clean"></use>
+                <use href={`${sprite}#x-clean`}></use>
               </svg>
             </BtnClean>
           )}
