@@ -7,7 +7,7 @@ import { ROUTER } from '../utils';
 import { useEffect } from 'react';
 
 export default function PrivateRoute({ redirectTo, component: Component }) {
-  const [trigger, { isFetching }] = useLazyFetchUserParamsQuery();
+  const [fetchUserParams] = useLazyFetchUserParamsQuery();
   const navigate = useNavigate();
   const token = useSelector(selectToken);
   const shouldRedirect = !token;
@@ -15,7 +15,7 @@ export default function PrivateRoute({ redirectTo, component: Component }) {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const data = await trigger().unwrap();
+        const data = await fetchUserParams().unwrap();
 
         if (!data?.user.userParams) {
           navigate(`../${ROUTER.DATA}`);
@@ -28,7 +28,7 @@ export default function PrivateRoute({ redirectTo, component: Component }) {
     if (token) {
       fetch();
     }
-  }, [isFetching, navigate, token, trigger]);
+  }, [navigate, token, fetchUserParams]);
 
   return shouldRedirect ? <Navigate to={`../${redirectTo}`} /> : Component;
 }
