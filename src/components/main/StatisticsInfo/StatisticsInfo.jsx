@@ -95,7 +95,7 @@ export default function StatisticsInfo({ pathname, page }) {
               </ColoredBlockIconWrapper>
 
               <ColoredBlockSpan>
-                {formatNumber(data.timeTotalQuantity)}
+                {formatNumber(data.minutesTotalQuantity)}
               </ColoredBlockSpan>
             </div>
 
