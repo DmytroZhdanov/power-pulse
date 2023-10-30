@@ -2,8 +2,16 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   display: flex;
+  gap: 10px;
+  width: 280px;
   align-items: center;
-  padding: 70px 70px;
+  padding: 35px 35px;
+
+  @media screen and (min-width: 768px) {
+    width: 500px;
+    gap: 30px;
+    padding: 70px 70px;
+  }
 `;
 
 export const ErrorIcon = styled.div`
@@ -19,4 +27,5 @@ export const ErrorIcon = styled.div`
 
 export const Message = styled.p`
   color: #efede8;
+  line-height: 1.5;
 `;

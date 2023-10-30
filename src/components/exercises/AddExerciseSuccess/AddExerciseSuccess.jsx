@@ -21,7 +21,7 @@ export default function AddExerciseSuccess({
   closeModalExerciseSuccess,
   modalExerciseSuccessData,
 }) {
-  const { time, calories } = modalExerciseSuccessData;
+  const { time = 0, calories = 0 } = modalExerciseSuccessData;
 
   const staticData = {
     wellDone: 'Well done',
@@ -66,7 +66,7 @@ export default function AddExerciseSuccess({
 AddExerciseSuccess.propTypes = {
   closeModalExerciseSuccess: PropTypes.func.isRequired,
   modalExerciseSuccessData: PropTypes.shape({
-    time: PropTypes.number.isRequired,
-    calories: PropTypes.number.isRequired,
+    time: PropTypes.number,
+    calories: PropTypes.number,
   }),
 };

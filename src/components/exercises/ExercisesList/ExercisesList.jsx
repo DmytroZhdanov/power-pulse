@@ -30,10 +30,12 @@ export function ExercisesList() {
   const location = useLocation();
   const pathLocation = useRef(location.state?.from ?? '/exercises');
   const listRef = useRef();
-  const [fetchAllExercises] = useLazyFetchAllExercisesQuery();
+  // const [fetchAllExercises] = useLazyFetchAllExercisesQuery();
 
-  // const [fetchAllExercises, isGettingLazy, gettingErrorLazy, myErrorLazy] =
-  //   useLazyFetchAllExercisesQuery();
+  const [
+    fetchAllExercises,
+    { isLoading: isGettingLazy, isError: gettingErrorLazy, error: myErrorLazy },
+  ] = useLazyFetchAllExercisesQuery();
 
   const { data, isFetching, isError, error } =
     useFetchExercisesSubcategoriesQuery(category);
@@ -52,9 +54,14 @@ export function ExercisesList() {
             page,
             [category]: subcategory,
           }).unwrap();
+
+          if (response.data.length === 0) {
+            return;
+          }
+
           page === 1
-            ? setResult([...response])
-            : setResult(prev => [...prev, ...response]);
+            ? setResult([...response.data])
+            : setResult(prev => [...prev, ...response.data]);
 
           setFetching(false);
           setPage(page + 1);
@@ -109,12 +116,12 @@ export function ExercisesList() {
       </ExerciseListUl>
       <BackgroundDiv category={category} img={backgroundImage} />
 
-      <ErrorHandler isFetching={isFetching} isError={isError} error={error} />
-      {/* <ErrorHandler
-        isFetching={isGettingLazy}
+      <ErrorHandler isLoading={isFetching} isError={isError} error={error} />
+      <ErrorHandler
+        isLoading={isGettingLazy}
         isError={gettingErrorLazy}
         error={myErrorLazy}
-      /> */}
+      />
     </ContentDiv>
   );
 }
