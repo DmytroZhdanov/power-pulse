@@ -1,4 +1,4 @@
-import{n,Q as m,S as g,r as l,j as t,T as s,b as u,U as h,O as E}from"./index-d6ddc6b2.js";import{T as b}from"./TitlePage-d7079825.js";import{U as f}from"./UpperCase-e7ea7578.js";const j=n.fieldset`
+import{n,N as m,Q as g,r as l,j as t,S as s,b as u,T as h,O as E}from"./index-7167744b.js";import{T as b}from"./TitlePage-72fcca11.js";import{U as f}from"./UpperCase-e7ea7578.js";const j=n.fieldset`
   margin-top: 20px;
 
   display: flex;
@@ -52,4 +52,4 @@ import{n,Q as m,S as g,r as l,j as t,T as s,b as u,U as h,O as E}from"./index-d6
   }
 `,v=n.div`
   position: relative;
-`;function U(){const[e,a]=l.useState(s.BODY_PARTS),r=u(),{subcategory:i}=h(),o=r.pathname==="/exercises";return t.jsxs(v,{children:[t.jsxs(S,{margin:!!i,children:[t.jsx(b,{text:o?"Exercises":f(i)}),t.jsx(C,{setCategory:a,category:e})]}),t.jsx(E,{context:e})]})}export{U as Exercises};
+`;function O(){const[e,a]=l.useState(s.BODY_PARTS),r=u(),{subcategory:i}=h(),o=r.pathname==="/exercises";return t.jsxs(v,{children:[t.jsxs(S,{margin:!!i,children:[t.jsx(b,{text:o?"Exercises":f(i)}),t.jsx(C,{setCategory:a,category:e})]}),t.jsx(E,{context:e})]})}export{O as Exercises};

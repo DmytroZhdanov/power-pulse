@@ -1,4 +1,4 @@
-import{f as d,g as A,a as D,h as I,i as P,u as T,r as m,j as e,I as x,k as $,n as i,P as C,l as L}from"./index-d6ddc6b2.js";import{T as Y}from"./TitlePage-d7079825.js";import{c as E,a as b,e as _,f as M,u as R}from"./index.esm-972af6d4.js";import{f as B,C as V}from"./Calendar-efafa1e2.js";import"./tiny-warning.esm-c932d744.js";import"./setPrototypeOf-51e8cf87.js";const H=d.div`
+import{f as d,g as A,a as D,h as I,i as P,u as T,r as m,j as e,I as x,k as $,n as i,P as C,l as L}from"./index-7167744b.js";import{T as Y}from"./TitlePage-72fcca11.js";import{c as E,a as b,e as _,f as M,u as R}from"./index.esm-faed0e32.js";import{f as B,C as V}from"./Calendar-e6df3f45.js";import"./tiny-warning.esm-c932d744.js";const H=d.div`
   width: 335px;
   display: flex;
   flex-direction: column;
@@ -523,4 +523,4 @@ import{f as d,g as A,a as D,h as I,i as P,u as T,r as m,j as e,I as x,k as $,n a
     gap: 25px;
     margin-top: 32px;
   }
-`;function Ue(){return e.jsxs(_e,{children:[e.jsx(Y,{text:"Profile Settings"}),e.jsxs(ze,{children:[e.jsx(ee,{}),e.jsx(je,{})]})]})}export{Ue as Profile};
+`;function Se(){return e.jsxs(_e,{children:[e.jsx(Y,{text:"Profile Settings"}),e.jsxs(ze,{children:[e.jsx(ee,{}),e.jsx(je,{})]})]})}export{Se as Profile};
