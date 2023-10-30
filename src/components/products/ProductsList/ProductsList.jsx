@@ -12,34 +12,54 @@ import {
   useFetchUserBloodGroupQuery,
 } from '../../../redux/api';
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
+/**
+ * Компонент ProductsList представляет список продуктов и отображает их согласно переданному фильтру.
+ *
+ * @param {object} filter Объект фильтр, содержит параметры по которым пользователь желает отфильтровать список продуктов.
+ * @returns {JSX.Element} Список продуктов или сообщение о том, что нет результатов.
+ */
 export default function ProductsList({ filter }) {
   const [products, setProducts] = useState([]);
   const [userGroupBlood, setUserGroupBlood] = useState(null);
   const [getProducts] = useLazyFetchAllProductsQuery();
+
   const pending = useFetchUserBloodGroupQuery();
+  const { isSuccess, data } = pending;
+
+  /**
+   * Обновляет группу крови пользователя на основе успешного запроса к бэкенду.
+   *
+   * @param {boolean} isSuccess Успешность выполнения запроса к бэкенду.
+   */
 
   useEffect(() => {
-    if (pending.isSuccess) {
-      const userBlood = pending.data;
+    if (isSuccess) {
+      const userBlood = data;
       setUserGroupBlood(userBlood);
     }
-  }, [pending]);
+  }, [data, isSuccess]);
 
-  console.log('userGroupBlood:', userGroupBlood);
+  /**
+   * fetchData Загружает список продуктов согласно указанному фильтру с бэкэенда.
+   *
+   * @param {object} filter Объект фильтр, содержит параметры по которым пользователь желает отфильтровать список продуктов.
+   * @returns {array} Список продуктов или сообщение о том, что нет результатов.
+   */
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getProducts(filter).unwrap();
-        setProducts(response);
+        const { data } = await getProducts(filter).unwrap();
+        setProducts(data);
       } catch (error) {
         console.error('Error fetching data:', error.message);
       }
     };
 
     fetchData();
-  }, [filter]);
+  }, [filter, getProducts]);
 
   return (
     <DivProducts>
@@ -67,3 +87,7 @@ export default function ProductsList({ filter }) {
     </DivProducts>
   );
 }
+
+ProductsList.propTypes = {
+  filter: PropTypes.object,
+};

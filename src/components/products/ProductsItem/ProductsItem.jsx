@@ -20,24 +20,49 @@ import {
   Value,
 } from './ProductsItem.styled';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
+/**
+ * Компонент ProductsItem представляет отдельный элемент списка продуктов и отображает информацию о продукте.
+ *
+ * @param {object} props Объект, содержащий информацию о продукте.
+ * @param {string} userGroupBlood Группа крови пользователя.
+ * @returns {JSX.Element} Элемент списка продуктов с информацией о продукте и рекомендациями.
+ */
 export default function ProductsItem({ props, userGroupBlood }) {
   const { weight, calories, category, title, groupBloodNotAllowed } = props;
 
   const recommended = groupBloodNotAllowed[userGroupBlood];
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAddProdSucces, setIsAddProdSuccess] = useState(false);
-  const [totalCallories, setTotalCalories] = useState(null);
+  const [isAddProdSuccess, setIsAddProdSuccess] = useState(false);
+  const [totalCalories, setTotalCalories] = useState(null);
 
+  /**
+   * Открывает модальное окно для добавления продукта.
+   *
+   * @function openModal
+   */
   const openModal = () => {
     setIsModalOpen(true);
   };
+
+  /**
+   * Закрывает модальное окно добавления продукта..
+   *
+   * @function closeModal
+   */
 
   const closeModal = () => {
     setIsModalOpen(false);
     setIsAddProdSuccess(false);
   };
+
+  /**
+   * Обрабатывает успешное добавление продукта и закрывает модальное окно и передает пропсами значение калорий этого продукта на бэкэнд.
+   *
+   * @function addProdSuccess
+   * @param {number} totalCalories Общее количество калорий добавленных продуктов.
+   */
 
   const addProdSuccess = totalCalories => {
     setIsAddProdSuccess(true);
@@ -100,14 +125,25 @@ export default function ProductsItem({ props, userGroupBlood }) {
         </BasicModalWindow>
       )}
 
-      {isAddProdSucces && (
+      {isAddProdSuccess && (
         <BasicModalWindow onClose={closeModal}>
           <AddProductSuccess
             onClose={closeModal}
-            totalCalories={totalCallories}
+            totalCalories={totalCalories}
           />
         </BasicModalWindow>
       )}
     </>
   );
 }
+
+ProductsItem.propTypes = {
+  props: PropTypes.shape({
+    weight: PropTypes.number.isRequired,
+    calories: PropTypes.number.isRequired,
+    category: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    groupBloodNotAllowed: PropTypes.object.isRequired,
+  }).isRequired,
+  userGroupBlood: PropTypes.number,
+};
