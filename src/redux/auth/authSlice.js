@@ -18,10 +18,10 @@ const authSlice = createSlice({
       state.user = user;
       state.token = token;
     },
-    setToken: (state, payload) => {
+    setToken: (state, { payload }) => {
       state.token = payload;
     },
-    setAvatars: (state, payload) => {
+    setAvatars: (state, { payload }) => {
       state.user.avatarUrls = payload;
     },
   },
