@@ -6,7 +6,7 @@ import Timer from 'src/components/Timer/Timer';
 import BasicModalWindow from 'src/components/common/BasicModalWindow/BasicModalWindow';
 import ErrorMessage from 'src/components/common/ErrorMessage/ErrorMessage';
 import AddExercisesFromPastDaysForm from '../AddExercisesFromPastDaysForm/AddExercisesFromPastDaysForm';
-import InfoOnExerciseList from '../infoOnExerciseList/infoOnExerciseList';
+import InfoOnExerciseList from '../InfoOnExerciseList/InfoOnExerciseList';
 
 import {
   ButtonOpenPastDaysForm,
@@ -127,33 +127,31 @@ export default function AddExerciseForm({
         </ButtonWrapper>
       </WorkoutSummary>
 
-      {showModalError && (
-        <BasicModalWindow
-          onClose={() => {
-            setShowModalError(false);
-          }}
-        >
-          <ErrorMessage
-            notificationType={notificationType}
-            message={errorMessage}
-          />
-        </BasicModalWindow>
-      )}
-
-      {showModalForAddExercise && (
-        <BasicModalWindow
+      <BasicModalWindow
+        onShow={showModalForAddExercise}
+        onClose={() => {
+          setShowModalForAddExercise(false);
+        }}
+      >
+        <AddExercisesFromPastDaysForm
           onClose={() => {
             setShowModalForAddExercise(false);
           }}
-        >
-          <AddExercisesFromPastDaysForm
-            onClose={() => {
-              setShowModalForAddExercise(false);
-            }}
-            onSubmit={handleSubmit}
-          />
-        </BasicModalWindow>
-      )}
+          onSubmit={handleSubmit}
+        />
+      </BasicModalWindow>
+
+      <BasicModalWindow
+        onShow={showModalError}
+        onClose={() => {
+          setShowModalError(false);
+        }}
+      >
+        <ErrorMessage
+          notificationType={notificationType}
+          message={errorMessage}
+        />
+      </BasicModalWindow>
     </ExerciseContainer>
   );
 }
