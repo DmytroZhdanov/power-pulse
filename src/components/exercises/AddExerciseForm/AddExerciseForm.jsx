@@ -6,7 +6,7 @@ import Timer from 'src/components/Timer/Timer';
 import BasicModalWindow from 'src/components/common/BasicModalWindow/BasicModalWindow';
 import ErrorMessage from 'src/components/common/ErrorMessage/ErrorMessage';
 import AddExercisesFromPastDaysForm from '../AddExercisesFromPastDaysForm/AddExercisesFromPastDaysForm';
-import InfoOnExerciseList from '../infoOnExerciseList/infoOnExerciseList';
+import InfoOnExerciseList from '../InfoOnExerciseList/InfoOnExerciseList';
 
 import {
   ButtonOpenPastDaysForm,
