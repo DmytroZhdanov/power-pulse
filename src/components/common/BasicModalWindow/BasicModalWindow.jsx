@@ -37,7 +37,7 @@ export default function BasicModalWindow(props) {
       window.removeEventListener('keydown', onEscKeyPress);
       bodyScroll(false);
     };
-  }, [onClose]);
+  }, [onClose, onShow]);
 
   return createPortal(
     <>
