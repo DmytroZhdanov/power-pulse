@@ -62,6 +62,11 @@ export const theme = {
     desktop: '1440px',
   },
 
+  // Анімація (transition) при ховері фокусі
+  transition: {
+    main: '250ms cubic-bezier(0.165, 0.84, 0.44, 1.03)',
+  },
+
   // box-shadow
   boxShadow: {
     calendarButton: '0 0 5px 0.5px #EFEDE8, inset 0 0 5px 0px #EFEDE8',
