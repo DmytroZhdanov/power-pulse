@@ -1,23 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useFormik, FormikProvider, Form, useField } from 'formik';
 import {
   Text,
   Inputs,
   Check,
-  Button,
   Message,
   Sign,
+  Buttons,
 } from './SignInForm.styled';
 import Icon from '../common/IconsComp/Icon';
 import { signInFormSchema } from './YupValidationForm';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from 'src/redux/auth/authSlice';
 import { useLoginMutation } from 'src/redux/api';
-import Loader from 'components/Loader/Loader';
-import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
-import TimerWarning from 'components/common/TimerWarning/TimerWarning';
-import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
+import ErrorHandler from '../common/ErrorHandler/ErrorHandler';
 
 const Feedback = ({ ...props }) => {
   const [field, meta] = useField(props);
@@ -45,22 +42,7 @@ const Feedback = ({ ...props }) => {
 
 export default function SignInForm() {
   const dispatch = useDispatch();
-  const [login, { isLoading, error }] = useLoginMutation();
-
-  const [showError, setShowError] = useState(false);
-  const [showTimerWarning, setShowTimerWarning] = useState(false);
-
-  useEffect(() => {
-    let id;
-
-    if (isLoading) {
-      id = setTimeout(setShowTimerWarning, 5000, true);
-    } else {
-      setShowTimerWarning(false);
-    }
-
-    return clearTimeout(id);
-  }, [isLoading]);
+  const [login, { isLoading, isError, error }] = useLoginMutation();
 
   const [hidePass, setHidePass] = useState();
   const [passBtn, setPassBtn] = useState(false);
@@ -93,9 +75,8 @@ export default function SignInForm() {
         const data = await login(values).unwrap();
         dispatch(setCredentials(data));
         resetForm();
-      } catch {
-        setShowError(true);
-        setTimeout(() => setShowError(false), 2000);
+      } catch (error) {
+        console.error(error);
       }
     },
     validationSchema: signInFormSchema,
@@ -126,24 +107,19 @@ export default function SignInForm() {
               )}
             </div>
           </Inputs>
-          <Button type="submit">Sign In</Button>
+          <Buttons>
+            <button type="submit">Sign In</button>
+            <button type="button" id="google">
+              <Icon name={'google'} />
+            </button>
+          </Buttons>
           <Sign>
             <p>Don’t have an account? </p>
             <Link to="/signup">Sign Up</Link>
           </Sign>
         </Form>
       </FormikProvider>
-      {isLoading && <Loader />}
-      {isLoading && showTimerWarning && (
-        <BasicModalWindow onClose={() => setShowTimerWarning(false)}>
-          <TimerWarning />
-        </BasicModalWindow>
-      )}
-      {showError && (
-        <BasicModalWindow onClose={() => setShowError(false)}>
-          <ErrorMessage message={error.data.message} />
-        </BasicModalWindow>
-      )}
+      <ErrorHandler isLoading={isLoading} isError={isError} error={error} />
     </>
   );
 }

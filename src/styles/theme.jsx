@@ -22,10 +22,13 @@ export const theme = {
   color: {
     black: '#040404',
     white: '#EFEDE8',
+    fullWhite: '#FFFFFF',
 
     grayDisabled: 'rgba(239, 237, 232, 0.2)',
     grayFirst: 'rgba(239, 237, 232, 0.30)',
     graySecond: 'rgba(239, 237, 232, 0.65)',
+    grayThird: 'rgba(239, 237, 232, 0.4)',
+    grayFourth: 'rgba(239, 237, 232, 0.05)',
     grayBackground: 'rgba(239, 237, 232, 1)',
 
     orangeFirst: '#E6533C',
@@ -37,6 +40,11 @@ export const theme = {
     // Ховери
     hover: '#EF8964',
     hoverBorder: '#E6533C',
+
+    // Кольори модального вікна
+    backdropBackground: 'rgba(0, 0, 0, 0.6)',
+    modalBackground: '#10100f',
+    borderModal: 'rgba(239, 237, 232, 0.2)',
 
     // Кольори таблиць
     tableLabel: '#EF8964',
@@ -60,6 +68,24 @@ export const theme = {
     mobile: '375px',
     tablet: '768px',
     desktop: '1440px',
+  },
+
+  gradient: {
+    exersises: `
+    rgba(0, 0, 0, 1) 1%,
+        rgba(0, 0, 0, 0.8) 20%,
+        rgba(0, 0, 0, 0.8) 20%,
+        rgba(0, 0, 0, 0.7) 40%,
+        rgba(0, 0, 0, 0.6) 70%,
+        rgba(0, 0, 0, 0.5) 100%,
+        rgba(0, 0, 0, 0.3) 100%
+    `,
+  },
+
+  // Анімація (transition) при ховері фокусі
+  transition: {
+    main: '250ms cubic-bezier(0.165, 0.84, 0.44, 1.03)',
+    modal: '300ms ease-in-out',
   },
 
   // box-shadow

@@ -4,7 +4,7 @@ import * as background from '/src/utils/background';
 
 export const Flex = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   max-width: ${({ theme }) => theme.breakpoint.mobile};
   margin: 0 auto;
@@ -28,21 +28,65 @@ export const ContentWrap = styled.div`
   background-color: ${({ theme }) => theme.color.orangeFirst};
   width: 64%;
   height: 100vh;
-  position: relative;
-  z-index: -1;
-  margin-top: -62px;
   padding: 0 20px 0 20px;
+  position: relative;
 
   @media screen and (min-width: 768px) {
     gap: 28px;
     width: 55%;
-    margin-top: -85px;
     padding: 0 32px 0 32px;
   }
 
   @media screen and (min-width: 1440px) {
     width: 46.5%;
     padding: 0 96px 0 96px;
+  }
+`;
+
+export const LogoWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 24px;
+  left: 20px;
+
+  @media screen and (min-width: 768px) {
+    top: 32px;
+    left: 32px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    left: 96px;
+  }
+`;
+
+export const LogoLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: ${({ theme }) => theme.color.white};
+`;
+
+export const SvgIcon = styled.svg`
+  width: 36px;
+  height: 13px;
+  fill: currentColor;
+
+  @media screen and (min-width: 768px) {
+    width: 44px;
+    height: 17px;
+  }
+`;
+
+export const TitleLogo = styled.p`
+  color: ${({ theme }) => theme.color.white};
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.17;
+
+  @media screen and (min-width: 768px) {
+    font-size: 22px;
   }
 `;
 
@@ -84,6 +128,16 @@ export const LinkStyled = styled(Link)`
   border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.color.grayFirst};
   padding: 12px 40px;
+  cursor: pointer;
+  transition:
+    background-color ${({ theme }) => theme.transition.main},
+    border ${({ theme }) => theme.transition.main};
+
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.color.hover};
+    border: 1px solid ${({ theme }) => theme.color.hover};
+  }
 
   @media screen and (min-width: 768px) {
     font-size: 20px;
@@ -96,7 +150,7 @@ export const BackgroundImageWrap = styled.div`
   height: 100vh;
   width: 36%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 
   @media screen and (min-width: 768px) {
     width: 45%;
@@ -104,15 +158,16 @@ export const BackgroundImageWrap = styled.div`
 
   @media screen and (min-width: 1440px) {
     width: 46.5%;
+    align-items: center;
   }
 `;
 
 export const BackgroundImage = styled.div`
-  height: 100%;
+  height: 75%;
   width: 100%;
   background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: 100% center;
+  background-size: center center;
+  background-position: 85% center;
   background-image: image-set(
     url(${background.mo_main}) 1x,
     url(${background.mo_main2x}) 2x,
@@ -126,6 +181,8 @@ export const BackgroundImage = styled.div`
       url(${background.ta_main2x}) 2x,
       url(${background.ta_main3x}) 3x
     );
+    height: 100%;
+    background-position: 100% center;
   }
 
   /* MIN WIDTH 1440px */
@@ -135,5 +192,6 @@ export const BackgroundImage = styled.div`
       url(${background.bg_main2x}) 2x,
       url(${background.bg_main3x}) 3x
     );
+    background-size: contain;
   }
 `;

@@ -2,7 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
 
 import { EXERCISES_CATEGORY, PRODUCTS_FILTER } from 'src/utils/constants';
-const { MUSCLES, BODY_PART, EQUIPMENT } = EXERCISES_CATEGORY;
+const { MUSCLES, BODY_PARTS, EQUIPMENT } = EXERCISES_CATEGORY;
 const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
 
 const axiosBaseQuery =
@@ -81,9 +81,12 @@ export const api = createApi({
     }),
     updateUserAvatar: builder.mutation({
       query: credentials => ({
-        url: '/users/avatar',
+        url: '/users/avatars',
         method: 'PATCH',
         data: credentials,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       }),
     }),
     fetchUserParams: builder.query({
@@ -129,7 +132,7 @@ export const api = createApi({
         url: `/training/exercises${
           filter
             ? `?${filter[MUSCLES] ? `${MUSCLES}=${filter[MUSCLES]}&` : ''}${
-                filter[BODY_PART] ? `${BODY_PART}=${filter[BODY_PART]}&` : ''
+                filter[BODY_PARTS] ? `${BODY_PARTS}=${filter[BODY_PARTS]}&` : ''
               }${
                 filter[EQUIPMENT] ? `${EQUIPMENT}=${filter[EQUIPMENT]}&` : ''
               }page=${filter.page || 1}`
@@ -147,14 +150,14 @@ export const api = createApi({
     }),
     addProduct: builder.mutation({
       query: credentials => ({
-        url: '/day/diaryProducts',
+        url: '/diary/day/diaryProducts',
         method: 'POST',
         data: credentials,
       }),
     }),
     addExercise: builder.mutation({
       query: credentials => ({
-        url: '/day/diaryExercises',
+        url: '/diary/day/diaryExercises',
         method: 'POST',
         data: credentials,
       }),
@@ -185,6 +188,7 @@ export const {
   useUpdateUserParamsMutation,
   useUpdateUserNameMutation,
   useUpdateUserAvatarMutation,
+  useFetchUserParamsQuery,
   useLazyFetchUserParamsQuery,
   useFetchDailyRateQuery,
   useFetchUserBloodGroupQuery,

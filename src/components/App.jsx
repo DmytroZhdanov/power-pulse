@@ -1,21 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setCredentials } from 'src/redux/auth/authSlice';
 import { useLazyRefreshQuery } from 'src/redux/api';
 import { selectToken } from 'src/redux/auth/selectors';
-import { initialState } from 'src/redux/auth/authSlice';
 import { ROUTER, DATA_STEPS } from 'src/utils';
 
 import Main from 'pages/Main/Main';
 import Error from 'pages/Error/Error';
 import PrivateRoute from 'components/PrivateRoute';
 import RestrictedRoute from 'components/RestrictedRoute';
-import Loader from 'components/Loader/Loader';
-import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
-import TimerWarning from 'components/common/TimerWarning/TimerWarning';
-import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
+import ErrorHandler from './common/ErrorHandler/ErrorHandler';
 
 const router = createBrowserRouter(
   [
@@ -25,7 +21,7 @@ const router = createBrowserRouter(
       errorElement: <Error />,
       children: [
         {
-          index: true,
+          path: ROUTER.WELCOME,
           async lazy() {
             let { Welcome } = await import('pages/Welcome/Welcome');
             return {
@@ -57,7 +53,7 @@ const router = createBrowserRouter(
           async lazy() {
             let { Data } = await import('pages/Data/Data');
             return {
-              Component: () => <PrivateRoute component={<Data />} />,
+              Component: Data,
             };
           },
           children: [
@@ -66,7 +62,7 @@ const router = createBrowserRouter(
               async lazy() {
                 let { FirstStep } = await import('./data/FirstStep/FirstStep');
                 return {
-                  Component: () => <PrivateRoute component={<FirstStep />} />,
+                  Component: FirstStep,
                 };
               },
             },
@@ -77,7 +73,7 @@ const router = createBrowserRouter(
                   './data/SecondStep/SecondStep'
                 );
                 return {
-                  Component: () => <PrivateRoute component={<SecondStep />} />,
+                  Component: SecondStep,
                 };
               },
             },
@@ -86,7 +82,7 @@ const router = createBrowserRouter(
               async lazy() {
                 let { ThirdStep } = await import('./data/ThirdStep/ThirdStep');
                 return {
-                  Component: () => <PrivateRoute component={<ThirdStep />} />,
+                  Component: ThirdStep,
                 };
               },
             },
@@ -206,60 +202,28 @@ const router = createBrowserRouter(
 
 export default function App() {
   const dispatch = useDispatch();
-  const [refresh, { isFetching, error }] = useLazyRefreshQuery();
+  const [refresh, { isFetching, isError, error }] = useLazyRefreshQuery();
   const token = useSelector(selectToken);
-
-  const [showError, setShowError] = useState(false);
-  const [showTimerWarning, setShowTimerWarning] = useState(false);
 
   useEffect(() => {
     const refetch = async () => {
       if (token) {
-        const { user } = await refresh().unwrap();
-        dispatch(setCredentials({ user, token }));
+        try {
+          const { user } = await refresh().unwrap();
+          dispatch(setCredentials({ user, token }));
+        } catch (error) {
+          console.error(error);
+        }
       }
     };
 
-    try {
-      refetch();
-    } catch {
-      setShowError(true);
-      setTimeout(() => setShowError(false), 2000);
-    }
+    refetch();
   }, [dispatch, token, refresh]);
-
-  useEffect(() => {
-    if (error?.status === 401) {
-      dispatch(setCredentials(initialState));
-    }
-  }, [dispatch, error?.status]);
-
-  useEffect(() => {
-    let id;
-
-    if (isFetching) {
-      id = setTimeout(setShowTimerWarning, 5000, true);
-    } else {
-      setShowTimerWarning(false);
-    }
-
-    return clearTimeout(id);
-  }, [isFetching]);
 
   return (
     <>
       <RouterProvider router={router} />
-      {isFetching && <Loader />}
-      {isFetching && showTimerWarning && (
-        <BasicModalWindow onClose={() => setShowTimerWarning(false)}>
-          <TimerWarning />
-        </BasicModalWindow>
-      )}
-      {showError && (
-        <BasicModalWindow onClose={() => setShowError(false)}>
-          <ErrorMessage message={error?.data?.message} />
-        </BasicModalWindow>
-      )}
+      <ErrorHandler isLoading={isFetching} isError={isError} error={error} />
     </>
   );
 }
