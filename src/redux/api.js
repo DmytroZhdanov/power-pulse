@@ -81,7 +81,7 @@ export const api = createApi({
     }),
     updateUserAvatar: builder.mutation({
       query: credentials => ({
-        url: '/users/avatar',
+        url: '/users/avatars',
         method: 'PATCH',
         data: credentials,
       }),
