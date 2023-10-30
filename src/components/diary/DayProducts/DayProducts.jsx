@@ -1,6 +1,7 @@
 import ProductsTable from '../ProductsTable/ProductsTable';
 import sprite from '../../../assets/images/sprite/sprite.svg';
 import { TailSpin } from 'react-loader-spinner';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   DayProdDiv,
   DayProdText,
@@ -38,13 +39,23 @@ export default function DayProducts({
         />
       ) : (
         <>
-          {isLoading ? (
-            <LoaderDiv>
-              <TailSpin color="#E6533C" ariaLabel="three-dots-loading" />
-            </LoaderDiv>
-          ) : (
-            <DayProdText>Not found products</DayProdText>
-          )}
+          <AnimatePresence>
+            {isLoading ? (
+              <LoaderDiv>
+                <TailSpin color="#E6533C" ariaLabel="three-dots-loading" />
+              </LoaderDiv>
+            ) : (
+              <DayProdText
+                as={motion.p}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                exit={{ opacity: 0 }}
+              >
+                Not found products
+              </DayProdText>
+            )}
+          </AnimatePresence>
         </>
       )}
     </DayProdDiv>

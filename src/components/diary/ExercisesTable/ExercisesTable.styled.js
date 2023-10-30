@@ -138,6 +138,14 @@ export const DelBtnTable = styled.button`
 export const DelIcon = styled.svg`
   width: 20px;
   height: 20px;
+  stroke: #ef8964;
+  transition:
+    stroke 250ms cubic-bezier(0.165, 0.84, 0.44, 1.03),
+    fill 250ms cubic-bezier(0.165, 0.84, 0.44, 1.03);
+  &:is(:hover, :focus) {
+    stroke: white;
+    fill: white;
+  }
 `;
 
 export const TableBody = styled.tbody``;

@@ -11,7 +11,7 @@ import {
   AddExerBtnIcon,
   AddExerBtnText,
 } from './DayExercises.styled';
-
+import { motion, AnimatePresence } from 'framer-motion';
 export default function DayExercises({
   diaryExercises,
   setDiaryExercises,
@@ -35,13 +35,23 @@ export default function DayExercises({
         />
       ) : (
         <>
-          {isLoading ? (
-            <LoaderDiv>
-              <TailSpin color="#E6533C" ariaLabel="three-dots-loading" />
-            </LoaderDiv>
-          ) : (
-            <DayExerText>Not found exercises</DayExerText>
-          )}
+          <AnimatePresence>
+            {isLoading ? (
+              <LoaderDiv>
+                <TailSpin color="#E6533C" ariaLabel="three-dots-loading" />
+              </LoaderDiv>
+            ) : (
+              <DayExerText
+                as={motion.p}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                exit={{ opacity: 0 }}
+              >
+                Not found exercises
+              </DayExerText>
+            )}
+          </AnimatePresence>
         </>
       )}
     </DayExerDiv>
