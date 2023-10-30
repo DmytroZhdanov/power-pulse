@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const DivAdddForm = styled.div`
+export const DivAddForm = styled.div`
   margin: 48px 24px;
 
   @media screen and (min-width: 768px) {

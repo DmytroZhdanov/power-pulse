@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import {
-  DivAdddForm,
+  DivAddForm,
   DivInputs,
   InputName,
   DivGrams,
@@ -13,40 +13,55 @@ import {
   ButtonAdd,
   ButtonCancel,
 } from './AddProductForm.styled';
+import { useAddProductMutation } from '../../../redux/api';
 
 export default function AddProductForm(props) {
-  const { onClose, addProdSuccess, product } = props;
-  const [weight, setWeight] = useState(100);
-  const totalCalories = weight * product.calories;
+  const { onClose, addProdSuccess, addProdError, product } = props;
+  const { weight, calories, _id } = product;
+  const [addWeight, setAddWeight] = useState(weight);
+  const amount = addWeight * calories;
 
-  //  useAddProductMutation;
+  const [addProduct] = useAddProductMutation();
 
-  const handleSubmit = () => {
-    onClose();
-    addProdSuccess(totalCalories);
+  const addProductToCollection = {
+    product_ID: _id,
+    date: new Date(),
+    amount,
+    calories,
+  };
+
+  const handleSubmit = async () => {
+    const { error } = await addProduct(addProductToCollection);
+    console.log('error', error);
+    if (error) {
+      addProdError(error.data.message);
+    } else {
+      onClose();
+      addProdSuccess(amount);
+    }
   };
 
   return (
-    <DivAdddForm>
+    <DivAddForm>
       <DivInputs>
         <InputName type="text" value={product.title} readOnly />
         <DivGrams>
           <InputGrams
             type="number"
-            value={weight}
-            onChange={e => setWeight(e.target.value)}
+            value={addWeight}
+            onChange={e => setAddWeight(e.target.value)}
           />
           <Placeholder>grams</Placeholder>
         </DivGrams>
       </DivInputs>
       <DivCalories>
         <Calories>Calories:</Calories>
-        <ValueCalories>{totalCalories}</ValueCalories>
+        <ValueCalories>{amount}</ValueCalories>
       </DivCalories>
       <DivBtn>
         <ButtonAdd onClick={handleSubmit}>Add to diary</ButtonAdd>
         <ButtonCancel onClick={onClose}>Cancel</ButtonCancel>
       </DivBtn>
-    </DivAdddForm>
+    </DivAddForm>
   );
 }
