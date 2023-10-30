@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDeleteExerciseMutation } from '../../../redux/api';
 import { motion, AnimatePresence } from 'framer-motion';
-
 import {
   Table,
   TableMainTitles,
@@ -20,9 +19,11 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
   const [deleteExercise] = useDeleteExerciseMutation();
 
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+
   const handleResize = () => {
     setIsDesktop(window.innerWidth >= 768);
   };
+
   useEffect(() => {
     window.addEventListener('resize', handleResize);
 
@@ -102,10 +103,10 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
               {diaryExercises.map(exercise => {
                 return (
                   <Table
-                    initial={{ x: 900 }}
+                    initial={{ x: 1300 }}
                     animate={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
-                    exit={{ x: -900 }}
+                    transition={{ duration: 0.5 }}
+                    exit={{ x: -1700 }}
                     as={motion.table}
                     key={exercise._id}
                   >
