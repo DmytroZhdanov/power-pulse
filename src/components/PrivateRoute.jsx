@@ -1,18 +1,34 @@
 import { useSelector } from 'react-redux';
 import { selectToken } from 'src/redux/auth/selectors';
 import PropTypes from 'prop-types';
-import { Navigate } from 'react-router-dom';
-import { useFetchUserParamsQuery } from '../redux/api';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useLazyFetchUserParamsQuery } from '../redux/api';
 import { ROUTER } from '../utils';
+import { useEffect } from 'react';
 
 export default function PrivateRoute({ redirectTo, component: Component }) {
-  const { data, isFetching, isError } = useFetchUserParamsQuery();
+  const [trigger, { isFetching }] = useLazyFetchUserParamsQuery();
+  const navigate = useNavigate();
   const token = useSelector(selectToken);
   const shouldRedirect = !token;
 
-  if ((!data?.user.userParams && !isFetching) || isError) {
-    return <Navigate to={`../${ROUTER.DATA}`} />;
-  }
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        const data = await trigger().unwrap();
+
+        if (!data?.user.userParams) {
+          navigate(`../${ROUTER.DATA}`);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    if (token) {
+      fetch();
+    }
+  }, [isFetching, navigate, token, trigger]);
 
   return shouldRedirect ? <Navigate to={`../${redirectTo}`} /> : Component;
 }
