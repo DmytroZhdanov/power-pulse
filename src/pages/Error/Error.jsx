@@ -1,15 +1,19 @@
 import { useLocation } from 'react-router-dom';
 import { useRef } from 'react';
 import { ROUTER } from 'src/utils/constants';
-import Header from 'components/main/Header/Header';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 import {
   BackgroundImage,
   BackgroundImageWrap,
   ContentWrap,
   Flex,
   LinkStyled,
+  LogoLink,
+  LogoWrap,
+  SvgIcon,
   Text,
   Title,
+  TitleLogo,
 } from './Error.styled';
 
 export default function Error() {
@@ -19,10 +23,17 @@ export default function Error() {
 
   return (
     <>
-      <Header />
       <main>
         <Flex>
           <ContentWrap>
+            <LogoWrap>
+              <LogoLink to={ROUTER.MAIN}>
+                <SvgIcon width="44" height="17">
+                  <use href={`${sprite}#logo-error`}></use>
+                </SvgIcon>
+                <TitleLogo>PowerPulse</TitleLogo>
+              </LogoLink>
+            </LogoWrap>
             <Title>404</Title>
             <Text>
               Sorry, you have reached a page that we could not find. It seems

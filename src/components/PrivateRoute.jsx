@@ -6,11 +6,11 @@ import { useFetchUserParamsQuery } from '../redux/api';
 import { ROUTER } from '../utils';
 
 export default function PrivateRoute({ redirectTo, component: Component }) {
-  const { data, isError } = useFetchUserParamsQuery();
+  const { data, isFetching, isError } = useFetchUserParamsQuery();
   const token = useSelector(selectToken);
   const shouldRedirect = !token;
 
-  if (!data?.user.userParams || isError) {
+  if ((!data?.user.userParams && !isFetching) || isError) {
     return <Navigate to={`../${ROUTER.DATA}`} />;
   }
 
