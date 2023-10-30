@@ -15,7 +15,11 @@ import {
 } from './ProductsTable.styled';
 import sprite from '../../../assets/images/sprite/sprite.svg';
 
-export default function ProductsTable({ data, fetchDiaryProducts, blood }) {
+export default function ProductsTable({
+  diaryProducts,
+  setDiaryProducts,
+  blood,
+}) {
   const [deleteProduct] = useDeleteProductMutation();
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
@@ -29,9 +33,18 @@ export default function ProductsTable({ data, fetchDiaryProducts, blood }) {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  const fetchDeleteExercise = async id => {
-    await deleteProduct(id);
-    fetchDiaryProducts();
+  const handleDeleteProduct = async id => {
+    try {
+      await deleteProduct(id);
+
+      const filteredDiaryProducts = diaryProducts.filter(
+        product => product._id !== id,
+      );
+
+      setDiaryProducts(filteredDiaryProducts);
+    } catch (error) {
+      alert('Ops...Something went wrong. Please try again.');
+    }
   };
   return (
     <>
@@ -48,10 +61,12 @@ export default function ProductsTable({ data, fetchDiaryProducts, blood }) {
               </TableTitleTr>
             </TableMainTitles>
 
-            {data &&
-              data.map(product => {
-                const isRecommended =
-                  product.groupBloodNotAllowed[blood] === false ? true : false;
+            {diaryProducts &&
+              diaryProducts.length !== 0 &&
+              diaryProducts.map(product => {
+                const isRecommended = !product.groupBloodNotAllowed[blood]
+                  ? true
+                  : false;
 
                 return (
                   <TableBody key={product._id}>
@@ -67,7 +82,7 @@ export default function ProductsTable({ data, fetchDiaryProducts, blood }) {
                       <td>
                         <DelBtnTable
                           onClick={() => {
-                            fetchDeleteExercise(product._id);
+                            handleDeleteProduct(product._id);
                           }}
                         >
                           <DelIcon>
@@ -83,8 +98,9 @@ export default function ProductsTable({ data, fetchDiaryProducts, blood }) {
         ) : (
           // мапаєш і повертаєщ те, що нижч
           <>
-            {data &&
-              data.map(product => {
+            {diaryProducts &&
+              diaryProducts.length !== 0 &&
+              diaryProducts.map(product => {
                 const isRecommended =
                   product.groupBloodNotAllowed[blood] === false ? true : false;
 
@@ -113,7 +129,7 @@ export default function ProductsTable({ data, fetchDiaryProducts, blood }) {
                         <td>
                           <DelBtnTable
                             onClick={() => {
-                              fetchDeleteExercise(product._id);
+                              handleDeleteProduct(product._id);
                             }}
                           >
                             <DelIcon>

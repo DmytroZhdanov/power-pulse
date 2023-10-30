@@ -36,6 +36,13 @@ export const DayProdText = styled.h2`
     line-height: ${24 / 16};
   }
 `;
+export const LoaderDiv = styled.h2`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 export const DayProdTitle = styled.h2`
   color: rgba(239, 237, 232, 0.5);
   font-size: 14px;

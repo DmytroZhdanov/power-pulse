@@ -1,10 +1,10 @@
 import ProductsTable from '../ProductsTable/ProductsTable';
-
 import sprite from '../../../assets/images/sprite/sprite.svg';
-
+import { TailSpin } from 'react-loader-spinner';
 import {
   DayProdDiv,
   DayProdText,
+  LoaderDiv,
   DayProdTitle,
   DayProdDivList,
   AddProdBtn,
@@ -12,7 +12,13 @@ import {
   AddProdBtnText,
 } from './DayProducts.styled';
 
-export default function DayProducts({ data, fetchDiaryProducts, blood }) {
+export default function DayProducts({
+  diaryProducts,
+  setDiaryProducts,
+  blood,
+  isLoading,
+}) {
+  console.log(isLoading);
   return (
     <DayProdDiv>
       <DayProdDivList>
@@ -24,14 +30,22 @@ export default function DayProducts({ data, fetchDiaryProducts, blood }) {
           </AddProdBtnIcon>
         </AddProdBtn>
       </DayProdDivList>
-      {data && data.length !== 0 ? (
+      {diaryProducts && diaryProducts.length !== 0 ? (
         <ProductsTable
+          setDiaryProducts={setDiaryProducts}
           blood={blood}
-          fetchDiaryProducts={fetchDiaryProducts}
-          data={data}
+          diaryProducts={diaryProducts}
         />
       ) : (
-        <DayProdText>Not found products</DayProdText>
+        <>
+          {isLoading ? (
+            <LoaderDiv>
+              <TailSpin color="#E6533C" ariaLabel="three-dots-loading" />
+            </LoaderDiv>
+          ) : (
+            <DayProdText>Not found products</DayProdText>
+          )}
+        </>
       )}
     </DayProdDiv>
   );

@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 
 export const TableDiv = styled.div`
+  scroll-behavior: auto;
+  overflow-y: auto;
+
+  overflow-x: hidden;
   @media screen and (max-width: 767px) {
     max-height: 1000px;
     max-width: 335px;
@@ -13,10 +17,6 @@ export const TableDiv = styled.div`
     max-width: 804px;
     padding: 0 8px;
   }
-  scroll-behavior: auto;
-  overflow-y: auto;
-  // overflow-y: hidden;
-  overflow-x: hidden;
 `;
 export const Table = styled.table`
   border-spacing: 8px;

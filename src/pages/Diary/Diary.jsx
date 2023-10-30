@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 
 import {
   useLazyFetchDiaryQuery,
@@ -20,11 +20,15 @@ import {
 export function Diary() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const [fetchDiary] = useLazyFetchDiaryQuery();
+  const [fetchDiary, { isLoading }] = useLazyFetchDiaryQuery();
+
   const [fetchUserParams] = useLazyFetchUserParamsQuery();
+
   const [userParams, setUserParams] = useState(null);
-  const [exerciseResponse, setExerciseResponse] = useState([]);
-  const [productResponse, setProductResponse] = useState([]);
+
+  const [diaryProducts, setDiaryProducts] = useState([]);
+
+  const [diaryExercises, setDiaryExercises] = useState([]);
 
   const currentDay =
     selectedDate.getFullYear() +
@@ -32,6 +36,7 @@ export function Diary() {
     (selectedDate.getMonth() + 1) +
     '-' +
     selectedDate.getDate();
+
   useEffect(() => {
     const fetchParams = async () => {
       const userParams = await fetchUserParams();
@@ -41,32 +46,14 @@ export function Diary() {
   }, [fetchUserParams]);
 
   useEffect(() => {
-    const fetchExerciseData = async () => {
-      const diaryExerciseData = await fetchDiary(currentDay);
+    const fetchDiaryData = async () => {
+      const diaryData = await fetchDiary(currentDay);
 
-      setProductResponse(diaryExerciseData.data);
+      setDiaryExercises(diaryData.data.exerciseResult);
+      setDiaryProducts(diaryData.data.productResult);
     };
-    fetchExerciseData();
-  }, [fetchDiary, currentDay, productResponse]);
-
-  useEffect(() => {
-    const fetchProductData = async () => {
-      const diaryProductData = await fetchDiary(currentDay);
-
-      setExerciseResponse(diaryProductData.data);
-    };
-    fetchProductData();
-  }, [fetchDiary, currentDay, exerciseResponse]);
-
-  const memoizedProductData = useMemo(() => {
-    // Возвращайте данные, которые должны быть кэшированы
-    return productResponse && productResponse.productResult;
-  }, [productResponse]);
-
-  const memoizedExerciseData = useMemo(() => {
-    // Возвращайте данные, которые должны быть кэшированы
-    return exerciseResponse && exerciseResponse.exerciseResult;
-  }, [exerciseResponse]);
+    fetchDiaryData();
+  }, [fetchDiary, currentDay]);
 
   return (
     <Section>
@@ -81,13 +68,15 @@ export function Diary() {
         <DayDashboard />
         <DayStatisticWrapper>
           <DayProducts
+            isLoading={isLoading}
+            setDiaryProducts={setDiaryProducts}
             blood={userParams && userParams.data.user.userParams.blood}
-            fetchDiaryProducts={setProductResponse}
-            data={memoizedProductData}
+            diaryProducts={diaryProducts}
           />
           <DayExercises
-            fetchDiaryExercises={setExerciseResponse}
-            data={memoizedExerciseData}
+            isLoading={isLoading}
+            diaryExercises={diaryExercises}
+            setDiaryExercises={setDiaryExercises}
           />
         </DayStatisticWrapper>
       </ContentWrapper>
