@@ -20,6 +20,14 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
     useSelector(selectUserRegistrationDate),
   );
 
+  // тут треба отримати всі дати у яких є якісь записи
+  const datesWithData = [
+    '2023-10-09',
+    '2023-10-15',
+    '2023-10-23',
+    '2023-10-24',
+  ];
+
   const handlePreviousClick = () => {
     const previousDate = new Date(selectedDate);
     previousDate.setDate(selectedDate.getDate() - 1);
@@ -37,13 +45,37 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
 
   const isToday = selectedDate.toDateString() === new Date().toDateString();
 
+  const setActiveDate = ({ date, view }) => {
+    const isSkip =
+      date.getTime() > dateOfUserRegistration.getTime() ||
+      date.toDateString() === dateOfUserRegistration.toDateString();
+
+    if (isSkip) {
+      return false;
+    } else if (view !== 'month') {
+      return false;
+    } else {
+      return !datesWithData.includes(format(date, 'yyyy-MM-dd'));
+    }
+  };
+
+  const isDisabledPrevBtn =
+    isDateOfUserRegistration ||
+    selectedDate.getTime() < dateOfUserRegistration.getTime();
+  
+  const isDisabledNextBtn =
+    isToday ||
+    (selectedDate.getTime() < dateOfUserRegistration.getTime() &&
+      selectedDate.toDateString() !== dateOfUserRegistration.toDateString());
+
   return (
     <Wrapper>
       <CalendarWrapper>
         <Calendar
+          tileDisabled={setActiveDate}
           onChange={setSelectedDate}
           value={selectedDate}
-          minDate={dateOfUserRegistration}
+          // minDate={dateOfUserRegistration}
           maxDate={new Date()}
         >
           <InputWrapper>
@@ -55,13 +87,10 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
         </Calendar>
       </CalendarWrapper>
       <div>
-        <Button
-          disabled={isDateOfUserRegistration}
-          onClick={handlePreviousClick}
-        >
+        <Button disabled={isDisabledPrevBtn} onClick={handlePreviousClick}>
           <Icon name="nav-arrow-left" />
         </Button>
-        <Button disabled={isToday} onClick={handleNextClick}>
+        <Button disabled={isDisabledNextBtn} onClick={handleNextClick}>
           <Icon name="nav-arrow-right" />
         </Button>
       </div>
