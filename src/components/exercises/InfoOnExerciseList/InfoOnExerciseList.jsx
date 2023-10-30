@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Item, Label, List, Value } from './infoOnExerciseList.styled';
+import { Item, Label, List, Value } from './InfoOnExerciseList.styled';
 
 const InfoOnExerciseList = ({ exercise }) => {
   const { bodyPart, equipment, name, target, time } = exercise;
