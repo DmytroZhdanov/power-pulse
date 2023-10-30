@@ -81,7 +81,7 @@ export const api = createApi({
     }),
     updateUserAvatar: builder.mutation({
       query: credentials => ({
-        url: '/users/avatar',
+        url: '/users/avatars',
         method: 'PATCH',
         data: credentials,
       }),
@@ -147,14 +147,14 @@ export const api = createApi({
     }),
     addProduct: builder.mutation({
       query: credentials => ({
-        url: '/day/diaryProducts',
+        url: '/diary/day/diaryProducts',
         method: 'POST',
         data: credentials,
       }),
     }),
     addExercise: builder.mutation({
       query: credentials => ({
-        url: '/day/diaryExercises',
+        url: '/diary/day/diaryExercises',
         method: 'POST',
         data: credentials,
       }),

@@ -2,13 +2,13 @@ import Icon from 'components/common/IconsComp/Icon';
 
 import { Container, ErrorIcon, Message } from './ErrorMessage.styled';
 
-export default function ErrorMessage({ message }) {
+export default function ErrorMessage({ notificationType='Error:', message }) {
   return (
     <Container>
       <ErrorIcon>
         <Icon name="exclamation-mark" />
       </ErrorIcon>
-      <Message>Error: {message}</Message>
+      <Message>{notificationType} {message}</Message>
     </Container>
   );
 }

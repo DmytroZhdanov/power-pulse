@@ -1,41 +1,53 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CountdownCircleTimer } from 'react-countdown-circle-timer';
 
-import {
-  ControlButton,
-  TimerDisplay,
-  TimerValue,
-  TimerValueWrap,
-} from './Timer.styled';
-import sprite from 'src/assets/images/sprite/sprite.svg';
+import Icon from 'components/common/IconsComp/Icon';
 import AnimatedIcon from './AnimatedIcon';
+import * as TimerStyled from './Timer.styled';
 
-const Timer = ({ duration, setTimer, roundsCount, setRoundsCount }) => {
+const Timer = ({
+  timerLabel,
+  duration,
+  setTimer,
+  roundsCount,
+  setRoundsCount,
+  stopTimer,
+  setStopTimer,
+}) => {
   const [isRunning, setIsRunning] = useState(false);
+
+  useEffect(() => {
+    if (stopTimer) {
+      setIsRunning(!stopTimer);
+      setStopTimer(false);
+    }
+  }, [setStopTimer, stopTimer]);
 
   const toggleTimer = () => {
     setIsRunning(!isRunning);
   };
+
   const timerContent = ({ remainingTime }) => {
     const timerCount = duration - remainingTime;
     const minutes = Math.floor(timerCount / 60);
     const seconds = timerCount % 60;
 
     return (
-      <TimerValueWrap>
-        <TimerValue>{`
+      <TimerStyled.TimerValueWrap>
+        <TimerStyled.TimerValue>{`
         ${minutes.toString().padStart(2, '0')} :
         ${seconds.toString().padStart(2, '0')}
-        `}</TimerValue>
-        <TimerValue>Round: {roundsCount}</TimerValue>
-      </TimerValueWrap>
+        `}</TimerStyled.TimerValue>
+        <TimerStyled.TimerValue>Round: {roundsCount}</TimerStyled.TimerValue>
+      </TimerStyled.TimerValueWrap>
     );
   };
 
   return (
     <>
-      <TimerDisplay>
+      <TimerStyled.TimerLabel>{timerLabel}</TimerStyled.TimerLabel>
+      <TimerStyled.TimerDisplay>
         <CountdownCircleTimer
           size={125}
           isPlaying={isRunning}
@@ -60,24 +72,21 @@ const Timer = ({ duration, setTimer, roundsCount, setRoundsCount }) => {
           {timerContent}
         </CountdownCircleTimer>
         <AnimatedIcon isRunning={isRunning} animationDuration={duration} />
-      </TimerDisplay>
-      <ControlButton onClick={toggleTimer}>
-        <svg width={15} height={15}>
-          {isRunning ? (
-            <use href={sprite + '#pause'}></use>
-          ) : (
-            <use href={sprite + '#play'}></use>
-          )}
-        </svg>
-      </ControlButton>
+      </TimerStyled.TimerDisplay>
+      <TimerStyled.ControlButton onClick={toggleTimer}>
+        {isRunning ? <Icon name="pause" /> : <Icon name="play" />}
+      </TimerStyled.ControlButton>
     </>
   );
 };
 export default Timer;
 
 Timer.propTypes = {
+  timerLabel: PropTypes.string.isRequired,
   duration: PropTypes.number.isRequired,
-  roundsCount: PropTypes.number.isRequired,
   setTimer: PropTypes.func.isRequired,
+  roundsCount: PropTypes.number.isRequired,
   setRoundsCount: PropTypes.func.isRequired,
+  stopTimer: PropTypes.bool.isRequired,
+  setStopTimer: PropTypes.func.isRequired,
 };

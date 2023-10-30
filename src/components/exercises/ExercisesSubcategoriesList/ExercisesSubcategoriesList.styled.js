@@ -4,6 +4,7 @@ export const WrapperDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   min-height: calc(100vh - 215px);
   @media screen and (min-width: 768px) {
     min-height: calc(100vh - 264px);
