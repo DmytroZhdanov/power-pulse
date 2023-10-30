@@ -1,4 +1,4 @@
-import{n as r,L as f,j as t,X as w,Y as j,r as o}from"./index-48028d6f.js";const v=r.li`
+import{n as r,L as f,j as t,Y as w,Z as j,r as o}from"./index-a9ca47f6.js";const v=r.li`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,8 +44,6 @@ import{n as r,L as f,j as t,X as w,Y as j,r as o}from"./index-48028d6f.js";const
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  min-height: 100vh;
 `,C=r.ul`
   display: flex;
   flex-wrap: wrap;
@@ -92,4 +90,4 @@ import{n as r,L as f,j as t,X as w,Y as j,r as o}from"./index-48028d6f.js";const
   font-weight: bold;
   text-align: center;
   transition: background-color 0.3s;
-`;function R(){const e=w(),{data:s,error:i,isLoading:h}=j(e),[d,x]=o.useState(0),[m,g]=o.useState(0),[a,l]=o.useState(10),b=n=>{x(n*a),g(n)};if(o.useEffect(()=>{x(0),g(0)},[e]),o.useEffect(()=>{const n=()=>{(e==="bodyPart"||e==="target")&&window.innerWidth<=375?l(10):window.innerWidth<=1439?l(9):l(10)};return window.addEventListener("resize",n),n(),()=>{window.removeEventListener("resize",n)}},[e]),h)return t.jsx("div",{children:"Loading..."});if(i)return t.jsxs("div",{children:["Error: ",i.message]});const p=Math.ceil(s.length/a),u=s.slice(d,d+a);return t.jsxs(z,{children:[t.jsx(C,{children:u&&u.map(n=>t.jsx(S,{it:n},n._id))}),p>1&&t.jsx(I,{children:Array.from({length:p},(n,c)=>t.jsx("li",{children:t.jsx(W,{onClick:()=>b(c),disabled:d/a===c,active:m===c})},c))})]})}export{R as ExercisesSubcategoriesList};
+`;function R(){const e=w(),{data:s,error:i,isLoading:h}=j(e),[d,x]=o.useState(0),[m,p]=o.useState(0),[a,l]=o.useState(10),b=n=>{x(n*a),p(n)};if(o.useEffect(()=>{x(0),p(0)},[e]),o.useEffect(()=>{const n=()=>{(e==="bodyPart"||e==="target")&&window.innerWidth<=375?l(10):window.innerWidth<=1439?l(9):l(10)};return window.addEventListener("resize",n),n(),()=>{window.removeEventListener("resize",n)}},[e]),h)return t.jsx("div",{children:"Loading..."});if(i)return t.jsxs("div",{children:["Error: ",i.message]});const g=Math.ceil(s.length/a),u=s.slice(d,d+a);return t.jsxs(z,{children:[t.jsx(C,{children:u&&u.map(n=>t.jsx(S,{it:n},n._id))}),g>1&&t.jsx(I,{children:Array.from({length:g},(n,c)=>t.jsx("li",{children:t.jsx(W,{onClick:()=>b(c),disabled:d/a===c,active:m===c})},c))})]})}export{R as ExercisesSubcategoriesList};
