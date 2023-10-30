@@ -64,7 +64,6 @@ export default function BasicModalWindow(props) {
           {children}
         </Modal>
       </CSSTransition>
-      ,
     </>,
     modalRoot,
   );
