@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import {} from 'react-router-dom';
 
 import LogOutBtn from 'components/common/LogOutBtn/LogOutBtn';
 import Icon from 'src/components/common/IconsComp/Icon';
@@ -33,32 +34,29 @@ export default function UserCard() {
 
   console.log(isAvatar);
 
-  const [avatars, setAvatars] = useState(isAvatar || {});
-
-  console.log(avatars);
+  const [avatarUrls, setAvatarUrls] = useState('');
 
   const handleChange = async e => {
     e.preventDefault();
-    const avatar = { avatar: URL.createObjectURL(e.target.files[0]) };
-    setAvatars(avatar);
+    const avatar = URL.createObjectURL(e.target.files[0]);
+    setAvatarUrls(avatar);
   };
+
+  console.log(avatarUrls);
 
   useEffect(() => {
     const fetch = async () => {
       try {
         await refresh();
 
-        if (!avatars) {
-          return;
+        if (avatarUrls) {
+          const data = await updateUserAvatar(avatarUrls).unwrap();
+          // dispatch( add..(data));
         }
-        const data = await updateUserAvatar(avatars).unwrap();
-        console.log(data);
-        dispatch(setAvatars(data));
-        await refresh();
       } catch (error) {
         console.log(error);
       } finally {
-        await refresh();
+        // await refresh();
       }
     };
     fetch();
