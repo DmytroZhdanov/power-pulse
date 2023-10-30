@@ -1,29 +1,18 @@
 import styled from '@emotion/styled';
-import { keyframes } from '@emotion/react';
-
-const openAnimation = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
 
 export const ModalBackdrop = styled.div`
   background: ${({ theme }) => theme.color.backdropBackground};
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 99;
   width: 100%;
   height: 100%;
-  animation: ${openAnimation} ${({ theme }) => theme.transition.modal};
 `;
 
 export const Modal = styled.div`
   position: fixed;
-  z-index: 10000;
+  z-index: 99;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -31,7 +20,6 @@ export const Modal = styled.div`
   border: 1px solid ${({ theme }) => theme.color.borderModal};
   border-radius: 12px;
   overflow-y: auto;
-  animation: ${openAnimation} ${({ theme }) => theme.transition.modal};
 `;
 
 export const CloseModalButton = styled.button`
