@@ -1,20 +1,27 @@
 import styled from '@emotion/styled';
 
 export const DatePickerWrapper = styled.div`
-  position: relative;
-  width: 100%;
-  z-index: 2;
+  position: absolute;
+  transform: translateX(-50%);
+  z-index: 100;
+
+  ${({ inputClientRect: { top:top, left, height, bottom, width } }) => {
+  
+    if (window.innerHeight - bottom < 235) {
+      return `
+    top:'auto';
+    left:${left + width / 2}px;
+    bottom:${window.innerHeight - top + height / 4 - window.scrollY}px;`;
+    } else {
+      return `
+    top:${bottom + height / 4 + window.scrollY}px;
+    left:${left + width / 2}px;
+    bottom:'auto';`;
+    }
+  }}
 
   .date-picker-calendar {
     width: 215px;
-    z-index: 1;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-
-    ${({ positionCalendar }) =>
-      positionCalendar === 'top' ? 'top: 10px' : 'bottom: 70px'};
-
     border-radius: 8px;
     padding: 14px;
     border: none;
@@ -67,6 +74,7 @@ export const DatePickerWrapper = styled.div`
     .react-calendar__navigation__arrow {
       position: absolute;
       top: 6px;
+      z-index: 1;
       padding: 8px 8px;
 
       svg {
@@ -151,12 +159,24 @@ export const DatePickerWrapper = styled.div`
     }
 
     .react-calendar__month-view__days {
-      row-gap: 10px;
+      row-gap: ${({ inputClientRect }) => {
+        if (
+          inputClientRect.top > 250 ||
+          window.innerHeight - inputClientRect.bottom > 250
+        )
+          return 10;
+        else return 2;
+      }}px;
+
+      @media screen and (min-height: 690px) {
+        row-gap: 10px;
+      }
     }
 
     .react-calendar__tile {
       overflow: visible !important;
       position: relative;
+      z-index: 1;
       padding: 0;
       background-color: transparent;
       font-family: Roboto;
@@ -246,8 +266,13 @@ export const TransitionDatePicker = styled.div`
     opacity: 0;
     transform: scale(0.8)
       translateY(
-        ${({ positionCalendar }) =>
-          positionCalendar === 'top' ? '-50px' : ' 50px'}
+        ${({ inputClientRect }) => {
+          if (window.innerHeight - inputClientRect.bottom < 235) {
+            return '50px';
+          } else {
+            return '-50px';
+          }
+        }}
       );
   }
 
@@ -269,8 +294,13 @@ export const TransitionDatePicker = styled.div`
     opacity: 0;
     transform: scale(0.8)
       translateY(
-        ${({ positionCalendar }) =>
-          positionCalendar === 'top' ? '-50px' : ' 50px'}
+        ${({ inputClientRect }) => {
+          if (window.innerHeight - inputClientRect.bottom < 235) {
+            return '50px';
+          } else {
+            return '-50px';
+          }
+        }}
       );
     transition:
       opacity 300ms ease-in-out,
