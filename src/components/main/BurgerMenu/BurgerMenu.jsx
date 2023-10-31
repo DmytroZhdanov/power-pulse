@@ -31,7 +31,7 @@ export default function BurgerMenu({ setOpenedModal }) {
         onClick={() => {
           setOpenedModal(false);
         }}
-        border={true}
+        border={'true'}
       />
 
       <WrapDiv>
