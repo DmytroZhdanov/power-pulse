@@ -1,25 +1,26 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { format } from 'date-fns';
 
-import { useAddExerciseMutation } from 'src/redux/api';
-import Timer from 'src/components/Timer/Timer';
-import BasicModalWindow from 'src/components/common/BasicModalWindow/BasicModalWindow';
-import ErrorMessage from 'src/components/common/ErrorMessage/ErrorMessage';
-import AddExercisesFromPastDaysForm from '../AddExercisesFromPastDaysForm/AddExercisesFromPastDaysForm';
-import InfoOnExerciseList from '../InfoOnExerciseList/InfoOnExerciseList';
-
+import Timer from 'components/Timer/Timer';
+import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
+import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
+import AddExercisesFromPastDaysForm from 'components/exercises/AddExercisesFromPastDaysForm/AddExercisesFromPastDaysForm';
+import InfoOnExerciseList from 'components/exercises/InfoOnExerciseList/InfoOnExerciseList';
 import {
   ButtonOpenPastDaysForm,
   ButtonSubmit,
-  ButtonWrapper,
+  ButtonWrapperDiv,
   CaloriesDiv,
-  CaloriesLabel,
-  CaloriesValue,
-  ExerciseContainer,
-  ExerciseInfo,
-  Gif,
-  WorkoutSummary,
+  CaloriesLabelP,
+  CaloriesValueP,
+  ExerciseContainerDiv,
+  ExerciseInfoDiv,
+  GifImg,
+  WorkoutSummaryDiv,
 } from './AddExerciseForm.styled';
+
+import { useAddExerciseMutation } from 'src/redux/api';
 
 export default function AddExerciseForm({
   exercise,
@@ -54,7 +55,7 @@ export default function AddExerciseForm({
 
     const collectedData = {
       exercise_ID: _id,
-      date,
+      date: format(date, 'yyyy-MM-dd'),
       time,
       calories,
     };
@@ -94,9 +95,9 @@ export default function AddExerciseForm({
   };
 
   return (
-    <ExerciseContainer>
-      <ExerciseInfo>
-        <Gif src={gifUrl} alt="Exercise technique" />
+    <ExerciseContainerDiv>
+      <ExerciseInfoDiv>
+        <GifImg src={gifUrl} alt="Exercise technique" />
 
         <Timer
           timerLabel={staticData.timerLabel}
@@ -109,23 +110,25 @@ export default function AddExerciseForm({
         />
 
         <CaloriesDiv>
-          <CaloriesLabel>{staticData.caloriesLabel}</CaloriesLabel>
-          <CaloriesValue>{burnedCaloriesCount}</CaloriesValue>
-        </CaloriesDiv>
-      </ExerciseInfo>
+          <CaloriesLabelP>{staticData.caloriesLabel}</CaloriesLabelP>
 
-      <WorkoutSummary>
+          <CaloriesValueP>{burnedCaloriesCount}</CaloriesValueP>
+        </CaloriesDiv>
+      </ExerciseInfoDiv>
+
+      <WorkoutSummaryDiv>
         <InfoOnExerciseList exercise={exercise} />
 
-        <ButtonWrapper>
+        <ButtonWrapperDiv>
           <ButtonOpenPastDaysForm onClick={onShowModalForAddExercise}>
             {staticData.openPastDaysFormBtnName}
           </ButtonOpenPastDaysForm>
+
           <ButtonSubmit onClick={handleSubmit}>
             {staticData.addExerciseBtnName}
           </ButtonSubmit>
-        </ButtonWrapper>
-      </WorkoutSummary>
+        </ButtonWrapperDiv>
+      </WorkoutSummaryDiv>
 
       <BasicModalWindow
         onShow={showModalForAddExercise}
@@ -133,12 +136,7 @@ export default function AddExerciseForm({
           setShowModalForAddExercise(false);
         }}
       >
-        <AddExercisesFromPastDaysForm
-          onClose={() => {
-            setShowModalForAddExercise(false);
-          }}
-          onSubmit={handleSubmit}
-        />
+        <AddExercisesFromPastDaysForm onSubmit={handleSubmit} />
       </BasicModalWindow>
 
       <BasicModalWindow
@@ -152,7 +150,7 @@ export default function AddExerciseForm({
           message={errorMessage}
         />
       </BasicModalWindow>
-    </ExerciseContainer>
+    </ExerciseContainerDiv>
   );
 }
 

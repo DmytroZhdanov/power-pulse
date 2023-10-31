@@ -26,6 +26,7 @@ export const Navigation = styled.nav`
   }
 `;
 export const PageLink = styled(NavLink)`
+  transition: background-color ${({ theme }) => theme.transition.main};
   padding: 10px 27px;
   border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.color.grayDisabled};

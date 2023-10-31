@@ -4,24 +4,20 @@ import {
   ImageLink,
   WrapperDiv,
   DescriptionUl,
-  MaintextP,
+  MainTextP,
   SubtextP,
 } from './ExercisesSubcategoriesItem.styled';
 
 export default function ExercisesSubcategoriesItem({ item }) {
-  //function to make first letter into upperCase
-  function upperCase(text) {
-    return text.charAt(0).toUpperCase() + text.slice(1);
-  }
-
   return (
     <GalleryLi>
       <ImageLink to={item.name}>
         <WrapperDiv img={item.imgURL}>
           <DescriptionUl>
             <li>
-              <MaintextP>{upperCase(item.name)}</MaintextP>
+              <MainTextP>{item.name}</MainTextP>
             </li>
+
             <li>
               <SubtextP>{item.filter}</SubtextP>
             </li>
@@ -33,11 +29,10 @@ export default function ExercisesSubcategoriesItem({ item }) {
 }
 
 ExercisesSubcategoriesItem.propTypes = {
-  ExercisesSubcategoriesItem: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      imgURL: PropTypes.string.isRequired,
-      filter: PropTypes.string.isRequired,
-    }),
-  ),
+  item: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    imgURL: PropTypes.string.isRequired,
+    filter: PropTypes.string.isRequired,
+  }),
 };

@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 
 export const TableDiv = styled.div`
+  scroll-behavior: auto;
+  overflow-y: auto;
+
+  overflow-x: hidden;
   @media screen and (max-width: 767px) {
     max-height: 762px;
     max-width: 335px;
@@ -11,94 +15,86 @@ export const TableDiv = styled.div`
   }
   @media screen and (min-width: 1440px) {
     max-width: 804px;
-    padding: 0 8px
+    padding: 0 8px;
   }
-  scroll-behavior: auto;
-  overflow-y: auto;
-  // overflow-y: hidden;
-  overflow-x: hidden;
 `;
 export const Table = styled.table`
-border-spacing: 8px ;
-border-collapse: separate;
-@media screen and (max-width: 767px) {
-  position: relative;
+  border-spacing: 8px;
+  border-collapse: separate;
+  @media screen and (max-width: 767px) {
+    position: relative;
     height: 264px;
     width: 100%;
-    &:last-child {
-      height: 234px;
-    }
   }
 `;
 
 export const TableMainTitles = styled.thead`
-text-align: left;
+  text-align: left;
 `;
 
 export const TableTitleTr = styled.tr`
-font-size: 12px;
+  font-size: 12px;
   line-height: ${18 / 12};
   color: #ef8964;
 `;
 
 export const TableMainTitle = styled.th`
-@media screen and (max-width: 767px) {
-  position: absolute; 
-  &:nth-of-type(2) {
-    top: 88px;
+  @media screen and (max-width: 767px) {
+    position: absolute;
+    &:nth-of-type(2) {
+      top: 88px;
+    }
+    &:nth-of-type(3) {
+      top: 168px;
+    }
+    &:nth-of-type(4) {
+      top: 168px;
+      left: 105px;
+    }
+    &:nth-of-type(5) {
+      top: 168px;
+      left: 201px;
+    }
   }
-  &:nth-of-type(3) {
-    top: 168px;
-  }
-  &:nth-of-type(4) {
-    top: 168px;
-    left: 105px;
-  }
-  &:nth-of-type(5) {
-    top: 168px;
-    left: 201px;
-  }
-}
 
-@media screen and (min-width: 768px) {
-  &:first-of-type {
-    width: 204px;
+  @media screen and (min-width: 768px) {
+    &:first-of-type {
+      width: 204px;
+    }
+    &:nth-of-type(2) {
+      width: 128px;
+    }
+    &:nth-of-type(3) {
+      width: 90px;
+    }
+    &:nth-of-type(4) {
+      width: 90px;
+    }
+    &:nth-of-type(5) {
+      width: 80px;
+    }
   }
-  &:nth-of-type(2) {
-    width: 128px;
-  }
-  &:nth-of-type(3) {
-    width: 90px;
-  }
-  &:nth-of-type(4) {
-    width: 90px;
-  }
-  &:nth-of-type(5) {
-    width: 80px;
-  }
-}
 
-@media screen and (min-width: 1440px) {
-  &:first-of-type {
-    width: 212px;
-  }
-  &:nth-of-type(2) {
-    width: 166px;
-  }
-  &:nth-of-type(3) {
-    width: 105px;
-  }
-  &:nth-of-type(4) {
-    width: 105px;
-  }
-  &:nth-of-type(5) {
-    width: 110px;
+  @media screen and (min-width: 1440px) {
+    &:first-of-type {
+      width: 212px;
+    }
+    &:nth-of-type(2) {
+      width: 166px;
+    }
+    &:nth-of-type(3) {
+      width: 105px;
+    }
+    &:nth-of-type(4) {
+      width: 105px;
+    }
+    &:nth-of-type(5) {
+      width: 110px;
+    }
   }
 `;
 
-export const TableTr = styled.tr`
- 
-`;
+export const TableTr = styled.tr``;
 export const DelBtnTable = styled.button`
   width: 20px;
   height: 20px;
@@ -106,18 +102,27 @@ export const DelBtnTable = styled.button`
   border: none;
   background-color: transparent;
   padding: 0;
+
   @media screen and (max-width: 767px) {
     position: absolute;
     top: 203px;
     left: 285px;
   }
   @media screen and (min-width: 768px) {
-    padding-left: 4px
+    padding-left: 4px;
   }
-  `;
+`;
 export const DelIcon = styled.svg`
   width: 20px;
   height: 20px;
+  stroke: #ef8964;
+  transition:
+    stroke 250ms cubic-bezier(0.165, 0.84, 0.44, 1.03),
+    fill 250ms cubic-bezier(0.165, 0.84, 0.44, 1.03);
+  &:is(:hover, :focus) {
+    stroke: white;
+    fill: white;
+  }
 `;
 export const TableRecomSpan = styled.span`
   width: 14px;
@@ -129,13 +134,15 @@ export const TableRecomSpan = styled.span`
     props.Recom ? 'background-color: #419B09' : 'background-color: #E9101D'}
 `;
 
-export const TableBody = styled.tbody`
-
-`
+export const TableBody = styled.tbody``;
 export const TableInfoTd = styled.td`
 border-radius: 12px;
 color: #efede8;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 border: 1px solid rgba(239, 237, 232, 0.3);
+ 
 @media screen and (max-width: 767px) {
   position: absolute; 
   padding: 10px 14px;
@@ -168,41 +175,42 @@ border: 1px solid rgba(239, 237, 232, 0.3);
 @media screen and (min-width: 768px) {
   position: relative;
   font-size: 16px;
+ 
   line-height: ${24 / 16};
   padding: 8px 14px;
   &:first-of-type {
-    width: 204px;
+    max-width: 204px;
   }
   &:nth-of-type(2) {
-    width: 128px;
+    max-width: 128px;
   }
   &:nth-of-type(3) {
-    width: 90px;
+    max-width: 90px;
   }
   &:nth-of-type(4) {
-    width: 90px;
+    max-width: 90px;
   }
   &:nth-of-type(5) {
-    width: 80px;
+    max-width: 80px;
   }
 }
 @media screen and (min-width: 1440px) {
   &:first-of-type {
-    width: 212px;
+    max-width: 212px;
   }
   &:nth-of-type(2) {
-    width: 166px;
+    max-width: 166px;
   }
   &:nth-of-type(3) {
-    width: 105px;
+    max-width: 105px;
   }
   &:nth-of-type(4) {
-    width: 105px;
+    max-width: 105px;
   }
   &:nth-of-type(5) {
-    width: 110px;
+    max-width: 110px;
   }
   }
 }
 
-`
+`;

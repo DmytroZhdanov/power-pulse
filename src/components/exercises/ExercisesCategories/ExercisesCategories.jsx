@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate, useResolvedPath } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { EXERCISES_CATEGORY } from '../../../utils/constants';
+
 import {
   CategoriesFieldset,
   CategoryDiv,
@@ -9,18 +9,24 @@ import {
   CategoryInput,
 } from './ExercisesCategories.styled';
 
+import { EXERCISES_CATEGORY } from 'src/utils/constants';
+
 export default function ExercisesCategories({ category, setCategory }) {
   const path = useResolvedPath();
   const navigate = useNavigate();
+  const currentPathNameRef = useRef(path.pathname);
 
-  //we use it to set up the path
   useEffect(() => {
-    if (path.pathname !== '/exercises') {
+    if (currentPathNameRef.current !== '/exercises') {
       navigate('./');
     }
-  }, [category]);
+  }, [category, navigate]);
 
-  //to check input value
+  useEffect(() => {
+    currentPathNameRef.current = path.pathname;
+  }, [path.pathname]);
+
+  // To check input value
   const handleOptionChange = event => {
     setCategory(event.target.value);
   };
@@ -38,6 +44,7 @@ export default function ExercisesCategories({ category, setCategory }) {
           Body parts
         </CategoryLabel>
       </CategoryDiv>
+
       <CategoryDiv>
         <CategoryLabel selected={category === EXERCISES_CATEGORY.MUSCLES}>
           <CategoryInput
@@ -49,6 +56,7 @@ export default function ExercisesCategories({ category, setCategory }) {
           Muscles
         </CategoryLabel>
       </CategoryDiv>
+
       <CategoryDiv>
         <CategoryLabel selected={category === EXERCISES_CATEGORY.EQUIPMENT}>
           <CategoryInput

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useDeleteProductMutation } from '../../../redux/api';
 import {
   Table,
   TableMainTitles,
@@ -13,8 +14,13 @@ import {
   TableDiv,
 } from './ProductsTable.styled';
 import sprite from '../../../assets/images/sprite/sprite.svg';
-
-export default function ProductsTable() {
+import { motion, AnimatePresence } from 'framer-motion';
+export default function ProductsTable({
+  diaryProducts,
+  setDiaryProducts,
+  blood,
+}) {
+  const [deleteProduct] = useDeleteProductMutation();
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
   const handleResize = () => {
@@ -27,179 +33,136 @@ export default function ProductsTable() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  const handleDeleteProduct = async id => {
+    try {
+      await deleteProduct(id);
 
+      const filteredDiaryProducts = diaryProducts.filter(
+        product => product._id !== id,
+      );
+
+      setDiaryProducts(filteredDiaryProducts);
+    } catch (error) {
+      alert('Ops...Something went wrong. Please try again.');
+    }
+  };
   return (
     <>
       <TableDiv>
-      {isDesktop ? (
-        <Table>
-          <TableMainTitles>
-            <TableTitleTr>
-              <TableMainTitle>Title</TableMainTitle>
-              <TableMainTitle>Category</TableMainTitle>
-              <TableMainTitle>Calories</TableMainTitle>
-              <TableMainTitle>Weight</TableMainTitle>
-              <TableMainTitle>Recommend</TableMainTitle>
-            </TableTitleTr>
-          </TableMainTitles>
+        {isDesktop ? (
+          <Table>
+            <TableMainTitles>
+              <TableTitleTr>
+                <TableMainTitle>Title</TableMainTitle>
+                <TableMainTitle>Category</TableMainTitle>
+                <TableMainTitle>Calories</TableMainTitle>
+                <TableMainTitle>Weight</TableMainTitle>
+                <TableMainTitle>Recommend</TableMainTitle>
+              </TableTitleTr>
+            </TableMainTitles>
+            <AnimatePresence>
+              {diaryProducts &&
+                diaryProducts.length !== 0 &&
+                diaryProducts.map(product => {
+                  const isRecommended = !product.groupBloodNotAllowed[blood]
+                    ? true
+                    : false;
 
-          <TableBody>
-            {/* Тут мапаєш і повертаєш те, що нижче */}
-            <TableTr>
-              <TableInfoTd>Bread Hercules grain</TableInfoTd>
-              <TableInfoTd>Cereals</TableInfoTd>
-              <TableInfoTd>289</TableInfoTd>
-              <TableInfoTd>100</TableInfoTd>
-              <TableInfoTd>
-                <TableRecomSpan Recom={true} />
-                Yes
-              </TableInfoTd>
-              <td>
-              <DelBtnTable>
-                <DelIcon>
-                  <use href={`${sprite}#delete`}></use>
-                </DelIcon>
-              </DelBtnTable>
-              </td>
-            </TableTr>
-            {/* Кінець повернення з мапу */}
+                  return (
+                    <TableBody
+                      key={product._id}
+                      as={motion.tbody}
+                      initial={{ x: 900 }}
+                      animate={{ x: 0 }}
+                      transition={{ duration: 0.3 }}
+                      exit={{ x: -900 }}
+                    >
+                      <TableTr>
+                        <TableInfoTd>{product.title}</TableInfoTd>
+                        <TableInfoTd>{product.category}</TableInfoTd>
+                        <TableInfoTd>{product.calories}</TableInfoTd>
+                        <TableInfoTd>{product.amount}</TableInfoTd>
+                        <TableInfoTd>
+                          <TableRecomSpan Recom={isRecommended} />
+                          {isRecommended ? 'Yes' : 'No'}
+                        </TableInfoTd>
+                        <td>
+                          <DelBtnTable
+                            onClick={() => {
+                              handleDeleteProduct(product._id);
+                            }}
+                          >
+                            <DelIcon>
+                              <use href={`${sprite}#delete`}></use>
+                            </DelIcon>
+                          </DelBtnTable>
+                        </td>
+                      </TableTr>
+                    </TableBody>
+                  );
+                })}
+            </AnimatePresence>
+          </Table>
+        ) : (
+          // мапаєш і повертаєщ те, що нижч
+          <>
+            <AnimatePresence>
+              {diaryProducts &&
+                diaryProducts.length !== 0 &&
+                diaryProducts.map(product => {
+                  const isRecommended =
+                    product.groupBloodNotAllowed[blood] === false
+                      ? true
+                      : false;
 
-            <TableTr>
-              <TableInfoTd>Bread Hercules grain</TableInfoTd>
-              <TableInfoTd>Cereals</TableInfoTd>
-              <TableInfoTd>289</TableInfoTd>
-              <TableInfoTd>100</TableInfoTd>
-              <TableInfoTd>
-                <TableRecomSpan Recom={true} />
-                Yes
-              </TableInfoTd>
-              <td>
-              <DelBtnTable>
-                <DelIcon>
-                  <use href={`${sprite}#delete`}></use>
-                </DelIcon>
-              </DelBtnTable>
-              </td>
-            </TableTr>
+                  return (
+                    <Table
+                      initial={{ x: 900 }}
+                      animate={{ x: 0 }}
+                      transition={{ duration: 0.3 }}
+                      exit={{ x: -900 }}
+                      as={motion.table}
+                      key={product._id}
+                    >
+                      <TableMainTitles>
+                        <TableTitleTr>
+                          <TableMainTitle>Title</TableMainTitle>
+                          <TableMainTitle>Category</TableMainTitle>
+                          <TableMainTitle>Calories</TableMainTitle>
+                          <TableMainTitle>Weight</TableMainTitle>
+                          <TableMainTitle>Recommend</TableMainTitle>
+                        </TableTitleTr>
+                      </TableMainTitles>
 
-            <TableTr>
-              <TableInfoTd>Bread Hercules grain</TableInfoTd>
-              <TableInfoTd>Cereals</TableInfoTd>
-              <TableInfoTd>289</TableInfoTd>
-              <TableInfoTd>100</TableInfoTd>
-              <TableInfoTd>
-                <TableRecomSpan Recom={true} />
-                Yes
-              </TableInfoTd>
-              <td>
-              <DelBtnTable>
-                <DelIcon>
-                  <use href={`${sprite}#delete`}></use>
-                </DelIcon>
-              </DelBtnTable>
-              </td>
-            </TableTr>
-          </TableBody>
-        </Table>
-      ) : (
-        // мапаєш і повертаєщ те, що нижч
-        <>
-        <Table>
-          <TableMainTitles>
-            <TableTitleTr>
-              <TableMainTitle>Title</TableMainTitle>
-              <TableMainTitle>Category</TableMainTitle>
-              <TableMainTitle>Calories</TableMainTitle>
-              <TableMainTitle>Weight</TableMainTitle>
-              <TableMainTitle>Recommend</TableMainTitle>
-            </TableTitleTr>
-          </TableMainTitles>
-
-          <TableBody>
-            <TableTr>
-              <TableInfoTd>Bread Hercules grain</TableInfoTd>
-              <TableInfoTd>Cereals</TableInfoTd>
-              <TableInfoTd>289</TableInfoTd>
-              <TableInfoTd>100</TableInfoTd>
-              <TableInfoTd>
-                <TableRecomSpan Recom={true} />
-                Yes
-              </TableInfoTd>
-              <td>
-              <DelBtnTable>
-                <DelIcon>
-                  <use href={`${sprite}#delete`}></use>
-                </DelIcon>
-              </DelBtnTable>
-              </td>
-            </TableTr>
-          </TableBody>
-        </Table>
-        <Table>
-          <TableMainTitles>
-            <TableTitleTr>
-              <TableMainTitle>Title</TableMainTitle>
-              <TableMainTitle>Category</TableMainTitle>
-              <TableMainTitle>Calories</TableMainTitle>
-              <TableMainTitle>Weight</TableMainTitle>
-              <TableMainTitle>Recommend</TableMainTitle>
-            </TableTitleTr>
-          </TableMainTitles>
-
-          <TableBody>
-            <TableTr>
-              <TableInfoTd>Bread Hercules grain</TableInfoTd>
-              <TableInfoTd>Cereals</TableInfoTd>
-              <TableInfoTd>289</TableInfoTd>
-              <TableInfoTd>100</TableInfoTd>
-              <TableInfoTd>
-                <TableRecomSpan Recom={true} />
-                Yes
-              </TableInfoTd>
-              <td>
-              <DelBtnTable>
-                <DelIcon>
-                  <use href={`${sprite}#delete`}></use>
-                </DelIcon>
-              </DelBtnTable>
-              </td>
-            </TableTr>
-          </TableBody>
-        </Table>
-        <Table>
-          <TableMainTitles>
-            <TableTitleTr>
-              <TableMainTitle>Title</TableMainTitle>
-              <TableMainTitle>Category</TableMainTitle>
-              <TableMainTitle>Calories</TableMainTitle>
-              <TableMainTitle>Weight</TableMainTitle>
-              <TableMainTitle>Recommend</TableMainTitle>
-            </TableTitleTr>
-          </TableMainTitles>
-
-          <TableBody>
-            <TableTr>
-              <TableInfoTd>Bread Hercules grain</TableInfoTd>
-              <TableInfoTd>Cereals</TableInfoTd>
-              <TableInfoTd>289</TableInfoTd>
-              <TableInfoTd>100</TableInfoTd>
-              <TableInfoTd>
-                <TableRecomSpan Recom={true} />
-                Yes
-              </TableInfoTd>
-              <td>
-              <DelBtnTable>
-                <DelIcon>
-                  <use href={`${sprite}#delete`}></use>
-                </DelIcon>
-              </DelBtnTable>
-              </td>
-            </TableTr>
-          </TableBody>
-        </Table>
-        </>
-        // Кінець повернення з мапу
-      )}
+                      <TableBody>
+                        <TableTr>
+                          <TableInfoTd>{product.title}</TableInfoTd>
+                          <TableInfoTd>{product.category}</TableInfoTd>
+                          <TableInfoTd>{product.calories}</TableInfoTd>
+                          <TableInfoTd>{product.amount}</TableInfoTd>
+                          <TableInfoTd>
+                            <TableRecomSpan Recom={isRecommended} />
+                            {isRecommended ? 'Yes' : 'No'}
+                          </TableInfoTd>
+                          <td>
+                            <DelBtnTable
+                              onClick={() => {
+                                handleDeleteProduct(product._id);
+                              }}
+                            >
+                              <DelIcon>
+                                <use href={`${sprite}#delete`}></use>
+                              </DelIcon>
+                            </DelBtnTable>
+                          </td>
+                        </TableTr>
+                      </TableBody>
+                    </Table>
+                  );
+                })}
+            </AnimatePresence>
+          </>
+        )}
       </TableDiv>
     </>
   );
