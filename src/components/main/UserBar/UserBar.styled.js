@@ -28,6 +28,13 @@ export const SvgSettings = styled.svg`
     height: 28px;
   }
 `;
+export const AvatarWrapDiv = styled.div`
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+`;
 
 export const AvatarDiv = styled.div`
   width: 37px;
@@ -38,9 +45,11 @@ export const AvatarDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 14px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 46px;
+    margin-right: 16px;
     height: 46px;
   }
 `;
