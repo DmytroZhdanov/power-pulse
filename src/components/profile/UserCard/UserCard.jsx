@@ -52,10 +52,10 @@ export default function UserCard() {
                 <picture>
                   <source
                     srcSet={`
-              ${avatars.avatar_90x90}   90w,
-              ${avatars.avatar_150x150}   150w,
-              ${avatars.avatar_180x180} 180w,
-              ${avatars.avatar_300x300}   300w
+                      ${avatars.avatar_90x90}   90w,
+                      ${avatars.avatar_150x150}   150w,
+                      ${avatars.avatar_180x180} 180w,
+                      ${avatars.avatar_300x300}   300w
                     `}
                     sizes="(min-width: 768px) 150px, (min-width: 375px) 90px, 90px, 100vw"
                     type="image/jpeg"
