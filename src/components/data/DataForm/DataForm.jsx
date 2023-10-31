@@ -13,6 +13,9 @@ import { format } from 'date-fns';
 import { useUpdateUserParamsMutation } from 'src/redux/api';
 import { validationSchema } from '../helper/controlData';
 
+import { motion } from 'framer-motion';
+import { slideInFromLeft } from '../helper/motion';
+
 const DataForm = ({ userParams, step /* setUserParams */ }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const navigate = useNavigate();
@@ -39,24 +42,33 @@ const DataForm = ({ userParams, step /* setUserParams */ }) => {
     },
   });
   return (
-    <DataFormContainer>
-      <DataHeader step={step} />
-      <FormikProvider value={formik}>
-        <Form>
-          {step === DATA_STEPS.FIRST && (
-            <FirstStep
-              selectedDate={selectedDate}
-              setSelectedDate={setSelectedDate}
-              formik={formik}
-            />
-          )}
-          {step === DATA_STEPS.SECOND && <SecondStep formik={formik} />}
-          {step === DATA_STEPS.THIRD && <ThirdStep formik={formik} />}
+    <motion.div
+      key={step}
+      variants={slideInFromLeft}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      transition={{ duration: 0.5 }}
+    >
+      <DataFormContainer>
+        <DataHeader step={step} />
+        <FormikProvider value={formik}>
+          <Form>
+            {step === DATA_STEPS.FIRST && (
+              <FirstStep
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+                formik={formik}
+              />
+            )}
+            {step === DATA_STEPS.SECOND && <SecondStep formik={formik} />}
+            {step === DATA_STEPS.THIRD && <ThirdStep formik={formik} />}
 
-          <DataBtns step={step} formik={formik} />
-        </Form>
-      </FormikProvider>
-    </DataFormContainer>
+            <DataBtns step={step} formik={formik} />
+          </Form>
+        </FormikProvider>
+      </DataFormContainer>
+    </motion.div>
   );
 };
 
