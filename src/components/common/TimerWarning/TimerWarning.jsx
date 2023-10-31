@@ -1,20 +1,25 @@
-import { Container, Signature, Text, Title } from './TimerWarning.styled';
+import {
+  ContainerDiv,
+  SignatureP,
+  TextP,
+  TitleH2,
+} from './TimerWarning.styled';
 
 export default function TimerWarning() {
   return (
-    <Container>
-      <Title>Hello Fitness Enthusiast!</Title>
+    <ContainerDiv>
+      <TitleH2>Hello Fitness Enthusiast!</TitleH2>
 
-      <Text>
+      <TextP>
         In our free hosting world, occasionally your request might take a little
         longer after inactivity. Stay connected because we&apos;re gearing up
         for faster responses on your next calorie count or exercise hunt!
-      </Text>
+      </TextP>
 
-      <Signature>
+      <SignatureP>
         Best regards,
         <br /> The PowerPulse Platform Team
-      </Signature>
-    </Container>
+      </SignatureP>
+    </ContainerDiv>
   );
 }
