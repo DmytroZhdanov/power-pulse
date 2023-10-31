@@ -52,6 +52,9 @@ export const MainTextP = styled.p`
   font-size: 20px;
   line-height: 1.33;
   margin-bottom: 2px;
+  &::first-letter {
+    text-transform: uppercase;
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 24px;
@@ -59,7 +62,7 @@ export const MainTextP = styled.p`
 `;
 
 export const SubtextP = styled.p`
-  color: ${({ theme }) => theme.color.greyThird};
+  color: ${({ theme }) => theme.color.grayThird};
   font-size: 12px;
   line-height: 1.5;
 `;

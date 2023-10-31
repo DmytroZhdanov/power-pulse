@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate, useResolvedPath } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -14,13 +14,17 @@ import { EXERCISES_CATEGORY } from 'src/utils/constants';
 export default function ExercisesCategories({ category, setCategory }) {
   const path = useResolvedPath();
   const navigate = useNavigate();
+  const currentPathNameRef = useRef(path.pathname);
 
-  // Set up the path
   useEffect(() => {
-    if (path.pathname !== '/exercises') {
+    if (currentPathNameRef.current !== '/exercises') {
       navigate('./');
     }
   }, [category, navigate]);
+
+  useEffect(() => {
+    currentPathNameRef.current = path.pathname;
+  }, [path.pathname]);
 
   // To check input value
   const handleOptionChange = event => {

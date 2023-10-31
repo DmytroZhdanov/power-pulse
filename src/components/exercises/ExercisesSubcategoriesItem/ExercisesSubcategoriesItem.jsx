@@ -9,18 +9,13 @@ import {
 } from './ExercisesSubcategoriesItem.styled';
 
 export default function ExercisesSubcategoriesItem({ item }) {
-  //function to make first letter into upperCase
-  function upperCase(text) {
-    return text.charAt(0).toUpperCase() + text.slice(1);
-  }
-
   return (
     <GalleryLi>
       <ImageLink to={item.name}>
         <WrapperDiv img={item.imgURL}>
           <DescriptionUl>
             <li>
-              <MainTextP>{upperCase(item.name)}</MainTextP>
+              <MainTextP>{item.name}</MainTextP>
             </li>
 
             <li>
@@ -34,11 +29,10 @@ export default function ExercisesSubcategoriesItem({ item }) {
 }
 
 ExercisesSubcategoriesItem.propTypes = {
-  ExercisesSubcategoriesItem: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      imgURL: PropTypes.string.isRequired,
-      filter: PropTypes.string.isRequired,
-    }),
-  ),
+  item: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    imgURL: PropTypes.string.isRequired,
+    filter: PropTypes.string.isRequired,
+  }),
 };
