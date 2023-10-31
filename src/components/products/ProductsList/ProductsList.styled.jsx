@@ -8,7 +8,7 @@ export const DivProducts = styled.div`
     height: 487px;
   }
 `;
-
+export const WrapLi = styled.li``;
 export const ProductList = styled.ul`
   @media (min-width: 768px) {
     display: flex;

@@ -5,6 +5,7 @@ import {
   DefaultText,
   SpanNotFound,
   SpanTry,
+  WrapLi,
 } from './ProductsList.styled';
 
 import {
@@ -13,6 +14,8 @@ import {
 } from '../../../redux/api';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import ErrorHandler from '../../common/ErrorHandler/ErrorHandler';
+import { useInView } from 'react-intersection-observer';
 
 /**
  * The ProductsList component represents a list of products and displays them according to the passed filter.
@@ -23,11 +26,18 @@ import PropTypes from 'prop-types';
 export default function ProductsList({ filter }) {
   const [products, setProducts] = useState([]);
   const [userGroupBlood, setUserGroupBlood] = useState(null);
-  const [getProducts] = useLazyFetchAllProductsQuery();
+  const [page, setPage] = useState(1);
+  const [fetching, setFetching] = useState(true);
+  const [
+    getProducts,
+    { isLoading: isGettingLazy, isError: gettingErrorLazy, error: myErrorLazy },
+  ] = useLazyFetchAllProductsQuery();
 
   const pending = useFetchUserBloodGroupQuery();
   const { isSuccess, data } = pending;
-
+  const { ref } = useInView({
+    onChange: inView => inView && setFetching(true),
+  });
   /**
    * Updates the user's blood type based on a successful request to the backend.
    *
@@ -50,28 +60,44 @@ export default function ProductsList({ filter }) {
    */
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await getProducts(filter).unwrap();
-        setProducts(data);
-      } catch (error) {
-        console.error('Error fetching data:', error.message);
-      }
-    };
+    if (fetching) {
+      const fetchData = async () => {
+        try {
+          const { data } = await getProducts(filter, page).unwrap();
+          console.log(data);
 
-    fetchData();
-  }, [filter, getProducts]);
+          if (data.length === 0) {
+            return;
+          }
+          page === 1
+            ? setProducts([...data])
+            : setProducts(prev => [...prev, ...data]);
+          setFetching(false);
+          setPage(page + 1);
+        } catch (error) {
+          console.error('Error fetching data:', error.message);
+        }
+      };
+
+      fetchData();
+    }
+  }, [filter, getProducts, page, fetching]);
 
   return (
     <DivProducts>
       {products.length > 0 ? (
         <ProductList>
-          {products.map(({ _id, ...props }) => (
-            <ProductsItem
-              key={_id}
-              props={props}
-              userGroupBlood={userGroupBlood}
-            ></ProductsItem>
+          {products.map(({ _id, ...props }, index) => (
+            <WrapLi
+              key={index}
+              ref={index === products.length - 1 ? ref : null}
+            >
+              <ProductsItem
+                key={_id}
+                props={props}
+                userGroupBlood={userGroupBlood}
+              ></ProductsItem>
+            </WrapLi>
           ))}
         </ProductList>
       ) : (
@@ -85,6 +111,11 @@ export default function ProductsList({ filter }) {
           <SpanTry>Try changing the search parameters.</SpanTry>
         </>
       )}
+      <ErrorHandler
+        isLoading={isGettingLazy}
+        isError={gettingErrorLazy}
+        error={myErrorLazy}
+      />
     </DivProducts>
   );
 }
