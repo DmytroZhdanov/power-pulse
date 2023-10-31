@@ -5,7 +5,6 @@ import { EXERCISES_CATEGORY } from '../../utils/constants';
 import ExercisesCategories from 'components/exercises/ExercisesCategories/ExercisesCategories';
 
 import { Content, WrapperTitleCategoriesDiv } from './Exercises.styled';
-import { upperCase } from 'src/utils';
 
 export function Exercises() {
   const [category, setCategory] = useState(EXERCISES_CATEGORY.BODY_PARTS);
@@ -17,7 +16,7 @@ export function Exercises() {
     <Content>
       <WrapperTitleCategoriesDiv margin={Boolean(subcategory)}>
         <TitlePage
-          text={subcategoriesLocation ? 'Exercises' : upperCase(subcategory)}
+          text={subcategoriesLocation ? 'Exercises' : (subcategory)}
         />
         <ExercisesCategories setCategory={setCategory} category={category} />
       </WrapperTitleCategoriesDiv>
