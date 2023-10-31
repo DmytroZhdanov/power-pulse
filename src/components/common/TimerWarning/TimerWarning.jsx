@@ -13,7 +13,7 @@ export default function TimerWarning() {
 
       <Signature>
         Best regards,
-        <br /> The Fitness Platform Team
+        <br /> The PowerPulse Platform Team
       </Signature>
     </Container>
   );
