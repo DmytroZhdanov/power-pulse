@@ -12,11 +12,21 @@ import {
   Value,
 } from './DayDashboard.styled';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { useFetchDailyRateQuery } from '../../../redux/api';
+// import { useFetchDailyRateQuery } from '../../../redux/api';
 import { useEffect, useState } from 'react';
 
-export default function DayDashboard() {
-
+export default function DayDashboard({bmrData, diaryProducts, diaryExercises}) {
+  const allCalories = (array) =>{
+    console.log(array)
+    const CalOneProd = array.map(product => product.calories)
+    const AllCal = CalOneProd.reduce((total, amount) => total + amount); 
+    return AllCal
+  }
+  const allExerCalories = (array) =>{
+    const CalOneProd = array.map(product => product.calories)
+    const AllCal = CalOneProd.reduce((total, amount) => total + amount); 
+    return AllCal
+  }
   return (
     <Container>
       <BlockList>
@@ -29,7 +39,7 @@ export default function DayDashboard() {
             <Title highlighted={true}>Daily calory intake</Title>
           </TitleWrapper>
 
-          <Value>{2200}</Value>
+          <Value>{bmrData || 2200}</Value>
         </BlockItem>
 
         <BlockItem highlighted={true}>
@@ -53,7 +63,7 @@ export default function DayDashboard() {
             <Title>Calories consumed</Title>
           </TitleWrapper>
 
-          <Value>707</Value>
+          <Value>{diaryProducts && diaryProducts.length !== 0 ?  allCalories(diaryProducts) : 0}</Value>
         </BlockItem>
 
         <BlockItem>
@@ -65,7 +75,7 @@ export default function DayDashboard() {
             <Title>Calories burned</Title>
           </TitleWrapper>
 
-          <Value>855</Value>
+          <Value>{diaryExercises && diaryExercises.length !== 0 ?  allExerCalories(diaryExercises) : 0}</Value>
         </BlockItem>
 
         <BlockItem caloriesOverConsumed={true}>
