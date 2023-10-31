@@ -149,6 +149,21 @@ export const api = createApi({
     fetchDiary: builder.query({
       query: date => ({ url: `/diary/day?date=${date}` }),
     }),
+    fetchDiaryAll: builder.query({
+      query: () => ({ url: `/diary/day` }),
+      transformResponse: res => {
+        return [
+          ...new Set([
+            ...res.exerciseResult.map(({ date }) =>
+              new Date(date).toDateString(),
+            ),
+            ...res.productResult.map(({ date }) =>
+              new Date(date).toDateString(),
+            ),
+          ]),
+        ];
+      },
+    }),
     addProduct: builder.mutation({
       query: credentials => ({
         url: '/diary/day/diaryProducts',
@@ -200,6 +215,7 @@ export const {
   useLazyFetchAllExercisesQuery,
   useFetchExercisesSubcategoriesQuery,
   useLazyFetchDiaryQuery,
+  useLazyFetchDiaryAllQuery,
   useAddProductMutation,
   useAddExerciseMutation,
   useDeleteProductMutation,
