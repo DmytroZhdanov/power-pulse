@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.div`
+export const ContainerDiv = styled.div`
   width: 100%;
   padding: 0 20px;
 
@@ -9,7 +9,7 @@ export const Container = styled.div`
       display: 'flex',
     }}
 
-  @media screen and (min-width: 375px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     width: 375px;
     margin-left: auto;
     margin-right: auto;
@@ -22,14 +22,15 @@ export const Container = styled.div`
       }}
   }
 
-  @media screen and (min-width: 767px) and (max-width: 1439px) {
+  @media screen and (min-width: ${({ theme }) =>
+      theme.breakpoint.tablet}) and (max-width: 1439px) {
     ${props =>
       props.showStatisticInfo && {
         height: 1024,
       }}
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 744px;
   }
 
@@ -40,7 +41,7 @@ export const Container = styled.div`
       }}
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     position: relative;
     width: 1288px;
   }
