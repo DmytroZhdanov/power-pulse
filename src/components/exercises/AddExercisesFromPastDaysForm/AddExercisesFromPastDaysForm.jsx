@@ -1,6 +1,5 @@
-import PropTypes from 'prop-types';
-
 import { format } from 'date-fns';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Icon from 'src/components/common/IconsComp/Icon';
 import Calendar from '../../Calendar/Calendar';
@@ -49,7 +48,11 @@ const AddExercisesFromPastDaysForm = ({ onSubmit }) => {
 
       <InputWrapper>
         <InputLabel>Choice day</InputLabel>
-        <Calendar maxDate={new Date()} onChange={setDate} value={selectedDate}>
+        <Calendar
+          maxDate={new Date()}
+          onChange={setDate}
+          value={selectedDate}
+        >
           <WrapperCalendarInput>
             <CalendarInputText>{inputText}</CalendarInputText>
             <CalendarIcon>
@@ -69,5 +72,4 @@ export default AddExercisesFromPastDaysForm;
 
 AddExercisesFromPastDaysForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
 };
