@@ -9,7 +9,7 @@ import { FirstStepContainer } from './FirstStep.styled';
 import { ErrorMessage } from 'formik';
 import Icon from '../../common/IconsComp/Icon';
 
-import BirthdayInput from '../../profile/BirthdayInput/BirthdayInput';
+import BirthdayInput from '../../data/DataBirthday/DataBirthdayInput';
 
 export function FirstStep({ formik, selectedDate, setSelectedDate }) {
   return (
