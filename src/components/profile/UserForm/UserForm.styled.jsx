@@ -1,17 +1,17 @@
 import styled from '@emotion/styled';
-import styles from 'react-day-picker/dist/style.css';
+import styles from 'react-day-picker/dist/style.css?inline';
 
-export const Form = styled.form`
+export const Forms = styled.form`
   width: 335px;
   background-color: #0a0909;
-  /* 
+
   p {
     margin-top: 5px;
     margin-bottom: 5px;
     font-size: 10px;
     line-height: calc(12 / 10);
     color: #e6533c;
-  } */
+  }
 
   button {
     width: 115px;
@@ -178,7 +178,7 @@ export const Text = styled.div`
   }
 `;
 
-export const Calendar = styled.div`
+export const CalendarI = styled.div`
   display: flex;
   flex-direction: row;
   gap: 14px;
