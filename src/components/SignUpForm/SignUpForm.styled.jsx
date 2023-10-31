@@ -142,7 +142,6 @@ export const Sign = styled.div`
 export const Buttons = styled.div`
   display: inline-flex;
   flex-direction: column;
-  
 
   @media screen and (min-width: 768px) {
     margin-top: 64px;
@@ -163,8 +162,8 @@ export const Buttons = styled.div`
     background-color: #e6533c;
 
     @media screen and (min-width: 768px) {
-    margin-top: 0;
-  }
+      margin-top: 0;
+    }
 
     :hover,
     :active {
