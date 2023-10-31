@@ -10,7 +10,7 @@ export const TableDiv = styled.div`
     max-width: 335px;
   }
   @media screen and (min-width: 768px) {
-    max-height: 178px;
+    max-height: 177px;
     max-width: 704px;
   }
   @media screen and (min-width: 1440px) {
@@ -25,6 +25,9 @@ export const Table = styled.table`
     position: relative;
     height: 264px;
     width: 100%;
+    &:last-child {
+      height: 234px;
+    }
   }
 `;
 
@@ -176,7 +179,7 @@ border: 1px solid rgba(239, 237, 232, 0.3);
   font-size: 16px;
  
   line-height: ${24 / 16};
-  padding: 8px 14px;
+  padding: 7px 14px;
   &:first-of-type {
     max-width: 204px;
   }

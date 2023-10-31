@@ -13,9 +13,9 @@ import {
 } from './DayDashboard.styled';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { useFetchDailyRateQuery } from '../../../redux/api';
+import { useEffect, useState } from 'react';
 
 export default function DayDashboard() {
-  const { data } = useFetchDailyRateQuery();
 
   return (
     <Container>
@@ -29,7 +29,7 @@ export default function DayDashboard() {
             <Title highlighted={true}>Daily calory intake</Title>
           </TitleWrapper>
 
-          <Value>{data || 2200}</Value>
+          <Value>{2200}</Value>
         </BlockItem>
 
         <BlockItem highlighted={true}>

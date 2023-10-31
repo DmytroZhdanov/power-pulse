@@ -13,8 +13,12 @@ export const DayExerDiv = styled.div`
   @media screen and (min-width: 768px) {
     padding: 16px;
     height: 234px;
+    padding-right: 8px;
+    padding-left: 8px;
   }
   @media screen and (min-width: 1440px) {
+    padding-left: 16px;
+    
   }
   border: 1px solid rgba(239, 237, 232, 0.2);
   border-radius: 12px;
@@ -57,9 +61,11 @@ export const DayExerDivList = styled.div`
   @media screen and (min-width: 768px) {
     margin-bottom: 8px;
     padding-left: 8px;
+    padding-right: 8px;
   }
   @media screen and (min-width: 1440px) {
     padding: 0;
+    padding-right: 8px;
   }
   display: flex;
   justify-content: space-between;
