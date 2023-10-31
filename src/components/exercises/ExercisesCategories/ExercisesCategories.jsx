@@ -20,7 +20,7 @@ export default function ExercisesCategories({ category, setCategory }) {
     if (path.pathname !== '/exercises') {
       navigate('./');
     }
-  }, [category, navigate, path.pathname]);
+  }, [category, navigate]);
 
   // To check input value
   const handleOptionChange = event => {
