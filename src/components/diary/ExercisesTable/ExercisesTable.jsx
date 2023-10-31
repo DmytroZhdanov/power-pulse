@@ -34,7 +34,7 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
 
   const handleDeleteExercise = async id => {
     try {
-      await deleteExercise('id');
+      await deleteExercise(id);
 
       const filteredDiaryExercises = diaryExercises.filter(
         exercise => exercise._id !== id,
