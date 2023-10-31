@@ -1,7 +1,6 @@
 import ProductsItem from '../ProductsItem/ProductsItem';
 import {
   ProductList,
-  //  DivProducts,
   DefaultText,
   SpanNotFound,
   SpanTry,
@@ -108,7 +107,6 @@ export default function ProductsList({ filter }) {
                 userGroupBlood={userGroupBlood}
               ></ProductsItem>
             </WrapLi>
-
           ))}
         </ProductList>
       ) : (
@@ -129,7 +127,6 @@ export default function ProductsList({ filter }) {
         error={myErrorLazy}
       />
     </>
-
   );
 }
 

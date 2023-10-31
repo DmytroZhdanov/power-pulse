@@ -15,6 +15,7 @@ export const ProductList = styled.ul`
     height: 487px;
   }
 `;
+export const WrapLi = styled.li``;
 
 export const DefaultText = styled.p`
   margin-bottom: 16px;
