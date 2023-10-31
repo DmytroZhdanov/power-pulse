@@ -12,7 +12,8 @@ import { SecondStep } from '../SecondStep/SecondStep';
 import { ThirdStep } from '../ThirdStep/ThirdStep';
 import { validationSchema } from '../helper/controlData';
 import { DataFormContainer } from './DataForm.style';
-
+import { motion } from 'framer-motion';
+import { slideInFromLeft } from '../helper/motion';
 const DataForm = ({ userParams, step }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isDateSelected, setIsDateSelected] = useState(false);
@@ -40,12 +41,20 @@ const DataForm = ({ userParams, step }) => {
     },
   });
   return (
+    <motion.div
+    key={step}
+    variants={slideInFromLeft}
+    initial="hidden"
+    animate="visible"
+    exit="hidden"
+    transition={{ duration: 0.5 }}
+  >
     <DataFormContainer>
       <DataHeader step={step} />
       <FormikProvider value={formik}>
         <Form>
           {step === DATA_STEPS.FIRST && (
-            <FirstStep
+              <FirstStep
               setIsDateSelected={setIsDateSelected}
               isDateSelected={isDateSelected}
               selectedDate={selectedDate}
@@ -56,10 +65,11 @@ const DataForm = ({ userParams, step }) => {
           {step === DATA_STEPS.SECOND && <SecondStep formik={formik} />}
           {step === DATA_STEPS.THIRD && <ThirdStep formik={formik} />}
 
-          <DataBtns step={step} formik={formik} />
-        </Form>
-      </FormikProvider>
-    </DataFormContainer>
+            <DataBtns step={step} formik={formik} />
+          </Form>
+        </FormikProvider>
+      </DataFormContainer>
+    </motion.div>
   );
 };
 
