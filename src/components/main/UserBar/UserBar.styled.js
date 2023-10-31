@@ -18,7 +18,8 @@ export const SettingsLink = styled(Link)`
 `;
 
 export const SvgSettings = styled.svg`
-  stroke: ${({ theme }) => theme.color.greyFirst};
+  transition: stroke ${({ theme }) => theme.transition.main};
+  stroke: ${({ theme }) => theme.color.grayThird};
 
   width: 24px;
   height: 24px;
@@ -26,6 +27,11 @@ export const SvgSettings = styled.svg`
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 28px;
     height: 28px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    &:hover {
+      stroke: ${({ theme }) => theme.color.graySecond};
+    }
   }
 `;
 

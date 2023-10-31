@@ -1,12 +1,5 @@
 import styled from '@emotion/styled';
 
-//export const DivProducts = styled.div`
-//  @media (min-width: 768px) {
-//  }
-//  @media (min-width: 1440px) {
-//  }
-//`;
-
 export const ProductList = styled.ul`
   @media (min-width: 768px) {
     height: 660px;
@@ -22,6 +15,7 @@ export const ProductList = styled.ul`
     height: 487px;
   }
 `;
+export const WrapLi = styled.li``;
 
 export const DefaultText = styled.p`
   margin-bottom: 16px;

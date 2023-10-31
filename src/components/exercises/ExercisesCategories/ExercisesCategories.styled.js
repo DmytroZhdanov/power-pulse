@@ -37,11 +37,11 @@ export const CategoryLabel = styled.label`
     background-color: transparent;
   }
 
-  ${props =>
-    props.selected &&
+  ${({ selected, theme }) =>
+    selected &&
     `color: #EFEDE8;
     ::before {
-      background-color: ${({ theme }) => theme.color.orangeSecond}; 
+      background-color: ${theme.color.orangeSecond}; 
     }
   `}
 `;

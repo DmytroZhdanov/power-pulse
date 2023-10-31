@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const ProductCard = styled.li`
+export const ProductCard = styled.div`
   padding: 16px;
   border-radius: 12px;
   border: 1px solid rgba(239, 237, 232, 0.2);
