@@ -1,14 +1,16 @@
-import PropTypes from 'prop-types';
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
-import sprite from 'src/assets/images/sprite/sprite.svg';
+import PropTypes from 'prop-types';
+
 import {
   CloseModalButton,
   CloseModalIcon,
-  Modal,
-  ModalBackdrop,
+  ModalDiv,
+  ModalBackdropDiv,
 } from './BasicModalWindow.styled';
+
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export default function BasicModalWindow(props) {
   const { onShow = true, onClose, children } = props;
@@ -18,24 +20,29 @@ export default function BasicModalWindow(props) {
   const backdropRef = useRef(null);
 
   useEffect(() => {
+    if (!onShow) return;
+
+    const bodyScroll = disable => {
+      document.body.style.overflow = disable ? 'hidden' : 'auto';
+    };
+
+    if (onShow || modalRoot.children.length !== 0) {
+      bodyScroll(true);
+    }
+
     const onEscKeyPress = e => {
       if (e.key === 'Escape') {
         onClose();
       }
     };
 
-    const bodyScroll = disable => {
-      document.body.style.overflow = disable ? 'hidden' : 'auto';
-    };
-
     window.addEventListener('keydown', onEscKeyPress);
-    bodyScroll(true);
 
     return () => {
-      window.removeEventListener('keydown', onEscKeyPress);
       bodyScroll(false);
+      window.removeEventListener('keydown', onEscKeyPress);
     };
-  }, [onClose]);
+  }, [modalRoot.children.length, onShow, onClose]);
 
   return createPortal(
     <>
@@ -46,8 +53,9 @@ export default function BasicModalWindow(props) {
         classNames="backdrop-wrapper"
         unmountOnExit
       >
-        <ModalBackdrop onClick={onClose} ref={backdropRef} />
+        <ModalBackdropDiv onClick={onClose} ref={backdropRef} />
       </CSSTransition>
+
       <CSSTransition
         in={onShow}
         nodeRef={nodeModalRef}
@@ -55,14 +63,15 @@ export default function BasicModalWindow(props) {
         classNames="modal-wrapper"
         unmountOnExit
       >
-        <Modal ref={nodeModalRef}>
+        <ModalDiv ref={nodeModalRef}>
           <CloseModalButton onClick={onClose}>
             <CloseModalIcon width={26} height={26}>
               <use href={`${sprite}#close`}></use>
             </CloseModalIcon>
           </CloseModalButton>
+
           {children}
-        </Modal>
+        </ModalDiv>
       </CSSTransition>
     </>,
     modalRoot,

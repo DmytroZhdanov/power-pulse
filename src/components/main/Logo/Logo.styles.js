@@ -13,17 +13,17 @@ export const SvgIcon = styled.svg`
   width: 36px;
   height: 13px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 44px;
     height: 17px;
   }
 `;
-export const Title = styled.p`
-  color: #efede8;
+export const TitleP = styled.p`
+  color: ${({ theme }) => theme.color.white};
   font-size: 17px;
   font-weight: 500;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 22px;
     line-height: 1.17;
   }

@@ -123,31 +123,25 @@ export default function ProductsItem({ props, userGroupBlood }) {
         </Description>
       </ProductCard>
 
-      {isModalOpen && (
-        <BasicModalWindow onClose={closeModal}>
-          <AddProductForm
-            onClose={closeModal}
-            addProdSuccess={addProdSuccess}
-            product={props}
-            addProdError={addProdError}
-          />
-        </BasicModalWindow>
-      )}
+      <BasicModalWindow onClose={closeModal} onShow={isModalOpen}>
+        <AddProductForm
+          onClose={closeModal}
+          addProdSuccess={addProdSuccess}
+          product={props}
+          addProdError={addProdError}
+        />
+      </BasicModalWindow>
 
-      {isAddProdSuccess && (
-        <BasicModalWindow onClose={closeModal}>
-          <AddProductSuccess
-            onClose={closeModal}
-            totalCalories={totalCalories}
-            addProdError={addProdError}
-          />
-        </BasicModalWindow>
-      )}
-      {isAddProdError && (
-        <BasicModalWindow onClose={closeModal}>
-          <ErrorMessage message={errorMessage} onClose={closeModal} />
-        </BasicModalWindow>
-      )}
+      <BasicModalWindow onClose={closeModal} onShow={isAddProdSuccess}>
+        <AddProductSuccess
+          onClose={closeModal}
+          totalCalories={totalCalories}
+          addProdError={addProdError}
+        />
+      </BasicModalWindow>
+      <BasicModalWindow onClose={closeModal} onShow={isAddProdError}>
+        <ErrorMessage message={errorMessage} onClose={closeModal} />
+      </BasicModalWindow>
     </>
   );
 }

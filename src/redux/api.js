@@ -84,7 +84,11 @@ export const api = createApi({
         url: '/users/avatars',
         method: 'PATCH',
         data: credentials,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       }),
+      transformResponse: response => response.user.avatarUrls,
     }),
     fetchUserParams: builder.query({
       query: () => ({ url: '/users/params' }),

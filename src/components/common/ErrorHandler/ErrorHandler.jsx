@@ -6,6 +6,7 @@ import Loader from 'components/Loader/Loader';
 import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
 import TimerWarning from 'components/common/TimerWarning/TimerWarning';
 import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
+
 import { initialState, setCredentials } from 'src/redux/auth/authSlice';
 
 export default function ErrorHandler({ isLoading, isError, error }) {
@@ -13,6 +14,8 @@ export default function ErrorHandler({ isLoading, isError, error }) {
   const [showError, setShowError] = useState(false);
   const dispatch = useDispatch();
 
+  // Shows a warning letter if fetch request takes more then 5 seconds to execute.
+  // Because backend is on free hosting server and it takes a long time to execute fetch request after some time of inactivity.
   useEffect(() => {
     let id;
 
@@ -25,13 +28,15 @@ export default function ErrorHandler({ isLoading, isError, error }) {
     return clearTimeout(id);
   }, [isLoading]);
 
+  // Show pop up with error message for 2 seconds if error occurs
   useEffect(() => {
     if (isError) {
       setShowError(true);
-      setTimeout(() => setShowError(false), 2000);
+      setTimeout(setShowError, 2000, false);
     }
   }, [isError]);
 
+  // Removes token from redux store if fetch request unauthorized
   useEffect(() => {
     if (error?.status === 401) {
       dispatch(setCredentials(initialState));
