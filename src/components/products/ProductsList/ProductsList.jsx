@@ -26,8 +26,10 @@ import { useInView } from 'react-intersection-observer';
 export default function ProductsList({ filter }) {
   const [products, setProducts] = useState([]);
   const [userGroupBlood, setUserGroupBlood] = useState(null);
-  const [page, setPage] = useState(1);
-  const [fetching, setFetching] = useState(true);
+
+  const [currentFilter, setCurrentFilter] = useState(filter);
+  const [currentPage, setCurrentPage] = useState(1);
+
   const [
     getProducts,
     { isLoading: isGettingLazy, isError: gettingErrorLazy, error: myErrorLazy },
@@ -35,9 +37,15 @@ export default function ProductsList({ filter }) {
 
   const pending = useFetchUserBloodGroupQuery();
   const { isSuccess, data } = pending;
+
   const { ref } = useInView({
-    onChange: inView => inView && setFetching(true),
+    onChange: inView => {
+      if (inView) {
+        setCurrentPage(prevPage => prevPage + 1);
+      }
+    },
   });
+
   /**
    * Updates the user's blood type based on a successful request to the backend.
    *
@@ -60,28 +68,30 @@ export default function ProductsList({ filter }) {
    */
 
   useEffect(() => {
-    if (fetching) {
-      const fetchData = async () => {
-        try {
-          const { data } = await getProducts(filter, page).unwrap();
-          console.log(data);
-
-          if (data.length === 0) {
-            return;
-          }
-          page === 1
-            ? setProducts([...data])
-            : setProducts(prev => [...prev, ...data]);
-          setFetching(false);
-          setPage(page + 1);
-        } catch (error) {
-          console.error('Error fetching data:', error.message);
-        }
-      };
-
-      fetchData();
+    if (filter !== currentFilter) {
+      setCurrentFilter(filter);
+      setCurrentPage(1);
     }
-  }, [filter, getProducts, page, fetching]);
+
+    const fetchData = async () => {
+      try {
+        const response = await getProducts({
+          page: currentPage,
+          ...currentFilter,
+        }).unwrap();
+
+        if (currentPage === 1) {
+          setProducts([...response.data]);
+        } else {
+          setProducts(prev => [...prev, ...response.data]);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+
+    fetchData();
+  }, [currentFilter, getProducts, currentPage, filter]);
 
   return (
     <DivProducts>
