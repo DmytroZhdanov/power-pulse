@@ -1,6 +1,7 @@
 import ProductsItem from '../ProductsItem/ProductsItem';
 import {
   ProductList,
+  //  DivProducts,
   DefaultText,
   SpanNotFound,
   SpanTry,
@@ -96,13 +97,13 @@ export default function ProductsList({ filter }) {
     <>
       {products.length > 0 ? (
         <ProductList>
-          {products.map(({ _id, ...props }, index) => (
+          {products.map((props, index) => (
             <WrapLi
               key={index}
               ref={index === products.length - 1 ? ref : null}
             >
               <ProductsItem
-                key={_id}
+                key={props._id}
                 props={props}
                 userGroupBlood={userGroupBlood}
               ></ProductsItem>
