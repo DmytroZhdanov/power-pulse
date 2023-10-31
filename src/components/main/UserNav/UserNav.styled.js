@@ -9,10 +9,13 @@ export const Navigation = styled.nav`
   margin-left: auto;
   margin-right: auto;
   gap: 16px;
-  @media screen and (min-width: 768px) and (max-width: 1440px) {
+
+  @media screen and (min-width: ${({ theme }) =>
+      theme.breakpoint.tablet}) and (max-width: 1439px) {
     padding-top: 280px;
   }
-  @media screen and (min-width: 1440px) {
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     padding-top: 0;
     display: flex;
     flex-direction: row;
@@ -25,29 +28,26 @@ export const Navigation = styled.nav`
 export const DiaryLink = styled(NavLink)`
   padding: 10px 27px;
   border-radius: 12px;
-  border: 1px solid rgba(239, 237, 232, 0.2);
-  color: #efede8;
+  border: 1px solid ${({ theme }) => theme.color.grayDisabled};
+  color: ${({ theme }) => theme.color.white};
   font-size: 14px;
   line-height: calc(18 / 14);
 
   &.active {
-    background-color: #e6533c;
-    border: ${props =>
-      props.border
-        ? '1px solid #EFEDE8'
-        : '1px solid rgba(239, 237, 232, 0.20)'};
+    background-color: ${({ theme }) => theme.color.hoverBorder};
+    border: ${({ border, theme }) =>
+      border
+        ? `1px solid ${theme.color.white}`
+        : `1px solid ${theme.color.grayDisabled}`};
   }
 
   &:hover,
   :focus {
-    background-color: #e6533c;
+    background-color: ${({ theme }) => theme.color.hoverBorder};
   }
-  @media screen and (min-width: 768px) {
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 16px;
     line-height: calc(24 / 16);
   }
 `;
-
-export const ProductsLink = styled(DiaryLink)``;
-
-export const ExercisesLink = styled(DiaryLink)``;

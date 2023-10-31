@@ -1,8 +1,8 @@
 import {
-  Navigation,
   DiaryLink,
-  ProductsLink,
   ExercisesLink,
+  Navigation,
+  ProductsLink,
 } from './UserNav.styled';
 
 export default function UserNav(props) {
@@ -11,9 +11,11 @@ export default function UserNav(props) {
       <DiaryLink {...props} to="/diary">
         Diary
       </DiaryLink>
+
       <ProductsLink {...props} to="/products">
         Products
       </ProductsLink>
+
       <ExercisesLink {...props} to="/exercises">
         Exercises
       </ExercisesLink>
