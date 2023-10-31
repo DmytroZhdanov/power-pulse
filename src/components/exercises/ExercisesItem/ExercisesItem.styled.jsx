@@ -110,6 +110,10 @@ export const ExerciseNameh2 = styled.h2`
   font-size: 20px;
   line-height: calc(24 / 20);
 
+  &::first-letter {
+    text-transform: uppercase;
+  }
+
   @media (min-width: 768px) {
     font-size: 24px;
     line-height: calc(32 / 24);
@@ -167,10 +171,11 @@ export const CategoryP = styled.p`
 
 export const ValuesSpan = styled.span`
   padding-left: 0;
+  display: inline-block;
   color: ${({ theme }) => theme.color.white};
 
-  @media screen and (min-width: 768px) {
-    margin-bottom: 25px;
+  &::first-letter {
+    text-transform: uppercase;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1440px) {

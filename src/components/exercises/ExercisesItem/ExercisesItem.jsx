@@ -1,4 +1,3 @@
-import { upperCase } from 'src/utils';
 import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
 import AddExerciseForm from '../AddExerciseForm/AddExerciseForm';
 import AddExerciseSuccess from '../AddExerciseSuccess/AddExerciseSuccess';
@@ -63,7 +62,7 @@ export default function ExercisesItem(props) {
             <use href={`${sprite}#run-man`}></use>
           </SvgRunMan>
 
-          <ExerciseNameh2>{upperCase(name)}</ExerciseNameh2>
+          <ExerciseNameh2>{name}</ExerciseNameh2>
         </ExerciseDiv>
 
         <InfoDiv>
@@ -71,14 +70,12 @@ export default function ExercisesItem(props) {
             Burned calories:<ValuesSpan>{burnedCalories}</ValuesSpan>
           </CategoryP>
 
-
           <CategoryP className="bodyPart" category={true}>
-            Body part:<ValuesSpan>{UpperCase(bodyPart)}</ValuesSpan>
-
+            Body part:<ValuesSpan>{bodyPart}</ValuesSpan>
           </CategoryP>
 
           <CategoryP className="target">
-            Target:<ValuesSpan>{upperCase(target)}</ValuesSpan>
+            Target:<ValuesSpan>{target}</ValuesSpan>
           </CategoryP>
         </InfoDiv>
       </ExercisesCardDiv>
