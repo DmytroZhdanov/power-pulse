@@ -53,7 +53,7 @@ export function SecondStep({ formik }) {
                 checked={formik.values.levelActivity === input.value}
               />
               <span></span>
-              {input.value}
+              {input.valueText}
             </RadioLabel>
           ))}
         </fieldset>

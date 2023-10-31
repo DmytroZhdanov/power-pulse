@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useNavigate, useResolvedPath } from 'react-router-dom';
+import { useNavigate, useResolvedPath } from 'react-router-dom';
 import { useFetchUserParamsQuery } from 'src/redux/api';
 import { Container, Indicator, IndicatorsWrapper } from './Data.styled';
 import { DATA_STEPS, ROUTER } from 'src/utils';
@@ -10,12 +10,12 @@ import ErrorMessage from '../../components/common/ErrorMessage/ErrorMessage';
 import DataForm from '../../components/data/DataForm/DataForm';
 
 const initialState = {
-  currentHeight: '',
+  height: '',
   currentWeight: '',
   desiredWeight: '',
   birthday: '',
   blood: '',
-  gender: '',
+  sex: '',
   levelActivity: '',
 };
 
@@ -24,7 +24,6 @@ export function Data() {
   const [userParams, setUserParams] = useState(initialState);
   const [step, setStep] = useState();
   const [showError, setShowError] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const navigate = useNavigate();
   const { pathname } = useResolvedPath();
@@ -72,7 +71,7 @@ export function Data() {
         userParams={userParams}
         setUserParams={setUserParams}
       />
-      
+
       <IndicatorsWrapper>
         <Indicator step={step} />
         <Indicator step={step} />

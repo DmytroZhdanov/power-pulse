@@ -4,12 +4,12 @@ import { DATA_STEPS } from 'src/utils';
 export const handleNext = (step, formik, navigate) => {
   if (step === DATA_STEPS.FIRST) {
     if (
-      !formik.values.currentHeight ||
+      !formik.values.height ||
       !formik.values.currentWeight ||
       !formik.values.desiredWeight ||
       // !formik.values.birthday
       // formik.errors.birthday
-      formik.errors.currentHeight ||
+      formik.errors.height ||
       formik.errors.currentWeight ||
       formik.errors.desiredWeight
     ) {
@@ -24,10 +24,10 @@ export const handleNext = (step, formik, navigate) => {
   if (step === DATA_STEPS.SECOND) {
     if (
       !formik.values.blood ||
-      !formik.values.gender ||
+      !formik.values.sex ||
       !formik.values.levelActivity ||
       formik.errors.blood ||
-      formik.errors.gender ||
+      formik.errors.sex ||
       formik.errors.levelActivity
     ) {
       return;
@@ -47,10 +47,10 @@ const eighteenYearsAgo = new Date();
 eighteenYearsAgo.setFullYear(eighteenYearsAgo.getFullYear() - 18);
 
 export const validationSchema = Yup.object().shape({
-  currentHeight: Yup.number().moreThan(0).required('this is a required field'),
+  height: Yup.number().moreThan(0).required('this is a required field'),
   currentWeight: Yup.number().moreThan(0).required('this is a required field'),
   desiredWeight: Yup.number().moreThan(0).required('this is a required field'),
   blood: Yup.string().required('this is a required field'),
-  gender: Yup.string().required('this is a required field'),
-  levelActivity: Yup.string().required('this is a required field'),
+  sex: Yup.string().required('this is a required field'),
+  levelActivity: Yup.number().required('this is a required field'),
 });

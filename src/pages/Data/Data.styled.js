@@ -3,6 +3,7 @@ import { DATA_STEPS } from '../../utils';
 
 export const Container = styled.div`
   position: relative;
+  z-index: 12;
 `;
 
 export const IndicatorsWrapper = styled.div`

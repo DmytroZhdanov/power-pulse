@@ -1,13 +1,12 @@
 import { textInputData } from '../helper/inputData';
 import DataInput from '../DataInput/DataInput';
 import { FormContainer, TextLabel } from '../DataForm/DataForm.style';
-// import { motion } from 'framer-motion';
 import { FirstStepContainer } from './FirstStep.styled';
-import { useState } from 'react';
-import BirthdayInput from '../DataBirthdayInput/DataBirthdayInput';
 
-export function FirstStep({ formik }) {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+import BirthdayInput from '../../profile/BirthdayInput/BirthdayInput';
+
+export function FirstStep({ formik, selectedDate, setSelectedDate }) {
+
 
   return (
     <FormContainer>
@@ -33,7 +32,6 @@ export function FirstStep({ formik }) {
               setSelectedDate={setSelectedDate}
             />
           </label>
-          {/* {errors.birthday && touched.birthday && <p>{errors.birthday}</p>} */}
         </div>
       </FirstStepContainer>
     </FormContainer>
