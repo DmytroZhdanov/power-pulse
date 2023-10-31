@@ -1,4 +1,4 @@
-import { useFormik, useFormikContext } from 'formik';
+import { useFormik } from 'formik';
 import { userFormSchema } from './YupValidationForm';
 import BirthdayInput from '../BirthdayInput/BirthdayInput';
 import {
@@ -26,18 +26,21 @@ import {
   HealthInfo,
   Lifestyle,
 } from './UserForm.styled';
+import { format } from 'date-fns';
 
 export default function UserForm() {
-  const [selectedDate, setSelectedDate] = useState(new Date('2000 10 12'));
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [refresh, { data, isError }] = useLazyRefreshQuery();
+  // const [fetchUserParams, { params }] = useFetchUserParamsQuery();
   const [updateUserParams] = useUpdateUserParamsMutation();
-  // console.log(data);
-  const val = useFormikContext;
+
+  console.log(data);
 
   useEffect(() => {
     const fetch = async () => {
       try {
         await refresh();
+        // fetchUserParams();
       } catch (error) {
         console.log(error);
       } finally {
@@ -52,16 +55,20 @@ export default function UserForm() {
         height: '',
         currentWeight: '',
         desiredWeight: '',
-        birthday: selectedDate,
+        birthday: '',
         blood: '',
         sex: '',
         levelActivity: '',
       },
       validationSchema: userFormSchema,
       onSubmit: async (values, actions) => {
-        console.log(values, actions);
+        const userValues = {
+          ...values,
+          birthday: format(selectedDate, 'yyyy-MM-dd'),
+        };
+
         try {
-          const data = await updateUserParams(values).unwrap();
+          const data = await updateUserParams(userValues).unwrap();
 
           console.log(data);
         } catch (error) {
@@ -69,8 +76,6 @@ export default function UserForm() {
         }
       },
     });
-
-  // console.log(values);
 
   return (
     <>
