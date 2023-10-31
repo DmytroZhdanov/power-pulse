@@ -1,15 +1,10 @@
-import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {} from 'react-router-dom';
 
 import LogOutBtn from 'components/common/LogOutBtn/LogOutBtn';
 import Icon from 'src/components/common/IconsComp/Icon';
-import { selectUserAvatars } from 'src/redux/auth/selectors';
+import { selectUserAvatars, selectUserName } from 'src/redux/auth/selectors';
 
-import {
-  useUpdateUserAvatarMutation,
-  useLazyRefreshQuery,
-} from 'src/redux/api';
+import { useUpdateUserAvatarMutation } from 'src/redux/api';
 import {
   User,
   Avatar,
@@ -25,97 +20,108 @@ import {
   Warnings,
   BtnLogout,
 } from './UserCard.styled';
-import { setAvatars } from '../../../redux/auth/authSlice';
-import axios from 'axios';
+import { setAvatars } from 'src/redux/auth/authSlice';
+import ErrorHandler from '../../common/ErrorHandler/ErrorHandler';
 
 export default function UserCard() {
-  const [updateUserAvatar] = useUpdateUserAvatarMutation();
-  const [refresh, { data, isLoading, isError }] = useLazyRefreshQuery();
-
-  const isAvatar = useSelector(selectUserAvatars);
+  const [updateUserAvatar, { isLoading, isError, error }] =
+    useUpdateUserAvatarMutation();
   const dispatch = useDispatch();
-  const [avatarUrl, setAvatarUrl] = useState(null);
-
-  console.log(avatarUrl);
-
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        await refresh();
-      } catch (error) {
-        console.log(error);
-      } finally {
-      }
-    };
-    fetch();
-  }, [refresh]);
+  const userName = useSelector(selectUserName);
+  const avatars = useSelector(selectUserAvatars);
 
   const handleChange = async e => {
     e.preventDefault();
+
     try {
       const result = e.target.files[0];
-
       const data = await updateUserAvatar(result).unwrap();
       dispatch(setAvatars(data));
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <>
-      {data && (
-        <User>
-          <Avatar>
-            <Image>
-              {isAvatar ? (
-                <div>
-                  <img src={isAvatar} alt="Your avatar" />
-                </div>
-              ) : (
-                <Icon name="user" />
-              )}
-              <BtnAvat htmlFor="avatarUrls">
-                <input
-                  type="file"
-                  name="avatar"
-                  id="avatarUrls"
-                  accept="image/*"
-                  onChange={handleChange}
-                />
-                <Icon name="add_avatar" />
-              </BtnAvat>
-            </Image>
-            <Name>
-              <MainText>{data.user.name}</MainText>
-              <SecondText>User</SecondText>
-            </Name>
-          </Avatar>
-          <Daily>
-            <Calories>
-              <AddText>
-                <Icon name="food" />
-                Daily calorie intake
-              </AddText>
-              <MainText>0</MainText>
-            </Calories>
-            <SportTime>
-              <AddText>
-                <Icon name="dumbbell" />
-                Daily norm of sports
-              </AddText>
-              <MainText>0 min</MainText>
-            </SportTime>
-          </Daily>
-          <Warnings>
-            <SecondText>
-              <Icon name="note" />
-              We understand that each individual is unique, so the entire
-              approach to diet is relative and tailored to your unique body and
-              goals.
-            </SecondText>
-          </Warnings>
-          <BtnLogout>{<LogOutBtn />}</BtnLogout>
-        </User>
-      )}
+      <User>
+        <Avatar>
+          <Image>
+            {avatars ? (
+              <div>
+                <picture>
+                  <source
+                    srcSet={`
+              ${avatars.avatar_90x90}   90w,
+              ${avatars.avatar_150x150}   150w,
+              ${avatars.avatar_180x180} 180w,
+              ${avatars.avatar_300x300}   300w
+                    `}
+                    sizes="(min-width: 768px) 150px, (min-width: 375px) 90px, 90px, 100vw"
+                    type="image/jpeg"
+                  />
+
+                  <img
+                    src={avatars.avatar_90x90}
+                    alt="Your avatar"
+                    loading="lazy"
+                  />
+                </picture>
+              </div>
+            ) : (
+              <Icon name="user" />
+            )}
+            <BtnAvat htmlFor="avatarUrls">
+              <input
+                type="file"
+                name="avatar"
+                id="avatarUrls"
+                accept="image/*"
+                onChange={handleChange}
+              />
+              <Icon name="add_avatar" />
+            </BtnAvat>
+          </Image>
+
+          <Name>
+            <MainText>{userName}</MainText>
+
+            <SecondText>User</SecondText>
+          </Name>
+        </Avatar>
+
+        <Daily>
+          <Calories>
+            <AddText>
+              <Icon name="food" />
+              Daily calorie intake
+            </AddText>
+
+            <MainText>0</MainText>
+          </Calories>
+
+          <SportTime>
+            <AddText>
+              <Icon name="dumbbell" />
+              Daily norm of sports
+            </AddText>
+
+            <MainText>0 min</MainText>
+          </SportTime>
+        </Daily>
+
+        <Warnings>
+          <SecondText>
+            <Icon name="note" />
+            We understand that each individual is unique, so the entire approach
+            to diet is relative and tailored to your unique body and goals.
+          </SecondText>
+        </Warnings>
+
+        <BtnLogout>{<LogOutBtn />}</BtnLogout>
+      </User>
+
+      <ErrorHandler isLoading={isLoading} isError={isError} error={error} />
     </>
   );
 }
