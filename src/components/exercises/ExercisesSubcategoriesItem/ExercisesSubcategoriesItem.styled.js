@@ -34,7 +34,7 @@ export const WrapperDiv = styled.div`
 
   background-size: cover;
   border-radius: 12px;
-  border: 1px solid ${({ theme }) => theme.color.greyDisabled};
+  border: 1px solid rgba(239, 237, 232, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
