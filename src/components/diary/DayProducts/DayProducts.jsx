@@ -19,7 +19,6 @@ export default function DayProducts({
   blood,
   isLoading,
 }) {
-  console.log(isLoading);
   return (
     <DayProdDiv>
       <DayProdDivList>
