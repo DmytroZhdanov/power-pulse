@@ -45,6 +45,9 @@ export const ExercisesCardDiv = styled.div`
 
   @media screen and (max-width: 374px) {
     max-width: 335px;
+    &:hover h2 {
+      max-width: 80px;
+    }
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
@@ -119,6 +122,10 @@ export const ExerciseNameH2 = styled.h2`
 
   &::first-letter {
     text-transform: uppercase;
+  }
+
+  @media screen and (max-width: 374px) {
+    max-width: 205px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {

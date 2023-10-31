@@ -18,6 +18,7 @@ import {
   SvgArrow,
   SvgRunMan,
 } from './ExercisesItem.styled';
+import PropTypes from 'prop-types';
 
 import sprite from 'src/assets/images/sprite/sprite.svg';
 
@@ -109,3 +110,10 @@ export default function ExercisesItem(props) {
     </>
   );
 }
+
+ExercisesItem.propTypes = {
+  bodyPart: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  target: PropTypes.string.isRequired,
+  burnedCalories: PropTypes.number.isRequired,
+};
