@@ -1,20 +1,22 @@
-import { useLocation } from 'react-router-dom';
 import { useRef } from 'react';
-import { ROUTER } from 'src/utils/constants';
-import sprite from 'src/assets/images/sprite/sprite.svg';
+import { useLocation } from 'react-router-dom';
+
 import {
-  BackgroundImage,
-  BackgroundImageWrap,
-  ContentWrap,
-  Flex,
+  BackgroundImageDiv,
+  BackgroundImageWrapDiv,
+  ContentWrapDiv,
+  FlexDiv,
   LinkStyled,
   LogoLink,
-  LogoWrap,
+  LogoWrapDiv,
   SvgIcon,
-  Text,
-  Title,
-  TitleLogo,
+  TextP,
+  TitleH1,
+  TitleLogoP,
 } from './Error.styled';
+
+import { ROUTER } from 'src/utils/constants';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export default function Error() {
   const location = useLocation();
@@ -24,29 +26,34 @@ export default function Error() {
   return (
     <>
       <main>
-        <Flex>
-          <ContentWrap>
-            <LogoWrap>
+        <FlexDiv>
+          <ContentWrapDiv>
+            <LogoWrapDiv>
               <LogoLink to={ROUTER.MAIN}>
                 <SvgIcon width="44" height="17">
                   <use href={`${sprite}#logo-error`}></use>
                 </SvgIcon>
-                <TitleLogo>PowerPulse</TitleLogo>
+
+                <TitleLogoP>PowerPulse</TitleLogoP>
               </LogoLink>
-            </LogoWrap>
-            <Title>404</Title>
-            <Text>
+            </LogoWrapDiv>
+
+            <TitleH1>404</TitleH1>
+
+            <TextP>
               Sorry, you have reached a page that we could not find. It seems
               that you are lost among the numbers and letters of our virtual
               space. Perhaps this page went on vacation or decided to disappear
               into another dimension. We apologize for this inconvenience.
-            </Text>
+            </TextP>
+
             <LinkStyled to={goBackLink.current}>Go Home</LinkStyled>
-          </ContentWrap>
-          <BackgroundImageWrap>
-            <BackgroundImage />
-          </BackgroundImageWrap>
-        </Flex>
+          </ContentWrapDiv>
+
+          <BackgroundImageWrapDiv>
+            <BackgroundImageDiv />
+          </BackgroundImageWrapDiv>
+        </FlexDiv>
       </main>
     </>
   );

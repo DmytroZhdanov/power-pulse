@@ -20,6 +20,7 @@ import {
   Gif,
   WorkoutSummary,
 } from './AddExerciseForm.styled';
+import { format } from 'date-fns';
 
 export default function AddExerciseForm({
   exercise,
@@ -54,7 +55,7 @@ export default function AddExerciseForm({
 
     const collectedData = {
       exercise_ID: _id,
-      date,
+      date: format(date, 'yyyy-MM-dd'),
       time,
       calories,
     };
@@ -133,12 +134,7 @@ export default function AddExerciseForm({
           setShowModalForAddExercise(false);
         }}
       >
-        <AddExercisesFromPastDaysForm
-          onClose={() => {
-            setShowModalForAddExercise(false);
-          }}
-          onSubmit={handleSubmit}
-        />
+        <AddExercisesFromPastDaysForm onSubmit={handleSubmit} />
       </BasicModalWindow>
 
       <BasicModalWindow

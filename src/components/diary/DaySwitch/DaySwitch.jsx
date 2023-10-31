@@ -1,9 +1,12 @@
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { format } from 'date-fns';
+import PropTypes from 'prop-types';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
+import { useLazyFetchDiaryAllQuery } from 'src/redux/api';
 import { selectUserRegistrationDate } from 'src/redux/auth/selectors';
 
-import Calendar from '../../Calendar/Calendar';
+import Calendar from 'components/Calendar/Calendar';
 import Icon from 'components/common/IconsComp/Icon';
 
 import {
@@ -20,13 +23,31 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
     useSelector(selectUserRegistrationDate),
   );
 
-  // тут треба отримати всі дати у яких є якісь записи
-  const datesWithData = [
-    '2023-10-09',
-    '2023-10-15',
-    '2023-10-23',
-    '2023-10-24',
-  ];
+  const [fetchDiaryAll, { data, error }] = useLazyFetchDiaryAllQuery();
+
+  useEffect(() => {
+    if (error) {
+      return;
+    }
+    const getAllDates = async () => {
+      await fetchDiaryAll();
+    };
+    getAllDates();
+  }, [error, fetchDiaryAll]);
+
+  const setActiveDate = ({ date, view }) => {
+    const isSkip =
+      date.getTime() > dateOfUserRegistration.getTime() ||
+      date.toDateString() === dateOfUserRegistration.toDateString();
+
+    if (isSkip) {
+      return false;
+    } else if (view !== 'month') {
+      return false;
+    } else {
+      return !data.includes(date.toDateString());
+    }
+  };
 
   const handlePreviousClick = () => {
     const previousDate = new Date(selectedDate);
@@ -45,37 +66,30 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
 
   const isToday = selectedDate.toDateString() === new Date().toDateString();
 
-  const setActiveDate = ({ date, view }) => {
-    const isSkip =
-      date.getTime() > dateOfUserRegistration.getTime() ||
-      date.toDateString() === dateOfUserRegistration.toDateString();
-
-    if (isSkip) {
-      return false;
-    } else if (view !== 'month') {
-      return false;
-    } else {
-      return !datesWithData.includes(format(date, 'yyyy-MM-dd'));
-    }
-  };
-
   const isDisabledPrevBtn =
     isDateOfUserRegistration ||
     selectedDate.getTime() < dateOfUserRegistration.getTime();
-  
+
   const isDisabledNextBtn =
     isToday ||
     (selectedDate.getTime() < dateOfUserRegistration.getTime() &&
       selectedDate.toDateString() !== dateOfUserRegistration.toDateString());
 
+  const param = error
+    ? {
+        minDate: dateOfUserRegistration,
+      }
+    : {
+        tileDisabled: setActiveDate,
+      };
+
   return (
     <Wrapper>
       <CalendarWrapper>
         <Calendar
-          tileDisabled={setActiveDate}
+          {...param}
           onChange={setSelectedDate}
           value={selectedDate}
-          // minDate={dateOfUserRegistration}
           maxDate={new Date()}
         >
           <InputWrapper>
