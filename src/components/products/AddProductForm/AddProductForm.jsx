@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   DivAddForm,
   DivInputs,
@@ -15,11 +16,24 @@ import {
 } from './AddProductForm.styled';
 import { useAddProductMutation } from '../../../redux/api';
 
+/**
+ * The AddProductForm component provides a form for adding a product to a user's diary.
+ *
+ * @param {Object} props - The component's props.
+ * @param {Function} props.onClose - A callback function to close the form.
+ * @param {Function} props.addProdSuccess - A callback function to handle successful product addition.
+ * @param {Function} props.addProdError - A callback function to handle product addition errors.
+ * @param {Object} props.product - The product to be added.
+ * @param {number} props.product.weight - The weight of the product.
+ * @param {number} props.product.calories - The calories in the product.
+ * @returns {JSX.Element} The AddProductForm component.
+ */
+
 export default function AddProductForm(props) {
   const { onClose, addProdSuccess, addProdError, product } = props;
-  const { weight, calories, _id } = product;
+  const { weight, calories, _id, title } = product;
   const [addWeight, setAddWeight] = useState(weight);
-  const amount = addWeight * calories;
+  const amount = (addWeight * calories) / 100;
 
   const [addProduct] = useAddProductMutation();
 
@@ -32,7 +46,6 @@ export default function AddProductForm(props) {
 
   const handleSubmit = async () => {
     const { error } = await addProduct(addProductToCollection);
-    console.log('error', error);
     if (error) {
       addProdError(error.data.message);
     } else {
@@ -44,7 +57,7 @@ export default function AddProductForm(props) {
   return (
     <DivAddForm>
       <DivInputs>
-        <InputName type="text" value={product.title} readOnly />
+        <InputName type="text" value={title} readOnly disabled />
         <DivGrams>
           <InputGrams
             type="number"
@@ -65,3 +78,15 @@ export default function AddProductForm(props) {
     </DivAddForm>
   );
 }
+
+AddProductForm.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  addProdSuccess: PropTypes.func.isRequired,
+  addProdError: PropTypes.func.isRequired,
+  product: PropTypes.shape({
+    weight: PropTypes.number.isRequired,
+    calories: PropTypes.number.isRequired,
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+};
