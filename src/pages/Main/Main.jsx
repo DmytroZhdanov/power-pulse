@@ -19,6 +19,7 @@ export default function Main() {
     page === ROUTER.SIGN_IN ||
     page === ROUTER.DATA;
 
+  // Redirect from Main page to Welcome page
   useEffect(() => {
     if (pathname === '/') {
       navigate('welcome');
