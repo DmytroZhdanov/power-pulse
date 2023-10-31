@@ -1,20 +1,22 @@
-import { FirstStep } from '../FirstStep/FirstStep';
+import { format } from 'date-fns';
+import { Form, FormikProvider, useFormik } from 'formik';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useUpdateUserParamsMutation } from 'src/redux/api';
+import { DATA_STEPS } from 'src/utils';
+import { ROUTER } from '../../../utils';
 import DataBtns from '../DataBtns/DataBtns';
-import { FormikProvider, useFormik, Form } from 'formik';
+import DataHeader from '../DataHeader/DataHeader';
+import { FirstStep } from '../FirstStep/FirstStep';
 import { SecondStep } from '../SecondStep/SecondStep';
 import { ThirdStep } from '../ThirdStep/ThirdStep';
-import { DATA_STEPS } from 'src/utils';
-import DataHeader from '../DataHeader/DataHeader';
-import { DataFormContainer } from './DataForm.style';
-import { useNavigate } from 'react-router-dom';
-import { ROUTER } from '../../../utils';
-import { useState } from 'react';
-import { format } from 'date-fns';
-import { useUpdateUserParamsMutation } from 'src/redux/api';
 import { validationSchema } from '../helper/controlData';
+import { DataFormContainer } from './DataForm.style';
 
-const DataForm = ({ userParams, step /* setUserParams */ }) => {
+const DataForm = ({ userParams, step }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [isDateSelected, setIsDateSelected] = useState(false);
+
   const navigate = useNavigate();
 
   const [updateUserParamsMutation] = useUpdateUserParamsMutation();
@@ -29,7 +31,6 @@ const DataForm = ({ userParams, step /* setUserParams */ }) => {
       };
 
       const updateUserParams = async () => {
-        /*  const res =  */
         await updateUserParamsMutation(userData);
       };
       updateUserParams();
@@ -45,6 +46,8 @@ const DataForm = ({ userParams, step /* setUserParams */ }) => {
         <Form>
           {step === DATA_STEPS.FIRST && (
             <FirstStep
+              setIsDateSelected={setIsDateSelected}
+              isDateSelected={isDateSelected}
               selectedDate={selectedDate}
               setSelectedDate={setSelectedDate}
               formik={formik}

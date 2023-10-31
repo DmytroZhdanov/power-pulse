@@ -1,17 +1,17 @@
-import { textInputData } from '../helper/inputData';
-import DataInput from '../DataInput/DataInput';
-import {
-  FormContainer,
-  TextLabel,
-  SuccessMessage,
-} from '../DataForm/DataForm.style';
-import { FirstStepContainer } from './FirstStep.styled';
 import { ErrorMessage } from 'formik';
 import Icon from '../../common/IconsComp/Icon';
+import {
+  FormContainer,
+  SuccessMessage,
+  TextLabel,
+} from '../DataForm/DataForm.style';
+import DataInput from '../DataInput/DataInput';
+import { textInputData } from '../helper/inputData';
+import { FirstStepContainer } from './FirstStep.styled';
 
 import BirthdayInput from '../../data/DataBirthday/DataBirthdayInput';
 
-export function FirstStep({ formik, selectedDate, setSelectedDate }) {
+export function FirstStep({ formik, selectedDate, setSelectedDate,isDateSelected,setIsDateSelected }) {
   return (
     <FormContainer>
       <FirstStepContainer>
@@ -36,6 +36,8 @@ export function FirstStep({ formik, selectedDate, setSelectedDate }) {
         <div>
           <label>
             <BirthdayInput
+               setIsDateSelected={setIsDateSelected}
+              isDateSelected={isDateSelected}
               selectedDate={selectedDate}
               setSelectedDate={setSelectedDate}
             />

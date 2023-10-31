@@ -35,7 +35,10 @@ export const DefaultInputText = styled.p`
   color: ${({ setColor }) =>
     setColor === 'full'
       ? ({ theme }) => theme.color.white
-      : ({ theme }) => theme.color.border};
+      : 'rgb(117 117 117)'};
+  transition:
+    color 300ms ease-in-out,
+    transform 300ms ease-in-out;
   font-size: 16px;
   line-height: 1.5;
 `;
@@ -44,7 +47,10 @@ export const CalendarIcon = styled.div`
   svg {
     width: 18px;
     height: 18px;
-    stroke: ${({ theme }) => theme.color.white};
+    stroke: ${({ setColor }) =>
+      setColor === 'full'
+        ? ({ theme }) => theme.color.white
+        : 'rgb(117 117 117)'};
     transition:
       stroke 300ms ease-in-out,
       transform 300ms ease-in-out;

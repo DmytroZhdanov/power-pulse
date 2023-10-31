@@ -11,6 +11,7 @@ import { BackdropDiv, BoxHeader, HeaderWrapDiv } from './Header.styled';
 
 import { selectToken } from 'src/redux/auth/selectors';
 import { useLazyFetchUserParamsQuery } from 'src/redux/api';
+import { useLocation } from 'react-router-dom';
 
 export default function Header() {
   const token = useSelector(selectToken);
@@ -20,11 +21,11 @@ export default function Header() {
   );
   const [openedModal, setOpenedModal] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1440);
+  const location = useLocation();
 
   const handleResize = () => {
     setIsDesktop(window.innerWidth >= 1440);
   };
-
   // Check for user params to properly display styles of header
   useEffect(() => {
     const fetch = async () => {
@@ -42,7 +43,7 @@ export default function Header() {
     };
 
     fetch();
-  }, [fetchUserParams, token]);
+  }, [fetchUserParams, token, location]);
 
   // Add event listener on componentDidMount and remove it on componentWillUnmount
   useEffect(() => {

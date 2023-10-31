@@ -1,10 +1,7 @@
-import PropTypes from 'prop-types';
 import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
-import { useLazyFetchUserParamsQuery } from 'src/redux/api';
-
-import Calendar from '../../Calendar/Calendar';
+import PropTypes from 'prop-types';
 import Icon from 'src/components/common/IconsComp/Icon';
+import Calendar from '../../Calendar/Calendar';
 
 import {
   CalendarIcon,
@@ -13,30 +10,13 @@ import {
   WrapperCalendarInput,
 } from './DataBirthdayInput.style';
 
-export default function BirthdayInput({ selectedDate, setSelectedDate }) {
-  const [showDefaultInputValue, setShowDefaultInputValue] = useState(true);
+export default function BirthdayInput({ selectedDate, setSelectedDate,setIsDateSelected,isDateSelected }) {
   const defaultInputValue = 'Birthday';
 
   const setDate = date => {
-    setShowDefaultInputValue(false);
+    setIsDateSelected(true);
     setSelectedDate(date);
   };
-
-  const [fetchUserParams] = useLazyFetchUserParamsQuery();
-
-  useEffect(() => {
-    const getUserParams = async () => {
-      const { user } = await fetchUserParams().unwrap();
-      if (user?.userParams?.birthday) {
-        setShowDefaultInputValue(false);
-        setSelectedDate(new Date(user?.userParams?.birthday));
-      } else {
-        setShowDefaultInputValue(true);
-      }
-    };
-
-    getUserParams();
-  }, [fetchUserParams, setSelectedDate]);
 
   const today = new Date();
 
@@ -46,12 +26,12 @@ export default function BirthdayInput({ selectedDate, setSelectedDate }) {
 
   const maximumAge = new Date(today.setFullYear(today.getFullYear() - 100));
 
-  const inputValue = showDefaultInputValue
-    ? defaultInputValue
-    : format(selectedDate, 'yyyy-MM-dd');
-  const inputText = showDefaultInputValue
-    ? defaultInputValue
-    : format(selectedDate, 'dd.MM.yyyy');
+  const inputValue = isDateSelected
+  ? format(selectedDate, 'yyyy-MM-dd')
+    : defaultInputValue
+  const inputText = isDateSelected
+  ? format(selectedDate, 'dd.MM.yyyy')
+    : defaultInputValue
 
   return (
     <>
@@ -68,10 +48,10 @@ export default function BirthdayInput({ selectedDate, setSelectedDate }) {
         value={selectedDate}
       >
         <WrapperCalendarInput>
-          <DefaultInputText setColor={showDefaultInputValue ? '' : 'full'}>
+          <DefaultInputText setColor={isDateSelected ? 'full' : ''}>
             {inputText}
           </DefaultInputText>
-          <CalendarIcon>
+          <CalendarIcon setColor={isDateSelected ? 'full' : ''}>
             <Icon name="calendar" />
           </CalendarIcon>
         </WrapperCalendarInput>
