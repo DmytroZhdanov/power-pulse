@@ -12,7 +12,8 @@ export function Exercises() {
   const location = useLocation();
   const { subcategory } = useParams();
 
-  const subcategoriesLocation = location.pathname === '/exercises';
+  const subcategoriesLocation =
+    location.pathname === '/exercises' || location.pathname === '/exercises/';
 
   return (
     <ContentDiv>
