@@ -1,7 +1,7 @@
 import ProductsItem from '../ProductsItem/ProductsItem';
 import {
   ProductList,
-  DivProducts,
+  //  DivProducts,
   DefaultText,
   SpanNotFound,
   SpanTry,
@@ -63,12 +63,12 @@ export default function ProductsList({ filter }) {
   }, [filter, getProducts]);
 
   return (
-    <DivProducts>
+    <>
       {products.length > 0 ? (
         <ProductList>
-          {products.map(({ _id, ...props }) => (
+          {products.map(props => (
             <ProductsItem
-              key={_id}
+              key={props._id}
               props={props}
               userGroupBlood={userGroupBlood}
             ></ProductsItem>
@@ -85,7 +85,7 @@ export default function ProductsList({ filter }) {
           <SpanTry>Try changing the search parameters.</SpanTry>
         </>
       )}
-    </DivProducts>
+    </>
   );
 }
 
