@@ -4,11 +4,11 @@ import { useLocation } from 'react-router-dom';
 
 import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
-  Button,
-  ButtonWrapper,
-  Container,
+  ButtonLink,
+  ButtonWrapperDiv,
+  ContainerDiv,
   Span,
-  Title,
+  TitleH1,
 } from './Welcome.styled';
 
 import { useLazyRefreshQuery } from 'src/redux/api';
@@ -41,17 +41,17 @@ export function Welcome() {
   }, [dispatch, token, refresh]);
 
   return (
-    <Container>
-      <Title>
+    <ContainerDiv>
+      <TitleH1>
         Transforming your <Span>body</Span> shape with Power Pulse
-      </Title>
+      </TitleH1>
 
-      <ButtonWrapper>
-        <Button to={`../${ROUTER.SIGN_UP}`}>Sign Up</Button>
-        <Button to={`../${ROUTER.SIGN_IN}`}>Sign In</Button>
-      </ButtonWrapper>
+      <ButtonWrapperDiv>
+        <ButtonLink to={`../${ROUTER.SIGN_UP}`}>Sign Up</ButtonLink>
+        <ButtonLink to={`../${ROUTER.SIGN_IN}`}>Sign In</ButtonLink>
+      </ButtonWrapperDiv>
 
       <ErrorHandler isLoading={isFetching} isError={isError} error={error} />
-    </Container>
+    </ContainerDiv>
   );
 }

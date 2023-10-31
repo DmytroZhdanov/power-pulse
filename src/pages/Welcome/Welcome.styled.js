@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import { ROUTER } from '../../utils/constants';
+import { ROUTER } from 'src/utils/constants';
 import bg_line from 'src/assets/images/background/bg_line.png';
 
-export const Container = styled.div`
+export const ContainerDiv = styled.div`
   width: calc(100% - 40px);
   padding-top: 127px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding-top: 189px;
   }
 
@@ -16,27 +16,27 @@ export const Container = styled.div`
     z-index: 2;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     width: 598px;
     padding-top: 200px;
   }
 `;
 
-export const Title = styled.h1`
+export const TitleH1 = styled.h1`
   font-size: 38px;
   font-weight: 500;
   line-height: calc(40 / 38);
   margin-bottom: 40px;
   letter-spacing: 0.38px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 70px;
     line-height: calc(78 / 70);
     margin-bottom: 64px;
     letter-spacing: 0.7px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     width: 598px;
   }
 `;
@@ -54,7 +54,7 @@ export const Span = styled.span`
     background: url(${bg_line}) no-repeat 50% 50%;
     background-size: 98px 35px;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
       top: 8px;
       left: -16px;
       width: 185px;
@@ -64,20 +64,20 @@ export const Span = styled.span`
   }
 `;
 
-export const ButtonWrapper = styled.div`
+export const ButtonWrapperDiv = styled.div`
   display: flex;
   gap: 14px;
 
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
     gap: 13px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     gap: 20px;
   }
 `;
 
-export const Button = styled(Link)`
+export const ButtonLink = styled(Link)`
   display: block;
   padding: 12px 40px;
   border-radius: 12px;
@@ -85,10 +85,10 @@ export const Button = styled(Link)`
   font-weight: 500;
   line-height: calc(18 / 16);
 
-  background-color: ${props => {
-    switch (props.to) {
+  background-color: ${({ to, theme }) => {
+    switch (to) {
       case `../${ROUTER.SIGN_UP}`:
-        return '#E6533C';
+        return `${theme.color.orangeFirst}`;
 
       case `../${ROUTER.SIGN_IN}`:
         return 'transparent';
@@ -98,20 +98,20 @@ export const Button = styled(Link)`
     }
   }};
 
-  border: ${props => {
-    switch (props.to) {
+  border: ${({ to, theme }) => {
+    switch (to) {
       case `../${ROUTER.SIGN_UP}`:
         return 'none';
 
       case `../${ROUTER.SIGN_IN}`:
-        return '1px solid rgba(239, 237, 232, 0.30)';
+        return `1px solid ${theme.color.border}`;
 
       default:
         break;
     }
   }};
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding: 16px 60px;
     font-size: 20px;
     line-height: calc(24 / 20);

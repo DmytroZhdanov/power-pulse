@@ -1,4 +1,4 @@
-/* Приклад користування:
+/* Usage example:
 
 const SomeName = styled.div`
   color: ${({theme}) => theme.color.white};
@@ -10,7 +10,7 @@ const SomeName = styled.div`
     background-color: ${({theme}) => theme.color.inputActive};
   }
 
-  @media screen and (min-width: ${theme.breakpoint.tablet}) {
+  @media screen and (min-width: ${({theme}) => theme.breakpoint.tablet}) {
     color: ${({theme}) => theme.color.black};
     background-color: ${({theme}) => theme.color.orangeThird};
   }
