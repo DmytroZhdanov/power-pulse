@@ -1,4 +1,4 @@
-import{n,P as l,Y as u,Z as h,r as x,j as t,$ as o,b,a0 as E,O as f}from"./index-a24aba2f.js";import{T as j}from"./TitlePage-8803fa2a.js";const C=n.fieldset`
+import{n,P as l,Y as u,Z as h,r as x,j as t,$ as o,b,a0 as E,O as f}from"./index-5d2a431d.js";import{T as j}from"./TitlePage-8a7362d0.js";const C=n.fieldset`
   margin-top: 20px;
 
   display: flex;
@@ -29,12 +29,12 @@ import{n,P as l,Y as u,Z as h,r as x,j as t,$ as o,b,a0 as E,O as f}from"./index
     background-color: transparent;
   }
 
-  ${e=>e.selected&&`color: #EFEDE8;
+  ${({selected:e,theme:s})=>e&&`color: #EFEDE8;
     ::before {
-      background-color: ${({theme:s})=>s.color.orangeSecond}; 
+      background-color: ${s.color.orangeSecond}; 
     }
   `}
-`;function g({category:e,setCategory:s}){const r=u(),i=h();x.useEffect(()=>{r.pathname!=="/exercises"&&i("./")},[e,i,r.pathname]);const a=m=>{s(m.target.value)};return t.jsxs(C,{children:[t.jsx(p,{children:t.jsxs(d,{selected:e===o.BODY_PARTS,children:[t.jsx(c,{type:"radio",value:o.BODY_PARTS,checked:e===o.BODY_PARTS,onChange:a}),"Body parts"]})}),t.jsx(p,{children:t.jsxs(d,{selected:e===o.MUSCLES,children:[t.jsx(c,{type:"radio",value:o.MUSCLES,checked:e===o.MUSCLES,onChange:a}),"Muscles"]})}),t.jsx(p,{children:t.jsxs(d,{selected:e===o.EQUIPMENT,children:[t.jsx(c,{type:"radio",value:o.EQUIPMENT,checked:e===o.EQUIPMENT,onChange:a}),"Equipment"]})})]})}g.propTypes={category:l.string.isRequired,setCategory:l.func.isRequired};const S=n.div`
+`;function g({category:e,setCategory:s}){const r=u(),i=h();x.useEffect(()=>{r.pathname!=="/exercises"&&i("./")},[e,i]);const a=m=>{s(m.target.value)};return t.jsxs(C,{children:[t.jsx(p,{children:t.jsxs(d,{selected:e===o.BODY_PARTS,children:[t.jsx(c,{type:"radio",value:o.BODY_PARTS,checked:e===o.BODY_PARTS,onChange:a}),"Body parts"]})}),t.jsx(p,{children:t.jsxs(d,{selected:e===o.MUSCLES,children:[t.jsx(c,{type:"radio",value:o.MUSCLES,checked:e===o.MUSCLES,onChange:a}),"Muscles"]})}),t.jsx(p,{children:t.jsxs(d,{selected:e===o.EQUIPMENT,children:[t.jsx(c,{type:"radio",value:o.EQUIPMENT,checked:e===o.EQUIPMENT,onChange:a}),"Equipment"]})})]})}g.propTypes={category:l.string.isRequired,setCategory:l.func.isRequired};const S=n.div`
   margin-top: 40px;
   margin-bottom: 48px;
   display: flex;
