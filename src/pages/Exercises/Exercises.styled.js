@@ -6,7 +6,7 @@ export const WrapperTitleCategoriesDiv = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-top: 72px;
     margin-bottom: 64px;
     flex-direction: row;
@@ -16,13 +16,13 @@ export const WrapperTitleCategoriesDiv = styled.div`
     margin-top: ${props => props.margin && '72px'};
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     margin-top: 72px;
     margin-bottom: 64px;
     margin-bottom: ${props => props.margin && '32px'};
   }
 `;
 
-export const Content = styled.div`
+export const ContentDiv = styled.div`
   position: relative;
 `;

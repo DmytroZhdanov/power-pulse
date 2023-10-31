@@ -4,7 +4,7 @@ import {
   ImageLink,
   WrapperDiv,
   DescriptionUl,
-  MaintextP,
+  MainTextP,
   SubtextP,
 } from './ExercisesSubcategoriesItem.styled';
 
@@ -20,8 +20,9 @@ export default function ExercisesSubcategoriesItem({ item }) {
         <WrapperDiv img={item.imgURL}>
           <DescriptionUl>
             <li>
-              <MaintextP>{upperCase(item.name)}</MaintextP>
+              <MainTextP>{upperCase(item.name)}</MainTextP>
             </li>
+
             <li>
               <SubtextP>{item.filter}</SubtextP>
             </li>

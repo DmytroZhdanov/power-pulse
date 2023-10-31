@@ -1,15 +1,15 @@
-import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
-import AddExerciseForm from '../AddExerciseForm/AddExerciseForm';
-import AddExerciseSuccess from '../AddExerciseSuccess/AddExerciseSuccess';
-import sprite from 'src/assets/images/sprite/sprite.svg';
 import { useState } from 'react';
+
+import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
+import AddExerciseForm from 'components/exercises/AddExerciseForm/AddExerciseForm';
+import AddExerciseSuccess from 'components/exercises/AddExerciseSuccess/AddExerciseSuccess';
 import {
   ExercisesCardDiv,
   ExercisesWrapDiv,
   TitleP,
   BoxDiv,
   InfoDiv,
-  ExerciseNameh2,
+  ExerciseNameH2,
   ExerciseDiv,
   ButtonStart,
   ButtonTitleP,
@@ -18,6 +18,8 @@ import {
   SvgArrow,
   SvgRunMan,
 } from './ExercisesItem.styled';
+
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export default function ExercisesItem(props) {
   const { bodyPart, gifUrl, name, target, burnedCalories } = props;
@@ -30,6 +32,7 @@ export default function ExercisesItem(props) {
   const openModalExerciseForm = () => {
     setOnShowModalExerciseForm(true);
   };
+
   const openModalExerciseSuccess = () => {
     setOnShowModalExerciseSuccess(true);
   };
@@ -37,6 +40,7 @@ export default function ExercisesItem(props) {
   const closeModalExerciseForm = () => {
     setOnShowModalExerciseForm(false);
   };
+
   const closeModalExerciseSuccess = () => {
     setOnShowModalExerciseSuccess(false);
   };
@@ -50,6 +54,7 @@ export default function ExercisesItem(props) {
           <BoxDiv className="start">
             <ButtonStart onClick={openModalExerciseForm}>
               <ButtonTitleP className="start">Start</ButtonTitleP>
+
               <SvgArrow>
                 <use href={`${sprite}#arrow-add-prod-orange`}></use>
               </SvgArrow>
@@ -62,7 +67,7 @@ export default function ExercisesItem(props) {
             <use href={`${sprite}#run-man`}></use>
           </SvgRunMan>
 
-          <ExerciseNameh2>{name}</ExerciseNameh2>
+          <ExerciseNameH2>{name}</ExerciseNameH2>
         </ExerciseDiv>
 
         <InfoDiv>

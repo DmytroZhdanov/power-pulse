@@ -1,18 +1,18 @@
 import styled from '@emotion/styled';
 
-export const Wrapper = styled.div`
+export const WrapperDiv = styled.div`
   padding: 50px 45px 30px 45px;
   display: flex;
   gap: 25px;
   flex-direction: column;
 `;
 
-export const InputWrapper = styled.div`
+export const InputWrapperDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     flex-direction: row;
     gap: 20px;
     justify-content: space-between;
@@ -20,8 +20,8 @@ export const InputWrapper = styled.div`
   }
 `;
 
-export const InputLabel = styled.span`
-  color: rgba(239, 237, 232, 0.5);
+export const InputLabelSpan = styled.span`
+  color: ${({ theme }) => theme.color.label};
   font-size: 16px;
   line-height: 1.29;
 `;
@@ -44,7 +44,7 @@ export const InputTime = styled.input`
   }
 `;
 
-export const WrapperCalendarInput = styled.div`
+export const WrapperCalendarInputDiv = styled.div`
   position: relative;
   width: 100%;
   display: flex;
@@ -56,20 +56,20 @@ export const WrapperCalendarInput = styled.div`
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.color.border};
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 167px;
     padding: 12px;
   }
 `;
 
-export const CalendarInputText = styled.p`
+export const CalendarInputTextP = styled.p`
   color: ${({ theme }) => theme.color.white};
 
   font-size: 16px;
   line-height: 1.5;
 `;
 
-export const CalendarIcon = styled.div`
+export const CalendarIconDiv = styled.div`
   svg {
     width: 18px;
     height: 18px;
@@ -78,7 +78,7 @@ export const CalendarIcon = styled.div`
       stroke 300ms ease-in-out,
       transform 300ms ease-in-out;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
       width: 20px;
       height: 20px;
     }
@@ -89,19 +89,16 @@ export const ButtonAdd = styled.button`
   width: 151px;
   padding: 12px 32px;
   border: none;
-  color: ${({ theme }) => theme.color.white} ;
+  color: ${({ theme }) => theme.color.white};
 
   font-size: 16px;
   font-weight: 500;
   border-radius: 12px;
-  background:  ${({ theme }) => theme.color.orangeFirst} ;
+  background: ${({ theme }) => theme.color.orangeFirst};
   line-height: 1.29;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding: 14px 32px;
     line-height: 1.5;
   }
 `;
-
-
-

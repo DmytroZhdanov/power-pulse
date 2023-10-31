@@ -6,7 +6,8 @@ export const CategoriesFieldset = styled.fieldset`
   display: flex;
   font-size: 14px;
   gap: 28px;
-  @media screen and (min-width: 768px) {
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 16px;
     gap: 32px;
   }
@@ -21,8 +22,9 @@ export const CategoryDiv = styled.div`
 `;
 
 export const CategoryLabel = styled.label`
-  color: rgba(239, 237, 232, 0.4);
+  color: ${({ theme }) => theme.color.grayThird};
   cursor: pointer;
+
   ::before {
     content: '';
     position: absolute;
@@ -31,7 +33,7 @@ export const CategoryLabel = styled.label`
     width: 100%;
     height: 4px;
     border-radius: 2px;
-    background: #ef8964;
+    background: ${({ theme }) => theme.color.orangeSecond};
     background-color: transparent;
   }
 
@@ -39,7 +41,7 @@ export const CategoryLabel = styled.label`
     props.selected &&
     `color: #EFEDE8;
     ::before {
-      background-color: #EF8964; 
+      background-color: ${({ theme }) => theme.color.orangeSecond}; 
     }
   `}
 `;
