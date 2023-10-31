@@ -80,14 +80,20 @@ export const api = createApi({
       }),
     }),
     updateUserAvatar: builder.mutation({
-      query: credentials => ({
-        url: '/users/avatars',
-        method: 'PATCH',
-        data: credentials,
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }),
+      query: avatarFile => {
+        const bodyFormData = new FormData();
+        bodyFormData.append('avatar', avatarFile);
+
+        return {
+          url: '/users/avatars',
+          method: 'PATCH',
+          data: { bodyFormData },
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          formData: true,
+        };
+      },
       transformResponse: response => response.user.avatarUrls,
     }),
     fetchUserParams: builder.query({
