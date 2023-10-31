@@ -1,4 +1,4 @@
-import{n as i,o as Q,j as e,p as r,r as T,L as A,P as S,h as V,q as G,I as R}from"./index-a7c8c01f.js";import{T as J}from"./TitlePage-eb997bc3.js";import{C as K,f as P}from"./Calendar-9806edc4.js";import"./tiny-warning.esm-c932d744.js";const X=i.div`
+import{n as i,o as Q,j as e,p as r,r as T,L as A,P as S,h as V,q as G,I as R}from"./index-0ab3a7f8.js";import{T as J}from"./TitlePage-c36ba29e.js";import{C as K,f as P}from"./Calendar-0f585987.js";import"./tiny-warning.esm-c932d744.js";const X=i.div`
   @media screen and (max-width: 767px) {
     margin-bottom: 40px;
   }
