@@ -1,14 +1,24 @@
+import PropTypes from 'prop-types';
+
 import Icon from 'components/common/IconsComp/Icon';
 
-import { Container, ErrorIcon, Message } from './ErrorMessage.styled';
+import { ContainerDiv, ErrorIconDiv, MessageP } from './ErrorMessage.styled';
 
-export default function ErrorMessage({ notificationType='Error:', message }) {
+export default function ErrorMessage({ notificationType = 'Error:', message }) {
   return (
-    <Container>
-      <ErrorIcon>
+    <ContainerDiv>
+      <ErrorIconDiv>
         <Icon name="exclamation-mark" />
-      </ErrorIcon>
-      <Message>{notificationType} {message}</Message>
-    </Container>
+      </ErrorIconDiv>
+
+      <MessageP>
+        {notificationType} {message}
+      </MessageP>
+    </ContainerDiv>
   );
 }
+
+ErrorMessage.propTypes = {
+  notificationType: PropTypes.string,
+  message: PropTypes.string.isRequired,
+};
