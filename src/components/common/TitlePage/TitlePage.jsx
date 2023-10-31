@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-import { Title } from './TitlePage.styled';
+import { TitleH1 } from './TitlePage.styled';
 
 export default function TitlePage({ text }) {
-  return <Title>{text}</Title>;
+  return <TitleH1>{text}</TitleH1>;
 }
 
 TitlePage.propTypes = {
