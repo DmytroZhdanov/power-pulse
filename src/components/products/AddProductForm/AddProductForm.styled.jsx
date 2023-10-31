@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const DivAdddForm = styled.div`
+export const DivAddForm = styled.div`
   margin: 48px 24px;
 
   @media screen and (min-width: 768px) {
@@ -21,7 +21,6 @@ export const InputName = styled.input`
   padding: 8px 14px;
   border-radius: 12px;
   margin-bottom: 16px;
-
   border: 1px solid #e6533c;
   background-color: transparent;
   font-size: 14px;

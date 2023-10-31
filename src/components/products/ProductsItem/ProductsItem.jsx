@@ -1,6 +1,7 @@
 import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
 import AddProductForm from 'components/products/AddProductForm/AddProductForm';
 import AddProductSuccess from 'components/products/AddProductSuccess/AddProductSuccess';
+import ErrorMessage from 'src/components/common/ErrorMessage/ErrorMessage';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import {
   ProductCard,
@@ -31,11 +32,12 @@ import PropTypes from 'prop-types';
  */
 export default function ProductsItem({ props, userGroupBlood }) {
   const { weight, calories, category, title, groupBloodNotAllowed } = props;
-
   const recommended = groupBloodNotAllowed[userGroupBlood];
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddProdSuccess, setIsAddProdSuccess] = useState(false);
+  const [isAddProdError, setIsAddProdError] = useState(false);
   const [totalCalories, setTotalCalories] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   /**
    * Opens a modal window for adding a product.
@@ -55,6 +57,7 @@ export default function ProductsItem({ props, userGroupBlood }) {
   const closeModal = () => {
     setIsModalOpen(false);
     setIsAddProdSuccess(false);
+    setIsAddProdError(false);
   };
 
   /**
@@ -69,6 +72,11 @@ export default function ProductsItem({ props, userGroupBlood }) {
     setTotalCalories(totalCalories);
   };
 
+  const addProdError = errorMessage => {
+    setIsAddProdError(true);
+    setErrorMessage(errorMessage);
+  };
+
   return (
     <>
       <ProductCard>
@@ -76,10 +84,10 @@ export default function ProductsItem({ props, userGroupBlood }) {
           <Diet>DIET</Diet>
 
           <RecommendDiv>
-            <Indicator recommended={!recommended} />
+            <Indicator recommended={recommended} />
 
             <RecommendText>
-              {recommended ? 'Not recommended' : 'Recommended'}
+              {recommended ? 'Recommended' : 'Not recommended'}
             </RecommendText>
 
             <Button onClick={openModal}>
@@ -120,11 +128,19 @@ export default function ProductsItem({ props, userGroupBlood }) {
           onClose={closeModal}
           addProdSuccess={addProdSuccess}
           product={props}
+          addProdError={addProdError}
         />
       </BasicModalWindow>
 
       <BasicModalWindow onClose={closeModal} onShow={isAddProdSuccess}>
-        <AddProductSuccess onClose={closeModal} totalCalories={totalCalories} />
+        <AddProductSuccess
+          onClose={closeModal}
+          totalCalories={totalCalories}
+          addProdError={addProdError}
+        />
+      </BasicModalWindow>
+      <BasicModalWindow onClose={closeModal} onShow={isAddProdError}>
+        <ErrorMessage message={errorMessage} onClose={closeModal} />
       </BasicModalWindow>
     </>
   );

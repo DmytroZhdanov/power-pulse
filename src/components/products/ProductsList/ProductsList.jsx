@@ -1,7 +1,7 @@
 import ProductsItem from '../ProductsItem/ProductsItem';
 import {
   ProductList,
-  DivProducts,
+  //  DivProducts,
   DefaultText,
   SpanNotFound,
   SpanTry,
@@ -94,7 +94,7 @@ export default function ProductsList({ filter }) {
   }, [currentFilter, getProducts, currentPage, filter]);
 
   return (
-    <DivProducts>
+    <>
       {products.length > 0 ? (
         <ProductList>
           {products.map(({ _id, ...props }, index) => (
@@ -108,6 +108,7 @@ export default function ProductsList({ filter }) {
                 userGroupBlood={userGroupBlood}
               ></ProductsItem>
             </WrapLi>
+
           ))}
         </ProductList>
       ) : (
@@ -121,12 +122,14 @@ export default function ProductsList({ filter }) {
           <SpanTry>Try changing the search parameters.</SpanTry>
         </>
       )}
+
       <ErrorHandler
         isLoading={isGettingLazy}
         isError={gettingErrorLazy}
         error={myErrorLazy}
       />
-    </DivProducts>
+    </>
+
   );
 }
 

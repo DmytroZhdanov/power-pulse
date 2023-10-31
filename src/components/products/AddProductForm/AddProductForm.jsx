@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
-  DivAdddForm,
+  DivAddForm,
   DivInputs,
   InputName,
   DivGrams,
@@ -13,40 +14,79 @@ import {
   ButtonAdd,
   ButtonCancel,
 } from './AddProductForm.styled';
+import { useAddProductMutation } from '../../../redux/api';
+
+/**
+ * The AddProductForm component provides a form for adding a product to a user's diary.
+ *
+ * @param {Object} props - The component's props.
+ * @param {Function} props.onClose - A callback function to close the form.
+ * @param {Function} props.addProdSuccess - A callback function to handle successful product addition.
+ * @param {Function} props.addProdError - A callback function to handle product addition errors.
+ * @param {Object} props.product - The product to be added.
+ * @param {number} props.product.weight - The weight of the product.
+ * @param {number} props.product.calories - The calories in the product.
+ * @returns {JSX.Element} The AddProductForm component.
+ */
 
 export default function AddProductForm(props) {
-  const { onClose, addProdSuccess, product } = props;
-  const [weight, setWeight] = useState(100);
-  const totalCalories = weight * product.calories;
+  const { onClose, addProdSuccess, addProdError, product } = props;
+  const { weight, calories, _id, title } = product;
+  const [addWeight, setAddWeight] = useState(weight);
+  const amount = (addWeight * calories) / 100;
 
-  //  useAddProductMutation;
+  const [addProduct] = useAddProductMutation();
 
-  const handleSubmit = () => {
-    onClose();
-    addProdSuccess(totalCalories);
+  const addProductToCollection = {
+    product_ID: _id,
+    date: new Date(),
+    amount,
+    calories,
+  };
+
+  const handleSubmit = async () => {
+    const { error } = await addProduct(addProductToCollection);
+    if (error) {
+      addProdError(error.data.message);
+    } else {
+      onClose();
+      addProdSuccess(amount);
+    }
   };
 
   return (
-    <DivAdddForm>
+    <DivAddForm>
       <DivInputs>
-        <InputName type="text" value={product.title} readOnly />
+        <InputName type="text" value={title} readOnly disabled />
         <DivGrams>
           <InputGrams
             type="number"
-            value={weight}
-            onChange={e => setWeight(e.target.value)}
+            value={addWeight}
+            onChange={e => setAddWeight(e.target.value)}
           />
           <Placeholder>grams</Placeholder>
         </DivGrams>
       </DivInputs>
       <DivCalories>
         <Calories>Calories:</Calories>
-        <ValueCalories>{totalCalories}</ValueCalories>
+        <ValueCalories>{amount}</ValueCalories>
       </DivCalories>
       <DivBtn>
         <ButtonAdd onClick={handleSubmit}>Add to diary</ButtonAdd>
         <ButtonCancel onClick={onClose}>Cancel</ButtonCancel>
       </DivBtn>
-    </DivAdddForm>
+    </DivAddForm>
   );
 }
+
+AddProductForm.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  addProdSuccess: PropTypes.func.isRequired,
+  addProdError: PropTypes.func.isRequired,
+  product: PropTypes.shape({
+    weight: PropTypes.number.isRequired,
+    calories: PropTypes.number.isRequired,
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+};

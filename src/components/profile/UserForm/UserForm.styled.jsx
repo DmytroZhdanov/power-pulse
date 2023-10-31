@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import styles from 'react-day-picker/dist/style.css';
+// import styles from 'react-day-picker/dist/style.css';
 
 export const Form = styled.form`
   width: 335px;

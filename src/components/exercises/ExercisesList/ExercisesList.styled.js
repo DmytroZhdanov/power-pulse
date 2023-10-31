@@ -6,21 +6,22 @@ export const ExerciseListUl = styled.ul`
   flex-wrap: wrap;
   align-items: flex-start;
 
-  @media (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     gap: 20px;
   }
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     overflow-y: scroll;
     row-gap: 32px;
     column-gap: 16px;
   }
 
-  @media (min-width: 768px) and (max-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) =>
+      theme.breakpoint.tablet}) and (max-width: 1439px) {
     max-height: 610px;
   }
 
-  @media (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     max-width: 850px;
     max-height: 495px;
     display: flex;
@@ -34,7 +35,7 @@ export const LinkTextP = styled.p`
   font-size: 14px;
   line-height: calc(18 / 14);
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     line-height: calc(24 / 16);
   }
 `;
@@ -47,7 +48,7 @@ export const StyledLink = styled(Link)`
   top: -25px;
   left: 0;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     position: absolute;
     top: -40px;
     left: 0;
@@ -60,10 +61,8 @@ export const Svg = styled.svg`
   stroke: ${({ theme }) => theme.color.grayThird};
 `;
 
-export const WrapLi = styled.li``;
-
 export const BackgroundDiv = styled.div`
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     position: absolute;
     top: -72px;
     right: -95px;
@@ -81,5 +80,3 @@ export const BackgroundDiv = styled.div`
     background-position: right;
   }
 `;
-
-export const ContentDiv = styled.div``;

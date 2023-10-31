@@ -1,11 +1,11 @@
-import TitlePage from 'components/common/TitlePage/TitlePage';
-import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { EXERCISES_CATEGORY } from '../../utils/constants';
-import ExercisesCategories from 'components/exercises/ExercisesCategories/ExercisesCategories';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 
-import { Content, WrapperTitleCategoriesDiv } from './Exercises.styled';
-import UpperCase from '../../components/common/UpperCaseFunc/UpperCase';
+import TitlePage from 'components/common/TitlePage/TitlePage';
+import ExercisesCategories from 'components/exercises/ExercisesCategories/ExercisesCategories';
+import { ContentDiv, WrapperTitleCategoriesDiv } from './Exercises.styled';
+
+import { EXERCISES_CATEGORY } from 'src/utils/constants';
 
 export function Exercises() {
   const [category, setCategory] = useState(EXERCISES_CATEGORY.BODY_PARTS);
@@ -13,16 +13,16 @@ export function Exercises() {
   const { subcategory } = useParams();
 
   const subcategoriesLocation = location.pathname === '/exercises';
+
   return (
-    <Content>
+    <ContentDiv>
       <WrapperTitleCategoriesDiv margin={Boolean(subcategory)}>
-        <TitlePage
-          text={subcategoriesLocation ? 'Exercises' : UpperCase(subcategory)}
-        />
+        <TitlePage text={subcategoriesLocation ? 'Exercises' : subcategory} />
+
         <ExercisesCategories setCategory={setCategory} category={category} />
       </WrapperTitleCategoriesDiv>
 
       <Outlet context={category} />
-    </Content>
+    </ContentDiv>
   );
 }

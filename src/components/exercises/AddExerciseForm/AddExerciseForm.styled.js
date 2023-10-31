@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 
-export const ExerciseContainer = styled.div`
+export const ExerciseContainerDiv = styled.div`
   display: grid;
   padding: 48px 16px;
   width: 335px;
   height: 570px;
   gap: 40px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding-right: 32px;
     padding-left: 32px;
     width: 694px;
@@ -17,25 +17,26 @@ export const ExerciseContainer = styled.div`
   }
 `;
 
-export const ExerciseInfo = styled.div`
+export const ExerciseInfoDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const WorkoutSummary = styled.div`
+export const WorkoutSummaryDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: 48px;
-  @media screen and (min-width: 768px) {
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     align-items: flex-end;
     justify-content: space-between;
     padding-bottom: 0px;
   }
 `;
 
-export const Gif = styled.img`
+export const GifImg = styled.img`
   object-fit: cover;
   margin-bottom: 14px;
   width: 270px;
@@ -54,19 +55,19 @@ export const CaloriesDiv = styled.div`
   gap: 8px;
 `;
 
-export const CaloriesLabel = styled.p`
+export const CaloriesLabelP = styled.p`
   color: ${({ theme }) => theme.color.grayFirst};
   font-size: 14px;
   line-height: 1.29;
 `;
 
-export const CaloriesValue = styled.p`
+export const CaloriesValueP = styled.p`
   color: ${({ theme }) => theme.color.orangeFirst};
   font-size: 14px;
   line-height: 1.29;
 `;
 
-export const ButtonWrapper = styled.div`
+export const ButtonWrapperDiv = styled.div`
   display: flex;
   gap: 20px;
 `;
@@ -80,7 +81,7 @@ export const ButtonOpenPastDaysForm = styled.button`
   font-size: 14px;
   line-height: 1.29;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 16px;
     line-height: 1.5;
   }
@@ -103,7 +104,7 @@ export const ButtonSubmit = styled.button`
   font-weight: 500;
   line-height: 1.13;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding: 14px 32px;
     line-height: 1.5;
   }

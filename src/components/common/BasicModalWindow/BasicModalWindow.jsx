@@ -1,14 +1,16 @@
-import PropTypes from 'prop-types';
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
-import sprite from 'src/assets/images/sprite/sprite.svg';
+import PropTypes from 'prop-types';
+
 import {
   CloseModalButton,
   CloseModalIcon,
-  Modal,
-  ModalBackdrop,
+  ModalDiv,
+  ModalBackdropDiv,
 } from './BasicModalWindow.styled';
+
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export default function BasicModalWindow(props) {
   const { onShow = true, onClose, children } = props;
@@ -51,8 +53,9 @@ export default function BasicModalWindow(props) {
         classNames="backdrop-wrapper"
         unmountOnExit
       >
-        <ModalBackdrop onClick={onClose} ref={backdropRef} />
+        <ModalBackdropDiv onClick={onClose} ref={backdropRef} />
       </CSSTransition>
+
       <CSSTransition
         in={onShow}
         nodeRef={nodeModalRef}
@@ -60,14 +63,15 @@ export default function BasicModalWindow(props) {
         classNames="modal-wrapper"
         unmountOnExit
       >
-        <Modal ref={nodeModalRef}>
+        <ModalDiv ref={nodeModalRef}>
           <CloseModalButton onClick={onClose}>
             <CloseModalIcon width={26} height={26}>
               <use href={`${sprite}#close`}></use>
             </CloseModalIcon>
           </CloseModalButton>
+
           {children}
-        </Modal>
+        </ModalDiv>
       </CSSTransition>
     </>,
     modalRoot,

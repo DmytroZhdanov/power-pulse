@@ -12,11 +12,11 @@ import {
 
 import sprite from 'src/assets/images/sprite/sprite.svg';
 
-export default function BurgerMenu({ openedModal, setOpenedModal }) {
+export default function BurgerMenu({ setOpenedModal }) {
   const burgerRoot = document.querySelector('#burger-root');
 
   return createPortal(
-    <WindowDiv openedModal={openedModal}>
+    <WindowDiv>
       <ButtonCloseDiv
         onClick={() => {
           setOpenedModal(false);
@@ -43,6 +43,5 @@ export default function BurgerMenu({ openedModal, setOpenedModal }) {
 }
 
 BurgerMenu.propTypes = {
-  openedModal: PropTypes.bool.isRequired,
   setOpenedModal: PropTypes.func.isRequired,
 };
