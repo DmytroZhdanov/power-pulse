@@ -16,7 +16,7 @@ export function Exercises() {
     <Content>
       <WrapperTitleCategoriesDiv margin={Boolean(subcategory)}>
         <TitlePage
-          text={subcategoriesLocation ? 'Exercises' : (subcategory)}
+          text={subcategoriesLocation ? 'Exercises' : subcategory}
         />
         <ExercisesCategories setCategory={setCategory} category={category} />
       </WrapperTitleCategoriesDiv>
