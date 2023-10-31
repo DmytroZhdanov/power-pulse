@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import { Item, Label, List, Value } from './InfoOnExerciseList.styled';
+import { ItemLi, LabelP, ListUl, ValueP } from './InfoOnExerciseList.styled';
 
 const InfoOnExerciseList = ({ exercise }) => {
   const { bodyPart, equipment, name, target, time } = exercise;
 
   return (
-    <List>
+    <ListUl>
       {[
         { label: 'Name', value: name },
         { label: 'Target', value: target },
@@ -13,12 +13,12 @@ const InfoOnExerciseList = ({ exercise }) => {
         { label: 'Equipment', value: equipment },
         { label: 'Time', value: `${time} minutes` },
       ].map(({ label, value }) => (
-        <Item key={label + value}>
-          <Label>{label}</Label>
-          <Value>{value}</Value>
-        </Item>
+        <ItemLi key={label + value}>
+          <LabelP>{label}</LabelP>
+          <ValueP>{value}</ValueP>
+        </ItemLi>
       ))}
-    </List>
+    </ListUl>
   );
 };
 export default InfoOnExerciseList;
@@ -29,7 +29,6 @@ InfoOnExerciseList.propTypes = {
     equipment: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     target: PropTypes.string.isRequired,
-
     time: PropTypes.number.isRequired,
   }).isRequired,
 };

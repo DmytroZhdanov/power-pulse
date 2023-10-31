@@ -1,21 +1,21 @@
-import { format } from 'date-fns';
-import PropTypes from 'prop-types';
 import { useState } from 'react';
-import Icon from 'src/components/common/IconsComp/Icon';
-import Calendar from '../../Calendar/Calendar';
+import PropTypes from 'prop-types';
+import { format } from 'date-fns';
 
+import Icon from 'components/common/IconsComp/Icon';
+import Calendar from 'components/Calendar/Calendar';
 import {
   ButtonAdd,
-  CalendarIcon,
-  CalendarInputText,
-  InputLabel,
+  CalendarIconDiv,
+  CalendarInputTextP,
+  InputLabelSpan,
   InputTime,
-  InputWrapper,
-  Wrapper,
-  WrapperCalendarInput,
+  InputWrapperDiv,
+  WrapperDiv,
+  WrapperCalendarInputDiv,
 } from './AddExercisesFromPastDaysForm.styled';
 
-const AddExercisesFromPastDaysForm = ({ onSubmit }) => {
+export default function AddExercisesFromPastDaysForm({ onSubmit }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [time, setTime] = useState('');
 
@@ -32,43 +32,42 @@ const AddExercisesFromPastDaysForm = ({ onSubmit }) => {
   };
 
   const inputText = format(selectedDate, 'dd.MM.yyyy');
+
   return (
-    <Wrapper>
+    <WrapperDiv>
       <label>
-        <InputWrapper>
-          <InputLabel>Add time</InputLabel>
+        <InputWrapperDiv>
+          <InputLabelSpan>Add time</InputLabelSpan>
+
           <InputTime
             placeholder="min 60 sec."
             type="number"
             value={time}
             onChange={handleChange}
           />
-        </InputWrapper>
+        </InputWrapperDiv>
       </label>
 
-      <InputWrapper>
-        <InputLabel>Choice day</InputLabel>
-        <Calendar
-          maxDate={new Date()}
-          onChange={setDate}
-          value={selectedDate}
-        >
-          <WrapperCalendarInput>
-            <CalendarInputText>{inputText}</CalendarInputText>
-            <CalendarIcon>
+      <InputWrapperDiv>
+        <InputLabelSpan>Choice day</InputLabelSpan>
+
+        <Calendar maxDate={new Date()} onChange={setDate} value={selectedDate}>
+          <WrapperCalendarInputDiv>
+            <CalendarInputTextP>{inputText}</CalendarInputTextP>
+
+            <CalendarIconDiv>
               <Icon name="calendar" />
-            </CalendarIcon>
-          </WrapperCalendarInput>
+            </CalendarIconDiv>
+          </WrapperCalendarInputDiv>
         </Calendar>
-      </InputWrapper>
+      </InputWrapperDiv>
 
       <div>
         <ButtonAdd onClick={handleSubmit}>Add to diary</ButtonAdd>
       </div>
-    </Wrapper>
+    </WrapperDiv>
   );
-};
-export default AddExercisesFromPastDaysForm;
+}
 
 AddExercisesFromPastDaysForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,

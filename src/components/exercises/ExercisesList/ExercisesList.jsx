@@ -1,22 +1,23 @@
-import ExercisesItem from '../ExercisesItem/ExercisesItem';
+import { useEffect, useRef, useState } from 'react';
+import { useLocation, useOutletContext, useParams } from 'react-router';
+import { useInView } from 'react-intersection-observer';
+
+import ExercisesItem from 'components/exercises/ExercisesItem/ExercisesItem';
+import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   BackgroundDiv,
-  ContentDiv,
   ExerciseListUl,
   LinkTextP,
   StyledLink,
   Svg,
-  WrapLi,
 } from './ExercisesList.styled';
-import { useLocation, useOutletContext, useParams } from 'react-router';
+
 import {
   useLazyFetchAllExercisesQuery,
   useFetchExercisesSubcategoriesQuery,
-} from '../../../redux/api';
-import { useEffect, useRef, useState } from 'react';
+} from 'src/redux/api';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { useInView } from 'react-intersection-observer';
-import ErrorHandler from '../../common/ErrorHandler/ErrorHandler';
+
 export function ExercisesList() {
   const category = useOutletContext();
   const [page, setPage] = useState(1);
@@ -30,7 +31,6 @@ export function ExercisesList() {
   const location = useLocation();
   const pathLocation = useRef(location.state?.from ?? '/exercises');
   const listRef = useRef();
-  // const [fetchAllExercises] = useLazyFetchAllExercisesQuery();
 
   const [
     fetchAllExercises,
@@ -75,11 +75,12 @@ export function ExercisesList() {
   }, [page, fetchAllExercises, fetching, category, subcategory]);
 
   return (
-    <ContentDiv>
+    <div>
       <StyledLink to={pathLocation.current}>
         <Svg>
           <use href={`${sprite}#icon-arrow`}></use>
         </Svg>
+
         <LinkTextP>Back</LinkTextP>
       </StyledLink>
 
@@ -98,7 +99,7 @@ export function ExercisesList() {
             },
             index,
           ) => (
-            <WrapLi key={index} ref={index === result.length - 1 ? ref : null}>
+            <li key={index} ref={index === result.length - 1 ? ref : null}>
               <ExercisesItem
                 key={_id}
                 _id={_id}
@@ -110,18 +111,20 @@ export function ExercisesList() {
                 burnedCalories={burnedCalories}
                 time={time}
               />
-            </WrapLi>
+            </li>
           ),
         )}
       </ExerciseListUl>
+
       <BackgroundDiv category={category} img={backgroundImage} />
 
       <ErrorHandler isLoading={isFetching} isError={isError} error={error} />
+
       <ErrorHandler
         isLoading={isGettingLazy}
         isError={gettingErrorLazy}
         error={myErrorLazy}
       />
-    </ContentDiv>
+    </div>
   );
 }

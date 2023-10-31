@@ -1,20 +1,20 @@
 import PropTypes from 'prop-types';
+
 import {
   Button,
   DiaryLink,
-  ExerciseSuccessWrap,
+  ExerciseSuccessWrapDiv,
   Img,
-  LinkIcon,
-  ResultLabel,
-  ResultValue,
-  ResultWrap,
-  Text,
-  Title,
+  LinkIconSvg,
+  ResultLabelSpan,
+  ResultValueSpan,
+  ResultWrapDiv,
+  TextP,
+  TitleH2,
 } from './AddExerciseSuccess.styled';
 
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import thumbUpImage from 'src/assets/images/Success/thumb-up.webp';
-
 import { ROUTER } from 'src/utils/constants';
 
 export default function AddExerciseSuccess({
@@ -32,34 +32,37 @@ export default function AddExerciseSuccess({
   };
 
   return (
-    <ExerciseSuccessWrap>
+    <ExerciseSuccessWrapDiv>
       <Img src={thumbUpImage} alt="thumb up" />
 
-      <Title>{staticData.wellDone}</Title>
+      <TitleH2>{staticData.wellDone}</TitleH2>
 
-      <ResultWrap>
-        <Text>
-          <ResultLabel>{staticData.timeText}</ResultLabel>
-          <ResultValue> {time}</ResultValue>
-        </Text>
+      <ResultWrapDiv>
+        <TextP>
+          <ResultLabelSpan>{staticData.timeText}</ResultLabelSpan>
 
-        <Text>
-          <ResultLabel>{staticData.caloriesText}</ResultLabel>
-          <ResultValue>{calories}</ResultValue>
-        </Text>
-      </ResultWrap>
+          <ResultValueSpan> {time}</ResultValueSpan>
+        </TextP>
+
+        <TextP>
+          <ResultLabelSpan>{staticData.caloriesText}</ResultLabelSpan>
+
+          <ResultValueSpan>{calories}</ResultValueSpan>
+        </TextP>
+      </ResultWrapDiv>
 
       <Button onClick={closeModalExerciseSuccess} type="button">
         {staticData.nextExerciseText}
       </Button>
 
       <DiaryLink to={`/${ROUTER.DIARY}`}>
-        <Text> {staticData.diaryLinkText}</Text>
-        <LinkIcon>
+        <TextP> {staticData.diaryLinkText}</TextP>
+
+        <LinkIconSvg>
           <use href={`${sprite}#arrow-add-prod`}></use>
-        </LinkIcon>
+        </LinkIconSvg>
       </DiaryLink>
-    </ExerciseSuccessWrap>
+    </ExerciseSuccessWrapDiv>
   );
 }
 

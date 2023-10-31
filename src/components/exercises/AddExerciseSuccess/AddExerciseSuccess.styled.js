@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-export const ExerciseSuccessWrap = styled.div`
+export const ExerciseSuccessWrapDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +9,7 @@ export const ExerciseSuccessWrap = styled.div`
   padding-bottom: 48px;
   width: 335px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding-top: 64px;
     padding-bottom: 64px;
     width: 430px;
@@ -39,14 +39,14 @@ export const Img = styled.img`
   animation: scale 1500ms linear;
 `;
 
-export const Title = styled.h2`
+export const TitleH2 = styled.h2`
   margin-bottom: 16px;
   font-size: 24px;
   font-weight: 700;
   line-height: 1.33;
 `;
 
-export const ResultWrap = styled.div`
+export const ResultWrapDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,30 +54,31 @@ export const ResultWrap = styled.div`
   margin-bottom: 24px;
 `;
 
-export const Text = styled.p`
+export const TextP = styled.p`
   font-size: 14px;
   line-height: 1.29;
 `;
 
-export const ResultLabel = styled.span`
+export const ResultLabelSpan = styled.span`
   margin-right: 8px;
-  color: rgba(239, 237, 232, 0.3);
+  color: ${({ theme }) => theme.color.grayFirst};
 `;
 
-export const ResultValue = styled.span`
-  color: #e6533c;
+export const ResultValueSpan = styled.span`
+  color: ${({ theme }) => theme.color.orangeFirst};
 `;
 
 export const Button = styled.button`
   margin-bottom: 16px;
   padding: 12px 32px;
   border-radius: 12px;
-  background: #e6533c;
-  color: #efede8;
+  background: ${({ theme }) => theme.color.orangeFirst};
+  color: ${({ theme }) => theme.color.white};
   font-size: 16px;
   font-weight: 500;
   line-height: 1.13;
-  @media screen and (min-width: 768px) {
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding-top: 14px;
     padding-bottom: 14px;
     line-height: 1.5;
@@ -85,12 +86,13 @@ export const Button = styled.button`
 `;
 
 export const DiaryLink = styled(Link)`
-  color: rgba(239, 237, 232, 0.3);
+  color: ${({ theme }) => theme.color.grayFirst};
   display: flex;
   align-items: center;
   gap: 8px;
 `;
-export const LinkIcon = styled.svg`
+
+export const LinkIconSvg = styled.svg`
   width: 16px;
   height: 16px;
 `;

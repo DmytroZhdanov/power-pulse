@@ -15,20 +15,25 @@ export const ExercisesCardDiv = styled.div`
     background-position: right;
     background-color: ${({ theme }) => theme.color.fullWhite};
   }
+
   &:hover p,
   &:hover span,
   &:hover h2 {
     color: ${({ theme }) => theme.color.black};
   }
+
   &:hover .start {
     color: ${({ theme }) => theme.color.orangeFirst};
     font-weight: 500;
   }
+
   &:hover h2 {
     max-width: 225px;
   }
+
   &:hover button {
   }
+
   &:hover span {
     font-weight: 500;
   }
@@ -42,19 +47,21 @@ export const ExercisesCardDiv = styled.div`
     max-width: 335px;
   }
 
-  @media screen and (min-width: 375px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     width: 335px;
+
     &:hover h2 {
       max-width: 140px;
     }
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     width: 405px;
 
     &:hover .bodyPart {
       opacity: 1;
     }
+
     &:hover h2 {
       max-width: 225px;
     }
@@ -67,7 +74,7 @@ export const ExercisesWrapDiv = styled.div`
 
   margin-bottom: 33px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-bottom: 25px;
   }
 `;
@@ -103,7 +110,7 @@ export const InfoDiv = styled.div`
   flex-wrap: wrap;
 `;
 
-export const ExerciseNameh2 = styled.h2`
+export const ExerciseNameH2 = styled.h2`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -114,7 +121,7 @@ export const ExerciseNameh2 = styled.h2`
     text-transform: uppercase;
   }
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 24px;
     line-height: calc(32 / 24);
   }
@@ -126,7 +133,7 @@ export const ExerciseDiv = styled.div`
   gap: 16px;
   margin-bottom: 8px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-bottom: 12px;
   }
 `;
@@ -137,11 +144,12 @@ export const ButtonStart = styled.button`
   background-color: transparent;
   border: none;
   margin-right: 1px;
-  @media screen and (min-width: 768px) {
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-right: 152px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     margin-right: 152px;
   }
 `;
@@ -158,12 +166,12 @@ export const CategoryP = styled.p`
   font-size: 12px;
   line-height: calc(18 / 12);
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     display: flex;
     gap: 4px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     display: flex;
     gap: 4px;
   }
@@ -178,11 +186,12 @@ export const ValuesSpan = styled.span`
     text-transform: uppercase;
   }
 
-  @media screen and (min-width: 768px) and (max-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) =>
+      theme.breakpoint.tablet}) and (max-width: 1439px) {
     margin-left: 4px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     margin-bottom: 0;
   }
 `;
