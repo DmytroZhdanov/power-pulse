@@ -1,7 +1,7 @@
 import ProductsItem from '../ProductsItem/ProductsItem';
 import {
   ProductList,
-  DivProducts,
+  //  DivProducts,
   DefaultText,
   SpanNotFound,
   SpanTry,
@@ -12,42 +12,63 @@ import {
   useFetchUserBloodGroupQuery,
 } from '../../../redux/api';
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
+/**
+ * The ProductsList component represents a list of products and displays them according to the passed filter.
+ *
+ * @param {object} filter The filter object contains the parameters by which the user wants to filter the list of products.
+ * @returns {JSX.Element} A list of products or a message that there are no results.
+ */
 export default function ProductsList({ filter }) {
   const [products, setProducts] = useState([]);
   const [userGroupBlood, setUserGroupBlood] = useState(null);
   const [getProducts] = useLazyFetchAllProductsQuery();
+
   const pending = useFetchUserBloodGroupQuery();
+  const { isSuccess, data } = pending;
+
+  /**
+   * Updates the user's blood type based on a successful request to the backend.
+   *
+   * @param {boolean} isSuccess The success of the request to the backend.
+   */
 
   useEffect(() => {
-    if (pending.isSuccess) {
-      const userBlood = pending.data;
+    if (isSuccess) {
+      const userBlood = data;
       setUserGroupBlood(userBlood);
     }
-  }, [pending]);
+  }, [data, isSuccess]);
 
-  console.log('userGroupBlood:', userGroupBlood);
+  /**
+   * fetchData Loads the list of products from the backend according to the specified filter.
+   *
+   * @function fetchData
+   * @param {object} filter The filter object containing parameters by which the user wishes to filter the list of products.
+   * @returns {array} The list of products or a message indicating no results.
+   */
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getProducts(filter).unwrap();
-        setProducts(response);
+        const { data } = await getProducts(filter).unwrap();
+        setProducts(data);
       } catch (error) {
         console.error('Error fetching data:', error.message);
       }
     };
 
     fetchData();
-  }, [filter]);
+  }, [filter, getProducts]);
 
   return (
-    <DivProducts>
+    <>
       {products.length > 0 ? (
         <ProductList>
-          {products.map(({ _id, ...props }) => (
+          {products.map(props => (
             <ProductsItem
-              key={_id}
+              key={props._id}
               props={props}
               userGroupBlood={userGroupBlood}
             ></ProductsItem>
@@ -64,6 +85,10 @@ export default function ProductsList({ filter }) {
           <SpanTry>Try changing the search parameters.</SpanTry>
         </>
       )}
-    </DivProducts>
+    </>
   );
 }
+
+ProductsList.propTypes = {
+  filter: PropTypes.object,
+};

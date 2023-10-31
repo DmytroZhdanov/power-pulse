@@ -1,6 +1,7 @@
 import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
 import AddProductForm from 'components/products/AddProductForm/AddProductForm';
 import AddProductSuccess from 'components/products/AddProductSuccess/AddProductSuccess';
+import ErrorMessage from 'src/components/common/ErrorMessage/ErrorMessage';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import {
   ProductCard,
@@ -20,28 +21,60 @@ import {
   Value,
 } from './ProductsItem.styled';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
+/**
+ * The ProductsItem component represents an individual product list item and displays product information.
+ *
+ * @param {object} props An object containing information about the product.
+ * @param {string} userGroupBlood User's blood group.
+ * @returns {JSX.Element} A product list item with product information and recommendations.
+ */
 export default function ProductsItem({ props, userGroupBlood }) {
   const { weight, calories, category, title, groupBloodNotAllowed } = props;
-
   const recommended = groupBloodNotAllowed[userGroupBlood];
-
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAddProdSucces, setIsAddProdSuccess] = useState(false);
-  const [totalCallories, setTotalCalories] = useState(null);
+  const [isAddProdSuccess, setIsAddProdSuccess] = useState(false);
+  const [isAddProdError, setIsAddProdError] = useState(false);
+  const [totalCalories, setTotalCalories] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
+  /**
+   * Opens a modal window for adding a product.
+   *
+   * @function openModal
+   */
   const openModal = () => {
     setIsModalOpen(true);
   };
 
+  /**
+   * Closes the modal window for adding a product.
+   *
+   * @function closeModal
+   */
+
   const closeModal = () => {
     setIsModalOpen(false);
     setIsAddProdSuccess(false);
+    setIsAddProdError(false);
   };
+
+  /**
+   * Handles the successful addition of a product, closes the modal window, and sends the total calorie value of this product to the backend through props.
+   *
+   * @function addProdSuccess
+   * @param {number} totalCalories The total calorie count of the added products.
+   */
 
   const addProdSuccess = totalCalories => {
     setIsAddProdSuccess(true);
     setTotalCalories(totalCalories);
+  };
+
+  const addProdError = errorMessage => {
+    setIsAddProdError(true);
+    setErrorMessage(errorMessage);
   };
 
   return (
@@ -51,10 +84,10 @@ export default function ProductsItem({ props, userGroupBlood }) {
           <Diet>DIET</Diet>
 
           <RecommendDiv>
-            <Indicator recommended={!recommended} />
+            <Indicator recommended={recommended} />
 
             <RecommendText>
-              {recommended ? 'Not recommended' : 'Recommended'}
+              {recommended ? 'Recommended' : 'Not recommended'}
             </RecommendText>
 
             <Button onClick={openModal}>
@@ -90,24 +123,36 @@ export default function ProductsItem({ props, userGroupBlood }) {
         </Description>
       </ProductCard>
 
-      {isModalOpen && (
-        <BasicModalWindow onClose={closeModal}>
-          <AddProductForm
-            onClose={closeModal}
-            addProdSuccess={addProdSuccess}
-            product={props}
-          />
-        </BasicModalWindow>
-      )}
+      <BasicModalWindow onClose={closeModal} onShow={isModalOpen}>
+        <AddProductForm
+          onClose={closeModal}
+          addProdSuccess={addProdSuccess}
+          product={props}
+          addProdError={addProdError}
+        />
+      </BasicModalWindow>
 
-      {isAddProdSucces && (
-        <BasicModalWindow onClose={closeModal}>
-          <AddProductSuccess
-            onClose={closeModal}
-            totalCalories={totalCallories}
-          />
-        </BasicModalWindow>
-      )}
+      <BasicModalWindow onClose={closeModal} onShow={isAddProdSuccess}>
+        <AddProductSuccess
+          onClose={closeModal}
+          totalCalories={totalCalories}
+          addProdError={addProdError}
+        />
+      </BasicModalWindow>
+      <BasicModalWindow onClose={closeModal} onShow={isAddProdError}>
+        <ErrorMessage message={errorMessage} onClose={closeModal} />
+      </BasicModalWindow>
     </>
   );
 }
+
+ProductsItem.propTypes = {
+  props: PropTypes.shape({
+    weight: PropTypes.number.isRequired,
+    calories: PropTypes.number.isRequired,
+    category: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    groupBloodNotAllowed: PropTypes.object.isRequired,
+  }).isRequired,
+  userGroupBlood: PropTypes.number,
+};

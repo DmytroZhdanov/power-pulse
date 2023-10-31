@@ -1,25 +1,26 @@
 import styled from '@emotion/styled';
 
-export const ListCategories = styled.fieldset`
+export const CategoriesFieldset = styled.fieldset`
   margin-top: 20px;
 
   display: flex;
   font-size: 14px;
-  gap: 32px;
+  gap: 28px;
   @media screen and (min-width: 768px) {
     font-size: 16px;
+    gap: 32px;
   }
 `;
 
-export const InputCategory = styled.input`
+export const CategoryInput = styled.input`
   display: none;
 `;
 
-export const ItemCategory = styled.div`
+export const CategoryDiv = styled.div`
   position: relative;
 `;
 
-export const LabelCategory = styled.label`
+export const CategoryLabel = styled.label`
   color: rgba(239, 237, 232, 0.4);
   cursor: pointer;
   ::before {
@@ -36,7 +37,7 @@ export const LabelCategory = styled.label`
 
   ${props =>
     props.selected &&
-    `color: #EFEDE8;;
+    `color: #EFEDE8;
     ::before {
       background-color: #EF8964; 
     }

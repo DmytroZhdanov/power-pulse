@@ -1,21 +1,24 @@
-import { useSelector } from 'react-redux';
-import { selectToken } from 'src/redux/auth/selectors';
-import PropTypes from 'prop-types';
-import { Navigate, useNavigate } from 'react-router-dom';
-import { useLazyFetchUserParamsQuery } from '../redux/api';
-import { ROUTER } from '../utils';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import { selectToken } from 'src/redux/auth/selectors';
+import { useLazyFetchUserParamsQuery } from 'src/redux/api';
+import { ROUTER } from 'src/utils';
 
 export default function PrivateRoute({ redirectTo, component: Component }) {
-  const [trigger, { isFetching }] = useLazyFetchUserParamsQuery();
+  const [fetchUserParams] = useLazyFetchUserParamsQuery();
   const navigate = useNavigate();
   const token = useSelector(selectToken);
   const shouldRedirect = !token;
 
+  // Makes fetch request to check is there user parameters on database.
+  // If no user parameters found redirect to Data page to fill in the form.
   useEffect(() => {
     const fetch = async () => {
       try {
-        const data = await trigger().unwrap();
+        const data = await fetchUserParams().unwrap();
 
         if (!data?.user.userParams) {
           navigate(`../${ROUTER.DATA}`);
@@ -28,12 +31,12 @@ export default function PrivateRoute({ redirectTo, component: Component }) {
     if (token) {
       fetch();
     }
-  }, [isFetching, navigate, token, trigger]);
+  }, [navigate, token, fetchUserParams]);
 
   return shouldRedirect ? <Navigate to={`../${redirectTo}`} /> : Component;
 }
 
 PrivateRoute.propTypes = {
-  redirectTo: PropTypes.string,
+  redirectTo: PropTypes.string.isRequired,
   component: PropTypes.object.isRequired,
 };

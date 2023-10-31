@@ -2,16 +2,16 @@ import { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setCredentials } from 'src/redux/auth/authSlice';
-import { useLazyRefreshQuery } from 'src/redux/api';
-import { selectToken } from 'src/redux/auth/selectors';
-import { ROUTER, DATA_STEPS } from 'src/utils';
-
 import Main from 'pages/Main/Main';
 import Error from 'pages/Error/Error';
 import PrivateRoute from 'components/PrivateRoute';
 import RestrictedRoute from 'components/RestrictedRoute';
 import ErrorHandler from './common/ErrorHandler/ErrorHandler';
+
+import { setCredentials } from 'src/redux/auth/authSlice';
+import { useLazyRefreshQuery } from 'src/redux/api';
+import { selectToken } from 'src/redux/auth/selectors';
+import { ROUTER, DATA_STEPS } from 'src/utils';
 
 const router = createBrowserRouter(
   [
@@ -201,10 +201,11 @@ const router = createBrowserRouter(
 );
 
 export default function App() {
-  const dispatch = useDispatch();
   const [refresh, { isFetching, isError, error }] = useLazyRefreshQuery();
+  const dispatch = useDispatch();
   const token = useSelector(selectToken);
 
+  // Refetch current user data on reloading page
   useEffect(() => {
     const refetch = async () => {
       if (token) {

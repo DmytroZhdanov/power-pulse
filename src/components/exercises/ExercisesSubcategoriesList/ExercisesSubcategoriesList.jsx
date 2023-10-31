@@ -1,36 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import { useOutletContext } from 'react-router-dom';
+import ErrorHandler from '../../common/ErrorHandler/ErrorHandler';
 import { useFetchExercisesSubcategoriesQuery } from '../../../redux/api';
 import ExercisesSubcategoriesItem from '../ExercisesSubcategoriesItem/ExercisesSubcategoriesItem';
 import {
-  List,
-  ButtonsWrapper,
+  GalleryUl,
+  ButtonsWrapperUl,
   Button,
-  ListWrapp,
+  WrapperDiv,
 } from './ExercisesSubcategoriesList.styled';
-import { useOutletContext } from 'react-router-dom';
 
 export function ExercisesSubcategoriesList() {
   const category = useOutletContext();
 
-  const { data, error, isLoading } =
+  const { data, isLoading, isError, error } =
     useFetchExercisesSubcategoriesQuery(category);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
+  // we use it to pagination (splitting into pages) when scrolling through a list of elements.
   const handlePageClick = page => {
     setCurrentIndex(page * itemsPerPage);
     setCurrentPage(page);
   };
 
+  // if we change category set up page 1.
   useEffect(() => {
     setCurrentIndex(0);
     setCurrentPage(0);
-  }, [category]); //при переходе на другуй категорию счетчик страниц начинается с 1
+  }, [category]);
 
   useEffect(() => {
-    // Измените количество элементов на основе ширины экрана и категории
     const handleResize = () => {
       if (
         (category === 'bodyPart' || category === 'target') &&
@@ -53,27 +55,22 @@ export function ExercisesSubcategoriesList() {
     };
   }, [category]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  const totalPages = data ? Math.ceil(data.length / itemsPerPage) : 0;
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  const totalPages = Math.ceil(data.length / itemsPerPage);
-  const visibleData = data.slice(currentIndex, currentIndex + itemsPerPage);
+  const visibleData = data
+    ? data.slice(currentIndex, currentIndex + itemsPerPage)
+    : [];
 
   return (
-    <ListWrapp>
-      <List>
+    <WrapperDiv>
+      <GalleryUl>
         {visibleData &&
           visibleData.map(item => (
-            <ExercisesSubcategoriesItem key={item._id} it={item} />
+            <ExercisesSubcategoriesItem key={item._id} item={item} />
           ))}
-      </List>
+      </GalleryUl>
       {totalPages > 1 && (
-        <ButtonsWrapper>
+        <ButtonsWrapperUl>
           {Array.from({ length: totalPages }, (_, page) => (
             <li key={page}>
               <Button
@@ -83,8 +80,9 @@ export function ExercisesSubcategoriesList() {
               ></Button>
             </li>
           ))}
-        </ButtonsWrapper>
+        </ButtonsWrapperUl>
       )}
-    </ListWrapp>
+      <ErrorHandler isLoading={isLoading} isError={isError} error={error} />
+    </WrapperDiv>
   );
 }

@@ -1,35 +1,36 @@
 import styled from '@emotion/styled';
 
-export const Box = styled.header`
+export const BoxHeader = styled.header`
   width: 100%;
-  border-bottom: ${props =>
-    props.logged ? '1px solid rgba(239, 237, 232, 0.2)' : 'none'};
+  border-bottom: ${({ logged, theme }) =>
+    logged ? `1px solid ${theme.color.grayDisabled}` : 'none'};
   position: ${props => (props.logged ? 'static' : 'absolute')};
 `;
 
-export const HeaderWrap = styled.div`
+export const HeaderWrapDiv = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   height: 61px;
   padding-left: 20px;
   padding-right: 20px;
-  @media screen and (min-width: 375px) {
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     width: 375px;
     margin-left: auto;
     margin-right: auto;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 744px;
     height: 84px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     width: 1288px;
   }
 `;
-export const Backdrop = styled.div`
+export const BackdropDiv = styled.div`
   position: fixed;
   z-index: 100;
   top: 0;

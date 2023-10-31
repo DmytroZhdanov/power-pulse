@@ -2,24 +2,24 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import * as background from '/src/utils/background';
 
-export const Flex = styled.div`
+export const FlexDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   max-width: ${({ theme }) => theme.breakpoint.mobile};
   margin: 0 auto;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     max-width: ${({ theme }) => theme.breakpoint.tablet};
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     max-width: ${({ theme }) => theme.breakpoint.desktop};
     gap: 100px;
   }
 `;
 
-export const ContentWrap = styled.div`
+export const ContentWrapDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,19 +31,19 @@ export const ContentWrap = styled.div`
   padding: 0 20px 0 20px;
   position: relative;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     gap: 28px;
     width: 55%;
     padding: 0 32px 0 32px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     width: 46.5%;
     padding: 0 96px 0 96px;
   }
 `;
 
-export const LogoWrap = styled.div`
+export const LogoWrapDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,12 +51,12 @@ export const LogoWrap = styled.div`
   top: 24px;
   left: 20px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     top: 32px;
     left: 32px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     left: 96px;
   }
 `;
@@ -73,43 +73,43 @@ export const SvgIcon = styled.svg`
   height: 13px;
   fill: currentColor;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 44px;
     height: 17px;
   }
 `;
 
-export const TitleLogo = styled.p`
+export const TitleLogoP = styled.p`
   color: ${({ theme }) => theme.color.white};
   font-size: 17px;
   font-weight: 500;
   line-height: 1.17;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 22px;
   }
 `;
 
-export const Title = styled.h1`
+export const TitleH1 = styled.h1`
   font-size: 66px;
   font-weight: 500;
   line-height: calc(66 / 66);
   letter-spacing: 0.66px;
   color: ${({ theme }) => theme.color.white};
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 160px;
     line-height: calc(150 / 160);
     letter-spacing: 1.6px;
   }
 `;
 
-export const Text = styled.p`
+export const TextP = styled.p`
   font-size: 14px;
   line-height: 18px;
   color: ${({ theme }) => theme.color.white};
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 16px;
     line-height: calc(24 / 16);
   }
@@ -139,30 +139,30 @@ export const LinkStyled = styled(Link)`
     border: 1px solid ${({ theme }) => theme.color.hover};
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 20px;
     line-height: calc(24 / 20);
     padding: 16px 60px;
   }
 `;
 
-export const BackgroundImageWrap = styled.div`
+export const BackgroundImageWrapDiv = styled.div`
   height: 100vh;
   width: 36%;
   display: flex;
   align-items: flex-end;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 45%;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     width: 46.5%;
     align-items: center;
   }
 `;
 
-export const BackgroundImage = styled.div`
+export const BackgroundImageDiv = styled.div`
   height: 75%;
   width: 100%;
   background-repeat: no-repeat;
@@ -175,7 +175,7 @@ export const BackgroundImage = styled.div`
   );
 
   /* MIN WIDTH 768px */
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     background-image: image-set(
       url(${background.ta_main}) 1x,
       url(${background.ta_main2x}) 2x,
@@ -186,7 +186,7 @@ export const BackgroundImage = styled.div`
   }
 
   /* MIN WIDTH 1440px */
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     background-image: image-set(
       url(${background.bg_main}) 1x,
       url(${background.bg_main2x}) 2x,

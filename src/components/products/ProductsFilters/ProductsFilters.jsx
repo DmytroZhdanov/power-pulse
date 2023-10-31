@@ -10,10 +10,12 @@ import {
   StyledSelect,
   Title,
 } from './ProductsFilters.styled';
+import PropTypes from 'prop-types';
 
 import { PRODUCTS_FILTER } from '../../../utils/constants';
-const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
 import { useFetchProductsCategoriesQuery } from '../../../redux/api';
+import sprite from 'src/assets/images/sprite/sprite.svg';
+const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
 
 const emptyFilter = {
   [QUERY]: '',
@@ -21,23 +23,43 @@ const emptyFilter = {
   [RECOMMENDED]: '',
 };
 
+/**
+ * The ProductsFilters component provides a user interface to filter and search for products.
+ *
+ * @param {Function} onProductsChange A callback function to handle changes in the filter and trigger product updates.
+ * @returns {JSX.Element} The ProductsFilters component.
+ */
+
 export default function ProductsFilters({ onProductsChange }) {
   const [filter, setFilter] = useState(emptyFilter);
   const [search, setSearch] = useState('');
   const [categories, setCategories] = useState([]);
 
-  const currentData = useFetchProductsCategoriesQuery();
+  const { isSuccess, currentData } = useFetchProductsCategoriesQuery();
+
+  /**
+   * Loads the all list of categories from the backend.
+   * @param {boolean} isSuccess successful response to the request from the backend.
+   * @returns {array}  Returns an array of all product categories on the backend.
+   */
 
   useEffect(() => {
-    if (currentData.isSuccess) {
-      const [productsCategories] = currentData.data;
-      setCategories(productsCategories.productsCategories);
+    if (isSuccess) {
+      const [allCategories] = currentData;
+      const { productsCategories } = allCategories;
+      setCategories(productsCategories);
     }
-  }, [currentData]);
+  }, [currentData, isSuccess]);
 
   useEffect(() => {
     onProductsChange(filter);
   }, [filter, onProductsChange]);
+
+  /**
+   * Clears the search input and resets the filter.
+   *
+   * @function handleClean
+   */
 
   const handleClean = () => {
     setSearch('');
@@ -52,6 +74,13 @@ export default function ProductsFilters({ onProductsChange }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedRecommended, setSelectedRecommended] = useState(null);
 
+  /**
+   * Handles changes in the search input.
+   *
+   * @function onQueryChange
+   * @param {Event} e - The input change event.
+   */
+
   const onQueryChange = e => {
     setFilter(prevFilter => ({
       ...prevFilter,
@@ -59,6 +88,13 @@ export default function ProductsFilters({ onProductsChange }) {
     }));
     setSearch(e.target.value);
   };
+
+  /**
+   * Handles category selection from the dropdown.
+   *
+   * @function handleSelectCategory
+   * @param {Object} selectedCategory - The selected category option.
+   */
 
   const handleSelectCategory = selectedCategory => {
     setSelectedCategory(selectedCategory);
@@ -68,6 +104,13 @@ export default function ProductsFilters({ onProductsChange }) {
     }));
   };
 
+  /**
+   * Handles "Recommended" dropdown selection and sets the filter accordingly.
+   *
+   * @function handleSelectRecommended
+   * @param {Object} selectedRecommended - The selected recommended option.
+   */
+
   const handleSelectRecommended = selectedRecommended => {
     setSelectedRecommended(selectedRecommended);
 
@@ -75,13 +118,13 @@ export default function ProductsFilters({ onProductsChange }) {
       case 'Recommended':
         setFilter(prevFilter => ({
           ...prevFilter,
-          [RECOMMENDED]: [true],
+          [RECOMMENDED]: [false],
         }));
         break;
       case 'Not recommended':
         setFilter(prevFilter => ({
           ...prevFilter,
-          [RECOMMENDED]: [false],
+          [RECOMMENDED]: [true],
         }));
         break;
       default:
@@ -103,12 +146,12 @@ export default function ProductsFilters({ onProductsChange }) {
           />
 
           <SvgSearch width="18" height="18">
-            <use href="/src/assets/images/sprite/sprite.svg#search"></use>
+            <use href={`${sprite}#search`}></use>
           </SvgSearch>
           {search.trim() && (
             <BtnClean onClick={handleClean}>
               <svg width="18" height="18">
-                <use href="/src/assets/images/sprite/sprite.svg#x-clean"></use>
+                <use href={`${sprite}#x-clean`}></use>
               </svg>
             </BtnClean>
           )}
@@ -298,3 +341,7 @@ export default function ProductsFilters({ onProductsChange }) {
     </>
   );
 }
+
+ProductsFilters.propTypes = {
+  onProductsChange: PropTypes.func.isRequired,
+};

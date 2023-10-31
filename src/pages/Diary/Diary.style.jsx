@@ -55,5 +55,6 @@ export const DayStatisticWrapper = styled.div`
 
   @media screen and (min-width: 1440px) {
     margin-bottom: 0px;
+    width: 826px;
   }
 `;
