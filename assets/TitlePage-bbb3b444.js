@@ -1,4 +1,4 @@
-import{n as t,P as i,j as n}from"./index-c866a3ac.js";const s=t.h1`
+import{n as t,P as i,j as n}from"./index-ad7fd61b.js";const s=t.h1`
   font-size: 24px;
   line-height: calc(28 / 24);
 
