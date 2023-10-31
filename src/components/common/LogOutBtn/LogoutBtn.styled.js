@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const LogoutText = styled.p`
+export const LogoutTextP = styled.p`
   font-size: 16px;
   line-height: 1.5;
 `;
@@ -10,7 +10,8 @@ export const SvgLogout = styled.svg`
   height: 20px;
 `;
 export const LogoutButton = styled.button`
-  stroke: ${props => (props.white ? '#efede8' : '#e6533c')};
+  stroke: ${({ white, theme }) =>
+    white ? theme.color.white : theme.color.orangeFirst};
 
   display: flex;
   align-items: center;
@@ -20,7 +21,7 @@ export const LogoutButton = styled.button`
   font-size: 16px;
   font-weight: 400;
   line-height: 1.33;
-  color: #efede8;
+  color: ${({ theme }) => theme.color.white};
   border: none;
   outline: none;
   cursor: pointer;

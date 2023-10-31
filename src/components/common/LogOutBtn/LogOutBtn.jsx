@@ -1,28 +1,36 @@
 import { useDispatch } from 'react-redux';
-import sprite from 'src/assets/images/sprite/sprite.svg';
+
+import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
+import { LogoutTextP, SvgLogout, LogoutButton } from './LogoutBtn.styled';
+
 import { useLogoutMutation } from 'src/redux/api';
 import { initialState, setCredentials } from 'src/redux/auth/authSlice';
-import Loader from 'components/Loader/Loader';
-import { LogoutText, SvgLogout, LogoutButton } from './LogoutBtn.styled';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export default function LogOutBtn(props) {
   const dispatch = useDispatch();
-  const [logout, { isLoading }] = useLogoutMutation();
+  const [logout, { isLoading, isError, error }] = useLogoutMutation();
 
-  const handleLogOut = () => {
-    logout();
-    dispatch(setCredentials(initialState));
+  const handleLogOut = async () => {
+    try {
+      await logout();
+      dispatch(setCredentials(initialState));
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <>
       <LogoutButton {...props} onClick={handleLogOut}>
-        <LogoutText>Logout</LogoutText>
+        <LogoutTextP>Logout</LogoutTextP>
+
         <SvgLogout>
           <use href={`${sprite}#logout`}></use>
         </SvgLogout>
       </LogoutButton>
-      {isLoading && <Loader />}
+
+      <ErrorHandler isLoading={isLoading} isError={isError} error={error} />
     </>
   );
 }
