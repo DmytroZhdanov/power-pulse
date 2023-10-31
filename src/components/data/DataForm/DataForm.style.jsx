@@ -95,7 +95,22 @@ export const TextInput = styled.input`
 //     line-height: 1.5;
 //   }
 // `;
+export const SuccessMessage = styled.div`
+  width: 140px;
+  height: 10px;
+  display: flex;
+  align-content: center;
+  /* margin: 5px 0; */
+  svg {
+    fill: green;
+    width: 12px;
+  }
 
+  p {
+    color: green;
+    font-size: 11px;
+  }
+`;
 export const RadioContainer1 = styled.div`
   display: flex;
   flex-direction: row;
@@ -116,6 +131,16 @@ export const RadioContainer1 = styled.div`
 
     cursor: pointer;
   }
+  fieldset {
+    position: relative;
+  }
+`;
+
+export const ErrorContainer = styled.div`
+  position: absolute;
+  width: 150px;
+  top: -10%;
+  left: 0;
 `;
 
 export const RadioLabel = styled.label`

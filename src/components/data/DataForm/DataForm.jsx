@@ -1,10 +1,9 @@
 import { FirstStep } from '../FirstStep/FirstStep';
 import DataBtns from '../DataBtns/DataBtns';
-import { useFormik } from 'formik';
+import { FormikProvider, useFormik, Form } from 'formik';
 import { SecondStep } from '../SecondStep/SecondStep';
 import { ThirdStep } from '../ThirdStep/ThirdStep';
 import { DATA_STEPS } from 'src/utils';
-import * as Yup from 'yup';
 import DataHeader from '../DataHeader/DataHeader';
 import { DataFormContainer } from './DataForm.style';
 import { useNavigate } from 'react-router-dom';
@@ -12,17 +11,9 @@ import { ROUTER } from '../../../utils';
 import { useState } from 'react';
 import { format } from 'date-fns';
 import { useUpdateUserParamsMutation } from 'src/redux/api';
+import { validationSchema } from '../helper/controlData';
 
-const validationSchema = Yup.object().shape({
-  height: Yup.number().moreThan(0).required(),
-  currentWeight: Yup.number().moreThan(0).required(),
-  desiredWeight: Yup.number().moreThan(0).required(),
-  blood: Yup.string().required(),
-  sex: Yup.string().required(),
-  levelActivity: Yup.number().required(),
-});
-
-const DataForm = ({ userParams, step, /* setUserParams */ }) => {
+const DataForm = ({ userParams, step /* setUserParams */ }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const navigate = useNavigate();
 
@@ -36,15 +27,13 @@ const DataForm = ({ userParams, step, /* setUserParams */ }) => {
         ...values,
         birthday: format(selectedDate, 'yyyy-MM-dd'),
       };
-      // console.log('userData:', userData);
 
       const updateUserParams = async () => {
-       /*  const res =  */await updateUserParamsMutation(userData);
-        // console.log('res:', res);
+        /*  const res =  */
+        await updateUserParamsMutation(userData);
       };
       updateUserParams();
       formik.resetForm();
-      // setUserParams(userData);
 
       navigate(`../${ROUTER.DIARY}`);
     },
@@ -52,20 +41,21 @@ const DataForm = ({ userParams, step, /* setUserParams */ }) => {
   return (
     <DataFormContainer>
       <DataHeader step={step} />
+      <FormikProvider value={formik}>
+        <Form>
+          {step === DATA_STEPS.FIRST && (
+            <FirstStep
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+              formik={formik}
+            />
+          )}
+          {step === DATA_STEPS.SECOND && <SecondStep formik={formik} />}
+          {step === DATA_STEPS.THIRD && <ThirdStep formik={formik} />}
 
-      <form onSubmit={formik.handleSubmit}>
-        {step === DATA_STEPS.FIRST && (
-          <FirstStep
-            selectedDate={selectedDate}
-            setSelectedDate={setSelectedDate}
-            formik={formik}
-          />
-        )}
-        {step === DATA_STEPS.SECOND && <SecondStep formik={formik} />}
-        {step === DATA_STEPS.THIRD && <ThirdStep formik={formik} />}
-
-        <DataBtns step={step} formik={formik} />
-      </form>
+          <DataBtns step={step} formik={formik} />
+        </Form>
+      </FormikProvider>
     </DataFormContainer>
   );
 };

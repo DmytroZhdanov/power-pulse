@@ -1,13 +1,17 @@
 import { textInputData } from '../helper/inputData';
 import DataInput from '../DataInput/DataInput';
-import { FormContainer, TextLabel } from '../DataForm/DataForm.style';
+import {
+  FormContainer,
+  TextLabel,
+  SuccessMessage,
+} from '../DataForm/DataForm.style';
 import { FirstStepContainer } from './FirstStep.styled';
+import { ErrorMessage } from 'formik';
+import Icon from '../../common/IconsComp/Icon';
 
 import BirthdayInput from '../../profile/BirthdayInput/BirthdayInput';
 
 export function FirstStep({ formik, selectedDate, setSelectedDate }) {
-
-
   return (
     <FormContainer>
       <FirstStepContainer>
@@ -20,9 +24,13 @@ export function FirstStep({ formik, selectedDate, setSelectedDate }) {
               value={formik.values[input.name]}
             />
             <span>{input.span}</span>
-            {formik.touched[input.name] && formik.errors[input.name] && (
-              <div>{input.errorText}</div>
+            {formik.touched[input.name] && !formik.errors[input.name] && (
+              <SuccessMessage>
+                <Icon name={'checkmark'} />
+                <p> {input.span} is valid</p>
+              </SuccessMessage>
             )}
+            <ErrorMessage name={input.name} component="div" />
           </TextLabel>
         ))}
         <div>

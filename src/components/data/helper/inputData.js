@@ -6,7 +6,6 @@ export const textInputData = [
     name: 'height',
     placeholder: 'Current Height',
     span: 'Height',
-    errorText: 'Height is a required number',
   },
   {
     htmlFor: 'currentWeight',
@@ -15,7 +14,6 @@ export const textInputData = [
     name: 'currentWeight',
     placeholder: 'Current Weight',
     span: 'Weight',
-    errorText: 'Weight is a required number',
   },
   {
     htmlFor: 'desiredWeight',
@@ -24,7 +22,6 @@ export const textInputData = [
     name: 'desiredWeight',
     placeholder: 'Desired Weight',
     span: 'Weight',
-    errorText: 'Weight is a required number',
   },
 ];
 
@@ -77,42 +74,42 @@ export const radioInputSexData = [
 export const radioInputActivityData = [
   {
     type: 'radio',
-    value:1,
+    value: 1,
     id: 'levelActivity_1',
     name: 'levelActivity',
     valueText: 'Sedentary lifestyle (little or no physical activity)',
   },
   {
     type: 'radio',
-    value:2,
+    value: 2,
     id: 'levelActivity_2',
     name: 'levelActivity',
     valueText: 'Light activity (light exercises/sports 1-3 days per week)',
   },
   {
     type: 'radio',
-    value:3,
+    value: 3,
     id: 'levelActivity_3',
     name: 'levelActivity',
-    valueText: 'Moderately active (moderate exercises/sports 3-5 days per week)',
+    valueText:
+      'Moderately active (moderate exercises/sports 3-5 days per week)',
   },
   {
     type: 'radio',
-    value:4,
+    value: 4,
     id: 'levelActivity_4',
     name: 'levelActivity',
     valueText: 'Very active (intense exercises/sports 6-7 days per week)',
   },
   {
     type: 'radio',
-    value:5,
+    value: 5,
     id: 'levelActivity_5',
     name: 'levelActivity',
     valueText:
       'Extremely active (very strenuous exercises/sports and physical work)',
   },
 ];
-
 
 export const slideInFromLeft = {
   hidden: { x: '-100%' },
