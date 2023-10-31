@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import * as background from 'src/utils/background';
 import { DATA_STEPS } from 'src/utils/constants';
 
-export const Background = styled.div`
+export const BackgroundDiv = styled.div`
   position: absolute;
   right: 0;
   z-index: 1;
@@ -10,7 +10,6 @@ export const Background = styled.div`
   width: 298px;
   height: 571px;
   top: 421px;
-  /* top: ${props => (props.isError ? '241px' : '421px')}; */
 
   background-image: ${props => {
     switch (props.keyword) {
@@ -48,12 +47,11 @@ export const Background = styled.div`
   }};
   background-size: 298px 571px;
 
-  @media screen and (min-width: 375px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     top: 361px;
-    /* top: ${props => (props.isError ? '241px' : '361px')}; */
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     top: 131px;
     right: -12px;
     width: ${props => (props.keyword === 'main' ? '437px' : '488px')};
@@ -101,7 +99,7 @@ export const Background = styled.div`
     bottom: 0;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     right: -86px;
     width: 670px;
     height: 800px;
@@ -155,61 +153,23 @@ const Block = styled.div`
   :nth-of-type(1) {
     bottom: 186px;
     left: 44px;
-    /* bottom: ${props => (props.isError ? '186px' : '300px')};
-    left: ${props => (props.isError ? '44px' : 0)}; */
   }
 
   :nth-of-type(2) {
     bottom: 40px;
     right: 20px;
-    /* bottom: ${props => (props.isError ? '40px' : '210px')};
-    right: ${props => (props.isError ? '20px' : '20px')}; */
   }
 
-  /* :nth-of-type(3) {
-    bottom: 160px;
-    left: 0;
-  }
-
-  :nth-of-type(4) {
-    bottom: 70px;
-    right: 20px;
-  }
-
-  :nth-of-type(5) {
-    bottom: 20px;
-    left: 0;
-  } */
-
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     :nth-of-type(1) {
       bottom: 214px;
       left: 0;
-      /* bottom: ${props => (props.isError ? '214px' : '360px')};
-      left: ${props => (props.isError ? 0 : '-40px')}; */
     }
 
     :nth-of-type(2) {
       bottom: 48px;
       right: 32px;
-      /* bottom: ${props => (props.isError ? '48px' : '265px')};
-      right: ${props => (props.isError ? '32px' : '32px')}; */
     }
-
-    /* :nth-of-type(3) {
-      bottom: 190px;
-      left: -40px;
-    } */
-
-    /* :nth-of-type(4) {
-      bottom: 95px;
-      right: 32px;
-    } */
-
-    /* :nth-of-type(5) {
-      bottom: 20px;
-      left: -40px;
-    } */
   }
 
   @media screen and (max-width: 1439px) {
@@ -220,7 +180,7 @@ const Block = styled.div`
     }
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     :nth-of-type(1) {
       bottom: ${props => (props.isError ? '320px' : '460px')};
       left: ${props => (props.isError ? 0 : '-40px')};
@@ -255,106 +215,106 @@ const IconWrapper = styled.div`
   border-radius: 50%;
 `;
 
-export const DarkBlock = styled(Block)`
+export const DarkBlockDiv = styled(Block)`
   align-items: center;
   gap: 8px;
-  background-color: #303030;
+  background-color: ${({ theme }) => theme.color.default};
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     gap: 12px;
     padding: 20px 36px 20px 23px;
   }
 `;
 
-export const DarkBlockIconWrapper = styled(IconWrapper)`
+export const DarkBlockIconWrapperDiv = styled(IconWrapper)`
   width: 30px;
   height: 30px;
-  background-color: #ef8964;
+  background-color: ${({ theme }) => theme.color.orangeSecond};
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 40px;
     height: 40px;
   }
 `;
 
-export const DarkBlockIcon = styled.svg`
-  fill: #efede8;
+export const DarkBlockIconSvg = styled.svg`
+  fill: ${({ theme }) => theme.color.white};
   width: 12px;
   height: 12px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 20px;
     height: 20px;
   }
 `;
 
-export const DarkBlockText = styled.p`
-  color: rgba(239, 237, 232, 0.65);
+export const DarkBlockTextP = styled.p`
+  color: ${({ theme }) => theme.color.graySecond};
   font-size: 12px;
   font-weight: 400;
   line-height: calc(16 / 12);
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 16px;
     line-height: calc(24 / 16);
   }
 `;
 
-export const DarkBlockSpan = styled.p`
+export const DarkBlockSpanP = styled.p`
   font-size: 16px;
   line-height: calc(18 / 16);
   margin-bottom: 4px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 24px;
     line-height: calc(24 / 24);
     margin-bottom: 8px;
   }
 `;
 
-export const ColoredBlock = styled(Block)`
+export const ColoredBlockDiv = styled(Block)`
   align-items: flex-end;
   gap: 8px;
   padding-right: 37px;
-  background-color: #ef8964;
+  background-color: ${({ theme }) => theme.color.orangeSecond};
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     gap: 11px;
     padding: 14px 38px 14px 28px;
   }
 `;
 
-export const ColoredBlockIconWrapper = styled(IconWrapper)`
+export const ColoredBlockIconWrapperDiv = styled(IconWrapper)`
   width: 20px;
   height: 20px;
-  background-color: #efa082;
+  background-color: ${({ theme }) => theme.color.orangeThird};
   margin-bottom: 4px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 24px;
     height: 24px;
     margin-bottom: 8px;
   }
 `;
 
-export const ColoredBlockIcon = styled.svg`
-  fill: #ffffff;
+export const ColoredBlockIconSvg = styled.svg`
+  fill: ${({ theme }) => theme.color.fullWhite};
   width: 12px;
   height: 12px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 16px;
     height: 16px;
   }
 `;
 
-export const ColoredBlockText = styled.p`
-  color: rgba(239, 237, 232, 0.65);
+export const ColoredBlockTextP = styled.p`
+  color: ${({ theme }) => theme.color.graySecond};
   font-size: 16px;
   line-height: calc(24 / 16);
 `;
 
-export const ColoredBlockSpan = styled.p`
+export const ColoredBlockSpanP = styled.p`
   font-size: 48px;
   line-height: calc(50 / 48);
   letter-spacing: -1px;

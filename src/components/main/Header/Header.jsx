@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import LogOutBtn from 'components/common/LogOutBtn/LogOutBtn';
 import Logo from 'components/main/Logo/Logo';
 import UserBar from 'components/main/UserBar/UserBar';
 import UserNav from 'components/main/UserNav/UserNav';
-import { Backdrop, Box, HeaderWrap } from './Header.styled';
 import BurgerBtn from 'components/main/BurgerBtn/BurgerBtn';
 import BurgerMenu from 'components/main/BurgerMenu/BurgerMenu';
-import { useSelector } from 'react-redux';
+import { BackdropDiv, BoxHeader, HeaderWrapDiv } from './Header.styled';
+
 import { selectToken } from 'src/redux/auth/selectors';
-import { useLazyFetchUserParamsQuery } from '../../../redux/api';
+import { useLazyFetchUserParamsQuery } from 'src/redux/api';
 
 export default function Header() {
   const token = useSelector(selectToken);
@@ -23,6 +25,7 @@ export default function Header() {
     setIsDesktop(window.innerWidth >= 1440);
   };
 
+  // Check for user params to properly display styles of header
   useEffect(() => {
     const fetch = async () => {
       if (token) {
@@ -33,12 +36,15 @@ export default function Header() {
         } catch (error) {
           console.error(error);
         }
+      } else {
+        setIsLogged(false);
       }
     };
 
     fetch();
   }, [fetchUserParams, token]);
 
+  // Add event listener on componentDidMount and remove it on componentWillUnmount
   useEffect(() => {
     window.addEventListener('resize', handleResize);
 
@@ -47,6 +53,11 @@ export default function Header() {
     };
   }, []);
 
+  /**
+   * Close modal window
+   *
+   * @param {Object} event Object of event triggered the function call
+   */
   const handleBackdropClick = event => {
     if (event.target === event.currentTarget) {
       setOpenedModal(false);
@@ -54,8 +65,8 @@ export default function Header() {
   };
 
   return (
-    <Box logged={isLogged}>
-      <HeaderWrap>
+    <BoxHeader logged={isLogged}>
+      <HeaderWrapDiv>
         <Logo />
 
         {isLogged && (
@@ -65,13 +76,13 @@ export default function Header() {
             {isDesktop && <LogOutBtn />}
             {!isDesktop && <BurgerBtn setOpenedModal={setOpenedModal} />}
             {openedModal && (
-              <Backdrop onClick={handleBackdropClick}>
+              <BackdropDiv onClick={handleBackdropClick}>
                 <BurgerMenu setOpenedModal={setOpenedModal}></BurgerMenu>
-              </Backdrop>
+              </BackdropDiv>
             )}
           </>
         )}
-      </HeaderWrap>
-    </Box>
+      </HeaderWrapDiv>
+    </BoxHeader>
   );
 }

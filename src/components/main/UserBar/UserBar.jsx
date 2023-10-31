@@ -1,7 +1,7 @@
 import {
   SettingsLink,
   SvgSettings,
-  Avatar,
+  AvatarDiv,
   SvgDefault,
 } from './UserBar.styled';
 import sprite from 'src/assets/images/sprite/sprite.svg';
@@ -12,11 +12,12 @@ export default function UserBar() {
       <SvgSettings>
         <use href={`${sprite}#settings`}></use>
       </SvgSettings>
-      <Avatar>
+
+      <AvatarDiv>
         <SvgDefault>
           <use href={`${sprite}#user`}></use>
         </SvgDefault>
-      </Avatar>
+      </AvatarDiv>
     </SettingsLink>
   );
 }

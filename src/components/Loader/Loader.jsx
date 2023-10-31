@@ -1,9 +1,9 @@
 import { ThreeDots } from 'react-loader-spinner';
-import { WrapThreeDots } from './Loader.styled';
+import { WrapThreeDotsDiv } from './Loader.styled';
 
 export default function Loader() {
   return (
-    <WrapThreeDots>
+    <WrapThreeDotsDiv>
       <ThreeDots
         height="90"
         width="90"
@@ -13,6 +13,6 @@ export default function Loader() {
         visible={true}
         timeout={2000}
       />
-    </WrapThreeDots>
+    </WrapThreeDotsDiv>
   );
 }
