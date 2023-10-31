@@ -1,14 +1,23 @@
-import { ButtonClose, SvgBtn, Window, Wrap } from './BurgerMenu.styled';
-import sprite from 'src/assets/images/sprite/sprite.svg';
-import LogOutBtn from '../../common/LogOutBtn/LogOutBtn';
-import UserNav from '../UserNav/UserNav';
 import { createPortal } from 'react-dom';
+import PropTypes from 'prop-types';
+
+import LogOutBtn from 'components/common/LogOutBtn/LogOutBtn';
+import UserNav from 'components/main/UserNav/UserNav';
+import {
+  ButtonCloseDiv,
+  SvgBtn,
+  WindowDiv,
+  WrapDiv,
+} from './BurgerMenu.styled';
+
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export default function BurgerMenu({ openedModal, setOpenedModal }) {
   const burgerRoot = document.querySelector('#burger-root');
+
   return createPortal(
-    <Window openedModal={openedModal}>
-      <ButtonClose
+    <WindowDiv openedModal={openedModal}>
+      <ButtonCloseDiv
         onClick={() => {
           setOpenedModal(false);
         }}
@@ -16,17 +25,24 @@ export default function BurgerMenu({ openedModal, setOpenedModal }) {
         <SvgBtn>
           <use href={`${sprite}#close`}></use>
         </SvgBtn>
-      </ButtonClose>
+      </ButtonCloseDiv>
+
       <UserNav
         onClick={() => {
           setOpenedModal(false);
         }}
         border={true}
       />
-      <Wrap>
+
+      <WrapDiv>
         <LogOutBtn white={true} />
-      </Wrap>
-    </Window>,
+      </WrapDiv>
+    </WindowDiv>,
     burgerRoot,
   );
 }
+
+BurgerMenu.propTypes = {
+  openedModal: PropTypes.bool.isRequired,
+  setOpenedModal: PropTypes.func.isRequired,
+};

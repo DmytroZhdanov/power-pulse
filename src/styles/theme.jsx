@@ -1,4 +1,4 @@
-/* Приклад користування:
+/* Usage example:
 
 const SomeName = styled.div`
   color: ${({theme}) => theme.color.white};
@@ -10,7 +10,7 @@ const SomeName = styled.div`
     background-color: ${({theme}) => theme.color.inputActive};
   }
 
-  @media screen and (min-width: ${theme.breakpoint.tablet}) {
+  @media screen and (min-width: ${({theme}) => theme.breakpoint.tablet}) {
     color: ${({theme}) => theme.color.black};
     background-color: ${({theme}) => theme.color.orangeThird};
   }
@@ -18,7 +18,7 @@ const SomeName = styled.div`
 */
 
 export const theme = {
-  // Кольори
+  // Colors
   color: {
     black: '#040404',
     white: '#EFEDE8',
@@ -37,21 +37,21 @@ export const theme = {
 
     border: 'rgba(239, 237, 232, 0.30)',
 
-    // Ховери
+    // hover
     hover: '#EF8964',
     hoverBorder: '#E6533C',
 
-    // Кольори модального вікна
+    // Modal window colors
     backdropBackground: 'rgba(0, 0, 0, 0.6)',
     modalBackground: '#10100f',
     borderModal: 'rgba(239, 237, 232, 0.2)',
 
-    // Кольори таблиць
+    // Table colors
     tableLabel: '#EF8964',
     circleGreen: '#419B09',
     circleRed: '#E9101D',
 
-    // Кольори форм
+    // Form colors
     label: 'rgba(239, 237, 232, 0.50)',
     input: 'rgba(239, 237, 232, 0.30)',
     inputActive: '#E6533C',
@@ -62,7 +62,7 @@ export const theme = {
     default: '#303030',
   },
 
-  // Точки адаптивної верстки
+  // Breakpoints
   breakpoint: {
     firstMobile: '320px',
     mobile: '375px',
@@ -82,7 +82,7 @@ export const theme = {
     `,
   },
 
-  // Анімація (transition) при ховері фокусі
+  // Animation (transition) on hover & focus
   transition: {
     main: '250ms cubic-bezier(0.165, 0.84, 0.44, 1.03)',
     modal: '300ms ease-in-out',

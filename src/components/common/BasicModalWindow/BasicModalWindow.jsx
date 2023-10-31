@@ -18,26 +18,29 @@ export default function BasicModalWindow(props) {
   const backdropRef = useRef(null);
 
   useEffect(() => {
+    if (!onShow) return;
+
+    const bodyScroll = disable => {
+      document.body.style.overflow = disable ? 'hidden' : 'auto';
+    };
+
+    if (onShow || modalRoot.children.length !== 0) {
+      bodyScroll(true);
+    }
+
     const onEscKeyPress = e => {
       if (e.key === 'Escape') {
         onClose();
       }
     };
 
-    const bodyScroll = disable => {
-      document.body.style.overflow = disable ? 'hidden' : 'auto';
-    };
-
     window.addEventListener('keydown', onEscKeyPress);
-    if (onShow) {
-      bodyScroll(true);
-    }
 
     return () => {
-      window.removeEventListener('keydown', onEscKeyPress);
       bodyScroll(false);
+      window.removeEventListener('keydown', onEscKeyPress);
     };
-  }, [onClose, onShow]);
+  }, [modalRoot.children.length, onShow, onClose]);
 
   return createPortal(
     <>
