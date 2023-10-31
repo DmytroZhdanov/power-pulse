@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const ModalBackdrop = styled.div`
+export const ModalBackdropDiv = styled.div`
   background: ${({ theme }) => theme.color.backdropBackground};
   position: fixed;
   top: 0;
@@ -18,7 +18,7 @@ export const ModalBackdrop = styled.div`
     transition: opacity 200ms ease-in-out;
   }
 
-  /* Для зникнення */
+  /* For unmounting */
   &.backdrop-wrapper-exit {
     opacity: 1;
   }
@@ -29,7 +29,7 @@ export const ModalBackdrop = styled.div`
   }
 `;
 
-export const Modal = styled.div`
+export const ModalDiv = styled.div`
   position: fixed;
   z-index: 99;
   top: 50%;
@@ -53,7 +53,7 @@ export const Modal = styled.div`
       scale 200ms ease-in-out 200ms;
   }
 
-  /* Для зникнення */
+  /* For unmounting */
   &.modal-wrapper-exit {
     opacity: 1;
     scale: 1;
@@ -90,7 +90,7 @@ export const CloseModalButton = styled.button`
     color: ${({ theme }) => theme.color.hover};
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     top: 16px;
     right: 16px;
     width: 26px;

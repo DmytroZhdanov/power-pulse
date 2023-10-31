@@ -25,7 +25,7 @@ export const Navigation = styled.nav`
     margin-right: 0;
   }
 `;
-export const DiaryLink = styled(NavLink)`
+export const PageLink = styled(NavLink)`
   padding: 10px 27px;
   border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.color.grayDisabled};

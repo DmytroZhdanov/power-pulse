@@ -1,24 +1,19 @@
-import {
-  DiaryLink,
-  ExercisesLink,
-  Navigation,
-  ProductsLink,
-} from './UserNav.styled';
+import { PageLink, Navigation } from './UserNav.styled';
 
 export default function UserNav(props) {
   return (
     <Navigation>
-      <DiaryLink {...props} to="/diary">
+      <PageLink {...props} to="/diary">
         Diary
-      </DiaryLink>
+      </PageLink>
 
-      <ProductsLink {...props} to="/products">
+      <PageLink {...props} to="/products">
         Products
-      </ProductsLink>
+      </PageLink>
 
-      <ExercisesLink {...props} to="/exercises">
+      <PageLink {...props} to="/exercises">
         Exercises
-      </ExercisesLink>
+      </PageLink>
     </Navigation>
   );
 }
