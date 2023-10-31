@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 
 import {
   useLazyFetchDiaryQuery,
-  useLazyFetchUserParamsQuery,
 } from '../../redux/api';
 import TitlePage from 'components/common/TitlePage/TitlePage';
 import DayDashboard from 'components/diary/DayDashboard/DayDashboard';
@@ -19,16 +18,10 @@ import {
 
 export function Diary() {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [diaryProducts, setDiaryProducts] = useState([]);
+  const [diaryExercises, setDiaryExercises] = useState([]);
 
   const [fetchDiary, { isLoading }] = useLazyFetchDiaryQuery();
-
-  const [fetchUserParams] = useLazyFetchUserParamsQuery();
-
-  const [userParams, setUserParams] = useState(null);
-
-  const [diaryProducts, setDiaryProducts] = useState([]);
-
-  const [diaryExercises, setDiaryExercises] = useState([]);
 
   const currentDay =
     selectedDate.getFullYear() +
@@ -37,13 +30,7 @@ export function Diary() {
     '-' +
     selectedDate.getDate();
 
-  useEffect(() => {
-    const fetchParams = async () => {
-      const userParams = await fetchUserParams();
-      setUserParams(userParams);
-    };
-    fetchParams();
-  }, [fetchUserParams]);
+ 
 
   useEffect(() => {
     const fetchDiaryData = async () => {
@@ -70,7 +57,6 @@ export function Diary() {
           <DayProducts
             isLoading={isLoading}
             setDiaryProducts={setDiaryProducts}
-            blood={userParams && userParams.data.user.userParams.blood}
             diaryProducts={diaryProducts}
           />
           <DayExercises
