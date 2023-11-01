@@ -34,7 +34,7 @@ export default function ProductsFilters({ onProductsChange }) {
   const [filter, setFilter] = useState(emptyFilter);
   const [search, setSearch] = useState('');
   const [categories, setCategories] = useState([]);
-
+ 
   const { isSuccess, currentData } = useFetchProductsCategoriesQuery();
 
   /**

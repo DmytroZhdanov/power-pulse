@@ -2,27 +2,34 @@ import styled from '@emotion/styled';
 import { DATA_STEPS } from '../../utils';
 
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
   position: relative;
+  z-index: 2;
+  padding-top: 127px;
+  padding-bottom: 20px;
+  height: 812px;
+
+  @media screen and (min-width: 768px) {
+    padding-top: 189px;
+    padding-bottom: 32px;
+    height: 1024px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-top: 200px;
+    height: 800px;
+  }
 `;
 
 export const IndicatorsWrapper = styled.div`
-  position: absolute;
-  z-index: 2;
-  bottom: -170px; // Will be amended after forms implementation
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 14px;
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
-    bottom: -110px; // Will be amended after forms implementation
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    bottom: 32px; // Will be amended after forms implementation
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    bottom: 0; // Will be amended after forms implementation
-  }
+  margin-top: auto;
 `;
 
 export const Indicator = styled.div`
@@ -52,7 +59,7 @@ export const Indicator = styled.div`
       step === DATA_STEPS.THIRD ? theme.boxShadow.dataIndicator : 'none'};
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+  @media screen and (min-width: 768px) {
     width: 80px;
   }
 `;

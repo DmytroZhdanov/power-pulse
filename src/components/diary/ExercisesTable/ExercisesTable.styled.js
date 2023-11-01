@@ -3,14 +3,13 @@ import styled from '@emotion/styled';
 export const TableDiv = styled.div`
   scroll-behavior: auto;
   overflow-y: auto;
-
   overflow-x: hidden;
   @media screen and (max-width: 767px) {
     max-height: 1000px;
     max-width: 335px;
   }
   @media screen and (min-width: 768px) {
-    max-height: 178px;
+    max-height: 177px;
     max-width: 704px;
   }
   @media screen and (min-width: 1440px) {
@@ -18,6 +17,7 @@ export const TableDiv = styled.div`
     padding: 0 8px;
   }
 `;
+
 export const Table = styled.table`
   border-spacing: 8px;
   border-collapse: separate;
@@ -51,8 +51,8 @@ export const TableMainTitle = styled.th`
     top: 168px;
   }
   &:nth-of-type(4) {
-    left: 8px;
     top: 248px;
+    left: 8px;
   }
   &:nth-of-type(5) {
     top: 248px;
@@ -112,9 +112,102 @@ export const TableMainTitle = styled.th`
   &:nth-of-type(6) {
     width: 82px;
   }
+}  
 `;
 
+export const TableBody = styled.tbody``;
+
 export const TableTr = styled.tr``;
+
+export const TableInfoTd = styled.td`
+  border-radius: 12px;
+  color: #efede8;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 1px solid rgba(239, 237, 232, 0.3);
+  @media screen and (max-width: 767px) {
+    position: absolute;
+    padding: 10px 14px;
+    font-size: 14px;
+    line-height: ${18 / 14};
+    &:first-of-type {
+      top: 34px;
+      width: 297px;
+    }
+    &:nth-of-type(2) {
+      top: 114px;
+      width: 297px;
+    }
+    &:nth-of-type(3) {
+      top: 194px;
+      width: 297px;
+    }
+    &:nth-of-type(4) {
+      top: 274px;
+      left: 8px;
+      width: 81px;
+    }
+    &:nth-of-type(5) {
+      top: 274px;
+      left: 105px;
+      width: 80px;
+    }
+    &:nth-of-type(6) {
+      top: 274px;
+      left: 201px;
+      width: 76px;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    position: relative;
+    font-size: 16px;
+    line-height: ${24 / 16};
+    padding: 7px 14px;
+    &:first-of-type {
+      max-width: 90px;
+    }
+    &:nth-of-type(2) {
+     max-width: 132px;
+    }
+    &:nth-of-type(3) {
+      max-width: 128px;
+    }
+    &:nth-of-type(4) {
+      max-width: 84px;
+    }
+    &:nth-of-type(5) {
+     max-width: 78px;
+    }
+    &:nth-of-type(6) {
+      max-width: 72px;
+    }
+  }
+  @media screen and (min-width: 1440px) {
+    &:first-of-type {
+      max-width: 115px;
+    }
+    &:nth-of-type(2) {
+      max-width: 157px;
+    }
+    &:nth-of-type(3) {
+      max-width: 131px;
+    }
+    &:nth-of-type(4) {
+     max-width: 106px;
+    }
+    &:nth-of-type(5) {
+      max-width: 91px;
+    }
+    &:nth-of-type(6) {
+      max-width: 82px;
+    }
+  }
+} 
+`;
+
+export const BtnTd = styled.td``
+
 export const DelBtnTable = styled.button`
   width: 20px;
   height: 20px;
@@ -122,7 +215,6 @@ export const DelBtnTable = styled.button`
   border: none;
   background-color: transparent;
   padding: 0;
-
   @media screen and (max-width: 767px) {
     position: absolute;
     top: 283px;
@@ -134,111 +226,17 @@ export const DelBtnTable = styled.button`
   @media screen and (min-width: 1440px) {
     padding-left: 12px;
   }
-`;
+  `;
 export const DelIcon = styled.svg`
   width: 20px;
   height: 20px;
   stroke: #ef8964;
   transition:
-    stroke 250ms cubic-bezier(0.165, 0.84, 0.44, 1.03),
-    fill 250ms cubic-bezier(0.165, 0.84, 0.44, 1.03);
+  stroke 250ms cubic-bezier(0.165, 0.84, 0.44, 1.03),
+  fill 250ms cubic-bezier(0.165, 0.84, 0.44, 1.03);
   &:is(:hover, :focus) {
     stroke: white;
     fill: white;
   }
 `;
 
-export const TableBody = styled.tbody``;
-export const TableInfoTd = styled.td`
-
-    border-radius: 12px;
-    color: #efede8;
-	     overflow:hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    border: 1px solid rgba(239, 237, 232, 0.3);
-    @media screen and (max-width: 767px) {
-      position: absolute;
-      padding: 10px 14px;
-      font-size: 14px;
-      line-height: ${18 / 14};
-      &:first-of-type {
-        top: 34px;
-        width: 297px;
-      }
-      &:nth-of-type(2) {
-        top: 114px;
-        width: 297px;
-      }
-      &:nth-of-type(3) {
-        top: 194px;
-        width: 297px;
-      }
-      &:nth-of-type(4) {
-        top: 274px;
-        left: 8px;
-        width: 81px;
-      }
-      &:nth-of-type(5) {
-        top: 274px;
-        left: 105px;
-        width: 80px;
-      }
-      &:nth-of-type(6) {
-        top: 274px;
-        left: 201px;
-        width: 76px;
-      }
-    }
-
-    @media screen and (min-width: 768px) {
-      position: relative;
-      font-size: 16px;
-      line-height: ${24 / 16};
-      padding: 8px 14px;
-
-		
-      &:first-of-type {
-        max-width: 90px;
-      }
-      &:nth-of-type(2) {
-       max-width: 132px;
-	
-      }
-      &:nth-of-type(3) {
-        max-width: 128px;
-
-      }
-      &:nth-of-type(4) {
-        max-width: 84px;
-      }
-      &:nth-of-type(5) {
-       max-width: 78px;
-      }
-      &:nth-of-type(6) {
-        max-width: 72px;
-      }
-    }
-    @media screen and (min-width: 1440px) {
-      &:first-of-type {
-        max-width: 115px;
-      }
-      &:nth-of-type(2) {
-        max-width: 157px;
-      }
-      &:nth-of-type(3) {
-        max-width: 131px;
-
-      }
-      &:nth-of-type(4) {
-       max-width: 106px;
-      }
-      &:nth-of-type(5) {
-        max-width: 91px;
-      }
-      &:nth-of-type(6) {
-        max-width: 82px;
-      }
-    }
-  }
-`;
