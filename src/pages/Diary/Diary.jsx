@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 
 import {
+  useFetchDailyRateQuery,
+  useFetchUserBloodGroupQuery,
   useLazyFetchDiaryQuery,
 } from '../../redux/api';
 import TitlePage from 'components/common/TitlePage/TitlePage';
@@ -21,20 +23,20 @@ export function Diary() {
   const [diaryProducts, setDiaryProducts] = useState([]);
   const [diaryExercises, setDiaryExercises] = useState([]);
   const [fetchDiary, { isLoading }] = useLazyFetchDiaryQuery();
+  const { data: bmr } = useFetchDailyRateQuery();
+  const { data: userBloodGroup } = useFetchUserBloodGroupQuery();
 
   const currentDay =
-  selectedDate.getFullYear() +
+    selectedDate.getFullYear() +
     '-' +
     (selectedDate.getMonth() + 1) +
     '-' +
     selectedDate.getDate();
 
- 
-
   useEffect(() => {
     const fetchDiaryData = async () => {
       const diaryData = await fetchDiary(currentDay);
-      
+
       setDiaryExercises(diaryData.data.exerciseResult);
       setDiaryProducts(diaryData.data.productResult);
     };
@@ -50,17 +52,17 @@ export function Diary() {
         />
       </HeaderWrapper>
       <ContentWrapper>
-        <DayDashboard 
-        bmrData={userParams && userParams.data.bmr}
-        diaryProducts={diaryProducts}
-        diaryExercises={diaryExercises}
+        <DayDashboard
+          bmrData={bmr}
+          diaryProducts={diaryProducts}
+          diaryExercises={diaryExercises}
         />
-        <DayStatisticWrapper> 
+        <DayStatisticWrapper>
           <DayProducts
             isLoading={isLoading}
             setDiaryProducts={setDiaryProducts}
             diaryProducts={diaryProducts}
-            blood={userParams && userParams.data.user.userParams.blood}
+            blood={userBloodGroup}
           />
           <DayExercises
             isLoading={isLoading}
