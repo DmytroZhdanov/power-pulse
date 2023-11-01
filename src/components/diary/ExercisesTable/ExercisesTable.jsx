@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDeleteExerciseMutation } from '../../../redux/api';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
+  TableDiv,
   Table,
   TableMainTitles,
   TableTitleTr,
@@ -9,19 +10,19 @@ import {
   TableBody,
   TableTr,
   TableInfoTd,
+  BtnTd,
   DelBtnTable,
   DelIcon,
-  TableDiv,
 } from './ExercisesTable.styled';
 import sprite from '../../../assets/images/sprite/sprite.svg';
 
 export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
   const [deleteExercise] = useDeleteExerciseMutation();
 
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+  const [isTableDesk, setIsTableDesk] = useState(window.innerWidth >= 768);
 
   const handleResize = () => {
-    setIsDesktop(window.innerWidth >= 768);
+    setIsTableDesk(window.innerWidth >= 768);
   };
 
   useEffect(() => {
@@ -49,7 +50,7 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
   return (
     <>
       <TableDiv>
-        {isDesktop ? (
+        {isTableDesk ? (
           <Table>
             <TableMainTitles>
               <TableTitleTr>
@@ -79,7 +80,7 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
                       <TableInfoTd>{exercise.target}</TableInfoTd>
                       <TableInfoTd>{exercise.calories}</TableInfoTd>
                       <TableInfoTd>{exercise.time}</TableInfoTd>
-                      <td>
+                      <BtnTd>
                         <DelBtnTable
                           onClick={() => {
                             handleDeleteExercise(exercise._id);
@@ -89,7 +90,7 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
                             <use href={`${sprite}#delete`}></use>
                           </DelIcon>
                         </DelBtnTable>
-                      </td>
+                      </BtnTd>
                     </TableTr>
                   </TableBody>
                 );
@@ -97,7 +98,6 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
             </AnimatePresence>
           </Table>
         ) : (
-          // мапаєш і повертаєш те, що нижч
           <>
             <AnimatePresence>
               {diaryExercises.map(exercise => {
@@ -128,7 +128,7 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
                         <TableInfoTd>{exercise.target}</TableInfoTd>
                         <TableInfoTd>{exercise.calories}</TableInfoTd>
                         <TableInfoTd>{exercise.time}</TableInfoTd>
-                        <td>
+                        <BtnTd>
                           <DelBtnTable
                             onClick={() => {
                               handleDeleteExercise(exercise._id);
@@ -138,7 +138,7 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
                               <use href={`${sprite}#delete`}></use>
                             </DelIcon>
                           </DelBtnTable>
-                        </td>
+                        </BtnTd>
                       </TableTr>
                     </TableBody>
                   </Table>
@@ -146,7 +146,6 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
               })}
             </AnimatePresence>
           </>
-          // Кінець повернення з мапу
         )}
       </TableDiv>
     </>

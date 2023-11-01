@@ -1,3 +1,5 @@
+
+import { useState, useEffect } from 'react';
 import {
   BlockItem,
   BlockList,
@@ -12,21 +14,47 @@ import {
   Value,
 } from './DayDashboard.styled';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-// import { useFetchDailyRateQuery } from '../../../redux/api';
-import { useEffect, useState } from 'react';
 
 export default function DayDashboard({bmrData, diaryProducts, diaryExercises}) {
-  const allCalories = (array) =>{
-    console.log(array)
-    const CalOneProd = array.map(product => product.calories)
+  const [AllDayCalories, setAllDayCalories] = useState(null);
+  const [AllDayExerCalories, setAllDayExerCalories] = useState(null);
+  const [AllMinuts, setAllMinuts] = useState(null);
+
+  useEffect(() => {
+    if(diaryProducts.length === 0){
+      setAllDayCalories(null)
+      return
+    }
+    const CalOneProd = diaryProducts.map(product => product.calories)
     const AllCal = CalOneProd.reduce((total, amount) => total + amount); 
-    return AllCal
-  }
-  const allExerCalories = (array) =>{
-    const CalOneProd = array.map(product => product.calories)
-    const AllCal = CalOneProd.reduce((total, amount) => total + amount); 
-    return AllCal
-  }
+    setAllDayCalories(AllCal)
+  }),[diaryProducts]
+
+  useEffect(()=> {
+    if(diaryExercises.length === 0){
+      setAllDayExerCalories(null)
+      setAllMinuts(null)
+      return
+    }
+    const CalOneExer = diaryExercises.map(exercise => exercise.calories)
+    const AllExerCal = CalOneExer.reduce((total, amount) => total + amount); 
+    const MinOneExer = diaryExercises.map(exercise => exercise.time)
+    const AllMin = MinOneExer.reduce((total, amount) => total + amount); 
+    setAllDayExerCalories(AllExerCal)
+    
+  }), [diaryExercises]
+
+  useEffect(() => {
+    if(diaryExercises.length === 0){
+      setAllMinuts(null)
+      return
+    }
+    const SecOneExer = diaryExercises.map(exercise => exercise.time)
+    const AllSec = SecOneExer.reduce((total, amount) => total + amount); 
+    const AllInMinuts = Math.trunc(AllSec/60)
+    setAllMinuts(AllInMinuts)
+  }), [diaryExercises]
+  
   return (
     <Container>
       <BlockList>
@@ -62,8 +90,8 @@ export default function DayDashboard({bmrData, diaryProducts, diaryExercises}) {
 
             <Title>Calories consumed</Title>
           </TitleWrapper>
-
-          <Value>{diaryProducts && diaryProducts.length !== 0 ?  allCalories(diaryProducts) : 0}</Value>
+          
+          <Value>{AllDayCalories !== null ?  AllDayCalories : 0}</Value>
         </BlockItem>
 
         <BlockItem>
@@ -75,10 +103,12 @@ export default function DayDashboard({bmrData, diaryProducts, diaryExercises}) {
             <Title>Calories burned</Title>
           </TitleWrapper>
 
-          <Value>{diaryExercises && diaryExercises.length !== 0 ?  allExerCalories(diaryExercises) : 0}</Value>
+          <Value>{AllDayExerCalories !== null ? AllDayExerCalories : 0}</Value>
         </BlockItem>
 
-        <BlockItem caloriesOverConsumed={true}>
+        <BlockItem caloriesOverConsumed={
+          bmrData - AllDayCalories >= 0 ? false : true
+        }>
           <TitleWrapper>
             <Icon>
               <use href={`${sprite}#bubble`}></use>
@@ -87,10 +117,10 @@ export default function DayDashboard({bmrData, diaryProducts, diaryExercises}) {
             <Title>The rest of the calories</Title>
           </TitleWrapper>
 
-          <Value>1493</Value>
+          <Value>{bmrData - AllDayCalories}</Value>
         </BlockItem>
 
-        <BlockItem caloriesOverBurned={true}>
+        <BlockItem caloriesOverBurned={110 - AllMinuts < 0 ? true : false}>
           <TitleWrapper>
             <Icon>
               <use href={`${sprite}#running`}></use>
@@ -99,7 +129,7 @@ export default function DayDashboard({bmrData, diaryProducts, diaryExercises}) {
             <Title>The rest of sports</Title>
           </TitleWrapper>
 
-          <Value>85 min</Value>
+          <Value>{110 - AllMinuts} min</Value>
         </BlockItem>
       </BlockList>
 

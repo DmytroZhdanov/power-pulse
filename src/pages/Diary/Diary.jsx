@@ -29,8 +29,6 @@ export function Diary() {
   const [diaryProducts, setDiaryProducts] = useState([]);
 
   const [diaryExercises, setDiaryExercises] = useState([]);
-
-  const [dailyData, setDailyData] = useState(null);
   
   
   const currentDay =
@@ -44,7 +42,6 @@ export function Diary() {
     const fetchParams = async () => {
       const userParams = await fetchUserParams();
       setUserParams(userParams);
-      // setDailyData(userParams.data)
     };
     fetchParams();
   }, [fetchUserParams]);
@@ -58,8 +55,6 @@ export function Diary() {
     };
     fetchDiaryData();
   }, [fetchDiary, currentDay]);
-  
-  // console.log(userParams.data.bmr)
   return (
     <Section>
       <HeaderWrapper>
@@ -70,14 +65,16 @@ export function Diary() {
         />
       </HeaderWrapper>
       <ContentWrapper>
-        <DayDashboard bmrData={userParams && userParams.data.bmr}
+        <DayDashboard 
+        bmrData={userParams && userParams.data.bmr}
         diaryProducts={diaryProducts}
-          diaryExercises={diaryExercises}
+        diaryExercises={diaryExercises}
         />
         <DayStatisticWrapper> 
           <DayProducts
             isLoading={isLoading}
             setDiaryProducts={setDiaryProducts}
+            diaryProducts={diaryProducts}
             blood={userParams && userParams.data.user.userParams.blood}
           />
           <DayExercises

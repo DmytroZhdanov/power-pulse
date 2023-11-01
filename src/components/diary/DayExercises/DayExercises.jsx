@@ -1,17 +1,18 @@
 import ExercisesTable from '../ExercisesTable/ExercisesTable';
 import sprite from '../../../assets/images/sprite/sprite.svg';
 import { TailSpin } from 'react-loader-spinner';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   DayExerDiv,
   DayExerText,
+  LoaderDiv,
   DayExerTitle,
   DayExerDivList,
-  LoaderDiv,
   AddExerBtn,
   AddExerBtnIcon,
   AddExerBtnText,
 } from './DayExercises.styled';
-import { motion, AnimatePresence } from 'framer-motion';
+
 export default function DayExercises({
   diaryExercises,
   setDiaryExercises,
