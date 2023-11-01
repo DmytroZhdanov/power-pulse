@@ -51,6 +51,7 @@ export default function ProductsList({ filter }) {
     },
   });
 
+  console.log(filter);
   /**
    * Updates the user's blood type based on a successful request to the backend.
    *
@@ -140,6 +141,11 @@ export default function ProductsList({ filter }) {
   );
 }
 
-ProductsList.propTypes = {
-  filter: PropTypes.object,
-};
+// ProductsList.propTypes = {
+//   filter: PropTypes.shape({
+//     _id: PropTypes.string.isRequired,
+//     name: PropTypes.string.isRequired,
+//     imgURL: PropTypes.string.isRequired,
+//     filter: PropTypes.string.isRequired,
+//   })
+// };
