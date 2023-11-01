@@ -1,6 +1,9 @@
+import sprite from '../../../assets/images/sprite/sprite.svg';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useDeleteProductMutation } from '../../../redux/api';
 import {
+  TableDiv,
   Table,
   TableMainTitles,
   TableTitleTr,
@@ -8,23 +11,22 @@ import {
   TableBody,
   TableTr,
   TableInfoTd,
+  BtnTd,
   DelBtnTable,
   DelIcon,
   TableRecomSpan,
-  TableDiv,
 } from './ProductsTable.styled';
-import sprite from '../../../assets/images/sprite/sprite.svg';
-import { motion, AnimatePresence } from 'framer-motion';
+
 export default function ProductsTable({
   diaryProducts,
   setDiaryProducts,
   blood,
 }) {
   const [deleteProduct] = useDeleteProductMutation();
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+  const [isTableDesk, setIsTablDesk] = useState(window.innerWidth >= 768);
 
   const handleResize = () => {
-    setIsDesktop(window.innerWidth >= 768);
+    setIsTablDesk(window.innerWidth >= 768);
   };
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -33,6 +35,7 @@ export default function ProductsTable({
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
   const handleDeleteProduct = async id => {
     try {
       await deleteProduct(id);
@@ -46,10 +49,11 @@ export default function ProductsTable({
       alert('Ops...Something went wrong. Please try again.');
     }
   };
+
   return (
     <>
       <TableDiv>
-        {isDesktop ? (
+        {isTableDesk ? (
           <Table>
             <TableMainTitles>
               <TableTitleTr>
@@ -86,7 +90,7 @@ export default function ProductsTable({
                           <TableRecomSpan Recom={isRecommended} />
                           {isRecommended ? 'Yes' : 'No'}
                         </TableInfoTd>
-                        <td>
+                        <BtnTd>
                           <DelBtnTable
                             onClick={() => {
                               handleDeleteProduct(product._id);
@@ -96,7 +100,7 @@ export default function ProductsTable({
                               <use href={`${sprite}#delete`}></use>
                             </DelIcon>
                           </DelBtnTable>
-                        </td>
+                        </BtnTd>
                       </TableTr>
                     </TableBody>
                   );
@@ -104,7 +108,6 @@ export default function ProductsTable({
             </AnimatePresence>
           </Table>
         ) : (
-          // мапаєш і повертаєщ те, що нижч
           <>
             <AnimatePresence>
               {diaryProducts &&
@@ -144,7 +147,7 @@ export default function ProductsTable({
                             <TableRecomSpan Recom={isRecommended} />
                             {isRecommended ? 'Yes' : 'No'}
                           </TableInfoTd>
-                          <td>
+                          <BtnTd>
                             <DelBtnTable
                               onClick={() => {
                                 handleDeleteProduct(product._id);
@@ -154,7 +157,7 @@ export default function ProductsTable({
                                 <use href={`${sprite}#delete`}></use>
                               </DelIcon>
                             </DelBtnTable>
-                          </td>
+                          </BtnTd>
                         </TableTr>
                       </TableBody>
                     </Table>

@@ -65,6 +65,12 @@ export default function SignInForm() {
     }
   };
 
+  const onClickGoogleBtn = () => {
+    window.location.assign(
+      'https://power-pulse-api.onrender.com/api/users/google',
+    );
+  };
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -109,7 +115,7 @@ export default function SignInForm() {
           </Inputs>
           <Buttons>
             <button type="submit">Sign In</button>
-            <button type="button" id="google">
+            <button type="button" onClick={onClickGoogleBtn} id="google">
               <Icon name={'google'} />
             </button>
           </Buttons>
