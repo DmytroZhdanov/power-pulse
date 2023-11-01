@@ -52,23 +52,24 @@ export const TableMainTitle = styled.th`
   }
   &:nth-of-type(4) {
     top: 248px;
-    left: 8px;
+    left: 3%;
   }
   &:nth-of-type(5) {
     top: 248px;
-    left: 105px;
+    left: 34%;
+    width: 24%;
     overflow:hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 80px;
   }
   &:nth-of-type(6) {
     top: 248px;
-    left: 201px;
+    left: 63%;
   }
 }
 
 @media screen and (min-width: 768px) {
+  position:relative;
   &:first-of-type {
     width: 90px;
   }
@@ -126,6 +127,9 @@ export const TableInfoTd = styled.td`
   text-overflow: ellipsis;
   white-space: nowrap;
   border: 1px solid rgba(239, 237, 232, 0.3);
+  &::first-letter {
+    text-transform: uppercase;
+  }
   @media screen and (max-width: 767px) {
     position: absolute;
     padding: 10px 14px;
@@ -133,30 +137,30 @@ export const TableInfoTd = styled.td`
     line-height: ${18 / 14};
     &:first-of-type {
       top: 34px;
-      width: 297px;
+      width: 93.6%;
     }
     &:nth-of-type(2) {
       top: 114px;
-      width: 297px;
+      width: 93.6%;;
     }
     &:nth-of-type(3) {
       top: 194px;
-      width: 297px;
+      width:93.6%;;
     }
     &:nth-of-type(4) {
       top: 274px;
-      left: 8px;
-      width: 81px;
+      left: 3%;
+      width: 25.5%;;
     }
     &:nth-of-type(5) {
       top: 274px;
-      left: 105px;
-      width: 80px;
+      left: 34%;
+      width: 24%;
     }
     &:nth-of-type(6) {
       top: 274px;
-      left: 201px;
-      width: 76px;
+      left: 63%;
+      width: 25%;
     }
   }
   @media screen and (min-width: 768px) {
@@ -218,7 +222,7 @@ export const DelBtnTable = styled.button`
   @media screen and (max-width: 767px) {
     position: absolute;
     top: 283px;
-    left: 285px;
+    left: 91%;
   }
   @media screen and (min-width: 768px) {
     padding-left: 4px;
