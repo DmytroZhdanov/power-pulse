@@ -13,11 +13,8 @@ import { useState } from 'react';
 
 export default function UserBar() {
   const avatars = useSelector(selectUserAvatars);
-  console.log(avatars);
+
   const [showModal, setShowModal] = useState(false);
-  console.log(showModal);
-  const userAvatar = useSelector(selectUserAvatars);
-  console.log(userAvatar);
 
   const handleOpenClick = () => {
     if (!avatars) {
