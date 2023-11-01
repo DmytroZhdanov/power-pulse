@@ -29,6 +29,7 @@ export const theme = {
     graySecond: 'rgba(239, 237, 232, 0.65)',
     grayThird: 'rgba(239, 237, 232, 0.4)',
     grayFourth: 'rgba(239, 237, 232, 0.05)',
+    grayFifth: 'rgba(239, 237, 232, 0.60)',
     grayBackground: 'rgba(239, 237, 232, 1)',
 
     orangeFirst: '#E6533C',
