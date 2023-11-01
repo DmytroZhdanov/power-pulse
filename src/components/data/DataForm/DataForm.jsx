@@ -18,6 +18,7 @@ import { DATA_STEPS, ROUTER } from 'src/utils';
 
 const DataForm = ({ userParams, step }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
+
   const [isDateSelected, setIsDateSelected] = useState(false);
 
   const navigate = useNavigate();

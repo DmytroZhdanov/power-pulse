@@ -6,6 +6,7 @@ export const slideInFromLeft = {
 export const listVariants = {
   visible: i => ({
     opacity: 1,
+
     x: 0,
     transition: {
       delay: i * 0.2,
