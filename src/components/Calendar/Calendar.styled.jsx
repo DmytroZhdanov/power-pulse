@@ -5,8 +5,7 @@ export const DatePickerWrapper = styled.div`
   transform: translateX(-50%);
   z-index: 100;
 
-  ${({ inputClientRect: { top:top, left, height, bottom, width } }) => {
-  
+  ${({ inputClientRect: { top, left, height, bottom, width } }) => {
     if (window.innerHeight - bottom < 235) {
       return `
     top:'auto';
