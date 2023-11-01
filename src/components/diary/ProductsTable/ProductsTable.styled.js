@@ -53,11 +53,11 @@ export const TableMainTitle = styled.th`
     }
     &:nth-of-type(4) {
       top: 168px;
-      left: 105px;
+      left: 33.2%;
     }
     &:nth-of-type(5) {
       top: 168px;
-      left: 201px;
+      left: 63.2%;
     }
   }
 
@@ -109,6 +109,9 @@ export const TableInfoTd = styled.td`
   overflow:hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  &::first-letter {
+    text-transform: uppercase;
+  }
  
 @media screen and (max-width: 767px) {
   position: absolute; 
@@ -117,25 +120,25 @@ export const TableInfoTd = styled.td`
   line-height: ${18 / 14};
   &:first-of-type {
     top: 34px;
-    width: 297px;
+    width: 93.6%;
   }
   &:nth-of-type(2) {
     top: 114px;
-    width: 297px;
+    width: 93.6%;
   }
   &:nth-of-type(3) {
     top: 194px;
-    width: 81px;
+    width: 26.2%;;
   }
   &:nth-of-type(4) {
     top: 194px;
-    left: 105px;
-    width: 80px;
+    left: 33.2%;
+    width: 25.9%;;
   }
   &:nth-of-type(5) {
     top: 194px;
-    left: 201px;
-    width: 76px;
+    left: 63.2%;
+    width: 24.6%;
   }
 }
 
@@ -194,7 +197,7 @@ export const DelBtnTable = styled.button`
   @media screen and (max-width: 767px) {
     position: absolute;
     top: 203px;
-    left: 285px;
+    left: 91%;
   }
   @media screen and (min-width: 768px) {
     padding-left: 4px;
