@@ -33,10 +33,20 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
       const allDates = [
         ...new Set([
           ...data,
-          ...generateDateRange(dateOfUserRegistration, new Date('2023 11 01')),
+          ...generateDateRange(dateOfUserRegistration, new Date()),
         ]),
       ];
 
+      const sortDates = allDates.map(date => new Date(date).getTime()).sort();
+
+      const index = sortDates.indexOf(
+        new Date(selectedDate.toDateString()).getTime(),
+      );
+
+      setSortDates(sortDates);
+      setIndexDate(index);
+    } else {
+      const allDates = generateDateRange(dateOfUserRegistration, new Date());
       const sortDates = allDates.map(date => new Date(date).getTime()).sort();
 
       const index = sortDates.indexOf(
