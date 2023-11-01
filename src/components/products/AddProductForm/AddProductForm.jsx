@@ -13,8 +13,10 @@ import {
   ValueCalories,
   ButtonAdd,
   ButtonCancel,
+  WrapperDate,
 } from './AddProductForm.styled';
 import { useAddProductMutation } from '../../../redux/api';
+import AddProductFromPastDaysForm from '../AddProductFromPastDaysForm/AddProductFromPastDaysForm';
 
 /**
  * The AddProductForm component provides a form for adding a product to a user's diary.
@@ -30,6 +32,8 @@ import { useAddProductMutation } from '../../../redux/api';
  */
 
 export default function AddProductForm(props) {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   const { onClose, addProdSuccess, addProdError, product } = props;
   const { weight, calories, _id, title } = product;
   const [addWeight, setAddWeight] = useState(weight);
@@ -39,7 +43,7 @@ export default function AddProductForm(props) {
 
   const addProductToCollection = {
     product_ID: _id,
-    date: new Date(),
+    date: new Date(selectedDate),
     amount,
     calories,
   };
@@ -67,10 +71,17 @@ export default function AddProductForm(props) {
           <Placeholder>grams</Placeholder>
         </DivGrams>
       </DivInputs>
-      <DivCalories>
-        <Calories>Calories:</Calories>
-        <ValueCalories>{amount}</ValueCalories>
-      </DivCalories>
+      <WrapperDate>
+        <AddProductFromPastDaysForm
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+        />
+        <DivCalories>
+          <Calories>Calories:</Calories>
+          <ValueCalories>{amount}</ValueCalories>
+        </DivCalories>
+      </WrapperDate>
+
       <DivBtn>
         <ButtonAdd onClick={handleSubmit}>Add to diary</ButtonAdd>
         <ButtonCancel onClick={onClose}>Cancel</ButtonCancel>
