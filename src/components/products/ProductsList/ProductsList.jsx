@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import PropTypes from 'prop-types';
 
@@ -26,11 +26,10 @@ export default function ProductsList({ filter }) {
   const [products, setProducts] = useState([]);
   const [userGroupBlood, setUserGroupBlood] = useState(null);
 
-  const [currentFilter, setCurrentFilter] = useState(filter);
+  const [currentFilter, setCurrentFilter] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [resLimit, setResLimit] = useState(18);
-  const [total, setTotal] = useState(1000);
-
+  const [newResponse, setNewResponse] = useState(true);
+  const productListRef = useRef(null);
   const [
     getProducts,
     { isLoading: isGettingLazy, isError: gettingErrorLazy, error: myErrorLazy },
@@ -46,7 +45,8 @@ export default function ProductsList({ filter }) {
 
   const { ref } = useInView({
     onChange: inView => {
-      if (inView) {
+      console.log(newResponse);
+      if (inView && newResponse) {
         setCurrentPage(prevPage => prevPage + 1);
       }
     },
@@ -65,17 +65,13 @@ export default function ProductsList({ filter }) {
 
   useEffect(() => {
     if (filter !== currentFilter) {
-      setResLimit(18);
-      setTotal(1000);
-      setCurrentFilter(filter);
       setCurrentPage(1);
+      setNewResponse(true);
+      setCurrentFilter(filter);
     }
-    const totalPage = total / resLimit;
+  }, [currentFilter, filter]);
 
-    if (totalPage < currentPage) {
-      return;
-    }
-
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getProducts({
@@ -83,8 +79,9 @@ export default function ProductsList({ filter }) {
           ...currentFilter,
         }).unwrap();
 
-        setTotal(response.total);
-        setResLimit(response.limit);
+        if (response.data.length < 18) {
+          setNewResponse(false);
+        }
 
         if (currentPage === 1) {
           setProducts([...response.data]);
@@ -96,8 +93,8 @@ export default function ProductsList({ filter }) {
       }
     };
 
-    fetchData();
-  }, [currentFilter, getProducts, currentPage, filter, total, resLimit]);
+    newResponse && currentFilter && fetchData();
+  }, [getProducts, currentPage, currentFilter, newResponse]);
 
   return (
     <>
@@ -109,6 +106,7 @@ export default function ProductsList({ filter }) {
                 key={props._id}
                 props={props}
                 userGroupBlood={userGroupBlood}
+                ref={productListRef}
               ></ProductsItem>
             </li>
           ))}
