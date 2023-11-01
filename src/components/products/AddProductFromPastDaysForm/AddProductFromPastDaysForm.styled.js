@@ -26,6 +26,7 @@ export const CalendarInputTextP = styled.p`
 
   font-size: 14px;
   line-height: 1.5;
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 16px;
   }

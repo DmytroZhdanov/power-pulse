@@ -1,8 +1,9 @@
+import { useEffect, useState } from 'react';
+
 import TitlePage from 'components/common/TitlePage/TitlePage';
 import ProductsFilters from 'components/products/ProductsFilters/ProductsFilters';
 import ProductsList from 'components/products/ProductsList/ProductsList';
-import { useEffect, useState } from 'react';
-import { Background, Wrapper } from './Products.styled';
+import { BackgroundDiv, WrapperDiv } from './Products.styled';
 
 export function Products() {
   const [filter, setFilter] = useState(null);
@@ -22,11 +23,13 @@ export function Products() {
 
   return (
     <>
-      {isDesktop && <Background />}
-      <Wrapper>
+      {isDesktop && <BackgroundDiv />}
+      <WrapperDiv>
         <TitlePage text={'Products'} />
+
         <ProductsFilters onProductsChange={setFilter} />
-      </Wrapper>
+      </WrapperDiv>
+
       <ProductsList filter={filter} />
     </>
   );

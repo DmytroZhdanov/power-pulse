@@ -1,39 +1,39 @@
 import styled from '@emotion/styled';
 
-export const ProductCard = styled.div`
+export const ProductCardDiv = styled.div`
   padding: 16px;
   border-radius: 12px;
-  border: 1px solid rgba(239, 237, 232, 0.2);
+  border: 1px solid ${({ theme }) => theme.color.grayDisabled};
   margin-bottom: 20px;
 
   @media screen and (max-width: 374px) {
     max-width: 335px;
   }
 
-  @media screen and (min-width: 375px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     width: 335px;
   }
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-bottom: 0;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     width: 405px;
   }
 `;
 
-export const ProductHeader = styled.div`
+export const ProductHeaderDiv = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 27px;
 `;
 
-export const Diet = styled.p`
+export const DietP = styled.p`
   padding: 5px 7.5px;
   border-radius: 4px;
-  background: rgba(239, 237, 232, 0.05);
-  color: '#fff';
+  background: ${({ theme }) => theme.color.grayFourth};
+  color: ${({ theme }) => theme.color.fullWhite};
   font-size: 12px;
   font-weight: 700;
 `;
@@ -43,15 +43,16 @@ export const RecommendDiv = styled.div`
   align-items: center;
 `;
 
-export const Indicator = styled.div`
+export const IndicatorDiv = styled.div`
   margin-right: 8px;
   width: 14px;
   height: 14px;
   border-radius: 10px;
-  background-color: ${props => (props.recommended ? '#419B09' : '#E9101D')};
+  background-color: ${({ recommended, theme }) =>
+    recommended ? theme.color.circleGreen : theme.color.circleRed};
 `;
 
-export const RecommendText = styled.p`
+export const RecommendTextP = styled.p`
   margin-right: 16px;
   font-size: 12px;
   line-height: calc(18 / 12);
@@ -64,9 +65,9 @@ export const Button = styled.button`
   border: none;
 `;
 
-export const BtnText = styled.p`
+export const BtnTextP = styled.p`
   margin-right: 8px;
-  color: #e6533c;
+  color: ${({ theme }) => theme.color.orangeFirst};
   font-size: 14px;
   line-height: calc(18 / 14);
 `;
@@ -76,7 +77,7 @@ export const SvgAdd = styled.svg`
   height: 16px;
 `;
 
-export const Product = styled.div`
+export const ProductDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
@@ -88,25 +89,25 @@ export const SvgProd = styled.svg`
   height: 24px;
 `;
 
-export const ProductTitle = styled.h2`
+export const ProductTitleH2 = styled.h2`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 20px;
   line-height: calc(24 / 20);
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 24px;
     line-height: calc(32 / 24);
   }
 `;
 
-export const Description = styled.div`
+export const DescriptionDiv = styled.div`
   display: flex;
   gap: 16px;
 `;
 
-export const Text = styled.p`
+export const TextP = styled.p`
   color: rgba(239, 237, 232, 0.4);
   font-size: 12px;
   line-height: calc(18 / 12);
@@ -120,11 +121,11 @@ export const Text = styled.p`
     }}
 `;
 
-export const Value = styled.span`
-  color: #efede8;
+export const ValueSpan = styled.span`
+  color: ${({ theme }) => theme.color.white};
   padding-left: 8px;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding-left: 4px;
   }
 `;

@@ -7,7 +7,7 @@ export const DivSuccess = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin: 22px 111px;
   }
 `;
@@ -20,12 +20,12 @@ export const DivImg = styled.div`
   width: 123px;
   height: 97px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-bottom: 19px;
   }
 `;
 
-export const Title = styled.h2`
+export const TitleH2 = styled.h2`
   margin-bottom: 16px;
   font-size: 24px;
   font-weight: 700;
@@ -37,18 +37,20 @@ export const DivCalories = styled.div`
   display: flex;
   margin-bottom: 24px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-bottom: 32px;
   }
 `;
-export const Calories = styled.p`
+
+export const CaloriesP = styled.p`
   margin-right: 8px;
-  color: rgba(239, 237, 232, 0.3);
+  color: ${({ theme }) => theme.color.grayFirst};
   font-size: 14px;
   line-height: calc(18 / 14);
 `;
-export const ValueCalories = styled.span`
-  color: #e6533c;
+
+export const ValueCaloriesSpan = styled.span`
+  color: ${({ theme }) => theme.color.orangeFirst};
   font-size: 14px;
   line-height: calc(18 / 14);
 `;
@@ -58,14 +60,14 @@ export const ButtonAdd = styled.button`
   padding: 12px 32px;
   margin-bottom: 16px;
   border: none;
-  color: #efede8;
+  color: ${({ theme }) => theme.color.white};
   font-size: 16px;
   font-weight: 500;
   border-radius: 12px;
-  background: #e6533c;
+  background: ${({ theme }) => theme.color.orangeFirst};
   line-height: calc(18 / 16);
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding: 14px 32px;
     line-height: calc(24 / 16);
   }
@@ -74,7 +76,7 @@ export const ButtonAdd = styled.button`
 export const DivLink = styled.a`
   justify-content: center;
   display: flex;
-  color: rgba(239, 237, 232, 0.3);
+  color: ${({ theme }) => theme.color.grayFirst};
   font-size: 14px;
   line-height: calc(18 / 14);
 `;

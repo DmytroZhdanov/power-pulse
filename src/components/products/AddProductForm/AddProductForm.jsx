@@ -1,22 +1,24 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+
+import AddProductFromPastDaysForm from 'components/products/AddProductFromPastDaysForm/AddProductFromPastDaysForm';
 import {
   DivAddForm,
   DivInputs,
   InputName,
   DivGrams,
   InputGrams,
-  Placeholder,
+  SpanPlaceholder,
   DivCalories,
   DivBtn,
-  Calories,
-  ValueCalories,
+  PCalories,
+  SpanValueCalories,
   ButtonAdd,
   ButtonCancel,
-  WrapperDate,
+  DivWrapperDate,
 } from './AddProductForm.styled';
-import { useAddProductMutation } from '../../../redux/api';
-import AddProductFromPastDaysForm from '../AddProductFromPastDaysForm/AddProductFromPastDaysForm';
+
+import { useAddProductMutation } from 'src/redux/api';
 
 /**
  * The AddProductForm component provides a form for adding a product to a user's diary.
@@ -30,7 +32,6 @@ import AddProductFromPastDaysForm from '../AddProductFromPastDaysForm/AddProduct
  * @param {number} props.product.calories - The calories in the product.
  * @returns {JSX.Element} The AddProductForm component.
  */
-
 export default function AddProductForm(props) {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -50,6 +51,7 @@ export default function AddProductForm(props) {
 
   const handleSubmit = async () => {
     const { error } = await addProduct(addProductToCollection);
+
     if (error) {
       addProdError(error.data.message);
     } else {
@@ -62,28 +64,34 @@ export default function AddProductForm(props) {
     <DivAddForm>
       <DivInputs>
         <InputName type="text" value={title} readOnly disabled />
+
         <DivGrams>
           <InputGrams
             type="number"
             value={addWeight}
             onChange={e => setAddWeight(e.target.value)}
           />
-          <Placeholder>grams</Placeholder>
+
+          <SpanPlaceholder>grams</SpanPlaceholder>
         </DivGrams>
       </DivInputs>
-      <WrapperDate>
+
+      <DivWrapperDate>
         <AddProductFromPastDaysForm
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
         />
+
         <DivCalories>
-          <Calories>Calories:</Calories>
-          <ValueCalories>{amount}</ValueCalories>
+          <PCalories>Calories:</PCalories>
+
+          <SpanValueCalories>{amount}</SpanValueCalories>
         </DivCalories>
-      </WrapperDate>
+      </DivWrapperDate>
 
       <DivBtn>
         <ButtonAdd onClick={handleSubmit}>Add to diary</ButtonAdd>
+
         <ButtonCancel onClick={onClose}>Cancel</ButtonCancel>
       </DivBtn>
     </DivAddForm>
