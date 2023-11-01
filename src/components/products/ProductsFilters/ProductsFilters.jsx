@@ -199,8 +199,6 @@ export default function ProductsFilters({ onProductsChange }) {
                   ...baseStyles,
                   maxHeight: '228px',
                   borderRadius: '12px',
-
-                  pading: '14px',
                 }),
                 indicatorSeparator: baseStyles => ({
                   ...baseStyles,
@@ -289,7 +287,6 @@ export default function ProductsFilters({ onProductsChange }) {
                   ...baseStyles,
                   maxHeight: '228px',
                   borderRadius: '12px',
-                  pading: '14px',
                 }),
                 indicatorSeparator: baseStyles => ({
                   ...baseStyles,
