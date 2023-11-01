@@ -45,7 +45,6 @@ export default function ProductsList({ filter }) {
 
   const { ref } = useInView({
     onChange: inView => {
-      console.log(newResponse);
       if (inView && newResponse) {
         setCurrentPage(prevPage => prevPage + 1);
       }
