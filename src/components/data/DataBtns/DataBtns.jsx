@@ -1,20 +1,23 @@
-import sprite from '../../../assets/images/sprite/sprite.svg';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
 import {
   ArrowBtnRight,
   ArrowBtnLeft,
-  DataBtnsContainer,
+  DataBtnsContainerDiv,
   GoBtn,
-  ArrowIcon,
+  ArrowIconDiv,
 } from './DataBtns.styled';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+
+import sprite from 'src/assets/images/sprite/sprite.svg';
 import { DATA_STEPS } from 'src/utils';
-import { handleBack, handleNext } from '../helper/controlData';
+import { handleBack, handleNext } from 'components/data/helper/controlData';
+
 const DataBtns = ({ step, formik }) => {
   const navigate = useNavigate();
 
   return (
-    <DataBtnsContainer>
+    <DataBtnsContainerDiv>
       {step === DATA_STEPS.THIRD && (
         <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.9 }}>
           <GoBtn type="submit" id="btn">
@@ -31,15 +34,16 @@ const DataBtns = ({ step, formik }) => {
               handleBack(step, navigate);
             }}
           >
-            <ArrowIcon>
+            <ArrowIconDiv>
               <svg>
                 <use href={`${sprite}#big-arrow-left`} />
               </svg>
-            </ArrowIcon>
+            </ArrowIconDiv>
             Back
           </ArrowBtnLeft>
         </motion.div>
       )}
+
       {step !== DATA_STEPS.THIRD && (
         <motion.div>
           <ArrowBtnRight
@@ -49,15 +53,15 @@ const DataBtns = ({ step, formik }) => {
             }}
           >
             Next
-            <ArrowIcon>
+            <ArrowIconDiv>
               <svg>
                 <use href={`${sprite}#big-arrow-right`} />
               </svg>
-            </ArrowIcon>
+            </ArrowIconDiv>
           </ArrowBtnRight>
         </motion.div>
       )}
-    </DataBtnsContainer>
+    </DataBtnsContainerDiv>
   );
 };
 

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const DataBtnsContainer = styled.div`
+export const DataBtnsContainerDiv = styled.div`
   display: flex;
   gap: 16px;
   align-items: center;
@@ -26,7 +26,7 @@ export const ArrowBtnRight = styled.button`
     background-color: ${({ theme }) => theme.color.black};
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 16px;
     line-height: calc(24 / 16);
   }
@@ -52,13 +52,13 @@ export const ArrowBtnLeft = styled.button`
     background-color: ${({ theme }) => theme.color.black};
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 16px;
     line-height: calc(24 / 16);
   }
 `;
 
-export const ArrowIcon = styled.div`
+export const ArrowIconDiv = styled.div`
   width: 20px;
   height: 20px;
   display: flex;
@@ -89,7 +89,7 @@ export const GoBtn = styled.button`
     background-color: ${({ theme }) => theme.color.hover};
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding: 16px 75px;
     font-size: 20px;
     line-height: calc(24 / 20);

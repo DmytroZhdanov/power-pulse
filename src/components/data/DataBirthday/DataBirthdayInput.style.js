@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const WrapperCalendarInput = styled.div`
+export const WrapperCalendarInputDiv = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -25,33 +25,29 @@ export const InputHidden = styled.input`
   clip: rect(0 0 0 0);
 `;
 
-export const DefaultInputText = styled.p`
-  color: ${({ setColor }) =>
-    setColor === 'full'
-      ? ({ theme }) => theme.color.white
-      : 'rgb(117 117 117)'};
+export const DefaultInputTextP = styled.p`
+  color: ${({ setColor, theme }) =>
+    setColor === 'full' ? theme.color.white : 'rgb(117 117 117)'};
   transition:
     color ${({ theme }) => theme.transition.main},
     transform ${({ theme }) => theme.transition.main};
   font-size: 14px;
   line-height: calc(18 / 14);
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 16px;
     line-height: calc(24 / 16);
   }
 `;
 
-export const CalendarIcon = styled.div`
+export const CalendarIconDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 18px;
   height: 18px;
-  color: ${({ setColor }) =>
-    setColor === 'full'
-      ? ({ theme }) => theme.color.white
-      : 'rgb(117 117 117)'};
+  color: ${({ setColor, theme }) =>
+    setColor === 'full' ? theme.color.white : 'rgb(117 117 117)'};
   transition:
     color ${({ theme }) => theme.transition.main},
     transform ${({ theme }) => theme.transition.main};

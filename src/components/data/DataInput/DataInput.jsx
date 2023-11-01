@@ -1,6 +1,6 @@
 import { RadioInput, TextInput } from '../DataForm/DataForm.style';
 
-const DataInput = ({
+export default function DataInput({
   type,
   id,
   name,
@@ -9,7 +9,7 @@ const DataInput = ({
   onBlur,
   placeholder,
   checked,
-}) => {
+}) {
   return (
     <>
       {type === 'text' && (
@@ -23,6 +23,7 @@ const DataInput = ({
           placeholder={placeholder}
         />
       )}
+
       {type === 'radio' && (
         <RadioInput
           id={id}
@@ -35,6 +36,4 @@ const DataInput = ({
       )}
     </>
   );
-};
-
-export default DataInput;
+}

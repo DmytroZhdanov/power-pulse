@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const DataContainer = styled.div`
+export const DataContainerDiv = styled.div`
   max-width: 375px;
 
   h1 {
@@ -18,7 +18,7 @@ export const DataContainer = styled.div`
     margin-bottom: 28px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     max-width: 496px;
 
     h1 {

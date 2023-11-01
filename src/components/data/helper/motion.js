@@ -3,7 +3,7 @@ export const slideInFromLeft = {
   visible: { x: '0%' },
 };
 
-export const listVAriatns = {
+export const listVariants = {
   visible: i => ({
     opacity: 1,
     x: 0,

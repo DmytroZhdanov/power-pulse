@@ -1,11 +1,14 @@
 import { ErrorMessage } from 'formik';
-import Icon from '../../common/IconsComp/Icon';
-import { SuccessMessage, TextLabel } from '../DataForm/DataForm.style';
-import DataInput from '../DataInput/DataInput';
-import { textInputData } from '../helper/inputData';
-import { Item, List } from './FirstStep.styled';
 
-import BirthdayInput from '../../data/DataBirthday/DataBirthdayInput';
+import Icon from 'components/common/IconsComp/Icon';
+import BirthdayInput from 'components/data/DataBirthday/DataBirthdayInput';
+import DataInput from 'components/data/DataInput/DataInput';
+import { textInputData } from 'components/data/helper/inputData';
+import {
+  SuccessMessageDiv,
+  TextLabel,
+} from 'components/data/DataForm/DataForm.style';
+import { ItemLi, ListUl } from './FirstStep.styled';
 
 export function FirstStep({
   formik,
@@ -15,9 +18,9 @@ export function FirstStep({
   setIsDateSelected,
 }) {
   return (
-    <List>
+    <ListUl>
       {textInputData.map(input => (
-        <Item htmlFor={input.htmlFor} key={input.id}>
+        <ItemLi htmlFor={input.htmlFor} key={input.id}>
           <TextLabel>
             <DataInput
               {...input}
@@ -25,18 +28,23 @@ export function FirstStep({
               onChange={formik.handleChange}
               value={formik.values[input.name]}
             />
+
             <span>{input.span}</span>
+
             {formik.touched[input.name] && !formik.errors[input.name] && (
-              <SuccessMessage>
+              <SuccessMessageDiv>
                 <Icon name={'checkmark'} />
+
                 <p> {input.span} is valid</p>
-              </SuccessMessage>
+              </SuccessMessageDiv>
             )}
+
             <ErrorMessage name={input.name} component="div" />
           </TextLabel>
-        </Item>
+        </ItemLi>
       ))}
-      <Item>
+
+      <ItemLi>
         <label>
           <BirthdayInput
             setIsDateSelected={setIsDateSelected}
@@ -45,7 +53,7 @@ export function FirstStep({
             setSelectedDate={setSelectedDate}
           />
         </label>
-      </Item>
-    </List>
+      </ItemLi>
+    </ListUl>
   );
 }

@@ -1,16 +1,21 @@
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
-import Icon from 'src/components/common/IconsComp/Icon';
-import Calendar from '../../Calendar/Calendar';
 
+import Icon from 'src/components/common/IconsComp/Icon';
+import Calendar from 'components/Calendar/Calendar';
 import {
-  CalendarIcon,
-  DefaultInputText,
+  CalendarIconDiv,
+  DefaultInputTextP,
   InputHidden,
-  WrapperCalendarInput,
+  WrapperCalendarInputDiv,
 } from './DataBirthdayInput.style';
 
-export default function BirthdayInput({ selectedDate, setSelectedDate,setIsDateSelected,isDateSelected }) {
+export default function BirthdayInput({
+  selectedDate,
+  setSelectedDate,
+  setIsDateSelected,
+  isDateSelected,
+}) {
   const defaultInputValue = 'Birthday';
 
   const setDate = date => {
@@ -27,11 +32,11 @@ export default function BirthdayInput({ selectedDate, setSelectedDate,setIsDateS
   const maximumAge = new Date(today.setFullYear(today.getFullYear() - 100));
 
   const inputValue = isDateSelected
-  ? format(selectedDate, 'yyyy-MM-dd')
-    : defaultInputValue
+    ? format(selectedDate, 'yyyy-MM-dd')
+    : defaultInputValue;
   const inputText = isDateSelected
-  ? format(selectedDate, 'dd.MM.yyyy')
-    : defaultInputValue
+    ? format(selectedDate, 'dd.MM.yyyy')
+    : defaultInputValue;
 
   return (
     <>
@@ -47,14 +52,14 @@ export default function BirthdayInput({ selectedDate, setSelectedDate,setIsDateS
         onChange={setDate}
         value={selectedDate}
       >
-        <WrapperCalendarInput>
-          <DefaultInputText setColor={isDateSelected ? 'full' : ''}>
+        <WrapperCalendarInputDiv>
+          <DefaultInputTextP setColor={isDateSelected ? 'full' : ''}>
             {inputText}
-          </DefaultInputText>
-          <CalendarIcon setColor={isDateSelected ? 'full' : ''}>
+          </DefaultInputTextP>
+          <CalendarIconDiv setColor={isDateSelected ? 'full' : ''}>
             <Icon name="calendar-data" />
-          </CalendarIcon>
-        </WrapperCalendarInput>
+          </CalendarIconDiv>
+        </WrapperCalendarInputDiv>
       </Calendar>
     </>
   );

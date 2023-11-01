@@ -1,8 +1,11 @@
-import { DATA_STEPS } from '../../../utils';
-import { DataContainer } from './DataHeader.styled';
 import { motion } from 'framer-motion';
-import { slideInFromLeft } from '../helper/motion';
-const DataHeader = ({ step }) => {
+
+import { DataContainerDiv } from './DataHeader.styled';
+
+import { DATA_STEPS } from 'src/utils';
+import { slideInFromLeft } from 'components/data/helper/motion';
+
+export default function DataHeader({ step }) {
   return (
     <motion.div
       key={step}
@@ -12,10 +15,11 @@ const DataHeader = ({ step }) => {
       exit="hidden"
       transition={{ duration: 0.4 }}
     >
-      <DataContainer>
+      <DataContainerDiv>
         {step === DATA_STEPS.FIRST && (
           <>
             <h1>Get closer to your goals!</h1>
+
             <p>
               To ensure a personalized user experience and the proper
               functioning of our platform, we ask you to provide the following
@@ -23,14 +27,17 @@ const DataHeader = ({ step }) => {
             </p>
           </>
         )}
+
         {step === DATA_STEPS.SECOND && (
           <>
             <h1>Get closer to your goals!</h1>
           </>
         )}
+
         {step === DATA_STEPS.THIRD && (
           <>
             <h1>Dear user</h1>
+
             <p>
               Thank you for filling in all the required data. We greatly
               appreciate your cooperation and commitment to a healthy lifestyle.
@@ -39,9 +46,7 @@ const DataHeader = ({ step }) => {
             </p>
           </>
         )}
-      </DataContainer>
+      </DataContainerDiv>
     </motion.div>
   );
-};
-
-export default DataHeader;
+}

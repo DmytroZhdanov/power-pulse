@@ -1,38 +1,41 @@
 import { ErrorMessage } from 'formik';
+import { motion } from 'framer-motion';
+
 import {
-  RadioContainer1,
+  RadioContainer1Div,
   RadioLabel,
-  ErrorContainer,
-} from '../DataForm/DataForm.style';
-import DataInput from '../DataInput/DataInput';
+  ErrorContainerDiv,
+} from 'components/data/DataForm/DataForm.style';
+import DataInput from 'components/data/DataInput/DataInput';
+
 import {
   radioInputActivityData,
   radioInputBloodData,
   radioInputSexData,
-} from '../helper/inputData';
-import { motion } from 'framer-motion';
-import { listVAriatns } from '../helper/motion';
+} from 'components/data/helper/inputData';
+import { listVariants } from 'components/data/helper/motion';
 
 export function SecondStep({ formik }) {
   return (
     <>
-      <RadioContainer1>
+      <RadioContainer1Div>
         <fieldset>
           <legend>Blood:</legend>
 
-          <ErrorContainer>
+          <ErrorContainerDiv>
             <ErrorMessage
               name="blood"
               component="div"
               className="error"
               style={{ color: 'red', fontSize: '10px' }}
             />
-          </ErrorContainer>
+          </ErrorContainerDiv>
+
           {radioInputBloodData.map((input, i) => (
             <motion.div
               custom={i}
               key={input.id}
-              variants={listVAriatns}
+              variants={listVariants}
               initial="hidden"
               animate="visible"
               exit="hidden"
@@ -53,19 +56,20 @@ export function SecondStep({ formik }) {
         <fieldset>
           <legend>Sex:</legend>
 
-          <ErrorContainer>
+          <ErrorContainerDiv>
             <ErrorMessage
               name="sex"
               component="div"
               className="error"
               style={{ color: 'red', fontSize: '10px' }}
             />
-          </ErrorContainer>
+          </ErrorContainerDiv>
+
           {radioInputSexData.map((input, i) => (
             <motion.div
               custom={i}
               key={input.id}
-              variants={listVAriatns}
+              variants={listVariants}
               initial="hidden"
               animate="visible"
               exit="hidden"
@@ -82,25 +86,26 @@ export function SecondStep({ formik }) {
             </motion.div>
           ))}
         </fieldset>
-      </RadioContainer1>
+      </RadioContainer1Div>
 
-      <RadioContainer1>
+      <RadioContainer1Div>
         <fieldset>
           <legend>Level Activity:</legend>
 
-          <ErrorContainer>
+          <ErrorContainerDiv>
             <ErrorMessage
               name="levelActivity"
               component="div"
               className="error"
               style={{ color: 'red', fontSize: '10px' }}
             />
-          </ErrorContainer>
+          </ErrorContainerDiv>
+
           {radioInputActivityData.map((input, i) => (
             <motion.div
               custom={i}
               key={input.id}
-              variants={listVAriatns}
+              variants={listVariants}
               initial="hidden"
               animate="visible"
               exit="hidden"
@@ -119,7 +124,7 @@ export function SecondStep({ formik }) {
             </motion.div>
           ))}
         </fieldset>
-      </RadioContainer1>
+      </RadioContainer1Div>
     </>
   );
 }

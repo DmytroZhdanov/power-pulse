@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const DataFormContainer = styled.div`
+export const DataFormContainerDiv = styled.div`
   position: relative;
   z-index: 2;
 `;
@@ -38,7 +38,7 @@ export const TextLabel = styled.label`
     font-size: 10px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     span {
       font-size: 14px;
       line-height: calc(18 / 14);
@@ -68,18 +68,18 @@ export const TextInput = styled.input`
     outline: none;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 16px;
     line-height: calc(24 / 16);
   }
 `;
 
-export const SuccessMessage = styled.div`
+export const SuccessMessageDiv = styled.div`
   width: 140px;
   height: 10px;
   display: flex;
   align-content: center;
-  /* margin: 5px 0; */
+
   svg {
     fill: green;
     width: 12px;
@@ -93,7 +93,7 @@ export const SuccessMessage = styled.div`
 
 // SecondStep Component
 
-export const RadioContainer1 = styled.div`
+export const RadioContainer1Div = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -119,7 +119,7 @@ export const RadioContainer1 = styled.div`
     cursor: pointer;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-top: 32px;
     margin-bottom: 32px;
 
@@ -136,7 +136,7 @@ export const RadioContainer1 = styled.div`
   }
 `;
 
-export const ErrorContainer = styled.div`
+export const ErrorContainerDiv = styled.div`
   position: absolute;
   width: 150px;
   top: -10%;
@@ -176,7 +176,7 @@ export const RadioLabel = styled.label`
     border: 2px solid ${({ theme }) => theme.color.orangeSecond};
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     span {
       padding: 2px;
       width: 24px;
@@ -192,6 +192,7 @@ export const RadioLabel = styled.label`
 
 export const RadioInput = styled.input`
   appearance: none;
+
   :checked ~ span::after {
     opacity: 1;
   }

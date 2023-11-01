@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const List = styled.ul`
+export const ListUl = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,11 +10,7 @@ export const List = styled.ul`
   margin-top: 50px;
   margin-bottom: 29px;
 
-  @media screen and (min-width: 768px) {
-    column-gap: 14px;
-  }
-
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     max-width: 528px;
     justify-content: flex-start;
     gap: 14px;
@@ -23,10 +19,10 @@ export const List = styled.ul`
   }
 `;
 
-export const Item = styled.li`
+export const ItemLi = styled.li`
   flex-basis: calc((100% - 10px) / 2);
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     flex-basis: 31%;
   }
 `;
