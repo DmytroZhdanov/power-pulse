@@ -141,10 +141,12 @@ export const Sign = styled.div`
 
 export const Buttons = styled.div`
   display: inline-flex;
-  gap: 24px;
+  flex-direction: column;
 
   @media screen and (min-width: 768px) {
     margin-top: 64px;
+    flex-direction: row;
+    gap: 24px;
   }
 
   button {
@@ -158,6 +160,10 @@ export const Buttons = styled.div`
     gap: 10px;
     border-radius: 12px;
     background-color: #e6533c;
+
+    @media screen and (min-width: 768px) {
+      margin-top: 0;
+    }
 
     :hover,
     :active {

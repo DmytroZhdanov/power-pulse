@@ -12,13 +12,15 @@ import {
   AddProdBtnIcon,
   AddProdBtnText,
 } from './DayProducts.styled';
+import { useFetchUserBloodGroupQuery } from '../../../redux/api';
 
 export default function DayProducts({
   diaryProducts,
   setDiaryProducts,
-  blood,
   isLoading,
 }) {
+
+  const {data} =  useFetchUserBloodGroupQuery();
   return (
     <DayProdDiv>
       <DayProdDivList>
@@ -33,7 +35,7 @@ export default function DayProducts({
       {diaryProducts && diaryProducts.length !== 0 ? (
         <ProductsTable
           setDiaryProducts={setDiaryProducts}
-          blood={blood}
+          blood={data}
           diaryProducts={diaryProducts}
         />
       ) : (
