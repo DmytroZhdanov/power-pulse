@@ -1,4 +1,4 @@
-import{M as L,r as p,n as r,P as x,j as t,I as O,a8 as pe,B as I,l as xe,L as ee,R as he,f as P,a6 as ue,a4 as me,b as ge,a9 as fe,a7 as be,E as G}from"./index-3b347d02.js";import{u as we}from"./index-e7b97ece.js";import{f as te,C as ye}from"./Calendar-c3fff3ec.js";import"./tiny-warning.esm-c932d744.js";var H=typeof window>"u"?p.useEffect:p.useLayoutEffect,je=({isPlaying:e,duration:i,startAt:l=0,updateInterval:o=0,onComplete:n,onUpdate:a})=>{let[s,d]=p.useState(l),m=p.useRef(0),u=p.useRef(l),b=p.useRef(l*-1e3),c=p.useRef(null),h=p.useRef(null),f=p.useRef(null),w=v=>{let g=v/1e3;if(h.current===null){h.current=g,c.current=requestAnimationFrame(w);return}let y=g-h.current,S=m.current+y;h.current=g,m.current=S;let E=u.current+(o===0?S:(S/o|0)*o),T=u.current+S,k=typeof i=="number"&&T>=i;d(k?i:E),k||(c.current=requestAnimationFrame(w))},j=()=>{c.current&&cancelAnimationFrame(c.current),f.current&&clearTimeout(f.current),h.current=null},$=p.useCallback(v=>{j(),m.current=0;let g=typeof v=="number"?v:l;u.current=g,d(g),e&&(c.current=requestAnimationFrame(w))},[e,l]);return H(()=>{if(a==null||a(s),i&&s>=i){b.current+=i*1e3;let{shouldRepeat:v=!1,delay:g=0,newStartAt:y}=(n==null?void 0:n(b.current/1e3))||{};v&&(f.current=setTimeout(()=>$(y),g*1e3))}},[s,i]),H(()=>(e&&(c.current=requestAnimationFrame(w)),j),[e,i,o]),{elapsedTime:s,reset:$}},ve=(e,i,l)=>{let o=e/2,n=i/2,a=o-n,s=2*a,d=l==="clockwise"?"1,0":"0,1",m=2*Math.PI*a;return{path:`m ${o},${n} a ${a},${a} 0 ${d} 0,${s} a ${a},${a} 0 ${d} 0,-${s}`,pathLength:m}},Y=(e,i)=>e===0||e===i?0:typeof i=="number"?e-i:0,ke=e=>({position:"relative",width:e,height:e}),$e={display:"flex",justifyContent:"center",alignItems:"center",position:"absolute",left:0,top:0,width:"100%",height:"100%"},ie=(e,i,l,o,n)=>{if(o===0)return i;let a=(n?o-e:e)/o;return i+l*a},Q=e=>{var i,l;return(l=(i=e.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i,(o,n,a,s)=>`#${n}${n}${a}${a}${s}${s}`).substring(1).match(/.{2}/g))==null?void 0:i.map(o=>parseInt(o,16)))!=null?l:[]},Se=(e,i)=>{var l;let{colors:o,colorsTime:n,isSmoothColorTransition:a=!0}=e;if(typeof o=="string")return o;let s=(l=n==null?void 0:n.findIndex((h,f)=>h>=i&&i>=n[f+1]))!=null?l:-1;if(!n||s===-1)return o[0];if(!a)return o[s];let d=n[s]-i,m=n[s]-n[s+1],u=Q(o[s]),b=Q(o[s+1]),c=!!e.isGrowing;return`rgb(${u.map((h,f)=>ie(d,h,b[f]-h,m,c)|0).join(",")})`},Ee=e=>{let{duration:i,initialRemainingTime:l,updateInterval:o,size:n=180,strokeWidth:a=12,trailStrokeWidth:s,isPlaying:d=!1,isGrowing:m=!1,rotation:u="clockwise",onComplete:b,onUpdate:c}=e,h=p.useRef(),f=Math.max(a,s??0),{path:w,pathLength:j}=ve(n,f,u),{elapsedTime:$}=je({isPlaying:d,duration:i,startAt:Y(i,l),updateInterval:o,onUpdate:typeof c=="function"?g=>{let y=Math.ceil(i-g);y!==h.current&&(h.current=y,c(y))}:void 0,onComplete:typeof b=="function"?g=>{var y;let{shouldRepeat:S,delay:E,newInitialRemainingTime:T}=(y=b(g))!=null?y:{};if(S)return{shouldRepeat:S,delay:E,newStartAt:Y(i,T)}}:void 0}),v=i-$;return{elapsedTime:$,path:w,pathLength:j,remainingTime:Math.ceil(v),rotation:u,size:n,stroke:Se(e,v),strokeDashoffset:ie($,0,j,i,m),strokeWidth:a}},re=e=>{let{children:i,strokeLinecap:l,trailColor:o,trailStrokeWidth:n}=e,{path:a,pathLength:s,stroke:d,strokeDashoffset:m,remainingTime:u,elapsedTime:b,size:c,strokeWidth:h}=Ee(e);return L.createElement("div",{style:ke(c)},L.createElement("svg",{viewBox:`0 0 ${c} ${c}`,width:c,height:c,xmlns:"http://www.w3.org/2000/svg"},L.createElement("path",{d:a,fill:"none",stroke:o??"#d9d9d9",strokeWidth:n??h}),L.createElement("path",{d:a,fill:"none",stroke:d,strokeLinecap:l??"round",strokeWidth:h,strokeDasharray:s,strokeDashoffset:m})),typeof i=="function"&&L.createElement("div",{style:$e},i({remainingTime:u,elapsedTime:b,color:d})))};re.displayName="CountdownCircleTimer";const Re=r.div`
+import{M as L,r as p,n as r,P as x,j as t,I as O,a8 as pe,B as I,l as xe,L as ee,R as he,f as P,a6 as ue,a4 as me,b as ge,a9 as fe,a7 as be,E as G}from"./index-e9fedd03.js";import{u as we}from"./index-636f0d93.js";import{f as te,C as ye}from"./Calendar-4d0f1d17.js";import"./tiny-warning.esm-c932d744.js";var H=typeof window>"u"?p.useEffect:p.useLayoutEffect,ke=({isPlaying:e,duration:i,startAt:l=0,updateInterval:o=0,onComplete:n,onUpdate:a})=>{let[s,d]=p.useState(l),m=p.useRef(0),u=p.useRef(l),b=p.useRef(l*-1e3),c=p.useRef(null),h=p.useRef(null),f=p.useRef(null),w=j=>{let g=j/1e3;if(h.current===null){h.current=g,c.current=requestAnimationFrame(w);return}let y=g-h.current,S=m.current+y;h.current=g,m.current=S;let E=u.current+(o===0?S:(S/o|0)*o),T=u.current+S,v=typeof i=="number"&&T>=i;d(v?i:E),v||(c.current=requestAnimationFrame(w))},k=()=>{c.current&&cancelAnimationFrame(c.current),f.current&&clearTimeout(f.current),h.current=null},$=p.useCallback(j=>{k(),m.current=0;let g=typeof j=="number"?j:l;u.current=g,d(g),e&&(c.current=requestAnimationFrame(w))},[e,l]);return H(()=>{if(a==null||a(s),i&&s>=i){b.current+=i*1e3;let{shouldRepeat:j=!1,delay:g=0,newStartAt:y}=(n==null?void 0:n(b.current/1e3))||{};j&&(f.current=setTimeout(()=>$(y),g*1e3))}},[s,i]),H(()=>(e&&(c.current=requestAnimationFrame(w)),k),[e,i,o]),{elapsedTime:s,reset:$}},je=(e,i,l)=>{let o=e/2,n=i/2,a=o-n,s=2*a,d=l==="clockwise"?"1,0":"0,1",m=2*Math.PI*a;return{path:`m ${o},${n} a ${a},${a} 0 ${d} 0,${s} a ${a},${a} 0 ${d} 0,-${s}`,pathLength:m}},Y=(e,i)=>e===0||e===i?0:typeof i=="number"?e-i:0,ve=e=>({position:"relative",width:e,height:e}),$e={display:"flex",justifyContent:"center",alignItems:"center",position:"absolute",left:0,top:0,width:"100%",height:"100%"},ie=(e,i,l,o,n)=>{if(o===0)return i;let a=(n?o-e:e)/o;return i+l*a},Q=e=>{var i,l;return(l=(i=e.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i,(o,n,a,s)=>`#${n}${n}${a}${a}${s}${s}`).substring(1).match(/.{2}/g))==null?void 0:i.map(o=>parseInt(o,16)))!=null?l:[]},Se=(e,i)=>{var l;let{colors:o,colorsTime:n,isSmoothColorTransition:a=!0}=e;if(typeof o=="string")return o;let s=(l=n==null?void 0:n.findIndex((h,f)=>h>=i&&i>=n[f+1]))!=null?l:-1;if(!n||s===-1)return o[0];if(!a)return o[s];let d=n[s]-i,m=n[s]-n[s+1],u=Q(o[s]),b=Q(o[s+1]),c=!!e.isGrowing;return`rgb(${u.map((h,f)=>ie(d,h,b[f]-h,m,c)|0).join(",")})`},Ee=e=>{let{duration:i,initialRemainingTime:l,updateInterval:o,size:n=180,strokeWidth:a=12,trailStrokeWidth:s,isPlaying:d=!1,isGrowing:m=!1,rotation:u="clockwise",onComplete:b,onUpdate:c}=e,h=p.useRef(),f=Math.max(a,s??0),{path:w,pathLength:k}=je(n,f,u),{elapsedTime:$}=ke({isPlaying:d,duration:i,startAt:Y(i,l),updateInterval:o,onUpdate:typeof c=="function"?g=>{let y=Math.ceil(i-g);y!==h.current&&(h.current=y,c(y))}:void 0,onComplete:typeof b=="function"?g=>{var y;let{shouldRepeat:S,delay:E,newInitialRemainingTime:T}=(y=b(g))!=null?y:{};if(S)return{shouldRepeat:S,delay:E,newStartAt:Y(i,T)}}:void 0}),j=i-$;return{elapsedTime:$,path:w,pathLength:k,remainingTime:Math.ceil(j),rotation:u,size:n,stroke:Se(e,j),strokeDashoffset:ie($,0,k,i,m),strokeWidth:a}},re=e=>{let{children:i,strokeLinecap:l,trailColor:o,trailStrokeWidth:n}=e,{path:a,pathLength:s,stroke:d,strokeDashoffset:m,remainingTime:u,elapsedTime:b,size:c,strokeWidth:h}=Ee(e);return L.createElement("div",{style:ve(c)},L.createElement("svg",{viewBox:`0 0 ${c} ${c}`,width:c,height:c,xmlns:"http://www.w3.org/2000/svg"},L.createElement("path",{d:a,fill:"none",stroke:o??"#d9d9d9",strokeWidth:n??h}),L.createElement("path",{d:a,fill:"none",stroke:d,strokeLinecap:l??"round",strokeWidth:h,strokeDasharray:s,strokeDashoffset:m})),typeof i=="function"&&L.createElement("div",{style:$e},i({remainingTime:u,elapsedTime:b,color:d})))};re.displayName="CountdownCircleTimer";const Re=r.div`
   @keyframes spin {
     0% {
       transform: rotate(0deg);
@@ -157,8 +157,12 @@ import{M as L,r as p,n as r,P as x,j as t,I as O,a8 as pe,B as I,l as xe,L as ee
 `;function se({onSubmit:e}){const[i,l]=p.useState(new Date),[o,n]=p.useState(""),a=u=>{n(u.target.value)},s=u=>{l(u)},d=()=>{e({time:Number(o),date:i})},m=te(i,"dd.MM.yyyy");return t.jsxs(Me,{children:[t.jsx("label",{children:t.jsxs(X,{children:[t.jsx(_,{children:"Add time"}),t.jsx(qe,{placeholder:"min 60 sec.",type:"number",value:o,onChange:a})]})}),t.jsxs(X,{children:[t.jsx(_,{children:"Choice day"}),t.jsx(ye,{maxDate:new Date,onChange:s,value:i,children:t.jsxs(ze,{children:[t.jsx(Ie,{children:m}),t.jsx(Pe,{children:t.jsx(O,{name:"calendar"})})]})})]}),t.jsx("div",{children:t.jsx(Be,{onClick:d,children:"Add to diary"})})]})}se.propTypes={onSubmit:x.func.isRequired};const Ae=r.ul`
   margin-bottom: 24px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 8px;
+  width: 100%;
+
+  @media screen and (min-width: ${({theme:e})=>e.breakpoint.mobile}) {
+    grid-template-columns: 1fr 1fr;
+  }
 
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     margin-bottom: 0;
@@ -197,9 +201,25 @@ import{M as L,r as p,n as r,P as x,j as t,I as O,a8 as pe,B as I,l as xe,L as ee
 `,ae=({exercise:e})=>{const{bodyPart:i,equipment:l,name:o,target:n,time:a}=e;return t.jsx(Ae,{children:[{label:"Name",value:o},{label:"Target",value:n},{label:"Body Part",value:i},{label:"Equipment",value:l},{label:"Time",value:`${a} minutes`}].map(({label:s,value:d})=>t.jsxs(We,{children:[t.jsx(Ne,{children:s}),t.jsx(Ue,{children:d})]},s+d))})};ae.propTypes={exercise:x.shape({bodyPart:x.string.isRequired,equipment:x.string.isRequired,name:x.string.isRequired,target:x.string.isRequired,time:x.number.isRequired}).isRequired};const Oe=r.div`
   display: grid;
   padding: 48px 16px;
-  width: 335px;
-  height: 570px;
+  width: 280px;
+  height: 280px;
   gap: 40px;
+
+  @media screen and (min-height: 450px) {
+    height: 400px;
+  }
+
+  @media screen and (min-height: 550px) {
+    height: 500px;
+  }
+
+  @media screen and (min-height: 650px) {
+    height: 570px;
+  }
+
+  @media screen and (min-width: ${({theme:e})=>e.breakpoint.mobile}) {
+    width: 335px;
+  }
 
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     padding-right: 32px;
@@ -227,8 +247,8 @@ import{M as L,r as p,n as r,P as x,j as t,I as O,a8 as pe,B as I,l as xe,L as ee
 `,He=r.img`
   object-fit: cover;
   margin-bottom: 14px;
-  width: 270px;
-  height: 270px;
+  width: 230px;
+  height: 230px;
 
   border-radius: 12px;
   border: 1px solid ${({theme:e})=>e.color.grayDisabled};
@@ -236,6 +256,11 @@ import{M as L,r as p,n as r,P as x,j as t,I as O,a8 as pe,B as I,l as xe,L as ee
     linear-gradient(0deg, rgba(4, 4, 4, 0.2) 0%, rgba(4, 4, 4, 0.2) 100%),
     url(<path-to-image>),
     lightgray 0px -17.5px / 100% 119.469% no-repeat;
+
+  @media screen and (min-width: ${({theme:e})=>e.breakpoint.mobile}) {
+    width: 270px;
+    height: 270px;
+  }
 `,Ye=r.div`
   display: flex;
   gap: 8px;
@@ -249,10 +274,24 @@ import{M as L,r as p,n as r,P as x,j as t,I as O,a8 as pe,B as I,l as xe,L as ee
   line-height: 1.29;
 `,Xe=r.div`
   display: flex;
+  flex-direction: column-reverse;
   gap: 20px;
+  width: 100%;
+
+  & > :first-of-type {
+    align-self: flex-start;
+  }
+  & > :last-of-type {
+    align-self: flex-end;
+  }
+
+  @media screen and (min-width: ${({theme:e})=>e.breakpoint.mobile}) {
+    justify-content: space-between;
+    flex-direction: row;
+  }
 `,_e=r.button`
   border: none;
-  max-width: 150px;
+  max-width: 140px;
   background-color: transparent;
   color: ${({theme:e})=>e.color.orangeFirst};
   font-weight: 500;
@@ -260,6 +299,7 @@ import{M as L,r as p,n as r,P as x,j as t,I as O,a8 as pe,B as I,l as xe,L as ee
   line-height: 1.29;
 
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
+    max-width: 150px;
     font-size: 16px;
     line-height: 1.5;
   }
@@ -272,7 +312,7 @@ import{M as L,r as p,n as r,P as x,j as t,I as O,a8 as pe,B as I,l as xe,L as ee
 `,Je=r.button`
   border: none;
   display: inline-flex;
-  padding: 12px 32px;
+  padding: 12px 28px;
   border-radius: 12px;
   background: ${({theme:e})=>e.color.hoverBorder};
   color: ${({theme:e})=>e.color.white};
@@ -293,7 +333,7 @@ import{M as L,r as p,n as r,P as x,j as t,I as O,a8 as pe,B as I,l as xe,L as ee
     color: ${({theme:e})=>e.color.hoverBorder};
     background: ${({theme:e})=>e.color.white};
   }
-`;function le({exercise:e,openModalExerciseSuccess:i,closeModalExerciseForm:l,setModalExerciseSuccessData:o}){const{_id:n,gifUrl:a,burnedCalories:s,time:d}=e,[m,u]=p.useState(!1),[b,c]=p.useState(!1),[h,f]=p.useState(""),[w,j]=p.useState(""),[$,v]=p.useState(0),[g,y]=p.useState(0),[S,E]=p.useState(!1),[T]=pe(),k=s/d,R=Math.floor($/60*k+g*s),D=$+g*d*60,F=async({time:M=D,date:A=new Date})=>{E(!0);const q=Math.floor(M/60*k+g*s),z={exercise_ID:n,date:te(A,"yyyy-MM-dd"),time:M,calories:q};if(z.time<60){f(`To achieve results, the training time should be more than one minute. Your time ${z.time} sec.`),j("Notice: "),c(!0);return}const{error:V}=await T(z);V?(j("Error: "),f(V.data.message),c(!0)):(i(),l(),o(z))},B=()=>{E(!0),u(!0)},C={timerLabel:"Time",caloriesLabel:"Burned calories:",addExerciseBtnName:"Add to diary",openPastDaysFormBtnName:"Missing exercises? Add them here"};return t.jsxs(Oe,{children:[t.jsxs(Ve,{children:[t.jsx(He,{src:a,alt:"Exercise technique"}),t.jsx(oe,{timerLabel:C.timerLabel,stopTimer:S,setStopTimer:E,roundsCount:g,setRoundsCount:y,setTimer:v,duration:d*60}),t.jsxs(Ye,{children:[t.jsx(Qe,{children:C.caloriesLabel}),t.jsx(Ke,{children:R})]})]}),t.jsxs(Ge,{children:[t.jsx(ae,{exercise:e}),t.jsxs(Xe,{children:[t.jsx(_e,{onClick:B,children:C.openPastDaysFormBtnName}),t.jsx(Je,{onClick:F,children:C.addExerciseBtnName})]})]}),t.jsx(I,{onShow:m,onClose:()=>{u(!1)},children:t.jsx(se,{onSubmit:F})}),t.jsx(I,{onShow:b,onClose:()=>{c(!1)},children:t.jsx(xe,{notificationType:w,message:h})})]})}le.propTypes={openModalExerciseSuccess:x.func.isRequired,closeModalExerciseForm:x.func.isRequired,setModalExerciseSuccessData:x.func.isRequired,exercise:x.shape({gifUrl:x.string.isRequired,burnedCalories:x.number.isRequired,time:x.number.isRequired}).isRequired};const Ze=r.div`
+`;function le({exercise:e,openModalExerciseSuccess:i,closeModalExerciseForm:l,setModalExerciseSuccessData:o}){const{_id:n,gifUrl:a,burnedCalories:s,time:d}=e,[m,u]=p.useState(!1),[b,c]=p.useState(!1),[h,f]=p.useState(""),[w,k]=p.useState(""),[$,j]=p.useState(0),[g,y]=p.useState(0),[S,E]=p.useState(!1),[T]=pe(),v=s/d,R=Math.floor($/60*v+g*s),D=$+g*d*60,F=async({time:M=D,date:A=new Date})=>{E(!0);const q=Math.floor(M/60*v+g*s),z={exercise_ID:n,date:te(A,"yyyy-MM-dd"),time:M,calories:q};if(z.time<60){f(`To achieve results, the training time should be more than one minute. Your time ${z.time} sec.`),k("Notice: "),c(!0);return}const{error:V}=await T(z);V?(k("Error: "),f(V.data.message),c(!0)):(i(),l(),o(z))},B=()=>{E(!0),u(!0)},C={timerLabel:"Time",caloriesLabel:"Burned calories:",addExerciseBtnName:"Add to diary",openPastDaysFormBtnName:"Missing exercises? Add them here"};return t.jsxs(Oe,{children:[t.jsxs(Ve,{children:[t.jsx(He,{src:a,alt:"Exercise technique"}),t.jsx(oe,{timerLabel:C.timerLabel,stopTimer:S,setStopTimer:E,roundsCount:g,setRoundsCount:y,setTimer:j,duration:d*60}),t.jsxs(Ye,{children:[t.jsx(Qe,{children:C.caloriesLabel}),t.jsx(Ke,{children:R})]})]}),t.jsxs(Ge,{children:[t.jsx(ae,{exercise:e}),t.jsxs(Xe,{children:[t.jsx(_e,{onClick:B,children:C.openPastDaysFormBtnName}),t.jsx(Je,{onClick:F,children:C.addExerciseBtnName})]})]}),t.jsx(I,{onShow:m,onClose:()=>{u(!1)},children:t.jsx(se,{onSubmit:F})}),t.jsx(I,{onShow:b,onClose:()=>{c(!1)},children:t.jsx(xe,{notificationType:w,message:h})})]})}le.propTypes={openModalExerciseSuccess:x.func.isRequired,closeModalExerciseForm:x.func.isRequired,setModalExerciseSuccessData:x.func.isRequired,exercise:x.shape({gifUrl:x.string.isRequired,burnedCalories:x.number.isRequired,time:x.number.isRequired}).isRequired};const Ze=r.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -545,7 +585,7 @@ import{M as L,r as p,n as r,P as x,j as t,I as O,a8 as pe,B as I,l as xe,L as ee
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
     margin-bottom: 0;
   }
-`;function ce(e){const{bodyPart:i,gifUrl:l,name:o,target:n,burnedCalories:a}=e,[s,d]=p.useState(!1),[m,u]=p.useState(!1),[b,c]=p.useState({}),h=()=>{d(!0)},f=()=>{u(!0)},w=()=>{d(!1)},j=()=>{u(!1)};return t.jsxs(t.Fragment,{children:[t.jsxs(at,{gifUrl:l,children:[t.jsxs(lt,{children:[t.jsx(pt,{children:"WORKOUT"}),t.jsx(xt,{className:"start",children:t.jsxs(gt,{onClick:h,children:[t.jsx(ft,{className:"start",children:"Start"}),t.jsx(ct,{children:t.jsx("use",{href:`${P}#arrow-add-prod-orange`})})]})})]}),t.jsxs(mt,{children:[t.jsx(dt,{children:t.jsx("use",{href:`${P}#run-man`})}),t.jsx(ut,{children:o})]}),t.jsxs(ht,{children:[t.jsxs(N,{children:["Burned calories:",t.jsx(U,{children:a})]}),t.jsxs(N,{className:"bodyPart",category:!0,children:["Body part:",t.jsx(U,{children:i})]}),t.jsxs(N,{className:"target",children:["Target:",t.jsx(U,{children:n})]})]})]}),t.jsx(I,{onShow:s,onClose:w,children:t.jsx(le,{exercise:e,openModalExerciseSuccess:f,closeModalExerciseForm:w,setModalExerciseSuccessData:c})}),t.jsx(I,{onShow:m,onClose:j,children:t.jsx(de,{modalExerciseSuccessData:b,closeModalExerciseSuccess:j})})]})}ce.propTypes={bodyPart:x.string.isRequired,name:x.string.isRequired,target:x.string.isRequired,burnedCalories:x.number.isRequired};const bt=r.ul`
+`;function ce(e){const{bodyPart:i,gifUrl:l,name:o,target:n,burnedCalories:a}=e,[s,d]=p.useState(!1),[m,u]=p.useState(!1),[b,c]=p.useState({}),h=()=>{d(!0)},f=()=>{u(!0)},w=()=>{d(!1)},k=()=>{u(!1)};return t.jsxs(t.Fragment,{children:[t.jsxs(at,{gifUrl:l,children:[t.jsxs(lt,{children:[t.jsx(pt,{children:"WORKOUT"}),t.jsx(xt,{className:"start",children:t.jsxs(gt,{onClick:h,children:[t.jsx(ft,{className:"start",children:"Start"}),t.jsx(ct,{children:t.jsx("use",{href:`${P}#arrow-add-prod-orange`})})]})})]}),t.jsxs(mt,{children:[t.jsx(dt,{children:t.jsx("use",{href:`${P}#run-man`})}),t.jsx(ut,{children:o})]}),t.jsxs(ht,{children:[t.jsxs(N,{children:["Burned calories:",t.jsx(U,{children:a})]}),t.jsxs(N,{className:"bodyPart",category:!0,children:["Body part:",t.jsx(U,{children:i})]}),t.jsxs(N,{className:"target",children:["Target:",t.jsx(U,{children:n})]})]})]}),t.jsx(I,{onShow:s,onClose:w,children:t.jsx(le,{exercise:e,openModalExerciseSuccess:f,closeModalExerciseForm:w,setModalExerciseSuccessData:c})}),t.jsx(I,{onShow:m,onClose:k,children:t.jsx(de,{modalExerciseSuccessData:b,closeModalExerciseSuccess:k})})]})}ce.propTypes={bodyPart:x.string.isRequired,name:x.string.isRequired,target:x.string.isRequired,burnedCalories:x.number.isRequired};const bt=r.ul`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -592,11 +632,11 @@ import{M as L,r as p,n as r,P as x,j as t,I as O,a8 as pe,B as I,l as xe,L as ee
     top: -40px;
     left: 0;
   }
-`,jt=r.svg`
+`,kt=r.svg`
   width: 16px;
   height: 16px;
   stroke: ${({theme:e})=>e.color.grayThird};
-`,vt=r.div`
+`,jt=r.div`
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
     position: absolute;
     top: -72px;
@@ -614,4 +654,4 @@ import{M as L,r as p,n as r,P as x,j as t,I as O,a8 as pe,B as I,l as xe,L as ee
     background-size: cover;
     background-position: right;
   }
-`;function Rt(){var T;const e=ue(),[i,l]=p.useState(1),[o,n]=p.useState(!0),[a,s]=p.useState([]),{subcategory:d}=me(),{ref:m}=we({onChange:k=>k&&n(!0)}),u=ge(),b=p.useRef(((T=u.state)==null?void 0:T.from)??"/exercises"),c=p.useRef(),[h,{isLoading:f,isError:w,error:j}]=fe(),{data:$,isFetching:v,isError:g,error:y}=be(e),S=$&&$.filter(k=>k.name===d)[0],E=S?S.imgURL:null;return p.useEffect(()=>{o&&(async()=>{try{const R=await h({page:i,[e]:d}).unwrap();if(R.data.length===0)return;s(i===1?[...R.data]:D=>[...D,...R.data]),n(!1),l(i+1)}catch(R){console.log(R)}})()},[i,h,o,e,d]),t.jsxs("div",{children:[t.jsxs(yt,{to:b.current,children:[t.jsx(jt,{children:t.jsx("use",{href:`${P}#icon-arrow`})}),t.jsx(wt,{children:"Back"})]}),t.jsx(bt,{ref:c,children:a==null?void 0:a.map(({_id:k,name:R,bodyPart:D,burnedCalories:F,target:B,gifUrl:C,time:M,equipment:A},q)=>t.jsx("li",{ref:q===a.length-1?m:null,children:t.jsx(ce,{_id:k,bodyPart:D,equipment:A,gifUrl:C,name:R,target:B,burnedCalories:F,time:M},k)},q))}),t.jsx(vt,{category:e,img:E}),t.jsx(G,{isLoading:v,isError:g,error:y}),t.jsx(G,{isLoading:f,isError:w,error:j})]})}export{Rt as ExercisesList};
+`;function Rt(){var T;const e=ue(),[i,l]=p.useState(1),[o,n]=p.useState(!0),[a,s]=p.useState([]),{subcategory:d}=me(),{ref:m}=we({onChange:v=>v&&n(!0)}),u=ge(),b=p.useRef(((T=u.state)==null?void 0:T.from)??"/exercises"),c=p.useRef(),[h,{isLoading:f,isError:w,error:k}]=fe(),{data:$,isFetching:j,isError:g,error:y}=be(e),S=$&&$.filter(v=>v.name===d)[0],E=S?S.imgURL:null;return p.useEffect(()=>{o&&(async()=>{try{const R=await h({page:i,[e]:d}).unwrap();if(R.data.length===0)return;s(i===1?[...R.data]:D=>[...D,...R.data]),n(!1),l(i+1)}catch(R){console.log(R)}})()},[i,h,o,e,d]),t.jsxs("div",{children:[t.jsxs(yt,{to:b.current,children:[t.jsx(kt,{children:t.jsx("use",{href:`${P}#icon-arrow`})}),t.jsx(wt,{children:"Back"})]}),t.jsx(bt,{ref:c,children:a==null?void 0:a.map(({_id:v,name:R,bodyPart:D,burnedCalories:F,target:B,gifUrl:C,time:M,equipment:A},q)=>t.jsx("li",{ref:q===a.length-1?m:null,children:t.jsx(ce,{_id:v,bodyPart:D,equipment:A,gifUrl:C,name:R,target:B,burnedCalories:F,time:M},v)},q))}),t.jsx(jt,{category:e,img:E}),t.jsx(G,{isLoading:j,isError:g,error:y}),t.jsx(G,{isLoading:f,isError:w,error:k})]})}export{Rt as ExercisesList};
