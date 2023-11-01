@@ -115,7 +115,8 @@ export default function UserForm() {
       };
 
       const shouldUpdateParams =
-        userValues.birthday !== userData.birthday ||
+        userValues.birthday !==
+          format(new Date(userData.birthday), 'yyyy-MM-dd') ||
         userValues.blood !== userData.blood ||
         userValues.currentWeight !== userData.currentWeight ||
         userValues.desiredWeight !== userData.desiredWeight ||
