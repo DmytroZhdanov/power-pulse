@@ -38,15 +38,15 @@ export default function AddProductForm(props) {
   const { onClose, addProdSuccess, addProdError, product } = props;
   const { weight, calories, _id, title } = product;
   const [addWeight, setAddWeight] = useState(weight);
-  const amount = (addWeight * calories) / 100;
+  const totalCalories = (addWeight * calories) / 100;
 
   const [addProduct] = useAddProductMutation();
 
   const addProductToCollection = {
     product_ID: _id,
     date: new Date(selectedDate),
-    amount,
-    calories,
+    amount: addWeight,
+    calories: totalCalories,
   };
 
   const handleSubmit = async () => {
@@ -56,7 +56,7 @@ export default function AddProductForm(props) {
       addProdError(error.data.message);
     } else {
       onClose();
-      addProdSuccess(amount);
+      addProdSuccess(totalCalories);
     }
   };
 
@@ -85,7 +85,7 @@ export default function AddProductForm(props) {
         <DivCalories>
           <PCalories>Calories:</PCalories>
 
-          <SpanValueCalories>{amount}</SpanValueCalories>
+          <SpanValueCalories>{totalCalories}</SpanValueCalories>
         </DivCalories>
       </DivWrapperDate>
 
