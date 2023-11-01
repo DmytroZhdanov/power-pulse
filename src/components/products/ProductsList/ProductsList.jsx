@@ -141,11 +141,10 @@ export default function ProductsList({ filter }) {
   );
 }
 
-// ProductsList.propTypes = {
-//   filter: PropTypes.shape({
-//     _id: PropTypes.string.isRequired,
-//     name: PropTypes.string.isRequired,
-//     imgURL: PropTypes.string.isRequired,
-//     filter: PropTypes.string.isRequired,
-//   })
-// };
+ProductsList.propTypes = {
+  filter: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    recommended: PropTypes.string.isRequired,
+  }),
+};
