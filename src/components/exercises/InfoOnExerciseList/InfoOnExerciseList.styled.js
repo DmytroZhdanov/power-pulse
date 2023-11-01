@@ -3,8 +3,12 @@ import styled from '@emotion/styled';
 export const ListUl = styled.ul`
   margin-bottom: 24px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 8px;
+  width: 100%;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    grid-template-columns: 1fr 1fr;
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-bottom: 0;
