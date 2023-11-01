@@ -34,7 +34,10 @@ const Timer = ({
     const seconds = timerCount % 60;
 
     return (
-      <TimerStyled.TimerValueWrap>
+      <TimerStyled.TimerValueWrap onClick={toggleTimer}>
+        <TimerStyled.TimerWrapIcon className="timer-display-icon">
+          {isRunning ? <Icon name="pause" /> : <Icon name="play" />}
+        </TimerStyled.TimerWrapIcon>
         <TimerStyled.TimerValue>{`
         ${minutes.toString().padStart(2, '0')} :
         ${seconds.toString().padStart(2, '0')}
