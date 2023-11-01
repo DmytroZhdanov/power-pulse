@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useResolvedPath } from 'react-router-dom';
+
+import Loader from '/components/Loader/Loader';
+import BasicModalWindow from '/components/common/BasicModalWindow/BasicModalWindow';
+import TimerWarning from '/components/common/TimerWarning/TimerWarning';
+import ErrorMessage from '/components/common/ErrorMessage/ErrorMessage';
+import DataForm from '/components/data/DataForm/DataForm';
+
 import { useFetchUserParamsQuery } from 'src/redux/api';
 import { Container, Indicator, IndicatorsWrapper } from './Data.styled';
 import { DATA_STEPS, ROUTER } from 'src/utils';
-import Loader from '../../components/Loader/Loader';
-import BasicModalWindow from '../../components/common/BasicModalWindow/BasicModalWindow';
-import TimerWarning from '../../components/common/TimerWarning/TimerWarning';
-import ErrorMessage from '../../components/common/ErrorMessage/ErrorMessage';
-import DataForm from '../../components/data/DataForm/DataForm';
 
 const initialState = {
   height: '',
