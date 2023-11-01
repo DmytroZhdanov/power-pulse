@@ -30,6 +30,7 @@ export default function ProductsList({ filter }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [newResponse, setNewResponse] = useState(true);
   const productListRef = useRef(null);
+
   const [
     getProducts,
     { isLoading: isGettingLazy, isError: gettingErrorLazy, error: myErrorLazy },
@@ -65,11 +66,14 @@ export default function ProductsList({ filter }) {
 
   useEffect(() => {
     if (filter !== currentFilter) {
+      if (ref.current) {
+        ref.current.scrollTo({ top: 0, behavior: 'smooth' });
+      }
       setCurrentPage(1);
       setNewResponse(true);
       setCurrentFilter(filter);
     }
-  }, [currentFilter, filter]);
+  }, [currentFilter, filter, ref]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,14 +103,13 @@ export default function ProductsList({ filter }) {
   return (
     <>
       {products.length > 0 ? (
-        <ProductListUl>
+        <ProductListUl ref={productListRef}>
           {products.map((props, index) => (
             <li key={index} ref={index === products.length - 1 ? ref : null}>
               <ProductsItem
                 key={props._id}
                 props={props}
                 userGroupBlood={userGroupBlood}
-                ref={productListRef}
               ></ProductsItem>
             </li>
           ))}
