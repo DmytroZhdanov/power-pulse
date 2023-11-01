@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { bg_eating, bg_eating2x, bg_eating3x } from 'src/utils/background';
 
-export const Background = styled.div`
+export const BackgroundDiv = styled.div`
   position: absolute;
   top: -72px;
   right: -76px;
@@ -16,7 +16,7 @@ export const Background = styled.div`
   background-size: 428px 716px;
 `;
 
-export const Wrapper = styled.div`
+export const WrapperDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;

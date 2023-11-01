@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-export const ProductList = styled.ul`
-  @media (min-width: 768px) {
+export const ProductListUl = styled.ul`
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     height: 660px;
     display: flex;
     flex-wrap: wrap;
@@ -10,20 +10,19 @@ export const ProductList = styled.ul`
 
     overflow-y: scroll;
   }
-  @media (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     width: 850px;
     height: 487px;
   }
 `;
-export const WrapLi = styled.li``;
 
-export const DefaultText = styled.p`
+export const DefaultTextP = styled.p`
   margin-bottom: 16px;
-  color: rgba(239, 237, 232, 0.3);
+  color: ${({ theme }) => theme.color.grayFirst};
   font-size: 14px;
   line-height: calc(18 / 14);
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 580px;
     font-size: 16px;
     line-height: calc(24 / 16);
@@ -36,11 +35,11 @@ export const SpanNotFound = styled.span`
 
 export const SpanTry = styled.span`
   margin-top: 16px;
-  color: #e6533c;
+  color: ${({ theme }) => theme.color.orangeFirst};
   font-size: 14px;
   line-height: calc(18 / 14);
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 16px;
     line-height: calc(24 / 16);
   }

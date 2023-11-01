@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+
 import {
   DivFilter,
   DivSearch,
@@ -8,13 +10,13 @@ import {
   SelectRow,
   SelectContainer,
   StyledSelect,
-  Title,
+  TitleP,
 } from './ProductsFilters.styled';
-import PropTypes from 'prop-types';
 
-import { PRODUCTS_FILTER } from '../../../utils/constants';
-import { useFetchProductsCategoriesQuery } from '../../../redux/api';
+import { PRODUCTS_FILTER } from 'src/utils/constants';
+import { useFetchProductsCategoriesQuery } from 'src/redux/api';
 import sprite from 'src/assets/images/sprite/sprite.svg';
+
 const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
 
 const emptyFilter = {
@@ -34,11 +36,12 @@ export default function ProductsFilters({ onProductsChange }) {
   const [filter, setFilter] = useState(emptyFilter);
   const [search, setSearch] = useState('');
   const [categories, setCategories] = useState([]);
- 
+
   const { isSuccess, currentData } = useFetchProductsCategoriesQuery();
 
   /**
    * Loads the all list of categories from the backend.
+   *
    * @param {boolean} isSuccess successful response to the request from the backend.
    * @returns {array}  Returns an array of all product categories on the backend.
    */
@@ -60,7 +63,6 @@ export default function ProductsFilters({ onProductsChange }) {
    *
    * @function handleClean
    */
-
   const handleClean = () => {
     setSearch('');
     setFilter(prevFilter => ({
@@ -80,7 +82,6 @@ export default function ProductsFilters({ onProductsChange }) {
    * @function onQueryChange
    * @param {Event} e - The input change event.
    */
-
   const onQueryChange = e => {
     setFilter(prevFilter => ({
       ...prevFilter,
@@ -95,7 +96,6 @@ export default function ProductsFilters({ onProductsChange }) {
    * @function handleSelectCategory
    * @param {Object} selectedCategory - The selected category option.
    */
-
   const handleSelectCategory = selectedCategory => {
     setSelectedCategory(selectedCategory);
     setFilter(prevFilter => ({
@@ -110,7 +110,6 @@ export default function ProductsFilters({ onProductsChange }) {
    * @function handleSelectRecommended
    * @param {Object} selectedRecommended - The selected recommended option.
    */
-
   const handleSelectRecommended = selectedRecommended => {
     setSelectedRecommended(selectedRecommended);
 
@@ -148,6 +147,7 @@ export default function ProductsFilters({ onProductsChange }) {
           <SvgSearch width="18" height="18">
             <use href={`${sprite}#search`}></use>
           </SvgSearch>
+
           {search.trim() && (
             <BtnClean onClick={handleClean}>
               <svg width="18" height="18">
@@ -156,6 +156,7 @@ export default function ProductsFilters({ onProductsChange }) {
             </BtnClean>
           )}
         </DivSearch>
+
         <SelectRow>
           <SelectContainer>
             <StyledSelect
@@ -248,6 +249,7 @@ export default function ProductsFilters({ onProductsChange }) {
               placeholder="Categories"
             />
           </SelectContainer>
+
           <SelectContainer>
             <StyledSelect
               styles={{
@@ -336,7 +338,8 @@ export default function ProductsFilters({ onProductsChange }) {
             />
           </SelectContainer>
         </SelectRow>
-        <Title>Filters</Title>
+
+        <TitleP>Filters</TitleP>
       </DivFilter>
     </>
   );

@@ -1,31 +1,33 @@
 import {
   DivSuccess,
   DivImg,
-  Title,
+  TitleH2,
   DivCalories,
-  Calories,
-  ValueCalories,
+  CaloriesP,
+  ValueCaloriesSpan,
   ButtonAdd,
   DivLink,
   LinkText,
 } from './AddProductSuccess.styled';
 
-export default function AddProductSuccess(props) {
-  const { onClose, totalCalories } = props;
-
+export default function AddProductSuccess({ onClose, totalCalories }) {
   return (
     <DivSuccess>
       <DivImg></DivImg>
-      <Title>Well Done</Title>
+
+      <TitleH2>Well Done</TitleH2>
+
       <DivCalories>
-        <Calories>Calories:</Calories>
-        <ValueCalories>{totalCalories}</ValueCalories>
+        <CaloriesP>Calories:</CaloriesP>
+
+        <ValueCaloriesSpan>{totalCalories}</ValueCaloriesSpan>
       </DivCalories>
 
       <ButtonAdd onClick={onClose}>Next product</ButtonAdd>
 
       <DivLink href="Diary">
         <LinkText>To the diary</LinkText>
+
         <svg width="16" height="16">
           <use href="/src/assets/images/sprite/sprite.svg#arrow-add-prod"></use>
         </svg>

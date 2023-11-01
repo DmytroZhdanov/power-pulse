@@ -5,7 +5,7 @@ import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export default function BurgerBtn({ setOpenedModal }) {
   return (
-    <BurgerButton
+    <BurgerButton aria-label="Burger Button"
       onClick={() => {
         setOpenedModal(true);
       }}

@@ -1,27 +1,29 @@
+import { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
 import AddProductForm from 'components/products/AddProductForm/AddProductForm';
 import AddProductSuccess from 'components/products/AddProductSuccess/AddProductSuccess';
-import ErrorMessage from 'src/components/common/ErrorMessage/ErrorMessage';
-import sprite from 'src/assets/images/sprite/sprite.svg';
+import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
 import {
-  ProductCard,
-  ProductHeader,
-  Diet,
-  Indicator,
+  ProductCardDiv,
+  ProductHeaderDiv,
+  DietP,
+  IndicatorDiv,
   RecommendDiv,
-  Description,
-  ProductTitle,
-  Product,
+  DescriptionDiv,
+  ProductTitleH2,
+  ProductDiv,
   SvgProd,
-  RecommendText,
+  RecommendTextP,
   Button,
-  BtnText,
+  BtnTextP,
   SvgAdd,
-  Text,
-  Value,
+  TextP,
+  ValueSpan,
 } from './ProductsItem.styled';
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 /**
  * The ProductsItem component represents an individual product list item and displays product information.
@@ -33,6 +35,7 @@ import PropTypes from 'prop-types';
 export default function ProductsItem({ props, userGroupBlood }) {
   const { weight, calories, category, title, groupBloodNotAllowed } = props;
   const recommended = groupBloodNotAllowed[userGroupBlood];
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddProdSuccess, setIsAddProdSuccess] = useState(false);
   const [isAddProdError, setIsAddProdError] = useState(false);
@@ -53,7 +56,6 @@ export default function ProductsItem({ props, userGroupBlood }) {
    *
    * @function closeModal
    */
-
   const closeModal = () => {
     setIsModalOpen(false);
     setIsAddProdSuccess(false);
@@ -66,7 +68,6 @@ export default function ProductsItem({ props, userGroupBlood }) {
    * @function addProdSuccess
    * @param {number} totalCalories The total calorie count of the added products.
    */
-
   const addProdSuccess = totalCalories => {
     setIsAddProdSuccess(true);
     setTotalCalories(totalCalories);
@@ -79,49 +80,49 @@ export default function ProductsItem({ props, userGroupBlood }) {
 
   return (
     <>
-      <ProductCard>
-        <ProductHeader>
-          <Diet>DIET</Diet>
+      <ProductCardDiv>
+        <ProductHeaderDiv>
+          <DietP>DIET</DietP>
 
           <RecommendDiv>
-            <Indicator recommended={recommended} />
+            <IndicatorDiv recommended={recommended} />
 
-            <RecommendText>
+            <RecommendTextP>
               {recommended ? 'Recommended' : 'Not recommended'}
-            </RecommendText>
+            </RecommendTextP>
 
             <Button onClick={openModal}>
-              <BtnText>Add</BtnText>
+              <BtnTextP>Add</BtnTextP>
 
               <SvgAdd>
                 <use href={`${sprite}#arrow-add-prod-orange`}></use>
               </SvgAdd>
             </Button>
           </RecommendDiv>
-        </ProductHeader>
+        </ProductHeaderDiv>
 
-        <Product>
+        <ProductDiv>
           <SvgProd>
             <use href={`${sprite}#run-man`}></use>
           </SvgProd>
 
-          <ProductTitle>{title}</ProductTitle>
-        </Product>
+          <ProductTitleH2>{title}</ProductTitleH2>
+        </ProductDiv>
 
-        <Description>
-          <Text>
-            Calories:<Value>{calories}</Value>
-          </Text>
+        <DescriptionDiv>
+          <TextP>
+            Calories:<ValueSpan>{calories}</ValueSpan>
+          </TextP>
 
-          <Text category={true}>
-            Category:<Value>{category}</Value>
-          </Text>
+          <TextP category={true}>
+            Category:<ValueSpan>{category}</ValueSpan>
+          </TextP>
 
-          <Text>
-            Weight:<Value>{weight}</Value>
-          </Text>
-        </Description>
-      </ProductCard>
+          <TextP>
+            Weight:<ValueSpan>{weight}</ValueSpan>
+          </TextP>
+        </DescriptionDiv>
+      </ProductCardDiv>
 
       <BasicModalWindow onClose={closeModal} onShow={isModalOpen}>
         <AddProductForm
@@ -139,6 +140,7 @@ export default function ProductsItem({ props, userGroupBlood }) {
           addProdError={addProdError}
         />
       </BasicModalWindow>
+
       <BasicModalWindow onClose={closeModal} onShow={isAddProdError}>
         <ErrorMessage message={errorMessage} onClose={closeModal} />
       </BasicModalWindow>

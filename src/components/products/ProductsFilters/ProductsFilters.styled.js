@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import Select from 'react-select';
 
-export const Title = styled.h1`
+export const TitleP = styled.p`
   display: none;
-  @media screen and (min-width: 1440px) {
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     z-index: 1;
     display: block;
     position: relative;
@@ -16,44 +17,44 @@ export const Title = styled.h1`
 `;
 
 export const DivFilter = styled.div`
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     display: flex;
     gap: 16px;
   }
 `;
 
 export const DivSearch = styled.div`
-  @media screen and (min-width: 320px) {
-    position: relative;
-    margin-bottom: 16px;
-    display: flex;
-  }
-  @media screen and (min-width: 768px) {
+  position: relative;
+  margin-bottom: 16px;
+  display: flex;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-bottom: 32px;
   }
 `;
 
 export const InputSearch = styled.input`
-  @media screen and (min-width: 320px) {
-    width: 100%;
-    &::-webkit-inner-spin-button {
-      appearance: none;
-    }
-    text-align: left;
-    padding: 14px;
-    border-radius: 12px;
-    border: 1px solid rgba(239, 237, 232, 0.3);
-    background-color: transparent;
-    color: #efede8;
-    font-size: 14px;
-    line-height: calc(18 / 14);
+  width: 100%;
 
-    &:focus {
-      border: 1px solid #e6533c;
-      outline: none;
-    }
+  &::-webkit-inner-spin-button {
+    appearance: none;
   }
-  @media screen and (min-width: 768px) {
+
+  text-align: left;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid ${({ theme }) => theme.color.grayFirst};
+  background-color: transparent;
+  color: ${({ theme }) => theme.color.white};
+  font-size: 14px;
+  line-height: calc(18 / 14);
+
+  &:focus {
+    border: 1px solid ${({ theme }) => theme.color.orangeFirst};
+    outline: none;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 236px;
     font-size: 16px;
     line-height: calc(24 / 16);
@@ -64,7 +65,7 @@ export const SvgSearch = styled.svg`
   position: absolute;
   right: 14px;
   top: 16px;
-  color: rgba(239, 237, 232, 0.4);
+  color: ${({ theme }) => theme.color.grayThird};
   font-size: 12px;
   line-height: calc(18 / 12);
 `;
@@ -82,12 +83,11 @@ export const BtnClean = styled.button`
 `;
 
 export const SelectRow = styled.div`
-  @media screen and (min-width: 320px) {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 40px;
-  }
-  @media screen and (min-width: 768px) {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 40px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-bottom: 32px;
   }
 `;
@@ -101,9 +101,9 @@ export const SelectContainer = styled.div`
 export const StyledSelect = styled(Select)`
   text-align: left;
   border-radius: 12px;
-  border: 1px solid rgba(239, 237, 232, 0.3);
+  border: 1px solid ${({ theme }) => theme.color.grayFirst};
   /*background: rgba(0, 0, 0, 0.5);*/
-  color: #efede8;
+  color: ${({ theme }) => theme.color.white};
   font-size: 14px;
   line-height: calc(18 / 14);
 
@@ -111,5 +111,3 @@ export const StyledSelect = styled(Select)`
     background: transparent;
   }
 `;
-
-export const FormControl = styled.div``;

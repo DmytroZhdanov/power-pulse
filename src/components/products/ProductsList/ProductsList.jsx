@@ -1,21 +1,20 @@
-import ProductsItem from '../ProductsItem/ProductsItem';
+import { useEffect, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
+import PropTypes from 'prop-types';
+
+import ProductsItem from 'components/products/ProductsItem/ProductsItem';
+import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
-  ProductList,
-  //  DivProducts,
-  DefaultText,
+  ProductListUl,
+  DefaultTextP,
   SpanNotFound,
   SpanTry,
-  WrapLi,
 } from './ProductsList.styled';
 
 import {
   useLazyFetchAllProductsQuery,
   useFetchUserBloodGroupQuery,
-} from '../../../redux/api';
-import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import ErrorHandler from '../../common/ErrorHandler/ErrorHandler';
-import { useInView } from 'react-intersection-observer';
+} from 'src/redux/api';
 
 /**
  * The ProductsList component represents a list of products and displays them according to the passed filter.
@@ -37,8 +36,13 @@ export default function ProductsList({ filter }) {
     { isLoading: isGettingLazy, isError: gettingErrorLazy, error: myErrorLazy },
   ] = useLazyFetchAllProductsQuery();
 
-  const pending = useFetchUserBloodGroupQuery();
-  const { isSuccess, data } = pending;
+  const {
+    isSuccess,
+    data: userBlood,
+    isLoading: isUserBloodLoading,
+    isError: isUserBloodError,
+    error: userBloodError,
+  } = useFetchUserBloodGroupQuery();
 
   const { ref } = useInView({
     onChange: inView => {
@@ -53,21 +57,11 @@ export default function ProductsList({ filter }) {
    *
    * @param {boolean} isSuccess The success of the request to the backend.
    */
-
   useEffect(() => {
     if (isSuccess) {
-      const userBlood = data;
       setUserGroupBlood(userBlood);
     }
-  }, [data, isSuccess]);
-
-  /**
-   * fetchData Loads the list of products from the backend according to the specified filter.
-   *
-   * @function fetchData
-   * @param {object} filter The filter object containing parameters by which the user wishes to filter the list of products.
-   * @returns {array} The list of products or a message indicating no results.
-   */
+  }, [isSuccess, userBlood]);
 
   useEffect(() => {
     if (filter !== currentFilter) {
@@ -108,28 +102,26 @@ export default function ProductsList({ filter }) {
   return (
     <>
       {products.length > 0 ? (
-        <ProductList>
+        <ProductListUl>
           {products.map((props, index) => (
-            <WrapLi
-              key={index}
-              ref={index === products.length - 1 ? ref : null}
-            >
+            <li key={index} ref={index === products.length - 1 ? ref : null}>
               <ProductsItem
                 key={props._id}
                 props={props}
                 userGroupBlood={userGroupBlood}
               ></ProductsItem>
-            </WrapLi>
+            </li>
           ))}
-        </ProductList>
+        </ProductListUl>
       ) : (
         <>
-          <DefaultText>
+          <DefaultTextP>
             <SpanNotFound>Sorry, no results were found</SpanNotFound> for the
             product filters you selected. You may want to consider other search
             options to find the product you want. Our range is wide and you have
             the opportunity to find more options that suit your needs.
-          </DefaultText>
+          </DefaultTextP>
+
           <SpanTry>Try changing the search parameters.</SpanTry>
         </>
       )}
@@ -138,6 +130,12 @@ export default function ProductsList({ filter }) {
         isLoading={isGettingLazy}
         isError={gettingErrorLazy}
         error={myErrorLazy}
+      />
+
+      <ErrorHandler
+        isLoading={isUserBloodLoading}
+        isError={isUserBloodError}
+        error={userBloodError}
       />
     </>
   );
