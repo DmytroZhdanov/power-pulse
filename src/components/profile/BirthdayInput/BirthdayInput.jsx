@@ -9,7 +9,6 @@ import Icon from 'src/components/common/IconsComp/Icon';
 import {
   CalendarIcon,
   DefaultInputText,
-  InputHidden,
   WrapperCalendarInput,
 } from './BirthdayInput.style';
 
@@ -46,21 +45,12 @@ export default function BirthdayInput({ selectedDate, setSelectedDate }) {
 
   const maximumAge = new Date(today.setFullYear(today.getFullYear() - 100));
 
-  const inputValue = showDefaultInputValue
-    ? defaultInputValue
-    : format(selectedDate, 'yyyy-MM-dd');
   const inputText = showDefaultInputValue
     ? defaultInputValue
     : format(selectedDate, 'dd.MM.yyyy');
 
   return (
     <>
-      <InputHidden
-        disabled
-        type="date"
-        name="birthday"
-        defaultValue={inputValue}
-      />
       <Calendar
         maxDate={eighteenYearsAgo}
         minDate={maximumAge}
