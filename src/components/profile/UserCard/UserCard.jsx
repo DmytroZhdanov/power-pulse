@@ -22,10 +22,23 @@ import {
 } from './UserCard.styled';
 import { setAvatars } from 'src/redux/auth/authSlice';
 import ErrorHandler from '../../common/ErrorHandler/ErrorHandler';
+import { useFetchDailyRateQuery } from '../../../redux/api';
 
 export default function UserCard() {
-  const [updateUserAvatar, { isLoading, isError, error }] =
-    useUpdateUserAvatarMutation();
+  const [
+    updateUserAvatar,
+    {
+      isLoading: isUpdateAvatarLoading,
+      isError: isUpdateAvatarError,
+      error: updateAvatarError,
+    },
+  ] = useUpdateUserAvatarMutation();
+  const {
+    data: bmr,
+    isLoading: isFetchBMRLoading,
+    isError: isFetchBMRError,
+    error: fetchBMRError,
+  } = useFetchDailyRateQuery();
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
   const avatars = useSelector(selectUserAvatars);
@@ -97,7 +110,7 @@ export default function UserCard() {
               Daily calorie intake
             </AddText>
 
-            <MainText>0</MainText>
+            <MainText>{bmr || 2200}</MainText>
           </Calories>
 
           <SportTime>
@@ -106,7 +119,7 @@ export default function UserCard() {
               Daily norm of sports
             </AddText>
 
-            <MainText>0 min</MainText>
+            <MainText>110 min</MainText>
           </SportTime>
         </Daily>
 
@@ -121,7 +134,17 @@ export default function UserCard() {
         <BtnLogout>{<LogOutBtn />}</BtnLogout>
       </User>
 
-      <ErrorHandler isLoading={isLoading} isError={isError} error={error} />
+      <ErrorHandler
+        isLoading={isUpdateAvatarLoading}
+        isError={isUpdateAvatarError}
+        error={updateAvatarError}
+      />
+
+      <ErrorHandler
+        isLoading={isFetchBMRLoading}
+        isError={isFetchBMRError}
+        error={fetchBMRError}
+      />
     </>
   );
 }

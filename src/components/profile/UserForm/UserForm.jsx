@@ -29,7 +29,7 @@ import {
   Lifestyle,
 } from './UserForm.styled';
 import { format } from 'date-fns';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUserName } from '../../../redux/auth/authSlice';
 import BasicModalWindow from '../../common/BasicModalWindow/BasicModalWindow';
 import ErrorMessage from '../../common/ErrorMessage/ErrorMessage';
@@ -48,6 +48,7 @@ const defaultUserData = {
 
 export default function UserForm() {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const dispatch = useDispatch();
 
   const [
     fetchUserParams,
@@ -73,6 +74,7 @@ export default function UserForm() {
       error: updateUserNameError,
     },
   ] = useUpdateUserNameMutation();
+
   const userName = useSelector(selectUserName);
   const userEmail = useSelector(selectUserEmail);
   const [userData, setUserData] = useState();
@@ -129,7 +131,7 @@ export default function UserForm() {
       if (name !== userName) {
         try {
           const newName = await updateUserName(name).unwrap();
-          setUserName(newName);
+          dispatch(setUserName(newName));
         } catch (error) {
           console.error(error);
         }

@@ -78,7 +78,7 @@ export const api = createApi({
         method: 'PATCH',
         data: { name },
       }),
-      transformResponse: response => response.name,
+      transformResponse: response => response.user.name,
     }),
     updateUserAvatar: builder.mutation({
       query: avatarFile => {
