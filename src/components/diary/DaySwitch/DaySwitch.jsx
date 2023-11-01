@@ -80,6 +80,10 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
         minDate: dateOfUserRegistration,
       }
     : {
+        minDate:
+          data && data.length !== 0
+            ? new Date(data[0])
+            : dateOfUserRegistration,
         tileDisabled: setActiveDate,
       };
 
