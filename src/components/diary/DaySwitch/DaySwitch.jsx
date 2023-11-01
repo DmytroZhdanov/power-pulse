@@ -128,10 +128,10 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
         </Calendar>
       </CalendarWrapper>
       <div>
-        <Button disabled={isDisabledPrevBtn} onClick={handlePreviousClick}>
+        <Button aria-label="PrevDate" disabled={isDisabledPrevBtn} onClick={handlePreviousClick}>
           <Icon name="nav-arrow-left" />
         </Button>
-        <Button disabled={isDisabledNextBtn} onClick={handleNextClick}>
+        <Button aria-label="NextDate" disabled={isDisabledNextBtn} onClick={handleNextClick}>
           <Icon name="nav-arrow-right" />
         </Button>
       </div>

@@ -160,7 +160,7 @@ export default function UserForm() {
               type="text"
               name="name"
               placeholder="name"
-              value={values.name}
+              value={values.name ||''}
               onChange={handleChange}
               onBlur={handleBlur}
             />
@@ -171,7 +171,7 @@ export default function UserForm() {
             type="email"
             name="email"
             placeholder="email"
-            value={userEmail}
+            value={userEmail ||''}
             onChange={handleChange}
             onBlur={handleBlur}
             disabled={true}
@@ -189,7 +189,7 @@ export default function UserForm() {
                 placeholder="0"
                 min="150"
                 max="230"
-                value={values.height}
+                value={values.height ||''}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -203,7 +203,7 @@ export default function UserForm() {
                 name="currentWeight"
                 placeholder="0"
                 min="35"
-                value={values.currentWeight}
+                value={values.currentWeight ||''}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -221,7 +221,7 @@ export default function UserForm() {
                 name="desiredWeight"
                 placeholder="0"
                 min="35"
-                value={values.desiredWeight}
+                value={values.desiredWeight ||''}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -238,7 +238,6 @@ export default function UserForm() {
                 onBlur={handleBlur}
               />
             </Birthday>
-            {errors.birthday && touched.birthday && <p>{errors.birthday}</p>}
           </CalendarI>
         </AddInfo>
         <SecondInfo>
