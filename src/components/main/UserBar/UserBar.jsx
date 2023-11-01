@@ -2,22 +2,41 @@ import {
   SettingsLink,
   SvgSettings,
   AvatarDiv,
+  AvatarModalDiv,
   SvgDefault,
 } from './UserBar.styled';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { useSelector } from 'react-redux';
 import { selectUserAvatars } from '../../../redux/auth/selectors';
+import AvatarModal from '../../AvatarModal/AvatarModal';
+import { useState } from 'react';
 
 export default function UserBar() {
   const avatars = useSelector(selectUserAvatars);
+  console.log(avatars);
+  const [showModal, setShowModal] = useState(false);
+  console.log(showModal);
+  const userAvatar = useSelector(selectUserAvatars);
+  console.log(userAvatar);
+
+  const handleOpenClick = () => {
+    if (!avatars) {
+      return;
+    }
+    setShowModal(true);
+  };
+  const handleCloseClick = () => {
+    setShowModal(false);
+  };
 
   return (
-    <SettingsLink to="/profile">
-      <SvgSettings>
-        <use href={`${sprite}#settings`}></use>
-      </SvgSettings>
-
-      <AvatarDiv>
+    <>
+      <SettingsLink to="/profile">
+        <SvgSettings>
+          <use href={`${sprite}#settings`}></use>
+        </SvgSettings>
+      </SettingsLink>
+      <AvatarDiv onClick={handleOpenClick}>
         {avatars ? (
           <picture>
             <source
@@ -39,6 +58,31 @@ export default function UserBar() {
           </SvgDefault>
         )}
       </AvatarDiv>
-    </SettingsLink>
+      {showModal && avatars && (
+        <AvatarModal onClose={handleCloseClick}>
+          <AvatarModalDiv>
+            <picture>
+              <source
+                srcSet={`
+                ${avatars.avatar_37x37}   37w,
+                ${avatars.avatar_46x46}   46w,
+                ${avatars.avatar_74x74} 74w,
+                ${avatars.avatar_92x92}   92w
+              `}
+                type="image/jpeg"
+              />
+
+              <img
+                src={avatars.avatar_90x90}
+                alt="Your avatar"
+                width="100%"
+                loading="lazy"
+                style={{ borderRadius: '50%' }}
+              />
+            </picture>
+          </AvatarModalDiv>
+        </AvatarModal>
+      )}
+    </>
   );
 }

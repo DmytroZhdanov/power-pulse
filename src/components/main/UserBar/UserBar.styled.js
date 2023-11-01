@@ -36,6 +36,7 @@ export const SvgSettings = styled.svg`
 `;
 
 export const AvatarDiv = styled.div`
+  cursor: pointer;
   width: 37px;
   height: 37px;
   background-color: #111111;
@@ -45,10 +46,40 @@ export const AvatarDiv = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  margin-right: 14px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 46px;
     height: 46px;
+    margin-right: 16px;
+  }
+`;
+export const AvatarModalDiv = styled.div`
+  position: absolute;
+  z-index: 99;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 140px;
+
+  height: 140px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    width: 250px;
+
+    height: 250px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    width: 350px;
+
+    height: 350px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    width: 450px;
+
+    height: 450px;
   }
 `;
 
