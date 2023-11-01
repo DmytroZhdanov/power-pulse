@@ -14,6 +14,8 @@ export const HeaderWrapDiv = styled.div`
   height: 61px;
   padding-left: 20px;
   padding-right: 20px;
+  position: relative;
+  z-index: 5;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     width: 375px;
