@@ -29,7 +29,7 @@ export default function ProductsList({ filter }) {
   const [currentFilter, setCurrentFilter] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [newResponse, setNewResponse] = useState(true);
-
+  const productListRef = useRef();
   const [
     getProducts,
     { isLoading: isGettingLazy, isError: gettingErrorLazy, error: myErrorLazy },
