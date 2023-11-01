@@ -49,10 +49,6 @@ export default function AddProductForm(props) {
     amount: addWeight,
     calories: totalCalories,
   };
-  console.log(
-    'addProductToCollection.new Date(selectedDate):',
-    new Date(selectedDate),
-  );
 
   const handleSubmit = async () => {
     const { error } = await addProduct(addProductToCollection);
