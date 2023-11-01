@@ -3,9 +3,25 @@ import styled from '@emotion/styled';
 export const ExerciseContainerDiv = styled.div`
   display: grid;
   padding: 48px 16px;
-  width: 335px;
-  height: 570px;
+  width: 280px;
+  height: 280px;
   gap: 40px;
+
+  @media screen and (min-height: 450px) {
+    height: 400px;
+  }
+
+  @media screen and (min-height: 550px) {
+    height: 500px;
+  }
+
+  @media screen and (min-height: 650px) {
+    height: 570px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    width: 335px;
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding-right: 32px;
@@ -39,8 +55,8 @@ export const WorkoutSummaryDiv = styled.div`
 export const GifImg = styled.img`
   object-fit: cover;
   margin-bottom: 14px;
-  width: 270px;
-  height: 270px;
+  width: 230px;
+  height: 230px;
 
   border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.color.grayDisabled};
@@ -48,6 +64,11 @@ export const GifImg = styled.img`
     linear-gradient(0deg, rgba(4, 4, 4, 0.2) 0%, rgba(4, 4, 4, 0.2) 100%),
     url(<path-to-image>),
     lightgray 0px -17.5px / 100% 119.469% no-repeat;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    width: 270px;
+    height: 270px;
+  }
 `;
 
 export const CaloriesDiv = styled.div`
@@ -69,12 +90,26 @@ export const CaloriesValueP = styled.p`
 
 export const ButtonWrapperDiv = styled.div`
   display: flex;
+  flex-direction: column-reverse;
   gap: 20px;
+  width: 100%;
+
+  & > :first-of-type {
+    align-self: flex-start;
+  }
+  & > :last-of-type {
+    align-self: flex-end;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    justify-content: space-between;
+    flex-direction: row;
+  }
 `;
 
 export const ButtonOpenPastDaysForm = styled.button`
   border: none;
-  max-width: 150px;
+  max-width: 140px;
   background-color: transparent;
   color: ${({ theme }) => theme.color.orangeFirst};
   font-weight: 500;
@@ -82,6 +117,7 @@ export const ButtonOpenPastDaysForm = styled.button`
   line-height: 1.29;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    max-width: 150px;
     font-size: 16px;
     line-height: 1.5;
   }
@@ -96,7 +132,7 @@ export const ButtonOpenPastDaysForm = styled.button`
 export const ButtonSubmit = styled.button`
   border: none;
   display: inline-flex;
-  padding: 12px 32px;
+  padding: 12px 28px;
   border-radius: 12px;
   background: ${({ theme }) => theme.color.hoverBorder};
   color: ${({ theme }) => theme.color.white};
