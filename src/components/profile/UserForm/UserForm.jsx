@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import { userFormSchema } from './YupValidationForm';
 import BirthdayInput from '../BirthdayInput/BirthdayInput';
-
+import { selectUserName } from '../../../redux/auth/selectors';
 import {
   useLazyRefreshQuery,
   useUpdateUserParamsMutation,
@@ -30,39 +30,45 @@ import {
   Lifestyle,
 } from './UserForm.styled';
 import { format } from 'date-fns';
+import { useSelector } from 'react-redux';
 
 export default function UserForm() {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [refresh, { data, isError }] = useLazyRefreshQuery();
 
-  const [fetchUserParams] = useLazyFetchUserParamsQuery();
+  const [fetchUserParams, { data }] = useLazyFetchUserParamsQuery();
   const [updateUserParams] = useUpdateUserParamsMutation();
+  const userName = useSelector(selectUserName);
+  // const userEmail = useSelector();
+  const [updatedUserName, setUpdatedUserName] = useState(userName);
   const [userData, setUserData] = useState();
+  // console.log(userName);
   console.log(userData);
 
   useEffect(() => {
     const fetch = async () => {
       try {
-        await refresh();
-
-        await fetchUserParams();
+        const { data } = await fetchUserParams();
+        const userParams = data.user.userParams;
+        console.log(userParams);
+        setUserData(userParams);
+        setValues({ userData });
       } catch (error) {
         console.log(error);
       } finally {
       }
     };
     fetch();
-  }, [refresh, fetchUserParams]);
+  }, [fetchUserParams]);
 
-  const initialValues = {
-    height: '',
-    currentWeight: '',
-    desiredWeight: '',
-    birthday: '',
-    blood: '',
-    sex: '',
-    levelActivity: '',
-  };
+  // const initialValues = {
+  //   height: '',
+  //   currentWeight: '',
+  //   desiredWeight: '',
+  //   birthday: '',
+  //   blood: '',
+  //   sex: '',
+  //   levelActivity: '',
+  // };
 
   const {
     values,
@@ -71,12 +77,11 @@ export default function UserForm() {
     handleSubmit,
     handleBlur,
     handleChange,
-    setFieldValue,
     setValues,
     isValid,
     isSubmitting,
   } = useFormik({
-    initialValues: initialValues || userData,
+    initialValues: { ...userData },
     validationSchema: userFormSchema,
     validateOnChange: true,
     validateOnBlur: true,
@@ -94,14 +99,14 @@ export default function UserForm() {
         setUserData(userValues);
 
         await updateUserParams(userValues).unwrap();
-        setValues(userValues);
+        // setValues(userValues);
       } catch (error) {
         console.log(error);
       }
     },
   });
 
-  console.log(initialValues);
+  // console.log(initialValues);
   console.log(userData);
 
   return (
@@ -116,7 +121,7 @@ export default function UserForm() {
                 type="text"
                 name="name"
                 placeholder="name"
-                value={data.user.name}
+                value={userName}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -127,7 +132,7 @@ export default function UserForm() {
               type="email"
               name="email"
               placeholder="email"
-              value={data.user.email}
+              // value={data.user.email}
               onChange={handleChange}
               onBlur={handleBlur}
             />
@@ -208,7 +213,7 @@ export default function UserForm() {
                   value="1"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  checked={values.blood === '1'}
+                  checked={values.blood === 1 || values.blood === '1'}
                 />
                 <label htmlFor="one">1</label>
                 {errors.blood && touched.blood && <p>{errors.blood}</p>}
@@ -220,7 +225,7 @@ export default function UserForm() {
                   value="2"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  checked={values.blood === '2'}
+                  checked={values.blood === 2 || values.blood === '2'}
                 />
                 <label htmlFor="two">2</label>
 
@@ -231,7 +236,7 @@ export default function UserForm() {
                   value="3"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  checked={values.blood === '3'}
+                  checked={values.blood === 3 || values.blood === '3'}
                 />
                 <label htmlFor="three">3</label>
 
@@ -242,7 +247,7 @@ export default function UserForm() {
                   value="4"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  checked={values.blood === '4'}
+                  checked={values.blood === 4 || values.blood === '4'}
                 />
                 <label htmlFor="four">4</label>
               </Blood>
@@ -285,7 +290,9 @@ export default function UserForm() {
                     value={1}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    checked={values.levelActivity === '1'}
+                    checked={
+                      values.levelActivity === 1 || values.levelActivity === '1'
+                    }
                   />
                 </div>
                 Sedentary lifestyle (little or no physical activity)
@@ -299,7 +306,9 @@ export default function UserForm() {
                     value="2"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    checked={values.levelActivity === '2'}
+                    checked={
+                      values.levelActivity === 2 || values.levelActivity === '2'
+                    }
                   />
                 </div>
                 Light activity (light exercises/sports 1-3 days per week)
@@ -313,7 +322,9 @@ export default function UserForm() {
                     value="3"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    checked={values.levelActivity === '3'}
+                    checked={
+                      values.levelActivity === 3 || values.levelActivity === '3'
+                    }
                   />
                 </div>
                 Moderately active (moderate exercises/sports 3-5 days per week)
@@ -327,7 +338,9 @@ export default function UserForm() {
                     value="4"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    checked={values.levelActivity === '4'}
+                    checked={
+                      values.levelActivity === 4 || values.levelActivity === '4'
+                    }
                   />
                 </div>
                 Very active (intense exercises/sports 6-7 days per week)
@@ -341,7 +354,9 @@ export default function UserForm() {
                     value="5"
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    checked={values.levelActivity === '5'}
+                    checked={
+                      values.levelActivity === 5 || values.levelActivity === '5'
+                    }
                   />
                 </div>
                 Extremely active (very strenuous exercises/sports and physical
