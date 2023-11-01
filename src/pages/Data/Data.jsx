@@ -10,6 +10,7 @@ import DataForm from 'components/data/DataForm/DataForm';
 import { useFetchUserParamsQuery } from 'src/redux/api';
 import { Container, Indicator, IndicatorsWrapper } from './Data.styled';
 import { DATA_STEPS, ROUTER } from 'src/utils';
+import PropTypes from 'prop-types';
 
 const initialState = {
   height: '',
@@ -94,3 +95,17 @@ export function Data() {
     </Container>
   );
 }
+
+Data.propTypes = {
+  step: PropTypes.string,
+  userParams: PropTypes.shape({
+    height: PropTypes.number,
+    currentWeight: PropTypes.number,
+    desiredWeight: PropTypes.number,
+    birthday: PropTypes.string,
+    blood: PropTypes.string,
+    sex: PropTypes.string,
+    levelActivity: PropTypes.string,
+  }),
+  setUserParams: PropTypes.func,
+};

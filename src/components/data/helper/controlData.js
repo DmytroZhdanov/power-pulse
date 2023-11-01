@@ -1,17 +1,19 @@
 import * as Yup from 'yup';
 import { DATA_STEPS } from 'src/utils';
 
-export const handleNext = (step, formik, navigate) => {
+export const handleNext = (step, formik, navigate, isDateSelected) => {
   if (step === DATA_STEPS.FIRST) {
     if (
       !formik.values.height ||
       !formik.values.currentWeight ||
-      !formik.values.desiredWeight
-      // !formik.values.birthday
+      !formik.values.desiredWeight ||
+      !isDateSelected
     ) {
       formik.setFieldTouched('height', true, true);
       formik.setFieldTouched('currentWeight', true, true);
       formik.setFieldTouched('desiredWeight', true, true);
+      formik.setFieldTouched('birthday', true, true);
+
       return;
     } else {
       navigate(
@@ -37,10 +39,8 @@ export const handleNext = (step, formik, navigate) => {
 
 export const handleBack = (step, navigate) =>
   navigate(step === DATA_STEPS.THIRD ? DATA_STEPS.SECOND : DATA_STEPS.FIRST);
-
 const date = new Date(2006, 1, 1);
 const curDate = date.getFullYear();
-
 export const validationSchema = Yup.object({
   height: Yup.number()
     .typeError('Height must be a number')
@@ -54,10 +54,12 @@ export const validationSchema = Yup.object({
     .typeError('Weight must be a number')
     .moreThan(35, 'Weight must be greater than 35')
     .required('Weight is a required field'),
-  // birthday: Yup.date()
-  //   .nullable()
-  //   .max(`${curDate}`, 'your age must to be 18+')
-  //   .required('The field is required'),
+
+  birthday: Yup.date()
+    .nullable()
+    .max(`${curDate}`, 'your age must to be 18+')
+    .required('the field is required'),
+
   blood: Yup.string().required('Blood is a required field'),
   sex: Yup.string().required('Sex is a required field'),
   levelActivity: Yup.string().required('Level Activity is a required field'),

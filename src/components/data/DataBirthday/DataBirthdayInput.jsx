@@ -46,6 +46,7 @@ export default function BirthdayInput({
         name="birthday"
         defaultValue={inputValue}
       />
+
       <Calendar
         maxDate={eighteenYearsAgo}
         minDate={maximumAge}
