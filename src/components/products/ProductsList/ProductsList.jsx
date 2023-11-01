@@ -66,9 +66,6 @@ export default function ProductsList({ filter }) {
 
   useEffect(() => {
     if (filter !== currentFilter) {
-      if (productListRef.current) {
-        productListRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-      }
       setCurrentPage(1);
       setNewResponse(true);
       setCurrentFilter(filter);
