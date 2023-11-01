@@ -73,7 +73,7 @@ export default function ProductsList({ filter }) {
       setNewResponse(true);
       setCurrentFilter(filter);
     }
-  }, [currentFilter, filter, ref]);
+  }, [currentFilter, filter]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -103,7 +103,7 @@ export default function ProductsList({ filter }) {
   return (
     <>
       {products.length > 0 ? (
-        <ProductListUl ref={productListRef}>
+        <ProductListUl>
           {products.map((props, index) => (
             <li key={index} ref={index === products.length - 1 ? ref : null}>
               <ProductsItem
