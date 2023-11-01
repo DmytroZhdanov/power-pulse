@@ -1,14 +1,23 @@
 import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
 
+import { userFormSchema } from './YupValidationForm';
+import BirthdayInput from '../BirthdayInput/BirthdayInput';
+import { selectUserEmail, selectUserName } from '../../../redux/auth/selectors';
 import {
-  Form,
+  useUpdateUserParamsMutation,
+  useUpdateUserNameMutation,
+  useLazyFetchUserParamsQuery,
+} from 'src/redux/api';
+
+import {
+  Forms,
   FirstInfo,
   AddInfo,
   Data,
   Height,
   CurWeight,
-  Calendar,
+  CalendarI,
   DesWeight,
   Birthday,
   SecondInfo,
@@ -19,272 +28,412 @@ import {
   HealthInfo,
   Lifestyle,
 } from './UserForm.styled';
-import { userFormSchema } from './YupValidationForm';
-import BirthdayInput from '../BirthdayInput/BirthdayInput';
-import { useLazyRefreshQuery } from 'src/redux/api';
+import { format } from 'date-fns';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserName } from '../../../redux/auth/authSlice';
+import BasicModalWindow from '../../common/BasicModalWindow/BasicModalWindow';
+import ErrorMessage from '../../common/ErrorMessage/ErrorMessage';
+import ErrorHandler from '../../common/ErrorHandler/ErrorHandler';
 
-const onSubmit = (values, actions) => {
-  console.log(values);
-  console.log(actions);
+const defaultUserData = {
+  name: '',
+  birthday: '',
+  blood: '',
+  currentWeight: '',
+  desiredWeight: '',
+  height: '',
+  levelActivity: '',
+  sex: '',
 };
 
 export default function UserForm() {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [refresh, { data, isError }] = useLazyRefreshQuery();
-  // console.log(data);
-  // const { name, email } = data;
+  const dispatch = useDispatch();
+
+  const [
+    fetchUserParams,
+    {
+      isLoading: isFetchUserParamsLoading,
+      isError: isFetchUserParamsError,
+      error: fetchUserParamsError,
+    },
+  ] = useLazyFetchUserParamsQuery();
+  const [
+    updateUserParams,
+    {
+      isLoading: isUpdateUserParamsLoading,
+      isError: isUpdateUserParamsError,
+      error: updateUserParamsError,
+    },
+  ] = useUpdateUserParamsMutation();
+  const [
+    updateUserName,
+    {
+      isLoading: isUpdateUserNameLoading,
+      isError: isUpdateUserNameError,
+      error: updateUserNameError,
+    },
+  ] = useUpdateUserNameMutation();
+
+  const userName = useSelector(selectUserName);
+  const userEmail = useSelector(selectUserEmail);
+  const [userData, setUserData] = useState();
+  const [showUpdateError, setShowUpdateError] = useState(false);
 
   useEffect(() => {
     const fetch = async () => {
       try {
-        await refresh();
+        const { data } = await fetchUserParams();
+        setUserData({ name: userName, ...data.user.userParams });
       } catch (error) {
+        setUserData(defaultUserData);
         console.log(error);
-      } finally {
       }
     };
     fetch();
-  }, [refresh]);
+  }, [fetchUserParams, userName]);
 
   const {
     values,
     errors,
     touched,
-    isSubmitting,
     handleSubmit,
     handleBlur,
     handleChange,
+    isValid,
+    isSubmitting,
   } = useFormik({
-    initialValues: {
-      // name: 'Sophy',
-      // email: 'dfe@ukr.net',
-      height: '',
-      currentWeight: '',
-      desiredWeight: '',
-      birthday: '',
-      blood: '',
-      sex: '',
-      levelActivity: '',
-    },
+    initialValues: { ...userData },
     validationSchema: userFormSchema,
-    onSubmit,
+    validateOnChange: true,
+    validateOnBlur: true,
+    enableReinitialize: true,
+    onSubmit: async ({ name, ...values }) => {
+      const userValues = {
+        ...values,
+        birthday: format(selectedDate, 'yyyy-MM-dd'),
+      };
+
+      const shouldUpdateParams =
+        userValues.birthday !==
+          format(new Date(userData.birthday), 'yyyy-MM-dd') ||
+        userValues.blood !== userData.blood ||
+        userValues.currentWeight !== userData.currentWeight ||
+        userValues.desiredWeight !== userData.desiredWeight ||
+        userValues.height !== userData.height ||
+        userValues.levelActivity !== userData.levelActivity ||
+        userValues.sex !== userData.sex;
+
+      if (name === userName && !shouldUpdateParams) {
+        setShowUpdateError(true);
+        setTimeout(setShowUpdateError, 2000, false);
+      }
+
+      if (name !== userName) {
+        try {
+          const newName = await updateUserName(name).unwrap();
+          dispatch(setUserName(newName));
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      if (shouldUpdateParams) {
+        try {
+          const { user } = await updateUserParams(userValues).unwrap();
+          setUserData({ name: userName, ...user.userParams });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    },
   });
 
-  // const handleSubmit = (values) => {
-  //   console.log(values);
-  // };
   return (
     <>
-      {data && (
-        <Form autoComplete="off" onSubmit={handleSubmit}>
-          <FirstInfo>
-            <label>
-              Basic info
-              <input
-                type="text"
-                name="name"
-                placeholder="name"
-                value={data.user.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {/* {errors.name && touched.name && <p>{errors.name}</p>} */}
-            </label>
+      <Forms autoComplete="off" onSubmit={handleSubmit}>
+        <FirstInfo>
+          <label htmlFor="name">
+            Basic info
             <input
-              type="email"
-              name="email"
-              placeholder="email"
-              value={data.user.email}
+              id="name"
+              type="text"
+              name="name"
+              placeholder="name"
+              value={values.name}
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            {/* {errors.email && touched.email && <p>{errors.email}</p>} */}
-          </FirstInfo>
-          <AddInfo>
-            <Data>
-              <Height htmlFor="height">
-                Height
-                <input
-                  type="number"
-                  name="height"
-                  placeholder="0"
-                  min="150"
-                  max="230"
-                  value={values.height}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                {/* {errors.height && touched.height && <p>{errors.height}</p>} */}
-              </Height>
-              <CurWeight htmlFor="currentWeight">
-                Current Weight
-                <input
-                  type="number"
-                  name="curWeight"
-                  placeholder="0"
-                  min="35"
-                  value={values.curWeight}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                {/* {errors.curWeight && touched.curWeight && <p>{errors.curWeight}</p>} */}
-              </CurWeight>
-            </Data>
-            <Calendar>
-              <DesWeight htmlFor="desiredWeight">
-                Desired Weight
-                <input
-                  type="number"
-                  name="desWeight"
-                  placeholder="0"
-                  min="35"
-                  value={values.desWeight}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                {/* {errors.desWeight && touched.desWeight && <p>{errors.desWeight}</p>} */}
-              </DesWeight>
+            {errors.name && touched.name && <p>{errors.name}</p>}
+          </label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="email"
+            value={userEmail}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            disabled={true}
+          />
+          {errors.email && touched.email && <p>{errors.email}</p>}
+        </FirstInfo>
+        <AddInfo>
+          <Data>
+            <Height htmlFor="height">
+              Height
+              <input
+                id="height"
+                type="number"
+                name="height"
+                placeholder="0"
+                min="150"
+                max="230"
+                value={values.height}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.height && touched.height && <p>{errors.height}</p>}
+            </Height>
+            <CurWeight htmlFor="currentWeight">
+              Current Weight
+              <input
+                id="currentWeight"
+                type="number"
+                name="currentWeight"
+                placeholder="0"
+                min="35"
+                value={values.currentWeight}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.currentWeight && touched.currentWeight && (
+                <p>{errors.currentWeight}</p>
+              )}
+            </CurWeight>
+          </Data>
+          <CalendarI>
+            <DesWeight htmlFor="desiredWeight">
+              Desired Weight
+              <input
+                id="desiredWeight"
+                type="number"
+                name="desiredWeight"
+                placeholder="0"
+                min="35"
+                value={values.desiredWeight}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.desiredWeight && touched.desiredWeight && (
+                <p>{errors.desiredWeight}</p>
+              )}
+            </DesWeight>
 
-              <Birthday>
-                <BirthdayInput
-                  selectedDate={selectedDate}
-                  setSelectedDate={setSelectedDate}
-                />
-              </Birthday>
-              {/* {errors.birthday && touched.birthday && <p>{errors.birthday}</p>} */}
-            </Calendar>
-          </AddInfo>
-          <SecondInfo>
-            <Text> Blood </Text>
-            <HealthInfo>
-              <Blood>
+            <Birthday>
+              <BirthdayInput
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </Birthday>
+            {errors.birthday && touched.birthday && <p>{errors.birthday}</p>}
+          </CalendarI>
+        </AddInfo>
+        <SecondInfo>
+          <Text> Blood </Text>
+          <HealthInfo>
+            <Blood>
+              <RadioBox
+                type="radio"
+                name="blood"
+                id="one"
+                value="1"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                checked={values.blood === 1 || values.blood === '1'}
+              />
+              <label htmlFor="one">1</label>
+              {errors.blood && touched.blood && <p>{errors.blood}</p>}
+
+              <RadioBox
+                type="radio"
+                name="blood"
+                id="two"
+                value="2"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                checked={values.blood === 2 || values.blood === '2'}
+              />
+              <label htmlFor="two">2</label>
+
+              <RadioBox
+                type="radio"
+                name="blood"
+                id="three"
+                value="3"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                checked={values.blood === 3 || values.blood === '3'}
+              />
+              <label htmlFor="three">3</label>
+
+              <RadioBox
+                type="radio"
+                name="blood"
+                id="four"
+                value="4"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                checked={values.blood === 4 || values.blood === '4'}
+              />
+              <label htmlFor="four">4</label>
+            </Blood>
+            <Gender>
+              <label>
                 <RadioBox
                   type="radio"
-                  name="blood"
+                  name="sex"
+                  id="male"
+                  value="male"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  checked={values.sex === 'male'}
                 />
-                <label htmlFor="one">1</label>
+                Male
+              </label>
 
+              <label>
                 <RadioBox
                   type="radio"
-                  name="blood"
+                  name="sex"
+                  id="female"
+                  value="female"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  checked={values.sex === 'female'}
                 />
-                <label htmlFor="two">2</label>
-
+                Female
+              </label>
+              {errors.sex && touched.sex && <p>{errors.sex}</p>}
+            </Gender>
+          </HealthInfo>
+          <Lifestyle>
+            <label>
+              <div>
                 <RadioBox
                   type="radio"
-                  name="blood"
+                  name="levelActivity"
+                  id="1"
+                  value={1}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  checked={
+                    values.levelActivity === 1 || values.levelActivity === '1'
+                  }
                 />
-                <label htmlFor="three">3</label>
-
+              </div>
+              Sedentary lifestyle (little or no physical activity)
+            </label>
+            <label>
+              <div>
                 <RadioBox
                   type="radio"
-                  name="blood"
+                  name="levelActivity"
+                  id="2"
+                  value="2"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  checked={
+                    values.levelActivity === 2 || values.levelActivity === '2'
+                  }
                 />
-                <label htmlFor="four">4</label>
-              </Blood>
-              <Gender>
-                <label htmlFor="gender">
-                  <RadioBox
-                    type="radio"
-                    name="gender"
-                    onChange={handleChange}
-                  />
-                  Male
-                </label>
+              </div>
+              Light activity (light exercises/sports 1-3 days per week)
+            </label>
+            <label>
+              <div>
+                <RadioBox
+                  type="radio"
+                  name="levelActivity"
+                  id="3"
+                  value="3"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  checked={
+                    values.levelActivity === 3 || values.levelActivity === '3'
+                  }
+                />
+              </div>
+              Moderately active (moderate exercises/sports 3-5 days per week)
+            </label>
+            <label>
+              <div>
+                <RadioBox
+                  type="radio"
+                  name="levelActivity"
+                  id="4"
+                  value="4"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  checked={
+                    values.levelActivity === 4 || values.levelActivity === '4'
+                  }
+                />
+              </div>
+              Very active (intense exercises/sports 6-7 days per week)
+            </label>
+            <label>
+              <div>
+                <RadioBox
+                  type="radio"
+                  name="levelActivity"
+                  id="5"
+                  value="5"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  checked={
+                    values.levelActivity === 5 || values.levelActivity === '5'
+                  }
+                />
+              </div>
+              Extremely active (very strenuous exercises/sports and physical
+              work)
+            </label>
+          </Lifestyle>
+          {errors.levelActivity && touched.levelActivity && (
+            <p>{errors.levelActivity}</p>
+          )}
+        </SecondInfo>
+        <button type="submit" disabled={!isValid || isSubmitting}>
+          Save
+        </button>
+      </Forms>
 
-                <label htmlFor="gender">
-                  <RadioBox
-                    type="radio"
-                    name="gender"
-                    onChange={handleChange}
-                  />
-                  Female
-                </label>
-              </Gender>
-            </HealthInfo>
-            <Lifestyle>
-              <label>
-                <div>
-                  <RadioBox
-                    type="radio"
-                    name="levelActivity"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </div>
-                Sedentary lifestyle (little or no physical activity)
-              </label>
-              <label>
-                <div>
-                  <RadioBox
-                    type="radio"
-                    name="levelActivity"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </div>
-                Light activity (light exercises/sports 1-3 days per week)
-              </label>
-              <label>
-                <div>
-                  <RadioBox
-                    type="radio"
-                    name="levelActivity"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </div>
-                Moderately active (moderate exercises/sports 3-5 days per week)
-              </label>
-              <label>
-                <div>
-                  <RadioBox
-                    type="radio"
-                    name="levelActivity"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </div>
-                Very active (intense exercises/sports 6-7 days per week)
-              </label>
-              <label>
-                <div>
-                  <RadioBox
-                    type="radio"
-                    name="levelActivity"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </div>
-                Extremely active (very strenuous exercises/sports and physical
-                work)
-              </label>
-            </Lifestyle>
-          </SecondInfo>
-
-          <button type="submit">Save</button>
-        </Form>
+      {showUpdateError && (
+        <BasicModalWindow onClose={() => setShowUpdateError(false)}>
+          <ErrorMessage message={'No changes to update'} />
+        </BasicModalWindow>
       )}
+
+      <ErrorHandler
+        isLoading={isFetchUserParamsLoading}
+        isError={isFetchUserParamsError}
+        error={fetchUserParamsError}
+      />
+
+      <ErrorHandler
+        isLoading={isUpdateUserParamsLoading}
+        isError={isUpdateUserParamsError}
+        error={updateUserParamsError}
+      />
+
+      <ErrorHandler
+        isLoading={isUpdateUserNameLoading}
+        isError={isUpdateUserNameError}
+        error={updateUserNameError}
+      />
     </>
   );
 }
-
-// const FieldAImg = ({ ...props }) => {
-//   const [field, meta] = useField(props);
-//   console.log(field, meta);
-
-//   return (
-//     <>
-//       <input {...field} {...props} />
-//       {meta.touched && meta.error ? <div>{meta.error}</div> : null}
-//     </>
-//   );
-// };

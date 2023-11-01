@@ -73,21 +73,23 @@ export const api = createApi({
       }),
     }),
     updateUserName: builder.mutation({
-      query: credentials => ({
+      query: name => ({
         url: '/users/username',
         method: 'PATCH',
-        data: credentials,
+        data: { name },
       }),
+      transformResponse: response => response.user.name,
     }),
     updateUserAvatar: builder.mutation({
       query: avatarFile => {
-        const bodyFormData = new FormData();
+        let bodyFormData = new FormData();
+
         bodyFormData.append('avatar', avatarFile);
 
         return {
           url: '/users/avatars',
           method: 'PATCH',
-          data: { bodyFormData },
+          data: bodyFormData,
           headers: {
             'Content-Type': 'multipart/form-data',
           },
