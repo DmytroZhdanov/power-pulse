@@ -22,7 +22,6 @@ import {
 } from './UserCard.styled';
 import { setAvatars } from 'src/redux/auth/authSlice';
 import ErrorHandler from '../../common/ErrorHandler/ErrorHandler';
-import { useEffect, useState } from 'react';
 
 export default function UserCard() {
   const [updateUserAvatar, { isLoading, isError, error }] =
@@ -30,11 +29,6 @@ export default function UserCard() {
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
   const avatars = useSelector(selectUserAvatars);
-  const [userAvatars, setUserAvatars] = useState(avatars);
-
-  useEffect(() => {
-    setUserAvatars(avatars);
-  }, [avatars]);
 
   const handleChange = async e => {
     e.preventDefault();
@@ -53,22 +47,22 @@ export default function UserCard() {
       <User>
         <Avatar>
           <Image>
-            {userAvatars ? (
+            {avatars ? (
               <div>
                 <picture>
                   <source
                     srcSet={`
-                      ${userAvatars.avatar_90x90}   90w,
-                      ${userAvatars.avatar_150x150}   150w,
-                      ${userAvatars.avatar_180x180} 180w,
-                      ${userAvatars.avatar_300x300}   300w
+                      ${avatars.avatar_90x90}   90w,
+                      ${avatars.avatar_150x150}   150w,
+                      ${avatars.avatar_180x180} 180w,
+                      ${avatars.avatar_300x300}   300w
                     `}
                     sizes="(min-width: 768px) 150px, (min-width: 375px) 90px, 90px, 100vw"
                     type="image/jpeg"
                   />
 
                   <img
-                    src={userAvatars.avatar_90x90}
+                    src={avatars.avatar_90x90}
                     alt="Your avatar"
                     loading="lazy"
                   />
