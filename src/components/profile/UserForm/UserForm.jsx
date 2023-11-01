@@ -1,13 +1,16 @@
-import { useFormik } from 'formik';
+import { Formik, useFormik } from 'formik';
+import { useEffect, useState } from 'react';
+
 import { userFormSchema } from './YupValidationForm';
 import BirthdayInput from '../BirthdayInput/BirthdayInput';
+
 import {
   useLazyRefreshQuery,
   useUpdateUserParamsMutation,
   useUpdateUserNameMutation,
-  useFetchUserParamsQuery,
+  useLazyFetchUserParamsQuery,
 } from 'src/redux/api';
-import { useEffect, useState } from 'react';
+
 import {
   Forms,
   FirstInfo,
@@ -31,51 +34,75 @@ import { format } from 'date-fns';
 export default function UserForm() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [refresh, { data, isError }] = useLazyRefreshQuery();
-  // const [fetchUserParams, { params }] = useFetchUserParamsQuery();
-  const [updateUserParams] = useUpdateUserParamsMutation();
 
-  console.log(data);
+  const [fetchUserParams] = useLazyFetchUserParamsQuery();
+  const [updateUserParams] = useUpdateUserParamsMutation();
+  const [userData, setUserData] = useState();
+  console.log(userData);
 
   useEffect(() => {
     const fetch = async () => {
       try {
         await refresh();
-        // fetchUserParams();
+
+        await fetchUserParams();
       } catch (error) {
         console.log(error);
       } finally {
       }
     };
     fetch();
-  }, [refresh]);
+  }, [refresh, fetchUserParams]);
 
-  const { values, errors, touched, handleSubmit, handleBlur, handleChange } =
-    useFormik({
-      initialValues: {
-        height: '',
-        currentWeight: '',
-        desiredWeight: '',
-        birthday: '',
-        blood: '',
-        sex: '',
-        levelActivity: '',
-      },
-      validationSchema: userFormSchema,
-      onSubmit: async (values, actions) => {
-        const userValues = {
-          ...values,
-          birthday: format(selectedDate, 'yyyy-MM-dd'),
-        };
+  const initialValues = {
+    height: '',
+    currentWeight: '',
+    desiredWeight: '',
+    birthday: '',
+    blood: '',
+    sex: '',
+    levelActivity: '',
+  };
 
-        try {
-          const data = await updateUserParams(userValues).unwrap();
+  const {
+    values,
+    errors,
+    touched,
+    handleSubmit,
+    handleBlur,
+    handleChange,
+    setFieldValue,
+    setValues,
+    isValid,
+    isSubmitting,
+  } = useFormik({
+    initialValues: initialValues || userData,
+    validationSchema: userFormSchema,
+    validateOnChange: true,
+    validateOnBlur: true,
+    enableReinitialize: true,
+    onSubmit: async values => {
+      const userValues = {
+        ...values,
+        birthday: format(selectedDate, 'yyyy-MM-dd'),
+      };
 
-          console.log(data);
-        } catch (error) {
-          console.log(error);
+      try {
+        if (!userValues) {
+          return;
         }
-      },
-    });
+        setUserData(userValues);
+
+        await updateUserParams(userValues).unwrap();
+        setValues(userValues);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  });
+
+  console.log(initialValues);
+  console.log(userData);
 
   return (
     <>
@@ -111,7 +138,7 @@ export default function UserForm() {
               <Height htmlFor="height">
                 Height
                 <input
-                  id="heght"
+                  id="height"
                   type="number"
                   name="height"
                   placeholder="0"
@@ -163,8 +190,8 @@ export default function UserForm() {
                   selectedDate={selectedDate}
                   setSelectedDate={setSelectedDate}
                   // value={format(selectedDate, 'yyyy-MM-dd')}
-                  // onChange={handleChange}
-                  // onBlur={handleBlur}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
               </Birthday>
               {errors.birthday && touched.birthday && <p>{errors.birthday}</p>}
@@ -325,7 +352,9 @@ export default function UserForm() {
               <p>{errors.levelActivity}</p>
             )}
           </SecondInfo>
-          <button type="submit">Save</button>
+          <button type="submit" disabled={!isValid || isSubmitting}>
+            Save
+          </button>
         </Forms>
       )}
     </>
