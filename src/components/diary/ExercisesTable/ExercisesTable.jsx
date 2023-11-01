@@ -46,6 +46,11 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
       console.log(error);
     }
   };
+  const convertInMin = sec => {
+    return `${Math.floor(sec / 60)} min ${
+      sec % 60 === 0 ? '' : (sec % 60) + 'c'
+    }`;
+  };
 
   return (
     <>
@@ -79,7 +84,7 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
                       <TableInfoTd>{exercise.name}</TableInfoTd>
                       <TableInfoTd>{exercise.target}</TableInfoTd>
                       <TableInfoTd>{exercise.calories}</TableInfoTd>
-                      <TableInfoTd>{exercise.time}</TableInfoTd>
+                      <TableInfoTd>{convertInMin(exercise.time)}</TableInfoTd>
                       <BtnTd>
                         <DelBtnTable
                           onClick={() => {
@@ -127,7 +132,7 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
                         <TableInfoTd>{exercise.name}</TableInfoTd>
                         <TableInfoTd>{exercise.target}</TableInfoTd>
                         <TableInfoTd>{exercise.calories}</TableInfoTd>
-                        <TableInfoTd>{exercise.time}</TableInfoTd>
+                        <TableInfoTd>{convertInMin(exercise.time)}</TableInfoTd>
                         <BtnTd>
                           <DelBtnTable
                             onClick={() => {
