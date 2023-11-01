@@ -102,12 +102,7 @@ export const StyledSelect = styled(Select)`
   text-align: left;
   border-radius: 12px;
   border: 1px solid ${({ theme }) => theme.color.grayFirst};
-  /*background: rgba(0, 0, 0, 0.5);*/
   color: ${({ theme }) => theme.color.white};
   font-size: 14px;
   line-height: calc(18 / 14);
-
-  .css-18hi8su {
-    background: transparent;
-  }
 `;

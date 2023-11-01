@@ -13,5 +13,3 @@ export const listVariants = {
   }),
   hidden: { opacity: 0, x: -300 },
 };
-
-

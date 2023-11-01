@@ -36,13 +36,10 @@ export default function DayDashboard({
   useEffect(() => {
     if (diaryExercises.length === 0) {
       setAllDayExerCalories(null);
-      setAllMinuts(null);
       return;
     }
     const CalOneExer = diaryExercises.map(exercise => exercise.calories);
     const AllExerCal = CalOneExer.reduce((total, amount) => total + amount);
-    const MinOneExer = diaryExercises.map(exercise => exercise.time);
-    const AllMin = MinOneExer.reduce((total, amount) => total + amount);
     setAllDayExerCalories(AllExerCal);
   }, [diaryExercises]);
 
@@ -119,7 +116,8 @@ export default function DayDashboard({
             <Title>The rest of the calories</Title>
           </TitleWrapper>
 
-          <Value>{bmrData - AllDayCalories}</Value>
+          
+          <Value>{bmrData ? bmrData - AllDayCalories : 2200}</Value>
         </BlockItem>
 
         <BlockItem caloriesOverBurned={110 - AllMinuts < 0 ? true : false}>

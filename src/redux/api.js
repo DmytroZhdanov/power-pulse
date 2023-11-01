@@ -51,13 +51,6 @@ export const api = createApi({
         data: credentials,
       }),
     }),
-    // verify: builder.mutation({
-    //   query: credentials => ({
-    //     url: '/verify',
-    //     method: 'POST',
-    //     data: credentials,
-    //   }),
-    // }),
     addUserParams: builder.mutation({
       query: credentials => ({
         url: '/users/params',
@@ -207,7 +200,6 @@ export const api = createApi({
 export const {
   useRegisterMutation,
   useLoginMutation,
-  // useVerifyMutation,
   useAddUserParamsMutation,
   useUpdateUserParamsMutation,
   useUpdateUserNameMutation,

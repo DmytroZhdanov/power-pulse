@@ -19,6 +19,7 @@ import {
 } from './AddProductForm.styled';
 
 import { useAddProductMutation } from 'src/redux/api';
+import { format } from 'date-fns';
 
 /**
  * The AddProductForm component provides a form for adding a product to a user's diary.
@@ -44,7 +45,7 @@ export default function AddProductForm(props) {
 
   const addProductToCollection = {
     product_ID: _id,
-    date: new Date(selectedDate),
+    date: format(new Date(selectedDate), 'yyyy-MM-dd'),
     amount: addWeight,
     calories: totalCalories,
   };
