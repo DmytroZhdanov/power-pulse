@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useLazyFetchDiaryAllQuery } from 'src/redux/api';
@@ -8,6 +8,8 @@ import { selectUserRegistrationDate } from 'src/redux/auth/selectors';
 
 import Calendar from 'components/Calendar/Calendar';
 import Icon from 'components/common/IconsComp/Icon';
+
+import { generateDateRange } from 'src/utils';
 
 import {
   Button,
@@ -19,11 +21,32 @@ import {
 } from './DaySwitch.style';
 
 export default function DaySwitch({ selectedDate, setSelectedDate }) {
-  const dateOfUserRegistration = new Date(
-    useSelector(selectUserRegistrationDate),
-  );
+  const [sortDates, setSortDates] = useState([]);
+  const [indexDate, setIndexDate] = useState(null);
+
+  const dateOfUserRegistration = useSelector(selectUserRegistrationDate);
 
   const [fetchDiaryAll, { data, error }] = useLazyFetchDiaryAllQuery();
+
+  useEffect(() => {
+    if (data && data.length !== 0) {
+      const allDates = [
+        ...new Set([
+          ...data,
+          ...generateDateRange(dateOfUserRegistration, new Date('2023 11 01')),
+        ]),
+      ];
+
+      const sortDates = allDates.map(date => new Date(date).getTime()).sort();
+
+      const index = sortDates.indexOf(
+        new Date(selectedDate.toDateString()).getTime(),
+      );
+
+      setSortDates(sortDates);
+      setIndexDate(index);
+    }
+  }, [data, dateOfUserRegistration, selectedDate]);
 
   useEffect(() => {
     if (error) {
@@ -50,36 +73,30 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
   };
 
   const handlePreviousClick = () => {
-    const previousDate = new Date(selectedDate);
-    previousDate.setDate(selectedDate.getDate() - 1);
+    const previousDate = new Date(sortDates[indexDate - 1]);
     setSelectedDate(previousDate);
   };
 
   const handleNextClick = () => {
-    const nextDate = new Date(selectedDate);
-    nextDate.setDate(selectedDate.getDate() + 1);
+    const nextDate = new Date(sortDates[indexDate + 1]);
     setSelectedDate(nextDate);
   };
 
-  const isDateOfUserRegistration =
-    selectedDate.toDateString() === dateOfUserRegistration.toDateString();
-
-  const isToday = selectedDate.toDateString() === new Date().toDateString();
+  const isDisabledNextBtn =
+    selectedDate.toDateString() === new Date().toDateString();
 
   const isDisabledPrevBtn =
-    isDateOfUserRegistration ||
-    selectedDate.getTime() < dateOfUserRegistration.getTime();
-
-  const isDisabledNextBtn =
-    isToday ||
-    (selectedDate.getTime() < dateOfUserRegistration.getTime() &&
-      selectedDate.toDateString() !== dateOfUserRegistration.toDateString());
+    selectedDate.toDateString() === new Date(sortDates[0]).toDateString();
 
   const param = error
     ? {
         minDate: dateOfUserRegistration,
       }
     : {
+        minDate:
+          data && data.length !== 0
+            ? new Date(sortDates[0])
+            : dateOfUserRegistration,
         tileDisabled: setActiveDate,
       };
 
