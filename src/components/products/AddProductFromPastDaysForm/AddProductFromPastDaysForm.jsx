@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-
+import PropTypes from 'prop-types';
 import Icon from 'components/common/IconsComp/Icon';
 import Calendar from 'components/Calendar/Calendar';
 import {
@@ -30,3 +30,8 @@ export default function AddProductFromPastDaysForm({
     </Calendar>
   );
 }
+
+AddProductFromPastDaysForm.propTypes = {
+  selectedDate: PropTypes.instanceOf(Date).isRequired,
+  setSelectedDate: PropTypes.func.isRequired,
+};

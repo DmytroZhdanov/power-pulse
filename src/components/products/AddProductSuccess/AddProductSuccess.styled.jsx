@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
+import avocadoImage from '/src/assets/images/Avocado/avocado.png';
 
 export const DivSuccess = styled.div`
   margin: 12px 70px;
@@ -13,8 +15,7 @@ export const DivSuccess = styled.div`
 `;
 
 export const DivImg = styled.div`
-  background: url('/src/assets/images/Avocado/avocado.png') no-repeat center
-    center;
+  background: url(${avocadoImage}) no-repeat center center;
   background-size: cover;
   display: inline-block;
   width: 123px;
@@ -73,7 +74,7 @@ export const ButtonAdd = styled.button`
   }
 `;
 
-export const DivLink = styled.a`
+export const DivLink = styled(Link)`
   justify-content: center;
   display: flex;
   color: ${({ theme }) => theme.color.grayFirst};

@@ -31,7 +31,6 @@ export const WrapperDiv = styled.div`
   background:
     linear-gradient(0deg, rgba(4, 4, 4, 0.5) 0%, rgba(4, 4, 4, 0.5) 100%),
     url(${props => props.img}) center center no-repeat;
-
   background-size: cover;
   border-radius: 12px;
   border: 1px solid rgba(239, 237, 232, 0.2);
@@ -40,6 +39,10 @@ export const WrapperDiv = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+  transition: transform 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const DescriptionUl = styled.ul`

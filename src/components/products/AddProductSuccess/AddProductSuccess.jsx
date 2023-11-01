@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   DivSuccess,
   DivImg,
@@ -35,3 +36,8 @@ export default function AddProductSuccess({ onClose, totalCalories }) {
     </DivSuccess>
   );
 }
+
+AddProductSuccess.propTypes = {
+  totalCalories: PropTypes.number,
+  onClose: PropTypes.func.isRequired,
+};
