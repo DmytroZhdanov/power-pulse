@@ -1,4 +1,4 @@
-import{n as e,P as i,j as n}from"./index-a7ddf542.js";const r=e.h1`
+import{n as e,P as i,j as n}from"./index-b281344d.js";const r=e.h1`
 
 &::first-letter {
     text-transform: uppercase;
