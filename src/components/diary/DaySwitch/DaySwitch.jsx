@@ -60,8 +60,8 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
 
   const setActiveDate = ({ date, view }) => {
     const isSkip =
-      date.getTime() > dateOfUserRegistration.getTime() ||
-      date.toDateString() === dateOfUserRegistration.toDateString();
+      date.getTime() > new Date(dateOfUserRegistration).getTime() ||
+      date.toDateString() === new Date(dateOfUserRegistration).toDateString();
 
     if (isSkip) {
       return false;
@@ -90,13 +90,13 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
 
   const param = error
     ? {
-        minDate: dateOfUserRegistration,
+        minDate: new Date(dateOfUserRegistration),
       }
     : {
         minDate:
           data && data.length !== 0
             ? new Date(sortDates[0])
-            : dateOfUserRegistration,
+            : new Date(dateOfUserRegistration),
         tileDisabled: setActiveDate,
       };
 
