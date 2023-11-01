@@ -111,6 +111,39 @@ export const ButtonLink = styled(Link)`
     }
   }};
 
+  transition:
+    background-color ${({ theme }) => theme.transition.main},
+    border ${({ theme }) => theme.transition.main};
+
+  &:hover,
+  &:focus {
+    background-color: ${({ to, theme }) => {
+      switch (to) {
+        case `../${ROUTER.SIGN_UP}`:
+          return `${theme.color.hover}`;
+
+        case `../${ROUTER.SIGN_IN}`:
+          return 'transparent';
+
+        default:
+          break;
+      }
+    }};
+
+    border: ${({ to, theme }) => {
+      switch (to) {
+        case `../${ROUTER.SIGN_UP}`:
+          return 'none';
+
+        case `../${ROUTER.SIGN_IN}`:
+          return `1px solid ${theme.color.hoverBorder}`;
+
+        default:
+          break;
+      }
+    }};
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding: 16px 60px;
     font-size: 20px;
