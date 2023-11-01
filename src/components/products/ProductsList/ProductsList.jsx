@@ -50,8 +50,6 @@ export default function ProductsList({ filter }) {
       }
     },
   });
-
-  console.log(filter);
   /**
    * Updates the user's blood type based on a successful request to the backend.
    *
