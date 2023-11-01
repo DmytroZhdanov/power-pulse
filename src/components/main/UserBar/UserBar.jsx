@@ -64,16 +64,17 @@ export default function UserBar() {
             <picture>
               <source
                 srcSet={`
-                ${avatars.avatar_37x37}   37w,
-                ${avatars.avatar_46x46}   46w,
-                ${avatars.avatar_74x74} 74w,
-                ${avatars.avatar_92x92}   92w
+                ${avatars.avatar_150x150}   150w,
+                ${avatars.avatar_250x250}   250w,
+                ${avatars.avatar_350x350} 350w,
+                ${avatars.avatar_450x450}   450w
               `}
                 type="image/jpeg"
+                sizes="(min-width: 1440px) 450px ,(min-width: 768px) 350px , (min-width: 375px) 250px "
               />
 
               <img
-                src={avatars.avatar_90x90}
+                src={avatars.avatar_140x140}
                 alt="Your avatar"
                 width="100%"
                 loading="lazy"
