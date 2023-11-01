@@ -73,11 +73,12 @@ export const api = createApi({
       }),
     }),
     updateUserName: builder.mutation({
-      query: credentials => ({
+      query: name => ({
         url: '/users/username',
         method: 'PATCH',
-        data: credentials,
+        data: { name },
       }),
+      transformResponse: response => response.name,
     }),
     updateUserAvatar: builder.mutation({
       query: avatarFile => {
