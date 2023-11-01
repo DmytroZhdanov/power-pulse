@@ -29,6 +29,8 @@ export default function ProductsList({ filter }) {
 
   const [currentFilter, setCurrentFilter] = useState(filter);
   const [currentPage, setCurrentPage] = useState(1);
+  const [resLimit, setResLimit] = useState(18);
+  const [total, setTotal] = useState(1000);
 
   const [
     getProducts,
@@ -69,8 +71,15 @@ export default function ProductsList({ filter }) {
 
   useEffect(() => {
     if (filter !== currentFilter) {
+      setResLimit(18);
+      setTotal(1000);
       setCurrentFilter(filter);
       setCurrentPage(1);
+    }
+    const totalPage = total / resLimit;
+
+    if (totalPage < currentPage) {
+      return;
     }
 
     const fetchData = async () => {
@@ -79,6 +88,9 @@ export default function ProductsList({ filter }) {
           page: currentPage,
           ...currentFilter,
         }).unwrap();
+
+        setTotal(response.total);
+        setResLimit(response.limit);
 
         if (currentPage === 1) {
           setProducts([...response.data]);
@@ -91,7 +103,7 @@ export default function ProductsList({ filter }) {
     };
 
     fetchData();
-  }, [currentFilter, getProducts, currentPage, filter]);
+  }, [currentFilter, getProducts, currentPage, filter, total, resLimit]);
 
   return (
     <>

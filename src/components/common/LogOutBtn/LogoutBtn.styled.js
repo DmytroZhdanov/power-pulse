@@ -10,6 +10,8 @@ export const SvgLogout = styled.svg`
   height: 20px;
 `;
 export const LogoutButton = styled.button`
+  transition: transform ${({ theme }) => theme.transition.main};
+
   stroke: ${({ white, theme }) =>
     white ? theme.color.white : theme.color.orangeFirst};
 
@@ -25,4 +27,9 @@ export const LogoutButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    &:hover {
+      transform: scale(1.06);
+    }
+  }
 `;
