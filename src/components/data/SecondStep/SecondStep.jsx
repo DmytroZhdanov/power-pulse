@@ -3,7 +3,6 @@ import {
   RadioContainer1,
   RadioLabel,
   ErrorContainer,
-  SuccessMessage,
 } from '../DataForm/DataForm.style';
 import DataInput from '../DataInput/DataInput';
 import {
@@ -11,13 +10,12 @@ import {
   radioInputBloodData,
   radioInputSexData,
 } from '../helper/inputData';
-import { SecondStepContainer } from './SecondStep.styled';
 import { motion } from 'framer-motion';
 import { listVAriatns } from '../helper/motion';
 
 export function SecondStep({ formik }) {
   return (
-    <SecondStepContainer>
+    <>
       <RadioContainer1>
         <fieldset>
           <legend>Blood:</legend>
@@ -122,6 +120,6 @@ export function SecondStep({ formik }) {
           ))}
         </fieldset>
       </RadioContainer1>
-    </SecondStepContainer>
+    </>
   );
 }

@@ -4,6 +4,7 @@ import {
   ArrowBtnLeft,
   DataBtnsContainer,
   GoBtn,
+  ArrowIcon,
 } from './DataBtns.styled';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -30,9 +31,11 @@ const DataBtns = ({ step, formik }) => {
               handleBack(step, navigate);
             }}
           >
-            <svg style={{ transform: 'rotate(180deg)' }}>
-              <use href={`${sprite}#big_arrow`} />
-            </svg>
+            <ArrowIcon>
+              <svg>
+                <use href={`${sprite}#big-arrow-left`} />
+              </svg>
+            </ArrowIcon>
             Back
           </ArrowBtnLeft>
         </motion.div>
@@ -46,9 +49,11 @@ const DataBtns = ({ step, formik }) => {
             }}
           >
             Next
-            <svg>
-              <use href={`${sprite}#big_arrow`} />
-            </svg>
+            <ArrowIcon>
+              <svg>
+                <use href={`${sprite}#big-arrow-right`} />
+              </svg>
+            </ArrowIcon>
           </ArrowBtnRight>
         </motion.div>
       )}

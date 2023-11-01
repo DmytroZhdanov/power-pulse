@@ -1,22 +1,24 @@
 import { ErrorMessage } from 'formik';
 import Icon from '../../common/IconsComp/Icon';
-import {
-  FormContainer,
-  SuccessMessage,
-  TextLabel,
-} from '../DataForm/DataForm.style';
+import { SuccessMessage, TextLabel } from '../DataForm/DataForm.style';
 import DataInput from '../DataInput/DataInput';
 import { textInputData } from '../helper/inputData';
-import { FirstStepContainer } from './FirstStep.styled';
+import { Item, List } from './FirstStep.styled';
 
 import BirthdayInput from '../../data/DataBirthday/DataBirthdayInput';
 
-export function FirstStep({ formik, selectedDate, setSelectedDate,isDateSelected,setIsDateSelected }) {
+export function FirstStep({
+  formik,
+  selectedDate,
+  setSelectedDate,
+  isDateSelected,
+  setIsDateSelected,
+}) {
   return (
-    <FormContainer>
-      <FirstStepContainer>
-        {textInputData.map(input => (
-          <TextLabel htmlFor={input.htmlFor} key={input.id}>
+    <List>
+      {textInputData.map(input => (
+        <Item htmlFor={input.htmlFor} key={input.id}>
+          <TextLabel>
             <DataInput
               {...input}
               onBlur={formik.handleBlur}
@@ -32,18 +34,18 @@ export function FirstStep({ formik, selectedDate, setSelectedDate,isDateSelected
             )}
             <ErrorMessage name={input.name} component="div" />
           </TextLabel>
-        ))}
-        <div>
-          <label>
-            <BirthdayInput
-               setIsDateSelected={setIsDateSelected}
-              isDateSelected={isDateSelected}
-              selectedDate={selectedDate}
-              setSelectedDate={setSelectedDate}
-            />
-          </label>
-        </div>
-      </FirstStepContainer>
-    </FormContainer>
+        </Item>
+      ))}
+      <Item>
+        <label>
+          <BirthdayInput
+            setIsDateSelected={setIsDateSelected}
+            isDateSelected={isDateSelected}
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+          />
+        </label>
+      </Item>
+    </List>
   );
 }

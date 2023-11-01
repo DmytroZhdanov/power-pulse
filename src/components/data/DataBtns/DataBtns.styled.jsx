@@ -4,34 +4,31 @@ export const DataBtnsContainer = styled.div`
   display: flex;
   gap: 16px;
   align-items: center;
-  margin-top: 64px;
-
-  svg {
-    width: 20px;
-    height: 20px;
-  }
 `;
+
 export const ArrowBtnRight = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 4px;
-  padding: 2px 0;
   border: none;
-  color: ${({ theme }) => theme.color.graySecond};
-
-  /* color: rgba(239, 237, 232, 0.6); */
+  color: ${({ theme }) => theme.color.white};
   background-color: transparent;
-  font-size: 16px;
-  transition: all 250ms ease-in-out;
+  font-size: 14px;
+  line-height: calc(18 / 14);
+  transition: all ${({ theme }) => theme.transition.main};
   padding: 5px 10px;
   border-radius: 10px;
-  :hover {
-    box-shadow: 0px 0px 10px 0px rgba(230, 83, 60, 0.8);
-    color: #efede8;
+
+  &:hover {
+    box-shadow: ${({ theme }) => theme.boxShadow.dataIndicator};
     transform: translateX(3px);
     background-color: ${({ theme }) => theme.color.black};
-    /* background-color: black; */
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: calc(24 / 16);
   }
 `;
 
@@ -40,33 +37,61 @@ export const ArrowBtnLeft = styled.button`
   justify-content: space-between;
   align-items: center;
   gap: 4px;
-  padding: 2px 0;
   border: none;
-  color: ${({ theme }) => theme.color.graySecond};
-
+  color: ${({ theme }) => theme.color.grayFifth};
   background-color: transparent;
-  font-size: 16px;
-  transition: all 250ms ease-in-out;
+  font-size: 14px;
+  line-height: calc(18 / 14);
+  transition: all ${({ theme }) => theme.transition.main};
   padding: 5px 10px;
   border-radius: 10px;
-  :hover {
-    box-shadow: 0px 0px 10px 0px rgba(230, 83, 60, 0.8);
-    color: ${({ theme }) => theme.color.white};
 
-    transform: translateX(-3px);
+  &:hover {
+    box-shadow: ${({ theme }) => theme.boxShadow.dataIndicator};
+    transform: translateX(3px);
     background-color: ${({ theme }) => theme.color.black};
   }
-`;
-export const GoBtn = styled.button`
-  padding: 16px 75px;
-  text-align: center;
-  font-size: 20px;
-  color: ${({ theme }) => theme.color.graySecond};
-  background-color: ${({ theme }) => theme.color.orangeFirst};
 
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: calc(24 / 16);
+  }
+`;
+
+export const ArrowIcon = styled.div`
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${({ theme }) => theme.color.orangeFirst};
+
+  svg {
+    width: 75%;
+    height: 75%;
+    stroke: currentColor;
+  }
+`;
+
+export const GoBtn = styled.button`
+  padding: 12px 40px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: calc(18 / 16);
+  color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.orangeFirst};
   border-radius: 12px;
   border: none;
-  color: ${({ theme }) => theme.color.white};
+  transition: background-color ${({ theme }) => theme.transition.main};
 
-  transition: color 300ms ease-in-out;
+  &:hover {
+    background-color: ${({ theme }) => theme.color.hover};
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 16px 75px;
+    font-size: 20px;
+    line-height: calc(24 / 20);
+  }
 `;

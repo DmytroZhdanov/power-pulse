@@ -52,7 +52,7 @@ export default function BirthdayInput({ selectedDate, setSelectedDate,setIsDateS
             {inputText}
           </DefaultInputText>
           <CalendarIcon setColor={isDateSelected ? 'full' : ''}>
-            <Icon name="calendar" />
+            <Icon name="calendar-data" />
           </CalendarIcon>
         </WrapperCalendarInput>
       </Calendar>

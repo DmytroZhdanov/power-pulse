@@ -1,21 +1,15 @@
 import styled from '@emotion/styled';
 
 export const WrapperCalendarInput = styled.div`
-  position: relative;
-  width: 159px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
 
   border-radius: 12px;
-  padding: 10px;
+  padding: 14px;
   border: 1px solid ${({ theme }) => theme.color.border};
-
-  @media screen and (min-width: 768px) {
-    width: 153px;
-    padding: 14px;
-  }
 `;
 
 export const InputHidden = styled.input`
@@ -37,27 +31,34 @@ export const DefaultInputText = styled.p`
       ? ({ theme }) => theme.color.white
       : 'rgb(117 117 117)'};
   transition:
-    color 300ms ease-in-out,
-    transform 300ms ease-in-out;
-  font-size: 16px;
-  line-height: 1.5;
+    color ${({ theme }) => theme.transition.main},
+    transform ${({ theme }) => theme.transition.main};
+  font-size: 14px;
+  line-height: calc(18 / 14);
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: calc(24 / 16);
+  }
 `;
 
 export const CalendarIcon = styled.div`
-  svg {
-    width: 18px;
-    height: 18px;
-    stroke: ${({ setColor }) =>
-      setColor === 'full'
-        ? ({ theme }) => theme.color.white
-        : 'rgb(117 117 117)'};
-    transition:
-      stroke 300ms ease-in-out,
-      transform 300ms ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  color: ${({ setColor }) =>
+    setColor === 'full'
+      ? ({ theme }) => theme.color.white
+      : 'rgb(117 117 117)'};
+  transition:
+    color ${({ theme }) => theme.transition.main},
+    transform ${({ theme }) => theme.transition.main};
 
-    @media screen and (min-width: 768px) {
-      width: 20px;
-      height: 20px;
-    }
+  svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
   }
 `;

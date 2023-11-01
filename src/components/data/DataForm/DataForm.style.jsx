@@ -1,33 +1,28 @@
 import styled from '@emotion/styled';
 
 export const DataFormContainer = styled.div`
-  /* height: 800px; */
-  padding-top: 200px;
+  position: relative;
+  z-index: 2;
 `;
 
-export const FormContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  gap: 10px;
-  margin-bottom: 32px;
-`;
+// FirstStep Component
 
 export const TextLabel = styled.label`
   position: relative;
   display: inline-block;
+
   span {
     position: absolute;
     top: 0;
     left: 0;
-    transition: 0.2s;
-    transition-timing-function: ease;
-    transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+    transition: all ${({ theme }) => theme.transition.main};
     opacity: 0;
     color: ${({ theme }) => theme.color.graySecond};
 
-    font-size: 14px;
+    font-size: 12px;
+    line-height: calc(18 / 12);
   }
+
   input:focus + span,
   input:not(:placeholder-shown) + span {
     opacity: 1;
@@ -42,59 +37,43 @@ export const TextLabel = styled.label`
 
     font-size: 10px;
   }
-`;
-export const TextInput = styled.input`
-  border: 1px solid rgba(239, 237, 232, 0.3);
-  border-radius: 12px;
-  padding: 14px 0 14px 14px;
-  font-size: 16px;
-  line-height: 24px;
-  color: ${({ theme }) => theme.color.graySecond};
 
-  width: 153px;
+  @media screen and (min-width: 768px) {
+    span {
+      font-size: 14px;
+      line-height: calc(18 / 14);
+    }
+
+    input:focus + span,
+    input:not(:placeholder-shown) + span {
+      opacity: 1;
+      transform: scale(0.75) translateY(-26px) translateX(0);
+    }
+  }
+`;
+
+export const TextInput = styled.input`
+  border: 1px solid ${({ theme }) => theme.color.grayFirst};
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 14px;
+  line-height: calc(18 / 14);
+  color: ${({ theme }) => theme.color.input};
+  width: 100%;
   background-color: transparent;
 
-  :hover,
-  :focus {
+  &:hover,
+  &:focus {
     border: 1px solid ${({ theme }) => theme.color.orangeFirst};
     outline: none;
   }
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+    line-height: calc(24 / 16);
+  }
 `;
-// export const BirthdayContainer = styled.div`
-//   border: 1px solid rgba(239, 237, 232, 0.3);
-//   border-radius: 12px;
-//   padding: 14px;
 
-//   font-size: 16px;
-//   line-height: 24px;
-
-//   color: ${({ theme }) => theme.color.graySecond};
-
-//   width: 159px;
-//   background-color: transparent;
-//   :hover,
-//   :focus {
-//     border: 1px solid ${({ theme }) => theme.color.orangeFirst};
-//     outline: none;
-//   }
-//   margin-top: 4px;
-//   @media screen and (min-width: 768px) {
-//     width: 153px;
-//     padding: 14px;
-//   }
-
-//   .calendar-svg {
-//     width: 18px;
-//     height: 18px;
-//     stroke: ${({ theme }) => theme.color.white};
-//   }
-
-//   .calendar-input-text {
-//     color: ${({ theme }) => theme.color.graySecond};
-//     font-size: 16px;
-//     line-height: 1.5;
-//   }
-// `;
 export const SuccessMessage = styled.div`
   width: 140px;
   height: 10px;
@@ -111,28 +90,49 @@ export const SuccessMessage = styled.div`
     font-size: 11px;
   }
 `;
+
+// SecondStep Component
+
 export const RadioContainer1 = styled.div`
   display: flex;
-  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 64px;
-  margin-bottom: 32px;
+  margin-top: 28px;
+  margin-bottom: 28px;
+
   legend {
     margin-bottom: 16px;
-    font-size: 16px;
-    color: ${({ theme }) => theme.color.grayBackground};
+    font-size: 14px;
+    line-height: calc(18 / 14);
+    color: ${({ theme }) => theme.color.white};
   }
+
   label {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-    font-size: 16px;
-    color: ${({ theme }) => theme.color.grayBackground};
-
+    gap: 9px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: calc(18 / 14);
+    color: ${({ theme }) => theme.color.white};
     cursor: pointer;
   }
-  fieldset {
-    position: relative;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 32px;
+    margin-bottom: 32px;
+
+    legend {
+      font-size: 16px;
+      line-height: calc(24 / 16);
+    }
+
+    label {
+      margin-bottom: 8px;
+      font-size: 16px;
+      line-height: calc(24 / 16);
+    }
   }
 `;
 
@@ -144,12 +144,17 @@ export const ErrorContainer = styled.div`
 `;
 
 export const RadioLabel = styled.label`
+  input {
+    display: none;
+  }
+
   span {
+    flex: none;
     position: relative;
-    width: 24px;
-    height: 24px;
+    width: 19px;
+    height: 19px;
     border-radius: 50%;
-    border: 3px solid ${({ theme }) => theme.color.input};
+    border: 2px solid ${({ theme }) => theme.color.input};
 
     ::after {
       position: absolute;
@@ -158,17 +163,30 @@ export const RadioLabel = styled.label`
       transform: translate(-50%, -50%);
       content: '';
       border-radius: 50%;
-      width: 12px;
-      height: 12px;
+      width: 9px;
+      height: 9px;
       opacity: 0;
       background-color: ${({ theme }) => theme.color.orangeSecond};
 
-      transition: all 300ms ease-in-out;
+      transition: all ${({ theme }) => theme.transition.main};
     }
   }
 
   input:checked + span {
-    border: 3px solid ${({ theme }) => theme.color.orangeSecond};
+    border: 2px solid ${({ theme }) => theme.color.orangeSecond};
+  }
+
+  @media screen and (min-width: 768px) {
+    span {
+      padding: 2px;
+      width: 24px;
+      height: 24px;
+
+      ::after {
+        width: 12px;
+        height: 12px;
+      }
+    }
   }
 `;
 
