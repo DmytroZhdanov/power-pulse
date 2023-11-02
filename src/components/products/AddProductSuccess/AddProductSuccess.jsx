@@ -11,6 +11,7 @@ import {
   DivLink,
   LinkText,
 } from './AddProductSuccess.styled';
+
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { ROUTER } from 'src/utils/constants';
 
