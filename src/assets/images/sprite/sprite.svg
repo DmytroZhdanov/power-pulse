@@ -146,7 +146,7 @@
     </symbol>
     <!-- Іконка "Стрілка вправо Сіра". ДУБЛЬ-->
     <symbol id="arrow-add-prod" viewBox="0 0 32 32">
-      <path fill="none" stroke="#efede8" style="stroke: var(--color1, #efede8)" opacity="0.3" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6" d="M15 28l13-13M28 15l-13-13M28 15h-26"></path>
+      <path fill="none" stroke="inherit"   stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6" d="M15 28l13-13M28 15l-13-13M28 15h-26"></path>
     </symbol>
     <!-- Іконка "Стрілка вправо Рожева". ДУБЛЬ -->
     <symbol id="arrow-add-prod-orange" viewBox="0 0 32 32">

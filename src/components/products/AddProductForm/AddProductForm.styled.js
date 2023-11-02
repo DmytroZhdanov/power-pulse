@@ -136,7 +136,14 @@ export const ButtonAdd = styled.button`
   border-radius: 12px;
   background: ${({ theme }) => theme.color.orangeFirst};
   line-height: calc(18 / 16);
+  transition:
+    color 300ms ease-in-out,
+    background 300ms ease-in-out;
 
+  :hover {
+    color: ${({ theme }) => theme.color.hoverBorder};
+    background: ${({ theme }) => theme.color.white};
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     padding: 12px 32px;
   }
@@ -157,6 +164,14 @@ export const ButtonCancel = styled.button`
   font-size: 14px;
   font-weight: 500;
   line-height: calc(18 / 16);
+  transition:
+    color 300ms ease-in-out,
+    background 300ms ease-in-out;
+
+  :hover {
+    color: ${({ theme }) => theme.color.hoverBorder};
+    background: ${({ theme }) => theme.color.white};
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     padding: 12px 32px;

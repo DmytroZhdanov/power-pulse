@@ -96,6 +96,10 @@ export const ProductTitleH2 = styled.h2`
   font-size: 20px;
   line-height: calc(24 / 20);
 
+  &::first-letter {
+    text-transform: uppercase;
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 24px;
     line-height: calc(32 / 24);
