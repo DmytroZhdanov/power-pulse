@@ -14,6 +14,7 @@ export const BackgroundDiv = styled.div`
     url(${bg_eating3x}) 3x
   );
   background-size: 428px 716px;
+  border-radius: 12px;
 `;
 
 export const WrapperDiv = styled.div`
