@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import PropTypes from 'prop-types';
 
@@ -26,11 +26,10 @@ export default function ProductsList({ filter }) {
   const [products, setProducts] = useState([]);
   const [userGroupBlood, setUserGroupBlood] = useState(null);
 
-  const [currentFilter, setCurrentFilter] = useState(filter);
+  const [currentFilter, setCurrentFilter] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [resLimit, setResLimit] = useState(18);
-  const [total, setTotal] = useState(1000);
-
+  const [newResponse, setNewResponse] = useState(true);
+  const productListRef = useRef();
   const [
     getProducts,
     { isLoading: isGettingLazy, isError: gettingErrorLazy, error: myErrorLazy },
@@ -46,12 +45,11 @@ export default function ProductsList({ filter }) {
 
   const { ref } = useInView({
     onChange: inView => {
-      if (inView) {
+      if (inView && newResponse) {
         setCurrentPage(prevPage => prevPage + 1);
       }
     },
   });
-
   /**
    * Updates the user's blood type based on a successful request to the backend.
    *
@@ -64,18 +62,15 @@ export default function ProductsList({ filter }) {
   }, [isSuccess, userBlood]);
 
   useEffect(() => {
-    if (filter !== currentFilter) {
-      setResLimit(18);
-      setTotal(1000);
-      setCurrentFilter(filter);
-      setCurrentPage(1);
+    if (productListRef.current) {
+      productListRef.current.scrollTop = 0;
     }
-    const totalPage = total / resLimit;
+    setCurrentPage(1);
+    setNewResponse(true);
+    setCurrentFilter(filter);
+  }, [filter, ref]);
 
-    if (totalPage < currentPage) {
-      return;
-    }
-
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getProducts({
@@ -83,8 +78,9 @@ export default function ProductsList({ filter }) {
           ...currentFilter,
         }).unwrap();
 
-        setTotal(response.total);
-        setResLimit(response.limit);
+        if (response.data.length < 18) {
+          setNewResponse(false);
+        }
 
         if (currentPage === 1) {
           setProducts([...response.data]);
@@ -96,13 +92,13 @@ export default function ProductsList({ filter }) {
       }
     };
 
-    fetchData();
-  }, [currentFilter, getProducts, currentPage, filter, total, resLimit]);
+    newResponse && currentFilter && fetchData();
+  }, [getProducts, currentPage, currentFilter, newResponse]);
 
   return (
     <>
       {products.length > 0 ? (
-        <ProductListUl>
+        <ProductListUl ref={productListRef}>
           {products.map((props, index) => (
             <li key={index} ref={index === products.length - 1 ? ref : null}>
               <ProductsItem
@@ -142,5 +138,9 @@ export default function ProductsList({ filter }) {
 }
 
 ProductsList.propTypes = {
-  filter: PropTypes.object,
+  filter: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    recommended: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  }),
 };
