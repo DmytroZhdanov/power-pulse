@@ -1,7 +1,7 @@
-import{n as t,j as i}from"./index-eb9e00d3.js";const x=t.div`
+import{n as i,P as t,j as a}from"./index-dee65449.js";const g={hidden:{x:"-100%"},visible:{x:"0%"}},m={visible:e=>({opacity:1,x:0,transition:{delay:e*.2}}),hidden:{opacity:0,x:-300}},v=i.div`
   position: relative;
   z-index: 2;
-`,g=t.label`
+`,y=i.label`
   position: relative;
   display: inline-block;
 
@@ -44,7 +44,7 @@ import{n as t,j as i}from"./index-eb9e00d3.js";const x=t.div`
       transform: scale(0.75) translateY(-26px) translateX(0);
     }
   }
-`,d=t.input`
+`,c=i.input`
   border: 1px solid ${({theme:e})=>e.color.grayFirst};
   border-radius: 12px;
   padding: 14px;
@@ -64,7 +64,7 @@ import{n as t,j as i}from"./index-eb9e00d3.js";const x=t.div`
     font-size: 16px;
     line-height: calc(24 / 16);
   }
-`,u=t.div`
+`,b=i.div`
   width: 140px;
   height: 10px;
   display: flex;
@@ -79,7 +79,7 @@ import{n as t,j as i}from"./index-eb9e00d3.js";const x=t.div`
     color: green;
     font-size: 11px;
   }
-`,m=t.div`
+`,f=i.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -120,12 +120,15 @@ import{n as t,j as i}from"./index-eb9e00d3.js";const x=t.div`
       line-height: calc(24 / 16);
     }
   }
-`,v=t.div`
+  fieldset {
+    position: relative;
+  }
+`,w=i.div`
   position: absolute;
   width: 150px;
-  top: -10%;
+  top: -15px;
   left: 0;
-`,y=t.label`
+`,$=i.label`
   input {
     display: none;
   }
@@ -170,10 +173,10 @@ import{n as t,j as i}from"./index-eb9e00d3.js";const x=t.div`
       }
     }
   }
-`,c=t.input`
+`,h=i.input`
   appearance: none;
 
   :checked ~ span::after {
     opacity: 1;
   }
-`;function b({type:e,id:a,name:o,onChange:n,value:l,onBlur:r,placeholder:s,checked:p}){return i.jsxs(i.Fragment,{children:[e==="text"&&i.jsx(d,{id:a,type:e,name:o,value:l,onChange:n,onBlur:r,placeholder:s}),e==="radio"&&i.jsx(c,{id:a,type:e,name:o,value:l,onChange:n,checked:p})]})}const f=[{htmlFor:"height",type:"text",id:"height",name:"height",placeholder:"Current Height",span:"Height"},{htmlFor:"currentWeight",type:"text",id:"currentWeight",name:"currentWeight",placeholder:"Current Weight",span:"Weight"},{htmlFor:"desiredWeight",type:"text",id:"desiredWeight",name:"desiredWeight",placeholder:"Desired Weight",span:"Weight"}],w=[{type:"radio",id:"blood_1",name:"blood",value:"1"},{type:"radio",id:"blood_2",name:"blood",value:"2"},{type:"radio",id:"blood_3",name:"blood",value:"3"},{type:"radio",id:"blood_4",name:"blood",value:"4"}],$=[{htmlFor:"genderMale",type:"radio",id:"genderMale",name:"sex",value:"male",label:"Male"},{htmlFor:"genderFemale",type:"radio",id:"genderFemale",name:"sex",value:"female",label:"Female"}],k=[{type:"radio",value:1,id:"levelActivity_1",name:"levelActivity",valueText:"Sedentary lifestyle (little or no physical activity)"},{type:"radio",value:2,id:"levelActivity_2",name:"levelActivity",valueText:"Light activity (light exercises/sports 1-3 days per week)"},{type:"radio",value:3,id:"levelActivity_3",name:"levelActivity",valueText:"Moderately active (moderate exercises/sports 3-5 days per week)"},{type:"radio",value:4,id:"levelActivity_4",name:"levelActivity",valueText:"Very active (intense exercises/sports 6-7 days per week)"},{type:"radio",value:5,id:"levelActivity_5",name:"levelActivity",valueText:"Extremely active (very strenuous exercises/sports and physical work)"}];export{x as D,v as E,m as R,u as S,g as T,b as a,y as b,$ as c,k as d,w as r,f as t};
+`;function x({type:e,id:o,name:n,onChange:r,value:l,onBlur:s,placeholder:p,checked:d}){return a.jsxs(a.Fragment,{children:[e==="text"&&a.jsx(c,{id:o,type:e,name:n,value:l,onChange:r,onBlur:s,placeholder:p}),e==="radio"&&a.jsx(h,{id:o,type:e,name:n,value:l,onChange:r,checked:d})]})}x.propTypes={type:t.oneOf(["text","radio"]).isRequired,id:t.string.isRequired,name:t.string.isRequired,onChange:t.func.isRequired,value:t.oneOfType([t.string,t.number]).isRequired,onBlur:t.func,placeholder:t.string,checked:t.bool};const k=[{htmlFor:"height",type:"text",id:"height",name:"height",placeholder:"Current Height",span:"Height"},{htmlFor:"currentWeight",type:"text",id:"currentWeight",name:"currentWeight",placeholder:"Current Weight",span:"Weight"},{htmlFor:"desiredWeight",type:"text",id:"desiredWeight",name:"desiredWeight",placeholder:"Desired Weight",span:"Weight"}],F=[{type:"radio",id:"blood_1",name:"blood",value:"1"},{type:"radio",id:"blood_2",name:"blood",value:"2"},{type:"radio",id:"blood_3",name:"blood",value:"3"},{type:"radio",id:"blood_4",name:"blood",value:"4"}],D=[{htmlFor:"genderMale",type:"radio",id:"genderMale",name:"sex",value:"male",label:"Male"},{htmlFor:"genderFemale",type:"radio",id:"genderFemale",name:"sex",value:"female",label:"Female"}],z=[{type:"radio",value:1,id:"levelActivity_1",name:"levelActivity",valueText:"Sedentary lifestyle (little or no physical activity)"},{type:"radio",value:2,id:"levelActivity_2",name:"levelActivity",valueText:"Light activity (light exercises/sports 1-3 days per week)"},{type:"radio",value:3,id:"levelActivity_3",name:"levelActivity",valueText:"Moderately active (moderate exercises/sports 3-5 days per week)"},{type:"radio",value:4,id:"levelActivity_4",name:"levelActivity",valueText:"Very active (intense exercises/sports 6-7 days per week)"},{type:"radio",value:5,id:"levelActivity_5",name:"levelActivity",valueText:"Extremely active (very strenuous exercises/sports and physical work)"}];export{v as D,w as E,f as R,b as S,y as T,x as a,$ as b,D as c,z as d,m as l,F as r,g as s,k as t};
