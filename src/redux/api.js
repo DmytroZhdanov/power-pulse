@@ -207,6 +207,7 @@ export const {
   useFetchUserParamsQuery,
   useLazyFetchUserParamsQuery,
   useFetchDailyRateQuery,
+  useLazyFetchDailyRateQuery,
   useFetchUserBloodGroupQuery,
   useLazyRefreshQuery,
   useLogoutMutation,

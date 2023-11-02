@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types';
-import { format } from 'date-fns';
 import { useEffect, useState } from 'react';
-import { useLazyFetchUserParamsQuery } from 'src/redux/api';
+import { format } from 'date-fns';
+import PropTypes from 'prop-types';
 
-import Calendar from '../../Calendar/Calendar';
-import Icon from 'src/components/common/IconsComp/Icon';
-
+import Calendar from 'components/Calendar/Calendar';
+import Icon from 'components/common/IconsComp/Icon';
 import {
   CalendarIcon,
   DefaultInputText,
   WrapperCalendarInput,
 } from './BirthdayInput.style';
+
+import { useLazyFetchUserParamsQuery } from 'src/redux/api';
 
 export default function BirthdayInput({ selectedDate, setSelectedDate }) {
   const [showDefaultInputValue, setShowDefaultInputValue] = useState(true);
@@ -61,6 +61,7 @@ export default function BirthdayInput({ selectedDate, setSelectedDate }) {
           <DefaultInputText setColor={showDefaultInputValue ? '' : 'full'}>
             {inputText}
           </DefaultInputText>
+
           <CalendarIcon>
             <Icon name="calendar" />
           </CalendarIcon>

@@ -1,30 +1,32 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import LogOutBtn from 'components/common/LogOutBtn/LogOutBtn';
 import Icon from 'src/components/common/IconsComp/Icon';
-import { selectUserAvatars, selectUserName } from 'src/redux/auth/selectors';
-
-import { useUpdateUserAvatarMutation } from 'src/redux/api';
+import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
-  User,
-  Avatar,
-  Image,
-  BtnAvat,
-  Name,
-  MainText,
-  SecondText,
-  AddText,
-  Daily,
-  Calories,
-  SportTime,
-  Warnings,
-  BtnLogout,
+  UserDiv,
+  AvatarDiv,
+  ImageDiv,
+  BtnAvatarLabel,
+  NameDiv,
+  MainTextP,
+  SecondTextP,
+  AddTextP,
+  DailyDiv,
+  CaloriesDiv,
+  SportTimeDiv,
+  WarningsDiv,
+  BtnLogoutDiv,
 } from './UserCard.styled';
-import { setAvatars } from 'src/redux/auth/authSlice';
-import ErrorHandler from '../../common/ErrorHandler/ErrorHandler';
-import { useFetchDailyRateQuery } from '../../../redux/api';
 
-export default function UserCard() {
+import { selectUserAvatars, selectUserName } from 'src/redux/auth/selectors';
+import { useUpdateUserAvatarMutation } from 'src/redux/api';
+import { setAvatars } from 'src/redux/auth/authSlice';
+import { useLazyFetchDailyRateQuery } from 'src/redux/api';
+
+export default function UserCard({ fetchBmr, setFetchBmr }) {
   const [
     updateUserAvatar,
     {
@@ -33,15 +35,31 @@ export default function UserCard() {
       error: updateAvatarError,
     },
   ] = useUpdateUserAvatarMutation();
-  const {
-    data: bmr,
-    isLoading: isFetchBMRLoading,
-    isError: isFetchBMRError,
-    error: fetchBMRError,
-  } = useFetchDailyRateQuery();
+
+  const [
+    fetchDailyRate,
+    {
+      data: bmr,
+      isLoading: isFetchBMRLoading,
+      isError: isFetchBMRError,
+      error: fetchBMRError,
+    },
+  ] = useLazyFetchDailyRateQuery();
+
   const dispatch = useDispatch();
   const userName = useSelector(selectUserName);
   const avatars = useSelector(selectUserAvatars);
+
+  useEffect(() => {
+    const fetch = async () => {
+      await fetchDailyRate();
+    };
+
+    if (fetchBmr) {
+      fetch();
+      setFetchBmr(false);
+    }
+  }, [fetchBmr, fetchDailyRate, setFetchBmr]);
 
   const handleChange = async e => {
     e.preventDefault();
@@ -57,9 +75,9 @@ export default function UserCard() {
 
   return (
     <>
-      <User>
-        <Avatar>
-          <Image>
+      <UserDiv>
+        <AvatarDiv>
+          <ImageDiv>
             {avatars ? (
               <div>
                 <picture>
@@ -84,7 +102,7 @@ export default function UserCard() {
             ) : (
               <Icon name="user" />
             )}
-            <BtnAvat htmlFor="avatarUrls">
+            <BtnAvatarLabel htmlFor="avatarUrls">
               <input
                 type="file"
                 name="avatar"
@@ -93,46 +111,46 @@ export default function UserCard() {
                 onChange={handleChange}
               />
               <Icon name="add_avatar" />
-            </BtnAvat>
-          </Image>
+            </BtnAvatarLabel>
+          </ImageDiv>
 
-          <Name>
-            <MainText>{userName}</MainText>
+          <NameDiv>
+            <MainTextP>{userName}</MainTextP>
 
-            <SecondText>User</SecondText>
-          </Name>
-        </Avatar>
+            <SecondTextP>User</SecondTextP>
+          </NameDiv>
+        </AvatarDiv>
 
-        <Daily>
-          <Calories>
-            <AddText>
+        <DailyDiv>
+          <CaloriesDiv>
+            <AddTextP>
               <Icon name="food" />
               Daily calorie intake
-            </AddText>
+            </AddTextP>
 
-            <MainText>{bmr || 2200}</MainText>
-          </Calories>
+            <MainTextP>{bmr || 2200}</MainTextP>
+          </CaloriesDiv>
 
-          <SportTime>
-            <AddText>
+          <SportTimeDiv>
+            <AddTextP>
               <Icon name="dumbbell" />
               Daily norm of sports
-            </AddText>
+            </AddTextP>
 
-            <MainText>110 min</MainText>
-          </SportTime>
-        </Daily>
+            <MainTextP>110 min</MainTextP>
+          </SportTimeDiv>
+        </DailyDiv>
 
-        <Warnings>
-          <SecondText>
+        <WarningsDiv>
+          <SecondTextP>
             <Icon name="note" />
             We understand that each individual is unique, so the entire approach
             to diet is relative and tailored to your unique body and goals.
-          </SecondText>
-        </Warnings>
+          </SecondTextP>
+        </WarningsDiv>
 
-        <BtnLogout>{<LogOutBtn />}</BtnLogout>
-      </User>
+        <BtnLogoutDiv>{<LogOutBtn />}</BtnLogoutDiv>
+      </UserDiv>
 
       <ErrorHandler
         isLoading={isUpdateAvatarLoading}
@@ -148,3 +166,8 @@ export default function UserCard() {
     </>
   );
 }
+
+UserCard.propTypes = {
+  fetchBmr: PropTypes.bool.isRequired,
+  setFetchBmr: PropTypes.func.isRequired,
+};
