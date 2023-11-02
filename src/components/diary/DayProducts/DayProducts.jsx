@@ -1,5 +1,5 @@
 import ProductsTable from '../ProductsTable/ProductsTable';
-import sprite from '../../../assets/images/sprite/sprite.svg';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 import { TailSpin } from 'react-loader-spinner';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -12,15 +12,14 @@ import {
   AddProdBtnIcon,
   AddProdBtnText,
 } from './DayProducts.styled';
-import { useFetchUserBloodGroupQuery } from '../../../redux/api';
+import { useFetchUserBloodGroupQuery } from 'src/redux/api';
 
 export default function DayProducts({
   diaryProducts,
   setDiaryProducts,
   isLoading,
 }) {
-
-  const {data} =  useFetchUserBloodGroupQuery();
+  const { data } = useFetchUserBloodGroupQuery();
   return (
     <DayProdDiv>
       <DayProdDivList>
