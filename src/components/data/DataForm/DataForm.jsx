@@ -16,7 +16,7 @@ import { slideInFromLeft } from 'components/data/helper/motion';
 import { useUpdateUserParamsMutation } from 'src/redux/api';
 import { DATA_STEPS, ROUTER } from 'src/utils';
 
-const DataForm = ({ userParams, step }) => {
+export default function DataForm({ userParams, step }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const [isDateSelected, setIsDateSelected] = useState(false);
@@ -90,4 +90,3 @@ DataForm.propTypes = {
   }).isRequired,
   step: PropTypes.string,
 };
-export default DataForm;
