@@ -3,11 +3,12 @@ import styled from '@emotion/styled';
 export const WrapperDiv = styled.div`
   padding: 50px 45px 30px 45px;
   display: flex;
-  gap: 25px;
+  gap: 35px;
   flex-direction: column;
 `;
 
 export const InputWrapperDiv = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -36,11 +37,53 @@ export const InputTime = styled.input`
   font-size: 14px;
   line-height: 1.29;
 
+  &:not(:placeholder-shown) + span {
+    opacity: 1;
+  }
+
   @media screen and (min-width: 768px) {
     font-size: 16px;
     line-height: 1.5;
     width: 167px;
     padding: 12px;
+  }
+`;
+
+export const ErrorMessage = styled.span`
+  position: absolute;
+  right: 5px;
+  bottom: -22px;
+  color: #D80027;
+
+  &.error-message-enter {
+    opacity: 0;
+  }
+
+  &.error-message-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+  }
+
+  &.error-message-exit {
+    opacity: 1;
+  }
+
+  &.error-message-exit-active {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+  }
+`;
+
+export const InputBeforeSpan = styled.span`
+  position: absolute;
+  right: 15px;
+  bottom: 12px;
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    right: 15px;
+    bottom: 16px;
   }
 `;
 
