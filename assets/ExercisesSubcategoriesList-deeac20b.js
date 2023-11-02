@@ -1,4 +1,4 @@
-import{n as i,L as j,P as o,j as t,ac as y,ad as v,r as s,E as $}from"./index-7a3fa182.js";const P=i.li`
+import{n as i,L as j,P as o,j as t,ac as v,ad as y,r as s,E as $}from"./index-451995e9.js";const P=i.li`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,19 +33,23 @@ import{n as i,L as j,P as o,j as t,ac as y,ad as v,r as s,E as $}from"./index-7a
   justify-content: center;
   text-align: center;
   transition: transform 0.3s ease-in-out;
-  
+
   &:hover {
     transform: scale(1.1);
+    
+    .hoverText {
+      color: ${({theme:e})=>e.color.orangeSecond};
+    }
   }
-`,z=i.ul`
+`,S=i.ul`
   color: white;
   text-align: center;
   z-index: 2;
-`,R=i.p`
+`,z=i.p`
   font-size: 20px;
   line-height: 1.33;
   margin-bottom: 2px;
-  
+
   &::first-letter {
     text-transform: uppercase;
   }
@@ -53,11 +57,11 @@ import{n as i,L as j,P as o,j as t,ac as y,ad as v,r as s,E as $}from"./index-7a
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     font-size: 24px;
   }
-`,S=i.p`
+`,R=i.p`
   color: ${({theme:e})=>e.color.grayThird};
   font-size: 12px;
   line-height: 1.5;
-`;function m({item:e}){return t.jsx(P,{children:t.jsx(E,{to:e.name,children:t.jsx(L,{img:e.imgURL,children:t.jsxs(z,{children:[t.jsx("li",{children:t.jsx(R,{children:e.name})}),t.jsx("li",{children:t.jsx(S,{children:e.filter})})]})})})})}m.propTypes={item:o.shape({_id:o.string.isRequired,name:o.string.isRequired,imgURL:o.string.isRequired,filter:o.string.isRequired})};const C=i.div`
+`;function m({item:e}){return t.jsx(P,{children:t.jsx(E,{to:e.name,children:t.jsx(L,{img:e.imgURL,children:t.jsxs(S,{children:[t.jsx("li",{children:t.jsx(z,{className:"hoverText",children:e.name})}),t.jsx("li",{children:t.jsx(R,{children:e.filter})})]})})})})}m.propTypes={item:o.shape({_id:o.string.isRequired,name:o.string.isRequired,imgURL:o.string.isRequired,filter:o.string.isRequired})};const T=i.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -71,7 +75,7 @@ import{n as i,L as j,P as o,j as t,ac as y,ad as v,r as s,E as $}from"./index-7a
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
     min-height: 0;
   }
-`,I=i.ul`
+`,C=i.ul`
   display: flex;
   flex-wrap: wrap;
 
@@ -88,7 +92,7 @@ import{n as i,L as j,P as o,j as t,ac as y,ad as v,r as s,E as $}from"./index-7a
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
     column-gap: 15px;
   }
-`,U=i.ul`
+`,I=i.ul`
   display: flex;
   justify-content: center;
   margin-bottom: 80px;
@@ -96,7 +100,7 @@ import{n as i,L as j,P as o,j as t,ac as y,ad as v,r as s,E as $}from"./index-7a
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     margin-bottom: 32px;
   }
-`,W=i.button`
+`,U=i.button`
   width: 14px;
   height: 14px;
   border: 1px solid
@@ -123,4 +127,4 @@ import{n as i,L as j,P as o,j as t,ac as y,ad as v,r as s,E as $}from"./index-7a
   font-weight: bold;
   text-align: center;
   transition: background-color 0.3s;
-`;function B(){const e=y(),{data:n,isLoading:u,isError:b,error:f}=v(e),[d,p]=s.useState(0),[w,x]=s.useState(0),[a,l]=s.useState(10),k=r=>{p(r*a),x(r)};s.useEffect(()=>{p(0),x(0)},[e]),s.useEffect(()=>{const r=()=>{(e==="bodyPart"||e==="target")&&window.innerWidth<=375?l(10):window.innerWidth<1440?l(9):l(10)};return window.addEventListener("resize",r),r(),()=>{window.removeEventListener("resize",r)}},[e]);const h=n?Math.ceil(n.length/a):0,g=n?n.slice(d,d+a):[];return t.jsxs(C,{children:[t.jsx(I,{children:g&&g.map(r=>t.jsx(m,{item:r},r._id))}),h>1&&t.jsx(U,{children:Array.from({length:h},(r,c)=>t.jsx("li",{children:t.jsx(W,{onClick:()=>k(c),disabled:d/a===c,active:w===c})},c))}),t.jsx($,{isLoading:u,isError:b,error:f})]})}export{B as ExercisesSubcategoriesList};
+`;function q(){const e=v(),{data:n,isLoading:u,isError:b,error:f}=y(e),[d,p]=s.useState(0),[w,x]=s.useState(0),[a,l]=s.useState(10),k=r=>{p(r*a),x(r)};s.useEffect(()=>{p(0),x(0)},[e]),s.useEffect(()=>{const r=()=>{(e==="bodyPart"||e==="target")&&window.innerWidth<=375?l(10):window.innerWidth<1440?l(9):l(10)};return window.addEventListener("resize",r),r(),()=>{window.removeEventListener("resize",r)}},[e]);const h=n?Math.ceil(n.length/a):0,g=n?n.slice(d,d+a):[];return t.jsxs(T,{children:[t.jsx(C,{children:g&&g.map(r=>t.jsx(m,{item:r},r._id))}),h>1&&t.jsx(I,{children:Array.from({length:h},(r,c)=>t.jsx("li",{children:t.jsx(U,{onClick:()=>k(c),disabled:d/a===c,active:w===c})},c))}),t.jsx($,{isLoading:u,isError:b,error:f})]})}export{q as ExercisesSubcategoriesList};
