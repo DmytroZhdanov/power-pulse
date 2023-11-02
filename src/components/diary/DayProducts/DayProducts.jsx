@@ -1,7 +1,8 @@
-import ProductsTable from '../ProductsTable/ProductsTable';
-import sprite from '../../../assets/images/sprite/sprite.svg';
-import { TailSpin } from 'react-loader-spinner';
 import { motion, AnimatePresence } from 'framer-motion';
+import { TailSpin } from 'react-loader-spinner';
+import PropTypes from 'prop-types';
+
+import ProductsTable from '../ProductsTable/ProductsTable';
 import {
   DayProdDiv,
   DayProdText,
@@ -12,8 +13,9 @@ import {
   AddProdBtnIcon,
   AddProdBtnText,
 } from './DayProducts.styled';
-import { useFetchUserBloodGroupQuery } from '../../../redux/api';
-import PropTypes from 'prop-types';
+
+import sprite from 'src/assets/images/sprite/sprite.svg';
+import { useFetchUserBloodGroupQuery } from 'src/redux/api';
 
 export default function DayProducts({
   diaryProducts,
