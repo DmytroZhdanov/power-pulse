@@ -20,7 +20,7 @@ export function Products() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  console.log(filter);
+
   return (
     <>
       {isDesktop && (
