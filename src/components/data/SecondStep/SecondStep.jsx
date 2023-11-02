@@ -147,7 +147,9 @@ export function SecondStep({ formik }) {
                       input.value.toString(),
                     )
                   }
-                  checked={formik.values.levelActivity === input.value.toString()}
+                  checked={
+                    formik.values.levelActivity === input.value.toString()
+                  }
                 />
                 <span></span>
                 {input.valueText}
@@ -165,7 +167,7 @@ SecondStep.propTypes = {
     values: PropTypes.shape({
       blood: PropTypes.string.isRequired,
       sex: PropTypes.string.isRequired,
-      levelActivity: PropTypes.number,
+      levelActivity: PropTypes.string.isRequired,
     }).isRequired,
     handleChange: PropTypes.func,
     setFieldValue: PropTypes.func,

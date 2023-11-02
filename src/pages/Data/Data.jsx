@@ -18,7 +18,7 @@ const initialState = {
   birthday: '',
   blood: '',
   sex: '',
-  levelActivity: 0,
+  levelActivity: '',
 };
 
 export function Data() {
