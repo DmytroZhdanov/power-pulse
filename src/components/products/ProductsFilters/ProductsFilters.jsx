@@ -85,18 +85,16 @@ export default function ProductsFilters({ onProductsChange }) {
    */
   const onQueryChange = e => {
     setSearch(e.target.value);
-    console.log('search', search);
 
     if (queryChangeTimer) {
       clearTimeout(queryChangeTimer);
     }
-
     const newTimer = setTimeout(() => {
       setFilter(prevFilter => ({
         ...prevFilter,
-        [QUERY]: search,
+        [QUERY]: e.target.value,
       }));
-    }, 600);
+    }, 700);
 
     setQueryChangeTimer(newTimer);
   };
