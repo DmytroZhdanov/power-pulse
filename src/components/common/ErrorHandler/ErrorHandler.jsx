@@ -9,7 +9,12 @@ import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
 
 import { initialState, setCredentials } from 'src/redux/auth/authSlice';
 
-export default function ErrorHandler({ isLoading, isError, error }) {
+export default function ErrorHandler({
+  isLoading,
+  isError,
+  error,
+  showLoader = true,
+}) {
   const [showTimerWarning, setShowTimerWarning] = useState(false);
   const [showError, setShowError] = useState(false);
   const dispatch = useDispatch();
@@ -47,7 +52,7 @@ export default function ErrorHandler({ isLoading, isError, error }) {
 
   return (
     <>
-      {isLoading && <Loader />}
+      {isLoading && showLoader && <Loader />}
 
       <BasicModalWindow
         onShow={isLoading && showTimerWarning}
@@ -72,6 +77,7 @@ ErrorHandler.propTypes = {
     }).isRequired,
     status: PropTypes.number.isRequired,
   }),
+  showLoader: PropTypes.bool,
 };
 
 // ============================== USAGE EXAMPLE ==============================

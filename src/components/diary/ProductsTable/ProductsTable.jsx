@@ -1,34 +1,45 @@
-import sprite from '../../../assets/images/sprite/sprite.svg';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { useDeleteProductMutation } from '../../../redux/api';
+import { motion, AnimatePresence } from 'framer-motion';
+import PropTypes from 'prop-types';
+
+import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   TableDiv,
   Table,
-  TableMainTitles,
+  TableMainTitlesThead,
   TableTitleTr,
-  TableMainTitle,
+  TableMainTitleTh,
   TableBody,
-  TableTr,
   TableInfoTd,
-  BtnTd,
-  DelBtnTable,
+  DelBtnTableButton,
   DelIcon,
   TableRecomSpan,
 } from './ProductsTable.styled';
-import PropTypes from 'prop-types';
 
-export default function ProductsTable({
-  diaryProducts,
-  setDiaryProducts,
-  blood,
-}) {
-  const [deleteProduct] = useDeleteProductMutation();
-  const [isTableDesk, setIsTablDesk] = useState(window.innerWidth >= 768);
+import sprite from 'src/assets/images/sprite/sprite.svg';
+import {
+  useDeleteProductMutation,
+  useFetchUserBloodGroupQuery,
+} from 'src/redux/api';
 
-  const handleResize = () => {
-    setIsTablDesk(window.innerWidth >= 768);
-  };
+export default function ProductsTable({ diaryProducts, setDiaryProducts }) {
+  const [
+    deleteProduct,
+    {
+      isLoading: isDeleteProductLoading,
+      isError: isDeleteProductError,
+      error: deleteProductError,
+    },
+  ] = useDeleteProductMutation();
+
+  const {
+    data: userBloodGroup,
+    isFetching: isUserBloodLoading,
+    isError: isUserBloodError,
+    error: userBloodError,
+  } = useFetchUserBloodGroupQuery();
+  const [isTablet, setIsTablet] = useState(window.innerWidth >= 768);
+
   useEffect(() => {
     window.addEventListener('resize', handleResize);
 
@@ -36,6 +47,10 @@ export default function ProductsTable({
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const handleResize = () => {
+    setIsTablet(window.innerWidth >= 768);
+  };
 
   const handleDeleteProduct = async id => {
     try {
@@ -54,22 +69,29 @@ export default function ProductsTable({
   return (
     <>
       <TableDiv>
-        {isTableDesk ? (
+        {isTablet ? (
           <Table>
-            <TableMainTitles>
+            <TableMainTitlesThead>
               <TableTitleTr>
-                <TableMainTitle>Title</TableMainTitle>
-                <TableMainTitle>Category</TableMainTitle>
-                <TableMainTitle>Calories</TableMainTitle>
-                <TableMainTitle>Weight</TableMainTitle>
-                <TableMainTitle>Recommend</TableMainTitle>
+                <TableMainTitleTh>Title</TableMainTitleTh>
+
+                <TableMainTitleTh>Category</TableMainTitleTh>
+
+                <TableMainTitleTh>Calories</TableMainTitleTh>
+
+                <TableMainTitleTh>Weight</TableMainTitleTh>
+
+                <TableMainTitleTh>Recommend</TableMainTitleTh>
               </TableTitleTr>
-            </TableMainTitles>
+            </TableMainTitlesThead>
+
             <AnimatePresence>
               {diaryProducts &&
                 diaryProducts.length !== 0 &&
                 diaryProducts.map(product => {
-                  const isRecommended = !product.groupBloodNotAllowed[blood]
+                  const isRecommended = !product.groupBloodNotAllowed[
+                    userBloodGroup
+                  ]
                     ? true
                     : false;
 
@@ -82,17 +104,23 @@ export default function ProductsTable({
                       transition={{ duration: 0.3 }}
                       exit={{ x: -900 }}
                     >
-                      <TableTr>
+                      <tr>
                         <TableInfoTd>{product.title}</TableInfoTd>
+
                         <TableInfoTd>{product.category}</TableInfoTd>
+
                         <TableInfoTd>{product.calories}</TableInfoTd>
+
                         <TableInfoTd>{product.amount}</TableInfoTd>
+
                         <TableInfoTd>
-                          <TableRecomSpan Recom={isRecommended} />
+                          <TableRecomSpan recommended={isRecommended} />
+
                           {isRecommended ? 'Yes' : 'No'}
                         </TableInfoTd>
-                        <BtnTd>
-                          <DelBtnTable
+
+                        <td>
+                          <DelBtnTableButton
                             onClick={() => {
                               handleDeleteProduct(product._id);
                             }}
@@ -100,9 +128,9 @@ export default function ProductsTable({
                             <DelIcon>
                               <use href={`${sprite}#delete`}></use>
                             </DelIcon>
-                          </DelBtnTable>
-                        </BtnTd>
-                      </TableTr>
+                          </DelBtnTableButton>
+                        </td>
+                      </tr>
                     </TableBody>
                   );
                 })}
@@ -115,7 +143,7 @@ export default function ProductsTable({
                 diaryProducts.length !== 0 &&
                 diaryProducts.map(product => {
                   const isRecommended =
-                    product.groupBloodNotAllowed[blood] === false
+                    product.groupBloodNotAllowed[userBloodGroup] === false
                       ? true
                       : false;
 
@@ -128,28 +156,38 @@ export default function ProductsTable({
                       as={motion.table}
                       key={product._id}
                     >
-                      <TableMainTitles>
+                      <TableMainTitlesThead>
                         <TableTitleTr>
-                          <TableMainTitle>Title</TableMainTitle>
-                          <TableMainTitle>Category</TableMainTitle>
-                          <TableMainTitle>Calories</TableMainTitle>
-                          <TableMainTitle>Weight</TableMainTitle>
-                          <TableMainTitle>Recommend</TableMainTitle>
+                          <TableMainTitleTh>Title</TableMainTitleTh>
+
+                          <TableMainTitleTh>Category</TableMainTitleTh>
+
+                          <TableMainTitleTh>Calories</TableMainTitleTh>
+
+                          <TableMainTitleTh>Weight</TableMainTitleTh>
+
+                          <TableMainTitleTh>Recommend</TableMainTitleTh>
                         </TableTitleTr>
-                      </TableMainTitles>
+                      </TableMainTitlesThead>
 
                       <TableBody>
-                        <TableTr>
+                        <tr>
                           <TableInfoTd>{product.title}</TableInfoTd>
+
                           <TableInfoTd>{product.category}</TableInfoTd>
+
                           <TableInfoTd>{product.calories}</TableInfoTd>
+
                           <TableInfoTd>{product.amount}</TableInfoTd>
+
                           <TableInfoTd>
-                            <TableRecomSpan Recom={isRecommended} />
+                            <TableRecomSpan recommended={isRecommended} />
+
                             {isRecommended ? 'Yes' : 'No'}
                           </TableInfoTd>
-                          <BtnTd>
-                            <DelBtnTable
+
+                          <td>
+                            <DelBtnTableButton
                               onClick={() => {
                                 handleDeleteProduct(product._id);
                               }}
@@ -157,9 +195,9 @@ export default function ProductsTable({
                               <DelIcon>
                                 <use href={`${sprite}#delete`}></use>
                               </DelIcon>
-                            </DelBtnTable>
-                          </BtnTd>
-                        </TableTr>
+                            </DelBtnTableButton>
+                          </td>
+                        </tr>
                       </TableBody>
                     </Table>
                   );
@@ -168,13 +206,25 @@ export default function ProductsTable({
           </>
         )}
       </TableDiv>
+
+      <ErrorHandler
+        isLoading={isDeleteProductLoading}
+        isError={isDeleteProductError}
+        error={deleteProductError}
+        showLoader={false}
+      />
+
+      <ErrorHandler
+        isLoading={isUserBloodLoading}
+        isError={isUserBloodError}
+        error={userBloodError}
+        showLoader={false}
+      />
     </>
   );
 }
 
 ProductsTable.propTypes = {
-  blood: PropTypes.number,
-
   diaryProducts: PropTypes.arrayOf(
     PropTypes.shape({
       amount: PropTypes.number.isRequired,

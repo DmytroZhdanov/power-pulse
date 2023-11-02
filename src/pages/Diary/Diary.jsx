@@ -1,28 +1,36 @@
 import { useState, useEffect } from 'react';
-import {
-  useFetchDailyRateQuery,
-  useFetchUserBloodGroupQuery,
-  useLazyFetchDiaryQuery,
-} from '../../redux/api';
+
 import TitlePage from 'components/common/TitlePage/TitlePage';
 import DayDashboard from 'components/diary/DayDashboard/DayDashboard';
 import DayExercises from 'components/diary/DayExercises/DayExercises';
 import DayProducts from 'components/diary/DayProducts/DayProducts';
 import DaySwitch from 'components/diary/DaySwitch/DaySwitch';
+import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
-  ContentWrapper,
-  DayStatisticWrapper,
-  HeaderWrapper,
+  ContentWrapperDiv,
+  DayStatisticWrapperDiv,
+  HeaderWrapperDiv,
   Section,
 } from './Diary.style';
+
+import { useFetchDailyRateQuery, useLazyFetchDiaryQuery } from 'src/redux/api';
 
 export function Diary() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [diaryProducts, setDiaryProducts] = useState([]);
   const [diaryExercises, setDiaryExercises] = useState([]);
-  const [fetchDiary, { isLoading }] = useLazyFetchDiaryQuery();
-  const { data: bmr } = useFetchDailyRateQuery();
-  const { data: userBloodGroup } = useFetchUserBloodGroupQuery();
+
+  const [
+    fetchDiary,
+    { isLoading: isDiaryLoading, isError: isDiaryError, error: diaryError },
+  ] = useLazyFetchDiaryQuery();
+
+  const {
+    data: bmr,
+    isFetching: isDailyRateLoading,
+    isError: isDailyRateError,
+    error: dailyRateError,
+  } = useFetchDailyRateQuery();
 
   const currentDay =
     selectedDate.getFullYear() +
@@ -44,33 +52,49 @@ export function Diary() {
 
   return (
     <Section>
-      <HeaderWrapper>
+      <HeaderWrapperDiv>
         <TitlePage text="Diary" />
+
         <DaySwitch
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
         />
-      </HeaderWrapper>
-      <ContentWrapper>
+      </HeaderWrapperDiv>
+
+      <ContentWrapperDiv>
         <DayDashboard
           bmrData={bmr}
           diaryProducts={diaryProducts}
           diaryExercises={diaryExercises}
         />
-        <DayStatisticWrapper>
+        <DayStatisticWrapperDiv>
           <DayProducts
-            isLoading={isLoading}
+            isLoading={isDiaryLoading}
             setDiaryProducts={setDiaryProducts}
             diaryProducts={diaryProducts}
-            blood={userBloodGroup}
           />
+
           <DayExercises
-            isLoading={isLoading}
+            isLoading={isDiaryLoading}
             diaryExercises={diaryExercises}
             setDiaryExercises={setDiaryExercises}
           />
-        </DayStatisticWrapper>
-      </ContentWrapper>
+        </DayStatisticWrapperDiv>
+      </ContentWrapperDiv>
+
+      <ErrorHandler
+        isLoading={isDiaryLoading}
+        isError={isDiaryError}
+        error={diaryError}
+        showLoader={false}
+      />
+
+      <ErrorHandler
+        isLoading={isDailyRateLoading}
+        isError={isDailyRateError}
+        error={dailyRateError}
+        showLoader={false}
+      />
     </Section>
   );
 }

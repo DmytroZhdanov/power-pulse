@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { RadioInput, TextInput } from '../DataForm/DataForm.style';
 
 export default function DataInput({
@@ -37,3 +39,14 @@ export default function DataInput({
     </>
   );
 }
+
+DataInput.propTypes = {
+  type: PropTypes.oneOf(['text', 'radio']).isRequired,
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onBlur: PropTypes.func,
+  placeholder: PropTypes.string,
+  checked: PropTypes.bool,
+};

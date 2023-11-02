@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
@@ -13,15 +13,51 @@ import {
   InputWrapperDiv,
   WrapperDiv,
   WrapperCalendarInputDiv,
+  InputBeforeSpan,
+  ErrorMessage,
 } from './AddExercisesFromPastDaysForm.styled';
+import { CSSTransition } from 'react-transition-group';
 
 export default function AddExercisesFromPastDaysForm({ onSubmit }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [time, setTime] = useState('');
+  const [errorMessage, setErrorMessage] = useState(false);
+  const transitionRef = useRef(null);
+  const errorTimeoutRef = useRef(null);
 
   const handleChange = evt => {
-    setTime(evt.target.value);
+    const value = evt.target.value;
+
+    if (errorTimeoutRef.current) {
+      clearTimeout(errorTimeoutRef.current);
+    }
+
+    if (value.length > 11) {
+      return;
+    }
+
+    if (/^[0-9]*$/.test(value) || value === '') {
+      setTime(value);
+      setErrorMessage(false);
+    } else {
+      setErrorMessage(true);
+
+      if (errorTimeoutRef.current) {
+        clearTimeout(errorTimeoutRef.current);
+      }
+      errorTimeoutRef.current = setTimeout(() => {
+        setErrorMessage(false);
+      }, 3000);
+    }
   };
+
+  useEffect(() => {
+    return () => {
+      if (errorTimeoutRef.current) {
+        clearTimeout(errorTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const setDate = date => {
     setSelectedDate(date);
@@ -41,10 +77,21 @@ export default function AddExercisesFromPastDaysForm({ onSubmit }) {
 
           <InputTime
             placeholder="min 60 sec."
-            type="number"
+            type="text"
             value={time}
             onChange={handleChange}
           />
+          <InputBeforeSpan>sec.</InputBeforeSpan>
+
+          <CSSTransition
+            in={errorMessage}
+            nodeRef={transitionRef}
+            timeout={300}
+            classNames="error-message"
+            unmountOnExit
+          >
+            <ErrorMessage ref={transitionRef}>Enter a number</ErrorMessage>
+          </CSSTransition>
         </InputWrapperDiv>
       </label>
 

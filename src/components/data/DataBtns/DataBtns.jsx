@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 import {
   ArrowBtnRight,
@@ -13,7 +14,7 @@ import sprite from 'src/assets/images/sprite/sprite.svg';
 import { DATA_STEPS } from 'src/utils';
 import { handleBack, handleNext } from 'components/data/helper/controlData';
 
-const DataBtns = ({ step, formik }) => {
+const DataBtns = ({ step, formik, isDateSelected }) => {
   const navigate = useNavigate();
 
   return (
@@ -49,7 +50,7 @@ const DataBtns = ({ step, formik }) => {
           <ArrowBtnRight
             type="button"
             onClick={() => {
-              handleNext(step, formik, navigate);
+              handleNext(step, formik, navigate, isDateSelected);
             }}
           >
             Next
@@ -63,6 +64,12 @@ const DataBtns = ({ step, formik }) => {
       )}
     </DataBtnsContainerDiv>
   );
+};
+
+DataBtns.propTypes = {
+  step: PropTypes.string,
+  formik: PropTypes.object,
+  isDateSelected: PropTypes.bool.isRequired,
 };
 
 export default DataBtns;

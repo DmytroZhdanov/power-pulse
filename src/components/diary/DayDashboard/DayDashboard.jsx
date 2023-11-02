@@ -1,19 +1,21 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+
 import {
-  BlockItem,
-  BlockList,
-  Container,
+  BlockItemLi,
+  BlockListUl,
+  ContainerDiv,
   ExclamationIcon,
   Icon,
-  IconWrapper,
-  Text,
-  TextWrapper,
-  Title,
-  TitleWrapper,
-  Value,
+  IconWrapperDiv,
+  TextP,
+  TextWrapperDiv,
+  TitleH2,
+  TitleWrapperDiv,
+  ValueP,
 } from './DayDashboard.styled';
+
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import PropTypes from 'prop-types';
 
 export default function DayDashboard({
   bmrData,
@@ -29,8 +31,10 @@ export default function DayDashboard({
       setAllDayCalories(null);
       return;
     }
+
     const CalOneProd = diaryProducts.map(product => product.calories);
     const AllCal = CalOneProd.reduce((total, amount) => total + amount);
+
     setAllDayCalories(AllCal);
   }, [diaryProducts]);
 
@@ -39,8 +43,10 @@ export default function DayDashboard({
       setAllDayExerCalories(null);
       return;
     }
+
     const CalOneExer = diaryExercises.map(exercise => exercise.calories);
     const AllExerCal = CalOneExer.reduce((total, amount) => total + amount);
+
     setAllDayExerCalories(AllExerCal);
   }, [diaryExercises]);
 
@@ -49,109 +55,112 @@ export default function DayDashboard({
       setAllMinuts(null);
       return;
     }
+
     const SecOneExer = diaryExercises.map(exercise => exercise.time);
     const AllSec = SecOneExer.reduce((total, amount) => total + amount);
     const AllInMinuts = Math.trunc(AllSec / 60);
+
     setAllMinuts(AllInMinuts);
   }, [diaryExercises]);
 
   return (
-    <Container>
-      <BlockList>
-        <BlockItem highlighted={true}>
-          <TitleWrapper>
+    <ContainerDiv>
+      <BlockListUl>
+        <BlockItemLi highlighted={true}>
+          <TitleWrapperDiv>
             <Icon>
               <use href={`${sprite}#food`}></use>
             </Icon>
 
-            <Title highlighted={true}>Daily calory intake</Title>
-          </TitleWrapper>
+            <TitleH2 highlighted={true}>Daily calory intake</TitleH2>
+          </TitleWrapperDiv>
 
-          <Value>{bmrData || 2200}</Value>
-        </BlockItem>
+          <ValueP>{bmrData || 2200}</ValueP>
+        </BlockItemLi>
 
-        <BlockItem highlighted={true}>
-          <TitleWrapper>
+        <BlockItemLi highlighted={true}>
+          <TitleWrapperDiv>
             <Icon>
               <use href={`${sprite}#dumbbell`}></use>
             </Icon>
 
-            <Title highlighted={true}>Daily norm of sports</Title>
-          </TitleWrapper>
+            <TitleH2 highlighted={true}>Daily norm of sports</TitleH2>
+          </TitleWrapperDiv>
 
-          <Value>110 min</Value>
-        </BlockItem>
+          <ValueP>110 min</ValueP>
+        </BlockItemLi>
 
-        <BlockItem>
-          <TitleWrapper>
+        <BlockItemLi>
+          <TitleWrapperDiv>
             <Icon>
               <use href={`${sprite}#apple`}></use>
             </Icon>
 
-            <Title>Calories consumed</Title>
-          </TitleWrapper>
+            <TitleH2>Calories consumed</TitleH2>
+          </TitleWrapperDiv>
 
-          <Value>{AllDayCalories !== null ? AllDayCalories : 0}</Value>
-        </BlockItem>
+          <ValueP>{AllDayCalories !== null ? AllDayCalories : 0}</ValueP>
+        </BlockItemLi>
 
-        <BlockItem>
-          <TitleWrapper>
+        <BlockItemLi>
+          <TitleWrapperDiv>
             <Icon>
               <use href={`${sprite}#fire`}></use>
             </Icon>
 
-            <Title>Calories burned</Title>
-          </TitleWrapper>
+            <TitleH2>Calories burned</TitleH2>
+          </TitleWrapperDiv>
 
-          <Value>{AllDayExerCalories !== null ? AllDayExerCalories : 0}</Value>
-        </BlockItem>
+          <ValueP>
+            {AllDayExerCalories !== null ? AllDayExerCalories : 0}
+          </ValueP>
+        </BlockItemLi>
 
-        <BlockItem
+        <BlockItemLi
           caloriesOverConsumed={bmrData - AllDayCalories >= 0 ? false : true}
         >
-          <TitleWrapper>
+          <TitleWrapperDiv>
             <Icon>
               <use href={`${sprite}#bubble`}></use>
             </Icon>
 
-            <Title>The rest of the calories</Title>
-          </TitleWrapper>
+            <TitleH2>The rest of the calories</TitleH2>
+          </TitleWrapperDiv>
 
-          <Value>{bmrData ? bmrData - AllDayCalories : 2200}</Value>
-        </BlockItem>
+          <ValueP>{bmrData ? bmrData - AllDayCalories : 2200}</ValueP>
+        </BlockItemLi>
 
-        <BlockItem caloriesOverBurned={110 - AllMinuts < 0 ? true : false}>
-          <TitleWrapper>
+        <BlockItemLi caloriesOverBurned={110 - AllMinuts < 0 ? true : false}>
+          <TitleWrapperDiv>
             <Icon>
               <use href={`${sprite}#running`}></use>
             </Icon>
 
-            <Title>The rest of sports</Title>
-          </TitleWrapper>
+            <TitleH2>The rest of sports</TitleH2>
+          </TitleWrapperDiv>
 
-          <Value>{110 - AllMinuts} min</Value>
-        </BlockItem>
-      </BlockList>
+          <ValueP>{110 - AllMinuts} min</ValueP>
+        </BlockItemLi>
+      </BlockListUl>
 
-      <TextWrapper>
-        <IconWrapper>
+      <TextWrapperDiv>
+        <IconWrapperDiv>
           <ExclamationIcon>
             <use href={`${sprite}#exclamation-mark`}></use>
           </ExclamationIcon>
-        </IconWrapper>
+        </IconWrapperDiv>
 
-        <Text>
+        <TextP>
           Record all your meals in a calorie diary every day. This will help me
           be aware of my nutrition and make me responsible for my choices.
-        </Text>
-      </TextWrapper>
-    </Container>
+        </TextP>
+      </TextWrapperDiv>
+    </ContainerDiv>
   );
 }
 
 DayDashboard.propTypes = {
   bmrData: PropTypes.number,
-
   diaryProducts: PropTypes.arrayOf(
     PropTypes.shape({
       amount: PropTypes.number.isRequired,

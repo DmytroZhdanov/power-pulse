@@ -2,42 +2,42 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { TailSpin } from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 
-import ProductsTable from '../ProductsTable/ProductsTable';
+import ProductsTable from 'components/diary/ProductsTable/ProductsTable';
 import {
   DayProdDiv,
-  DayProdText,
+  DayProdTextP,
   LoaderDiv,
-  DayProdTitle,
-  DayProdDivList,
-  AddProdBtn,
+  DayProdTitleH2,
+  DayProdListDiv,
+  AddProdBtnLink,
   AddProdBtnIcon,
-  AddProdBtnText,
+  AddProdBtnTextP,
 } from './DayProducts.styled';
 
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { useFetchUserBloodGroupQuery } from 'src/redux/api';
 
 export default function DayProducts({
   diaryProducts,
   setDiaryProducts,
   isLoading,
 }) {
-  const { data } = useFetchUserBloodGroupQuery();
   return (
     <DayProdDiv>
-      <DayProdDivList>
-        <DayProdTitle>Products</DayProdTitle>
-        <AddProdBtn to="/Products">
-          <AddProdBtnText>Add product</AddProdBtnText>
+      <DayProdListDiv>
+        <DayProdTitleH2>Products</DayProdTitleH2>
+
+        <AddProdBtnLink to="/Products">
+          <AddProdBtnTextP>Add product</AddProdBtnTextP>
+
           <AddProdBtnIcon>
             <use href={`${sprite}#big_arrow`}></use>
           </AddProdBtnIcon>
-        </AddProdBtn>
-      </DayProdDivList>
+        </AddProdBtnLink>
+      </DayProdListDiv>
+
       {diaryProducts && diaryProducts.length !== 0 ? (
         <ProductsTable
           setDiaryProducts={setDiaryProducts}
-          blood={data}
           diaryProducts={diaryProducts}
         />
       ) : (
@@ -48,7 +48,7 @@ export default function DayProducts({
                 <TailSpin color="#E6533C" ariaLabel="three-dots-loading" />
               </LoaderDiv>
             ) : (
-              <DayProdText
+              <DayProdTextP
                 as={motion.p}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -56,7 +56,7 @@ export default function DayProducts({
                 exit={{ opacity: 0 }}
               >
                 Not found products
-              </DayProdText>
+              </DayProdTextP>
             )}
           </AnimatePresence>
         </>
@@ -67,7 +67,6 @@ export default function DayProducts({
 
 DayProducts.propTypes = {
   isLoading: PropTypes.bool,
-
   diaryProducts: PropTypes.arrayOf(
     PropTypes.shape({
       amount: PropTypes.number.isRequired,

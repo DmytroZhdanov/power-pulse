@@ -15,7 +15,7 @@ export default function ExercisesSubcategoriesItem({ item }) {
         <WrapperDiv img={item.imgURL}>
           <DescriptionUl>
             <li>
-              <MainTextP>{item.name}</MainTextP>
+              <MainTextP className="hoverText">{item.name}</MainTextP>
             </li>
 
             <li>

@@ -67,6 +67,14 @@ export const ButtonAdd = styled.button`
   border-radius: 12px;
   background: ${({ theme }) => theme.color.orangeFirst};
   line-height: calc(18 / 16);
+  transition:
+    color 300ms ease-in-out,
+    background 300ms ease-in-out;
+
+  :hover {
+    color: ${({ theme }) => theme.color.hoverBorder};
+    background: ${({ theme }) => theme.color.white};
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding: 14px 32px;
@@ -76,12 +84,25 @@ export const ButtonAdd = styled.button`
 
 export const DivLink = styled(Link)`
   justify-content: center;
+  align-items: center;
   display: flex;
   color: ${({ theme }) => theme.color.grayFirst};
   font-size: 14px;
   line-height: calc(18 / 14);
+  
+  svg {
+    stroke: ${({ theme }) => theme.color.grayFirst};
+    transition: stroke 300ms ease-in-out;
+  }
+
+  :hover p,
+  :hover svg {
+    color: ${({ theme }) => theme.color.white};
+    stroke: ${({ theme }) => theme.color.white};
+  }
 `;
 
 export const LinkText = styled.p`
   margin-right: 8px;
+  transition: color 300ms ease-in-out;
 `;
