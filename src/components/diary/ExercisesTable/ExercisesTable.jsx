@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
 
+import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   TableDiv,
   Table,
@@ -18,7 +19,8 @@ import { useDeleteExerciseMutation } from 'src/redux/api';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
-  const [deleteExercise] = useDeleteExerciseMutation();
+  const [deleteExercise, { isLoading, isError, error }] =
+    useDeleteExerciseMutation();
 
   const [isTableDesk, setIsTableDesk] = useState(window.innerWidth >= 768);
 
@@ -179,6 +181,13 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
           </>
         )}
       </TableDiv>
+
+      <ErrorHandler
+        isLoading={isLoading}
+        isError={isError}
+        error={error}
+        showLoader={false}
+      />
     </>
   );
 }
