@@ -1,5 +1,6 @@
-import { RadioInput, TextInput } from '../DataForm/DataForm.style';
 import PropTypes from 'prop-types';
+
+import { RadioInput, TextInput } from '../DataForm/DataForm.style';
 
 export default function DataInput({
   type,
