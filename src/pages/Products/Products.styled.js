@@ -1,49 +1,26 @@
 import styled from '@emotion/styled';
-import {
-  bg_eating,
-  bg_eating2x,
-  bg_eating3x,
-  Alcoholicdrinks,
-  Berries,
-  Cereals,
-  Dairy,
-  Driedfruits,
-  Eggs,
-  Fish,
-  Flour,
-  Fruits,
-  Meat,
-  Mushrooms,
-  Nuts,
-  Oilsandfats,
-  Poppy,
-  Sausage,
-  Seeds,
-  Sesame,
-  Softdrinks,
-  Vegetablesandherbs,
-} from 'src/utils/background';
+import * as background from 'src/utils/background';
 
 const categoryImages = {
-  Alcoholicdrinks: `url(${Alcoholicdrinks})`,
-  Berries: `url(${Berries})`,
-  Cereals: `url(${Cereals})`,
-  Dairy: `url(${Dairy})`,
-  Driedfruits: `url(${Driedfruits})`,
-  Eggs: `url(${Eggs})`,
-  Fish: `url(${Fish})`,
-  Flour: `url(${Flour})`,
-  Fruits: `url(${Fruits})`,
-  Meat: `url(${Meat})`,
-  Mushrooms: `url(${Mushrooms})`,
-  Nuts: `url(${Nuts})`,
-  Oilsandfats: `url(${Oilsandfats})`,
-  Poppy: `url(${Poppy})`,
-  Sausage: `url(${Sausage})`,
-  Seeds: `url(${Seeds})`,
-  Sesame: `url(${Sesame})`,
-  Softdrinks: `url(${Softdrinks})`,
-  Vegetablesandherbs: `url(${Vegetablesandherbs})`,
+  Alcoholicdrinks: `url(${background.Alcoholicdrinks})`,
+  Berries: `url(${background.Berries})`,
+  Cereals: `url(${background.Cereals})`,
+  Dairy: `url(${background.Dairy})`,
+  Driedfruits: `url(${background.Driedfruits})`,
+  Eggs: `url(${background.Eggs})`,
+  Fish: `url(${background.Fish})`,
+  Flour: `url(${background.Flour})`,
+  Fruits: `url(${background.Fruits})`,
+  Meat: `url(${background.Meat})`,
+  Mushrooms: `url(${background.Mushrooms})`,
+  Nuts: `url(${background.Nuts})`,
+  Oilsandfats: `url(${background.Oilsandfats})`,
+  Poppy: `url(${background.Poppy})`,
+  Sausage: `url(${background.Sausage})`,
+  Seeds: `url(${background.Seeds})`,
+  Sesame: `url(${background.Sesame})`,
+  Softdrinks: `url(${background.Softdrinks})`,
+  Vegetablesandherbs: `url(${background.Vegetablesandherbs})`,
 };
 
 export const BackgroundDiv = styled.div`
@@ -60,9 +37,9 @@ export const BackgroundDiv = styled.div`
     ${props =>
       categoryImages[props?.filter] ||
       `image-set(
-    url(${bg_eating}) 1x,
-    url(${bg_eating2x}) 2x,
-      url(${bg_eating3x}) 3x)`},
+    url(${background.bg_eating}) 1x,
+    url(${background.bg_eating2x}) 2x,
+      url(${background.bg_eating3x}) 3x)`},
     lightgray -372.891px -2.705px / 133.568% 100.375% no-repeat;
   background-size: 428px 716px;
 `;
