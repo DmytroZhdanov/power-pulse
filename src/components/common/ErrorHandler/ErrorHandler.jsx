@@ -20,12 +20,14 @@ export default function ErrorHandler({ isLoading, isError, error }) {
     let id;
 
     if (isLoading) {
-      id = setTimeout(setShowTimerWarning, 5000, true);
+      id = setTimeout(setShowTimerWarning, 3000, true);
     } else {
       setShowTimerWarning(false);
     }
 
-    return clearTimeout(id);
+    return () => {
+      clearTimeout(id);
+    };
   }, [isLoading]);
 
   // Show pop up with error message for 2 seconds if error occurs
@@ -47,17 +49,16 @@ export default function ErrorHandler({ isLoading, isError, error }) {
     <>
       {isLoading && <Loader />}
 
-      {isLoading && showTimerWarning && (
-        <BasicModalWindow onClose={() => setShowTimerWarning(false)}>
-          <TimerWarning />
-        </BasicModalWindow>
-      )}
+      <BasicModalWindow
+        onShow={isLoading && showTimerWarning}
+        onClose={() => setShowTimerWarning(false)}
+      >
+        <TimerWarning />
+      </BasicModalWindow>
 
-      {showError && (
-        <BasicModalWindow onClose={() => setShowError(false)}>
-          <ErrorMessage message={error?.data?.message} />
-        </BasicModalWindow>
-      )}
+      <BasicModalWindow onShow={showError} onClose={() => setShowError(false)}>
+        <ErrorMessage message={error?.data?.message} />
+      </BasicModalWindow>
     </>
   );
 }
