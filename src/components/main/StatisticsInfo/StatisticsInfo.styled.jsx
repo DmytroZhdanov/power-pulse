@@ -180,8 +180,15 @@ const Block = styled.div`
   font-weight: 700;
 
   :nth-of-type(1) {
-    bottom: 186px;
-    left: 44px;
+    bottom: 55px;
+    left: -5px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    :nth-of-type(1) {
+      bottom: 70px;
+      left: -15px;
+    }
   }
 
   :nth-of-type(2) {
