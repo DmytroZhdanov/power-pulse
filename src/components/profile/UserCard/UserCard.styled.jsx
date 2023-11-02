@@ -1,37 +1,40 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
-export const User = styled.div`
+export const UserDiv = styled.div`
   width: 335px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  background-color: black;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (max-width: 374px) {
+    max-width: 100%;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 439px;
     gap: 32px;
   }
 `;
 
-export const Avatar = styled.div`
+export const AvatarDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 32px;
   width: 125px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 166px;
   }
 `;
 
-export const Image = styled.div`
+export const ImageDiv = styled.div`
   position: relative;
   margin: 0;
   width: 90px;
   height: 90px;
-  border: 1px solid #e6533c;
+  border: 1px solid ${({ theme }) => theme.color.orangeFirst};
   border-radius: 50%;
 
   svg {
@@ -55,10 +58,10 @@ export const Image = styled.div`
     fill: inherit;
     border-radius: 50%;
     font-size: 14px;
-    color: rgba(239, 237, 232, 30%);
+    color: ${({ theme }) => theme.color.grayFirst};
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 150px;
     height: 150px;
 
@@ -74,7 +77,7 @@ export const Image = styled.div`
   }
 `;
 
-export const BtnAvat = styled.label`
+export const BtnAvatarLabel = styled.label`
   position: absolute;
   left: 50%;
   bottom: -11px;
@@ -99,74 +102,83 @@ export const BtnAvat = styled.label`
     height: 100%;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 32px;
     height: 32px;
     bottom: -14px;
   }
 `;
 
-export const MainText = styled.p`
+export const MainTextP = styled.p`
   font-size: 18px;
   line-height: calc(20 / 18);
-  color: #efede8;
+  color: ${({ theme }) => theme.color.white};
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 24px;
     line-height: calc(28 / 24);
   }
 `;
 
-export const SecondText = styled.p`
+export const SecondTextP = styled.p`
   font-size: 14px;
   line-height: calc(18 / 14);
-  color: rgba(239, 237, 232, 30%);
+  color: ${({ theme }) => theme.color.grayFirst};
 `;
 
-export const AddText = styled.p`
+export const AddTextP = styled.p`
   display: flex;
   align-items: center;
   flex-direction: row;
   font-size: 12px;
   line-height: calc(16 / 12);
-  color: #efede8cc;
-  @media screen and (min-width: 768px) {
+  color: ${({ theme }) => theme.color.white}cc;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     line-height: calc(18 / 12);
   }
 `;
 
-export const Name = styled.div`
+export const NameDiv = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
 
-  ${MainText} {
+  p {
     text-align: center;
   }
 
-  ${SecondText} {
-    color: #efede880;
+  p {
+    color: ${({ theme }) => theme.color.white}80;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     gap: 8px;
   }
 `;
 
-export const Daily = styled.div`
+export const DailyDiv = styled.div`
   width: 100%;
   display: flex;
   gap: 14px;
   justify-content: center;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (max-width: 374px) {
+    max-width: 100%;
+
+    div {
+      width: calc((100vw - 60px) / 2);
+    }
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     gap: 16px;
   }
 `;
 
-export const Calories = styled.div`
+export const CaloriesDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -182,26 +194,28 @@ export const Calories = styled.div`
     height: 20px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 214px;
     padding: 14px 18px;
 
-    ${MainText} {
+    p {
       line-height: calc(32 / 24);
     }
   }
 `;
 
-export const SportTime = styled(Calories)`
+export const SportTimeDiv = styled(CaloriesDiv)`
   width: 165px;
-  @media screen and (min-width: 768px) {
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 209px;
   }
 `;
 
-export const Warnings = styled.div`
+export const WarningsDiv = styled.div`
   width: 100%;
-  ${SecondText} {
+
+  p {
     display: flex;
     color: rgba(239, 237, 232, 0.3);
   }
@@ -212,15 +226,15 @@ export const Warnings = styled.div`
     max-height: 24px;
   }
 
-  @media screen and (min-width: 768px) {
-    ${SecondText} {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    p {
       font-size: 16px;
       line-height: calc(24 / 16);
     }
   }
 `;
 
-export const BtnLogout = styled.div`
+export const BtnLogoutDiv = styled.div`
   width: 100%;
   display: flex;
   justify-content: end;

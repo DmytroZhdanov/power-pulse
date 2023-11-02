@@ -1,17 +1,15 @@
-import { useFormik } from 'formik';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useFormik } from 'formik';
+import { format } from 'date-fns';
+import PropTypes from 'prop-types';
 
-import { userFormSchema } from './YupValidationForm';
 import BirthdayInput from '../BirthdayInput/BirthdayInput';
-import { selectUserEmail, selectUserName } from '../../../redux/auth/selectors';
+import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
+import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
+import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
-  useUpdateUserParamsMutation,
-  useUpdateUserNameMutation,
-  useLazyFetchUserParamsQuery,
-} from 'src/redux/api';
-
-import {
-  Forms,
+  Form,
   FirstInfo,
   AddInfo,
   Data,
@@ -27,13 +25,17 @@ import {
   Text,
   HealthInfo,
   Lifestyle,
+  Button,
 } from './UserForm.styled';
-import { format } from 'date-fns';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUserName } from '../../../redux/auth/authSlice';
-import BasicModalWindow from '../../common/BasicModalWindow/BasicModalWindow';
-import ErrorMessage from '../../common/ErrorMessage/ErrorMessage';
-import ErrorHandler from '../../common/ErrorHandler/ErrorHandler';
+import { setUserName } from 'src/redux/auth/authSlice';
+
+import { userFormSchema } from './YupValidationForm';
+import { selectUserEmail, selectUserName } from 'src/redux/auth/selectors';
+import {
+  useUpdateUserParamsMutation,
+  useUpdateUserNameMutation,
+  useLazyFetchUserParamsQuery,
+} from 'src/redux/api';
 
 const defaultUserData = {
   name: '',
@@ -46,7 +48,7 @@ const defaultUserData = {
   sex: '',
 };
 
-export default function UserForm() {
+export default function UserForm({ setFetchBmr }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const dispatch = useDispatch();
 
@@ -58,6 +60,7 @@ export default function UserForm() {
       error: fetchUserParamsError,
     },
   ] = useLazyFetchUserParamsQuery();
+
   const [
     updateUserParams,
     {
@@ -66,6 +69,7 @@ export default function UserForm() {
       error: updateUserParamsError,
     },
   ] = useUpdateUserParamsMutation();
+
   const [
     updateUserName,
     {
@@ -142,6 +146,7 @@ export default function UserForm() {
         try {
           const { user } = await updateUserParams(userValues).unwrap();
           setUserData({ name: userName, ...user.userParams });
+          setFetchBmr(true);
         } catch (error) {
           console.log(error);
         }
@@ -151,7 +156,7 @@ export default function UserForm() {
 
   return (
     <>
-      <Forms autoComplete="off" onSubmit={handleSubmit}>
+      <Form autoComplete="off" onSubmit={handleSubmit}>
         <FirstInfo>
           <label htmlFor="name">
             Basic info
@@ -160,24 +165,26 @@ export default function UserForm() {
               type="text"
               name="name"
               placeholder="name"
-              value={values.name ||''}
+              value={values.name || ''}
               onChange={handleChange}
               onBlur={handleBlur}
             />
             {errors.name && touched.name && <p>{errors.name}</p>}
           </label>
+
           <input
             id="email"
             type="email"
             name="email"
             placeholder="email"
-            value={userEmail ||''}
+            value={userEmail || ''}
             onChange={handleChange}
             onBlur={handleBlur}
             disabled={true}
           />
           {errors.email && touched.email && <p>{errors.email}</p>}
         </FirstInfo>
+
         <AddInfo>
           <Data>
             <Height htmlFor="height">
@@ -189,12 +196,13 @@ export default function UserForm() {
                 placeholder="0"
                 min="150"
                 max="230"
-                value={values.height ||''}
+                value={values.height || ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
               {errors.height && touched.height && <p>{errors.height}</p>}
             </Height>
+
             <CurWeight htmlFor="currentWeight">
               Current Weight
               <input
@@ -203,7 +211,7 @@ export default function UserForm() {
                 name="currentWeight"
                 placeholder="0"
                 min="35"
-                value={values.currentWeight ||''}
+                value={values.currentWeight || ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -212,6 +220,7 @@ export default function UserForm() {
               )}
             </CurWeight>
           </Data>
+
           <CalendarI>
             <DesWeight htmlFor="desiredWeight">
               Desired Weight
@@ -221,7 +230,7 @@ export default function UserForm() {
                 name="desiredWeight"
                 placeholder="0"
                 min="35"
-                value={values.desiredWeight ||''}
+                value={values.desiredWeight || ''}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
@@ -240,8 +249,10 @@ export default function UserForm() {
             </Birthday>
           </CalendarI>
         </AddInfo>
+
         <SecondInfo>
           <Text> Blood </Text>
+
           <HealthInfo>
             <Blood>
               <RadioBox
@@ -253,6 +264,7 @@ export default function UserForm() {
                 onBlur={handleBlur}
                 checked={values.blood === 1 || values.blood === '1'}
               />
+
               <label htmlFor="one">1</label>
               {errors.blood && touched.blood && <p>{errors.blood}</p>}
 
@@ -289,6 +301,7 @@ export default function UserForm() {
               />
               <label htmlFor="four">4</label>
             </Blood>
+
             <Gender>
               <label>
                 <RadioBox
@@ -315,9 +328,11 @@ export default function UserForm() {
                 />
                 Female
               </label>
+
               {errors.sex && touched.sex && <p>{errors.sex}</p>}
             </Gender>
           </HealthInfo>
+
           <Lifestyle>
             <label>
               <div>
@@ -335,6 +350,7 @@ export default function UserForm() {
               </div>
               Sedentary lifestyle (little or no physical activity)
             </label>
+
             <label>
               <div>
                 <RadioBox
@@ -351,6 +367,7 @@ export default function UserForm() {
               </div>
               Light activity (light exercises/sports 1-3 days per week)
             </label>
+
             <label>
               <div>
                 <RadioBox
@@ -367,6 +384,7 @@ export default function UserForm() {
               </div>
               Moderately active (moderate exercises/sports 3-5 days per week)
             </label>
+
             <label>
               <div>
                 <RadioBox
@@ -383,6 +401,7 @@ export default function UserForm() {
               </div>
               Very active (intense exercises/sports 6-7 days per week)
             </label>
+
             <label>
               <div>
                 <RadioBox
@@ -401,14 +420,16 @@ export default function UserForm() {
               work)
             </label>
           </Lifestyle>
+
           {errors.levelActivity && touched.levelActivity && (
             <p>{errors.levelActivity}</p>
           )}
         </SecondInfo>
-        <button type="submit" disabled={!isValid || isSubmitting}>
+
+        <Button type="submit" disabled={!isValid || isSubmitting}>
           Save
-        </button>
-      </Forms>
+        </Button>
+      </Form>
 
       {showUpdateError && (
         <BasicModalWindow onClose={() => setShowUpdateError(false)}>
@@ -436,3 +457,7 @@ export default function UserForm() {
     </>
   );
 }
+
+UserForm.propTypes = {
+  setFetchBmr: PropTypes.func.isRequired,
+};

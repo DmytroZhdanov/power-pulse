@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const WrapperCalendarInput = styled.div`
   position: relative;
   width: 161px;
+  height: 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,6 +12,10 @@ export const WrapperCalendarInput = styled.div`
   border-radius: 12px;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.color.border};
+
+  @media screen and (max-width: 374px) {
+    width: 100%;
+  }
 
   @media screen and (min-width: 768px) {
     width: 187px;
@@ -28,6 +33,9 @@ export const DefaultInputText = styled.p`
 `;
 
 export const CalendarIcon = styled.div`
+  width: 18px;
+  height: 18px;
+
   svg {
     width: 18px;
     height: 18px;
