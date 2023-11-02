@@ -43,6 +43,7 @@ export const WrapperDiv = styled.div`
 
   &:hover {
     transform: scale(1.1);
+    
     .hoverText {
       color: ${({ theme }) => theme.color.orangeSecond};
     }
