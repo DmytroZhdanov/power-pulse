@@ -158,5 +158,13 @@ export function SecondStep({ formik }) {
 }
 
 SecondStep.propTypes = {
-  formik: PropTypes.object,
+  formik: PropTypes.shape({
+    values: PropTypes.shape({
+      blood: PropTypes.string.isRequired,
+      sex: PropTypes.string.isRequired,
+      levelActivity: PropTypes.string.isRequired,
+    }).isRequired,
+    handleChange: PropTypes.func,
+    setFieldValue: PropTypes.func,
+  }),
 };
