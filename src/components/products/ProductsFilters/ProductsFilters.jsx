@@ -36,6 +36,7 @@ export default function ProductsFilters({ onProductsChange }) {
   const [filter, setFilter] = useState(emptyFilter);
   const [search, setSearch] = useState('');
   const [categories, setCategories] = useState([]);
+  const [queryChangeTimer, setQueryChangeTimer] = useState(null);
 
   const { isSuccess, currentData } = useFetchProductsCategoriesQuery();
 
@@ -83,11 +84,21 @@ export default function ProductsFilters({ onProductsChange }) {
    * @param {Event} e - The input change event.
    */
   const onQueryChange = e => {
-    setFilter(prevFilter => ({
-      ...prevFilter,
-      [QUERY]: e.target.value.trim(),
-    }));
     setSearch(e.target.value);
+    console.log('search', search);
+
+    if (queryChangeTimer) {
+      clearTimeout(queryChangeTimer);
+    }
+
+    const newTimer = setTimeout(() => {
+      setFilter(prevFilter => ({
+        ...prevFilter,
+        [QUERY]: search,
+      }));
+    }, 600);
+
+    setQueryChangeTimer(newTimer);
   };
 
   /**
@@ -138,11 +149,7 @@ export default function ProductsFilters({ onProductsChange }) {
     <>
       <DivFilter>
         <DivSearch>
-          <InputSearch
-            type="text"
-            value={filter[QUERY]}
-            onChange={onQueryChange}
-          />
+          <InputSearch type="text" value={search} onChange={onQueryChange} />
 
           <SvgSearch width="18" height="18">
             <use href={`${sprite}#search`}></use>
