@@ -141,11 +141,11 @@ export const Sign = styled.div`
 
 export const Buttons = styled.div`
   display: inline-flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 18px;
 
   @media screen and (min-width: 768px) {
     margin-top: 64px;
-    flex-direction: row;
     gap: 24px;
   }
 
