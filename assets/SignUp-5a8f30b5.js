@@ -1,4 +1,4 @@
-import{n as t,u as k,d as F,r as h,j as e,I as o,L as S,E as C,c as z}from"./index-02133d14.js";import{u as P,F as T,a as q,b as B}from"./formik.esm-71f8af1b.js";import{c as E,a as x}from"./index.esm-7e2c53b8.js";import{T as I}from"./TitlePage-665e5b9c.js";import"./tiny-warning.esm-c932d744.js";const $=t.p`
+import{n as t,u as k,d as F,r as m,j as e,I as o,L as S,E as C,c as z}from"./index-1642741d.js";import{u as P,F as T,a as q,b as B}from"./formik.esm-7a2fac26.js";import{c as E,a as x}from"./index.esm-fe00ae2d.js";import{T as I}from"./TitlePage-7e6f12dd.js";import"./tiny-warning.esm-c932d744.js";const $=t.p`
   @media screen and (max-width: 374px) {
     width: calc(100% - 20px);
   }
@@ -111,11 +111,11 @@ import{n as t,u as k,d as F,r as h,j as e,I as o,L as S,E as C,c as z}from"./ind
   }
 `,L=t.div`
   display: inline-flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 18px;
 
   @media screen and (min-width: 768px) {
     margin-top: 64px;
-    flex-direction: row;
     gap: 24px;
   }
 
@@ -154,11 +154,13 @@ import{n as t,u as k,d as F,r as h,j as e,I as o,L as S,E as C,c as z}from"./ind
     min-width: 28px;
     height: 28px;
   }
-`,H=E({name:x().trim("Name must not have leading or trailing spaces").strict().min(1).required("This is a required field"),email:x().email("Invalid email").matches("^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$","Enter valid values").required("This is a required field"),password:x().min(6).required("This is a required field")}),m=({...i})=>{const[r,n]=B(i),[d,p]=h.useState(!1),c=()=>p(!0),a=!!d&&r.value.trim().length>0||n.touched;return e.jsxs(A,{type:`${a?n.error?"invalid":"valid":""}`,children:[e.jsx("input",{...i,...r,onFocus:c}),e.jsx(D,{children:a?e.jsxs("div",{id:`${i.id}-feedback`,"aria-live":"polite",children:[e.jsx(o,{name:"checkmark"}),n.error?n.error:e.jsxs(e.Fragment,{children:["Success ",i.name]})]}):null})]})};function M(){const i=k(),[r,{isLoading:n,isError:d,error:p}]=F(),[c,a]=h.useState(),[u,g]=h.useState(!1),w=()=>{g(!0)},s=document.querySelector("#password"),f=()=>{s&&(s.getAttribute("type")==="password"?(s.setAttribute("type","text"),a(!0)):(s.setAttribute("type","password"),a(!1)))},v=()=>{window.location.assign("https://power-pulse-api.onrender.com/api/users/google")},b=P({initialValues:{name:"",email:"",password:""},onSubmit:async(j,{resetForm:y})=>{try{const l=await r(j).unwrap();i(z(l)),y()}catch(l){console.error(l)}},validationSchema:H});return e.jsxs(e.Fragment,{children:[e.jsx(T,{value:b,children:e.jsxs(q,{children:[e.jsx($,{children:"Thank you for your interest in our platform. To complete the registration process, please provide us with the following information."}),e.jsxs(U,{children:[e.jsx(m,{name:"name",type:"text",placeholder:"Name"}),e.jsx(m,{name:"email",type:"email",placeholder:"Email"}),e.jsxs("div",{children:[e.jsx(m,{name:"password",type:"password",placeholder:"Password",id:"password",onInput:w}),u&&e.jsx("button",{type:"button",onClick:f,children:c?e.jsx(o,{name:"eye"}):e.jsx(o,{name:"eye-off"})})]})]}),e.jsxs(L,{children:[e.jsx("button",{type:"submit",children:"Sign Up"}),e.jsx("button",{type:"button",onClick:v,id:"google",children:e.jsx(o,{name:"google"})})]}),e.jsxs(_,{children:[e.jsx("p",{children:"Already have account?"}),e.jsx(S,{to:"/signin",children:"Sign In"})]})]})}),e.jsx(C,{isLoading:n,isError:d,error:p})]})}const N=t.div`
+`,H=E({name:x().trim("Name must not have leading or trailing spaces").strict().min(1).required("This is a required field"),email:x().email("Invalid email").matches("^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$","Enter valid values").required("This is a required field"),password:x().min(6).required("This is a required field")}),h=({...i})=>{const[r,n]=B(i),[d,p]=m.useState(!1),c=()=>p(!0),a=!!d&&r.value.trim().length>0||n.touched;return e.jsxs(A,{type:`${a?n.error?"invalid":"valid":""}`,children:[e.jsx("input",{...i,...r,onFocus:c}),e.jsx(D,{children:a?e.jsxs("div",{id:`${i.id}-feedback`,"aria-live":"polite",children:[e.jsx(o,{name:"checkmark"}),n.error?n.error:e.jsxs(e.Fragment,{children:["Success ",i.name]})]}):null})]})};function M(){const i=k(),[r,{isLoading:n,isError:d,error:p}]=F(),[c,a]=m.useState(),[u,g]=m.useState(!1),w=()=>{g(!0)},s=document.querySelector("#password"),f=()=>{s&&(s.getAttribute("type")==="password"?(s.setAttribute("type","text"),a(!0)):(s.setAttribute("type","password"),a(!1)))},v=()=>{window.location.assign("https://power-pulse-api.onrender.com/api/users/google")},b=P({initialValues:{name:"",email:"",password:""},onSubmit:async(j,{resetForm:y})=>{try{const l=await r(j).unwrap();i(z(l)),y()}catch(l){console.error(l)}},validationSchema:H});return e.jsxs(e.Fragment,{children:[e.jsx(T,{value:b,children:e.jsxs(q,{children:[e.jsx($,{children:"Thank you for your interest in our platform. To complete the registration process, please provide us with the following information."}),e.jsxs(U,{children:[e.jsx(h,{name:"name",type:"text",placeholder:"Name"}),e.jsx(h,{name:"email",type:"email",placeholder:"Email"}),e.jsxs("div",{children:[e.jsx(h,{name:"password",type:"password",placeholder:"Password",id:"password",onInput:w}),u&&e.jsx("button",{type:"button",onClick:f,children:c?e.jsx(o,{name:"eye"}):e.jsx(o,{name:"eye-off"})})]})]}),e.jsxs(L,{children:[e.jsx("button",{type:"submit",children:"Sign Up"}),e.jsx("button",{type:"button",onClick:v,id:"google",children:e.jsx(o,{name:"google"})})]}),e.jsxs(_,{children:[e.jsx("p",{children:"Already have account?"}),e.jsx(S,{to:"/signin",children:"Sign In"})]})]})}),e.jsx(C,{isLoading:n,isError:d,error:p})]})}const N=t.div`
   padding-top: 127px;
+  height: 812px;
 
   @media screen and (min-width: 768px) {
     padding-top: 189px;
+    height: 1024px;
   }
 
   @media screen and (max-width: 1439px) {
@@ -169,5 +171,6 @@ import{n as t,u as k,d as F,r as h,j as e,I as o,L as S,E as C,c as z}from"./ind
   @media screen and (min-width: 1440px) {
     width: 598px;
     padding-top: 200px;
+    height: 800px;
   }
 `;function O(){return e.jsxs(N,{children:[e.jsx(I,{text:"Sign Up"}),e.jsx(M,{})]})}export{O as SignUp};

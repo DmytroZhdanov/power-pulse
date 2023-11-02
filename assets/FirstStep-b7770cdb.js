@@ -1,4 +1,4 @@
-import{n as s,P as a,j as t,I as u}from"./index-02133d14.js";import{E as m}from"./formik.esm-71f8af1b.js";import{f as x,C as w}from"./Calendar-4fadd5f8.js";import{t as D,T as I,a as C,s as c,S as $}from"./inputData-49e0d6b2.js";import{m as p}from"./motion-1258afe2.js";import"./tiny-warning.esm-c932d744.js";const F=s.div`
+import{n as s,P as a,j as t,I as u}from"./index-1642741d.js";import{E as m}from"./formik.esm-7a2fac26.js";import{f as x,C as w}from"./Calendar-3aa5b002.js";import{t as D,T as I,a as C,s as c,S as $}from"./inputData-0956a254.js";import{m as p}from"./motion-c9043190.js";import"./tiny-warning.esm-c932d744.js";const F=s.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -53,7 +53,7 @@ import{n as s,P as a,j as t,I as u}from"./index-02133d14.js";import{E as m}from"
   justify-content: center;
   flex-wrap: wrap;
   column-gap: 10px;
-  row-gap: 14px;
+  row-gap: 28px;
   margin-top: 50px;
   margin-bottom: 29px;
 
