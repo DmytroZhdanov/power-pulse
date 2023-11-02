@@ -1,5 +1,27 @@
 import styled from '@emotion/styled';
-import { bg_eating, bg_eating2x, bg_eating3x } from 'src/utils/background';
+import * as background from 'src/utils/background';
+
+const categoryImages = {
+  Alcoholicdrinks: `url(${background.Alcoholicdrinks})`,
+  Berries: `url(${background.Berries})`,
+  Cereals: `url(${background.Cereals})`,
+  Dairy: `url(${background.Dairy})`,
+  Driedfruits: `url(${background.Driedfruits})`,
+  Eggs: `url(${background.Eggs})`,
+  Fish: `url(${background.Fish})`,
+  Flour: `url(${background.Flour})`,
+  Fruits: `url(${background.Fruits})`,
+  Meat: `url(${background.Meat})`,
+  Mushrooms: `url(${background.Mushrooms})`,
+  Nuts: `url(${background.Nuts})`,
+  Oilsandfats: `url(${background.Oilsandfats})`,
+  Poppy: `url(${background.Poppy})`,
+  Sausage: `url(${background.Sausage})`,
+  Seeds: `url(${background.Seeds})`,
+  Sesame: `url(${background.Sesame})`,
+  Softdrinks: `url(${background.Softdrinks})`,
+  Vegetablesandherbs: `url(${background.Vegetablesandherbs})`,
+};
 
 export const BackgroundDiv = styled.div`
   position: absolute;
@@ -7,14 +29,19 @@ export const BackgroundDiv = styled.div`
   right: -76px;
   width: 428px;
   height: 716px;
-
-  background-image: image-set(
-    url(${bg_eating}) 1x,
-    url(${bg_eating2x}) 2x,
-    url(${bg_eating3x}) 3x
-  );
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  background:
+    linear-gradient(90deg, #040404 1.1%, rgba(4, 4, 4, 0) 70.79%),
+    linear-gradient(180deg, #040404 1.1%, rgba(4, 4, 4, 0) 50.79%),
+    ${props =>
+      categoryImages[props?.filter] ||
+      `image-set(
+    url(${background.bg_eating}) 1x,
+    url(${background.bg_eating2x}) 2x,
+      url(${background.bg_eating3x}) 3x)`},
+    lightgray -372.891px -2.705px / 133.568% 100.375% no-repeat;
   background-size: 428px 716px;
-  border-radius: 12px;
 `;
 
 export const WrapperDiv = styled.div`

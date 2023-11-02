@@ -39,14 +39,11 @@ export const WrapperDiv = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
+
   transition: transform 0.3s ease-in-out;
 
   &:hover {
-    transform: scale(1.1);
-    
-    .hoverText {
-      color: ${({ theme }) => theme.color.orangeSecond};
-    }
+    transform: scale(1.05);
   }
 `;
 
