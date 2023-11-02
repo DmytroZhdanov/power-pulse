@@ -16,6 +16,7 @@ import {
   DelIcon,
   TableRecomSpan,
 } from './ProductsTable.styled';
+import PropTypes from 'prop-types';
 
 export default function ProductsTable({
   diaryProducts,
@@ -170,3 +171,25 @@ export default function ProductsTable({
     </>
   );
 }
+
+ProductsTable.propTypes = {
+  blood: PropTypes.number,
+
+  diaryProducts: PropTypes.arrayOf(
+    PropTypes.shape({
+      amount: PropTypes.number.isRequired,
+      calories: PropTypes.number.isRequired,
+      date: PropTypes.string.isRequired,
+      groupBloodNotAllowed: PropTypes.shape({
+        1: PropTypes.bool.isRequired,
+        2: PropTypes.bool.isRequired,
+        3: PropTypes.bool.isRequired,
+        4: PropTypes.bool.isRequired,
+      }),
+      product_ID: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  setDiaryProducts: PropTypes.func.isRequired,
+};
