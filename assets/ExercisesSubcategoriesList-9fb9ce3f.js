@@ -1,4 +1,4 @@
-import{n as r,L as j,P as o,j as t,ab as y,ac as v,r as s,E as $}from"./index-07072d94.js";const P=r.li`
+import{n as i,L as j,P as o,j as t,ab as y,ac as v,r as s,E as $}from"./index-7ccf801f.js";const P=i.li`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,9 +14,9 @@ import{n as r,L as j,P as o,j as t,ab as y,ac as v,r as s,E as $}from"./index-07
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
     max-width: 237px;
   }
-`,E=r(j)`
+`,E=i(j)`
   width: 100%;
-`,L=r.div`
+`,L=i.div`
   position: relative;
   height: 206px;
 
@@ -24,7 +24,6 @@ import{n as r,L as j,P as o,j as t,ab as y,ac as v,r as s,E as $}from"./index-07
   background:
     linear-gradient(0deg, rgba(4, 4, 4, 0.5) 0%, rgba(4, 4, 4, 0.5) 100%),
     url(${e=>e.img}) center center no-repeat;
-
   background-size: cover;
   border-radius: 12px;
   border: 1px solid rgba(239, 237, 232, 0.2);
@@ -33,14 +32,20 @@ import{n as r,L as j,P as o,j as t,ab as y,ac as v,r as s,E as $}from"./index-07
   align-items: center;
   justify-content: center;
   text-align: center;
-`,z=r.ul`
+  transition: transform 0.3s ease-in-out;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
+`,z=i.ul`
   color: white;
   text-align: center;
   z-index: 2;
-`,R=r.p`
+`,R=i.p`
   font-size: 20px;
   line-height: 1.33;
   margin-bottom: 2px;
+  
   &::first-letter {
     text-transform: uppercase;
   }
@@ -48,11 +53,11 @@ import{n as r,L as j,P as o,j as t,ab as y,ac as v,r as s,E as $}from"./index-07
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     font-size: 24px;
   }
-`,S=r.p`
+`,S=i.p`
   color: ${({theme:e})=>e.color.grayThird};
   font-size: 12px;
   line-height: 1.5;
-`;function m({item:e}){return t.jsx(P,{children:t.jsx(E,{to:e.name,children:t.jsx(L,{img:e.imgURL,children:t.jsxs(z,{children:[t.jsx("li",{children:t.jsx(R,{children:e.name})}),t.jsx("li",{children:t.jsx(S,{children:e.filter})})]})})})})}m.propTypes={item:o.shape({_id:o.string.isRequired,name:o.string.isRequired,imgURL:o.string.isRequired,filter:o.string.isRequired})};const C=r.div`
+`;function m({item:e}){return t.jsx(P,{children:t.jsx(E,{to:e.name,children:t.jsx(L,{img:e.imgURL,children:t.jsxs(z,{children:[t.jsx("li",{children:t.jsx(R,{children:e.name})}),t.jsx("li",{children:t.jsx(S,{children:e.filter})})]})})})})}m.propTypes={item:o.shape({_id:o.string.isRequired,name:o.string.isRequired,imgURL:o.string.isRequired,filter:o.string.isRequired})};const C=i.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -66,7 +71,7 @@ import{n as r,L as j,P as o,j as t,ab as y,ac as v,r as s,E as $}from"./index-07
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
     min-height: 0;
   }
-`,I=r.ul`
+`,I=i.ul`
   display: flex;
   flex-wrap: wrap;
 
@@ -83,7 +88,7 @@ import{n as r,L as j,P as o,j as t,ab as y,ac as v,r as s,E as $}from"./index-07
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
     column-gap: 15px;
   }
-`,U=r.ul`
+`,U=i.ul`
   display: flex;
   justify-content: center;
   margin-bottom: 80px;
@@ -91,7 +96,7 @@ import{n as r,L as j,P as o,j as t,ab as y,ac as v,r as s,E as $}from"./index-07
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     margin-bottom: 32px;
   }
-`,W=r.button`
+`,W=i.button`
   width: 14px;
   height: 14px;
   border: 1px solid
@@ -118,4 +123,4 @@ import{n as r,L as j,P as o,j as t,ab as y,ac as v,r as s,E as $}from"./index-07
   font-weight: bold;
   text-align: center;
   transition: background-color 0.3s;
-`;function B(){const e=y(),{data:n,isLoading:u,isError:b,error:f}=v(e),[d,p]=s.useState(0),[w,x]=s.useState(0),[a,l]=s.useState(10),k=i=>{p(i*a),x(i)};s.useEffect(()=>{p(0),x(0)},[e]),s.useEffect(()=>{const i=()=>{(e==="bodyPart"||e==="target")&&window.innerWidth<=375?l(10):window.innerWidth<1440?l(9):l(10)};return window.addEventListener("resize",i),i(),()=>{window.removeEventListener("resize",i)}},[e]);const g=n?Math.ceil(n.length/a):0,h=n?n.slice(d,d+a):[];return t.jsxs(C,{children:[t.jsx(I,{children:h&&h.map(i=>t.jsx(m,{item:i},i._id))}),g>1&&t.jsx(U,{children:Array.from({length:g},(i,c)=>t.jsx("li",{children:t.jsx(W,{onClick:()=>k(c),disabled:d/a===c,active:w===c})},c))}),t.jsx($,{isLoading:u,isError:b,error:f})]})}export{B as ExercisesSubcategoriesList};
+`;function B(){const e=y(),{data:n,isLoading:u,isError:b,error:f}=v(e),[d,p]=s.useState(0),[w,x]=s.useState(0),[a,l]=s.useState(10),k=r=>{p(r*a),x(r)};s.useEffect(()=>{p(0),x(0)},[e]),s.useEffect(()=>{const r=()=>{(e==="bodyPart"||e==="target")&&window.innerWidth<=375?l(10):window.innerWidth<1440?l(9):l(10)};return window.addEventListener("resize",r),r(),()=>{window.removeEventListener("resize",r)}},[e]);const h=n?Math.ceil(n.length/a):0,g=n?n.slice(d,d+a):[];return t.jsxs(C,{children:[t.jsx(I,{children:g&&g.map(r=>t.jsx(m,{item:r},r._id))}),h>1&&t.jsx(U,{children:Array.from({length:h},(r,c)=>t.jsx("li",{children:t.jsx(W,{onClick:()=>k(c),disabled:d/a===c,active:w===c})},c))}),t.jsx($,{isLoading:u,isError:b,error:f})]})}export{B as ExercisesSubcategoriesList};
