@@ -167,7 +167,7 @@ DayDashboard.propTypes = {
       title: PropTypes.string.isRequired,
       _id: PropTypes.string.isRequired,
     }),
-  ),
+  ).isRequired,
   diaryExercises: PropTypes.arrayOf(
     PropTypes.shape({
       bodyPart: PropTypes.string.isRequired,
@@ -180,5 +180,5 @@ DayDashboard.propTypes = {
       time: PropTypes.number.isRequired,
       _id: PropTypes.string.isRequired,
     }),
-  ),
+  ).isRequired,
 };

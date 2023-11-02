@@ -50,7 +50,7 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
 
   const convertInMin = sec => {
     return `${Math.floor(sec / 60)} min ${
-      sec % 60 === 0 ? '' : (sec % 60) + 'sec'
+      sec % 60 === 0 ? '' : (sec % 60) + 's'
     }`;
   };
 
