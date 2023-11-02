@@ -141,6 +141,9 @@ ProductsList.propTypes = {
   filter: PropTypes.shape({
     title: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
-    recommended: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    recommended: PropTypes.oneOfType([
+      PropTypes.oneOf(['']),
+      PropTypes.arrayOf(PropTypes.oneOf([true, false])),
+    ]),
   }),
 };
