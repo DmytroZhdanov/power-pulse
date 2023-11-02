@@ -13,6 +13,7 @@ import {
   Value,
 } from './DayDashboard.styled';
 import sprite from 'src/assets/images/sprite/sprite.svg';
+import PropTypes from 'prop-types';
 
 export default function DayDashboard({
   bmrData,
@@ -116,7 +117,6 @@ export default function DayDashboard({
             <Title>The rest of the calories</Title>
           </TitleWrapper>
 
-          
           <Value>{bmrData ? bmrData - AllDayCalories : 2200}</Value>
         </BlockItem>
 
@@ -148,3 +148,37 @@ export default function DayDashboard({
     </Container>
   );
 }
+
+DayDashboard.propTypes = {
+  bmrData: PropTypes.number,
+
+  diaryProducts: PropTypes.arrayOf(
+    PropTypes.shape({
+      amount: PropTypes.number.isRequired,
+      calories: PropTypes.number.isRequired,
+      date: PropTypes.string.isRequired,
+      groupBloodNotAllowed: PropTypes.shape({
+        1: PropTypes.bool.isRequired,
+        2: PropTypes.bool.isRequired,
+        3: PropTypes.bool.isRequired,
+        4: PropTypes.bool.isRequired,
+      }),
+      product_ID: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  diaryExercises: PropTypes.arrayOf(
+    PropTypes.shape({
+      bodyPart: PropTypes.string.isRequired,
+      calories: PropTypes.number.isRequired,
+      date: PropTypes.string.isRequired,
+      equipment: PropTypes.string.isRequired,
+      exercise_ID: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      target: PropTypes.string.isRequired,
+      time: PropTypes.number.isRequired,
+      _id: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+};

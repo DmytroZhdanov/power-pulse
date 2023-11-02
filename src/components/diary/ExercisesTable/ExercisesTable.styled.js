@@ -56,15 +56,15 @@ export const TableMainTitle = styled.th`
   }
   &:nth-of-type(5) {
     top: 248px;
-    left: 34%;
-    width: 24%;
+    left: 33%;
+    width: 22%;
     overflow:hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
   &:nth-of-type(6) {
     top: 248px;
-    left: 63%;
+    left: 60%;
   }
 }
 
@@ -74,23 +74,23 @@ export const TableMainTitle = styled.th`
     width: 90px;
   }
   &:nth-of-type(2) {
-    width: 132px;
+    width: 122px;
   }
   &:nth-of-type(3) {
-    width: 128px;
+    width: 118px;
   }
   &:nth-of-type(4) {
     width: 84px;
   }
   &:nth-of-type(5) {
-    width: 78px;
+    width: 68px;
     overflow:hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     display: block;
   }
   &:nth-of-type(6) {
-    width: 72px;
+    width: 102px;
   }
 }
 
@@ -105,13 +105,13 @@ export const TableMainTitle = styled.th`
     width: 131px;
   }
   &:nth-of-type(4) {
-    width: 106px;
+    width: 96px;
   }
   &:nth-of-type(5) {
-    width: 91px;
+    width: 76px;
   }
   &:nth-of-type(6) {
-    width: 82px;
+    width: 106px;
   }
 }  
 `;
@@ -150,17 +150,17 @@ export const TableInfoTd = styled.td`
     &:nth-of-type(4) {
       top: 274px;
       left: 3%;
-      width: 25.5%;;
+      width: 25%;;
     }
     &:nth-of-type(5) {
       top: 274px;
-      left: 34%;
-      width: 24%;
+      left: 32%;
+      width: 22%;
     }
     &:nth-of-type(6) {
       top: 274px;
-      left: 63%;
-      width: 25%;
+      left: 58%;
+      width: 30%;
     }
   }
   @media screen and (min-width: 768px) {
@@ -172,19 +172,19 @@ export const TableInfoTd = styled.td`
       max-width: 90px;
     }
     &:nth-of-type(2) {
-     max-width: 132px;
+     max-width: 122px;
     }
     &:nth-of-type(3) {
-      max-width: 128px;
+      max-width: 118px;
     }
     &:nth-of-type(4) {
       max-width: 84px;
     }
     &:nth-of-type(5) {
-     max-width: 78px;
+     max-width: 68px;
     }
     &:nth-of-type(6) {
-      max-width: 72px;
+      max-width: 102px;
     }
   }
   @media screen and (min-width: 1440px) {
@@ -207,7 +207,6 @@ export const TableInfoTd = styled.td`
       max-width: 82px;
     }
   }
-} 
 `;
 
 export const BtnTd = styled.td``

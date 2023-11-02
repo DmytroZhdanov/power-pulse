@@ -1,7 +1,8 @@
-import ProductsTable from '../ProductsTable/ProductsTable';
-import sprite from 'src/assets/images/sprite/sprite.svg';
-import { TailSpin } from 'react-loader-spinner';
 import { motion, AnimatePresence } from 'framer-motion';
+import { TailSpin } from 'react-loader-spinner';
+import PropTypes from 'prop-types';
+
+import ProductsTable from '../ProductsTable/ProductsTable';
 import {
   DayProdDiv,
   DayProdText,
@@ -12,6 +13,8 @@ import {
   AddProdBtnIcon,
   AddProdBtnText,
 } from './DayProducts.styled';
+
+import sprite from 'src/assets/images/sprite/sprite.svg';
 import { useFetchUserBloodGroupQuery } from 'src/redux/api';
 
 export default function DayProducts({
@@ -61,3 +64,25 @@ export default function DayProducts({
     </DayProdDiv>
   );
 }
+
+DayProducts.propTypes = {
+  isLoading: PropTypes.bool,
+
+  diaryProducts: PropTypes.arrayOf(
+    PropTypes.shape({
+      amount: PropTypes.number.isRequired,
+      calories: PropTypes.number.isRequired,
+      date: PropTypes.string.isRequired,
+      groupBloodNotAllowed: PropTypes.shape({
+        1: PropTypes.bool.isRequired,
+        2: PropTypes.bool.isRequired,
+        3: PropTypes.bool.isRequired,
+        4: PropTypes.bool.isRequired,
+      }),
+      product_ID: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  setDiaryProducts: PropTypes.func.isRequired,
+};
