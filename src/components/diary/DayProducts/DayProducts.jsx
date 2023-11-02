@@ -81,18 +81,6 @@ DayProducts.propTypes = {
       title: PropTypes.string.isRequired,
       _id: PropTypes.string.isRequired,
     }),
-  ),
-  diaryExercises: PropTypes.arrayOf(
-    PropTypes.shape({
-      bodyPart: PropTypes.string.isRequired,
-      calories: PropTypes.number.isRequired,
-      date: PropTypes.string.isRequired,
-      equipment: PropTypes.string.isRequired,
-      exercise_ID: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      target: PropTypes.string.isRequired,
-      time: PropTypes.number.isRequired,
-      _id: PropTypes.string.isRequired,
-    }),
-  ),
+  ).isRequired,
+  setDiaryProducts: PropTypes.func.isRequired,
 };

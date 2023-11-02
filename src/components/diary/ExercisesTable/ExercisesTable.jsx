@@ -174,5 +174,5 @@ ExercisesTable.propTypes = {
       time: PropTypes.number.isRequired,
       _id: PropTypes.string.isRequired,
     }),
-  ),
+  ).isRequired,
 };

@@ -190,6 +190,6 @@ ProductsTable.propTypes = {
       title: PropTypes.string.isRequired,
       _id: PropTypes.string.isRequired,
     }),
-  ),
+  ).isRequired,
   setDiaryProducts: PropTypes.func.isRequired,
 };
