@@ -1,4 +1,4 @@
-import{n as i,P as t,j as a}from"./index-4a05178e.js";const g={hidden:{x:"-100%"},visible:{x:"0%"}},m={visible:e=>({opacity:1,x:0,transition:{delay:e*.2}}),hidden:{opacity:0,x:-300}},v=i.div`
+import{n as i,P as t,j as a}from"./index-810ba1c4.js";const g={hidden:{x:"-100%"},visible:{x:"0%"}},m={visible:e=>({opacity:1,x:0,transition:{delay:e*.2}}),hidden:{opacity:0,x:-300}},v=i.div`
   position: relative;
   z-index: 2;
 `,y=i.label`
