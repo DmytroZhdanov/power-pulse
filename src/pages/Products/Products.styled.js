@@ -31,8 +31,7 @@ export const BackgroundDiv = styled.div`
   height: 716px;
   border-top-right-radius: 12px;
   border-bottom-right-radius: 12px;
-  background:
-    linear-gradient(90deg, #040404 1.1%, rgba(4, 4, 4, 0) 70.79%),
+  background: linear-gradient(90deg, #040404 1.1%, rgba(4, 4, 4, 0) 70.79%),
     linear-gradient(180deg, #040404 1.1%, rgba(4, 4, 4, 0) 50.79%),
     ${props =>
       categoryImages[props?.filter] ||
@@ -40,7 +39,7 @@ export const BackgroundDiv = styled.div`
     url(${background.bg_eating}) 1x,
     url(${background.bg_eating2x}) 2x,
       url(${background.bg_eating3x}) 3x)`},
-    lightgray -372.891px -2.705px / 133.568% 100.375% no-repeat;
+    no-repeat;
   background-size: 428px 716px;
 `;
 
