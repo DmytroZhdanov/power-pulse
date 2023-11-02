@@ -1,7 +1,7 @@
-import sprite from '../../../assets/images/sprite/sprite.svg';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { useDeleteProductMutation } from '../../../redux/api';
+import { useDeleteProductMutation } from 'src/redux/api';
 import {
   TableDiv,
   Table,

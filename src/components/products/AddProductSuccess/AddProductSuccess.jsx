@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 import {
   DivSuccess,
@@ -31,7 +32,7 @@ export default function AddProductSuccess({ onClose, totalCalories }) {
         <LinkText>To the diary</LinkText>
 
         <svg width="16" height="16">
-          <use href="/src/assets/images/sprite/sprite.svg#arrow-add-prod"></use>
+          <use href={`${sprite}#arrow-add-prod`}></use>
         </svg>
       </DivLink>
     </DivSuccess>

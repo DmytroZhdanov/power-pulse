@@ -18,7 +18,6 @@ export const DayProdDiv = styled.div`
   }
   @media screen and (min-width: 1440px) {
     padding: 16px;
-    
   }
 `;
 
@@ -50,9 +49,9 @@ export const DayProdTitle = styled.h2`
 `;
 
 export const DayProdDivList = styled.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   @media screen and (max-width: 767px) {
     margin-bottom: 14px;
     margin-right: 6px;
@@ -75,8 +74,8 @@ export const AddProdBtn = styled(Link)`
 `;
 
 export const AddProdBtnText = styled.p`
-color: #e6533c;
-font-weight: 500;
+  color: #e6533c;
+  font-weight: 500;
   @media screen and (max-width: 767px) {
     font-size: 14px;
     line-height: ${18 / 14};
