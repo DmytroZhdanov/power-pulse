@@ -142,10 +142,7 @@ export function SecondStep({ formik }) {
                 <DataInput
                   {...input}
                   onChange={() =>
-                    formik.setFieldValue(
-                      'levelActivity',
-                      input.value.toString(),
-                    )
+                    formik.setFieldValue('levelActivity', input.value)
                   }
                   checked={formik.values.levelActivity === input.value}
                 />
