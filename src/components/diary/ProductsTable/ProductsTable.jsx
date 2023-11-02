@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
 
+import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   TableDiv,
   Table,
@@ -16,19 +17,29 @@ import {
 } from './ProductsTable.styled';
 
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { useDeleteProductMutation } from 'src/redux/api';
+import {
+  useDeleteProductMutation,
+  useFetchUserBloodGroupQuery,
+} from 'src/redux/api';
 
-export default function ProductsTable({
-  diaryProducts,
-  setDiaryProducts,
-  blood,
-}) {
-  const [deleteProduct] = useDeleteProductMutation();
-  const [isTableDesk, setIsTablDesk] = useState(window.innerWidth >= 768);
+export default function ProductsTable({ diaryProducts, setDiaryProducts }) {
+  const [
+    deleteProduct,
+    {
+      isLoading: isDeleteProductLoading,
+      isError: isDeleteProductError,
+      error: deleteProductError,
+    },
+  ] = useDeleteProductMutation();
 
-  const handleResize = () => {
-    setIsTablDesk(window.innerWidth >= 768);
-  };
+  const {
+    data: userBloodGroup,
+    isFetching: isUserBloodLoading,
+    isError: isUserBloodError,
+    error: userBloodError,
+  } = useFetchUserBloodGroupQuery();
+  const [isTablet, setIsTablet] = useState(window.innerWidth >= 768);
+
   useEffect(() => {
     window.addEventListener('resize', handleResize);
 
@@ -36,6 +47,10 @@ export default function ProductsTable({
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const handleResize = () => {
+    setIsTablet(window.innerWidth >= 768);
+  };
 
   const handleDeleteProduct = async id => {
     try {
@@ -54,7 +69,7 @@ export default function ProductsTable({
   return (
     <>
       <TableDiv>
-        {isTableDesk ? (
+        {isTablet ? (
           <Table>
             <TableMainTitlesThead>
               <TableTitleTr>
@@ -74,7 +89,9 @@ export default function ProductsTable({
               {diaryProducts &&
                 diaryProducts.length !== 0 &&
                 diaryProducts.map(product => {
-                  const isRecommended = !product.groupBloodNotAllowed[blood]
+                  const isRecommended = !product.groupBloodNotAllowed[
+                    userBloodGroup
+                  ]
                     ? true
                     : false;
 
@@ -126,7 +143,7 @@ export default function ProductsTable({
                 diaryProducts.length !== 0 &&
                 diaryProducts.map(product => {
                   const isRecommended =
-                    product.groupBloodNotAllowed[blood] === false
+                    product.groupBloodNotAllowed[userBloodGroup] === false
                       ? true
                       : false;
 
@@ -189,12 +206,25 @@ export default function ProductsTable({
           </>
         )}
       </TableDiv>
+
+      <ErrorHandler
+        isLoading={isDeleteProductLoading}
+        isError={isDeleteProductError}
+        error={deleteProductError}
+        showLoader={false}
+      />
+
+      <ErrorHandler
+        isLoading={isUserBloodLoading}
+        isError={isUserBloodError}
+        error={userBloodError}
+        showLoader={false}
+      />
     </>
   );
 }
 
 ProductsTable.propTypes = {
-  blood: PropTypes.number,
   diaryProducts: PropTypes.arrayOf(
     PropTypes.shape({
       amount: PropTypes.number.isRequired,

@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 
 import TitlePage from 'components/common/TitlePage/TitlePage';
 import DayDashboard from 'components/diary/DayDashboard/DayDashboard';
 import DayExercises from 'components/diary/DayExercises/DayExercises';
 import DayProducts from 'components/diary/DayProducts/DayProducts';
 import DaySwitch from 'components/diary/DaySwitch/DaySwitch';
-import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
-import TimerWarning from 'components/common/TimerWarning/TimerWarning';
-import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
+import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   ContentWrapperDiv,
   DayStatisticWrapperDiv,
@@ -16,20 +13,12 @@ import {
   Section,
 } from './Diary.style';
 
-import {
-  useFetchDailyRateQuery,
-  useFetchUserBloodGroupQuery,
-  useLazyFetchDiaryQuery,
-} from 'src/redux/api';
-import { initialState, setCredentials } from 'src/redux/auth/authSlice';
+import { useFetchDailyRateQuery, useLazyFetchDiaryQuery } from 'src/redux/api';
 
 export function Diary() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [diaryProducts, setDiaryProducts] = useState([]);
   const [diaryExercises, setDiaryExercises] = useState([]);
-  const [showTimerWarning, setShowTimerWarning] = useState(false);
-  const [showError, setShowError] = useState(false);
-  const dispatch = useDispatch();
 
   const [
     fetchDiary,
@@ -38,17 +27,10 @@ export function Diary() {
 
   const {
     data: bmr,
-    isLoading: isDailyRateLoading,
+    isFetching: isDailyRateLoading,
     isError: isDailyRateError,
     error: dailyRateError,
   } = useFetchDailyRateQuery();
-
-  const {
-    data: userBloodGroup,
-    isLoading: isUserBloodLoading,
-    isError: isUserBloodError,
-    error: userBloodError,
-  } = useFetchUserBloodGroupQuery();
 
   const currentDay =
     selectedDate.getFullYear() +
@@ -67,33 +49,6 @@ export function Diary() {
     };
     fetchDiaryData();
   }, [fetchDiary, currentDay]);
-
-  useEffect(() => {
-    let id;
-
-    if (isDiaryLoading || isDailyRateLoading || isUserBloodLoading) {
-      id = setTimeout(setShowTimerWarning, 3000, true);
-    }
-
-    return clearTimeout(id);
-  }, [isDailyRateLoading, isDiaryLoading, isUserBloodLoading]);
-
-  useEffect(() => {
-    if (isDiaryError || isDailyRateError || isUserBloodError) {
-      setShowError(true);
-      setTimeout(setShowError, 2000, false);
-    }
-  }, [isDailyRateError, isDiaryError, isUserBloodError]);
-
-  useEffect(() => {
-    if (
-      diaryError?.status === 401 ||
-      dailyRateError?.status === 401 ||
-      userBloodError?.status === 401
-    ) {
-      dispatch(setCredentials(initialState));
-    }
-  }, [dailyRateError, diaryError, dispatch, userBloodError]);
 
   return (
     <Section>
@@ -117,7 +72,6 @@ export function Diary() {
             isLoading={isDiaryLoading}
             setDiaryProducts={setDiaryProducts}
             diaryProducts={diaryProducts}
-            blood={userBloodGroup}
           />
 
           <DayExercises
@@ -128,25 +82,19 @@ export function Diary() {
         </DayStatisticWrapperDiv>
       </ContentWrapperDiv>
 
-      <BasicModalWindow
-        onShow={
-          (isDiaryLoading || isDailyRateLoading || isUserBloodLoading) &&
-          showTimerWarning
-        }
-        onClose={() => setShowTimerWarning(false)}
-      >
-        <TimerWarning />
-      </BasicModalWindow>
+      <ErrorHandler
+        isLoading={isDiaryLoading}
+        isError={isDiaryError}
+        error={diaryError}
+        showLoader={false}
+      />
 
-      <BasicModalWindow onShow={showError} onClose={() => setShowError(false)}>
-        <ErrorMessage
-          message={
-            diaryError?.data?.message ||
-            dailyRateError?.data?.message ||
-            userBloodError?.data?.message
-          }
-        />
-      </BasicModalWindow>
+      <ErrorHandler
+        isLoading={isDailyRateLoading}
+        isError={isDailyRateError}
+        error={dailyRateError}
+        showLoader={false}
+      />
     </Section>
   );
 }

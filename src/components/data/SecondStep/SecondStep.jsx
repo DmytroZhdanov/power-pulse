@@ -1,5 +1,6 @@
 import { ErrorMessage } from 'formik';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 import {
   RadioContainer1Div,
@@ -22,14 +23,23 @@ export function SecondStep({ formik }) {
         <fieldset>
           <legend>Blood:</legend>
 
-          <ErrorContainerDiv>
-            <ErrorMessage
-              name="blood"
-              component="div"
-              className="error"
-              style={{ color: 'red', fontSize: '10px' }}
-            />
-          </ErrorContainerDiv>
+          <motion.div
+            key={formik.errors.blood}
+            variants={listVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            transition={{ duration: 0.3 }}
+          >
+            <ErrorContainerDiv>
+              <ErrorMessage
+                name="blood"
+                component="div"
+                className="error"
+                style={{ color: 'red', fontSize: '10px' }}
+              />
+            </ErrorContainerDiv>
+          </motion.div>
 
           {radioInputBloodData.map((input, i) => (
             <motion.div
@@ -56,14 +66,23 @@ export function SecondStep({ formik }) {
         <fieldset>
           <legend>Sex:</legend>
 
-          <ErrorContainerDiv>
-            <ErrorMessage
-              name="sex"
-              component="div"
-              className="error"
-              style={{ color: 'red', fontSize: '10px' }}
-            />
-          </ErrorContainerDiv>
+          <motion.div
+            key={formik.errors.sex}
+            variants={listVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            transition={{ duration: 0.3 }}
+          >
+            <ErrorContainerDiv>
+              <ErrorMessage
+                name="sex"
+                component="div"
+                className="error"
+                style={{ color: 'red', fontSize: '10px' }}
+              />
+            </ErrorContainerDiv>
+          </motion.div>
 
           {radioInputSexData.map((input, i) => (
             <motion.div
@@ -92,14 +111,23 @@ export function SecondStep({ formik }) {
         <fieldset>
           <legend>Level Activity:</legend>
 
-          <ErrorContainerDiv>
-            <ErrorMessage
-              name="levelActivity"
-              component="div"
-              className="error"
-              style={{ color: 'red', fontSize: '10px' }}
-            />
-          </ErrorContainerDiv>
+          <motion.div
+            key={formik.errors.levelActivity}
+            variants={listVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            transition={{ duration: 0.3 }}
+          >
+            <ErrorContainerDiv>
+              <ErrorMessage
+                name="levelActivity"
+                component="div"
+                className="error"
+                style={{ color: 'red', fontSize: '10px' }}
+              />
+            </ErrorContainerDiv>
+          </motion.div>
 
           {radioInputActivityData.map((input, i) => (
             <motion.div
@@ -128,3 +156,15 @@ export function SecondStep({ formik }) {
     </>
   );
 }
+
+SecondStep.propTypes = {
+  formik: PropTypes.shape({
+    values: PropTypes.shape({
+      blood: PropTypes.string.isRequired,
+      sex: PropTypes.string.isRequired,
+      levelActivity: PropTypes.string.isRequired,
+    }).isRequired,
+    handleChange: PropTypes.func,
+    setFieldValue: PropTypes.func,
+  }),
+};

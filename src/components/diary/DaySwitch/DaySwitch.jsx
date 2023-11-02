@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import Calendar from 'components/Calendar/Calendar';
 import Icon from 'components/common/IconsComp/Icon';
+import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   Button,
   CalendarIconDiv,
@@ -24,7 +25,8 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
 
   const dateOfUserRegistration = useSelector(selectUserRegistrationDate);
 
-  const [fetchDiaryAll, { data, error }] = useLazyFetchDiaryAllQuery();
+  const [fetchDiaryAll, { data, isLoading, isError, error }] =
+    useLazyFetchDiaryAllQuery();
 
   useEffect(() => {
     if (data && data.length !== 0) {
@@ -144,6 +146,13 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
           <Icon name="nav-arrow-right" />
         </Button>
       </div>
+
+      <ErrorHandler
+        isLoading={isLoading}
+        isError={isError}
+        error={error}
+        showLoader={false}
+      />
     </WrapperDiv>
   );
 }

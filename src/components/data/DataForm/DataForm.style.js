@@ -134,12 +134,15 @@ export const RadioContainer1Div = styled.div`
       line-height: calc(24 / 16);
     }
   }
+  fieldset {
+    position: relative;
+  }
 `;
 
 export const ErrorContainerDiv = styled.div`
   position: absolute;
   width: 150px;
-  top: -10%;
+  top: -15px;
   left: 0;
 `;
 
