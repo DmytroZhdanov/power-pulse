@@ -92,6 +92,7 @@ export const DiaryLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 8px;
+  
   :hover p,
   :hover svg {
     color: ${({ theme }) => theme.color.white};
