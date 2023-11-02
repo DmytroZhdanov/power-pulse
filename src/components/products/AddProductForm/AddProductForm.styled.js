@@ -8,6 +8,7 @@ export const DivAddForm = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     width: 320px;
   }
+  
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding: 48px 32px;
     width: auto;
@@ -16,6 +17,7 @@ export const DivAddForm = styled.div`
 
 export const DivInputs = styled.div`
   position: relative;
+  
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 415px;
   }
@@ -144,6 +146,7 @@ export const ButtonAdd = styled.button`
     color: ${({ theme }) => theme.color.hoverBorder};
     background: ${({ theme }) => theme.color.white};
   }
+  
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     padding: 12px 32px;
   }
