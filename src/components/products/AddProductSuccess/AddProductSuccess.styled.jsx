@@ -89,6 +89,7 @@ export const DivLink = styled(Link)`
   color: ${({ theme }) => theme.color.grayFirst};
   font-size: 14px;
   line-height: calc(18 / 14);
+  
   svg {
     stroke: ${({ theme }) => theme.color.grayFirst};
     transition: stroke 300ms ease-in-out;
