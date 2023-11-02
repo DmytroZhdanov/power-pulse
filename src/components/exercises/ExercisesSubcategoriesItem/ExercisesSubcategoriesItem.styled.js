@@ -44,6 +44,10 @@ export const WrapperDiv = styled.div`
 
   &:hover {
     transform: scale(1.05);
+
+    .hoverText {
+      color: ${({ theme }) => theme.color.orangeSecond};
+    }
   }
 `;
 
