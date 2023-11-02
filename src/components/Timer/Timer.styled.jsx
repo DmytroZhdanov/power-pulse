@@ -7,8 +7,10 @@ export const TimerWrapIcon = styled.div`
   top: 50%;
   left: 52%;
   translate: -50% -50%;
+  cursor: pointer;
 
   svg {
+    cursor: pointer;
     opacity: 0.5;
     width: 80px;
     height: 80px;
@@ -55,6 +57,7 @@ export const TimerLabel = styled.p`
 
 export const TimerValue = styled.p`
   color: #efede8;
+  cursor: pointer;
   font-size: 16px;
   line-height: 1.5;
   user-select: none;

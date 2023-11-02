@@ -1,17 +1,20 @@
-import ExercisesTable from '../ExercisesTable/ExercisesTable';
-import sprite from '../../../assets/images/sprite/sprite.svg';
 import { TailSpin } from 'react-loader-spinner';
 import { motion, AnimatePresence } from 'framer-motion';
+import PropTypes from 'prop-types';
+
+import ExercisesTable from 'components/diary/ExercisesTable/ExercisesTable';
 import {
   DayExerDiv,
-  DayExerText,
+  DayExerTextP,
   LoaderDiv,
-  DayExerTitle,
-  DayExerDivList,
-  AddExerBtn,
+  DayExerTitleH2,
+  DayExerListDiv,
+  AddExerBtnLink,
   AddExerBtnIcon,
-  AddExerBtnText,
+  AddExerBtnTextP,
 } from './DayExercises.styled';
+
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export default function DayExercises({
   diaryExercises,
@@ -20,15 +23,18 @@ export default function DayExercises({
 }) {
   return (
     <DayExerDiv>
-      <DayExerDivList>
-        <DayExerTitle>Exercises</DayExerTitle>
-        <AddExerBtn to="/exercises">
-          <AddExerBtnText>Add exercise</AddExerBtnText>
+      <DayExerListDiv>
+        <DayExerTitleH2>Exercises</DayExerTitleH2>
+
+        <AddExerBtnLink to="/exercises">
+          <AddExerBtnTextP>Add exercise</AddExerBtnTextP>
+
           <AddExerBtnIcon>
             <use href={`${sprite}#big_arrow`}></use>
           </AddExerBtnIcon>
-        </AddExerBtn>
-      </DayExerDivList>
+        </AddExerBtnLink>
+      </DayExerListDiv>
+
       {diaryExercises && diaryExercises.length !== 0 ? (
         <ExercisesTable
           diaryExercises={diaryExercises}
@@ -42,7 +48,7 @@ export default function DayExercises({
                 <TailSpin color="#E6533C" ariaLabel="three-dots-loading" />
               </LoaderDiv>
             ) : (
-              <DayExerText
+              <DayExerTextP
                 as={motion.p}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -50,7 +56,7 @@ export default function DayExercises({
                 exit={{ opacity: 0 }}
               >
                 Not found exercises
-              </DayExerText>
+              </DayExerTextP>
             )}
           </AnimatePresence>
         </>
@@ -58,3 +64,21 @@ export default function DayExercises({
     </DayExerDiv>
   );
 }
+
+DayExercises.propTypes = {
+  isLoading: PropTypes.bool,
+  diaryExercises: PropTypes.arrayOf(
+    PropTypes.shape({
+      bodyPart: PropTypes.string.isRequired,
+      calories: PropTypes.number.isRequired,
+      date: PropTypes.string.isRequired,
+      equipment: PropTypes.string.isRequired,
+      exercise_ID: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      target: PropTypes.string.isRequired,
+      time: PropTypes.number.isRequired,
+      _id: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  setDiaryExercises: PropTypes.func.isRequired,
+};

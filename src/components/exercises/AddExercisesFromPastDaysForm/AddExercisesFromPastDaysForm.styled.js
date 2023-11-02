@@ -97,6 +97,15 @@ export const ButtonAdd = styled.button`
   background: ${({ theme }) => theme.color.orangeFirst};
   line-height: 1.29;
 
+  transition:
+    color 300ms ease-in-out,
+    background 300ms ease-in-out;
+
+  :hover {
+    color: ${({ theme }) => theme.color.hoverBorder};
+    background: ${({ theme }) => theme.color.white};
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding: 14px 32px;
     line-height: 1.5;

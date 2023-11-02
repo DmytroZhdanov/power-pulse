@@ -1,24 +1,24 @@
 import styled from '@emotion/styled';
 
-export const Wrapper = styled.div`
+export const WrapperDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     gap: 40px;
   }
 `;
 
-export const CalendarWrapper = styled.div`
+export const CalendarWrapperDiv = styled.div`
   width: 125px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 161px;
   }
 `;
 
-export const InputWrapper = styled.div`
+export const InputWrapperDiv = styled.div`
   position: relative;
   cursor: pointer;
   display: flex;
@@ -37,7 +37,7 @@ export const InputWrapper = styled.div`
   }
 `;
 
-export const InputText = styled.p`
+export const InputTextP = styled.p`
   user-select: none;
   font-size: 18px;
   font-weight: 700;
@@ -45,11 +45,11 @@ export const InputText = styled.p`
     color 300ms ease-in-out,
     scale 300ms ease-in-out;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 24px;
   }
 `;
-export const CalendarIcon = styled.div`
+export const CalendarIconDiv = styled.div`
   svg {
     width: 20px;
     height: 20px;
@@ -58,7 +58,7 @@ export const CalendarIcon = styled.div`
       stroke 300ms ease-in-out,
       scale 300ms ease-in-out;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
       width: 24px;
       height: 24px;
     }
