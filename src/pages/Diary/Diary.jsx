@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-
 import {
   useFetchDailyRateQuery,
   useFetchUserBloodGroupQuery,
@@ -10,7 +9,6 @@ import DayDashboard from 'components/diary/DayDashboard/DayDashboard';
 import DayExercises from 'components/diary/DayExercises/DayExercises';
 import DayProducts from 'components/diary/DayProducts/DayProducts';
 import DaySwitch from 'components/diary/DaySwitch/DaySwitch';
-
 import {
   ContentWrapper,
   DayStatisticWrapper,
@@ -38,10 +36,12 @@ export function Diary() {
       const diaryData = await fetchDiary(currentDay);
 
       setDiaryExercises(diaryData.data.exerciseResult);
+
       setDiaryProducts(diaryData.data.productResult);
     };
     fetchDiaryData();
   }, [fetchDiary, currentDay]);
+
   return (
     <Section>
       <HeaderWrapper>

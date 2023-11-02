@@ -14,6 +14,7 @@ import {
   DelBtnTable,
   DelIcon,
 } from './ExercisesTable.styled';
+import PropTypes from 'prop-types';
 import sprite from '../../../assets/images/sprite/sprite.svg';
 
 export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
@@ -45,6 +46,12 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const convertInMin = sec => {
+    return `${Math.floor(sec / 60)} min ${
+      sec % 60 === 0 ? '' : (sec % 60) + 'sec'
+    }`;
   };
 
   return (
@@ -79,7 +86,7 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
                       <TableInfoTd>{exercise.name}</TableInfoTd>
                       <TableInfoTd>{exercise.target}</TableInfoTd>
                       <TableInfoTd>{exercise.calories}</TableInfoTd>
-                      <TableInfoTd>{exercise.time}</TableInfoTd>
+                      <TableInfoTd>{convertInMin(exercise.time)}</TableInfoTd>
                       <BtnTd>
                         <DelBtnTable
                           onClick={() => {
@@ -127,7 +134,7 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
                         <TableInfoTd>{exercise.name}</TableInfoTd>
                         <TableInfoTd>{exercise.target}</TableInfoTd>
                         <TableInfoTd>{exercise.calories}</TableInfoTd>
-                        <TableInfoTd>{exercise.time}</TableInfoTd>
+                        <TableInfoTd>{convertInMin(exercise.time)}</TableInfoTd>
                         <BtnTd>
                           <DelBtnTable
                             onClick={() => {
@@ -151,3 +158,21 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
     </>
   );
 }
+
+ExercisesTable.propTypes = {
+  setDiaryExercises: PropTypes.func.isRequired,
+
+  diaryExercises: PropTypes.arrayOf(
+    PropTypes.shape({
+      bodyPart: PropTypes.string.isRequired,
+      calories: PropTypes.number.isRequired,
+      date: PropTypes.string.isRequired,
+      equipment: PropTypes.string.isRequired,
+      exercise_ID: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      target: PropTypes.string.isRequired,
+      time: PropTypes.number.isRequired,
+      _id: PropTypes.string.isRequired,
+    }),
+  ),
+};

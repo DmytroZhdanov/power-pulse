@@ -13,14 +13,14 @@ import {
   AddProdBtnText,
 } from './DayProducts.styled';
 import { useFetchUserBloodGroupQuery } from '../../../redux/api';
+import PropTypes from 'prop-types';
 
 export default function DayProducts({
   diaryProducts,
   setDiaryProducts,
   isLoading,
 }) {
-
-  const {data} =  useFetchUserBloodGroupQuery();
+  const { data } = useFetchUserBloodGroupQuery();
   return (
     <DayProdDiv>
       <DayProdDivList>
@@ -62,3 +62,37 @@ export default function DayProducts({
     </DayProdDiv>
   );
 }
+
+DayProducts.propTypes = {
+  isLoading: PropTypes.bool,
+
+  diaryProducts: PropTypes.arrayOf(
+    PropTypes.shape({
+      amount: PropTypes.number.isRequired,
+      calories: PropTypes.number.isRequired,
+      date: PropTypes.string.isRequired,
+      groupBloodNotAllowed: PropTypes.shape({
+        1: PropTypes.bool.isRequired,
+        2: PropTypes.bool.isRequired,
+        3: PropTypes.bool.isRequired,
+        4: PropTypes.bool.isRequired,
+      }),
+      product_ID: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
+    }),
+  ),
+  diaryExercises: PropTypes.arrayOf(
+    PropTypes.shape({
+      bodyPart: PropTypes.string.isRequired,
+      calories: PropTypes.number.isRequired,
+      date: PropTypes.string.isRequired,
+      equipment: PropTypes.string.isRequired,
+      exercise_ID: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      target: PropTypes.string.isRequired,
+      time: PropTypes.number.isRequired,
+      _id: PropTypes.string.isRequired,
+    }),
+  ),
+};
