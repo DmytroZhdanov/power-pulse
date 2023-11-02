@@ -46,6 +46,7 @@ export default function BirthdayInput({
         name="birthday"
         defaultValue={inputValue}
       />
+
       <Calendar
         maxDate={eighteenYearsAgo}
         minDate={maximumAge}
@@ -68,4 +69,6 @@ export default function BirthdayInput({
 BirthdayInput.propTypes = {
   selectedDate: PropTypes.instanceOf(Date).isRequired,
   setSelectedDate: PropTypes.func.isRequired,
+  setIsDateSelected: PropTypes.func.isRequired,
+  isDateSelected: PropTypes.bool.isRequired,
 };

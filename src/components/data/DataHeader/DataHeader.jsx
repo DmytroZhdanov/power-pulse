@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 import { DataContainerDiv } from './DataHeader.styled';
 
@@ -50,3 +51,7 @@ export default function DataHeader({ step }) {
     </motion.div>
   );
 }
+
+DataHeader.propTypes = {
+  step: PropTypes.string,
+};

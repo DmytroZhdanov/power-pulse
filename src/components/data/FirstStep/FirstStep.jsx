@@ -1,4 +1,5 @@
 import { ErrorMessage } from 'formik';
+import PropTypes from 'prop-types';
 
 import Icon from 'components/common/IconsComp/Icon';
 import BirthdayInput from 'components/data/DataBirthday/DataBirthdayInput';
@@ -9,6 +10,8 @@ import {
   TextLabel,
 } from 'components/data/DataForm/DataForm.style';
 import { ItemLi, ListUl } from './FirstStep.styled';
+import { motion } from 'framer-motion';
+import { slideInFromLeft } from '../helper/motion';
 
 export function FirstStep({
   formik,
@@ -32,14 +35,31 @@ export function FirstStep({
             <span>{input.span}</span>
 
             {formik.touched[input.name] && !formik.errors[input.name] && (
-              <SuccessMessageDiv>
-                <Icon name={'checkmark'} />
+              <motion.ul
+                key={formik.values[input.name]}
+                variants={slideInFromLeft}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                transition={{ duration: 0.3 }}
+              >
+                <SuccessMessageDiv>
+                  <Icon name={'checkmark'} />
 
-                <p> {input.span} is valid</p>
-              </SuccessMessageDiv>
+                  <p> {input.span} is valid</p>
+                </SuccessMessageDiv>
+              </motion.ul>
             )}
-
-            <ErrorMessage name={input.name} component="div" />
+            <motion.ul
+              key={formik.errors[input.name]}
+              variants={slideInFromLeft}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              transition={{ duration: 0.3 }}
+            >
+              <ErrorMessage name={input.name} component="div" />
+            </motion.ul>
           </TextLabel>
         </ItemLi>
       ))}
@@ -52,8 +72,38 @@ export function FirstStep({
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
           />
+
+          <motion.div
+            key={formik.errors.birthday}
+            variants={slideInFromLeft}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            transition={{ duration: 0.3 }}
+          >
+            {!isDateSelected && (
+              <ErrorMessage
+                name="birthday"
+                component="div"
+                style={{
+                  color: '#D80027',
+                  fontSize: '10px',
+                  marginLeft: '4px',
+                  paddingTop: '2px',
+                }}
+              />
+            )}
+          </motion.div>
         </label>
       </ItemLi>
     </ListUl>
   );
 }
+
+FirstStep.propTypes = {
+  formik: PropTypes.object,
+  selectedDate: PropTypes.instanceOf(Date),
+  setSelectedDate: PropTypes.func,
+  isDateSelected: PropTypes.bool,
+  setIsDateSelected: PropTypes.func,
+};

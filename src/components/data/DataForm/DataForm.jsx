@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { Form, FormikProvider, useFormik } from 'formik';
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 import DataHeader from 'components/data/DataHeader/DataHeader';
 import { FirstStep } from 'components/data/FirstStep/FirstStep';
@@ -15,8 +16,9 @@ import { slideInFromLeft } from 'components/data/helper/motion';
 import { useUpdateUserParamsMutation } from 'src/redux/api';
 import { DATA_STEPS, ROUTER } from 'src/utils';
 
-const DataForm = ({ userParams, step }) => {
+export default function DataForm({ userParams, step }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
+
   const [isDateSelected, setIsDateSelected] = useState(false);
 
   const navigate = useNavigate();
@@ -64,7 +66,11 @@ const DataForm = ({ userParams, step }) => {
 
             {step === DATA_STEPS.SECOND && <SecondStep formik={formik} />}
 
-            <DataBtns step={step} formik={formik} />
+            <DataBtns
+              step={step}
+              formik={formik}
+              isDateSelected={isDateSelected}
+            />
           </Form>
         </FormikProvider>
       </DataFormContainerDiv>
@@ -72,4 +78,15 @@ const DataForm = ({ userParams, step }) => {
   );
 };
 
-export default DataForm;
+DataForm.propTypes = {
+  userParams: PropTypes.shape({
+    height: PropTypes.string,
+    currentWeight: PropTypes.string,
+    desiredWeight: PropTypes.string,
+    birthday: PropTypes.string,
+    blood: PropTypes.string,
+    sex: PropTypes.string,
+    levelActivity: PropTypes.string,
+  }).isRequired,
+  step: PropTypes.string,
+};
