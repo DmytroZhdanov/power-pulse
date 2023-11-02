@@ -17,7 +17,7 @@ export default function ExercisesSubcategoriesItem({ item }) {
             <li>
               <MainTextP>{item.name}</MainTextP>
             </li>
-            
+
             <li>
               <SubtextP>{item.filter}</SubtextP>
             </li>
