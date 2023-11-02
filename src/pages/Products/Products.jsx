@@ -20,10 +20,12 @@ export function Products() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
+  console.log(filter);
   return (
     <>
-      {isDesktop && <BackgroundDiv />}
+      {isDesktop && (
+        <BackgroundDiv filter={filter?.category.split(' ').join('')} />
+      )}
       <WrapperDiv>
         <TitlePage text={'Products'} />
 
