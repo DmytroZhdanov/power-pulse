@@ -1,22 +1,22 @@
-import sprite from '../../../assets/images/sprite/sprite.svg';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { useDeleteProductMutation } from '../../../redux/api';
+import { motion, AnimatePresence } from 'framer-motion';
+import PropTypes from 'prop-types';
+
 import {
   TableDiv,
   Table,
-  TableMainTitles,
+  TableMainTitlesThead,
   TableTitleTr,
-  TableMainTitle,
+  TableMainTitleTh,
   TableBody,
-  TableTr,
   TableInfoTd,
-  BtnTd,
-  DelBtnTable,
+  DelBtnTableButton,
   DelIcon,
   TableRecomSpan,
 } from './ProductsTable.styled';
-import PropTypes from 'prop-types';
+
+import sprite from 'src/assets/images/sprite/sprite.svg';
+import { useDeleteProductMutation } from 'src/redux/api';
 
 export default function ProductsTable({
   diaryProducts,
@@ -56,15 +56,20 @@ export default function ProductsTable({
       <TableDiv>
         {isTableDesk ? (
           <Table>
-            <TableMainTitles>
+            <TableMainTitlesThead>
               <TableTitleTr>
-                <TableMainTitle>Title</TableMainTitle>
-                <TableMainTitle>Category</TableMainTitle>
-                <TableMainTitle>Calories</TableMainTitle>
-                <TableMainTitle>Weight</TableMainTitle>
-                <TableMainTitle>Recommend</TableMainTitle>
+                <TableMainTitleTh>Title</TableMainTitleTh>
+
+                <TableMainTitleTh>Category</TableMainTitleTh>
+
+                <TableMainTitleTh>Calories</TableMainTitleTh>
+
+                <TableMainTitleTh>Weight</TableMainTitleTh>
+
+                <TableMainTitleTh>Recommend</TableMainTitleTh>
               </TableTitleTr>
-            </TableMainTitles>
+            </TableMainTitlesThead>
+
             <AnimatePresence>
               {diaryProducts &&
                 diaryProducts.length !== 0 &&
@@ -82,17 +87,23 @@ export default function ProductsTable({
                       transition={{ duration: 0.3 }}
                       exit={{ x: -900 }}
                     >
-                      <TableTr>
+                      <tr>
                         <TableInfoTd>{product.title}</TableInfoTd>
+
                         <TableInfoTd>{product.category}</TableInfoTd>
+
                         <TableInfoTd>{product.calories}</TableInfoTd>
+
                         <TableInfoTd>{product.amount}</TableInfoTd>
+
                         <TableInfoTd>
-                          <TableRecomSpan Recom={isRecommended} />
+                          <TableRecomSpan recommended={isRecommended} />
+
                           {isRecommended ? 'Yes' : 'No'}
                         </TableInfoTd>
-                        <BtnTd>
-                          <DelBtnTable
+
+                        <td>
+                          <DelBtnTableButton
                             onClick={() => {
                               handleDeleteProduct(product._id);
                             }}
@@ -100,9 +111,9 @@ export default function ProductsTable({
                             <DelIcon>
                               <use href={`${sprite}#delete`}></use>
                             </DelIcon>
-                          </DelBtnTable>
-                        </BtnTd>
-                      </TableTr>
+                          </DelBtnTableButton>
+                        </td>
+                      </tr>
                     </TableBody>
                   );
                 })}
@@ -128,28 +139,38 @@ export default function ProductsTable({
                       as={motion.table}
                       key={product._id}
                     >
-                      <TableMainTitles>
+                      <TableMainTitlesThead>
                         <TableTitleTr>
-                          <TableMainTitle>Title</TableMainTitle>
-                          <TableMainTitle>Category</TableMainTitle>
-                          <TableMainTitle>Calories</TableMainTitle>
-                          <TableMainTitle>Weight</TableMainTitle>
-                          <TableMainTitle>Recommend</TableMainTitle>
+                          <TableMainTitleTh>Title</TableMainTitleTh>
+
+                          <TableMainTitleTh>Category</TableMainTitleTh>
+
+                          <TableMainTitleTh>Calories</TableMainTitleTh>
+
+                          <TableMainTitleTh>Weight</TableMainTitleTh>
+
+                          <TableMainTitleTh>Recommend</TableMainTitleTh>
                         </TableTitleTr>
-                      </TableMainTitles>
+                      </TableMainTitlesThead>
 
                       <TableBody>
-                        <TableTr>
+                        <tr>
                           <TableInfoTd>{product.title}</TableInfoTd>
+
                           <TableInfoTd>{product.category}</TableInfoTd>
+
                           <TableInfoTd>{product.calories}</TableInfoTd>
+
                           <TableInfoTd>{product.amount}</TableInfoTd>
+
                           <TableInfoTd>
-                            <TableRecomSpan Recom={isRecommended} />
+                            <TableRecomSpan recommended={isRecommended} />
+
                             {isRecommended ? 'Yes' : 'No'}
                           </TableInfoTd>
-                          <BtnTd>
-                            <DelBtnTable
+
+                          <td>
+                            <DelBtnTableButton
                               onClick={() => {
                                 handleDeleteProduct(product._id);
                               }}
@@ -157,9 +178,9 @@ export default function ProductsTable({
                               <DelIcon>
                                 <use href={`${sprite}#delete`}></use>
                               </DelIcon>
-                            </DelBtnTable>
-                          </BtnTd>
-                        </TableTr>
+                            </DelBtnTableButton>
+                          </td>
+                        </tr>
                       </TableBody>
                     </Table>
                   );
@@ -174,7 +195,6 @@ export default function ProductsTable({
 
 ProductsTable.propTypes = {
   blood: PropTypes.number,
-
   diaryProducts: PropTypes.arrayOf(
     PropTypes.shape({
       amount: PropTypes.number.isRequired,
