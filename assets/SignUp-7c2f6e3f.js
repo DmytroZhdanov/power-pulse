@@ -1,4 +1,4 @@
-import{n as t,u as k,m as F,r as x,j as e,I as o,L as S,E as C,c as I}from"./index-c86ad4e7.js";import{u as z,F as P,a as B,b as E}from"./formik.esm-db834377.js";import{c as $,a as m}from"./index.esm-fc8eeca0.js";import{T as q}from"./TitlePage-cded356c.js";import"./tiny-warning.esm-c932d744.js";const D=t.p`
+import{n as t,u as k,d as F,r as h,j as e,I as o,L as S,E as C,c as z}from"./index-ccfc92b3.js";import{u as P,F as T,a as q,b as B}from"./formik.esm-7a3e4cf5.js";import{c as E,a as x}from"./index.esm-f17b4cc7.js";import{T as I}from"./TitlePage-d17cbca2.js";import"./tiny-warning.esm-c932d744.js";const $=t.p`
   @media screen and (max-width: 374px) {
     width: calc(100% - 20px);
   }
@@ -15,7 +15,7 @@ import{n as t,u as k,m as F,r as x,j as e,I as o,L as S,E as C,c as I}from"./ind
     width: 496px;
     margin-top: 16px;
   }
-`,T=t.div`
+`,U=t.div`
   margin-top: 28px;
   display: flex;
   flex-direction: column;
@@ -54,13 +54,12 @@ import{n as t,u as k,m as F,r as x,j as e,I as o,L as S,E as C,c as I}from"./ind
     margin-top: 32px;
     gap: 20px;
   }
-`,L=t.div`
+`,A=t.div`
   @media screen and (max-width: 374px) {
     width: calc(100% - 20px);
   }
 
   color: ${i=>{switch(i.type){case"invalid":return"#D80027";case"valid":return"#3CBF61";default:return"rgba(239, 237, 232, 0.3)"}}};
-
   input {
     width: 100%;
     padding: 14px;
@@ -76,15 +75,15 @@ import{n as t,u as k,m as F,r as x,j as e,I as o,L as S,E as C,c as I}from"./ind
     &:focus {
       border: 1px solid #e6533c;
     }
-  }
 
-  @media screen and (min-width: 375px) {
-    width: 335px;
+    @media screen and (min-width: 375px) {
+      width: 335px;
+    }
+    @media screen and (min-width: 768px) {
+      width: 364px;
+    }
   }
-  @media screen and (min-width: 768px) {
-    width: 364px;
-  }
-`,_=t.div`
+`,D=t.div`
   margin-top: 4px;
 
   font-size: 12px;
@@ -93,7 +92,6 @@ import{n as t,u as k,m as F,r as x,j as e,I as o,L as S,E as C,c as I}from"./ind
 
   div {
     display: flex;
-    align-items: center;
     gap: 4px;
   }
 
@@ -102,7 +100,7 @@ import{n as t,u as k,m as F,r as x,j as e,I as o,L as S,E as C,c as I}from"./ind
     min-height: 16px;
     fill: currentColor;
   }
-`,A=t.div`
+`,_=t.div`
   margin-top: 12px;
   display: flex;
   font-size: 12px;
@@ -111,7 +109,7 @@ import{n as t,u as k,m as F,r as x,j as e,I as o,L as S,E as C,c as I}from"./ind
   a {
     text-decoration-line: underline;
   }
-`,H=t.div`
+`,L=t.div`
   display: inline-flex;
   flex-direction: column;
 
@@ -156,7 +154,7 @@ import{n as t,u as k,m as F,r as x,j as e,I as o,L as S,E as C,c as I}from"./ind
     min-width: 28px;
     height: 28px;
   }
-`,M=$({email:m().email("Invalid email").matches("^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$","Enter valid values").required("This is a required field"),password:m().min(6).required("This is a required field")}),h=({...i})=>{const[s,n]=E(i),[d,c]=x.useState(!1),p=()=>c(!0),a=!!d&&s.value.trim().length>2||n.touched;return e.jsxs(L,{type:`${a?n.error?"invalid":"valid":""}`,children:[e.jsx("input",{...i,...s,onFocus:p}),e.jsx(_,{children:a?e.jsxs("div",{id:`${i.id}-feedback`,"aria-live":"polite",children:[e.jsx(o,{name:"checkmark"}),n.error?n.error:e.jsxs(e.Fragment,{children:["Success ",i.name]})]}):null})]})};function G(){const i=k(),[s,{isLoading:n,isError:d,error:c}]=F(),[p,a]=x.useState(),[u,g]=x.useState(!1),w=()=>{g(!0)},r=document.querySelector("#password"),f=()=>{r&&(r.getAttribute("type")==="password"?(r.setAttribute("type","text"),a(!0)):(r.setAttribute("type","password"),a(!1)))},v=()=>{window.location.assign("https://power-pulse-api.onrender.com/api/users/google")},b=z({initialValues:{email:"",password:""},onSubmit:async(j,{resetForm:y})=>{try{const l=await s(j).unwrap();i(I(l)),y()}catch(l){console.error(l)}},validationSchema:M});return e.jsxs(e.Fragment,{children:[e.jsx(P,{value:b,children:e.jsxs(B,{children:[e.jsx(D,{children:"Welcome! Please enter your credentials to login to the platform:"}),e.jsxs(T,{children:[e.jsx(h,{name:"email",type:"email",placeholder:"Email"}),e.jsxs("div",{children:[e.jsx(h,{name:"password",type:"password",placeholder:"Password",id:"password",onInput:w}),u&&e.jsx("button",{type:"button",onClick:f,children:p?e.jsx(o,{name:"eye"}):e.jsx(o,{name:"eye-off"})})]})]}),e.jsxs(H,{children:[e.jsx("button",{type:"submit",children:"Sign In"}),e.jsx("button",{type:"button",onClick:v,id:"google",children:e.jsx(o,{name:"google"})})]}),e.jsxs(A,{children:[e.jsx("p",{children:"Don’t have an account? "}),e.jsx(S,{to:"/signup",children:"Sign Up"})]})]})}),e.jsx(C,{isLoading:n,isError:d,error:c})]})}const R=t.div`
+`,H=E({name:x().trim("Name must not have leading or trailing spaces").strict().min(1).required("This is a required field"),email:x().email("Invalid email").matches("^([a-z0-9_-]+.)*[a-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$","Enter valid values").required("This is a required field"),password:x().min(6).required("This is a required field")}),m=({...i})=>{const[r,n]=B(i),[d,p]=h.useState(!1),c=()=>p(!0),a=!!d&&r.value.trim().length>0||n.touched;return e.jsxs(A,{type:`${a?n.error?"invalid":"valid":""}`,children:[e.jsx("input",{...i,...r,onFocus:c}),e.jsx(D,{children:a?e.jsxs("div",{id:`${i.id}-feedback`,"aria-live":"polite",children:[e.jsx(o,{name:"checkmark"}),n.error?n.error:e.jsxs(e.Fragment,{children:["Success ",i.name]})]}):null})]})};function M(){const i=k(),[r,{isLoading:n,isError:d,error:p}]=F(),[c,a]=h.useState(),[u,g]=h.useState(!1),w=()=>{g(!0)},s=document.querySelector("#password"),f=()=>{s&&(s.getAttribute("type")==="password"?(s.setAttribute("type","text"),a(!0)):(s.setAttribute("type","password"),a(!1)))},v=()=>{window.location.assign("https://power-pulse-api.onrender.com/api/users/google")},b=P({initialValues:{name:"",email:"",password:""},onSubmit:async(j,{resetForm:y})=>{try{const l=await r(j).unwrap();i(z(l)),y()}catch(l){console.error(l)}},validationSchema:H});return e.jsxs(e.Fragment,{children:[e.jsx(T,{value:b,children:e.jsxs(q,{children:[e.jsx($,{children:"Thank you for your interest in our platform. To complete the registration process, please provide us with the following information."}),e.jsxs(U,{children:[e.jsx(m,{name:"name",type:"text",placeholder:"Name"}),e.jsx(m,{name:"email",type:"email",placeholder:"Email"}),e.jsxs("div",{children:[e.jsx(m,{name:"password",type:"password",placeholder:"Password",id:"password",onInput:w}),u&&e.jsx("button",{type:"button",onClick:f,children:c?e.jsx(o,{name:"eye"}):e.jsx(o,{name:"eye-off"})})]})]}),e.jsxs(L,{children:[e.jsx("button",{type:"submit",children:"Sign Up"}),e.jsx("button",{type:"button",onClick:v,id:"google",children:e.jsx(o,{name:"google"})})]}),e.jsxs(_,{children:[e.jsx("p",{children:"Already have account?"}),e.jsx(S,{to:"/signin",children:"Sign In"})]})]})}),e.jsx(C,{isLoading:n,isError:d,error:p})]})}const N=t.div`
   padding-top: 127px;
 
   @media screen and (min-width: 768px) {
@@ -172,4 +170,4 @@ import{n as t,u as k,m as F,r as x,j as e,I as o,L as S,E as C,c as I}from"./ind
     width: 598px;
     padding-top: 200px;
   }
-`;function N(){return e.jsxs(R,{children:[e.jsx(q,{text:"Sign In"}),e.jsx(G,{})]})}export{N as SignIn};
+`;function O(){return e.jsxs(N,{children:[e.jsx(I,{text:"Sign Up"}),e.jsx(M,{})]})}export{O as SignUp};
