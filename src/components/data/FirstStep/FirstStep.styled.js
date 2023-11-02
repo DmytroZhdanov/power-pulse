@@ -6,7 +6,7 @@ export const ListUl = styled.ul`
   justify-content: center;
   flex-wrap: wrap;
   column-gap: 10px;
-  row-gap: 14px;
+  row-gap: 28px;
   margin-top: 50px;
   margin-bottom: 29px;
 

@@ -5,16 +5,26 @@ export const DatePickerWrapper = styled.div`
   transform: translateX(-50%);
   z-index: 100;
 
-  ${({ inputClientRect: { top, left, height, bottom, width } }) => {
+  ${({ inputClientRect: { right, left, width } }) => {
+    if (window.innerWidth - right < 60) {
+      return `
+    left:${left + width / 2 - 40}px;
+    `;
+    } else {
+      return `
+    left:${left + width / 2}px;
+    `;
+    }
+  }}
+
+  ${({ inputClientRect: { top, height, bottom } }) => {
     if (window.innerHeight - bottom < 235) {
       return `
     top:'auto';
-    left:${left + width / 2}px;
     bottom:${window.innerHeight - top + height / 4 - window.scrollY}px;`;
     } else {
       return `
     top:${bottom + height / 4 + window.scrollY}px;
-    left:${left + width / 2}px;
     bottom:'auto';`;
     }
   }}
