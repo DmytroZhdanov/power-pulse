@@ -24,14 +24,26 @@ export const InputWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: scale 300ms ease-in-out;
+
+  :hover {
+    scale: 1.05;
+    p {
+      color: ${({ theme }) => theme.color.orangeSecond};
+    }
+    svg {
+      stroke: ${({ theme }) => theme.color.white};
+    }
+  }
 `;
+
 export const InputText = styled.p`
   user-select: none;
   font-size: 18px;
   font-weight: 700;
   transition:
     color 300ms ease-in-out,
-    transform 300ms ease-in-out;
+    scale 300ms ease-in-out;
 
   @media screen and (min-width: 768px) {
     font-size: 24px;
@@ -44,7 +56,7 @@ export const CalendarIcon = styled.div`
     stroke: ${({ theme }) => theme.color.orangeSecond};
     transition:
       stroke 300ms ease-in-out,
-      transform 300ms ease-in-out;
+      scale 300ms ease-in-out;
 
     @media screen and (min-width: 768px) {
       width: 24px;
@@ -73,6 +85,6 @@ export const Button = styled.button`
 
   &[disabled] svg {
     cursor: not-allowed;
-    stroke: ${({theme}) => theme.color.grayDisabled};
+    stroke: ${({ theme }) => theme.color.grayDisabled};
   }
 `;
