@@ -101,9 +101,15 @@ export function FirstStep({
 }
 
 FirstStep.propTypes = {
-  formik: PropTypes.object.isRequired,
-  selectedDate: PropTypes.instanceOf(Date).isRequired,
-  setSelectedDate: PropTypes.func.isRequired,
-  isDateSelected: PropTypes.bool.isRequired,
-  setIsDateSelected: PropTypes.func.isRequired,
+  formik: PropTypes.shape({
+    errors: PropTypes.object,
+    handleBlur: PropTypes.func,
+    handleChange: PropTypes.func,
+    touched: PropTypes.object,
+    values: PropTypes.object.isRequired,
+  }),
+  selectedDate: PropTypes.instanceOf(Date),
+  setSelectedDate: PropTypes.func,
+  isDateSelected: PropTypes.bool,
+  setIsDateSelected: PropTypes.func,
 };
