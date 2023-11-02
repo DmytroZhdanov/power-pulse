@@ -39,10 +39,10 @@ export const WrapperDiv = styled.div`
   align-items: center;
   justify-content: center;
   text-align: center;
-  transition: transform 0.3s ease-in-out;
-  
+  transition: transform 0.2s ease-in-out;
+
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 `;
 
@@ -56,7 +56,7 @@ export const MainTextP = styled.p`
   font-size: 20px;
   line-height: 1.33;
   margin-bottom: 2px;
-  
+
   &::first-letter {
     text-transform: uppercase;
   }
