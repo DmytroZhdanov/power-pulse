@@ -2,9 +2,24 @@ import styled from '@emotion/styled';
 import styles from 'react-day-picker/dist/style.css?inline';
 
 export const Forms = styled.form`
-  width: 335px;
-  background-color: #0a0909;
+  button {
+    width: 115px;
+    padding: 12px 40px;
+    font-size: 16px;
+    line-height: calc(18 / 16);
+    color: ${({ theme }) => theme.color.grayFifth};
+    border-radius: 12px;
+    background-color: ${({ theme }) => theme.color.orangeFirst};
+    border: none;
+    cursor: pointer;
+  }
+  @media screen and (max-width: 374px) {
+    max-width: 100%;
+  }
 
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    width: 335px;
+  }
   /* p {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -13,19 +28,7 @@ export const Forms = styled.form`
     color: #e6533c;
   } */
 
-  button {
-    width: 115px;
-    padding: 12px 40px;
-    font-size: 16px;
-    line-height: calc(18 / 16);
-    color: #efede899;
-    border-radius: 12px;
-    background-color: #e6533c;
-    border: none;
-    cursor: pointer;
-  }
-
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 696px;
 
     button {
@@ -36,21 +39,36 @@ export const Forms = styled.form`
     }
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     width: 760px;
     padding-right: 64px;
-    border-right: 1px solid #efede833;
+    border-right: 1px solid ${({ theme }) => theme.color.grayDisabled};
   }
 `;
 
 export const FirstInfo = styled.div`
-  width: 100%;
+  @media screen and (max-width: 374px) {
+    max-width: 100%;
+    label {
+      width: 100%;
+      input {
+        max-width: 100%;
+      }
+    }
+    input {
+      max-width: 100%;
+    }
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    width: 100%;
+  }
+
   margin-bottom: 14px;
 
   label {
     font-size: 12px;
     line-height: calc(18 / 12);
-    color: #efede880;
+    color: rgba(239, 237, 232, 0.502);
     input {
       margin: 4px 0 14px 0;
     }
@@ -61,14 +79,14 @@ export const FirstInfo = styled.div`
 
     font-size: 14px;
     line-height: calc(18 / 14);
-    color: #efede8;
-    border: 1px solid #efede84d;
+    color: ${({ theme }) => theme.color.white};
+    border: 1px solid ${({ theme }) => theme.color.grayFirst};
     border-radius: 12px;
     background-color: transparent;
     width: 335px;
   }
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     display: inline-flex;
     align-items: flex-end;
     gap: 14px;
@@ -94,8 +112,11 @@ export const FirstInfo = styled.div`
 `;
 
 export const AddInfo = styled.div`
+  @media screen and (max-width: 374px) {
+    max-width: 100%;
+  }
+
   display: flex;
-  width: 335px;
   flex-direction: column;
   align-items: flex-start;
   gap: 14px;
@@ -104,21 +125,27 @@ export const AddInfo = styled.div`
   label {
     font-size: 12px;
     line-height: calc(18 / 12);
-    color: #efede880;
+    color: rgba(239, 237, 232, 0.502);
   }
   input {
+    width: 100%;
     padding: 14px;
     margin-top: 4px;
     font-size: 14px;
     line-height: calc(18 / 14);
-    color: #efede8;
-    border: 1px solid #efede84d;
+    color: ${({ theme }) => theme.color.white};
+    border: 1px solid ${({ theme }) => theme.color.grayFirst};
     border-radius: 12px;
     background-color: transparent;
-    width: 160px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    width: 335px;
+    input {
+      width: 160px;
+    }
   }
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 696px;
     flex-direction: row;
     align-items: center;
@@ -138,17 +165,23 @@ export const AddInfo = styled.div`
 `;
 
 export const Data = styled.div`
+  @media screen and (max-width: 374px) {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
   width: calc((335px - 14px) / 2);
   display: inline-flex;
   gap: 14px;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: calc((696px - 14px) / 2);
   }
 `;
 
 export const Height = styled.label`
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     input {
       width: 168px;
     }
@@ -159,7 +192,7 @@ export const CurWeight = styled(Height)`
   input {
     width: 161px;
   }
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     input {
       width: 159px;
     }
@@ -169,16 +202,22 @@ export const CurWeight = styled(Height)`
 export const Text = styled.div`
   font-size: 12px;
   line-height: calc(18 / 12);
-  color: #efede880;
+  color: rgba(239, 237, 232, 0.502);
   margin-bottom: 8px;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 14px;
     line-height: calc(18 / 14);
   }
 `;
 
 export const CalendarI = styled.div`
+  @media screen and (max-width: 374px) {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
   display: flex;
   flex-direction: row;
   gap: 14px;
@@ -186,10 +225,15 @@ export const CalendarI = styled.div`
 `;
 
 export const DesWeight = styled.label`
-  width: 160px;
+  @media screen and (max-width: 374px) {
+    max-width: 160px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    width: 160px;
+  }
 
-  @media (min-width: 768px) {
-    width: 140px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    max-width: 140px;
     input {
       width: 140px;
       width: 100%;
@@ -203,7 +247,7 @@ export const Birthday = styled(DesWeight)`
   margin-top: 22px;
   padding: 0;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 187px;
   }
 `;
@@ -217,7 +261,7 @@ export const SecondInfo = styled.div`
     gap: 8px;
     font-size: 14px;
     line-height: calc(18 / 14);
-    color: #efede8;
+    color: ${({ theme }) => theme.color.white};
   }
 `;
 
@@ -248,22 +292,29 @@ export const RadioBox = styled.input`
     height: 20px;
     border-radius: 50%;
     outline: 2px solid #636366;
-    background-color: black;
+    background-color: ${({ theme }) => theme.color.black};
   }
 
   &:checked&::before {
     /* outline: thick double #0e0e0d; */
-    background-color: #ef8964;
+    background-color: ${({ theme }) => theme.color.orangeSecond};
   }
 `;
 
 export const HealthInfo = styled.div`
+  @media screen and (max-width: 374px) {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
   width: 335px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 20px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     gap: 32px;
   }
 `;
@@ -275,10 +326,10 @@ export const Lifestyle = styled.div`
   gap: 8px;
   justify-content: center;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin: 32px 0 38px 0;
   }
-  @media (min-width: 1440px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     margin-bottom: 48px;
   }
 `;

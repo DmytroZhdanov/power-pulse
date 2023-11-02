@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
 export const User = styled.div`
+  @media screen and (max-width: 374px) {
+    max-width: 100%;
+  }
   width: 335px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 40px;
-  background-color: black;
 
   @media screen and (min-width: 768px) {
     width: 439px;
@@ -156,8 +158,14 @@ export const Name = styled.div`
 `;
 
 export const Daily = styled.div`
+  @media screen and (max-width: 374px) {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
   width: 100%;
   display: flex;
+  flex-direction: row;
   gap: 14px;
   justify-content: center;
 
