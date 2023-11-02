@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const WrapThreeDotsDiv = styled.div`
   position: fixed;
+  z-index: 20;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
