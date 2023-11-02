@@ -62,15 +62,13 @@ export default function ProductsList({ filter }) {
   }, [isSuccess, userBlood]);
 
   useEffect(() => {
-    if (filter !== currentFilter) {
-      if (productListRef.current) {
-        productListRef.current.scrollTop = 0;
-      }
-      setCurrentPage(1);
-      setNewResponse(true);
-      setCurrentFilter(filter);
+    if (productListRef.current) {
+      productListRef.current.scrollTop = 0;
     }
-  }, [currentFilter, filter, ref]);
+    setCurrentPage(1);
+    setNewResponse(true);
+    setCurrentFilter(filter);
+  }, [filter, ref]);
 
   useEffect(() => {
     const fetchData = async () => {
