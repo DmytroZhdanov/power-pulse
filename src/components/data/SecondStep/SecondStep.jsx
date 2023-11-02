@@ -147,7 +147,9 @@ export function SecondStep({ formik }) {
                       input.value.toString(),
                     )
                   }
-                  checked={formik.values.levelActivity === input.value.toString()}
+                  checked={
+                    formik.values.levelActivity === input.value.toString()
+                  }
                 />
                 <span></span>
                 {input.valueText}
