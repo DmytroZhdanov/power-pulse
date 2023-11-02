@@ -117,13 +117,13 @@ export default function ProductsFilters({ onProductsChange }) {
       case 'Recommended':
         setFilter(prevFilter => ({
           ...prevFilter,
-          [RECOMMENDED]: [false],
+          [RECOMMENDED]: [true],
         }));
         break;
       case 'Not recommended':
         setFilter(prevFilter => ({
           ...prevFilter,
-          [RECOMMENDED]: [true],
+          [RECOMMENDED]: [false],
         }));
         break;
       default:
