@@ -86,7 +86,7 @@ DataForm.propTypes = {
     birthday: PropTypes.string,
     blood: PropTypes.string,
     sex: PropTypes.string,
-    levelActivity: PropTypes.string,
+    levelActivity: PropTypes.number,
   }).isRequired,
   step: PropTypes.string,
 };

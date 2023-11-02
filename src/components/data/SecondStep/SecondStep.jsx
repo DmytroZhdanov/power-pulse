@@ -162,7 +162,7 @@ SecondStep.propTypes = {
     values: PropTypes.shape({
       blood: PropTypes.string.isRequired,
       sex: PropTypes.string.isRequired,
-      levelActivity: PropTypes.string.isRequired,
+      levelActivity: PropTypes.number,
     }).isRequired,
     handleChange: PropTypes.func,
     setFieldValue: PropTypes.func,
