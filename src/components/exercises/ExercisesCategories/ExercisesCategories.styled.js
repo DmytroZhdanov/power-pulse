@@ -40,8 +40,17 @@ export const CategoryLabel = styled.label`
   ${({ selected, theme }) =>
     selected &&
     `color: #EFEDE8;
+    
     ::before {
       background-color: ${theme.color.orangeSecond}; 
     }
   `}
+  
+  &:hover {
+    color: #efede8;
+    
+    ::before {
+      background-color: ${({ theme }) => theme.color.orangeSecond};
+    }
+  }
 `;

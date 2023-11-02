@@ -20,5 +20,5 @@ export default function ErrorMessage({ notificationType = 'Error:', message }) {
 
 ErrorMessage.propTypes = {
   notificationType: PropTypes.string,
-  message: PropTypes.string.isRequired,
+  message: PropTypes.string,
 };

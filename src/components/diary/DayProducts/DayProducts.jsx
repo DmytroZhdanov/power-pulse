@@ -1,37 +1,43 @@
-import ProductsTable from '../ProductsTable/ProductsTable';
-import sprite from '../../../assets/images/sprite/sprite.svg';
-import { TailSpin } from 'react-loader-spinner';
 import { motion, AnimatePresence } from 'framer-motion';
+import { TailSpin } from 'react-loader-spinner';
+import PropTypes from 'prop-types';
+
+import ProductsTable from 'components/diary/ProductsTable/ProductsTable';
 import {
   DayProdDiv,
-  DayProdText,
+  DayProdTextP,
   LoaderDiv,
-  DayProdTitle,
-  DayProdDivList,
-  AddProdBtn,
+  DayProdTitleH2,
+  DayProdListDiv,
+  AddProdBtnLink,
   AddProdBtnIcon,
-  AddProdBtnText,
+  AddProdBtnTextP,
 } from './DayProducts.styled';
-import { useFetchUserBloodGroupQuery } from '../../../redux/api';
+
+import sprite from 'src/assets/images/sprite/sprite.svg';
+import { useFetchUserBloodGroupQuery } from 'src/redux/api';
 
 export default function DayProducts({
   diaryProducts,
   setDiaryProducts,
   isLoading,
 }) {
+  const { data } = useFetchUserBloodGroupQuery();
 
-  const {data} =  useFetchUserBloodGroupQuery();
   return (
     <DayProdDiv>
-      <DayProdDivList>
-        <DayProdTitle>Products</DayProdTitle>
-        <AddProdBtn to="/Products">
-          <AddProdBtnText>Add product</AddProdBtnText>
+      <DayProdListDiv>
+        <DayProdTitleH2>Products</DayProdTitleH2>
+
+        <AddProdBtnLink to="/Products">
+          <AddProdBtnTextP>Add product</AddProdBtnTextP>
+
           <AddProdBtnIcon>
             <use href={`${sprite}#big_arrow`}></use>
           </AddProdBtnIcon>
-        </AddProdBtn>
-      </DayProdDivList>
+        </AddProdBtnLink>
+      </DayProdListDiv>
+
       {diaryProducts && diaryProducts.length !== 0 ? (
         <ProductsTable
           setDiaryProducts={setDiaryProducts}
@@ -46,7 +52,7 @@ export default function DayProducts({
                 <TailSpin color="#E6533C" ariaLabel="three-dots-loading" />
               </LoaderDiv>
             ) : (
-              <DayProdText
+              <DayProdTextP
                 as={motion.p}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -54,7 +60,7 @@ export default function DayProducts({
                 exit={{ opacity: 0 }}
               >
                 Not found products
-              </DayProdText>
+              </DayProdTextP>
             )}
           </AnimatePresence>
         </>
@@ -62,3 +68,24 @@ export default function DayProducts({
     </DayProdDiv>
   );
 }
+
+DayProducts.propTypes = {
+  isLoading: PropTypes.bool,
+  diaryProducts: PropTypes.arrayOf(
+    PropTypes.shape({
+      amount: PropTypes.number.isRequired,
+      calories: PropTypes.number.isRequired,
+      date: PropTypes.string.isRequired,
+      groupBloodNotAllowed: PropTypes.shape({
+        1: PropTypes.bool.isRequired,
+        2: PropTypes.bool.isRequired,
+        3: PropTypes.bool.isRequired,
+        4: PropTypes.bool.isRequired,
+      }),
+      product_ID: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  setDiaryProducts: PropTypes.func.isRequired,
+};

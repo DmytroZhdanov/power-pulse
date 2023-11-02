@@ -1,24 +1,22 @@
-import { format } from 'date-fns';
-import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-
-import { useLazyFetchDiaryAllQuery } from 'src/redux/api';
-import { selectUserRegistrationDate } from 'src/redux/auth/selectors';
+import { format } from 'date-fns';
+import PropTypes from 'prop-types';
 
 import Calendar from 'components/Calendar/Calendar';
 import Icon from 'components/common/IconsComp/Icon';
-
-import { generateDateRange } from 'src/utils';
-
 import {
   Button,
-  CalendarIcon,
-  CalendarWrapper,
-  InputText,
-  InputWrapper,
-  Wrapper,
+  CalendarIconDiv,
+  CalendarWrapperDiv,
+  InputTextP,
+  InputWrapperDiv,
+  WrapperDiv,
 } from './DaySwitch.style';
+
+import { useLazyFetchDiaryAllQuery } from 'src/redux/api';
+import { selectUserRegistrationDate } from 'src/redux/auth/selectors';
+import { generateDateRange } from 'src/utils';
 
 export default function DaySwitch({ selectedDate, setSelectedDate }) {
   const [sortDates, setSortDates] = useState([]);
@@ -59,13 +57,13 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
   }, [data, dateOfUserRegistration, selectedDate]);
 
   useEffect(() => {
-    if (error) {
-      return;
-    }
     const getAllDates = async () => {
       await fetchDiaryAll();
     };
-    getAllDates();
+
+    if (!error) {
+      getAllDates();
+    }
   }, [error, fetchDiaryAll]);
 
   const setActiveDate = ({ date, view }) => {
@@ -111,31 +109,42 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
       };
 
   return (
-    <Wrapper>
-      <CalendarWrapper>
+    <WrapperDiv>
+      <CalendarWrapperDiv>
         <Calendar
           {...param}
           onChange={setSelectedDate}
           value={selectedDate}
           maxDate={new Date()}
         >
-          <InputWrapper>
-            <InputText> {format(selectedDate, 'dd/MM/yyyy')}</InputText>
-            <CalendarIcon>
+          <InputWrapperDiv>
+            <InputTextP> {format(selectedDate, 'dd/MM/yyyy')}</InputTextP>
+
+            <CalendarIconDiv>
               <Icon name="calendar" />
-            </CalendarIcon>
-          </InputWrapper>
+            </CalendarIconDiv>
+          </InputWrapperDiv>
         </Calendar>
-      </CalendarWrapper>
+      </CalendarWrapperDiv>
+
       <div>
-        <Button aria-label="PrevDate" disabled={isDisabledPrevBtn} onClick={handlePreviousClick}>
+        <Button
+          aria-label="PrevDate"
+          disabled={isDisabledPrevBtn}
+          onClick={handlePreviousClick}
+        >
           <Icon name="nav-arrow-left" />
         </Button>
-        <Button aria-label="NextDate" disabled={isDisabledNextBtn} onClick={handleNextClick}>
+
+        <Button
+          aria-label="NextDate"
+          disabled={isDisabledNextBtn}
+          onClick={handleNextClick}
+        >
           <Icon name="nav-arrow-right" />
         </Button>
       </div>
-    </Wrapper>
+    </WrapperDiv>
   );
 }
 

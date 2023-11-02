@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react';
-import { useDeleteExerciseMutation } from '../../../redux/api';
 import { motion, AnimatePresence } from 'framer-motion';
+import PropTypes from 'prop-types';
+
 import {
   TableDiv,
   Table,
-  TableMainTitles,
+  TableMainTitlesThead,
   TableTitleTr,
-  TableMainTitle,
+  TableMainTitleTh,
   TableBody,
-  TableTr,
   TableInfoTd,
-  BtnTd,
-  DelBtnTable,
+  DelBtnTableButton,
   DelIcon,
 } from './ExercisesTable.styled';
-import sprite from '../../../assets/images/sprite/sprite.svg';
+
+import { useDeleteExerciseMutation } from 'src/redux/api';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
   const [deleteExercise] = useDeleteExerciseMutation();
@@ -47,21 +48,33 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
     }
   };
 
+  const convertInMin = sec => {
+    return `${Math.floor(sec / 60)} min ${
+      sec % 60 === 0 ? '' : (sec % 60) + 's'
+    }`;
+  };
+
   return (
     <>
       <TableDiv>
         {isTableDesk ? (
           <Table>
-            <TableMainTitles>
+            <TableMainTitlesThead>
               <TableTitleTr>
-                <TableMainTitle>Body Part</TableMainTitle>
-                <TableMainTitle>Equipment</TableMainTitle>
-                <TableMainTitle>Name</TableMainTitle>
-                <TableMainTitle>Target</TableMainTitle>
-                <TableMainTitle>Burned Calories</TableMainTitle>
-                <TableMainTitle>Time</TableMainTitle>
+                <TableMainTitleTh>Body Part</TableMainTitleTh>
+
+                <TableMainTitleTh>Equipment</TableMainTitleTh>
+
+                <TableMainTitleTh>Name</TableMainTitleTh>
+
+                <TableMainTitleTh>Target</TableMainTitleTh>
+
+                <TableMainTitleTh>Burned Calories</TableMainTitleTh>
+
+                <TableMainTitleTh>Time</TableMainTitleTh>
               </TableTitleTr>
-            </TableMainTitles>
+            </TableMainTitlesThead>
+
             <AnimatePresence>
               {diaryExercises.map(exercise => {
                 return (
@@ -73,15 +86,21 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
                     exit={{ x: -900 }}
                     key={exercise._id}
                   >
-                    <TableTr>
+                    <tr>
                       <TableInfoTd>{exercise.bodyPart}</TableInfoTd>
+
                       <TableInfoTd>{exercise.equipment}</TableInfoTd>
+
                       <TableInfoTd>{exercise.name}</TableInfoTd>
+
                       <TableInfoTd>{exercise.target}</TableInfoTd>
+
                       <TableInfoTd>{exercise.calories}</TableInfoTd>
-                      <TableInfoTd>{exercise.time}</TableInfoTd>
-                      <BtnTd>
-                        <DelBtnTable
+
+                      <TableInfoTd>{convertInMin(exercise.time)}</TableInfoTd>
+
+                      <td>
+                        <DelBtnTableButton
                           onClick={() => {
                             handleDeleteExercise(exercise._id);
                           }}
@@ -89,9 +108,9 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
                           <DelIcon>
                             <use href={`${sprite}#delete`}></use>
                           </DelIcon>
-                        </DelBtnTable>
-                      </BtnTd>
-                    </TableTr>
+                        </DelBtnTableButton>
+                      </td>
+                    </tr>
                   </TableBody>
                 );
               })}
@@ -110,26 +129,38 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
                     as={motion.table}
                     key={exercise._id}
                   >
-                    <TableMainTitles>
+                    <TableMainTitlesThead>
                       <TableTitleTr>
-                        <TableMainTitle>Body Part</TableMainTitle>
-                        <TableMainTitle>Equipment</TableMainTitle>
-                        <TableMainTitle>Name</TableMainTitle>
-                        <TableMainTitle>Target</TableMainTitle>
-                        <TableMainTitle>Burned Calories</TableMainTitle>
-                        <TableMainTitle>Time</TableMainTitle>
+                        <TableMainTitleTh>Body Part</TableMainTitleTh>
+
+                        <TableMainTitleTh>Equipment</TableMainTitleTh>
+
+                        <TableMainTitleTh>Name</TableMainTitleTh>
+
+                        <TableMainTitleTh>Target</TableMainTitleTh>
+
+                        <TableMainTitleTh>Burned Calories</TableMainTitleTh>
+
+                        <TableMainTitleTh>Time</TableMainTitleTh>
                       </TableTitleTr>
-                    </TableMainTitles>
+                    </TableMainTitlesThead>
+
                     <TableBody>
-                      <TableTr>
+                      <tr>
                         <TableInfoTd>{exercise.bodyPart}</TableInfoTd>
+
                         <TableInfoTd>{exercise.equipment}</TableInfoTd>
+
                         <TableInfoTd>{exercise.name}</TableInfoTd>
+
                         <TableInfoTd>{exercise.target}</TableInfoTd>
+
                         <TableInfoTd>{exercise.calories}</TableInfoTd>
-                        <TableInfoTd>{exercise.time}</TableInfoTd>
-                        <BtnTd>
-                          <DelBtnTable
+
+                        <TableInfoTd>{convertInMin(exercise.time)}</TableInfoTd>
+
+                        <td>
+                          <DelBtnTableButton
                             onClick={() => {
                               handleDeleteExercise(exercise._id);
                             }}
@@ -137,9 +168,9 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
                             <DelIcon>
                               <use href={`${sprite}#delete`}></use>
                             </DelIcon>
-                          </DelBtnTable>
-                        </BtnTd>
-                      </TableTr>
+                          </DelBtnTableButton>
+                        </td>
+                      </tr>
                     </TableBody>
                   </Table>
                 );
@@ -151,3 +182,20 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
     </>
   );
 }
+
+ExercisesTable.propTypes = {
+  setDiaryExercises: PropTypes.func.isRequired,
+  diaryExercises: PropTypes.arrayOf(
+    PropTypes.shape({
+      bodyPart: PropTypes.string.isRequired,
+      calories: PropTypes.number.isRequired,
+      date: PropTypes.string.isRequired,
+      equipment: PropTypes.string.isRequired,
+      exercise_ID: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      target: PropTypes.string.isRequired,
+      time: PropTypes.number.isRequired,
+      _id: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+};

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import {
   DivSuccess,
   DivImg,
@@ -9,6 +11,9 @@ import {
   DivLink,
   LinkText,
 } from './AddProductSuccess.styled';
+
+import sprite from 'src/assets/images/sprite/sprite.svg';
+import { ROUTER } from 'src/utils/constants';
 
 export default function AddProductSuccess({ onClose, totalCalories }) {
   return (
@@ -25,13 +30,18 @@ export default function AddProductSuccess({ onClose, totalCalories }) {
 
       <ButtonAdd onClick={onClose}>Next product</ButtonAdd>
 
-      <DivLink href="Diary">
+      <DivLink to={`/${ROUTER.DIARY}`}>
         <LinkText>To the diary</LinkText>
 
         <svg width="16" height="16">
-          <use href="/src/assets/images/sprite/sprite.svg#arrow-add-prod"></use>
+          <use href={sprite + '#arrow-add-prod'}></use>
         </svg>
       </DivLink>
     </DivSuccess>
   );
 }
+
+AddProductSuccess.propTypes = {
+  totalCalories: PropTypes.number,
+  onClose: PropTypes.func.isRequired,
+};
