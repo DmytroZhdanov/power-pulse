@@ -83,6 +83,7 @@ export default function UserForm({ setFetchBmr }) {
   const userEmail = useSelector(selectUserEmail);
   const [userData, setUserData] = useState();
   const [showUpdateError, setShowUpdateError] = useState(false);
+  const [showUpdateSuccess, setShowUpdateSuccess] = useState(false);
 
   useEffect(() => {
     const fetch = async () => {
@@ -137,6 +138,8 @@ export default function UserForm({ setFetchBmr }) {
         try {
           const newName = await updateUserName(name).unwrap();
           dispatch(setUserName(newName));
+          setShowUpdateSuccess(true);
+          setTimeout(setShowUpdateSuccess, 2000, false);
         } catch (error) {
           console.error(error);
         }
@@ -147,6 +150,8 @@ export default function UserForm({ setFetchBmr }) {
           const { user } = await updateUserParams(userValues).unwrap();
           setUserData({ name: userName, ...user.userParams });
           setFetchBmr(true);
+          setShowUpdateSuccess(true);
+          setTimeout(setShowUpdateSuccess, 2000, false);
         } catch (error) {
           console.log(error);
         }
@@ -434,6 +439,15 @@ export default function UserForm({ setFetchBmr }) {
       {showUpdateError && (
         <BasicModalWindow onClose={() => setShowUpdateError(false)}>
           <ErrorMessage message={'No changes to update'} />
+        </BasicModalWindow>
+      )}
+
+      {showUpdateSuccess && (
+        <BasicModalWindow onClose={() => setShowUpdateSuccess(false)}>
+          <ErrorMessage
+            notificationType={'Success:'}
+            message={'Your data successfully updated'}
+          />
         </BasicModalWindow>
       )}
 
