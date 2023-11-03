@@ -82,13 +82,13 @@ export const FeedbackIconDiv = styled.div`
     top: 600px;
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
-    right: calc(50% - 168px);
+  @media screen and (min-width: 517px) {
+    right: calc(50% - 238px);
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     bottom: 50px;
-    right: calc(50% - 350px);
+    right: 32px;
     width: 60px;
     height: 52px;
 
@@ -102,8 +102,12 @@ export const FeedbackIconDiv = styled.div`
     }
   }
 
+  @media screen and (min-width: 953px) {
+    right: calc(50% - 444px);
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    right: calc(50% - 620px);
+    right: 32px;
     width: 72px;
     height: 60px;
 
@@ -115,5 +119,9 @@ export const FeedbackIconDiv = styled.div`
     @media screen and (min-height: 710px) {
       top: 600px;
     }
+  }
+
+  @media screen and (min-width: 1520px) {
+    right: calc(50% - 727px);
   }
 `;
