@@ -34,7 +34,7 @@ import sprite from 'src/assets/images/sprite/sprite.svg';
  */
 export default function ProductsItem({ props, userGroupBlood }) {
   const { weight, calories, category, title, groupBloodNotAllowed } = props;
-  const recommended = groupBloodNotAllowed[userGroupBlood];
+  const recommended = !groupBloodNotAllowed[userGroupBlood];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddProdSuccess, setIsAddProdSuccess] = useState(false);
