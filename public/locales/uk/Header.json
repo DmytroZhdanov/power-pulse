@@ -1,0 +1,12 @@
+{
+  "nav": [
+    { "name": "Календар", "href": "calendar" },
+    { "name": "Щоденник", "href": "diary" },
+    { "name": "Продукти", "href": "products" },
+    { "name": "Вправи", "href": "exercises" }
+  ],
+
+  "buttons": {
+    "logout": "Вихід"
+  }
+}

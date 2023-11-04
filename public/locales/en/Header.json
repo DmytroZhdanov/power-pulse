@@ -1,0 +1,12 @@
+{
+  "nav": [
+    { "name": "Calendar", "href": "calendar" },
+    { "name": "Diary", "href": "diary" },
+    { "name": "Products", "href": "products" },
+    { "name": "Exercises", "href": "exercises" }
+  ],
+
+  "buttons": {
+    "logout": "Logout"
+  }
+}

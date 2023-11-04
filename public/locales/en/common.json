@@ -1,0 +1,8 @@
+{
+    "time":{
+        "min":"minutes",
+        "minShort":"min",
+        "sec":"seconds",
+        "secShort":"s"
+    }
+}
