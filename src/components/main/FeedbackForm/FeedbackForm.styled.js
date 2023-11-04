@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const ContainerDiv = styled.div`
   padding: 40px 20px;
+  max-height: 90vh;
 
   @media screen and (max-width: 374px) {
     width: calc(100vw - 80px);

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useFormik, FormikProvider, Form, useField } from 'formik';
+import axios from 'axios';
 
 import Icon from 'components/common/IconsComp/Icon';
 import {
@@ -87,7 +88,14 @@ export default function FeedbackForm({ onClose }) {
     },
 
     onSubmit: async (values, { resetForm }) => {
-      console.log(values);
+      axios.post(
+        `https://formsubmit.co/${import.meta.env.VITE_EMAIL_ADDRESS}`,
+        {
+          registeredName: userName,
+          registeredEmail: userEmail,
+          ...values,
+        },
+      );
       resetForm();
     },
     validationSchema: feedbackFormSchema,
