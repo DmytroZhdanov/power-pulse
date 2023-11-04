@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
 env:
-  VITE_EMAIL_KEY: ${{secrets.VITE_EMAIL_KEY}}
+  VITE_API_TEST: ${{secrets.VITE_API_TEST}}
 
 jobs:
   build-and-deploy:

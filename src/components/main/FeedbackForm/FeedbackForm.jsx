@@ -88,7 +88,7 @@ export default function FeedbackForm({ onClose }) {
     },
 
     onSubmit: async (values, { resetForm }) => {
-      axios.post(`https://formsubmit.co/${import.meta.env.VITE_EMAIL_KEY}`, {
+      axios.post('https://formsubmit.co/power_pulse@ukr.net', {
         registeredName: userName,
         registeredEmail: userEmail,
         ...values,
