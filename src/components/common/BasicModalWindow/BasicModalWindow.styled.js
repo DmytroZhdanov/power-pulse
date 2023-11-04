@@ -39,7 +39,6 @@ export const ModalDiv = styled.div`
   /* border: 1px solid ${({ theme }) => theme.color.borderModal}; */
   border: 1px solid
     ${({ type, theme }) => {
-      console.log(type);
       switch (type) {
         case 'Success':
           return theme.color.circleGreen;
