@@ -24,20 +24,17 @@ export const ContainerDiv = styled.div`
 
 export const TitleH2 = styled.h2`
   margin-bottom: 20px;
+  font-weight: 500;
 
-  @media screen and (max-width: 374px) {
-    font-size: 14px;
-    line-height: calc(18 / 14);
-  }
+  font-size: 24px;
+  line-height: calc(28 / 24);
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     margin-bottom: 32px;
-    line-height: calc(20 / 16);
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    font-size: 20px;
-    line-height: calc(24 / 20);
+    font-size: 28px;
   }
 `;
 
@@ -61,6 +58,7 @@ export const Textarea = styled.textarea`
 `;
 
 export const Check = styled.div`
+  position: relative;
   color: ${({ type, theme }) => {
     switch (type) {
       case 'invalid':
@@ -71,6 +69,17 @@ export const Check = styled.div`
         return theme.color.grayFirst;
     }
   }};
+
+  &::after {
+    ${({ required, theme }) =>
+      required && {
+        content: '"*"',
+        position: 'absolute',
+        top: 0,
+        right: '-10px',
+        color: theme.color.orangeFirst,
+      }}
+  }
 
   input,
   textarea {
@@ -112,64 +121,6 @@ export const Message = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-bottom: 16px;
-  }
-`;
-
-export const CheckboxInput = styled.input`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
-  clip: rect(0 0 0 0);
-
-  &:checked + label::before {
-    outline: 2px solid ${({ theme }) => theme.color.orangeSecond};
-    border: 2px solid ${({ theme }) => theme.color.black};
-    background-color: ${({ theme }) => theme.color.orangeSecond};
-  }
-`;
-
-export const CheckboxLabel = styled.label`
-  display: block;
-  margin: 24px 0 24px 22px;
-  cursor: pointer;
-  transition: color ${({ theme }) => theme.transition.main};
-
-  &:hover {
-    color: ${({ theme }) => theme.color.graySecond};
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 20px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    outline: 2px solid #636366;
-    border: 2px solid transparent;
-    background-color: transparent;
-
-    @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-      left: 40px;
-      width: 12px;
-      height: 12px;
-    }
-
-    @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-      left: 50px;
-    }
-  }
-
-  @media screen and (max-width: 374px) {
-    font-size: 14px;
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    margin: 32px 0 32px 28px;
   }
 `;
 
@@ -286,6 +237,10 @@ export const IconDiv = styled.div`
 `;
 
 export const TextP = styled.p`
+  :nth-of-type(1) {
+    margin-bottom: 12px;
+  }
+
   @media screen and (max-width: 374px) {
     font-size: 14px;
     line-height: calc(18 / 14);

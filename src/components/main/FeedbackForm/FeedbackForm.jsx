@@ -15,8 +15,6 @@ import {
   TitleH2,
   TextWrapperDiv,
   ButtonWrapperDiv,
-  CheckboxInput,
-  CheckboxLabel,
 } from './FeedbackForm.styled';
 
 import { selectUserEmail, selectUserName } from 'src/redux/auth/selectors';
@@ -30,7 +28,11 @@ const InputFeedback = props => {
     (!!didFocus && field.value.trim().length > 0) || meta.touched;
 
   return (
-    <Check type={`${showFeedback ? (meta.error ? 'invalid' : 'valid') : ''}`}>
+    <Check
+      required={props.required}
+      theme={props.theme}
+      type={`${showFeedback ? (meta.error ? 'invalid' : 'valid') : ''}`}
+    >
       <Input {...props} {...field} onFocus={handleFocus} />
 
       <Message>
@@ -53,7 +55,11 @@ const TextareaFeedback = props => {
     (!!didFocus && field.value.trim().length > 0) || meta.touched;
 
   return (
-    <Check type={`${showFeedback ? (meta.error ? 'invalid' : 'valid') : ''}`}>
+    <Check
+      required={props.required}
+      theme={props.theme}
+      type={`${showFeedback ? (meta.error ? 'invalid' : 'valid') : ''}`}
+    >
       <Textarea {...props} {...field} onFocus={handleFocus} />
 
       <Message>
@@ -68,38 +74,16 @@ const TextareaFeedback = props => {
   );
 };
 
-const CheckBox = props => {
-  const [field] = useField(props);
-  const [checked, setChecked] = useState(true);
-  const toggleCheckbox = () => setChecked(!checked);
-
-  return (
-    <>
-      <CheckboxInput {...props} {...field} id="public" />
-
-      <CheckboxLabel htmlFor="public" onClick={toggleCheckbox}>
-        Make my feedback public
-      </CheckboxLabel>
-    </>
-  );
-};
-
 export default function FeedbackForm({ onClose }) {
   const userName = useSelector(selectUserName);
   const userEmail = useSelector(selectUserEmail);
 
-  const [emailInput, setEmailInput] = useState(userEmail);
-
-  const handleEmailChange = e => {
-    setEmailInput(e.currentTarget.value.trim());
-  };
-
   const formik = useFormik({
     initialValues: {
       name: userName || '',
-      email: emailInput || '',
-      feedback: '',
-      public: true,
+      email: userEmail || '',
+      phone: '',
+      message: '',
     },
 
     onSubmit: async (values, { resetForm }) => {
@@ -111,30 +95,29 @@ export default function FeedbackForm({ onClose }) {
 
   return (
     <ContainerDiv>
-      <TitleH2>
-        You are welcome to leave a feedback for our team in the form below
-      </TitleH2>
+      <TitleH2>Have any problem?</TitleH2>
+
+      <TextP>Fill the form below to contact us</TextP>
 
       <FormikProvider value={formik}>
         <Form>
-          <InputFeedback name="name" disabled />
+          <InputFeedback name="name" required />
+
+          <InputFeedback type="email" name="email" required />
 
           <InputFeedback
-            type="email"
-            name="email"
-            onChange={handleEmailChange}
-            required
+            type="tel"
+            name="phone"
+            placeholder="Your phone number"
           />
 
           <TextareaFeedback
-            name="feedback"
+            name="message"
             rows="5"
             autoFocus
-            placeholder="Your feedback..."
+            placeholder="Leave your message here..."
             required
           ></TextareaFeedback>
-
-          <CheckBox type="checkbox" name="public" />
 
           <ButtonWrapperDiv>
             <Button type="submit">Send</Button>

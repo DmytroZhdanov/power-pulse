@@ -50,7 +50,7 @@ export default function Main() {
 
           {token && (
             <FeedbackIconDiv onClick={() => setShowFeedbackForm(true)}>
-              <Icon name="feedback" />
+              <Icon name="help" />
             </FeedbackIconDiv>
           )}
 

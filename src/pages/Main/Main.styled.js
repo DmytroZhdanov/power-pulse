@@ -52,7 +52,7 @@ export const FeedbackIconDiv = styled.div`
   bottom: 40px;
   right: 20px;
   z-index: 10;
-  width: 48px;
+  width: 40px;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -89,7 +89,7 @@ export const FeedbackIconDiv = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     bottom: 50px;
     right: 32px;
-    width: 60px;
+    width: 52px;
     height: 52px;
 
     svg {
@@ -108,7 +108,7 @@ export const FeedbackIconDiv = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     right: 32px;
-    width: 72px;
+    width: 60px;
     height: 60px;
 
     svg {

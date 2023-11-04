@@ -13,6 +13,6 @@ export const feedbackFormSchema = Yup.object({
       'Enter valid values',
     )
     .required('This is a required field'),
-  feedback: Yup.string().min(6).required('This is a required field'),
-  public: Yup.boolean(),
+  phone: Yup.string(),
+  message: Yup.string().min(6).required('This is a required field'),
 });
