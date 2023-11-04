@@ -88,7 +88,7 @@ export default function FeedbackForm({ onClose }) {
     },
 
     onSubmit: async (values, { resetForm }) => {
-      axios.post('https://formsubmit.co/power_pulse@ukr.net', {
+      axios.post('https://formsubmit.co/2bb952d25cb75825e9bf472086dfb9b9', {
         registeredName: userName,
         registeredEmail: userEmail,
         ...values,
