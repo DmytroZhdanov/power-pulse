@@ -17,12 +17,19 @@ import {
 
 import { useDeleteExerciseMutation } from 'src/redux/api';
 import sprite from 'src/assets/images/sprite/sprite.svg';
+import { useTranslation } from 'react-i18next';
 
 export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
   const [deleteExercise, { isLoading, isError, error }] =
     useDeleteExerciseMutation();
 
   const [isTableDesk, setIsTableDesk] = useState(window.innerWidth >= 768);
+
+  const { t } = useTranslation(['Diary','common']);
+  const titleList = t(`content.exercises.list.titles`, {
+    ns: 'Diary',
+    returnObjects: true,
+  });
 
   const handleResize = () => {
     setIsTableDesk(window.innerWidth >= 768);
@@ -51,8 +58,8 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
   };
 
   const convertInMin = sec => {
-    return `${Math.floor(sec / 60)} min ${
-      sec % 60 === 0 ? '' : (sec % 60) + 's'
+    return `${Math.floor(sec / 60)} ${t('time.minShort', { ns: 'common' })} ${
+      sec % 60 === 0 ? '' : (sec % 60) + t('time.secShort', { ns: 'common' })
     }`;
   };
 
@@ -63,17 +70,9 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
           <Table>
             <TableMainTitlesThead>
               <TableTitleTr>
-                <TableMainTitleTh>Body Part</TableMainTitleTh>
-
-                <TableMainTitleTh>Equipment</TableMainTitleTh>
-
-                <TableMainTitleTh>Name</TableMainTitleTh>
-
-                <TableMainTitleTh>Target</TableMainTitleTh>
-
-                <TableMainTitleTh>Burned Calories</TableMainTitleTh>
-
-                <TableMainTitleTh>Time</TableMainTitleTh>
+                {titleList.map(title => (
+                  <TableMainTitleTh key={title}>{title}</TableMainTitleTh>
+                ))}
               </TableTitleTr>
             </TableMainTitlesThead>
 
@@ -133,17 +132,11 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
                   >
                     <TableMainTitlesThead>
                       <TableTitleTr>
-                        <TableMainTitleTh>Body Part</TableMainTitleTh>
-
-                        <TableMainTitleTh>Equipment</TableMainTitleTh>
-
-                        <TableMainTitleTh>Name</TableMainTitleTh>
-
-                        <TableMainTitleTh>Target</TableMainTitleTh>
-
-                        <TableMainTitleTh>Burned Calories</TableMainTitleTh>
-
-                        <TableMainTitleTh>Time</TableMainTitleTh>
+                        {titleList.map(title => (
+                          <TableMainTitleTh key={title}>
+                            {title}
+                          </TableMainTitleTh>
+                        ))}
                       </TableTitleTr>
                     </TableMainTitlesThead>
 

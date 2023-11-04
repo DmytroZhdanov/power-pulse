@@ -15,19 +15,21 @@ import {
 } from './DayExercises.styled';
 
 import sprite from 'src/assets/images/sprite/sprite.svg';
+import { useTranslation } from 'react-i18next';
 
 export default function DayExercises({
   diaryExercises,
   setDiaryExercises,
   isLoading,
 }) {
+  const { t } = useTranslation(['Diary']);
   return (
     <DayExerDiv>
       <DayExerListDiv>
-        <DayExerTitleH2>Exercises</DayExerTitleH2>
+        <DayExerTitleH2> {t('content.exercises.title', { ns: 'Diary' })}</DayExerTitleH2>
 
         <AddExerBtnLink to="/exercises">
-          <AddExerBtnTextP>Add exercise</AddExerBtnTextP>
+          <AddExerBtnTextP>{t('content.exercises.buttons.addExercise', { ns: 'Diary' })}</AddExerBtnTextP>
 
           <AddExerBtnIcon>
             <use href={`${sprite}#big_arrow`}></use>
@@ -55,7 +57,7 @@ export default function DayExercises({
                 transition={{ duration: 0.5 }}
                 exit={{ opacity: 0 }}
               >
-                Not found exercises
+               {t('content.exercises.defaultValue', { ns: 'Diary' })}
               </DayExerTextP>
             )}
           </AnimatePresence>

@@ -16,6 +16,7 @@ import {
 } from './DayDashboard.styled';
 
 import sprite from 'src/assets/images/sprite/sprite.svg';
+import { useTranslation } from 'react-i18next';
 
 export default function DayDashboard({
   bmrData,
@@ -25,6 +26,8 @@ export default function DayDashboard({
   const [AllDayCalories, setAllDayCalories] = useState(null);
   const [AllDayExerCalories, setAllDayExerCalories] = useState(null);
   const [AllMinuts, setAllMinuts] = useState(null);
+
+  const { t } = useTranslation(['Diary','common']);
 
   useEffect(() => {
     if (diaryProducts.length === 0) {
@@ -72,7 +75,9 @@ export default function DayDashboard({
               <use href={`${sprite}#food`}></use>
             </Icon>
 
-            <TitleH2 highlighted={true}>Daily calory intake</TitleH2>
+            <TitleH2 highlighted={true}>
+              {t('content.dashboard.dailyCalorieIntake', { ns: 'Diary' })}
+            </TitleH2>
           </TitleWrapperDiv>
 
           <ValueP>{bmrData || 2200}</ValueP>
@@ -84,10 +89,12 @@ export default function DayDashboard({
               <use href={`${sprite}#dumbbell`}></use>
             </Icon>
 
-            <TitleH2 highlighted={true}>Daily norm of sports</TitleH2>
+            <TitleH2 highlighted={true}>
+              {t('content.dashboard.dailyNormOfSports', { ns: 'Diary' })}
+            </TitleH2>
           </TitleWrapperDiv>
 
-          <ValueP>110 min</ValueP>
+          <ValueP>110 {t('time.minShort', { ns: 'common' })}</ValueP>
         </BlockItemLi>
 
         <BlockItemLi>
@@ -96,7 +103,9 @@ export default function DayDashboard({
               <use href={`${sprite}#apple`}></use>
             </Icon>
 
-            <TitleH2>Calories consumed</TitleH2>
+            <TitleH2>
+              {t('content.dashboard.caloriesConsumed', { ns: 'Diary' })}
+            </TitleH2>
           </TitleWrapperDiv>
 
           <ValueP>{AllDayCalories !== null ? AllDayCalories : 0}</ValueP>
@@ -108,7 +117,9 @@ export default function DayDashboard({
               <use href={`${sprite}#fire`}></use>
             </Icon>
 
-            <TitleH2>Calories burned</TitleH2>
+            <TitleH2>
+              {t('content.dashboard.caloriesBurned', { ns: 'Diary' })}
+            </TitleH2>
           </TitleWrapperDiv>
 
           <ValueP>
@@ -124,7 +135,9 @@ export default function DayDashboard({
               <use href={`${sprite}#bubble`}></use>
             </Icon>
 
-            <TitleH2>The rest of the calories</TitleH2>
+            <TitleH2>
+              {t('content.dashboard.restOfCalories', { ns: 'Diary' })}
+            </TitleH2>
           </TitleWrapperDiv>
 
           <ValueP>{bmrData ? bmrData - AllDayCalories : 2200}</ValueP>
@@ -136,10 +149,12 @@ export default function DayDashboard({
               <use href={`${sprite}#running`}></use>
             </Icon>
 
-            <TitleH2>The rest of sports</TitleH2>
+            <TitleH2>
+              {t('content.dashboard.restOfSports', { ns: 'Diary' })}
+            </TitleH2>
           </TitleWrapperDiv>
 
-          <ValueP>{110 - AllMinuts} min</ValueP>
+          <ValueP>{110 - AllMinuts} {t('time.minShort', { ns: 'common' })}</ValueP>
         </BlockItemLi>
       </BlockListUl>
 
@@ -151,8 +166,7 @@ export default function DayDashboard({
         </IconWrapperDiv>
 
         <TextP>
-          Record all your meals in a calorie diary every day. This will help me
-          be aware of my nutrition and make me responsible for my choices.
+          {t('content.dashboard.recordMealsDescription', { ns: 'Diary' })}
         </TextP>
       </TextWrapperDiv>
     </ContainerDiv>

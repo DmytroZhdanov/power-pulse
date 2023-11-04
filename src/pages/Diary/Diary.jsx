@@ -14,11 +14,14 @@ import {
 } from './Diary.style';
 
 import { useFetchDailyRateQuery, useLazyFetchDiaryQuery } from 'src/redux/api';
+import { useTranslation } from 'react-i18next';
 
 export function Diary() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [diaryProducts, setDiaryProducts] = useState([]);
   const [diaryExercises, setDiaryExercises] = useState([]);
+
+  const { t } = useTranslation(['Diary']);
 
   const [
     fetchDiary,
@@ -53,7 +56,7 @@ export function Diary() {
   return (
     <Section>
       <HeaderWrapperDiv>
-        <TitlePage text="Diary" />
+        <TitlePage text={t('title', { ns: 'Diary' })} />
 
         <DaySwitch
           selectedDate={selectedDate}

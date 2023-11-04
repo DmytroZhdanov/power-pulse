@@ -15,19 +15,22 @@ import {
 } from './DayProducts.styled';
 
 import sprite from 'src/assets/images/sprite/sprite.svg';
+import { useTranslation } from 'react-i18next';
 
 export default function DayProducts({
   diaryProducts,
   setDiaryProducts,
   isLoading,
 }) {
+
+  const { t } = useTranslation(['Diary']);
   return (
     <DayProdDiv>
       <DayProdListDiv>
-        <DayProdTitleH2>Products</DayProdTitleH2>
+        <DayProdTitleH2>{t('content.products.title', { ns: 'Diary' })}</DayProdTitleH2>
 
         <AddProdBtnLink to="/Products">
-          <AddProdBtnTextP>Add product</AddProdBtnTextP>
+          <AddProdBtnTextP>{t('content.products.buttons.addProduct', { ns: 'Diary' })}</AddProdBtnTextP>
 
           <AddProdBtnIcon>
             <use href={`${sprite}#big_arrow`}></use>
@@ -55,7 +58,7 @@ export default function DayProducts({
                 transition={{ duration: 0.5 }}
                 exit={{ opacity: 0 }}
               >
-                Not found products
+             {t('content.products.defaultValue', { ns: 'Diary' })}
               </DayProdTextP>
             )}
           </AnimatePresence>

@@ -64,6 +64,7 @@ export const DatePickerWrapper = styled.div`
       font-size: 16px;
       font-weight: 500;
       letter-spacing: -0.32px;
+      text-transform:capitalize;
       padding: 0;
       background-color: transparent;
       :hover,
@@ -151,6 +152,10 @@ export const DatePickerWrapper = styled.div`
     .react-calendar__month-view__weekdays {
       text-transform: capitalize;
       margin-bottom: 14px;
+    }
+
+    .react-calendar__year-view__months__month{
+      text-transform: capitalize;
     }
 
     .react-calendar__month-view__weekdays__weekday {
