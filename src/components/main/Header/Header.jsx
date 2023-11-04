@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import LogOutBtn from 'components/common/LogOutBtn/LogOutBtn';
@@ -12,6 +12,8 @@ import { BackdropDiv, BoxHeader, HeaderWrapDiv } from './Header.styled';
 import { selectToken } from 'src/redux/auth/selectors';
 import { useLazyFetchUserParamsQuery } from 'src/redux/api';
 import { useLocation } from 'react-router-dom';
+import CalendarDiv from '../CalendarIcon/CalendarDiv';
+import { CSSTransition } from 'react-transition-group';
 
 export default function Header() {
   const token = useSelector(selectToken);
@@ -22,7 +24,7 @@ export default function Header() {
   const [openedModal, setOpenedModal] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1440);
   const location = useLocation();
-
+  const nodeBackdropRef = useRef(null);
   const handleResize = () => {
     setIsDesktop(window.innerWidth >= 1440);
   };
@@ -74,13 +76,26 @@ export default function Header() {
           <>
             {isDesktop && <UserNav />}
             <UserBar />
+            <CalendarDiv />
             {isDesktop && <LogOutBtn />}
             {!isDesktop && <BurgerBtn setOpenedModal={setOpenedModal} />}
-            {openedModal && (
-              <BackdropDiv onClick={handleBackdropClick}>
-                <BurgerMenu setOpenedModal={setOpenedModal}></BurgerMenu>
-              </BackdropDiv>
-            )}
+            <BurgerMenu
+              setOpenedModal={setOpenedModal}
+              openedModal={openedModal}
+            ></BurgerMenu>
+
+            <CSSTransition
+              in={openedModal}
+              nodeRef={nodeBackdropRef}
+              timeout={400}
+              classNames="backdrop"
+              unmountOnExit
+            >
+              <BackdropDiv
+                ref={nodeBackdropRef}
+                onClick={handleBackdropClick}
+              />
+            </CSSTransition>
           </>
         )}
       </HeaderWrapDiv>

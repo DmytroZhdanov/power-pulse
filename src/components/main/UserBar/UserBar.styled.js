@@ -47,6 +47,9 @@ export const AvatarDiv = styled.div`
   align-items: center;
   overflow: hidden;
   margin-right: 14px;
+  &:hover {
+    border: 2px solid ${({ theme }) => theme.color.orangeFirst};
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 46px;

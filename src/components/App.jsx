@@ -102,6 +102,24 @@ const router = createBrowserRouter(
             };
           },
         },
+
+        // ------------------------------
+        {
+          path: ROUTER.CALENDAR,
+          async lazy() {
+            let { Calendar } = await import('pages/Calendar/Calendar');
+            return {
+              Component: () => (
+                <PrivateRoute
+                  redirectTo={ROUTER.SIGN_IN}
+                  component={<Calendar />}
+                />
+              ),
+            };
+          },
+        },
+        // ===================================
+
         {
           path: ROUTER.PROFILE,
           async lazy() {
