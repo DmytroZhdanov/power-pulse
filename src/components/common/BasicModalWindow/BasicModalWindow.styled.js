@@ -36,7 +36,6 @@ export const ModalDiv = styled.div`
   left: 50%;
   translate: -50% -50%;
   background-color: ${({ theme }) => theme.color.modalBackground};
-  /* border: 1px solid ${({ theme }) => theme.color.borderModal}; */
   border: 1px solid
     ${({ type, theme }) => {
       switch (type) {
@@ -50,7 +49,7 @@ export const ModalDiv = styled.div`
           return theme.color.orangeSecond;
 
         default:
-          break;
+          return theme.color.borderModal;
       }
     }};
   border-radius: 12px;
