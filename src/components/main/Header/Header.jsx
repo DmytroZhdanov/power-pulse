@@ -12,7 +12,7 @@ import { BackdropDiv, BoxHeader, HeaderWrapDiv } from './Header.styled';
 import { selectToken } from 'src/redux/auth/selectors';
 import { useLazyFetchUserParamsQuery } from 'src/redux/api';
 import { useLocation } from 'react-router-dom';
-import LanguageSwitcher from '../../LanguageSwitcher';
+import LanguageSwitcher from '../../LanguageSwitcher/LanguageSwitcher';
 
 
 export default function Header() {
@@ -67,14 +67,11 @@ export default function Header() {
     }
   };
 
-
-
   return (
     <BoxHeader logged={isLogged}>
       <HeaderWrapDiv>
         <Logo />
-       
-        <LanguageSwitcher />
+
         {isLogged && (
           <>
             {isDesktop && <UserNav />}
@@ -88,6 +85,7 @@ export default function Header() {
             )}
           </>
         )}
+        <LanguageSwitcher />
       </HeaderWrapDiv>
     </BoxHeader>
   );
