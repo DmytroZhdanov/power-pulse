@@ -81,7 +81,7 @@ export default function FeedbackForm({ onClose }) {
 
   const formik = useFormik({
     initialValues: {
-      name: userName || '',
+      name: trim(userName) || '',
       email: userEmail || '',
       phone: '',
       message: '',
