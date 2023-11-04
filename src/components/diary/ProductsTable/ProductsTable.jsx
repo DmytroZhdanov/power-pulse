@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
 
-import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   TableDiv,
   Table,
@@ -21,6 +21,7 @@ import {
   useDeleteProductMutation,
   useFetchUserBloodGroupQuery,
 } from 'src/redux/api';
+import { setStates } from 'src/redux/states/statesSlice';
 
 export default function ProductsTable({ diaryProducts, setDiaryProducts }) {
   const [
@@ -38,7 +39,27 @@ export default function ProductsTable({ diaryProducts, setDiaryProducts }) {
     isError: isUserBloodError,
     error: userBloodError,
   } = useFetchUserBloodGroupQuery();
+
+  const dispatch = useDispatch();
   const [isTablet, setIsTablet] = useState(window.innerWidth >= 768);
+
+  useEffect(() => {
+    dispatch(
+      setStates({
+        isLoading: isDeleteProductLoading || isUserBloodLoading,
+        isError: isDeleteProductError || isUserBloodError,
+        error: deleteProductError || userBloodError,
+      }),
+    );
+  }, [
+    deleteProductError,
+    dispatch,
+    isDeleteProductError,
+    isDeleteProductLoading,
+    isUserBloodError,
+    isUserBloodLoading,
+    userBloodError,
+  ]);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -206,20 +227,6 @@ export default function ProductsTable({ diaryProducts, setDiaryProducts }) {
           </>
         )}
       </TableDiv>
-
-      <ErrorHandler
-        isLoading={isDeleteProductLoading}
-        isError={isDeleteProductError}
-        error={deleteProductError}
-        showLoader={false}
-      />
-
-      <ErrorHandler
-        isLoading={isUserBloodLoading}
-        isError={isUserBloodError}
-        error={userBloodError}
-        showLoader={false}
-      />
     </>
   );
 }

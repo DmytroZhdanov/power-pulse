@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useInView } from 'react-intersection-observer';
 import PropTypes from 'prop-types';
 
 import ProductsItem from 'components/products/ProductsItem/ProductsItem';
-import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   ProductListUl,
   DefaultTextP,
@@ -15,6 +15,7 @@ import {
   useLazyFetchAllProductsQuery,
   useFetchUserBloodGroupQuery,
 } from 'src/redux/api';
+import { setStates } from 'src/redux/states/statesSlice';
 
 /**
  * The ProductsList component represents a list of products and displays them according to the passed filter.
@@ -30,6 +31,7 @@ export default function ProductsList({ filter }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [newResponse, setNewResponse] = useState(true);
   const productListRef = useRef();
+  const dispatch = useDispatch();
   const [
     getProducts,
     { isLoading: isGettingLazy, isError: gettingErrorLazy, error: myErrorLazy },
@@ -50,6 +52,25 @@ export default function ProductsList({ filter }) {
       }
     },
   });
+
+  useEffect(() => {
+    dispatch(
+      setStates({
+        isLoading: isGettingLazy || isUserBloodLoading,
+        isError: gettingErrorLazy || isUserBloodError,
+        error: myErrorLazy || userBloodError,
+      }),
+    );
+  }, [
+    dispatch,
+    gettingErrorLazy,
+    isGettingLazy,
+    isUserBloodError,
+    isUserBloodLoading,
+    myErrorLazy,
+    userBloodError,
+  ]);
+
   /**
    * Updates the user's blood type based on a successful request to the backend.
    *
@@ -121,18 +142,6 @@ export default function ProductsList({ filter }) {
           <SpanTry>Try changing the search parameters.</SpanTry>
         </>
       )}
-
-      <ErrorHandler
-        isLoading={isGettingLazy}
-        isError={gettingErrorLazy}
-        error={myErrorLazy}
-      />
-
-      <ErrorHandler
-        isLoading={isUserBloodLoading}
-        isError={isUserBloodError}
-        error={userBloodError}
-      />
     </>
   );
 }

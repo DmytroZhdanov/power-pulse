@@ -1,4 +1,5 @@
 import { Suspense, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Outlet, useNavigate, useResolvedPath } from 'react-router-dom';
 
 import Loader from 'components/Loader/Loader';
@@ -10,13 +11,14 @@ import FeedbackForm from 'components/main/FeedbackForm/FeedbackForm';
 import { ContainerDiv, FeedbackIconDiv } from './Main.styled';
 
 import { ROUTER } from 'src/utils/constants';
-import { useSelector } from 'react-redux';
 import { selectToken } from 'src/redux/auth/selectors';
+import { setPathname } from 'src/redux/states/statesSlice';
 
 export default function Main() {
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { pathname } = useResolvedPath();
   const token = useSelector(selectToken);
 
@@ -32,7 +34,9 @@ export default function Main() {
     if (pathname === '/') {
       navigate('welcome');
     }
-  }, [navigate, pathname]);
+
+    dispatch(setPathname(pathname));
+  }, [dispatch, navigate, pathname]);
 
   return (
     <>

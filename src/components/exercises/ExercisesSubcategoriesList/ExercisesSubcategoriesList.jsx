@@ -11,9 +11,12 @@ import {
 } from './ExercisesSubcategoriesList.styled';
 
 import { useFetchExercisesSubcategoriesQuery } from 'src/redux/api';
+import { useDispatch } from 'react-redux';
+import { setStates } from '../../../redux/states/statesSlice';
 
 export function ExercisesSubcategoriesList() {
   const category = useOutletContext();
+  const dispatch = useDispatch();
 
   const { data, isLoading, isError, error } =
     useFetchExercisesSubcategoriesQuery(category);
@@ -21,6 +24,10 @@ export function ExercisesSubcategoriesList() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+
+  useEffect(() => {
+    dispatch(setStates({ isLoading, isError, error }));
+  }, [dispatch, error, isError, isLoading]);
 
   // For pagination (splitting into pages) when scrolling through a list of elements.
   const handlePageClick = page => {

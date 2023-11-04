@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useFormik, FormikProvider, Form, useField } from 'formik';
+
+import Icon from 'components/common/IconsComp/Icon';
 import {
   Text,
   Inputs,
@@ -9,12 +12,11 @@ import {
   Sign,
   Buttons,
 } from './SignInForm.styled';
-import Icon from '../common/IconsComp/Icon';
+
 import { signInFormSchema } from './YupValidationForm';
-import { useDispatch } from 'react-redux';
 import { setCredentials } from 'src/redux/auth/authSlice';
 import { useLoginMutation } from 'src/redux/api';
-import ErrorHandler from '../common/ErrorHandler/ErrorHandler';
+import { setStates } from 'src/redux/states/statesSlice';
 
 const Feedback = ({ ...props }) => {
   const [field, meta] = useField(props);
@@ -46,6 +48,10 @@ export default function SignInForm() {
 
   const [hidePass, setHidePass] = useState();
   const [passBtn, setPassBtn] = useState(false);
+
+  useEffect(() => {
+    dispatch(setStates({ isLoading, isError, error }));
+  }, [dispatch, error, isError, isLoading]);
 
   const handleInput = () => {
     setPassBtn(true);
@@ -125,7 +131,6 @@ export default function SignInForm() {
           </Sign>
         </Form>
       </FormikProvider>
-      <ErrorHandler isLoading={isLoading} isError={isError} error={error} />
     </>
   );
 }

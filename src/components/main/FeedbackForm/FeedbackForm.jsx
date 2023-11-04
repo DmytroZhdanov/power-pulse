@@ -113,7 +113,7 @@ export default function FeedbackForm({ onClose }) {
       } finally {
         setShowLoader(false);
         resetForm();
-        onClose();
+        setTimeout(onClose, 2000);
       }
     },
     validationSchema: feedbackFormSchema,
@@ -174,13 +174,11 @@ export default function FeedbackForm({ onClose }) {
         onClose={
           showError
             ? () => {
-                setShowSuccess(false);
-              }
-            : showSuccess
-            ? () => {
                 setShowError(false);
               }
-            : null
+            : () => {
+                setShowSuccess(false);
+              }
         }
       >
         <ErrorMessage

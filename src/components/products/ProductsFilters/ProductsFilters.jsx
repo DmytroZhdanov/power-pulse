@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {
@@ -16,6 +17,7 @@ import {
 import { PRODUCTS_FILTER } from 'src/utils/constants';
 import { useFetchProductsCategoriesQuery } from 'src/redux/api';
 import sprite from 'src/assets/images/sprite/sprite.svg';
+import { setStates } from 'src/redux/states/statesSlice';
 
 const { QUERY, RECOMMENDED, CATEGORY } = PRODUCTS_FILTER;
 
@@ -36,8 +38,14 @@ export default function ProductsFilters({ onProductsChange }) {
   const [filter, setFilter] = useState(emptyFilter);
   const [search, setSearch] = useState('');
   const [categories, setCategories] = useState([]);
+  const dispatch = useDispatch();
 
-  const { isSuccess, currentData } = useFetchProductsCategoriesQuery();
+  const { isSuccess, currentData, isFetching, isError, error } =
+    useFetchProductsCategoriesQuery();
+
+  useEffect(() => {
+    dispatch(setStates({ isLoading: isFetching, isError, error }));
+  }, [dispatch, error, isError, isFetching]);
 
   /**
    * Loads the all list of categories from the backend.
