@@ -76,12 +76,12 @@ const TextareaFeedback = props => {
 };
 
 export default function FeedbackForm({ onClose }) {
-  const userName = useSelector(selectUserName);
+  const userName = useSelector(selectUserName).trim();
   const userEmail = useSelector(selectUserEmail);
 
   const formik = useFormik({
     initialValues: {
-      name: trim(userName) || '',
+      name: userName || '',
       email: userEmail || '',
       phone: '',
       message: '',
