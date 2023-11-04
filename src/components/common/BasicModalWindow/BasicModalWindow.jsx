@@ -13,7 +13,7 @@ import {
 import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export default function BasicModalWindow(props) {
-  const { onShow = true, onClose, children } = props;
+  const { onShow = true, type, onClose, children } = props;
   const modalRoot = document.querySelector('#modal-root');
 
   const nodeModalRef = useRef(null);
@@ -63,7 +63,7 @@ export default function BasicModalWindow(props) {
         classNames="modal-wrapper"
         unmountOnExit
       >
-        <ModalDiv ref={nodeModalRef}>
+        <ModalDiv ref={nodeModalRef} type={type}>
           <CloseModalButton onClick={onClose}>
             <CloseModalIcon width={26} height={26}>
               <use href={`${sprite}#close`}></use>

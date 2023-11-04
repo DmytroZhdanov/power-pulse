@@ -20,6 +20,9 @@ import {
 
 import { selectUserEmail, selectUserName } from 'src/redux/auth/selectors';
 import { feedbackFormSchema } from './YupValidationForm';
+import Loader from '../../Loader/Loader';
+import BasicModalWindow from '../../common/BasicModalWindow/BasicModalWindow';
+import ErrorMessage from '../../common/ErrorMessage/ErrorMessage';
 
 const InputFeedback = props => {
   const [field, meta] = useField(props);
@@ -79,6 +82,10 @@ export default function FeedbackForm({ onClose }) {
   const userName = useSelector(selectUserName).trim();
   const userEmail = useSelector(selectUserEmail);
 
+  const [showLoader, setShowLoader] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       name: userName || '',
@@ -88,12 +95,26 @@ export default function FeedbackForm({ onClose }) {
     },
 
     onSubmit: async (values, { resetForm }) => {
-      axios.post('https://formsubmit.co/2bb952d25cb75825e9bf472086dfb9b9', {
-        registeredName: userName,
-        registeredEmail: userEmail,
-        ...values,
-      });
-      resetForm();
+      setShowLoader(true);
+      try {
+        await axios.post(
+          'https://formsubmit.co/2bb952d25cb75825e9bf472086dfb9b9',
+          {
+            registeredName: userName,
+            registeredEmail: userEmail,
+            ...values,
+          },
+        );
+        setShowSuccess(true);
+        setTimeout(setShowSuccess, 2000, false);
+      } catch (error) {
+        setShowError(true);
+        setTimeout(setShowError, 2000, false);
+      } finally {
+        setShowLoader(false);
+        resetForm();
+        onClose();
+      }
     },
     validationSchema: feedbackFormSchema,
   });
@@ -144,6 +165,35 @@ export default function FeedbackForm({ onClose }) {
           valid email address
         </TextP>
       </TextWrapperDiv>
+
+      {showLoader && <Loader />}
+
+      <BasicModalWindow
+        onShow={showError || showSuccess}
+        type={showError ? 'Error' : showSuccess ? 'Success' : null}
+        onClose={
+          showError
+            ? () => {
+                setShowSuccess(false);
+              }
+            : showSuccess
+            ? () => {
+                setShowError(false);
+              }
+            : null
+        }
+      >
+        <ErrorMessage
+          type={showError ? 'Error' : showSuccess ? 'Success' : null}
+          message={
+            showError
+              ? 'Failed to send message. Please try again later'
+              : showSuccess
+              ? 'Your message have been send'
+              : null
+          }
+        />
+      </BasicModalWindow>
     </ContainerDiv>
   );
 }

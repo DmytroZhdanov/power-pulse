@@ -437,13 +437,22 @@ export default function UserForm({ setFetchBmr }) {
       </Form>
 
       {showUpdateError && (
-        <BasicModalWindow onClose={() => setShowUpdateError(false)}>
-          <ErrorMessage message={'No changes to update'} />
+        <BasicModalWindow
+          onClose={() => setShowUpdateError(false)}
+          type={'Warning'}
+        >
+          <ErrorMessage
+            notificationType={'Warning:'}
+            message={'No changes to update'}
+          />
         </BasicModalWindow>
       )}
 
       {showUpdateSuccess && (
-        <BasicModalWindow onClose={() => setShowUpdateSuccess(false)}>
+        <BasicModalWindow
+          onClose={() => setShowUpdateSuccess(false)}
+          type={'Success'}
+        >
           <ErrorMessage
             notificationType={'Success:'}
             message={'Your data successfully updated'}

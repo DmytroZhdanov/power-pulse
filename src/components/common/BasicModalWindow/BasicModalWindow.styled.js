@@ -36,7 +36,24 @@ export const ModalDiv = styled.div`
   left: 50%;
   translate: -50% -50%;
   background-color: ${({ theme }) => theme.color.modalBackground};
-  border: 1px solid ${({ theme }) => theme.color.borderModal};
+  /* border: 1px solid ${({ theme }) => theme.color.borderModal}; */
+  border: 1px solid
+    ${({ type, theme }) => {
+      console.log(type);
+      switch (type) {
+        case 'Success':
+          return theme.color.circleGreen;
+
+        case 'Error':
+          return theme.color.circleRed;
+
+        case 'Warning':
+          return theme.color.orangeSecond;
+
+        default:
+          break;
+      }
+    }};
   border-radius: 12px;
   overflow-y: auto;
 
