@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-
+import { setAvatars } from '../../../redux/auth/authSlice';
 import LogOutBtn from 'components/common/LogOutBtn/LogOutBtn';
 import Icon from 'src/components/common/IconsComp/Icon';
 import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
@@ -22,8 +22,10 @@ import {
 } from './UserCard.styled';
 
 import { selectUserAvatars, selectUserName } from 'src/redux/auth/selectors';
+import AvatarModal from '../../AvatarModal/AvatarModal';
+import AvatarAccept from '../../AvatarAccept/AvatarAccept';
 import { useUpdateUserAvatarMutation } from 'src/redux/api';
-import { setAvatars } from 'src/redux/auth/authSlice';
+
 import { useLazyFetchDailyRateQuery } from 'src/redux/api';
 
 export default function UserCard({ fetchBmr, setFetchBmr }) {
@@ -50,6 +52,21 @@ export default function UserCard({ fetchBmr, setFetchBmr }) {
   const userName = useSelector(selectUserName);
   const avatars = useSelector(selectUserAvatars);
 
+  const [file, setFile] = useState(null);
+  const [acceptModal, setAcceptModal] = useState(false);
+  const [accept, setAccept] = useState(false);
+
+  useEffect(() => {
+    const fetchUpdateAvatar = async () => {
+      if (accept && file) {
+        const data = await updateUserAvatar(file).unwrap();
+
+        dispatch(setAvatars(data));
+      }
+    };
+    fetchUpdateAvatar();
+  }, [accept, dispatch, file, updateUserAvatar]);
+
   useEffect(() => {
     const fetch = async () => {
       await fetchDailyRate();
@@ -63,16 +80,25 @@ export default function UserCard({ fetchBmr, setFetchBmr }) {
 
   const handleChange = async e => {
     e.preventDefault();
-
+    setAcceptModal(true);
     try {
       const result = e.target.files[0];
-      const data = await updateUserAvatar(result).unwrap();
-      dispatch(setAvatars(data));
+
+      setFile(result);
     } catch (error) {
       console.error(error);
     }
   };
 
+  const onAcceptClick = () => {
+    setAccept(true);
+    setAcceptModal(false);
+  };
+  const onDisAcceptClick = () => {
+    setAccept(false);
+    setAcceptModal(false);
+    setFile(null);
+  };
   return (
     <>
       <UserDiv>
@@ -163,6 +189,15 @@ export default function UserCard({ fetchBmr, setFetchBmr }) {
         isError={isFetchBMRError}
         error={fetchBMRError}
       />
+      {acceptModal && (
+        <AvatarModal onClose={onDisAcceptClick}>
+          <AvatarAccept
+            file={file}
+            onClose={onDisAcceptClick}
+            onAccept={onAcceptClick}
+          />
+        </AvatarModal>
+      )}
     </>
   );
 }
