@@ -38,8 +38,11 @@ export const LangSwitchBtn = styled.button`
   }
 
   svg {
-    transition: stroke 150ms ease-in-out;
+    transition:
+      stroke 150ms ease-in-out,
+      rotate 150ms ease-in-out;
 
+    rotate: ${({ isOpen }) => (isOpen ? '180deg' : '0deg')};
     stroke: ${({ theme }) => theme.color.grayFifth};
 
     width: 20px;
