@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {
@@ -13,14 +15,19 @@ import {
   DarkBlockSpanP,
   DarkBlockTextP,
 } from './StatisticsInfo.styled';
-import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { ROUTER } from 'src/utils/constants';
 import { useFetchStatisticQuery } from 'src/redux/api';
+import { setStates } from 'src/redux/states/statesSlice';
 
 export default function StatisticsInfo({ pathname, page }) {
   const { data, isFetching, isError, error } = useFetchStatisticQuery();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setStates({ isLoading: isFetching, isError, error }));
+  }, [dispatch, error, isError, isFetching]);
 
   // Determine keyword to display proper background image
   const path = pathname.split('/');
@@ -160,7 +167,6 @@ export default function StatisticsInfo({ pathname, page }) {
           </ColoredBlockDiv>
         </>
       )}
-      <ErrorHandler isLoading={isFetching} isError={isError} error={error} />
     </BackgroundDiv>
   );
 }

@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect,useRef, useState } from 'react';
+import {useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import LogOutBtn from 'components/common/LogOutBtn/LogOutBtn';
 import Logo from 'components/main/Logo/Logo';
@@ -10,20 +11,27 @@ import BurgerMenu from 'components/main/BurgerMenu/BurgerMenu';
 import { BackdropDiv, BoxHeader, HeaderWrapDiv } from './Header.styled';
 
 import { selectToken } from 'src/redux/auth/selectors';
-import { useLazyFetchUserParamsQuery } from 'src/redux/api';
-import { useLocation } from 'react-router-dom';
+import { useLazyFetchUserParamsQuery } from 'src/redux/api'
+import { setStates } from 'src/redux/states/statesSlice';
 import CalendarDiv from '../CalendarIcon/CalendarDiv';
 import { CSSTransition } from 'react-transition-group';
 
 export default function Header() {
   const token = useSelector(selectToken);
-  const [fetchUserParams, { data }] = useLazyFetchUserParamsQuery();
+  const [fetchUserParams, { data, isLoading, isError, error }] =
+    useLazyFetchUserParamsQuery();
+
   const [isLogged, setIsLogged] = useState(
     token && data?.user.userParams ? true : false,
   );
   const [openedModal, setOpenedModal] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1440);
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setStates({ isLoading, isError, error }));
+  }, [dispatch, error, isError, isLoading]);
   const nodeBackdropRef = useRef(null);
   const handleResize = () => {
     setIsDesktop(window.innerWidth >= 1440);

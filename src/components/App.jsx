@@ -12,6 +12,7 @@ import { setCredentials } from 'src/redux/auth/authSlice';
 import { useLazyRefreshQuery } from 'src/redux/api';
 import { selectToken } from 'src/redux/auth/selectors';
 import { ROUTER, DATA_STEPS } from 'src/utils';
+import { setStates } from '../redux/states/statesSlice';
 
 const router = createBrowserRouter(
   [
@@ -223,6 +224,10 @@ export default function App() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
 
+  useEffect(() => {
+    dispatch(setStates({ isLoading: isFetching, isError, error }));
+  }, [dispatch, error, isError, isFetching]);
+
   // Refetch current user data on reloading page
   useEffect(() => {
     const refetch = async () => {
@@ -242,7 +247,7 @@ export default function App() {
   return (
     <>
       <RouterProvider router={router} />
-      <ErrorHandler isLoading={isFetching} isError={isError} error={error} />
+      <ErrorHandler />
     </>
   );
 }
