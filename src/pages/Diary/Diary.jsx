@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import TitlePage from 'components/common/TitlePage/TitlePage';
 import DayDashboard from 'components/diary/DayDashboard/DayDashboard';
 import DayExercises from 'components/diary/DayExercises/DayExercises';
 import DayProducts from 'components/diary/DayProducts/DayProducts';
 import DaySwitch from 'components/diary/DaySwitch/DaySwitch';
-import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   ContentWrapperDiv,
   DayStatisticWrapperDiv,
@@ -15,6 +15,7 @@ import {
 
 import { useFetchDailyRateQuery, useLazyFetchDiaryQuery } from 'src/redux/api';
 import { useTranslation } from 'react-i18next';
+import { setStates } from 'src/redux/states/statesSlice';
 
 export function Diary() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -22,6 +23,7 @@ export function Diary() {
   const [diaryExercises, setDiaryExercises] = useState([]);
 
   const { t } = useTranslation(['Diary']);
+  const dispatch = useDispatch();
 
   const [
     fetchDiary,
@@ -41,6 +43,24 @@ export function Diary() {
     (selectedDate.getMonth() + 1) +
     '-' +
     selectedDate.getDate();
+
+  useEffect(() => {
+    dispatch(
+      setStates({
+        isLoading: isDiaryLoading || isDailyRateLoading,
+        isError: isDiaryError || isDailyRateError,
+        error: diaryError || dailyRateError,
+      }),
+    );
+  }, [
+    dailyRateError,
+    diaryError,
+    dispatch,
+    isDailyRateError,
+    isDailyRateLoading,
+    isDiaryError,
+    isDiaryLoading,
+  ]);
 
   useEffect(() => {
     const fetchDiaryData = async () => {
@@ -84,20 +104,6 @@ export function Diary() {
           />
         </DayStatisticWrapperDiv>
       </ContentWrapperDiv>
-
-      <ErrorHandler
-        isLoading={isDiaryLoading}
-        isError={isDiaryError}
-        error={diaryError}
-        showLoader={false}
-      />
-
-      <ErrorHandler
-        isLoading={isDailyRateLoading}
-        isError={isDailyRateError}
-        error={dailyRateError}
-        showLoader={false}
-      />
     </Section>
   );
 }

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
 
-import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   TableDiv,
   Table,
@@ -18,10 +18,13 @@ import {
 import { useDeleteExerciseMutation } from 'src/redux/api';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { useTranslation } from 'react-i18next';
+import { setStates } from 'src/redux/states/statesSlice';
 
 export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
   const [deleteExercise, { isLoading, isError, error }] =
     useDeleteExerciseMutation();
+
+  const dispatch = useDispatch();
 
   const [isTableDesk, setIsTableDesk] = useState(window.innerWidth >= 768);
 
@@ -30,6 +33,10 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
     ns: 'Diary',
     returnObjects: true,
   });
+
+  useEffect(() => {
+    dispatch(setStates({ isLoading, isError, error }));
+  }, [dispatch, error, isError, isLoading]);
 
   const handleResize = () => {
     setIsTableDesk(window.innerWidth >= 768);
@@ -174,13 +181,6 @@ export default function ExercisesTable({ diaryExercises, setDiaryExercises }) {
           </>
         )}
       </TableDiv>
-
-      <ErrorHandler
-        isLoading={isLoading}
-        isError={isError}
-        error={error}
-        showLoader={false}
-      />
     </>
   );
 }

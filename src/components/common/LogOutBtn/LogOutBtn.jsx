@@ -1,12 +1,13 @@
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import { LogoutTextP, SvgLogout, LogoutButton } from './LogoutBtn.styled';
 
 import { useLogoutMutation } from 'src/redux/api';
 import { initialState, setCredentials } from 'src/redux/auth/authSlice';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { useTranslation } from 'react-i18next';
+import { setStates } from 'src/redux/states/statesSlice';
 
 export default function LogOutBtn(props) {
   const dispatch = useDispatch();
@@ -23,6 +24,10 @@ export default function LogOutBtn(props) {
     }
   };
 
+  useEffect(() => {
+    dispatch(setStates({ isLoading, isError, error }));
+  }, [dispatch, error, isError, isLoading]);
+
   return (
     <>
       <LogoutButton {...props} onClick={handleLogOut}>
@@ -32,8 +37,6 @@ export default function LogOutBtn(props) {
           <use href={`${sprite}#logout`}></use>
         </SvgLogout>
       </LogoutButton>
-
-      <ErrorHandler isLoading={isLoading} isError={isError} error={error} />
     </>
   );
 }
