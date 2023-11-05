@@ -1,20 +1,20 @@
-import { useEffect,useRef, useState } from 'react';
-import {useDispatch, useSelector } from 'react-redux';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import LogOutBtn from 'components/common/LogOutBtn/LogOutBtn';
+import BurgerBtn from 'components/main/BurgerBtn/BurgerBtn';
+import BurgerMenu from 'components/main/BurgerMenu/BurgerMenu';
 import Logo from 'components/main/Logo/Logo';
 import UserBar from 'components/main/UserBar/UserBar';
 import UserNav from 'components/main/UserNav/UserNav';
-import BurgerBtn from 'components/main/BurgerBtn/BurgerBtn';
-import BurgerMenu from 'components/main/BurgerMenu/BurgerMenu';
 import { BackdropDiv, BoxHeader, HeaderWrapDiv } from './Header.styled';
 
+import { CSSTransition } from 'react-transition-group';
+import { useLazyFetchUserParamsQuery } from 'src/redux/api';
 import { selectToken } from 'src/redux/auth/selectors';
-import { useLazyFetchUserParamsQuery } from 'src/redux/api'
 import { setStates } from 'src/redux/states/statesSlice';
 import CalendarDiv from '../CalendarIcon/CalendarDiv';
-import { CSSTransition } from 'react-transition-group';
 
 export default function Header() {
   const token = useSelector(selectToken);

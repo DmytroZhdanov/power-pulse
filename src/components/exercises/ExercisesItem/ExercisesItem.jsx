@@ -36,7 +36,6 @@ export default function ExercisesItem(props) {
 
   const openModalExerciseSuccess = () => {
     setOnShowModalExerciseSuccess(true);
-    0;
   };
 
   const closeModalExerciseForm = () => {
