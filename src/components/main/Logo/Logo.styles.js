@@ -22,7 +22,7 @@ export const TitleP = styled.p`
   color: ${({ theme }) => theme.color.white};
   font-size: 17px;
   font-weight: 500;
-  display: none;
+  display: ${({ isLogged }) => (isLogged ? 'none' : 'block')};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     display: block;

@@ -70,7 +70,7 @@ export default function Header() {
   return (
     <BoxHeader logged={isLogged}>
       <HeaderWrapDiv>
-        <Logo />
+        <Logo isLogged={isLogged} />
 
         {isLogged && (
           <>

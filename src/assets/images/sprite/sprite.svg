@@ -43,7 +43,7 @@
     </symbol>
     <!-- Іконка "Галочка вниз"-->
     <symbol id="small_arrow" viewBox="0 0 32 32">
-      <path fill="none" stroke="#efede8" style="stroke: var(--color2, #efede8)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.5556" d="M8 12l8 8 8-8"></path>
+      <path fill="none"  stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.5556" d="M8 12l8 8 8-8"></path>
     </symbol>
     <!-- Іконка "Стрілка вправо"-->
     <symbol id="big_arrow" viewBox="0 0 32 32">
