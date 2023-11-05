@@ -2,7 +2,11 @@ import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
   position: relative;
-  margin-left: 30px;
+  margin-left: 5px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    margin-left: 30px;
+  }
 `;
 
 export const LangSwitchBtn = styled.button`
