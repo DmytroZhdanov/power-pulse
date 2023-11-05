@@ -7,9 +7,31 @@ export const WindowDiv = styled.div`
   right: 0;
   width: 50%;
   height: 100%;
+
   background-color: ${({ theme }) => theme.color.orangeFirst};
   z-index: 1000;
+  &.modal-enter {
+    opacity: 0;
+    transform: translateX(100%);
+  }
 
+  &.modal-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 300ms cubic-bezier(0.165, 0.84, 0.44, 1.03);
+  }
+
+  /* For unmounting */
+  &.modal-exit {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  &.modal-exit-active {
+    opacity: 1;
+    transform: translateX(100%);
+    transition: transform 300ms cubic-bezier(0.165, 0.84, 0.44, 1.03);
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     display: none;
   }
