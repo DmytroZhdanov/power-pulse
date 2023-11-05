@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
 import Calendar from 'components/Calendar/Calendar';
 import Icon from 'components/common/IconsComp/Icon';
-import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   Button,
   CalendarIconDiv,
@@ -18,15 +17,22 @@ import {
 import { useLazyFetchDiaryAllQuery } from 'src/redux/api';
 import { selectUserRegistrationDate } from 'src/redux/auth/selectors';
 import { generateDateRange } from 'src/utils';
+import { setStates } from 'src/redux/states/statesSlice';
 
 export default function DaySwitch({ selectedDate, setSelectedDate }) {
   const [sortDates, setSortDates] = useState([]);
   const [indexDate, setIndexDate] = useState(null);
 
+  const dispatch = useDispatch();
+
   const dateOfUserRegistration = useSelector(selectUserRegistrationDate);
 
   const [fetchDiaryAll, { data, isLoading, isError, error }] =
     useLazyFetchDiaryAllQuery();
+
+  useEffect(() => {
+    dispatch(setStates({ isLoading, isError, error }));
+  }, [dispatch, error, isError, isLoading]);
 
   useEffect(() => {
     if (data && data.length !== 0) {
@@ -146,13 +152,6 @@ export default function DaySwitch({ selectedDate, setSelectedDate }) {
           <Icon name="nav-arrow-right" />
         </Button>
       </div>
-
-      <ErrorHandler
-        isLoading={isLoading}
-        isError={isError}
-        error={error}
-        showLoader={false}
-      />
     </WrapperDiv>
   );
 }

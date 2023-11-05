@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation, useOutletContext, useParams } from 'react-router';
 import { useInView } from 'react-intersection-observer';
 
 import ExercisesItem from 'components/exercises/ExercisesItem/ExercisesItem';
-import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   BackgroundDiv,
   ExerciseListUl,
@@ -17,6 +17,7 @@ import {
   useFetchExercisesSubcategoriesQuery,
 } from 'src/redux/api';
 import sprite from 'src/assets/images/sprite/sprite.svg';
+import { setStates } from 'src/redux/states/statesSlice';
 
 export function ExercisesList() {
   const category = useOutletContext();
@@ -40,11 +41,31 @@ export function ExercisesList() {
   const { data, isFetching, isError, error } =
     useFetchExercisesSubcategoriesQuery(category);
 
+  const dispatch = useDispatch();
+
   const currentBackgroundImage =
     data && data.filter(item => item.name === subcategory)[0];
   const backgroundImage = currentBackgroundImage
     ? currentBackgroundImage.imgURL
     : null;
+
+  useEffect(() => {
+    dispatch(
+      setStates({
+        isLoading: isGettingLazy || isFetching,
+        isError: gettingErrorLazy || isError,
+        error: myErrorLazy || error,
+      }),
+    );
+  }, [
+    isGettingLazy,
+    dispatch,
+    isFetching,
+    gettingErrorLazy,
+    isError,
+    myErrorLazy,
+    error,
+  ]);
 
   useEffect(() => {
     if (fetching) {
@@ -117,14 +138,6 @@ export function ExercisesList() {
       </ExerciseListUl>
 
       <BackgroundDiv category={category} img={backgroundImage} />
-
-      <ErrorHandler isLoading={isFetching} isError={isError} error={error} />
-
-      <ErrorHandler
-        isLoading={isGettingLazy}
-        isError={gettingErrorLazy}
-        error={myErrorLazy}
-      />
     </div>
   );
 }

@@ -113,7 +113,7 @@ export default function FeedbackForm({ onClose }) {
       } finally {
         setShowLoader(false);
         resetForm();
-        onClose();
+        setTimeout(onClose, 3000);
       }
     },
     validationSchema: feedbackFormSchema,
@@ -174,17 +174,17 @@ export default function FeedbackForm({ onClose }) {
         onClose={
           showError
             ? () => {
-                setShowSuccess(false);
-              }
-            : showSuccess
-            ? () => {
                 setShowError(false);
               }
-            : null
+            : () => {
+                setShowSuccess(false);
+              }
         }
       >
         <ErrorMessage
-          type={showError ? 'Error' : showSuccess ? 'Success' : null}
+          notificationType={
+            showError ? 'Error:' : showSuccess ? 'Success:' : null
+          }
           message={
             showError
               ? 'Failed to send message. Please try again later'

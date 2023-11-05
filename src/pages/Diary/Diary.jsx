@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import TitlePage from 'components/common/TitlePage/TitlePage';
 import DayDashboard from 'components/diary/DayDashboard/DayDashboard';
 import DayExercises from 'components/diary/DayExercises/DayExercises';
 import DayProducts from 'components/diary/DayProducts/DayProducts';
 import DaySwitch from 'components/diary/DaySwitch/DaySwitch';
-import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   ContentWrapperDiv,
   DayStatisticWrapperDiv,
@@ -14,11 +14,13 @@ import {
 } from './Diary.style';
 
 import { useFetchDailyRateQuery, useLazyFetchDiaryQuery } from 'src/redux/api';
+import { setStates } from 'src/redux/states/statesSlice';
 
 export function Diary() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [diaryProducts, setDiaryProducts] = useState([]);
   const [diaryExercises, setDiaryExercises] = useState([]);
+  const dispatch = useDispatch();
 
   const [
     fetchDiary,
@@ -38,6 +40,24 @@ export function Diary() {
     (selectedDate.getMonth() + 1) +
     '-' +
     selectedDate.getDate();
+
+  useEffect(() => {
+    dispatch(
+      setStates({
+        isLoading: isDiaryLoading || isDailyRateLoading,
+        isError: isDiaryError || isDailyRateError,
+        error: diaryError || dailyRateError,
+      }),
+    );
+  }, [
+    dailyRateError,
+    diaryError,
+    dispatch,
+    isDailyRateError,
+    isDailyRateLoading,
+    isDiaryError,
+    isDiaryLoading,
+  ]);
 
   useEffect(() => {
     const fetchDiaryData = async () => {
@@ -81,20 +101,6 @@ export function Diary() {
           />
         </DayStatisticWrapperDiv>
       </ContentWrapperDiv>
-
-      <ErrorHandler
-        isLoading={isDiaryLoading}
-        isError={isDiaryError}
-        error={diaryError}
-        showLoader={false}
-      />
-
-      <ErrorHandler
-        isLoading={isDailyRateLoading}
-        isError={isDailyRateError}
-        error={dailyRateError}
-        showLoader={false}
-      />
     </Section>
   );
 }

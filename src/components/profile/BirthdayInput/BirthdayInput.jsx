@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
@@ -11,8 +12,10 @@ import {
 } from './BirthdayInput.style';
 
 import { useLazyFetchUserParamsQuery } from 'src/redux/api';
+import { setStates } from 'src/redux/states/statesSlice';
 
 export default function BirthdayInput({ selectedDate, setSelectedDate }) {
+  const dispatch = useDispatch();
   const [showDefaultInputValue, setShowDefaultInputValue] = useState(true);
   const defaultInputValue = 'Birthday';
 
@@ -21,7 +24,12 @@ export default function BirthdayInput({ selectedDate, setSelectedDate }) {
     setSelectedDate(date);
   };
 
-  const [fetchUserParams] = useLazyFetchUserParamsQuery();
+  const [fetchUserParams, { isLoading, isError, error }] =
+    useLazyFetchUserParamsQuery();
+
+  useEffect(() => {
+    dispatch(setStates({ isLoading, isError, error }));
+  }, [dispatch, error, isError, isLoading]);
 
   useEffect(() => {
     const getUserParams = async () => {
