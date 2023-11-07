@@ -105,13 +105,27 @@ export const CalendarWrapper = styled.div`
     .react-calendar__tile--range,
     .react-calendar__tile--hover {
       background: ${({ theme }) => theme.color.orangeThird};
-      color:${({ theme }) => theme.color.black};
+      color: ${({ theme }) => theme.color.black};
     }
+
     .react-calendar__tile--rangeStart {
+      position: relative;
       background: ${({ theme }) => theme.color.orangeSecond};
+      ::before {
+        content: 'From';
+        position: absolute;
+        left: 10px;
+      }
     }
+
     .react-calendar__tile--rangeEnd {
+      position: relative;
       background: ${({ theme }) => theme.color.orangeSecond};
+      ::before {
+        content: '${({ isEndDate }) => (isEndDate ? 'To' : 'From')}';
+        position: absolute;
+        left: 10px;
+      }
     }
   }
 `;

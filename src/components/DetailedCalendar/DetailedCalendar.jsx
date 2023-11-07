@@ -96,14 +96,15 @@ const DetailedCalendar = () => {
             </Item>
           ))}
         </List>
-        <CalendarWrapper>
+        <CalendarWrapper isEndDate={selectedDateRange[1]}>
           <Calendar
             locale="en"
+            allowPartialRange={true}
             value={selectedDateRange}
             onChange={setSelectedDateRange}
             showNavigation={false}
             selectRange={true}
-            returnValue={'range'}
+            returnValue={'start'}
             showFixedNumberOfWeeks={true}
             activeStartDate={activeDate}
             tileContent={dayContent}
