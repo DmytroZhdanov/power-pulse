@@ -86,6 +86,12 @@ export default function FeedbackForm({ onClose }) {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
 
+  const encode = data => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  };
+
   const formik = useFormik({
     initialValues: {
       name: userName || '',
@@ -96,15 +102,22 @@ export default function FeedbackForm({ onClose }) {
 
     onSubmit: async (values, { resetForm }) => {
       setShowLoader(true);
+
+      const formDetails = {
+        registeredName: userName,
+        registeredEmail: userEmail,
+        ...values,
+      };
+
       try {
         await axios.post(
-          'https://formsubmit.co/2bb952d25cb75825e9bf472086dfb9b9',
+          '/',
+          encode({ 'form-name': 'feedback', ...formDetails }),
           {
-            registeredName: userName,
-            registeredEmail: userEmail,
-            ...values,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           },
         );
+
         setShowSuccess(true);
         setTimeout(setShowSuccess, 2000, false);
       } catch (error) {
