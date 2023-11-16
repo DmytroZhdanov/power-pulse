@@ -23,7 +23,7 @@ We are actively working to resolve this issue.
 The app uses React Router for navigation. The available routes are:
 - `/welcome` - Welcome Page
 
-The first page which meets user of [Power Pulse](https://power-pulse-app.netlify.app/)
+The initial page users encounter upon accessing [Power Pulse](https://power-pulse-app.netlify.app/)
 
 You may choose to register a new account or sign in to an existing one.  
 You'll find current statistics displayed on the right side of the page.
