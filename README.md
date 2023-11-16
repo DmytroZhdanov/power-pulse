@@ -4,6 +4,10 @@
 
 Web app for tracking daily calorie consumption and managing user’s fitness journey.
 
+Important! As this is a non-commercial project, our server is hosted on a free hosting service, which may cause longer loading times after periods of inactivity.  
+If this occurs, please remain connected and avoid closing or reloading the page. Once our backend wakes up, any delays in using our app will be resolved.  
+We are actively working to resolve this issue.
+
 ## Table of content
 
 - [Routing](#routing)
@@ -21,88 +25,89 @@ The app uses React Router for navigation. The available routes are:
 
 The first page which meets user of [Power Pulse](https://power-pulse-app.netlify.app/)
 
-You may choose to register a new account or sign in to existed one.  
-There are some actual statistics info from the right side of the page.
+You may choose to register a new account or sign in to an existing one.  
+You'll find current statistics displayed on the right side of the page.
 
-<img width="1470" alt="Знімок екрана 2023-11-16 о 17 14 31" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/b25631c9-6e7e-4fec-a966-4a05543898b2">
+<img width="1470" alt="Welcome page screenshot" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/9b944d2c-c788-47ff-b48e-b1dc33586f3f">
 
 - `/signup` - SignUp Page
 
-For registering you have to enter your name which will be displayed on your profile page, email address and password.  
-Please note that password required minimum 6 symbols.
+To register, provide your name (to be displayed on your profile page), email address, and a password.  
+Please ensure that your password contains a minimum of 6 characters.
 
-There is a Google authorisation implemented for your convenience.
+We've implemented Google authorization for your convenience.
 
-If you already have an account you can switch to SignIn page to log in.
+If you already have an account, you can navigate to the SignIn page to log in.
 
-<img width="1470" alt="Знімок екрана 2023-11-16 о 17 30 05" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/b4215112-2186-45a4-aafe-83754acabde3">
+<img width="1470" alt="SignUp page screenshot" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/f3b973a6-44c5-4463-9bc6-7860234ac641">
 
 - `/signin` - SignIn Page
 
-To log in to your account it's enought to enter only email and password.  
-Or you can use Google authorisation button as well.
+To log in to your account, simply enter your email and password.  
+Alternatively, you can use the Google authorization button.
 
-If you don't have registered account you can switch to SignUp page for registratioin.
+If you haven't registered yet, you can switch to the SignUp page for registration.
 
-<img width="1470" alt="Знімок екрана 2023-11-16 о 17 38 45" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/b312a30d-7de3-42c7-b76c-89c74ce108de">
+<img width="1470" alt="SignIn page screenshot" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/eed43a2d-391c-42f9-8f26-9bb9217286e8">
 
 - `/data` - Data Page
 
-After successful registration you will be redirected to the Data page where you have to fill in all fields in 3 (three) steps.
+After successful registration, you'll be redirected to the Data page, where you'll need to complete all fields across three steps.
 
-Note that you won't be able to use this web app if you don't enter all required information. We use it for calculation daily rate of calories to help you achieve your fitness goal or for marking products as recommended or not recommended for you.
+Please note, using this web app requires filling in all required information. This data is utilized for calculating your daily calorie rate, assisting you in achieving your fitness goals, and marking products as recommended or not recommended for you.
 
-Also there is a help button becomes available, so if you have faced with any problem using this app you may click it and contact us. We'll reply to you ASAP to help you resolve it.  
-Note that you have to enter valid email address so that we could reach you out with provided solution or clarifyed questions.
+Furthermore, a 'Help' button becomes available, allowing you to reach out if you encounter any issues while using the app. We'll respond promptly to assist in resolving any problems.
 
-<img width="1470" alt="Знімок екрана 2023-11-16 о 17 55 16" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/47bc1f60-1743-4593-a51b-9b95c5a09576">
+It's crucial to provide a valid email address for us to efficiently communicate solutions or address any questions you may have.
+
+<img width="1470" alt="Data page step 1 screenshot" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/826380c7-a461-444b-ae4e-25d341e5d775">
 
 - `/diary` - Diary Page
 
-On Diary page you can check your consumed products or performed exercises by the chosen date (by the default the date is set to current date).
+On the Diary page, you can review the products you've consumed or exercises you've performed by selecting a specific date (by default, it's set to the current date).
 
-Also there is a dashboard with calculated consumed and burned calories and minutes you have spend on training.
+Additionally, there's a dashboard displaying calculated consumed and burned calories, along with the duration of your training sessions.
 
-<img width="1470" alt="Знімок екрана 2023-11-16 о 18 26 02" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/4f35ba68-5b29-4c92-8e02-2e9e5f387d6c">
+<img width="1470" alt="Diary page screenshot" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/4f35ba68-5b29-4c92-8e02-2e9e5f387d6c">
 
 - `/products` - Products Page
 
-On Products page you can select which product to add to your diary as consumed.  
-You can use filters to find exact match.
+On the Products page, you have the option to select products to add to your diary as consumed items.  
+Utilize filters to find the exact match for your selection.
 
-<img width="1470" alt="Знімок екрана 2023-11-16 о 18 33 39" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/155faf33-ea0b-479e-8635-f2048696d831">
+<img width="1470" alt="Products page screenshot" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/155faf33-ea0b-479e-8635-f2048696d831">
 
 - `/exercises` - Exercises Page
 
-On Exercises page you can find an exercise for your training.
+On the Exercises page, you can explore exercises for your training regimen.
 
-There are 3 (three) categories to choose:
-  1. Body parts
-  2. Muscles
-  3. Equipment
+You'll find three categories to choose from:
+1. Body parts
+2. Muscles
+3. Equipment
 
-Depends on selected category the list of subcategories will be updated.  
+Based on your selected category, the list of subcategories will be updated accordingly.
 
-<img width="1470" alt="Знімок екрана 2023-11-16 о 18 36 49" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/ee063e71-eb5a-4f94-9d98-48a4dd3145cb">
+<img width="1470" alt="Exercises page with exercises subcategories list screenshot" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/ee063e71-eb5a-4f94-9d98-48a4dd3145cb">
 
 - `/exercises/:subcategory` - Exercises Page
 
-By clicking on subcategory there is an exercises list will appear instead.
+When you click on a subcategory, an exercises list will appear instead of subcategories list.
 
-On hovering on exercise card you will see an example on how to perform it.
+Hovering over an exercise card will display an example demonstrating how to perform that exercise.
 
-<img width="1470" alt="Знімок екрана 2023-11-16 о 18 44 11" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/9a4bae0b-82b4-4d33-9cd4-7160a6d37ef1">
+<img width="1470" alt="Exercises page with exercises list screenshot" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/9a4bae0b-82b4-4d33-9cd4-7160a6d37ef1">
 
 - `/profile` - Exercises Page
 
-By clicking on gear icon inside the header section you will go to Profile page where you can check your data and update it if you want.
+Clicking on the gear icon within the header section will navigate you to the Profile page. Here, you can review your data and make updates if necessary.
 
-<img width="1470" alt="Знімок екрана 2023-11-16 о 18 46 59" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/1d2c8a8f-6f4d-4e55-a4ea-c2efb0316cb6">
+<img width="1470" alt="Profile page screenshot" src="https://github.com/DmytroZhdanov/power-pulse/assets/119117057/1d2c8a8f-6f4d-4e55-a4ea-c2efb0316cb6">
 
 - `/calendar` - Exercises Page
 
-This page is under construction yet. 🏗️  
-Stay tuned for updates.
+This page is currently under construction. 🏗️  
+Please stay tuned for forthcoming updates.
 
 ## Features
 
@@ -144,8 +149,8 @@ To run the application locally, follow these steps:
 
 ## API
 
-The application uses a backend developed by our team. You can familiarize yourself with it [here](https://github.com/Cherydens/power_pulse_backend)
+The application utilizes a backend developed by our team. Feel free to familiarize yourself with it [here](https://github.com/Cherydens/power_pulse_backend)
 
 ## Redux State
 
-The Redux store manages the state of the application, including token, user's name, email, avatar image and account creation date.
+The Redux store manages the application's state, encompassing tokens, user information such as name, email, avatar image, and the account creation date.
