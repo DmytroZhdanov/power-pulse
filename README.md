@@ -125,7 +125,7 @@ Implemented responsiveness and mobile menu for better UI.
 - Oleg Kiosa [GitHub](https://github.com/KiosaOleg) || [LinkedIn](https://www.linkedin.com/in/oleg-kiosa/) - Developer (Data page including all steps)
 - Oleksanrd Borysenko [GitHub](https://github.com/LexMorrison) || [LinkedIn](https://www.linkedin.com/in/oleksanrd-borysenko/) - Developer (ExercisesCategories component, ExercisesSubcategories component)
 - Taras Vasylkiv [GitHub](https://github.com/vasylkivt) || [LinkedIn](https://www.linkedin.com/in/taras-vasylkiv/) - Developer (Calendar component, birthday inputs' implementation, calendar related features implementation, modals for adding exercises to diary)
-- Yevhen Kolchynskyi [GitHub](https://github.com/EvgenBatt) || [LinkedIn](https://www.linkedin.com/in/evgen-k/) - Developer (Error page, Data page stylisation)
+- Yevhen Kolchynskyi [GitHub](https://github.com/EvgenBatt) || [LinkedIn](https://www.linkedin.com/in/evgen-k/) - Developer (Error page, Basic Modal window, Global styles, Loader, Data page stylisation)
 - Serhii Savchak [GitHub](https://github.com/SerhiiSavchak) || [LinkedIn](https://www.linkedin.com/in/itsavchak/) - Developer (Products', Training's and Statistic's endpoints on beck-end, diary tables logic on front-end, avatar's modal window feature)
 - Alexander Sirotov [GitHub](https://github.com/SirotovAlexander) || [LinkedIn](https://www.linkedin.com/in/alexander-sirotov/) - Developer (Diary's endpoints on back-end)
 
