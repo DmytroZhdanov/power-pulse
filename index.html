@@ -4,11 +4,23 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Our website offers innovative and effective training programs to help you achieve your best physical and mental state. Join us today to access high-quality workouts and reach your fitness goals!" />
+    <meta
+      name="description"
+      content="Our website offers innovative and effective training programs to help you achieve your best physical and mental state. Join us today to access high-quality workouts and reach your fitness goals!"
+    />
     <title>PowerPulse</title>
   </head>
 
   <body>
+    <form name="feedback" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="registeredName" />
+      <input type="email" name="registeredEmail" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <textarea name="message"></textarea>
+    </form>
+
     <div id="root"></div>
     <div id="modal-root"></div>
     <div id="avatar-root"></div>

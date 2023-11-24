@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
 import AddProductFromPastDaysForm from 'components/products/AddProductFromPastDaysForm/AddProductFromPastDaysForm';
@@ -19,7 +21,7 @@ import {
 } from './AddProductForm.styled';
 
 import { useAddProductMutation } from 'src/redux/api';
-import { format } from 'date-fns';
+import { setStates } from 'src/redux/states/statesSlice';
 
 /**
  * The AddProductForm component provides a form for adding a product to a user's diary.
@@ -35,13 +37,14 @@ import { format } from 'date-fns';
  */
 export default function AddProductForm(props) {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const dispatch = useDispatch();
 
   const { onClose, addProdSuccess, addProdError, product } = props;
   const { weight, calories, _id, title } = product;
   const [addWeight, setAddWeight] = useState(weight);
   const totalCalories = (addWeight * calories) / 100;
 
-  const [addProduct] = useAddProductMutation();
+  const [addProduct, { isLoading, isError, error }] = useAddProductMutation();
 
   const addProductToCollection = {
     product_ID: _id,
@@ -49,6 +52,10 @@ export default function AddProductForm(props) {
     amount: addWeight,
     calories: totalCalories,
   };
+
+  useEffect(() => {
+    dispatch(setStates({ isLoading, isError, error }));
+  }, [dispatch, error, isError, isLoading]);
 
   const handleSubmit = async () => {
     const { error } = await addProduct(addProductToCollection);

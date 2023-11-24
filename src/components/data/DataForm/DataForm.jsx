@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { Form, FormikProvider, useFormik } from 'formik';
@@ -15,6 +16,7 @@ import { validationSchema } from 'components/data/helper/controlData';
 import { slideInFromLeft } from 'components/data/helper/motion';
 import { useUpdateUserParamsMutation } from 'src/redux/api';
 import { DATA_STEPS, ROUTER } from 'src/utils';
+import { setStates } from 'src/redux/states/statesSlice';
 
 export default function DataForm({ userParams, step }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -22,8 +24,10 @@ export default function DataForm({ userParams, step }) {
   const [isDateSelected, setIsDateSelected] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [updateUserParamsMutation] = useUpdateUserParamsMutation();
+  const [updateUserParamsMutation, { isLoading, isError, error }] =
+    useUpdateUserParamsMutation();
 
   const formik = useFormik({
     initialValues: userParams,
@@ -39,6 +43,10 @@ export default function DataForm({ userParams, step }) {
       navigate(`../${ROUTER.DIARY}`);
     },
   });
+
+  useEffect(() => {
+    dispatch(setStates({ isLoading, isError, error }));
+  }, [dispatch, error, isError, isLoading]);
 
   return (
     <motion.div
@@ -76,7 +84,7 @@ export default function DataForm({ userParams, step }) {
       </DataFormContainerDiv>
     </motion.div>
   );
-};
+}
 
 DataForm.propTypes = {
   userParams: PropTypes.shape({

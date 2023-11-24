@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import BirthdayInput from '../BirthdayInput/BirthdayInput';
 import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
 import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
-import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   Form,
   FirstInfo,
@@ -36,6 +35,7 @@ import {
   useUpdateUserNameMutation,
   useLazyFetchUserParamsQuery,
 } from 'src/redux/api';
+import { setStates } from 'src/redux/states/statesSlice';
 
 const defaultUserData = {
   name: '',
@@ -84,6 +84,34 @@ export default function UserForm({ setFetchBmr }) {
   const [userData, setUserData] = useState();
   const [showUpdateError, setShowUpdateError] = useState(false);
   const [showUpdateSuccess, setShowUpdateSuccess] = useState(false);
+
+  useEffect(() => {
+    dispatch(
+      setStates({
+        isLoading:
+          isFetchUserParamsLoading ||
+          isUpdateUserParamsLoading ||
+          isUpdateUserNameLoading,
+        isError:
+          isFetchUserParamsError ||
+          isUpdateUserParamsError ||
+          isUpdateUserNameError,
+        error:
+          fetchUserParamsError || updateUserParamsError || updateUserNameError,
+      }),
+    );
+  }, [
+    dispatch,
+    fetchUserParamsError,
+    isFetchUserParamsError,
+    isFetchUserParamsLoading,
+    isUpdateUserNameError,
+    isUpdateUserNameLoading,
+    isUpdateUserParamsError,
+    isUpdateUserParamsLoading,
+    updateUserNameError,
+    updateUserParamsError,
+  ]);
 
   useEffect(() => {
     const fetch = async () => {
@@ -437,37 +465,28 @@ export default function UserForm({ setFetchBmr }) {
       </Form>
 
       {showUpdateError && (
-        <BasicModalWindow onClose={() => setShowUpdateError(false)}>
-          <ErrorMessage message={'No changes to update'} />
+        <BasicModalWindow
+          onClose={() => setShowUpdateError(false)}
+          type={'Warning'}
+        >
+          <ErrorMessage
+            notificationType={'Warning:'}
+            message={'No changes to update'}
+          />
         </BasicModalWindow>
       )}
 
       {showUpdateSuccess && (
-        <BasicModalWindow onClose={() => setShowUpdateSuccess(false)}>
+        <BasicModalWindow
+          onClose={() => setShowUpdateSuccess(false)}
+          type={'Success'}
+        >
           <ErrorMessage
             notificationType={'Success:'}
             message={'Your data successfully updated'}
           />
         </BasicModalWindow>
       )}
-
-      <ErrorHandler
-        isLoading={isFetchUserParamsLoading}
-        isError={isFetchUserParamsError}
-        error={fetchUserParamsError}
-      />
-
-      <ErrorHandler
-        isLoading={isUpdateUserParamsLoading}
-        isError={isUpdateUserParamsError}
-        error={updateUserParamsError}
-      />
-
-      <ErrorHandler
-        isLoading={isUpdateUserNameLoading}
-        isError={isUpdateUserNameError}
-        error={updateUserNameError}
-      />
     </>
   );
 }

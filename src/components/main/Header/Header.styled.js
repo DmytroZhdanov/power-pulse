@@ -40,4 +40,57 @@ export const BackdropDiv = styled.div`
   height: 100%;
   width: 50%;
   background-color: rgba(0, 0, 0, 0.5);
+
+  &.backdrop-enter {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  &.backdrop-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition:
+      opacity 300ms,
+      transform 300ms;
+  }
+
+  &.backdrop-exit {
+    opacity: 1;
+  }
+
+  &.backdrop-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition:
+      opacity 300ms,
+      transform 300ms;
+  }
+`;
+
+export const Burger = styled.div`
+  &.modal-enter {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  &.modal-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition:
+      opacity 300ms,
+      transform 300ms;
+  }
+
+  /* For unmounting */
+  &.modal-exit {
+    opacity: 1;
+  }
+
+  &.modal-exit-active {
+    opacity: 0;
+    transform: scale(0.9);
+    transition:
+      opacity 300ms,
+      transform 300ms;
+  }
 `;

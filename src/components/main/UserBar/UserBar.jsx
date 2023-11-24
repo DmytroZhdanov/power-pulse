@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import {
   SettingsLink,
   SvgSettings,
@@ -5,11 +8,10 @@ import {
   AvatarModalDiv,
   SvgDefault,
 } from './UserBar.styled';
+
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { useSelector } from 'react-redux';
-import { selectUserAvatars } from '../../../redux/auth/selectors';
-import AvatarModal from '../../AvatarModal/AvatarModal';
-import { useState } from 'react';
+import { selectUserAvatars } from 'src/redux/auth/selectors';
+import AvatarModal from 'components/AvatarModal/AvatarModal';
 
 export default function UserBar() {
   const avatars = useSelector(selectUserAvatars);

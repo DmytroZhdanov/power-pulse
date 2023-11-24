@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-import ErrorHandler from 'components/common/ErrorHandler/ErrorHandler';
 import {
   ButtonLink,
   ButtonWrapperDiv,
@@ -14,6 +13,7 @@ import {
 import { useLazyRefreshQuery } from 'src/redux/api';
 import { setCredentials, setToken } from 'src/redux/auth/authSlice';
 import { ROUTER } from 'src/utils/constants';
+import { setStates } from 'src/redux/states/statesSlice';
 
 export function Welcome() {
   const dispatch = useDispatch();
@@ -40,6 +40,10 @@ export function Welcome() {
     refetch();
   }, [dispatch, token, refresh]);
 
+  useEffect(() => {
+    dispatch(setStates({ isLoading: isFetching, isError, error }));
+  }, [dispatch, error, isError, isFetching]);
+
   return (
     <ContainerDiv>
       <TitleH1>
@@ -50,8 +54,6 @@ export function Welcome() {
         <ButtonLink to={`../${ROUTER.SIGN_UP}`}>Sign Up</ButtonLink>
         <ButtonLink to={`../${ROUTER.SIGN_IN}`}>Sign In</ButtonLink>
       </ButtonWrapperDiv>
-
-      <ErrorHandler isLoading={isFetching} isError={isError} error={error} />
     </ContainerDiv>
   );
 }

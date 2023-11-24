@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Loader from 'components/Loader/Loader';
 import BasicModalWindow from 'components/common/BasicModalWindow/BasicModalWindow';
@@ -8,16 +7,26 @@ import TimerWarning from 'components/common/TimerWarning/TimerWarning';
 import ErrorMessage from 'components/common/ErrorMessage/ErrorMessage';
 
 import { initialState, setCredentials } from 'src/redux/auth/authSlice';
+import {
+  selectError,
+  selectIsError,
+  selectIsLoading,
+  selectPathname,
+} from 'src/redux/states/selectors';
 
-export default function ErrorHandler({
-  isLoading,
-  isError,
-  error,
-  showLoader = true,
-}) {
+export default function ErrorHandler() {
+  const dispatch = useDispatch();
+
   const [showTimerWarning, setShowTimerWarning] = useState(false);
   const [showError, setShowError] = useState(false);
-  const dispatch = useDispatch();
+
+  const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectIsError);
+  const error = useSelector(selectError);
+  const pathname = useSelector(selectPathname);
+
+  const showLoader = pathname !== '/diary';
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Shows a warning letter if fetch request takes more then 5 seconds to execute.
   // Because backend is on free hosting server and it takes a long time to execute fetch request after some time of inactivity.
@@ -38,10 +47,11 @@ export default function ErrorHandler({
   // Show pop up with error message for 2 seconds if error occurs
   useEffect(() => {
     if (isError) {
+      setErrorMessage(error.data.message);
       setShowError(true);
       setTimeout(setShowError, 2000, false);
     }
-  }, [isError]);
+  }, [error, isError]);
 
   // Removes token from redux store if fetch request unauthorized
   useEffect(() => {
@@ -57,49 +67,18 @@ export default function ErrorHandler({
       <BasicModalWindow
         onShow={isLoading && showTimerWarning}
         onClose={() => setShowTimerWarning(false)}
+        type={'Warning'}
       >
         <TimerWarning />
       </BasicModalWindow>
 
-      <BasicModalWindow onShow={showError} onClose={() => setShowError(false)}>
-        <ErrorMessage message={error?.data?.message} />
+      <BasicModalWindow
+        onShow={showError}
+        onClose={() => setShowError(false)}
+        type={'Error'}
+      >
+        <ErrorMessage message={errorMessage} />
       </BasicModalWindow>
     </>
   );
 }
-
-ErrorHandler.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired,
-  error: PropTypes.shape({
-    data: PropTypes.shape({
-      message: PropTypes.string.isRequired,
-    }).isRequired,
-    status: PropTypes.number.isRequired,
-  }),
-  showLoader: PropTypes.bool,
-};
-
-// ============================== USAGE EXAMPLE ==============================
-
-// export default function Component() {
-//
-//   const { data, isFetching, isError, error } = use.......Query();
-//   OR
-//   const [function, { data, isLoading, isError, error }] = useLazy.......Query();
-//   OR
-//   const [function, { data, isLoading, isError, error }] = use.......Mutation();
-//
-//
-//   REST OF YOUR CODE...
-//
-//
-//   return (
-//     <>
-//       YOUR COMPONENTS.....
-//       <ErrorHandler isLoading={isFetching || isLoading} isError={isError} error={error} />
-//     </>
-//   )
-// }
-
-// ============================== /USAGE EXAMPLE ==============================

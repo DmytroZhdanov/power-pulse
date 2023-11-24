@@ -9,6 +9,7 @@ export const ROUTER = {
   PRODUCTS: 'products',
   EXERCISES: 'exercises',
   SUBCATEGORY: ':subcategory',
+  CALENDAR: 'calendar',
 };
 
 export const DATA_STEPS = {
