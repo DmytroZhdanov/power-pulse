@@ -4,6 +4,7 @@ import {
   AcceptTitleH2,
   AcceptBtnDiv,
 } from './AvatarAccept.styled';
+import PropTypes from 'prop-types';
 
 export default function AvatarAccept({ onAccept, onClose, file }) {
   const src = URL.createObjectURL(file);
@@ -11,9 +12,7 @@ export default function AvatarAccept({ onAccept, onClose, file }) {
     <>
       <AcceptTitleH2> Are you sure?</AcceptTitleH2>
       <AcceptDiv>
-        {file && (
-          <img src={src} alt="Your avatar" width="100%" loading="lazy" />
-        )}
+        {file && <img src={src} alt="Your avatar" loading="lazy" />}
       </AcceptDiv>
       <AcceptBtnDiv>
         <AcceptBtn onClick={onAccept}>Yes</AcceptBtn>
@@ -22,3 +21,9 @@ export default function AvatarAccept({ onAccept, onClose, file }) {
     </>
   );
 }
+
+AvatarAccept.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  file: PropTypes.instanceOf(File).isRequired,
+  onAccept: PropTypes.func.isRequired,
+};

@@ -2,15 +2,25 @@ import styled from '@emotion/styled';
 
 export const AcceptDiv = styled.div`
   position: absolute;
-
+  overflow: hidden;
+  height: auto;
   top: 50%;
   left: 50%;
   translate: -50% -50%;
+  max-width: 80px;
+  max-height: 110px;
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    max-width: 150px;
+    max-height: 200px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    max-width: 200px;
+    max-height: 250px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    max-width: 250px;
+    max-height: 300px;
   }
 `;
 export const AcceptTitleH2 = styled.h2`
@@ -22,17 +32,18 @@ export const AcceptTitleH2 = styled.h2`
   line-height: 133.3%;
   width: fit-content;
   margin: 0 auto;
-  margin-top: 38px;
+  margin-top: 30px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     font-size: 26px;
+    margin-top: 50px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-top: 65px;
     font-size: 32px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    margin-top: 95px;
+    margin-top: 115px;
     font-size: 36px;
   }
 `;
@@ -71,7 +82,18 @@ export const AcceptBtn = styled.button`
   align-items: center;
   gap: 10px;
   border-radius: 12px;
-  background: #e6533c;
+  background-color: #e6533c;
+
+  transition:
+    background-color ${({ theme }) => theme.transition.main},
+    color ${({ theme }) => theme.transition.main};
+
+  &:hover,
+  &:focus {
+    background-color: ${({ theme }) => theme.color.fullWhite};
+    color: ${({ theme }) => theme.color.orangeFirst};
+  }
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     font-size: 18px;
     padding: 12px 32px;
