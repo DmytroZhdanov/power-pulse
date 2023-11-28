@@ -64,6 +64,7 @@ export default function UserCard({ fetchBmr, setFetchBmr }) {
         const data = await updateUserAvatar(file).unwrap();
 
         dispatch(setAvatars(data));
+        setAccept(false);
       }
     };
     fetchUpdateAvatar();
@@ -107,6 +108,9 @@ export default function UserCard({ fetchBmr, setFetchBmr }) {
       setFile(result);
     } catch (error) {
       console.error(error);
+    } finally {
+      // Очистите значение ввода, чтобы принудительно вызвать событие onChange при последующем выборе файла
+      e.target.value = null;
     }
   };
 
@@ -197,7 +201,7 @@ export default function UserCard({ fetchBmr, setFetchBmr }) {
 
         <BtnLogoutDiv>{<LogOutBtn />}</BtnLogoutDiv>
       </UserDiv>
-      
+
       {acceptModal && (
         <AvatarModal onClose={onDisAcceptClick}>
           <AvatarAccept
