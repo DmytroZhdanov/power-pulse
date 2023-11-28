@@ -1,9 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import LogOutBtn from 'components/common/LogOutBtn/LogOutBtn';
 import Icon from 'src/components/common/IconsComp/Icon';
+import AvatarModal from 'components/AvatarModal/AvatarModal';
+import AvatarAccept from 'components/AvatarAccept/AvatarAccept';
 import {
   UserDiv,
   AvatarDiv,
@@ -52,6 +54,22 @@ export default function UserCard({ fetchBmr, setFetchBmr }) {
   const userName = useSelector(selectUserName);
   const avatars = useSelector(selectUserAvatars);
 
+  const [file, setFile] = useState(null);
+  const [acceptModal, setAcceptModal] = useState(false);
+  const [accept, setAccept] = useState(false);
+
+  useEffect(() => {
+    const fetchUpdateAvatar = async () => {
+      if (accept && file) {
+        const data = await updateUserAvatar(file).unwrap();
+
+        dispatch(setAvatars(data));
+        setAccept(false);
+      }
+    };
+    fetchUpdateAvatar();
+  }, [accept, dispatch, file, updateUserAvatar]);
+
   useEffect(() => {
     dispatch(
       setStates({
@@ -83,16 +101,28 @@ export default function UserCard({ fetchBmr, setFetchBmr }) {
 
   const handleChange = async e => {
     e.preventDefault();
-
+    setAcceptModal(true);
     try {
       const result = e.target.files[0];
-      const data = await updateUserAvatar(result).unwrap();
-      dispatch(setAvatars(data));
+
+      setFile(result);
     } catch (error) {
       console.error(error);
+    } finally {
+      // Clear the input value to force the onChange event the next time the file is selected
+      e.target.value = null;
     }
   };
 
+  const onAcceptClick = () => {
+    setAccept(true);
+    setAcceptModal(false);
+  };
+  const onDisAcceptClick = () => {
+    setAccept(false);
+    setAcceptModal(false);
+    setFile(null);
+  };
   return (
     <>
       <UserDiv>
@@ -171,6 +201,16 @@ export default function UserCard({ fetchBmr, setFetchBmr }) {
 
         <BtnLogoutDiv>{<LogOutBtn />}</BtnLogoutDiv>
       </UserDiv>
+
+      {acceptModal && (
+        <AvatarModal onClose={onDisAcceptClick}>
+          <AvatarAccept
+            file={file}
+            onClose={onDisAcceptClick}
+            onAccept={onAcceptClick}
+          />
+        </AvatarModal>
+      )}
     </>
   );
 }
