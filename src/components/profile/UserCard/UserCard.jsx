@@ -109,7 +109,7 @@ export default function UserCard({ fetchBmr, setFetchBmr }) {
     } catch (error) {
       console.error(error);
     } finally {
-      // Очистите значение ввода, чтобы принудительно вызвать событие onChange при последующем выборе файла
+      // Clear the input value to force the onChange event the next time the file is selected
       e.target.value = null;
     }
   };
