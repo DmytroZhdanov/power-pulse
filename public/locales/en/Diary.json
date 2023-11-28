@@ -1,0 +1,43 @@
+{
+  "title": "Diary",
+  "content": {
+    "products": {
+      "title": "Products",
+      "defaultValue": "Not found products",
+      "list": {
+        "titles": ["Title", "Category", "Calories", "Weight", "Recommend"],
+        "recommend": { "yes": "Yes", "no": "No" }
+      },
+      "buttons": {
+        "addProduct": "Add product"
+      }
+    },
+    "exercises": {
+      "title": "Exercises",
+
+      "defaultValue": "Not found exercises",
+      "list": {
+        "titles": [
+          "Body Part",
+          "Equipment",
+          "Name",
+          "Target",
+          "Burned Calories",
+          "Time"
+        ]
+      },
+      "buttons": {
+        "addExercise": "Add exercise"
+      }
+    },
+    "dashboard": {
+      "dailyCalorieIntake": "Daily calorie intake",
+      "dailyNormOfSports": "Daily norm of sports",
+      "caloriesConsumed": "Сalories consumed",
+      "caloriesBurned": "Сalories burned",
+      "restOfCalories": "The rest of the calories",
+      "restOfSports": "The rest of sports",
+      "recordMealsDescription": "Record all your meals in a calorie diary every day. This will help me be aware of my nutrition and make me responsible for my choices."
+    }
+  }
+}

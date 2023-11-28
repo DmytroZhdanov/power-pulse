@@ -7,17 +7,21 @@ import { CSSTransition } from 'react-transition-group';
 
 import Icon from 'components/common/IconsComp/Icon';
 import { DatePickerWrapper, TransitionDatePicker } from './Calendar.styled';
+import { useTranslation } from 'react-i18next';
+import { enUS, uk } from 'date-fns/locale';
 
 const Calendar = ({ children, onChange, value, ...datePickerProps }) => {
   const [showCalendar, setShowCalendar] = useState(false);
   const [inputClientRect, setInputClientRect] = useState({});
+
+  const { i18n } = useTranslation();
+  const { language } = i18n;
 
   const dateTextWrapperRef = useRef(null);
   const dateCalendarRef = useRef(null);
   const transitionCalendarRef = useRef(null);
 
   const calendarRoot = document.querySelector('#calendar-root');
-
 
   useEffect(() => {
     const handleClickOutside = e => {
@@ -70,6 +74,15 @@ const Calendar = ({ children, onChange, value, ...datePickerProps }) => {
   const setIsDisabledBtn = ({ activeStartDate, date, view }) =>
     view === 'month' && activeStartDate.getMonth() !== date.getMonth();
 
+  const formatShortWeekday = (locale, date) =>
+    format(date, 'EEEEEE', {
+      locale: locale === 'uk' ? uk : enUS,
+    });
+
+  const formatMonth = (locale, date) =>
+    format(date, 'MMM', {
+      locale: locale === 'uk' ? uk : enUS,
+    });
   return (
     <>
       <div ref={dateTextWrapperRef} onClick={handleClickCalendarInput}>
@@ -93,12 +106,12 @@ const Calendar = ({ children, onChange, value, ...datePickerProps }) => {
             >
               <CalendarDatePicker
                 className="date-picker-calendar"
-                locale={'en'}
+                locale={language}
                 minDetail="decade"
-                onChange={handleChangeDate}
                 value={value}
-                formatShortWeekday={(_, date) => format(date, 'EEEEEE')}
-                formatMonth={(_, date) => format(date, 'MMM')}
+                onChange={handleChangeDate}
+                formatShortWeekday={formatShortWeekday}
+                formatMonth={formatMonth}
                 tileDisabled={setIsDisabledBtn}
                 tileClassName={setCustomBtnClassName}
                 prevLabel={<Icon name="nav-arrow-left" />}

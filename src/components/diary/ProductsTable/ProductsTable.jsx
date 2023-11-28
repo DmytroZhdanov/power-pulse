@@ -21,6 +21,7 @@ import {
   useDeleteProductMutation,
   useFetchUserBloodGroupQuery,
 } from 'src/redux/api';
+import { useTranslation } from 'react-i18next';
 import { setStates } from 'src/redux/states/statesSlice';
 
 export default function ProductsTable({ diaryProducts, setDiaryProducts }) {
@@ -42,6 +43,12 @@ export default function ProductsTable({ diaryProducts, setDiaryProducts }) {
 
   const dispatch = useDispatch();
   const [isTablet, setIsTablet] = useState(window.innerWidth >= 768);
+
+  const { t } = useTranslation(['Diary']);
+  const titleList = t(`content.products.list.titles`, {
+    ns: 'Diary',
+    returnObjects: true,
+  });
 
   useEffect(() => {
     dispatch(
@@ -94,15 +101,9 @@ export default function ProductsTable({ diaryProducts, setDiaryProducts }) {
           <Table>
             <TableMainTitlesThead>
               <TableTitleTr>
-                <TableMainTitleTh>Title</TableMainTitleTh>
-
-                <TableMainTitleTh>Category</TableMainTitleTh>
-
-                <TableMainTitleTh>Calories</TableMainTitleTh>
-
-                <TableMainTitleTh>Weight</TableMainTitleTh>
-
-                <TableMainTitleTh>Recommend</TableMainTitleTh>
+                {titleList.map(title => (
+                  <TableMainTitleTh key={title}>{title}</TableMainTitleTh>
+                ))}
               </TableTitleTr>
             </TableMainTitlesThead>
 
@@ -137,7 +138,13 @@ export default function ProductsTable({ diaryProducts, setDiaryProducts }) {
                         <TableInfoTd>
                           <TableRecomSpan recommended={isRecommended} />
 
-                          {isRecommended ? 'Yes' : 'No'}
+                          {isRecommended
+                            ? t(`content.products.list.recommend.yes`, {
+                                ns: 'Diary',
+                              })
+                            : t(`content.products.list.recommend.no`, {
+                                ns: 'Diary',
+                              })}
                         </TableInfoTd>
 
                         <td>
@@ -179,15 +186,11 @@ export default function ProductsTable({ diaryProducts, setDiaryProducts }) {
                     >
                       <TableMainTitlesThead>
                         <TableTitleTr>
-                          <TableMainTitleTh>Title</TableMainTitleTh>
-
-                          <TableMainTitleTh>Category</TableMainTitleTh>
-
-                          <TableMainTitleTh>Calories</TableMainTitleTh>
-
-                          <TableMainTitleTh>Weight</TableMainTitleTh>
-
-                          <TableMainTitleTh>Recommend</TableMainTitleTh>
+                          {titleList.map(title => (
+                            <TableMainTitleTh key={title}>
+                              {title}
+                            </TableMainTitleTh>
+                          ))}
                         </TableTitleTr>
                       </TableMainTitlesThead>
 
@@ -204,7 +207,13 @@ export default function ProductsTable({ diaryProducts, setDiaryProducts }) {
                           <TableInfoTd>
                             <TableRecomSpan recommended={isRecommended} />
 
-                            {isRecommended ? 'Yes' : 'No'}
+                            {isRecommended
+                              ? t(`content.products.list.recommend.yes`, {
+                                  ns: 'Diary',
+                                })
+                              : t(`content.products.list.recommend.no`, {
+                                  ns: 'Diary',
+                                })}
                           </TableInfoTd>
 
                           <td>

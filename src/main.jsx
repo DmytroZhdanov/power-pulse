@@ -9,6 +9,7 @@ import { GlobalStyles, theme } from './styles';
 
 import App from 'components/App';
 import Loader from 'components/Loader/Loader';
+import './i18n';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

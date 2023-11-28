@@ -15,6 +15,7 @@ import { useLazyFetchUserParamsQuery } from 'src/redux/api';
 import { selectToken } from 'src/redux/auth/selectors';
 import { setStates } from 'src/redux/states/statesSlice';
 import CalendarDiv from '../CalendarIcon/CalendarDiv';
+import LanguageSwitcher from '../../LanguageSwitcher/LanguageSwitcher';
 
 export default function Header() {
   const token = useSelector(selectToken);
@@ -78,7 +79,7 @@ export default function Header() {
   return (
     <BoxHeader logged={isLogged}>
       <HeaderWrapDiv>
-        <Logo />
+        <Logo isLogged={isLogged} />
 
         {isLogged && (
           <>
@@ -106,6 +107,7 @@ export default function Header() {
             </CSSTransition>
           </>
         )}
+        <LanguageSwitcher />
       </HeaderWrapDiv>
     </BoxHeader>
   );
